@@ -28,17 +28,17 @@ Pod::Spec.new do |s|
         ss.dependency 'SnapKit', '~> 4.0.1'
     end
     
-    s.subspec 'Session' do |ss|
-        ss.source_files = 'Easy/Classes/Session/*'
-        ss.dependency 'Alamofire', '~> 4.7.3'
-        ss.dependency 'SwiftyJSON', '~> 4.2.0'
-    end
-    
-    s.subspec 'Test' do |ss|
-        ss.source_files = 'Easy/Classes/Test/*'
-        ss.dependency 'FLEX', '~> 2.4.0'
-        ss.dependency 'GDPerformanceView-Swift', '~> 1.3.2'
-        ss.dependency 'NotificationBannerSwift', '~> 1.7.1'
-    end
+#    s.subspec 'Session' do |ss|
+#        ss.source_files = 'Easy/Classes/Session/*'
+#        ss.dependency 'Alamofire', '~> 4.7.3'
+#        ss.dependency 'SwiftyJSON', '~> 4.2.0'
+#    end
+#    
+#    s.subspec 'Test' do |ss|
+#        ss.source_files = 'Easy/Classes/Test/*'
+#        ss.dependency 'FLEX', '~> 2.4.0'
+#        ss.dependency 'GDPerformanceView-Swift', '~> 1.3.2'
+#        ss.dependency 'NotificationBannerSwift', '~> 1.7.1'
+#    end
     
 end
