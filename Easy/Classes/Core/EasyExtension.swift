@@ -523,6 +523,47 @@ public extension URLRequest {
     
 }
 
+public extension Easy {
+    
+    static func decode<T>(decoder: JSONDecoder = JSONDecoder(), _ type: T.Type, from data: Data?) -> T? where T : Decodable {
+        if let data = data {
+            return try? decoder.decode(type, from: data)
+        }
+        return nil
+    }
+    
+}
+
+public extension Dictionary {
+    
+    private static func value(for json: EasyParameters, in path: [String]) -> Any? {
+        if path.count == 1 {
+            return json[path[0]] as Any
+        }
+        var path = path
+        return value(for: json, in: &path)
+    }
+    
+    private static func value(for json: EasyParameters, in path: inout [String]) -> Any? {
+        if let first = path.first, let json = json[first] as? EasyParameters {
+            path.removeFirst()
+            return value(for: json, in: &path)
+        }
+        if let last = path.last {
+            return json[last] as Any
+        }
+        return nil
+    }
+    
+    subscript(path: [String]) -> Any? {
+        if let json = self as? EasyParameters {
+            return Dictionary.value(for: json, in: path)
+        }
+        return nil
+    }
+    
+}
+
 public extension UIColor {
     
     static var hex333333: UIColor { return UIColor.hex(0x333333) }

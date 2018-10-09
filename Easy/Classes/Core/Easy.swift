@@ -358,11 +358,3 @@ public extension Easy {
     }
     
 }
-
-#if canImport(SwiftyJSON)
-import SwiftyJSON
-public typealias EasyJSON = JSON
-public extension Easy {
-    typealias JSON = EasyJSON
-}
-#endif

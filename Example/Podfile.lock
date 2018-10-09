@@ -3,24 +3,11 @@ PODS:
   - Easy (0.1.0):
     - Easy/Core (= 0.1.0)
     - Easy/Session (= 0.1.0)
-    - Easy/Test (= 0.1.0)
   - Easy/Core (0.1.0):
-    - SnapKit (~> 4.0.1)
+    - SnapKit
   - Easy/Session (0.1.0):
-    - Alamofire (~> 4.7.3)
-    - SwiftyJSON (~> 4.2.0)
-  - Easy/Test (0.1.0):
-    - FLEX (~> 2.4.0)
-    - GDPerformanceView-Swift (~> 1.3.2)
-    - NotificationBannerSwift (~> 1.7.1)
-  - FLEX (2.4.0)
-  - GDPerformanceView-Swift (1.3.2)
-  - MarqueeLabel/Swift (3.2.0)
-  - NotificationBannerSwift (1.7.1):
-    - MarqueeLabel/Swift (~> 3.2.0)
-    - SnapKit (~> 4.0.1)
+    - Alamofire
   - SnapKit (4.0.1)
-  - SwiftyJSON (4.2.0)
 
 DEPENDENCIES:
   - Easy (from `../`)
@@ -28,12 +15,7 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
-    - FLEX
-    - GDPerformanceView-Swift
-    - MarqueeLabel
-    - NotificationBannerSwift
     - SnapKit
-    - SwiftyJSON
 
 EXTERNAL SOURCES:
   Easy:
@@ -41,13 +23,8 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
-  Easy: 5a1776ed7914deea7f7d87d2a06b728f662fbfe7
-  FLEX: bd1a39e55b56bb413b6f1b34b3c10a0dc44ef079
-  GDPerformanceView-Swift: a74cd679587b199e4526492b6e68ce61593c6123
-  MarqueeLabel: 440a502b91a9179bd98f9fff00ba1150650a1c0e
-  NotificationBannerSwift: 5d0191ae57c4b38e484dab4912e32d1ed99fce61
+  Easy: bc5cad8940aeddedf74fd1f52a64aa43da6cdd98
   SnapKit: 0de968a9fec17499afa29683b05d0c775b6d1c29
-  SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
 
 PODFILE CHECKSUM: 1008f22bbe753b607938f000ecab1ba2106f0260
 

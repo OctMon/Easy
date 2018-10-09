@@ -23,6 +23,30 @@ public extension NSObject {
 
 }
 
+public extension Optional {
+    
+    /// 强转为Int类型
+    var toInt: Int? {
+        return (self as? Int) ?? toString?.toInt
+    }
+    
+    /// 强转为Int类型 失败为0
+    var toIntValue: Int {
+        return toInt ?? 0
+    }
+    
+    /// 强转为String类型
+    var toString: String? {
+        return (self as? String) ?? NumberFormatter().string(for: self)
+    }
+    
+    /// 强转为String类型 失败为""
+    var toStringValue: String {
+        return toString ?? ""
+    }
+    
+}
+
 public extension Bool {
     
     var toInt: Int {
@@ -274,6 +298,10 @@ public extension Dictionary {
     
     var toPrettyPrintedString: String? {
         return JSONSerialization.toJsonString(withJSONObject: self)
+    }
+    
+    var toData: Data? {
+        return JSONSerialization.isValidJSONObject(self) ? try? JSONSerialization.data(withJSONObject: self) : nil
     }
     
 }

@@ -25,15 +25,14 @@ Pod::Spec.new do |s|
     
     s.subspec 'Core' do |ss|
         ss.source_files = 'Easy/Classes/Core/*'
-        ss.dependency 'SnapKit', '~> 4.0.1'
+        ss.dependency 'SnapKit'#, '~> 4.0.1'
     end
     
-#    s.subspec 'Session' do |ss|
-#        ss.source_files = 'Easy/Classes/Session/*'
-#        ss.dependency 'Alamofire', '~> 4.7.3'
-#        ss.dependency 'SwiftyJSON', '~> 4.2.0'
-#    end
-#    
+    s.subspec 'Session' do |ss|
+        ss.source_files = 'Easy/Classes/Session/*'
+        ss.dependency 'Alamofire'#, '~> 4.7.3'
+    end
+    
 #    s.subspec 'Test' do |ss|
 #        ss.source_files = 'Easy/Classes/Test/*'
 #        ss.dependency 'FLEX', '~> 2.4.0'
