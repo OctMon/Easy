@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
     s.homepage         = 'https://github.com/OctMon/Easy'
     s.license          = { :type => 'MIT', :file => 'LICENSE' }
     s.author           = { 'OctMon' => 'octmon@qq.com' }
-    s.source           = { :git => 'https://github.com/OctMon/Easy.git', :tag => "#{s.version}" }
+    s.source           = { :git => 'https://github.com/OctMon/Easy.git', :tag => s.version }
     
     s.ios.deployment_target = '9.0'
     s.swift_version = '4.2'
@@ -30,17 +30,20 @@ Pod::Spec.new do |s|
     
     s.subspec 'Session' do |ss|
         ss.source_files = 'Easy/Classes/Session/*'
+        ss.dependency 'Easy/Core'
         ss.dependency 'Alamofire'#, '~> 4.7.3'
     end
     
     s.subspec 'Social' do |ss|
         ss.source_files = 'Easy/Classes/Social/*'
         ss.resources = ['Easy/Resources/EasySocial.bundle']
+        ss.dependency 'Easy/Core'
         ss.dependency 'MonkeyKing'#, '~> 1.12.1'
     end
     
 #    s.subspec 'Test' do |ss|
 #        ss.source_files = 'Easy/Classes/Test/*'
+#        ss.dependency 'Easy/Core'
 #        ss.dependency 'FLEX', '~> 2.4.0'
 #        ss.dependency 'GDPerformanceView-Swift', '~> 1.3.2'
 #        ss.dependency 'NotificationBannerSwift', '~> 1.7.1'
