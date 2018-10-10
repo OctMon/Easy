@@ -99,12 +99,12 @@ public struct EasySessionConfig {
             if let global = global {
                 return global
             }
-            #if BETA
-            if let url = UserDefaults.standard.string(forKey: defaultCustomBaseURLKey), !url.isEmpty {
-                return url
+            if EasyApp.isBeta {
+                if let url = UserDefaults.standard.string(forKey: defaultCustomBaseURLKey), !url.isEmpty {
+                    return url
+                }
+                return test
             }
-            return test
-            #endif
             return release
         }
         
@@ -112,12 +112,12 @@ public struct EasySessionConfig {
             if let global = global {
                 return addition?[global]?[key]
             }
-            #if BETA
-            if let url = UserDefaults.standard.string(forKey: defaultCustomBaseURLKey), !url.isEmpty {
-                return addition?[url]?[key] ?? addition?[test]?[key]
+            if EasyApp.isBeta {
+                if let url = UserDefaults.standard.string(forKey: defaultCustomBaseURLKey), !url.isEmpty {
+                    return addition?[url]?[key] ?? addition?[test]?[key]
+                }
+                return addition?[test]?[key]
             }
-            return addition?[test]?[key]
-            #endif
             return addition?[release]?[key]
         }
     }
