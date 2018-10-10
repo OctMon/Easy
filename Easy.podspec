@@ -43,7 +43,7 @@ Pod::Spec.new do |s|
     end
     
     s.subspec 'Beta' do |ss|
-        ss.source_files = 'Easy/Classes/Beta/*'
+        #ss.source_files = 'Easy/Classes/Beta/*'
         ss.dependency 'Easy/Core'
         ss.dependency 'FLEX'#, '~> 2.4.0'
         #ss.dependency 'GDPerformanceView-Swift'#, '~> 1.3.2'
