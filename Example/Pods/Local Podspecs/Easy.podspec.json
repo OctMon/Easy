@@ -60,6 +60,24 @@
 
         ]
       }
+    },
+    {
+      "name": "Beta",
+      "source_files": "Easy/Classes/Beta/*",
+      "dependencies": {
+        "Easy/Core": [
+
+        ],
+        "FLEX": [
+
+        ],
+        "NotificationBannerSwift": [
+
+        ]
+      },
+      "xcconfig": {
+        "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "$(inherited) BETA"
+      }
     }
   ]
 }

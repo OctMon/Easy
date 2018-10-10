@@ -10,6 +10,7 @@ import UIKit
 import Easy
 
 typealias easy = Easy
+typealias log = easy.log
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

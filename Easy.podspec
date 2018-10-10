@@ -42,12 +42,13 @@ Pod::Spec.new do |s|
         ss.dependency 'MonkeyKing'#, '~> 1.12.1'
     end
     
-#    s.subspec 'Test' do |ss|
-#        ss.source_files = 'Easy/Classes/Test/*'
-#        ss.dependency 'Easy/Core'
-#        ss.dependency 'FLEX', '~> 2.4.0'
-#        ss.dependency 'GDPerformanceView-Swift', '~> 1.3.2'
-#        ss.dependency 'NotificationBannerSwift', '~> 1.7.1'
-#    end
+    s.subspec 'Beta' do |ss|
+        ss.source_files = 'Easy/Classes/Beta/*'
+        ss.dependency 'Easy/Core'
+        ss.dependency 'FLEX'#, '~> 2.4.0'
+        #ss.dependency 'GDPerformanceView-Swift'#, '~> 1.3.2'
+        ss.dependency 'NotificationBannerSwift'#, '~> 1.7.3'
+        ss.xcconfig = { 'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => '$(inherited) BETA' }
+    end
     
 end
