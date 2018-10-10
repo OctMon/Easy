@@ -22,6 +22,7 @@ Pod::Spec.new do |s|
     
     s.ios.deployment_target = '9.0'
     s.swift_version = '4.2'
+    s.default_subspec = ['Core', 'Session', 'Social']
     
     s.subspec 'Core' do |ss|
         ss.source_files = 'Easy/Classes/Core/*'
