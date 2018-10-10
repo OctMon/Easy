@@ -16,6 +16,10 @@ public extension Easy {
 }
 #endif
 
+public extension Easy {
+    typealias session = EasySession
+}
+
 public typealias EasyHttpMethod = HTTPMethod
 public extension Easy {
     typealias httpMethod = EasyHttpMethod

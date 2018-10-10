@@ -20,13 +20,13 @@ public struct EasyLog {
 public extension EasyLog {
     
     static var log: String? {
-        return Easy.userDefaults.string(forKey: defaultLogLKey)
+        return EasyApp.userDefaults.string(forKey: defaultLogLKey)
     }
     
     static var logHandler: ((String) -> Void)?
     
     static func clear() {
-        Easy.userDefaults.set(nil, forKey: defaultLogLKey)
+        EasyApp.userDefaults.set(nil, forKey: defaultLogLKey)
     }
     
     static func debug<T>(_ message: T, file: String = #file, method: String = #function, lineNumber: Int = #line) {
@@ -56,8 +56,8 @@ public extension EasyLog {
             if let string = EasyLog.log {
                 log = string + log
             }
-            Easy.userDefaults.set(log, forKey: defaultLogLKey)
-            Easy.userDefaults.string(forKey: defaultLogLKey)
+            EasyApp.userDefaults.set(log, forKey: defaultLogLKey)
+            EasyApp.userDefaults.string(forKey: defaultLogLKey)
             
             logHandler?(log)
         }

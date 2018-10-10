@@ -523,11 +523,11 @@ public extension URLRequest {
     
 }
 
-public extension Easy {
+public extension JSONDecoder {
     
-    static func decode<T>(decoder: JSONDecoder = JSONDecoder(), _ type: T.Type, from data: Data?) -> T? where T : Decodable {
+    func decode<T>(_ type: T.Type, from data: Data?) -> T? where T : Decodable {
         if let data = data {
-            return try? decoder.decode(type, from: data)
+            return try? decode(type, from: data)
         }
         return nil
     }
@@ -560,6 +560,30 @@ public extension Dictionary {
             return Dictionary.value(for: json, in: path)
         }
         return nil
+    }
+    
+}
+
+public extension UIImage {
+    
+    convenience init?(for aClass: AnyClass, forResource bundleName: String, forImage imageName: String) {
+        var resource = bundleName
+        if !bundleName.hasSuffix(".bundle") {
+            resource = bundleName + ".bundle"
+        }
+        if let url = Bundle(for: aClass).url(forResource: resource, withExtension: nil) {
+            var file = ""
+            if let tmp = Bundle(url: url)?.path(forResource: imageName, ofType: nil) {
+                file = tmp
+            } else if let tmp = Bundle(url: url)?.path(forResource: imageName + ".png", ofType: nil) {
+                file = tmp
+            } else if let tmp = Bundle(url: url)?.path(forResource: imageName + "@2x.png", ofType: nil) {
+                file = tmp
+            }
+            self.init(contentsOfFile: file)
+        } else {
+            self.init()
+        }
     }
     
 }
@@ -779,7 +803,7 @@ public extension UIImage {
         guard let info = Bundle.main.infoDictionary else { return nil }
         if let imagesDict = info["UILaunchImages"] as? [[String: String]] {
             for dict in imagesDict {
-                if Easy.screenSize.equalTo(NSCoder.cgSize(for: dict["UILaunchImageSize"]!)) {
+                if EasyApp.screenSize.equalTo(NSCoder.cgSize(for: dict["UILaunchImageSize"]!)) {
                     return UIImage(named: dict["UILaunchImageName"]!)
                 }
             }
@@ -801,7 +825,7 @@ public extension UIImage {
         guard let launchStoryboardName = Bundle.main.infoDictionary?["UILaunchStoryboardName"] as? String else { return nil }
         guard let vc = UIStoryboard(name: launchStoryboardName, bundle: nil).instantiateInitialViewController() else { return nil }
         let view = vc.view
-        view?.frame = Easy.screenBounds
+        view?.frame = EasyApp.screenBounds
         return view?.toImage
     }
     
@@ -1124,7 +1148,7 @@ public extension UIView {
                 if offset == 0 {
                     make.left.equalToSuperview()
                     make.height.equalTo(height)
-                    make.bottom.equalToSuperview().offset(-Easy.safeBottomEdge)
+                    make.bottom.equalToSuperview().offset(-EasyApp.safeBottomEdge)
                 } else if offset > 0 {
                     make.left.equalTo(bottomButtons[offset - 1].snp.right)
                     make.size.equalTo(bottomButtons[offset - 1])
@@ -1178,7 +1202,7 @@ public extension UIViewController {
 
 public extension UIViewController {
     
-    var navgationBottom: CGFloat { return Easy.statusBarHeight + (self.navigationController?.navigationBar.frame.height ?? 0) }
+    var navgationBottom: CGFloat { return EasyApp.statusBarHeight + (self.navigationController?.navigationBar.frame.height ?? 0) }
     
     var navgationBar: UINavigationBar? { return navigationController?.navigationBar }
     

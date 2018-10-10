@@ -14,6 +14,9 @@ class Main: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = UIColor.globalBackground
+        easy.app.runInMain(delay: 1) {
+            easy.social.share(title: "abc", description: "def", thumbnail: nil, url: "hhh")
+        }
     }
     
 }

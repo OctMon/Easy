@@ -35,11 +35,11 @@ extension UINavigationController: UINavigationBarDelegate {
         }
         if shouldPop {
             if let topVC = vc, topVC.responds(to: #selector(navigationPopOnBackHandler)) {
-                Easy.runInMain {
+                EasyApp.runInMain {
                     topVC.navigationPopOnBackHandler()
                 }
             } else {
-                Easy.runInMain {
+                EasyApp.runInMain {
                     self.popViewController(animated: true)
                 }
             }

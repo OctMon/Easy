@@ -33,6 +33,12 @@ Pod::Spec.new do |s|
         ss.dependency 'Alamofire'#, '~> 4.7.3'
     end
     
+    s.subspec 'Social' do |ss|
+        ss.source_files = 'Easy/Classes/Social/*'
+        ss.resources = ['Easy/Resources/EasySocial.bundle']
+        ss.dependency 'MonkeyKing'#, '~> 1.12.1'
+    end
+    
 #    s.subspec 'Test' do |ss|
 #        ss.source_files = 'Easy/Classes/Test/*'
 #        ss.dependency 'FLEX', '~> 2.4.0'

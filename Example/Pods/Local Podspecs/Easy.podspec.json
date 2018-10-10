@@ -37,6 +37,18 @@
 
         ]
       }
+    },
+    {
+      "name": "Social",
+      "source_files": "Easy/Classes/Social/*",
+      "resources": [
+        "Easy/Resources/EasySocial.bundle"
+      ],
+      "dependencies": {
+        "MonkeyKing": [
+
+        ]
+      }
     }
   ]
 }

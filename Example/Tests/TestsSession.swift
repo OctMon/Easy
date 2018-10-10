@@ -45,7 +45,7 @@ class TestsSession: XCTestCase {
     
     func getArticle(handler: @escaping (EasyResult, Article?) -> Void) {
         Session.get(path: path + "today", parameters: ["dev": 1]) { (result) in
-            handler(result, Easy.decode(Article.self, from: result.data.toData))
+            handler(result, JSONDecoder().decode(Article.self, from: result.data.toData))
         }
     }
 

@@ -9,7 +9,7 @@
 import UIKit
 import Easy
 
-typealias app = Easy
+typealias easy = Easy
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
