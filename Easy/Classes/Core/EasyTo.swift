@@ -93,6 +93,14 @@ public extension Double {
     }
 }
 
+public extension CGSize {
+    
+    var toRect: CGRect {
+        return CGRect(x: 0, y: 0, width: width, height: height)
+    }
+
+}
+
 public extension String {
     
     var toFloat: Float? {

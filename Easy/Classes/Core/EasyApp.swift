@@ -58,9 +58,10 @@ public extension EasyApp {
     static let isiPhoneX = screenWidth == 375 && screenHeight == 812
     static let isiPhoneXR = screenScale == 2 && screenWidth == 414 && screenHeight == 896
     static let isiPhoneXSMax = screenScale == 3 && screenWidth == 414 && screenHeight == 896
+    static let isAllFaceIDCapableDevices = isiPhoneX || isiPhoneXR || isiPhoneXSMax
     
     static let statusBarHeight = UIApplication.shared.statusBarFrame.height
-    static let safeBottomEdge = CGFloat((isiPhoneX || isiPhoneXR || isiPhoneXSMax) ? 34 : 0)
+    static let safeBottomEdge = CGFloat(isAllFaceIDCapableDevices ? 34 : 0)
     
     static let userDefaults = UserDefaults.standard
     static let notificationCenter = NotificationCenter.default

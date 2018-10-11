@@ -103,6 +103,8 @@
 		EFF149FB137D04627C071649F434DE0E /* ConstraintAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B04436F59516FCA167780523BCED7D4 /* ConstraintAttributes.swift */; };
 		F9EA61D484CC15FDDAB0D8C0D26D7949 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5A96028952278562150BD92FA9D799 /* Result.swift */; };
 		FE20B961A3BBA8F30811C1D9F04C0E79 /* LayoutConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C0A8E9FFE43BF36285761BA859B42A /* LayoutConstraint.swift */; };
+		FEE6D71E216EF1B70049F772 /* EasyCollectionViewWaterFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEE6D71D216EF1B70049F772 /* EasyCollectionViewWaterFlowLayout.swift */; };
+		FEE6D720216EF1DA0049F772 /* EasyBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEE6D71F216EF1DA0049F772 /* EasyBaseViewController.swift */; };
 		FF9C7BC64DB23D2CED48197DE67F0335 /* MultipartFormData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2B3B7B3266B18A7E389A0A7BDCDA01 /* MultipartFormData.swift */; };
 /* End PBXBuildFile section */
 
@@ -299,6 +301,8 @@
 		F49E5BC8E613611F9B44B76CD5EFD24C /* ConstraintRelatableTarget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintRelatableTarget.swift; path = Source/ConstraintRelatableTarget.swift; sourceTree = "<group>"; };
 		F9D7CB7B9C566C61F29EF92353985FFF /* ConstraintDSL.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintDSL.swift; path = Source/ConstraintDSL.swift; sourceTree = "<group>"; };
 		FD4204E855472CE4DEDEDF5B5191E411 /* EasyCrypto.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EasyCrypto.swift; path = Easy/Classes/Core/EasyCrypto.swift; sourceTree = "<group>"; };
+		FEE6D71D216EF1B70049F772 /* EasyCollectionViewWaterFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EasyCollectionViewWaterFlowLayout.swift; path = Easy/Classes/Core/EasyCollectionViewWaterFlowLayout.swift; sourceTree = "<group>"; };
+		FEE6D71F216EF1DA0049F772 /* EasyBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EasyBaseViewController.swift; path = Easy/Classes/Core/EasyBaseViewController.swift; sourceTree = "<group>"; };
 		FFDE1AAAFAF1C467B3F89D0E7EC4413D /* SnapKit.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = SnapKit.modulemap; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -397,6 +401,8 @@
 				1588EE0F9F656083A16D4EC91F89283B /* Easy.swift */,
 				B1DEA21D41B73B98C3BF8DDAAF1DA6F0 /* EasyAlert.swift */,
 				12F5883284F659F852C5EC7224E9293F /* EasyApp.swift */,
+				FEE6D71F216EF1DA0049F772 /* EasyBaseViewController.swift */,
+				FEE6D71D216EF1B70049F772 /* EasyCollectionViewWaterFlowLayout.swift */,
 				FD4204E855472CE4DEDEDF5B5191E411 /* EasyCrypto.swift */,
 				9FA3F2C3DB9A92098065C16E2580BE53 /* EasyExtension.swift */,
 				130891BBBF88ED400DE6B76FE5552D10 /* EasyGestureRecognizer.swift */,
@@ -1025,6 +1031,7 @@
 				38FDC99703240B1A7005D666A6845459 /* Easy-dummy.m in Sources */,
 				6880773935A484FA4A0299F76B8F6212 /* Easy.swift in Sources */,
 				9EFE166E522E0F9955F06898E758D974 /* EasyAlert.swift in Sources */,
+				FEE6D720216EF1DA0049F772 /* EasyBaseViewController.swift in Sources */,
 				B1C41B85E348575FF146898865E466F0 /* EasyApp.swift in Sources */,
 				7FEAC81A87686ABCAA880EF59BF4D237 /* EasyCrypto.swift in Sources */,
 				5DB2F96081E7F998AC96B945D841E6E4 /* EasyError.swift in Sources */,
@@ -1034,6 +1041,7 @@
 				4D14334F6CB2BBDA8AFB27E53ADC1BD4 /* EasyKeychain.swift in Sources */,
 				A710BED494EC65A318EBD7E8B90AF01F /* EasyLog.swift in Sources */,
 				DB78A92967EBB4A88ACCD22C3A37EBAD /* EasyNavigaitonController.swift in Sources */,
+				FEE6D71E216EF1B70049F772 /* EasyCollectionViewWaterFlowLayout.swift in Sources */,
 				2533258372F9BBF1B3DD04233702E29F /* EasyResult.swift in Sources */,
 				A32174B59376DF4C9DD19147844B458A /* EasyRouter.swift in Sources */,
 				847B2ACADF78B9A981C2433D6665466C /* EasySession.swift in Sources */,

@@ -11,6 +11,7 @@ import Easy
 
 typealias easy = Easy
 typealias log = easy.log
+typealias app = easy.app
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

@@ -8,15 +8,12 @@
 
 import UIKit
 
-class Main: UIViewController {
+class Main: easy.baseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = UIColor.globalBackground
-        easy.app.runInMain(delay: 1) {
-            easy.social.share(title: "abc", description: "def", thumbnail: nil, url: "hhh")
-        }
     }
     
 }

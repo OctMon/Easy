@@ -255,12 +255,44 @@ public extension CGFloat {
         return Foundation.floor(self)
     }
     
+    /// CGSize
+    /**
+     CGSize(width: .screenWidth, height: 0)
+     */
+    static var screenWidth: CGFloat {
+        return EasyApp.screenWidth
+    }
+    
+    /// CGSize
+    /**
+     CGSize(width: 0, height: .screenHeight)
+     */
+    static var screenHeight: CGFloat {
+        return EasyApp.screenHeight
+    }
+    
 }
 
 public extension Int {
     
     var abs: Int {
         return Swift.abs(self)
+    }
+    
+}
+
+public extension CGSize {
+    
+    var isEmpty: Bool {
+        return isWidthEmpty || isHeightEmpty
+    }
+    
+    var isWidthEmpty: Bool {
+        return self.width <= 0
+    }
+    
+    var isHeightEmpty: Bool {
+        return self.height <= 0
     }
     
 }
@@ -884,35 +916,6 @@ public extension UIFont {
     
 }
 
-public extension UIView {
-    
-    var centerX: CGFloat {
-        return center.x
-    }
-    
-    var centerY: CGFloat {
-        return center.y
-    }
-    
-    func setCenterX(_ centerX: CGFloat) {
-        center = CGPoint(x: centerX, y: centerY)
-    }
-    
-    func setCenterY(_ centerY: CGFloat) {
-        center = CGPoint(x: centerX, y: centerY)
-    }
-    
-    func setCornerRadius(_ cornerRadius: CGFloat? = nil) {
-        clipsToBounds = true
-        if let cornerRadius = cornerRadius {
-            layer.cornerRadius = cornerRadius
-        } else {
-            layer.cornerRadius = min(frame.size.height, frame.size.width) * 0.5
-        }
-    }
-    
-}
-
 public extension UIButton {
     
     func setBackgroundImage(_ backgroundImage: UIImage?, cornerRadius: CGFloat, `for` state: UIControl.State = .normal) {
@@ -1012,6 +1015,154 @@ public extension UITableView {
         let view = UIView()
         view.frame.size.height = height
         tableFooterView = view
+    }
+    
+    func registerReusableCell<T: UITableViewCell>(_ cell: T.Type) {
+        let name = cell.toString
+        let xib = Bundle.main.path(forResource: name, ofType: "nib")
+        if let path = xib {
+            let exists = FileManager.default.fileExists(atPath: path)
+            if exists {
+                register(UINib(nibName: name, bundle: Bundle.main), forCellReuseIdentifier: cell.toString)
+            }
+        } else {
+            register(cell.self, forCellReuseIdentifier: cell.toString)
+        }
+    }
+    
+    func dequeueReusableCell<T: UITableViewCell>(with cell: T.Type = T.self) -> T {
+        guard let reuseableCell = dequeueReusableCell(withIdentifier: cell.toString ) as? T else {
+            fatalError("Failed to dequeue a cell with identifier \(cell.toString)")
+        }
+        return reuseableCell
+    }
+    
+    func registerReusableHeaderFooterView<T: UITableViewHeaderFooterView>(_ headerFooterView: T.Type = T.self) {
+        let name = headerFooterView.toString
+        let xib = Bundle.main.path(forResource: name, ofType: "nib")
+        if let path = xib {
+            let exists = FileManager.default.fileExists(atPath: path)
+            if exists {
+                register(UINib(nibName: name, bundle: Bundle.main), forHeaderFooterViewReuseIdentifier: headerFooterView.toString)
+            }
+        } else {
+            register(headerFooterView.self, forHeaderFooterViewReuseIdentifier: headerFooterView.toString)
+        }
+    }
+    
+    func dequeueReusableHeaderFooterView<T: UITableViewHeaderFooterView>(with type: T.Type = T.self) -> T {
+        guard let view = dequeueReusableHeaderFooterView(withIdentifier: type.toString) as? T else {
+            fatalError("Failed to dequeue a header footer view with identifier \(type.toString)")
+        }
+        return view
+    }
+    
+}
+
+public extension UICollectionView {
+    
+    func registerReusableCell<T: UICollectionViewCell>(_ cell: T.Type) {
+        let name = cell.toString
+        let xibPath = Bundle.main.path(forResource: name, ofType: "nib")
+        if let path = xibPath {
+            let exists = FileManager.default.fileExists(atPath: path)
+            if exists {
+                register(UINib(nibName: name, bundle: Bundle.main), forCellWithReuseIdentifier: cell.toString)
+                return
+            }
+        }
+        register(cell.self, forCellWithReuseIdentifier: cell.toString)
+    }
+    
+    func dequeueReusableCell<T: UICollectionViewCell>(for indexPath: IndexPath, with cell: T.Type = T.self) -> T {
+        guard let reuseableCell = dequeueReusableCell(withReuseIdentifier: cell.toString, for: indexPath) as? T else {
+            fatalError("Failed to dequeue a cell with identifier \(cell.toString)")
+        }
+        return reuseableCell
+    }
+    
+    func registerReusableView<T: UICollectionReusableView>(supplementaryViewType: T.Type = T.self, ofKind elementKind: String) {
+        self.register(supplementaryViewType.self, forSupplementaryViewOfKind: elementKind, withReuseIdentifier: supplementaryViewType.toString)
+    }
+    
+    func dequeueReusableSupplementaryView<T: UICollectionReusableView>(ofKind elementKind: String, for indexPath: IndexPath, viewType: T.Type = T.self) -> T {
+        let view = self.dequeueReusableSupplementaryView(ofKind: elementKind, withReuseIdentifier: viewType.toString, for: indexPath)
+        guard let typedView = view as? T else {
+            fatalError(
+                "Failed to dequeue a supplementary view with identifier \(viewType.toString) "
+                    + "matching type \(viewType.self) "
+            )
+        }
+        return typedView
+    }
+    
+}
+
+public extension UIView {
+    
+    var x: CGFloat {
+        get { return self.frame.origin.x }
+        set { self.frame.origin.x = newValue }
+    }
+    var y: CGFloat {
+        get { return self.frame.origin.y }
+        set { self.frame.origin.y = newValue }
+    }
+    
+    var width: CGFloat {
+        get { return self.frame.width }
+        set { self.frame.size.width = newValue }
+    }
+    var height: CGFloat {
+        get { return self.frame.height }
+        set { self.frame.size.height = newValue }
+    }
+    
+    var size: CGSize {
+        get { return self.frame.size }
+        set { self.frame.size = newValue }
+    }
+    
+    var origin: CGPoint {
+        get { return self.frame.origin }
+        set { self.frame.origin = newValue }
+    }
+    
+    var left: CGFloat {
+        get { return self.frame.origin.x }
+        set { self.frame.origin.x = newValue }
+    }
+    var right: CGFloat {
+        get { return self.frame.origin.x + self.frame.size.width }
+        set { self.frame.origin.x = newValue - self.frame.size.width }
+    }
+    
+    var top: CGFloat {
+        get { return self.frame.origin.y }
+        set { self.frame.origin.y = newValue }
+    }
+    var bottom: CGFloat {
+        get { return self.frame.origin.y + self.frame.size.height }
+        set { self.frame.origin.y = newValue - self.frame.size.height }
+    }
+    
+    var centerX: CGFloat {
+        get { return self.center.x }
+        set { self.center.x = newValue }
+    }
+    
+    var centerY: CGFloat {
+        get { return self.center.y }
+        set { self.center.y = newValue }
+    }
+    
+    func setCornerRadius(_ cornerRadius: CGFloat? = nil) {
+        clipsToBounds = true
+        if let cornerRadius = cornerRadius {
+            layer.cornerRadius = cornerRadius
+        } else {
+            layer.cornerRadius = min(frame.size.height, frame.size.width) * 0.5
+        }
     }
     
 }
@@ -1118,6 +1269,14 @@ public extension UIView {
     
     func removeSeparator() {
         subviews.forEach({ guard $0.tag == separatorTag else { return }; $0.removeFromSuperview() })
+    }
+    
+    func removeAllSubviews() {
+        subviews.forEach({ $0.removeFromSuperview() })
+    }
+    
+    func removeAllSubviews(with type: AnyClass) {
+        subviews.forEach({ if $0.isKind(of: type) { $0.removeFromSuperview() } })
     }
 
 }
