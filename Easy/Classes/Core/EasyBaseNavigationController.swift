@@ -1,11 +1,41 @@
 //
-//  EasyNavigaitonController.swift
+//  EasyBaseNavigationController.swift
 //  Easy
 //
-//  Created by OctMon on 2018/9/29.
+//  Created by OctMon on 2018/10/12.
 //
 
 import UIKit
+
+#if canImport(RTRootNavigationController)
+import RTRootNavigationController
+
+public extension Easy {
+    typealias BaseNavigationController = EasyBaseNavigationController
+}
+
+public class EasyBaseNavigationController: RTRootNavigationController {
+    
+    deinit { Easy.log.debug(toDeinit) }
+    
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+    }
+    
+    override init(rootViewController: UIViewController) {
+        super.init(rootViewController: rootViewController)
+        
+        useSystemBackBarButtonItem = true
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        
+        useSystemBackBarButtonItem = true
+    }
+    
+}
+#endif
 
 /// 拦截返回按钮
 private protocol EasyNavigationShouldPopOnBackButton {

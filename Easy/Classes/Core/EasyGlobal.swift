@@ -7,9 +7,21 @@
 
 import UIKit
 
-public extension UIColor {
-    
-    static var globalBackground = UIColor.white
-    static var globalSeparator = UIColor.hex(0xEBEBEB)
+public struct EasyGlobal { }
 
+public extension EasyGlobal {
+    
+    static var background = UIColor.white
+    static var separator = UIColor.hex(0xEBEBEB)
+
+}
+
+public extension EasyGlobal {
+    
+    static var headerStateIdle = "下拉可以刷新"
+    static var headerStatePulling = "松开立即刷新"
+    static var headerStateRefreshing = "正在刷新数据"
+    
+    static var footerStateNoMoreData = "已经全部加载"
+    
 }

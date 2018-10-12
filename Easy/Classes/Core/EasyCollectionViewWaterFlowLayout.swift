@@ -8,7 +8,7 @@
 import UIKit
 
 public extension Easy {
-    typealias collectionViewWaterFlowLayout = EasyCollectionViewWaterFlowLayout
+    typealias CollectionViewWaterFlowLayout = EasyCollectionViewWaterFlowLayout
 }
 
 public class EasyCollectionViewWaterFlowLayout: UICollectionViewFlowLayout {

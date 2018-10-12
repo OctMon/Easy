@@ -18,5 +18,6 @@ public extension Easy {
     typealias log = EasyLog
     typealias alert = EasyAlert
     typealias actionSheet = EasyActionSheet
+    typealias global = EasyGlobal
     typealias router = EasyRouter
 }

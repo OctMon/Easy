@@ -29,25 +29,33 @@ Pod::Spec.new do |s|
         ss.dependency 'SnapKit'#, '~> 4.0.1'
     end
     
+    s.subspec 'CommonLib' do |ss|
+        ss.dependency 'MBProgressHUD'#, '~> 1.1.0' # https://github.com/jdg/MBProgressHUD
+        ss.dependency 'MJRefresh'#, '~> 3.1.15.7' # https://github.com/CoderMJLee/MJRefresh
+        ss.dependency 'RTRootNavigationController'#, '~> 0.6.7' # https://github.com/rickytan/RTRootNavigationController
+        ss.dependency 'SDWebImage'#, '~> 4.4.2' # https://github.com/rs/SDWebImage
+        ss.dependency 'SwiftyAttributes'#, '~> 5.0.0' # https://github.com/eddiekaiger/SwiftyAttributes
+    end
+    
     s.subspec 'Session' do |ss|
         ss.source_files = 'Easy/Classes/Session/*'
         ss.dependency 'Easy/Core'
-        ss.dependency 'Alamofire'#, '~> 4.7.3'
+        ss.dependency 'Alamofire'#, '~> 4.7.3' # https://github.com/Alamofire/Alamofire
     end
     
     s.subspec 'Social' do |ss|
         ss.source_files = 'Easy/Classes/Social/*'
         ss.resources = ['Easy/Resources/EasySocial.bundle']
         ss.dependency 'Easy/Core'
-        ss.dependency 'MonkeyKing'#, '~> 1.12.1'
+        ss.dependency 'MonkeyKing'#, '~> 1.12.1' # https://github.com/nixzhu/MonkeyKing
     end
     
     s.subspec 'Beta' do |ss|
         #ss.source_files = 'Easy/Classes/Beta/*'
         ss.dependency 'Easy/Core'
-        ss.dependency 'FLEX'#, '~> 2.4.0'
-        #ss.dependency 'GDPerformanceView-Swift'#, '~> 1.3.2'
-        ss.dependency 'NotificationBannerSwift'#, '~> 1.7.3'
+        ss.dependency 'FLEX'#, '~> 2.4.0' # https://github.com/Flipboard/FLEX
+        #ss.dependency 'GDPerformanceView-Swift'#, '~> 1.3.2' # https://github.com/dani-gavrilov/GDPerformanceView-Swift
+        ss.dependency 'NotificationBannerSwift'#, '~> 1.7.3' # https://github.com/Daltron/NotificationBanner
         ss.xcconfig = { 'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => '$(inherited) BETA' }
     end
     

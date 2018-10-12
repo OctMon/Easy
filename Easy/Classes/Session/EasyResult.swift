@@ -15,6 +15,9 @@ public struct EasyResult {
     private let easyError: EasyError?
     let json: EasyParameters
     
+    public var models = [Any]()
+    public var model: Any?
+    
     init(config: EasySessionConfig, json: EasyParameters, error: Error?) {
         self.config = config
         self.json = json
@@ -66,4 +69,93 @@ public extension EasyResult {
 
 }
 
+public extension EasyResult {
+    
+    func fill(models: [Any]) -> EasyResult {
+        var response = self
+        response.models = models
+        return response
+    }
+    
+    func fill(model: Any?) -> EasyResult {
+        var response = self
+        response.model = model
+        return response
+    }
+    
+}
 
+#if canImport(MJRefresh)
+import MJRefresh
+public extension EasyBaseViewController {
+    
+    func appendRefresh(_ scrollView: UIScrollView, isApeendHeader: Bool, isApeendFooter: Bool) {
+        if isApeendHeader {
+            scrollView.mj_header = EasyRefresh.headerWithHandler { [weak self] in
+                self?.currentPage = self?.firstPage ?? 0
+                self?.request()
+            }
+        }
+        if isApeendFooter {
+            scrollView.mj_footer = EasyRefresh.footerWithHandler { [weak self] in
+                self?.request()
+            }
+        }
+    }
+    
+    func setRefresh(_ scrollView: UIScrollView, response: EasyResult, errorHandler: ((Error?) -> Void)? = nil) {
+        self.view.hideLoading()
+        if self.currentPage == self.firstPage {
+            if scrollView.mj_header != nil {
+                scrollView.mj_header.endRefreshing()
+            }
+        } else {
+            if scrollView.mj_footer != nil {
+                scrollView.mj_footer.endRefreshing()
+            }
+        }
+        guard response.valid else {
+            if let handler = errorHandler {
+                handler(response.error)
+            } else {
+                if dataSource.count > 0 {
+                    self.view.showText(response.error?.localizedDescription)
+                } else {
+                    self.view.showPlaceholder(error: response.error, image: nil, tap: { [weak self] in
+                        self?.view.showLoading()
+                        self?.request()
+                    })
+                }
+                
+            }
+            return
+        }
+        self.view.hidePlaceholder()
+        if self.currentPage == self.firstPage {
+            self.dataSource = response.models
+        } else {
+            self.dataSource.append(contentsOf: response.models)
+        }
+        if let tableView = scrollView as? UITableView {
+            tableView.reloadData()
+        } else if let collectionView = scrollView as? UICollectionView {
+            UIView.performWithoutAnimation {
+                collectionView.reloadData()
+            }
+        }
+        if ignoreTotalPage || response.total > self.currentPage {
+            self.currentPage += incrementPage
+            if scrollView.mj_footer != nil {
+                scrollView.mj_footer.isHidden = false
+                scrollView.mj_footer.resetNoMoreData()
+            }
+        } else {
+            if scrollView.mj_footer != nil {
+                scrollView.mj_footer.isHidden = false
+                scrollView.mj_footer.endRefreshingWithNoMoreData()
+            }
+        }
+    }
+    
+}
+#endif

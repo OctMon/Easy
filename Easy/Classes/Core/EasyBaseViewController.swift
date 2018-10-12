@@ -8,7 +8,7 @@
 import UIKit
 
 public extension Easy {
-    typealias baseViewController = EasyBaseViewController
+    typealias BaseViewController = EasyBaseViewController
 }
 
 open class EasyBaseViewController: UIViewController {
@@ -95,14 +95,14 @@ open class EasyBaseViewController: UIViewController {
     open override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = UIColor.globalBackground
+        view.backgroundColor = EasyGlobal.background
         
         configure()
     }
     
-    public func configure() { }
+    open func configure() { }
     
-    public func request() { }
+    open func request() { }
 
 }
 

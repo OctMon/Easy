@@ -8,12 +8,12 @@
 
 import UIKit
 
-class Main: easy.baseViewController {
+class Main: easy.BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = UIColor.globalBackground
+        
     }
     
 }
