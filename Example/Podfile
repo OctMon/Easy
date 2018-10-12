@@ -6,7 +6,11 @@ target 'Easy_Example' do
 
   target 'Easy_Tests' do
     inherit! :search_paths
-
-    
   end
+end
+
+target 'Easy_Example_Beta' do
+    pod 'Easy', :path => '../'
+    pod 'Easy/CommonLib', :path => '../'
+    pod 'Easy/Beta', :path => '../'
 end
