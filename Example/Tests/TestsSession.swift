@@ -11,7 +11,7 @@ import Easy
 
 private let Session: EasySession = {
     var config = EasySessionConfig()
-    config.baseURL.global = "https://interface.meiriyiwen.com"
+    config.url.global = "https://interface.meiriyiwen.com"
     config.code.success = config.code.unknown
     return EasySession(config)
 }()

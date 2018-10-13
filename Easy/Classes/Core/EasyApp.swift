@@ -350,3 +350,19 @@ public extension EasyApp {
     }
     
 }
+
+public extension EasyApp {
+    
+    static func configCheckPgyer(api_key: String , shortcutUrl: String, delay: TimeInterval = 3, isWillEnterForegroundCheck: Bool = true) {
+        #if BETA
+        EasyCheck.configPgyerBeta(api_key: api_key, shortcutUrl: shortcutUrl, delay: delay, isWillEnterForegroundCheck: isWillEnterForegroundCheck)
+        #endif
+    }
+    
+    static func configTest() {
+        #if BETA
+        EasyBeta.configTest()
+        #endif
+    }
+    
+}

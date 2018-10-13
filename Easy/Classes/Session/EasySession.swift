@@ -33,6 +33,9 @@ public struct EasySession {
     
     public init(_ config: EasySessionConfig) {
         self.config = config
+        #if BETA
+        addToShowBaseURL()
+        #endif
     }
     
     private enum Router: URLRequestConvertible {
@@ -62,21 +65,36 @@ public struct EasySession {
 public extension EasySession {
     
     func get(path: String?, parameters: EasyParameters?, timeoutInterval: TimeInterval? = nil, requestHandler: ((URLRequest) -> URLRequest)? = nil, handler: @escaping (EasyResult) -> Void) {
-        manager.easyRequest(Router.requestURLEncoding(config.baseURL.currentBaseURL, path, .get, parameters, timeoutInterval ?? config.other.timeout, requestHandler: requestHandler)).easyResponse { (json, error) in
+        manager.easyRequest(Router.requestURLEncoding(config.url.currentBaseURL, path, .get, parameters, timeoutInterval ?? config.other.timeout, requestHandler: requestHandler)).easyResponse { (json, error) in
             handler(EasyResult(config: self.config, json: json, error: error))
         }
     }
     
     func post(path: String?, isURLEncoding: Bool = false, parameters: EasyParameters? = nil, timeoutInterval: TimeInterval? = nil, requestHandler: ((URLRequest) -> URLRequest)? = nil, handler: @escaping (EasyResult) -> Void) {
         if isURLEncoding {
-            manager.easyRequest(Router.requestURLEncoding(config.baseURL.currentBaseURL, path, .post, parameters, timeoutInterval ?? config.other.timeout, requestHandler: requestHandler)).easyResponse { (json, error) in
+            manager.easyRequest(Router.requestURLEncoding(config.url.currentBaseURL, path, .post, parameters, timeoutInterval ?? config.other.timeout, requestHandler: requestHandler)).easyResponse { (json, error) in
                 handler(EasyResult(config: self.config, json: json, error: error))
             }
         } else {
-            manager.easyRequest(Router.requestJSONEncoding(config.baseURL.currentBaseURL, path, .post, parameters, timeoutInterval ?? config.other.timeout, requestHandler: requestHandler)).easyResponse { (json, error) in
+            manager.easyRequest(Router.requestJSONEncoding(config.url.currentBaseURL, path, .post, parameters, timeoutInterval ?? config.other.timeout, requestHandler: requestHandler)).easyResponse { (json, error) in
                 handler(EasyResult(config: self.config, json: json, error: error))
             }
         }
+    }
+    
+}
+
+public extension EasySession {
+    
+    func showChangeBaseURL(_ handler: @escaping (String) -> Void) {
+        #if BETA
+        let vc = EasySessionViewController()
+        vc.config = config
+        let popupView = EasyPopupView(edgeViewController: vc, height: 300)
+        vc.popupView = popupView
+        vc.successHandler = handler
+        popupView.show()
+        #endif
     }
     
 }
@@ -145,7 +163,7 @@ public struct EasySessionConfig {
         public var pagesize = 10 // 分页数量
     }
     
-    public var baseURL = BaseURL()
+    public var url = BaseURL()
     public var key = Key()
     public var code = Code()
     public var other = Other()

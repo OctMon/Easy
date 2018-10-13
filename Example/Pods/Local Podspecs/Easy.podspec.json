@@ -21,8 +21,7 @@
   "swift_version": "4.2",
   "default_subspecs": [
     "Core",
-    "Session",
-    "Social"
+    "Session"
   ],
   "subspecs": [
     {
@@ -35,7 +34,7 @@
       }
     },
     {
-      "name": "CommonLib",
+      "name": "Common",
       "dependencies": {
         "MBProgressHUD": [
 
@@ -83,8 +82,12 @@
     },
     {
       "name": "Beta",
+      "source_files": "Easy/Classes/Beta/*",
       "dependencies": {
         "Easy/Core": [
+
+        ],
+        "Easy/Session": [
 
         ],
         "FLEX": [

@@ -2,7 +2,8 @@ use_frameworks!
 
 target 'Easy_Example' do
   pod 'Easy', :path => '../'
-  pod 'Easy/CommonLib', :path => '../'
+  pod 'Easy/Common', :path => '../'
+  pod 'Easy/Social', :path => '../'
 
   target 'Easy_Tests' do
     inherit! :search_paths
@@ -11,6 +12,7 @@ end
 
 target 'Easy_Example_Beta' do
     pod 'Easy', :path => '../'
-    pod 'Easy/CommonLib', :path => '../'
+    pod 'Easy/Common', :path => '../'
+    pod 'Easy/Social', :path => '../'
     pod 'Easy/Beta', :path => '../'
 end
