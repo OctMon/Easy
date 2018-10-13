@@ -42,7 +42,7 @@ var sessions = [EasySession]()
 var isShowTestTool = false {
     didSet {
         if isShowTestTool {
-            (EasyApp.currentViewController ?? EasyApp.currentTabBarController)?.showDetailViewController(EasyBaseNavigationController(rootViewController: EasyTestViewController()), sender: nil)
+            (EasyApp.currentViewController ?? EasyApp.currentTabBarController)?.showDetailViewController(UINavigationController(rootViewController: EasyTestViewController()), sender: nil)
         } else {
             EasyApp.currentViewController?.dismiss(animated: true, completion: nil)
         }
