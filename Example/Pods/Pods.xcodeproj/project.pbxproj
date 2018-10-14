@@ -464,6 +464,8 @@
 		FCF518D3D828D535A0B8B02D931B0DAB /* FLEXCookiesTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = EC81022BAD505789F504266ECDBE0B0A /* FLEXCookiesTableViewController.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		FD07EC874A20870C90FBA81BE92454D0 /* Typealiases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FCE16D9DF27063C0B653353D01B9A3 /* Typealiases.swift */; };
 		FE11A8254B01916727003488E4CBB1E3 /* FLEXHeapEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B399AF870B3981515901685EAB07172 /* FLEXHeapEnumerator.m */; };
+		FE388A362172EF8F0050904B /* EasyLaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE388A352172EF8F0050904B /* EasyLaunchView.swift */; };
+		FE388A372172EF8F0050904B /* EasyLaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE388A352172EF8F0050904B /* EasyLaunchView.swift */; };
 		FF27476A2642D83F84C193AC9675D017 /* MJRefreshConst.h in Headers */ = {isa = PBXBuildFile; fileRef = 35EA1EA8274A90AE4382FF35259A3E30 /* MJRefreshConst.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FF5108BBBD8A8E2FE8545A8A4E41B0E6 /* FLEXInstancesTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 3172D9A5792550B7ADC39EDBCCBB01DC /* FLEXInstancesTableViewController.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		FF80CF8E49FDB31B68313B39894C84C9 /* ConstraintLayoutSupportDSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC12EA36CCF8B375E5A7E0CD466C5ED /* ConstraintLayoutSupportDSL.swift */; };
@@ -809,9 +811,9 @@
 		12BB8D0DFDF29FF71E2128BD0FF63F8F /* SDWebImageFrame.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDWebImageFrame.h; path = SDWebImage/SDWebImageFrame.h; sourceTree = "<group>"; };
 		12E7B78FCD4647A0D9AADE43F2E3DE6A /* FLEXArgumentInputColorView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXArgumentInputColorView.m; path = Classes/Editing/ArgumentInputViews/FLEXArgumentInputColorView.m; sourceTree = "<group>"; };
 		137BA0A720759469C8155AD5EB975371 /* ConstraintRelation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintRelation.swift; path = Source/ConstraintRelation.swift; sourceTree = "<group>"; };
-		13880C7C3D56CA0BB005FDB2F395679C /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
+		13880C7C3D56CA0BB005FDB2F395679C /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		13B39489932F0FC81FCAC5B0CFB30BA6 /* FLEXClassesTableViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXClassesTableViewController.m; path = Classes/GlobalStateExplorers/FLEXClassesTableViewController.m; sourceTree = "<group>"; };
-		14814299C7E9494F7124B056AFECF174 /* RTRootNavigationController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = RTRootNavigationController.framework; path = RTRootNavigationController.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		14814299C7E9494F7124B056AFECF174 /* RTRootNavigationController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RTRootNavigationController.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1505E5600389A5CA862EA44A9D00A09F /* Easy.common-Beta-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "Easy.common-Beta-prefix.pch"; path = "../Easy.common-Beta/Easy.common-Beta-prefix.pch"; sourceTree = "<group>"; };
 		163C369C85A5AEEA53AAEA1A86D07E67 /* FLEXArgumentInputFontsPickerView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXArgumentInputFontsPickerView.h; path = Classes/Editing/ArgumentInputViews/FLEXArgumentInputFontsPickerView.h; sourceTree = "<group>"; };
 		1644D77B9198352640D0B168262FA4E1 /* SDImageCache.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDImageCache.h; path = SDWebImage/SDImageCache.h; sourceTree = "<group>"; };
@@ -825,16 +827,16 @@
 		1A6D00CA32AC312917FC771751195BCF /* FLEXIvarEditorViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXIvarEditorViewController.h; path = Classes/Editing/FLEXIvarEditorViewController.h; sourceTree = "<group>"; };
 		1AFBEA1A24D08A946C1EBDB231E1EA7D /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1B6F5ECAE9B673ED23036EC30515B3CE /* RTRootNavigationController.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = RTRootNavigationController.modulemap; sourceTree = "<group>"; };
-		1B93845EA9C5A176C9B262A0D8B82E67 /* SDWebImage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SDWebImage.framework; path = SDWebImage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1B93845EA9C5A176C9B262A0D8B82E67 /* SDWebImage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SDWebImage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BEFDC8F9C014AA2E25C0E38B1288A7F /* UIViewController+RTRootNavigationController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIViewController+RTRootNavigationController.h"; path = "RTRootNavigationController/Classes/UIViewController+RTRootNavigationController.h"; sourceTree = "<group>"; };
 		1BF305BA9C7066A3BB06EBE16249EA73 /* Pods-Easy_Example_Beta.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Easy_Example_Beta.debug.xcconfig"; sourceTree = "<group>"; };
 		1C08D0007E8BE4225F185CD0AE3DA93B /* Attribute+Sequence.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Attribute+Sequence.swift"; path = "SwiftyAttributes/Sources/common/Attribute+Sequence.swift"; sourceTree = "<group>"; };
 		1C88A5C8D83F59B5FAFB742C4D42DA34 /* EasyCheck.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EasyCheck.swift; path = Easy/Classes/Beta/EasyCheck.swift; sourceTree = "<group>"; };
 		1CC84280B2726A126177E4F58D425C4B /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1DDDDCEF8E2362EDE6DBD10781EAC58D /* FLEXDefaultsExplorerViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXDefaultsExplorerViewController.m; path = Classes/ObjectExplorers/FLEXDefaultsExplorerViewController.m; sourceTree = "<group>"; };
-		1ED2B6C00395E0CD1B7E7809FBD206C8 /* MJRefresh.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = MJRefresh.framework; path = MJRefresh.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1ED2B6C00395E0CD1B7E7809FBD206C8 /* MJRefresh.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MJRefresh.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2177965BAB48A090EE7DB9CB96687034 /* MJRefreshBackStateFooter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MJRefreshBackStateFooter.h; path = MJRefresh/Custom/Footer/Back/MJRefreshBackStateFooter.h; sourceTree = "<group>"; };
-		21E55E82445BE68156405810F22C4E9B /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		21E55E82445BE68156405810F22C4E9B /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		2357758F0384E978D5A116E63CCF88C0 /* FLEXArgumentInputDateView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXArgumentInputDateView.m; path = Classes/Editing/ArgumentInputViews/FLEXArgumentInputDateView.m; sourceTree = "<group>"; };
 		23A93D6A946092D30FF1B705B623C6E0 /* EasyPlaceholder.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EasyPlaceholder.swift; path = Easy/Classes/Core/EasyPlaceholder.swift; sourceTree = "<group>"; };
 		2471D9285155778417DD5E3DFD42DBCA /* SwiftyAttributes-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwiftyAttributes-umbrella.h"; sourceTree = "<group>"; };
@@ -880,7 +882,7 @@
 		32C0B7A46A1F25906ADE8887DB9D8157 /* ConstraintViewDSL.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintViewDSL.swift; path = Source/ConstraintViewDSL.swift; sourceTree = "<group>"; };
 		3370DC242B5F1D3D9F4E509CD99FC218 /* FLEXLiveObjectsTableViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXLiveObjectsTableViewController.m; path = Classes/GlobalStateExplorers/FLEXLiveObjectsTableViewController.m; sourceTree = "<group>"; };
 		33711C083AA33BC490AC78AD5F345EAF /* MBProgressHUD-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD-dummy.m"; sourceTree = "<group>"; };
-		339050652A40F21D5CDB0B0E724E73D2 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Alamofire.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		339050652A40F21D5CDB0B0E724E73D2 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		33E3303B423D85A64C1EA424221CB42C /* NSData+ImageContentType.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSData+ImageContentType.h"; path = "SDWebImage/NSData+ImageContentType.h"; sourceTree = "<group>"; };
 		33EC9AEFADD8B43B5D0C6344EB7F4D71 /* Easy.common-Beta-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "Easy.common-Beta-dummy.m"; path = "../Easy.common-Beta/Easy.common-Beta-dummy.m"; sourceTree = "<group>"; };
 		34DAE5F214439EEA2E0B7CAAABBB55B3 /* FLEXNetworkObserver.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXNetworkObserver.m; path = Classes/Network/PonyDebugger/FLEXNetworkObserver.m; sourceTree = "<group>"; };
@@ -935,12 +937,12 @@
 		4AA6FAFDB0C725B58F22BA3DE76AE429 /* FLEXArgumentInputJSONObjectView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXArgumentInputJSONObjectView.m; path = Classes/Editing/ArgumentInputViews/FLEXArgumentInputJSONObjectView.m; sourceTree = "<group>"; };
 		4B399AF870B3981515901685EAB07172 /* FLEXHeapEnumerator.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXHeapEnumerator.m; path = Classes/Utility/FLEXHeapEnumerator.m; sourceTree = "<group>"; };
 		4B3A65E9C1DA97DA69A471A73A805324 /* UIViewController+RTRootNavigationController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+RTRootNavigationController.m"; path = "RTRootNavigationController/Classes/UIViewController+RTRootNavigationController.m"; sourceTree = "<group>"; };
-		4C97FEC7B685C70A31FEBD4E13C52AD5 /* FLEX.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = FLEX.framework; path = FLEX.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4C97FEC7B685C70A31FEBD4E13C52AD5 /* FLEX.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FLEX.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D6A17721347E106AA13DC673465B3B8 /* EasyPopupView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EasyPopupView.swift; path = Easy/Classes/Core/EasyPopupView.swift; sourceTree = "<group>"; };
 		4E53C5B10D43A4FDA53D173BCE4AB66A /* SDWebImageManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDWebImageManager.m; path = SDWebImage/SDWebImageManager.m; sourceTree = "<group>"; };
 		4FBF2CC79D9B0B98D2CB64ED6D95961C /* Alamofire.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Alamofire.xcconfig; sourceTree = "<group>"; };
 		50ACB97F5B32746521E5FF3BD7F21DE5 /* ConstraintOffsetTarget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintOffsetTarget.swift; path = Source/ConstraintOffsetTarget.swift; sourceTree = "<group>"; };
-		50C25E2C7E953085FD8F705783BAA9CF /* SnapKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SnapKit.framework; path = SnapKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		50C25E2C7E953085FD8F705783BAA9CF /* SnapKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SnapKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		511C86B19F948D78251E2D3381F67E4E /* FLEXRealmDatabaseManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXRealmDatabaseManager.h; path = Classes/GlobalStateExplorers/DatabaseBrowser/FLEXRealmDatabaseManager.h; sourceTree = "<group>"; };
 		517B849B5C210E39FF2999E14F1119CE /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		532A7DFCCE0729EDBAE2E89F3ADB7746 /* MonkeyKing-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MonkeyKing-umbrella.h"; sourceTree = "<group>"; };
@@ -949,7 +951,7 @@
 		54509DCC3F7E8B0D69516F8ACBB09A60 /* EasySessionViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EasySessionViewController.swift; path = Easy/Classes/Beta/EasySessionViewController.swift; sourceTree = "<group>"; };
 		54DE16B4CF3930C9B657A72CD3FF0681 /* FLEXHierarchyTableViewCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXHierarchyTableViewCell.m; path = Classes/ViewHierarchy/FLEXHierarchyTableViewCell.m; sourceTree = "<group>"; };
 		552C679D092FFF7223C02405BA075D8B /* Pods-Easy_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-Easy_Tests.modulemap"; sourceTree = "<group>"; };
-		555F61DED155189E0D05D0A1E2B15F36 /* MonkeyKing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = MonkeyKing.framework; path = MonkeyKing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		555F61DED155189E0D05D0A1E2B15F36 /* MonkeyKing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MonkeyKing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		55CF50943ACF7B0BFF8FE336F9227668 /* MarqueeLabel.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = MarqueeLabel.modulemap; sourceTree = "<group>"; };
 		55EDABF773548714465F6211C207AF65 /* FLEXNetworkHistoryTableViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXNetworkHistoryTableViewController.m; path = Classes/Network/FLEXNetworkHistoryTableViewController.m; sourceTree = "<group>"; };
 		57002660B9FCD7B5E27D502C6F43E9DB /* Easy.common.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Easy.common.xcconfig; sourceTree = "<group>"; };
@@ -986,7 +988,7 @@
 		68EFF15ED539651D8559665CE5EE8CC8 /* Pods-Easy_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Easy_Tests-resources.sh"; sourceTree = "<group>"; };
 		6A795C3384FEC0C78BB2E1AFC1B0A84B /* FLEXPropertyEditorViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXPropertyEditorViewController.h; path = Classes/Editing/FLEXPropertyEditorViewController.h; sourceTree = "<group>"; };
 		6B18D72519A640206CC9EA4007EF592F /* SDWebImageCompat.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDWebImageCompat.m; path = SDWebImage/SDWebImageCompat.m; sourceTree = "<group>"; };
-		6D428654AB0A31F5489DCF88DD58C678 /* Easy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Easy.framework; path = Easy.common.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6D428654AB0A31F5489DCF88DD58C678 /* Easy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Easy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D5B0F7557BC690016DDAA7E87A00F15 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6DD553E29955F44E13A6EBCF6BA15DA9 /* FLEXLiveObjectsTableViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXLiveObjectsTableViewController.h; path = Classes/GlobalStateExplorers/FLEXLiveObjectsTableViewController.h; sourceTree = "<group>"; };
 		6E65110621102CBD2284D29EC32752A6 /* NSImage+WebCache.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSImage+WebCache.h"; path = "SDWebImage/NSImage+WebCache.h"; sourceTree = "<group>"; };
@@ -1030,10 +1032,10 @@
 		80A7240C9EAB25921A5E7D24348AF850 /* MJRefreshHeader.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MJRefreshHeader.h; path = MJRefresh/Base/MJRefreshHeader.h; sourceTree = "<group>"; };
 		80BCAA31150C4E6C34522FF6E90B1AAC /* FLEXIvarEditorViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXIvarEditorViewController.m; path = Classes/Editing/FLEXIvarEditorViewController.m; sourceTree = "<group>"; };
 		80F6CA4B254425BAE91EB0CBE08A4C43 /* BannerStyle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BannerStyle.swift; path = NotificationBanner/Classes/BannerStyle.swift; sourceTree = "<group>"; };
-		81C39A7EE80C15A90DD343B75EF192B7 /* MarqueeLabel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = MarqueeLabel.framework; path = MarqueeLabel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		81C39A7EE80C15A90DD343B75EF192B7 /* MarqueeLabel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MarqueeLabel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		823DB71161220403FC6AAFE13128795F /* Pods-Easy_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Easy_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
 		8252824CDA510B6C98FAC74A0A1AC3A8 /* MJRefreshNormalHeader.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MJRefreshNormalHeader.m; path = MJRefresh/Custom/Header/MJRefreshNormalHeader.m; sourceTree = "<group>"; };
-		83F3A1BEC2C8E494077E5BE0A99D6E76 /* Easy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Easy.framework; path = "Easy.common-Beta.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		83F3A1BEC2C8E494077E5BE0A99D6E76 /* Easy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Easy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		842C5761951D2AF022FB3965A69E8774 /* FLEXNetworkHistoryTableViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXNetworkHistoryTableViewController.h; path = Classes/Network/FLEXNetworkHistoryTableViewController.h; sourceTree = "<group>"; };
 		849D20C5E0614389948E0AA6B48A3663 /* FLEXNetworkTransaction.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXNetworkTransaction.m; path = Classes/Network/FLEXNetworkTransaction.m; sourceTree = "<group>"; };
 		84F58424F428AD0F52D7838AD0ED9FB8 /* FLEXNetworkRecorder.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXNetworkRecorder.h; path = Classes/Network/FLEXNetworkRecorder.h; sourceTree = "<group>"; };
@@ -1065,10 +1067,10 @@
 		9051B62652C590CB36F2E345DE33B994 /* MJRefreshAutoNormalFooter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MJRefreshAutoNormalFooter.h; path = MJRefresh/Custom/Footer/Auto/MJRefreshAutoNormalFooter.h; sourceTree = "<group>"; };
 		91618E47109699385721B054DE132884 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.3.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		9249A89D201CC3C1FEE268CB5BFB6693 /* EasyRefresh.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EasyRefresh.swift; path = Easy/Classes/Core/EasyRefresh.swift; sourceTree = "<group>"; };
-		92A0B70BFB6D38902DF51DD7711C545B /* Easy.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; path = Easy.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		92A0B70BFB6D38902DF51DD7711C545B /* Easy.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; path = Easy.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		92DEB2698982E0F4B6B3284B69B8BF4A /* FLEXRealmDefines.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXRealmDefines.h; path = Classes/GlobalStateExplorers/DatabaseBrowser/FLEXRealmDefines.h; sourceTree = "<group>"; };
 		92FE6B1A016F6EBA83E6A17B7AC22F1C /* Pods-Easy_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Easy_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		955A475A22EB5A5885912C74019FC101 /* FLEXManager+Private.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "FLEXManager+Private.h"; path = "Classes/Manager/FLEXManager+Private.h"; sourceTree = "<group>"; };
 		95FD8090EE8310BB279926BF47832E17 /* EasySocial.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EasySocial.swift; path = Easy/Classes/Social/EasySocial.swift; sourceTree = "<group>"; };
 		96C53152B72020E5C63E6A28B16815B7 /* FLEX-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FLEX-umbrella.h"; sourceTree = "<group>"; };
@@ -1109,7 +1111,7 @@
 		A6D762FD09FE676F98679749DC9160A3 /* ConstraintDescription.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintDescription.swift; path = Source/ConstraintDescription.swift; sourceTree = "<group>"; };
 		A7F555ED0628C35823FD75686CE99179 /* FLEXToolbarItem.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXToolbarItem.m; path = Classes/Toolbar/FLEXToolbarItem.m; sourceTree = "<group>"; };
 		A85734CB374065235C72432406E74CD1 /* FLEXHierarchyTableViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXHierarchyTableViewController.m; path = Classes/ViewHierarchy/FLEXHierarchyTableViewController.m; sourceTree = "<group>"; };
-		A87BD8020940A6848E53F6628AFBEE5B /* Pods_Easy_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Easy_Tests.framework; path = "Pods-Easy_Tests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A87BD8020940A6848E53F6628AFBEE5B /* Pods_Easy_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Easy_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8B84939EE8F6D9FB188C0F276B510A7 /* ConstraintLayoutGuideDSL.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintLayoutGuideDSL.swift; path = Source/ConstraintLayoutGuideDSL.swift; sourceTree = "<group>"; };
 		AA352AB3E0F520263F862889E17B77F8 /* UIImage+ForceDecode.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImage+ForceDecode.h"; path = "SDWebImage/UIImage+ForceDecode.h"; sourceTree = "<group>"; };
 		AA4AA1FF4B2DD4B2B115E8994CDABC95 /* FLEXViewControllerExplorerViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXViewControllerExplorerViewController.h; path = Classes/ObjectExplorers/FLEXViewControllerExplorerViewController.h; sourceTree = "<group>"; };
@@ -1184,8 +1186,8 @@
 		CA0D179C8910B275B020C1BBC3B0D9F1 /* SDWebImageCoder.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDWebImageCoder.m; path = SDWebImage/SDWebImageCoder.m; sourceTree = "<group>"; };
 		CCC97BB6DC2112E42CC0B3AF74C172DD /* FLEXArgumentInputTextView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXArgumentInputTextView.m; path = Classes/Editing/ArgumentInputViews/FLEXArgumentInputTextView.m; sourceTree = "<group>"; };
 		CD41E948456593846D6A7FEF456BBAD6 /* MonkeyKing.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = MonkeyKing.xcconfig; sourceTree = "<group>"; };
-		CEE7B0F31E7284A9E09274A00862F6F5 /* Pods_Easy_Example_Beta.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Easy_Example_Beta.framework; path = "Pods-Easy_Example_Beta.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		CF534D2383043746B54F9DFCF7DB6F14 /* MBProgressHUD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = MBProgressHUD.framework; path = MBProgressHUD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CEE7B0F31E7284A9E09274A00862F6F5 /* Pods_Easy_Example_Beta.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Easy_Example_Beta.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CF534D2383043746B54F9DFCF7DB6F14 /* MBProgressHUD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MBProgressHUD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D14AEFC3C6B138504104754D28897650 /* BaseNotificationBanner.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BaseNotificationBanner.swift; path = NotificationBanner/Classes/BaseNotificationBanner.swift; sourceTree = "<group>"; };
 		D19AF1F835A9ACB4212B21089BE0CD97 /* FLEXLibrariesTableViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXLibrariesTableViewController.h; path = Classes/GlobalStateExplorers/FLEXLibrariesTableViewController.h; sourceTree = "<group>"; };
 		D231F75C75C577B453AED8B77F699ACB /* MJRefresh.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MJRefresh.h; path = MJRefresh/MJRefresh.h; sourceTree = "<group>"; };
@@ -1201,7 +1203,7 @@
 		DA21609805EEE36F2F26072CEFCC63E8 /* MJRefresh-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MJRefresh-umbrella.h"; sourceTree = "<group>"; };
 		DCED291C4851C3B58A4F6E38674A7518 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DE0606554581A768A2217C218DD69162 /* SwiftyAttributes.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SwiftyAttributes.xcconfig; sourceTree = "<group>"; };
-		DE32DD492D74A2E027B08DB197AB34EB /* SwiftyAttributes.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SwiftyAttributes.framework; path = SwiftyAttributes.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DE32DD492D74A2E027B08DB197AB34EB /* SwiftyAttributes.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftyAttributes.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE41B4439C539D34CAE2766298D58779 /* RTRootNavigationController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RTRootNavigationController.h; path = RTRootNavigationController/Classes/RTRootNavigationController.h; sourceTree = "<group>"; };
 		DFB6099C4E2B933821D96E00649314B9 /* MarqueeLabel.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = MarqueeLabel.xcconfig; sourceTree = "<group>"; };
 		DFB8E111A29A9A41C071757B12D1435D /* RTRootNavigationController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RTRootNavigationController.m; path = RTRootNavigationController/Classes/RTRootNavigationController.m; sourceTree = "<group>"; };
@@ -1221,7 +1223,7 @@
 		E6D028B3CE069F4D4D2E41DE722BADA6 /* MarqueeLabel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MarqueeLabel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7115E12340B5814D3A443DDB4869D10 /* MBProgressHUD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MBProgressHUD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E73617889425EE2C94DB0D9C52CEC1B7 /* FLEXExplorerToolbar.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXExplorerToolbar.h; path = Classes/Toolbar/FLEXExplorerToolbar.h; sourceTree = "<group>"; };
-		E791A65FED9FD030F339A72379EC2602 /* Pods_Easy_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Easy_Example.framework; path = "Pods-Easy_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E791A65FED9FD030F339A72379EC2602 /* Pods_Easy_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Easy_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E84548C6F47C88CFE5112D4FBC808815 /* Pods-Easy_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Easy_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		E942BB5B96994065B62060799281DB6A /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = Info.plist; path = "../Easy.common-Beta/Info.plist"; sourceTree = "<group>"; };
 		E99C53E14B29D7CC7BE4A4AE382768E5 /* MJRefreshComponent.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MJRefreshComponent.m; path = MJRefresh/Base/MJRefreshComponent.m; sourceTree = "<group>"; };
@@ -1249,7 +1251,7 @@
 		F374F339A25654C2B80D70D8749DA40A /* FLEXArgumentInputViewFactory.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXArgumentInputViewFactory.h; path = Classes/Editing/ArgumentInputViews/FLEXArgumentInputViewFactory.h; sourceTree = "<group>"; };
 		F39316C2723D9E89EDBF1E0E70F88002 /* UIScrollView+MJExtension.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIScrollView+MJExtension.m"; path = "MJRefresh/UIScrollView+MJExtension.m"; sourceTree = "<group>"; };
 		F3A19E930B4B7392F66ABD7E2691B67B /* FLEXLayerExplorerViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXLayerExplorerViewController.m; path = Classes/ObjectExplorers/FLEXLayerExplorerViewController.m; sourceTree = "<group>"; };
-		F48DD09CE6EAF5989D72DC9790ABCD8C /* NotificationBannerSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = NotificationBannerSwift.framework; path = NotificationBannerSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F48DD09CE6EAF5989D72DC9790ABCD8C /* NotificationBannerSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NotificationBannerSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4F3709078A9E4EBF7B39F08D278F976 /* SwiftyAttributes.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftyAttributes.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F53D5DD3E96017E498C5EB7A8E24ABEE /* UIImageView+WebCache.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIImageView+WebCache.m"; path = "SDWebImage/UIImageView+WebCache.m"; sourceTree = "<group>"; };
 		F565BC7D1E386B9BE3E12BDD8C12829A /* EasyResult.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EasyResult.swift; path = Easy/Classes/Session/EasyResult.swift; sourceTree = "<group>"; };
@@ -1273,6 +1275,7 @@
 		FC7C5CC32AA3E252A2B0C235F33B97B2 /* ConstraintInsetTarget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintInsetTarget.swift; path = Source/ConstraintInsetTarget.swift; sourceTree = "<group>"; };
 		FCFE5AEE8F93C8626544452B22DDD4B4 /* MJRefreshBackStateFooter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MJRefreshBackStateFooter.m; path = MJRefresh/Custom/Footer/Back/MJRefreshBackStateFooter.m; sourceTree = "<group>"; };
 		FE0661266BC6B71F84F50A6FA7DE3B62 /* NotificationBannerQueue.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NotificationBannerQueue.swift; path = NotificationBanner/Classes/NotificationBannerQueue.swift; sourceTree = "<group>"; };
+		FE388A352172EF8F0050904B /* EasyLaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EasyLaunchView.swift; path = Easy/Classes/Core/EasyLaunchView.swift; sourceTree = "<group>"; };
 		FE933D5F617242921B352E1C6EA0B7E8 /* SDWebImageDownloader.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDWebImageDownloader.h; path = SDWebImage/SDWebImageDownloader.h; sourceTree = "<group>"; };
 		FF709CDDC3D7218AC80F7723CAD0EBB4 /* FLEX-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FLEX-prefix.pch"; sourceTree = "<group>"; };
 		FF98644290714015BA7D687116214F18 /* FLEXFieldEditorView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXFieldEditorView.m; path = Classes/Editing/FLEXFieldEditorView.m; sourceTree = "<group>"; };
@@ -1491,7 +1494,6 @@
 				736EFD63BE2057B79C95A39666E05368 /* Networking.swift */,
 				BC4924F3C134BE5184490B3DD1049848 /* Support Files */,
 			);
-			name = MonkeyKing;
 			path = MonkeyKing;
 			sourceTree = "<group>";
 		};
@@ -1721,7 +1723,6 @@
 				F690E2FBC163F3E9E51FB7B69B1838C5 /* FLEXWindow.m */,
 				E5C2FDBA7F392CF19B92609FC8BB1042 /* Support Files */,
 			);
-			name = FLEX;
 			path = FLEX;
 			sourceTree = "<group>";
 		};
@@ -1763,7 +1764,6 @@
 				22D3574A70A9503B9B37019B68667520 /* Core */,
 				436133D3CAA37CE2AB21DDB29D922EC3 /* Support Files */,
 			);
-			name = RTRootNavigationController;
 			path = RTRootNavigationController;
 			sourceTree = "<group>";
 		};
@@ -1811,7 +1811,6 @@
 				9BF04B55CF06AA63A0153FB91A95DBFD /* Core */,
 				A644C4AAA6BC04B5E93DB728CE28815F /* Support Files */,
 			);
-			name = SDWebImage;
 			path = SDWebImage;
 			sourceTree = "<group>";
 		};
@@ -1845,7 +1844,6 @@
 				E2C1F2B200B14509BE19303AE70153B7 /* Validation.swift */,
 				06C8175273D8F97F9501B8E9FD9CF323 /* Support Files */,
 			);
-			name = Alamofire;
 			path = Alamofire;
 			sourceTree = "<group>";
 		};
@@ -1900,7 +1898,6 @@
 				1669E95B8001FB6E33FB6C1D002B7225 /* UILayoutSupport+Extensions.swift */,
 				8D63E74011C32C6F8B8A0057C99E3854 /* Support Files */,
 			);
-			name = SnapKit;
 			path = SnapKit;
 			sourceTree = "<group>";
 		};
@@ -1910,7 +1907,6 @@
 				8623E7A799C51A48D2ACD4749AE788D6 /* Support Files */,
 				78B7E149AD601B13F3CF911059852DAA /* Swift */,
 			);
-			name = MarqueeLabel;
 			path = MarqueeLabel;
 			sourceTree = "<group>";
 		};
@@ -1958,7 +1954,6 @@
 				2BDDC8D2683452EDF6794C3BA486AB4F /* WritingDirection.swift */,
 				808895504696D82A5CC09A11174F03C1 /* Support Files */,
 			);
-			name = SwiftyAttributes;
 			path = SwiftyAttributes;
 			sourceTree = "<group>";
 		};
@@ -2172,6 +2167,7 @@
 				5CD056B4F21DE92513CBE9720B4BC30A /* EasyExtension.swift */,
 				628065DFF3590EDBAEAE1D63309DEF89 /* EasyGlobal.swift */,
 				5EE4207263A8505B22147005AD999C7A /* EasyKeychain.swift */,
+				FE388A352172EF8F0050904B /* EasyLaunchView.swift */,
 				8512D34431541630896E865DB3F5E1A3 /* EasyLoading.swift */,
 				9AAA5B141B3B3F4374D20974F6CC460B /* EasyLog.swift */,
 				23A93D6A946092D30FF1B705B623C6E0 /* EasyPlaceholder.swift */,
@@ -2248,7 +2244,6 @@
 				CA4C34D86F5A9053EECCD8A6246767D1 /* Resources */,
 				316A210F97F62D1100D8645D5BA1F080 /* Support Files */,
 			);
-			name = MJRefresh;
 			path = MJRefresh;
 			sourceTree = "<group>";
 		};
@@ -2259,7 +2254,6 @@
 				4365FA6DDD9FFE416F64A28A21F299AC /* MBProgressHUD.m */,
 				1F95FA46C9C608BF9842BA2376D1C516 /* Support Files */,
 			);
-			name = MBProgressHUD;
 			path = MBProgressHUD;
 			sourceTree = "<group>";
 		};
@@ -2299,7 +2293,6 @@
 				D8CFC7042855530FBB9DC349C0BB6AAD /* StatusBarNotificationBanner.swift */,
 				A6641453F919A6512F6760A01645836B /* Support Files */,
 			);
-			name = NotificationBannerSwift;
 			path = NotificationBannerSwift;
 			sourceTree = "<group>";
 		};
@@ -2924,7 +2917,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0930;
-				LastUpgradeCheck = 0930;
+				LastUpgradeCheck = 1000;
 			};
 			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -3343,6 +3336,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FE388A362172EF8F0050904B /* EasyLaunchView.swift in Sources */,
 				9AD72ECC11F79FCEFDD03F4D4B38CE66 /* Easy.common-dummy.m in Sources */,
 				D7F20B25097BA0060060AF6AD6C201C5 /* Easy.swift in Sources */,
 				976B4262A826022685D140C633248A0B /* EasyAlert.swift in Sources */,
@@ -3443,6 +3437,7 @@
 				3188113A6F9E325F9A3B5998C2F0177C /* EasyLoading.swift in Sources */,
 				F112CD31A723BB329582787AE2501CBE /* EasyLog.swift in Sources */,
 				2431F0750A265E33347A362EDE4DAC0F /* EasyPlaceholder.swift in Sources */,
+				FE388A372172EF8F0050904B /* EasyLaunchView.swift in Sources */,
 				58E5E1921D8813E0F88775DE5DB06624 /* EasyPopupView.swift in Sources */,
 				86444AD4F50635D76F70BAD0B34A890C /* EasyRefresh.swift in Sources */,
 				D1EA031AABBA3C13BC60B7502180A170 /* EasyResult.swift in Sources */,
@@ -3843,8 +3838,7 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -3973,8 +3967,7 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -4007,8 +4000,7 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -4074,8 +4066,7 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -4331,8 +4322,7 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -4428,8 +4418,7 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -4626,8 +4615,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -4722,6 +4710,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
 				SYMROOT = "${SRCROOT}/../build";
 			};
 			name = Release;
@@ -4753,8 +4742,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -4786,8 +4774,7 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -4886,8 +4873,7 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;

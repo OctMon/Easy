@@ -855,6 +855,10 @@ public extension UIImage {
 
     static var launchImageInStoryboard: UIImage? {
         guard let launchStoryboardName = Bundle.main.infoDictionary?["UILaunchStoryboardName"] as? String else { return nil }
+        let xib = Bundle.main.path(forResource: launchStoryboardName, ofType: "nib")
+        if let path = xib, FileManager.default.fileExists(atPath: path), let view = UINib(nibName: launchStoryboardName, bundle: Bundle.main).instantiate(withOwner: nil, options: nil).first as? UIView {
+            return view.toImage
+        }
         guard let vc = UIStoryboard(name: launchStoryboardName, bundle: nil).instantiateInitialViewController() else { return nil }
         let view = vc.view
         view?.frame = EasyApp.screenBounds
