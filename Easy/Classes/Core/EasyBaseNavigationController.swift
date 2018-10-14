@@ -18,11 +18,11 @@ public class EasyBaseNavigationController: RTRootNavigationController {
     
     deinit { Easy.log.debug(toDeinit) }
     
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+    public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
     
-    override init(rootViewController: UIViewController) {
+    public override init(rootViewController: UIViewController) {
         super.init(rootViewController: rootViewController)
         
         useSystemBackBarButtonItem = true
