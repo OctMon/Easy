@@ -17,12 +17,12 @@ public extension Easy {
 #endif
 
 public extension Easy {
-    typealias session = EasySession
+    typealias Session = EasySession
 }
 
 public typealias EasyHttpMethod = HTTPMethod
 public extension Easy {
-    typealias httpMethod = EasyHttpMethod
+    typealias HttpMethod = EasyHttpMethod
 }
 
 public struct EasySession {

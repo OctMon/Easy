@@ -4,6 +4,7 @@ target 'Easy_Example' do
   pod 'Easy', :path => '../'
   pod 'Easy/Common', :path => '../'
   pod 'Easy/Social', :path => '../'
+  pod 'Easy/Scan', :path => '../'
 
   target 'Easy_Tests' do
     inherit! :search_paths
@@ -15,4 +16,5 @@ target 'Easy_Example_Beta' do
     pod 'Easy/Common', :path => '../'
     pod 'Easy/Social', :path => '../'
     pod 'Easy/Beta', :path => '../'
+    pod 'Easy/Scan', :path => '../'
 end

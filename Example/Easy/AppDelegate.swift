@@ -10,9 +10,12 @@ import UIKit
 import Easy
 
 typealias easy = Easy
-typealias log = easy.log
-typealias app = easy.app
-typealias global = easy.global
+typealias app = EasyApp
+typealias log = EasyLog
+typealias alert = EasyAlert
+typealias actionSheet = EasyActionSheet
+typealias global = EasyGlobal
+typealias router = EasyRouter
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

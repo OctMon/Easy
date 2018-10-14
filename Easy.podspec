@@ -50,6 +50,11 @@ Pod::Spec.new do |s|
         ss.dependency 'MonkeyKing'#, '~> 1.12.1' # https://github.com/nixzhu/MonkeyKing
     end
     
+    s.subspec 'Scan' do |ss|
+        ss.source_files = 'Easy/Classes/Scan/*'
+        ss.dependency 'Easy/Core'
+    end
+    
     s.subspec 'Beta' do |ss|
         ss.source_files = 'Easy/Classes/Beta/*'
         ss.dependency 'Easy/Core'

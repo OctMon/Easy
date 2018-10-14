@@ -16,7 +16,7 @@ public extension Easy {
 
 public class EasyBaseNavigationController: RTRootNavigationController {
     
-    deinit { Easy.log.debug(toDeinit) }
+    deinit { EasyLog.debug(toDeinit) }
     
     public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)

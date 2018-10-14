@@ -81,6 +81,15 @@
       }
     },
     {
+      "name": "Scan",
+      "source_files": "Easy/Classes/Scan/*",
+      "dependencies": {
+        "Easy/Core": [
+
+        ]
+      }
+    },
+    {
       "name": "Beta",
       "source_files": "Easy/Classes/Beta/*",
       "dependencies": {

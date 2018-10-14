@@ -13,7 +13,7 @@ class Main: easy.BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        pushWithHidesBottomBar(to: ScanViewController())
     }
     
 }

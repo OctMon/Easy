@@ -477,6 +477,33 @@ public extension String {
     
 }
 
+public extension String {
+    
+    var toQRcode: UIImage? {
+        return toCodeGenerator(filterName: "CIQRCodeGenerator")
+    }
+    
+    var toBarcode: UIImage? {
+        return toCodeGenerator(filterName: "CICode128BarcodeGenerator")
+    }
+    
+    func toCodeGenerator(filterName: String) -> UIImage? {
+        guard let filter = CIFilter(name: filterName) else {
+            return nil
+        }
+        filter.setDefaults()
+        guard let data = self.data(using: .utf8) else {
+            return nil
+        }
+        filter.setValue(data, forKey: "inputMessage")
+        if let outputImage = filter.outputImage {
+            return UIImage(ciImage: outputImage)
+        }
+        return nil
+    }
+    
+}
+
 public extension URLRequest {
     
     private var easyRequestSeparator: String { return "\n->->->->->->->->->->Request->->->->->->->->->\n" }
@@ -863,6 +890,24 @@ public extension UIImage {
         let view = vc.view
         view?.frame = EasyApp.screenBounds
         return view?.toImage
+    }
+    
+}
+
+public extension UIImage {
+    
+    var detectorQRCode: [CIQRCodeFeature]? {
+        guard let cgImage = cgImage else {
+            return nil
+        }
+        let ciImage = CIImage(cgImage: cgImage)
+        guard let detector = CIDetector(ofType: CIDetectorTypeQRCode, context: nil, options: [CIDetectorAccuracy: CIDetectorAccuracyHigh]) else {
+            return nil
+        }
+        guard let features = detector.features(in: ciImage) as? [CIQRCodeFeature], features.count > 0 else {
+            return nil
+        }
+        return features
     }
     
 }

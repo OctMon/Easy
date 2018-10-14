@@ -13,7 +13,7 @@ public extension Easy {
 
 open class EasyBaseViewController: UIViewController {
     
-    deinit { Easy.log.debug(toDeinit) }
+    deinit { EasyLog.debug(toDeinit) }
     
     private lazy var tableViewNumberOfSectionsHandler: (() -> Int)? = { return nil }()
     private lazy var tableViewNumberOfRowsInSectionHandler: ((Int) -> Int)? = { return nil }()

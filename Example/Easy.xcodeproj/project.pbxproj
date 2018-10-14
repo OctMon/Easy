@@ -17,6 +17,8 @@
 		FE388A3B2173012A0050904B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE388A382173012A0050904B /* LaunchScreen.storyboard */; };
 		FE388A47217318980050904B /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE388A46217318980050904B /* Config.swift */; };
 		FE388A48217318980050904B /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE388A46217318980050904B /* Config.swift */; };
+		FE388A4F2173223C0050904B /* ScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE388A4E2173223C0050904B /* ScanViewController.swift */; };
+		FE388A502173223C0050904B /* ScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE388A4E2173223C0050904B /* ScanViewController.swift */; };
 		FE391C5F216A249300D59D29 /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE391C5E216A249300D59D29 /* Main.swift */; };
 		FE6652D92170A58A007E7051 /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE391C5E216A249300D59D29 /* Main.swift */; };
 		FE6652DA2170A58A007E7051 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
@@ -56,6 +58,7 @@
 		EF2E3C4D7FECE072ABB66C19 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		FE388A392173012A0050904B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FE388A46217318980050904B /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		FE388A4E2173223C0050904B /* ScanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanViewController.swift; sourceTree = "<group>"; };
 		FE391C5E216A249300D59D29 /* Main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Main.swift; sourceTree = "<group>"; };
 		FE6652E42170A58A007E7051 /* Easy_Example_Beta.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Easy_Example_Beta.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FEE7B88A216C541A009EE5C7 /* TestsSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestsSession.swift; sourceTree = "<group>"; };
@@ -196,6 +199,7 @@
 		FE388A40217317950050904B /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				FE388A4D217322230050904B /* Scan */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -206,6 +210,14 @@
 				FE388A46217318980050904B /* Config.swift */,
 			);
 			path = Global;
+			sourceTree = "<group>";
+		};
+		FE388A4D217322230050904B /* Scan */ = {
+			isa = PBXGroup;
+			children = (
+				FE388A4E2173223C0050904B /* ScanViewController.swift */,
+			);
+			path = Scan;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -476,6 +488,7 @@
 				FE391C5F216A249300D59D29 /* Main.swift in Sources */,
 				FE388A47217318980050904B /* Config.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
+				FE388A4F2173223C0050904B /* ScanViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -495,6 +508,7 @@
 				FE6652D92170A58A007E7051 /* Main.swift in Sources */,
 				FE388A48217318980050904B /* Config.swift in Sources */,
 				FE6652DA2170A58A007E7051 /* AppDelegate.swift in Sources */,
+				FE388A502173223C0050904B /* ScanViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
