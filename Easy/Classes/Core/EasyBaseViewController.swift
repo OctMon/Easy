@@ -96,6 +96,7 @@ open class EasyBaseViewController: UIViewController {
         super.viewDidLoad()
 
         view.backgroundColor = EasyGlobal.background
+        setBackBarButtonItem(title: EasyGlobal.backBarButtonItemTitle)
         
         configure()
     }

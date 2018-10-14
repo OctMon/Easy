@@ -11,6 +11,12 @@ public struct EasyGlobal { }
 
 public extension EasyGlobal {
     
+    static var backBarButtonItemTitle: String?
+    
+}
+
+public extension EasyGlobal {
+    
     static var tint = UIColor.hex(0x8eE2323)
     static var background = UIColor.white
     static var separator = UIColor.hex(0xEBEBEB)

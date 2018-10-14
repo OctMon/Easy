@@ -1614,6 +1614,7 @@ public extension UIViewController {
     var navgationBar: UINavigationBar? { return navigationController?.navigationBar }
     
     func setBackBarButtonItem(title: String? = nil) {
+        guard title != nil else { return }
         let temporaryBarButtonItem = UIBarButtonItem()
         temporaryBarButtonItem.title = title ?? ""
         navigationItem.backBarButtonItem = temporaryBarButtonItem

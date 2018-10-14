@@ -20,19 +20,19 @@ public class EasySocial: NSObject {
         var name: String
         var image: UIImage?
         
-        init(type: SharePlatformType) {
+        public init(type: SharePlatformType) {
             self.type = type
             self.name = type.name
             self.image = type.image
         }
         
-        init(type: SharePlatformType, image: UIImage) {
+        public init(type: SharePlatformType, image: UIImage) {
             self.type = type
             self.name = type.name
             self.image = image
         }
         
-        init(type: SharePlatformType, name: String, image: UIImage) {
+        public init(type: SharePlatformType, name: String, image: UIImage) {
             self.type = type
             self.name = name
             self.image = image
@@ -44,7 +44,7 @@ public class EasySocial: NSObject {
         case wechat, qq, weibo
     }
     
-    enum SharePlatformType: Int {
+    public enum SharePlatformType: Int {
         case wechat
         case wechatTimeline
         case wechatFavorite

@@ -15,6 +15,8 @@
 		773625A1EA8AEF98397862C0 /* Pods_Easy_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9493ABE016F261CD4CB12D2B /* Pods_Easy_Example.framework */; };
 		FE388A3A2173012A0050904B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE388A382173012A0050904B /* LaunchScreen.storyboard */; };
 		FE388A3B2173012A0050904B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE388A382173012A0050904B /* LaunchScreen.storyboard */; };
+		FE388A47217318980050904B /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE388A46217318980050904B /* Config.swift */; };
+		FE388A48217318980050904B /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE388A46217318980050904B /* Config.swift */; };
 		FE391C5F216A249300D59D29 /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE391C5E216A249300D59D29 /* Main.swift */; };
 		FE6652D92170A58A007E7051 /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE391C5E216A249300D59D29 /* Main.swift */; };
 		FE6652DA2170A58A007E7051 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
@@ -53,6 +55,7 @@
 		EE9CBAB7DD0DEE72E9CCE97D /* Pods-Easy_Example_Beta.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Easy_Example_Beta.release.xcconfig"; path = "Pods/Target Support Files/Pods-Easy_Example_Beta/Pods-Easy_Example_Beta.release.xcconfig"; sourceTree = "<group>"; };
 		EF2E3C4D7FECE072ABB66C19 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		FE388A392173012A0050904B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		FE388A46217318980050904B /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		FE391C5E216A249300D59D29 /* Main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Main.swift; sourceTree = "<group>"; };
 		FE6652E42170A58A007E7051 /* Easy_Example_Beta.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Easy_Example_Beta.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FEE7B88A216C541A009EE5C7 /* TestsSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestsSession.swift; sourceTree = "<group>"; };
@@ -121,12 +124,12 @@
 		607FACD21AFB9204008FA782 /* Example for Easy */ = {
 			isa = PBXGroup;
 			children = (
-				FEE7B889216C5384009EE5C7 /* Modules */,
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
+				FE388A3F217317950050904B /* Classes */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				FE388A382173012A0050904B /* LaunchScreen.storyboard */,
-				607FACD31AFB9204008FA782 /* Supporting Files */,
 				FE391C5E216A249300D59D29 /* Main.swift */,
+				607FACD31AFB9204008FA782 /* Supporting Files */,
 			);
 			name = "Example for Easy";
 			path = Easy;
@@ -181,11 +184,28 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		FEE7B889216C5384009EE5C7 /* Modules */ = {
+		FE388A3F217317950050904B /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				FE388A41217317950050904B /* Global */,
+				FE388A40217317950050904B /* Modules */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		FE388A40217317950050904B /* Modules */ = {
 			isa = PBXGroup;
 			children = (
 			);
 			path = Modules;
+			sourceTree = "<group>";
+		};
+		FE388A41217317950050904B /* Global */ = {
+			isa = PBXGroup;
+			children = (
+				FE388A46217318980050904B /* Config.swift */,
+			);
+			path = Global;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -454,6 +474,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FE391C5F216A249300D59D29 /* Main.swift in Sources */,
+				FE388A47217318980050904B /* Config.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -472,6 +493,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FE6652D92170A58A007E7051 /* Main.swift in Sources */,
+				FE388A48217318980050904B /* Config.swift in Sources */,
 				FE6652DA2170A58A007E7051 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
