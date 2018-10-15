@@ -7,29 +7,40 @@
 
 import Foundation
 
+public extension Easy {
+    typealias Router = EasyRouter
+}
+
 public struct EasyRouter {
     
-    private var routers = EasyParameters()
+    private var routers = [EasyRouter.Key: Any]()
     
     private static var shared = EasyRouter()
     
-    private init() {}
+    private init() { }
     
 }
 
 public extension EasyRouter {
     
-    struct Key {
-        public static let className = "EasyRouter.className"
-        public static let userInfo = "EasyRouter.userInfo"
+    enum Key: String {
+        case className = "EasyRouter.className"
+        case userInfo = "EasyRouter.userInfo"
+        case url = "EasyRouter.url"
     }
     
-    static func registerURL(_ url: String, routerParametersHandler: @escaping (EasyParameters) -> Void) {
-        shared.routers[url] = routerParametersHandler
+    static func registerURL(_ url: String, routerParametersHandler: @escaping ([EasyRouter.Key: Any]) -> Void) {
+        if EasyRouter.shared.routers[.url] == nil {
+            EasyRouter.shared.routers[.url] = EasyParameters()
+        }
+        var paramaters = (shared.routers[.url] as? EasyParameters)
+        paramaters?[url] = routerParametersHandler
+        shared.routers[.url] = paramaters
     }
     
-    static func openURL(_ url: String, routerParameters: EasyParameters) {
-        (shared.routers[url] as? (EasyParameters) -> Void)?(routerParameters)
+    static func openURL(_ url: String, routerParameters: [EasyRouter.Key: Any]) {
+        var paramaters = (shared.routers[.url] as? EasyParameters)
+        (paramaters?[url] as? ([EasyRouter.Key: Any]) -> Void)?(routerParameters)
     }
     
 }

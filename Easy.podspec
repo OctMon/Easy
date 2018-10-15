@@ -26,6 +26,7 @@ Pod::Spec.new do |s|
     
     s.subspec 'Core' do |ss|
         ss.source_files = 'Easy/Classes/Core/*'
+        ss.resources = ['Easy/Resources/EasyCore.bundle']
         ss.dependency 'SnapKit'#, '~> 4.0.1'
     end
     

@@ -27,6 +27,9 @@
     {
       "name": "Core",
       "source_files": "Easy/Classes/Core/*",
+      "resources": [
+        "Easy/Resources/EasyCore.bundle"
+      ],
       "dependencies": {
         "SnapKit": [
 

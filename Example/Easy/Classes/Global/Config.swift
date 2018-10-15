@@ -16,6 +16,7 @@ extension AppDelegate {
         app.configTest()
         app.configCheckPgyer(api_key: "#replace your api_key", shortcutUrl: "")
         configSocial()
+        configRouter()
     }
 
 }
@@ -27,6 +28,20 @@ private extension AppDelegate {
         easy.social.register(qqAppId: "1104881792")
         easy.social.register(weiboAppId: "1772193724", appKey: "453283216b8c885dad2cdb430c74f62a", redirectURL: "http://sns.whalecloud.com/sina2/callback")
         easy.social.setSharePlatforms([easy.social.SharePlatform(type: .wechat), easy.social.SharePlatform(type: .wechatTimeline), easy.social.SharePlatform(type: .wechatFavorite), easy.social.SharePlatform(type: .qq), easy.social.SharePlatform(type: .qqZone), easy.social.SharePlatform(type: .weibo)])
+    }
+    
+}
+
+private extension AppDelegate {
+    
+    func configRouter() {
+        easy.Router.registerURL("easy://") { (parameters) in
+            log.debug(parameters)
+            let package = app.bundleExecutable + "."
+            guard let name = parameters[.className] as? String else { return }
+            guard let vc = NSClassFromString(package + name) as? easy.BaseViewController.Type else { return }
+            app.currentViewController?.pushWithHidesBottomBar(to: vc.init())
+        }
     }
     
 }

@@ -7,6 +7,10 @@
 
 import UIKit
 
+public extension Easy {
+    typealias PopupView = EasyPopupView
+}
+
 public class EasyPopupView: UIView {
 
     private var view: UIView?
