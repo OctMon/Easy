@@ -14,7 +14,7 @@ extension AppDelegate {
         global.backBarButtonItemTitle = ""
         app.openFullScreenPopGesture()
         app.configTest()
-        app.configCheckPgyer(api_key: "#replace your api_key", shortcutUrl: "")
+//        app.configCheckPgyer(api_key: "#replace your api_key", shortcutUrl: "")
         configSocial()
         configRouter()
     }

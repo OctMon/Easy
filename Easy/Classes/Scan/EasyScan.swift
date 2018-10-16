@@ -12,6 +12,10 @@ public extension Easy {
     typealias Scan = EasyScan
 }
 
+public extension EasyApp {
+    static var authorizationStatusMediaTypeVideo: Bool { return AVCaptureDevice.authorizationStatus(for: AVMediaType.video) != .denied }
+}
+
 public class EasyScan: NSObject {
     
     private let captureDevice = AVCaptureDevice.default(for: .video)

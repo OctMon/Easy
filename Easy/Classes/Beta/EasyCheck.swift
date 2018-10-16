@@ -13,7 +13,7 @@ public struct EasyCheck {
     private static let ignoreBuildKey = "easyIgnoreBuildKey".md5
     
     private static let session: EasySession = {
-        var config = EasySessionConfig()
+        var config = EasyConfig()
         config.url.global = "http://www.pgyer.com"
         return EasySession(config)
     }()

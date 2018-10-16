@@ -24,6 +24,10 @@
 		FE6652DA2170A58A007E7051 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		FE6652DF2170A58A007E7051 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		FEE7B88B216C541A009EE5C7 /* TestsSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEE7B88A216C541A009EE5C7 /* TestsSession.swift */; };
+		FEF494CA2175879F00555C3F /* Tuchong.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF494C92175879F00555C3F /* Tuchong.swift */; };
+		FEF494CB2175879F00555C3F /* Tuchong.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF494C92175879F00555C3F /* Tuchong.swift */; };
+		FEF494D32175B8F700555C3F /* TuchongViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF494D22175B8F700555C3F /* TuchongViewController.swift */; };
+		FEF494D42175B8F700555C3F /* TuchongViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF494D22175B8F700555C3F /* TuchongViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +66,8 @@
 		FE391C5E216A249300D59D29 /* Main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Main.swift; sourceTree = "<group>"; };
 		FE6652E42170A58A007E7051 /* Easy_Example_Beta.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Easy_Example_Beta.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FEE7B88A216C541A009EE5C7 /* TestsSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestsSession.swift; sourceTree = "<group>"; };
+		FEF494C92175879F00555C3F /* Tuchong.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tuchong.swift; sourceTree = "<group>"; };
+		FEF494D22175B8F700555C3F /* TuchongViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TuchongViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -200,6 +206,7 @@
 			isa = PBXGroup;
 			children = (
 				FE388A4D217322230050904B /* Scan */,
+				FEF494C82175875E00555C3F /* Tuchong */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -218,6 +225,15 @@
 				FE388A4E2173223C0050904B /* ScanViewController.swift */,
 			);
 			path = Scan;
+			sourceTree = "<group>";
+		};
+		FEF494C82175875E00555C3F /* Tuchong */ = {
+			isa = PBXGroup;
+			children = (
+				FEF494C92175879F00555C3F /* Tuchong.swift */,
+				FEF494D22175B8F700555C3F /* TuchongViewController.swift */,
+			);
+			path = Tuchong;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -488,6 +504,8 @@
 				FE391C5F216A249300D59D29 /* Main.swift in Sources */,
 				FE388A47217318980050904B /* Config.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
+				FEF494D32175B8F700555C3F /* TuchongViewController.swift in Sources */,
+				FEF494CA2175879F00555C3F /* Tuchong.swift in Sources */,
 				FE388A4F2173223C0050904B /* ScanViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -508,6 +526,8 @@
 				FE6652D92170A58A007E7051 /* Main.swift in Sources */,
 				FE388A48217318980050904B /* Config.swift in Sources */,
 				FE6652DA2170A58A007E7051 /* AppDelegate.swift in Sources */,
+				FEF494D42175B8F700555C3F /* TuchongViewController.swift in Sources */,
+				FEF494CB2175879F00555C3F /* Tuchong.swift in Sources */,
 				FE388A502173223C0050904B /* ScanViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

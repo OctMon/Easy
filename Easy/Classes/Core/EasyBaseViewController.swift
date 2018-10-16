@@ -293,4 +293,8 @@ extension EasyBaseViewController: UICollectionViewDataSource, UICollectionViewDe
         }
     }
     
+    open func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: .screenWidth, height: .screenWidth)
+    }
+    
 }

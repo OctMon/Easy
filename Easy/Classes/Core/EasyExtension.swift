@@ -295,6 +295,10 @@ public extension CGSize {
         return self.height <= 0
     }
     
+    func calcFlowHeight(in viewWidth: CGFloat) -> CGFloat {
+        return height / width * viewWidth
+    }
+    
 }
 
 public extension String {
@@ -455,7 +459,7 @@ public extension String {
         return urlDecode ?? self
     }
     
-    var attributedString: NSMutableAttributedString {
+    var getAttributedString: NSMutableAttributedString {
         return NSMutableAttributedString(string: self)
     }
     
@@ -578,17 +582,6 @@ public extension URLRequest {
     
     mutating func setHTTPHeaderFields(_ fields: [String: String?]) {
         fields.forEach({ setValue($0.value, forHTTPHeaderField: $0.key) })
-    }
-    
-}
-
-public extension JSONDecoder {
-    
-    func decode<T>(_ type: T.Type, from data: Data?) -> T? where T : Decodable {
-        if let data = data {
-            return try? decode(type, from: data)
-        }
-        return nil
     }
     
 }

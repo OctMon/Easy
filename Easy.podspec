@@ -35,7 +35,7 @@ Pod::Spec.new do |s|
         ss.dependency 'MJRefresh'#, '~> 3.1.15.7' # https://github.com/CoderMJLee/MJRefresh
         ss.dependency 'RTRootNavigationController'#, '~> 0.6.7' # https://github.com/rickytan/RTRootNavigationController
         ss.dependency 'SDWebImage'#, '~> 4.4.2' # https://github.com/rs/SDWebImage
-        ss.dependency 'SwiftyAttributes'#, '~> 5.0.0' # https://github.com/eddiekaiger/SwiftyAttributes
+        #ss.dependency 'SwiftyAttributes'#, '~> 5.0.0' # https://github.com/eddiekaiger/SwiftyAttributes
     end
     
     s.subspec 'Session' do |ss|

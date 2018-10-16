@@ -9,7 +9,7 @@ import UIKit
 
 private var _easyPlaceholderView: Void?
 
-extension UIView {
+public extension UIView {
     
     private var easyPlaceholderView: UIView? {
         get { return objc_getAssociatedObject(self, &_easyPlaceholderView) as? UIView }
@@ -76,11 +76,11 @@ extension UIView {
     
 }
 
-extension UIView {
+public extension UIView {
     
     func showPlaceholder(error: Error?, image: UIImage?, tap: (() -> Void)?) {
         guard let error = error else { return }
-        showPlaceholder(attributedString: error.localizedDescription.attributedString, image: image, backgroundColor: UIColor.white, offset: 0, bringSubviews: nil, buttonProvider: { (_) -> UIButton? in
+        showPlaceholder(attributedString: error.localizedDescription.getAttributedString, image: image, backgroundColor: UIColor.white, offset: 0, bringSubviews: nil, buttonProvider: { (_) -> UIButton? in
             return nil
         }, buttonTap: nil, tap: tap)
     }

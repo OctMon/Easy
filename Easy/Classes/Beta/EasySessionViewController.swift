@@ -10,7 +10,7 @@ import UIKit
 class EasySessionViewController: EasyBaseViewController {
     
     var popupView: EasyPopupView?
-    var config: EasySessionConfig!
+    var config: EasyConfig!
     var successHandler: ((String) -> Void)?
     
     override func configure() {

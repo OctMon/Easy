@@ -11,14 +11,14 @@ public struct EasyResult {
     
     static var logEnabel = false
     
-    private let config: EasySessionConfig
+    private let config: EasyConfig
     private let easyError: EasyError?
     let json: EasyParameters
     
     public var models = [Any]()
     public var model: Any?
     
-    init(config: EasySessionConfig, json: EasyParameters, error: Error?) {
+    init(config: EasyConfig, json: EasyParameters, error: Error?) {
         self.config = config
         self.json = json
         if let error = error {
@@ -71,16 +71,27 @@ public extension EasyResult {
 
 public extension EasyResult {
     
-    func fill(models: [Any]) -> EasyResult {
+    func fill<T: Any>(models: [T]) -> EasyResult {
         var response = self
         response.models = models
         return response
     }
     
-    func fill(model: Any?) -> EasyResult {
+    func fill<T: Any>(model: T?) -> EasyResult {
         var response = self
         response.model = model
         return response
+    }
+    
+}
+
+public extension JSONDecoder {
+    
+    func decode<T>(_ type: T.Type, from json: EasyParameters?) -> T? where T : Decodable {
+        if let data = json?.toData {
+            return try? decode(type, from: data)
+        }
+        return nil
     }
     
 }

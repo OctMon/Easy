@@ -18,6 +18,8 @@ public extension Easy {
 
 public extension Easy {
     typealias Session = EasySession
+    typealias Config = EasyConfig
+    typealias Result = EasyResult
 }
 
 public typealias EasyHttpMethod = HTTPMethod
@@ -27,11 +29,11 @@ public extension Easy {
 
 public struct EasySession {
     
-    public let config: EasySessionConfig
+    public let config: EasyConfig
     
     private let manager = SessionManager.default
     
-    public init(_ config: EasySessionConfig) {
+    public init(_ config: EasyConfig) {
         self.config = config
         #if BETA
         addToShowBaseURL()
@@ -64,10 +66,26 @@ public struct EasySession {
 
 public extension EasySession {
     
+    func pageSize(_ page: Int, _ size: Int? = nil) -> Parameters {
+        var parameters = [config.key.page: page]
+        if let size = size {
+            parameters[config.key.size] = size
+        }
+        return parameters
+    }
+    
+    func get(parameters: EasyParameters?, timeoutInterval: TimeInterval? = nil, requestHandler: ((URLRequest) -> URLRequest)? = nil, handler: @escaping (EasyResult) -> Void) {
+        get(path: nil, parameters: parameters, timeoutInterval: timeoutInterval, requestHandler: requestHandler, handler: handler)
+    }
+    
     func get(path: String?, parameters: EasyParameters?, timeoutInterval: TimeInterval? = nil, requestHandler: ((URLRequest) -> URLRequest)? = nil, handler: @escaping (EasyResult) -> Void) {
         manager.easyRequest(Router.requestURLEncoding(config.url.currentBaseURL, path, .get, parameters, timeoutInterval ?? config.other.timeout, requestHandler: requestHandler)).easyResponse { (json, error) in
             handler(EasyResult(config: self.config, json: json, error: error))
         }
+    }
+    
+    func post(isURLEncoding: Bool = false, parameters: EasyParameters? = nil, timeoutInterval: TimeInterval? = nil, requestHandler: ((URLRequest) -> URLRequest)? = nil, handler: @escaping (EasyResult) -> Void) {
+        post(path: nil, isURLEncoding: isURLEncoding, parameters: parameters, timeoutInterval: timeoutInterval, requestHandler: requestHandler, handler: handler)
     }
     
     func post(path: String?, isURLEncoding: Bool = false, parameters: EasyParameters? = nil, timeoutInterval: TimeInterval? = nil, requestHandler: ((URLRequest) -> URLRequest)? = nil, handler: @escaping (EasyResult) -> Void) {
@@ -95,84 +113,6 @@ public extension EasySession {
         vc.successHandler = handler
         popupView.show()
         #endif
-    }
-    
-}
-
-public struct EasySessionConfig {
-    
-    public init() {
-        
-    }
-    
-    public struct BaseURL {
-        public var global: String?
-        public var release = ""
-        public var test = ""
-        public var list = [String]()
-        public var addition: [String: [String: String]]?
-        public var alias: String = ""
-        
-        public var currentBaseURL: String {
-            if let global = global {
-                return global
-            }
-            if EasyApp.isBeta {
-                if let url = UserDefaults.standard.string(forKey: defaultCustomBaseURLKey), !url.isEmpty {
-                    return url
-                }
-                return test
-            }
-            return release
-        }
-        
-        public func currentAddition(key: String) -> String? {
-            if let global = global {
-                return addition?[global]?[key]
-            }
-            if EasyApp.isBeta {
-                if let url = UserDefaults.standard.string(forKey: defaultCustomBaseURLKey), !url.isEmpty {
-                    return addition?[url]?[key] ?? addition?[test]?[key]
-                }
-                return addition?[test]?[key]
-            }
-            return addition?[release]?[key]
-        }
-    }
-    
-    public struct Key {
-        public var code = ["code"]
-        public var data = ["data"]
-        public var msg = ["message"]
-        public var total = ["total"]
-        public var list = ["data", "list"]
-        public var page = "page"
-        public var size = "size"
-    }
-    
-    public struct Code {
-        public var success = 0
-        public var empty = 1
-        public var tokenExpired = -1
-        public var forceUpdate = -2
-        public var unknown = -990909
-    }
-    
-    public struct Other {
-        public var timeout: TimeInterval = 10
-        public var pagesize = 10 // 分页数量
-    }
-    
-    public var url = BaseURL()
-    public var key = Key()
-    public var code = Code()
-    public var other = Other()
-}
-
-extension EasySessionConfig.BaseURL {
-    
-    var defaultCustomBaseURLKey: String {
-        return "EasyDefaultCustomBaseURL_\(alias.md5)".md5
     }
     
 }
