@@ -81,7 +81,7 @@ private extension EasyCollectionViewWaterFlowLayout {
     func calcLayoutInfo() {
         guard let collectionView = collectionView else { return }
         let calc = CalcInfo()
-        calc.x = sectionInset.left
+//        calc.x = sectionInset.left
         calc.y = sectionInset.top
         calc.width = collectionView.width - sectionInset.left - sectionInset.right
         
