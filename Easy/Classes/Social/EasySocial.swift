@@ -51,6 +51,8 @@ public class EasySocial: NSObject {
         case qq
         case qqZone
         case weibo
+        case alipayTimeline
+        case alipayFirends
         
         var name: String {
             switch self {
@@ -66,6 +68,10 @@ public class EasySocial: NSObject {
                 return "QQ空间"
             case .weibo:
                 return "新浪微博"
+            case .alipayFirends:
+                return "支付宝好友"
+            case .alipayTimeline:
+                return "支付宝动态"
             }
         }
         
@@ -83,6 +89,8 @@ public class EasySocial: NSObject {
                 return EasySocial.imageName("qzone")
             case .weibo:
                 return EasySocial.imageName("sina")
+            case .alipayFirends, .alipayTimeline:
+                return EasySocial.imageName("alipay")
             }
         }
     }
@@ -113,8 +121,13 @@ public class EasySocial: NSObject {
                     shared.sharePlatforms.removeFirst()
                 }
             }
-            if !EasySocial.isAppInstalledWeibo{
+            if !EasySocial.isAppInstalledWeibo {
                 if platform.type == .weibo {
+                    shared.sharePlatforms.removeFirst()
+                }
+            }
+            if !EasySocial.isAppInstalledAlipay {
+                if platform.type == .alipayFirends || platform.type == .alipayTimeline {
                     shared.sharePlatforms.removeFirst()
                 }
             }
@@ -176,6 +189,10 @@ public extension EasySocial {
         return MonkeyKing.SupportedPlatform.weibo.isAppInstalled
     }
     
+    static var isAppInstalledAlipay: Bool {
+        return MonkeyKing.SupportedPlatform.alipay.isAppInstalled
+    }
+    
     static func register(weChatAppId: String, weChatAppKey: String) {
         MonkeyKing.registerAccount(MonkeyKing.Account.weChat(appID: weChatAppId, appKey: weChatAppKey, miniAppID: ""))
     }
@@ -187,6 +204,20 @@ public extension EasySocial {
     
     static func register(weiboAppId: String, appKey: String, redirectURL: String) {
         MonkeyKing.registerAccount(MonkeyKing.Account.weibo(appID: weiboAppId, appKey: appKey, redirectURL: redirectURL))
+    }
+    
+    static func register(alipayAppId: String) {
+        MonkeyKing.registerAccount(MonkeyKing.Account.alipay(appID: alipayAppId))
+    }
+    
+    static func orderWechat(_ urlString: String, completionHandler: @escaping (Bool) -> Void) {
+        let order = MonkeyKing.Order.weChat(urlString: urlString)
+        MonkeyKing.deliver(order, completionHandler: completionHandler)
+    }
+    
+    static func orderAlipay(_ urlString: String, scheme: String, completionHandler: @escaping (Bool) -> Void) {
+        let order = MonkeyKing.Order.alipay(urlString: urlString, scheme: scheme)
+        MonkeyKing.deliver(order, completionHandler: completionHandler)
     }
     
     static func setSharePlatforms(_ sharePlatforms: [SharePlatform]) {
@@ -216,6 +247,10 @@ public extension EasySocial {
                 message = MonkeyKing.Message.qq(.zone(info: (title: title, description: description, thumbnail: thumbnail, media: .url(url))))
             case .weibo:
                 message = MonkeyKing.Message.weibo(.default(info: (title: title, description: description, thumbnail: thumbnail, media: .url(url)), accessToken: ""))
+            case .alipayFirends:
+                message = MonkeyKing.Message.alipay(.friends(info: (title: title, description: description, thumbnail: thumbnail, media: .url(url))))
+            case .alipayTimeline:
+                message = MonkeyKing.Message.alipay(.timeline(info: (title: title, description: description, thumbnail: thumbnail, media: .url(url))))
             }
             guard let m = message else { return }
             MonkeyKing.deliver(m, completionHandler: { (result) in
