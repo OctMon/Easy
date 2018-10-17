@@ -12,7 +12,7 @@ class TuchongViewController: easy.BaseViewController {
     
     private var poseID: Int?
     
-    private let space: CGFloat = 5
+    private let space: CGFloat = 2.5
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -95,11 +95,11 @@ extension TuchongViewController {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: .screenWidth, height: 50)
+        return CGSize(width: .screenWidth - space * 2, height: 50)
     }
 
 //    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
-//        return CGSize(width: .screenWidth, height: 50)
+//        return CGSize(width: .screenWidth - space * 2, height: 50)
 //    }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -107,10 +107,12 @@ extension TuchongViewController {
         guard let images = models[indexPath.section].images else { return CGSize.zero }
         let model = images[indexPath.row]
         var scale: CGFloat = 0.5
+        var column: CGFloat = 2
         if images.count == 1 {
             scale = 1
+            column = 1
         }
-        let width = (app.screenWidth - (2 + 1) * space) * scale
+        let width = (app.screenWidth - (column + 1) * space) * scale
         let height = CGSize(width: model.width?.toCGFloat ?? 1, height: model.height?.toCGFloat ?? 1).calcFlowHeight(in: width)
         return CGSize(width: width, height: height)
     }
