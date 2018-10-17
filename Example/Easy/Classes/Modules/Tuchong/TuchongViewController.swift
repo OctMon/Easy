@@ -41,8 +41,8 @@ class TuchongViewController: easy.BaseViewController {
         collectionViewWaterFlowLayout.minimumInteritemSpacing = space
         collectionViewWaterFlowLayout.minimumLineSpacing = space
         collectionViewWaterFlowLayout.sectionInset = UIEdgeInsets(top: space, left: space, bottom: space, right: space)
-        collectionView.registerReusableView(supplementaryViewType: UICollectionReusableView.self, ofKind: UICollectionView.elementKindSectionHeader)
-        collectionView.registerReusableView(supplementaryViewType: UICollectionReusableView.self, ofKind: UICollectionView.elementKindSectionFooter)
+        collectionView.registerReusableView(supplementaryViewType: TuchongReusableView.self, ofKind: UICollectionView.elementKindSectionHeader)
+//        collectionView.registerReusableView(supplementaryViewType: UICollectionReusableView.self, ofKind: UICollectionView.elementKindSectionFooter)
         
         setCollectionView(numberOfSections: { () -> Int in
             return self.dataSource.count
@@ -57,7 +57,7 @@ class TuchongViewController: easy.BaseViewController {
             guard let image = model.images?[indexPath.row] else { return }
             (cell as? TuchongCollectionViewCell)?.do {
                 $0.imageView.setFadeImage(url: image.imageURL, placeholderImage: UIColor.random.toImage)
-                $0.label.text = "[" + indexPath.section.toString + "," + indexPath.row.toString + "]\n" + image.imgID.toStringValue
+                $0.label.text = "(" + indexPath.section.toString + "," + indexPath.row.toString + ")\n" + image.imgID.toStringValue
             }
         }) { (indexPath, any) in
             
@@ -80,9 +80,10 @@ extension TuchongViewController {
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         
         if kind == UICollectionView.elementKindSectionHeader {
-            let view = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, for: indexPath)
+            let view = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, for: indexPath, viewType: TuchongReusableView.self)
             view.backgroundColor = UIColor.gray
             view.alpha = 0.5
+            view.label.text = (self.dataSource as? [Tuchong])?[indexPath.section].tags?.joined(separator: ",")
             return view
         } else {
             let view = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionFooter, for: indexPath)
@@ -96,17 +97,46 @@ extension TuchongViewController {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         return CGSize(width: .screenWidth, height: 50)
     }
+
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+//        return CGSize(width: .screenWidth, height: 50)
+//    }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
-        return CGSize(width: .screenWidth, height: 50)
-    }
-    
-    override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let models = dataSource as? [Tuchong]
-        guard let model = models?[indexPath.section].images?[indexPath.row] else { return CGSize.zero }
-        let width = (app.screenWidth - (2 + 1) * space) * 0.5
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        guard let models = dataSource as? [Tuchong] else { return CGSize.zero }
+        guard let images = models[indexPath.section].images else { return CGSize.zero }
+        let model = images[indexPath.row]
+        var scale: CGFloat = 0.5
+        if images.count == 1 {
+            scale = 1
+        }
+        let width = (app.screenWidth - (2 + 1) * space) * scale
         let height = CGSize(width: model.width?.toCGFloat ?? 1, height: model.height?.toCGFloat ?? 1).calcFlowHeight(in: width)
         return CGSize(width: width, height: height)
+    }
+    
+}
+
+class TuchongReusableView: UICollectionReusableView {
+    
+    let label = UILabel().then {
+        $0.textColor = UIColor.red
+        $0.textAlignment = .center
+        $0.numberOfLines = 0
+        $0.adjustsFontSizeToFitWidth = true
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        addSubview(label)
+        label.snp.makeConstraints { (make) in
+            make.edges.equalToSuperview().inset(UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5))
+        }
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
 }
@@ -119,8 +149,10 @@ class TuchongCollectionViewCell: UICollectionViewCell {
     }
     
     let label = UILabel().then {
-        $0.textColor = UIColor.gray
+        $0.textColor = UIColor.red
         $0.textAlignment = .center
+        $0.backgroundColor = UIColor.black
+        $0.alpha = 0.5
         $0.numberOfLines = 0
     }
     
@@ -134,7 +166,7 @@ class TuchongCollectionViewCell: UICollectionViewCell {
         
         addSubview(label)
         label.snp.makeConstraints { (make) in
-            make.edges.equalToSuperview()
+            make.center.equalToSuperview()
         }
     }
     

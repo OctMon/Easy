@@ -23,6 +23,8 @@
 		FE6652D92170A58A007E7051 /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE391C5E216A249300D59D29 /* Main.swift */; };
 		FE6652DA2170A58A007E7051 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		FE6652DF2170A58A007E7051 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
+		FEC882DF2176C65D009BDC1C /* SocialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC882DE2176C65D009BDC1C /* SocialViewController.swift */; };
+		FEC882E02176C65D009BDC1C /* SocialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC882DE2176C65D009BDC1C /* SocialViewController.swift */; };
 		FEE7B88B216C541A009EE5C7 /* TestsSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEE7B88A216C541A009EE5C7 /* TestsSession.swift */; };
 		FEF494CA2175879F00555C3F /* Tuchong.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF494C92175879F00555C3F /* Tuchong.swift */; };
 		FEF494CB2175879F00555C3F /* Tuchong.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF494C92175879F00555C3F /* Tuchong.swift */; };
@@ -65,6 +67,7 @@
 		FE388A4E2173223C0050904B /* ScanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanViewController.swift; sourceTree = "<group>"; };
 		FE391C5E216A249300D59D29 /* Main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Main.swift; sourceTree = "<group>"; };
 		FE6652E42170A58A007E7051 /* Easy_Example_Beta.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Easy_Example_Beta.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FEC882DE2176C65D009BDC1C /* SocialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialViewController.swift; sourceTree = "<group>"; };
 		FEE7B88A216C541A009EE5C7 /* TestsSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestsSession.swift; sourceTree = "<group>"; };
 		FEF494C92175879F00555C3F /* Tuchong.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tuchong.swift; sourceTree = "<group>"; };
 		FEF494D22175B8F700555C3F /* TuchongViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TuchongViewController.swift; sourceTree = "<group>"; };
@@ -206,6 +209,7 @@
 			isa = PBXGroup;
 			children = (
 				FE388A4D217322230050904B /* Scan */,
+				FEC882DD2176C645009BDC1C /* Social */,
 				FEF494C82175875E00555C3F /* Tuchong */,
 			);
 			path = Modules;
@@ -225,6 +229,14 @@
 				FE388A4E2173223C0050904B /* ScanViewController.swift */,
 			);
 			path = Scan;
+			sourceTree = "<group>";
+		};
+		FEC882DD2176C645009BDC1C /* Social */ = {
+			isa = PBXGroup;
+			children = (
+				FEC882DE2176C65D009BDC1C /* SocialViewController.swift */,
+			);
+			path = Social;
 			sourceTree = "<group>";
 		};
 		FEF494C82175875E00555C3F /* Tuchong */ = {
@@ -503,6 +515,7 @@
 			files = (
 				FE391C5F216A249300D59D29 /* Main.swift in Sources */,
 				FE388A47217318980050904B /* Config.swift in Sources */,
+				FEC882DF2176C65D009BDC1C /* SocialViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 				FEF494D32175B8F700555C3F /* TuchongViewController.swift in Sources */,
 				FEF494CA2175879F00555C3F /* Tuchong.swift in Sources */,
@@ -525,6 +538,7 @@
 			files = (
 				FE6652D92170A58A007E7051 /* Main.swift in Sources */,
 				FE388A48217318980050904B /* Config.swift in Sources */,
+				FEC882E02176C65D009BDC1C /* SocialViewController.swift in Sources */,
 				FE6652DA2170A58A007E7051 /* AppDelegate.swift in Sources */,
 				FEF494D42175B8F700555C3F /* TuchongViewController.swift in Sources */,
 				FEF494CB2175879F00555C3F /* Tuchong.swift in Sources */,

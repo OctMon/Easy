@@ -9,7 +9,7 @@ import UIKit
 import MonkeyKing
 
 public extension Easy {
-    typealias social = EasySocial
+    typealias Social = EasySocial
 }
 
 public class EasySocial: NSObject {
@@ -126,10 +126,10 @@ public class EasySocial: NSObject {
 extension EasySocial {
     
     public struct UserInfo {
-        let openid: String
-        let nickname: String
-        let iconurl: String
-        let sex: String
+        public let openid: String
+        public let nickname: String
+        public let iconurl: String
+        public let sex: String
     }
     
 }
