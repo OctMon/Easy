@@ -7,8 +7,12 @@
 
 import UIKit
 
-public typealias EasyParameters = [String: Any]
-
 public struct Easy {
     private init() {}
+}
+
+public typealias EasyParameters = [String: Any]
+
+public extension Easy {
+    typealias Parameters = EasyParameters
 }
