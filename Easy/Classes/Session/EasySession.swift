@@ -20,6 +20,7 @@ public extension Easy {
     typealias Session = EasySession
     typealias Config = EasyConfig
     typealias Result = EasyResult
+    typealias Error = EasyError
 }
 
 public typealias EasyHttpMethod = HTTPMethod
