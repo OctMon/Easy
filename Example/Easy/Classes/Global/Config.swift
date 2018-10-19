@@ -28,10 +28,15 @@ private extension AppDelegate {
         easy.Social.register(qqAppId: "1104881792")
         easy.Social.register(weiboAppId: "1772193724", appKey: "453283216b8c885dad2cdb430c74f62a", redirectURL: "http://sns.whalecloud.com/sina2/callback")
     
-        easy.Social.setSharePlatforms([.init(type: .wechat), .init(type: .wechatTimeline),
-                                       .init(type: .wechatFavorite), .init(type: .qq),
+        easy.Social.setSharePlatforms([.init(type: .wechat),
+                                       .init(type: .wechatTimeline),
+                                       .init(type: .wechatFavorite),
+                                       .init(type: .qq),
                                        .init(type: .qqZone),
-                                       .init(type: .weibo)])
+                                       .init(type: .weibo),
+                                       .init(type: .alipayFirends),
+                                       .init(type: .alipayTimeline)
+                                       ])
     }
     
 }
