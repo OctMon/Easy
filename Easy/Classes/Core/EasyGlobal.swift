@@ -7,6 +7,10 @@
 
 import UIKit
 
+public extension Easy {
+    typealias Global = EasyGlobal
+}
+
 public struct EasyGlobal { }
 
 public extension EasyGlobal {

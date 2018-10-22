@@ -28,6 +28,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         config(application, launchOptions: launchOptions)
         return true
     }
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        return easy.Social.handleOpenURLSocial(open: url)
+    }
 
 
 }
