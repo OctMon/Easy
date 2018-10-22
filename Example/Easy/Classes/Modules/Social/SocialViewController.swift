@@ -39,7 +39,7 @@ class SocialViewController: easy.BaseViewController {
             case .分享:
                 easy.Social.share(title: "Apple", description: "China", thumbnail: UIImage.setColor(UIColor.red), url: "http://www.apple.com/cn")
             case .微信登录:
-                easy.Social.oauth(platformType: .wechat) { [weak self] (userInfo, error) in
+                easy.Social.oauth(platformType: .wechat) { [weak self] (userInfo, _, error) in
                     if let userInfo = userInfo {
                         self?.showUserInfo(userInfo)
                     } else if let error = error {
@@ -47,7 +47,7 @@ class SocialViewController: easy.BaseViewController {
                     }
                 }
             case .QQ登录:
-                easy.Social.oauth(platformType: .qq) { [weak self] (userInfo, error) in
+                easy.Social.oauth(platformType: .qq) { [weak self] (userInfo, _, error) in
                     if let userInfo = userInfo {
                         self?.showUserInfo(userInfo)
                     } else if let error = error {
@@ -55,7 +55,7 @@ class SocialViewController: easy.BaseViewController {
                     }
                 }
             case .微博登录:
-                easy.Social.oauth(platformType: .weibo) { [weak self] (userInfo, error) in
+                easy.Social.oauth(platformType: .weibo) { [weak self] (userInfo, _, error) in
                     if let userInfo = userInfo {
                         self?.showUserInfo(userInfo)
                     } else if let error = error {

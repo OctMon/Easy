@@ -41,7 +41,7 @@ public class EasySocial: NSObject {
     }
     
     public enum OauthPlatformType: Int {
-        case wechat, qq, weibo
+        case wechat, qq, weibo, alipay
     }
     
     public enum SharePlatformType: Int {
@@ -259,13 +259,13 @@ public extension EasySocial {
         }
     }
     
-    static func oauth(platformType: OauthPlatformType, responseHandler: @escaping (UserInfo?, Error?) -> Void) {
+    static func oauth(platformType: OauthPlatformType, responseHandler: @escaping (UserInfo?, EasyParameters?, Error?) -> Void) {
         switch platformType {
         case .wechat:
             MonkeyKing.oauth(for: .weChat) { (dictionary, response, error) in
                 if let error = error {
                     EasyLog.debug("error \(String(describing: error))")
-                    responseHandler(nil, error)
+                    responseHandler(nil, nil, error)
                 } else {
                     guard let token = dictionary?["access_token"] as? String, let openid = dictionary?["openid"] as? String, let refreshToken = dictionary?["refresh_token"] as? String, let expiresIn = dictionary?["expires_in"] as? Int else { return }
                     let userInfoAPI = "https://api.weixin.qq.com/sns/userinfo"
@@ -274,7 +274,7 @@ public extension EasySocial {
                     EasyNetworking.sharedInstance.request(userInfoAPI, method: .get, parameters: parameters, completionHandler: { (userInfo, _, error) in
                         if let error = error {
                             EasyLog.debug(error)
-                            responseHandler(nil, error)
+                            responseHandler(nil, nil, error)
                         } else {
                             if var userInfo = userInfo {
                                 userInfo["access_token"] = token
@@ -294,7 +294,7 @@ public extension EasySocial {
                                         break
                                     }
                                 }
-                                responseHandler(UserInfo(openid: openid, nickname: userInfo["nickname"] as? String ?? "", iconurl: userInfo["headimgurl"] as? String ?? "", sex: sex), error)
+                                responseHandler(UserInfo(openid: openid, nickname: userInfo["nickname"] as? String ?? "", iconurl: userInfo["headimgurl"] as? String ?? "", sex: sex), userInfo, error)
                             }
                         }
                     })
@@ -304,7 +304,7 @@ public extension EasySocial {
             MonkeyKing.oauth(for: .qq, scope: "get_user_info") { (info, response, error) in
                 if let error = error {
                     EasyLog.debug("error \(String(describing: error))")
-                    responseHandler(nil, error)
+                    responseHandler(nil, nil, error)
                 } else {
                     guard let unwrappedInfo = info, let token = unwrappedInfo["access_token"] as? String, let openid = unwrappedInfo["openid"] as? String else { return }
                     let query = "get_user_info"
@@ -314,13 +314,13 @@ public extension EasySocial {
                     EasyNetworking.sharedInstance.request(userInfoAPI, method: .get, parameters: parameters) { (userInfo, _, _) in
                         if let error = error {
                             EasyLog.debug(error)
-                            responseHandler(nil, error)
+                            responseHandler(nil, nil, error)
                         } else {
                             if var userInfo = userInfo {
                                 userInfo["access_token"] = token
                                 userInfo["openid"] = openid
                                 EasyLog.debug("userInfo \(userInfo)")
-                                responseHandler(UserInfo(openid: openid, nickname: userInfo["nickname"] as? String ?? "", iconurl: userInfo["figureurl_qq_1"] as? String ?? "", sex: userInfo["gender"] as? String ?? ""), error)
+                                responseHandler(UserInfo(openid: openid, nickname: userInfo["nickname"] as? String ?? "", iconurl: userInfo["figureurl_qq_1"] as? String ?? "", sex: userInfo["gender"] as? String ?? ""), userInfo, error)
                             }
                         }
                     }
@@ -330,7 +330,7 @@ public extension EasySocial {
             MonkeyKing.oauth(for: .weibo) { (info, response, error) in
                 if let error = error {
                     EasyLog.debug("error \(String(describing: error))")
-                    responseHandler(nil, error)
+                    responseHandler(nil, nil, error)
                 } else {
                     guard let unwrappedInfo = info, let token = (unwrappedInfo["access_token"] as? String) ?? (unwrappedInfo["accessToken"] as? String), let userID = (unwrappedInfo["uid"] as? String) ?? (unwrappedInfo["userID"] as? String) else { return }
                     let userInfoAPI = "https://api.weibo.com/2/users/show.json"
@@ -339,7 +339,7 @@ public extension EasySocial {
                     EasyNetworking.sharedInstance.request(userInfoAPI, method: .get, parameters: parameters) { (userInfo, _, _) in
                         if let error = error {
                             EasyLog.debug(error)
-                            responseHandler(nil, error)
+                            responseHandler(nil, nil, error)
                         } else {
                             if var userInfo = userInfo {
                                 userInfo["access_token"] = token
@@ -357,12 +357,14 @@ public extension EasySocial {
                                         break
                                     }
                                 }
-                                responseHandler(UserInfo(openid: userID, nickname: userInfo["screen_name"] as? String ?? "", iconurl: userInfo["profile_image_url"] as? String ?? "", sex: sex), error)
+                                responseHandler(UserInfo(openid: userID, nickname: userInfo["screen_name"] as? String ?? "", iconurl: userInfo["profile_image_url"] as? String ?? "", sex: sex), userInfo, error)
                             }
                         }
                     }
                 }
             }
+        case .alipay:
+            break
         }
     }
     
