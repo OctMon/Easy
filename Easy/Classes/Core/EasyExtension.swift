@@ -1742,8 +1742,8 @@ public extension UINavigationItem {
     }
     
     @discardableResult
-    func appendRightBarButtonItem(image: UIImage, attributes: [NSAttributedString.Key : Any]? = [.font: UIFont.size15], tapHandler: @escaping () -> Void) -> UINavigationItem {
-        return appendBarButtonItem(isRight: true, title: nil, image: image, attributes: attributes, tapHandler: tapHandler)
+    func appendRightBarButtonItem(image: UIImage, tapHandler: @escaping () -> Void) -> UINavigationItem {
+        return appendBarButtonItem(isRight: true, title: nil, image: image, attributes: nil, tapHandler: tapHandler)
     }
     
     @discardableResult
@@ -1752,8 +1752,8 @@ public extension UINavigationItem {
     }
     
     @discardableResult
-    func appendLeftBarButtonItem(image: UIImage, attributes: [NSAttributedString.Key : Any]? = [.font: UIFont.size15], tapHandler: @escaping () -> Void) -> UINavigationItem {
-        return appendBarButtonItem(isRight: false, title: nil, image: image, attributes: attributes, tapHandler: tapHandler)
+    func appendLeftBarButtonItem(image: UIImage, tapHandler: @escaping () -> Void) -> UINavigationItem {
+        return appendBarButtonItem(isRight: false, title: nil, image: image, attributes: nil, tapHandler: tapHandler)
     }
     
 }
