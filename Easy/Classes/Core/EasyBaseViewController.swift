@@ -50,7 +50,7 @@ open class EasyBaseViewController: UIViewController {
             $0.snp.makeConstraints({ (make) in
                 make.edges.equalTo(view)
             })
-            $0.backgroundColor = UIColor.clear
+            $0.backgroundColor = EasyGlobal.tableViewBackground
             $0.showsVerticalScrollIndicator = false
             $0.delegate = self
             $0.dataSource = self
@@ -80,7 +80,7 @@ open class EasyBaseViewController: UIViewController {
             $0.snp.makeConstraints({ (make) in
                 make.edges.equalTo(view)
             })
-            $0.backgroundColor = UIColor.clear
+            $0.backgroundColor = EasyGlobal.collectionViewBackground
             $0.showsVerticalScrollIndicator = false
             $0.showsHorizontalScrollIndicator = false
             $0.dataSource = self

@@ -24,6 +24,8 @@ public extension EasyGlobal {
     static var tint = UIColor.hex(0x8eE2323)
     static var background = UIColor.white
     static var separator = UIColor.hex(0xEBEBEB)
+    static var tableViewBackground = UIColor.groupTableViewBackground
+    static var collectionViewBackground = UIColor.white
 
 }
 
