@@ -22,7 +22,7 @@ class ScanViewController: easy.BaseViewController {
         
         let size: CGFloat = view.frame.width * 0.7
         let x = view.frame.width * 0.5 - size * 0.5
-        let y = (view.frame.height + navgationBottom) * 0.5 - size * 0.5
+        let y = (view.frame.height + navigationBottom) * 0.5 - size * 0.5
         
         let expansionView = UIView(frame: view.bounds)
         

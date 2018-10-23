@@ -17,6 +17,10 @@ public extension EasyGlobal {
     
     static var backBarButtonItemTitle: String?
     
+    static var navigationBarTintColor: UIColor?
+    static var navigationBarBackgroundImage: UIImage?
+    static var navigationBarTitleTextAttributes: [NSAttributedString.Key : Any]?
+    
 }
 
 public extension EasyGlobal {
@@ -24,6 +28,7 @@ public extension EasyGlobal {
     static var tint = UIColor.hex(0x8eE2323)
     static var background = UIColor.white
     static var separator = UIColor.hex(0xEBEBEB)
+    
     static var tableViewBackground = UIColor.groupTableViewBackground
     static var collectionViewBackground = UIColor.white
 

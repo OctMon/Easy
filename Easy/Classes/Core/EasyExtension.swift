@@ -1647,9 +1647,9 @@ public extension UIViewController {
 
 public extension UIViewController {
     
-    var navgationBottom: CGFloat { return EasyApp.statusBarHeight + (self.navigationController?.navigationBar.frame.height ?? 0) }
+    var navigationBottom: CGFloat { return EasyApp.statusBarHeight + (self.navigationController?.navigationBar.frame.height ?? 0) }
     
-    var navgationBar: UINavigationBar? { return navigationController?.navigationBar }
+    var navigationBar: UINavigationBar? { return navigationController?.navigationBar }
     
     func setBackBarButtonItem(title: String? = nil) {
         guard title != nil else { return }

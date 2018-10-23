@@ -24,7 +24,7 @@ class Main: easy.BaseViewController {
         
         navigationItem.appendRightBarButtonItem(title: "+") { [weak self] in
             guard let `self` = self else { return }
-            easy.PopMenu().show(point: CGPoint(x: app.screenWidth - 120, y: self.navgationBottom), items: ["QRcode", "Barcode"], completion: { [weak self] index in
+            easy.PopMenu().show(point: CGPoint(x: app.screenWidth - 120, y: self.navigationBottom), items: ["QRcode", "Barcode"], completion: { [weak self] index in
                 guard let `self` = self else {
                     return
                 }

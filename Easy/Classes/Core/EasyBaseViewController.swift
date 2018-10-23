@@ -98,6 +98,12 @@ open class EasyBaseViewController: UIViewController {
         view.backgroundColor = EasyGlobal.background
         setBackBarButtonItem(title: EasyGlobal.backBarButtonItemTitle)
         
+        EasyGlobal.navigationBarTintColor.unwrapped { (color) in
+            navigationBar?.setTintColor(color)
+        }
+        navigationBar?.setBackgroundImage(EasyGlobal.navigationBarBackgroundImage, for: .default)
+        navigationBar?.titleTextAttributes = EasyGlobal.navigationBarTitleTextAttributes
+        
         configure()
     }
     
