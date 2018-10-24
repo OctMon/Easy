@@ -26,16 +26,22 @@ public class EasySocial: NSObject {
             self.image = type.image
         }
         
-        public init(type: SharePlatformType, image: UIImage) {
-            self.type = type
-            self.name = type.name
-            self.image = image
-        }
-        
-        public init(type: SharePlatformType, name: String, image: UIImage) {
+        public init(type: SharePlatformType, name: String) {
             self.type = type
             self.name = name
-            self.image = image
+            self.image = type.image
+        }
+        
+        public init(type: SharePlatformType, image: UIImage?) {
+            self.type = type
+            self.name = type.name
+            self.image = image ?? type.image
+        }
+        
+        public init(type: SharePlatformType, name: String, image: UIImage?) {
+            self.type = type
+            self.name = name
+            self.image = image ?? type.image
         }
         
     }
