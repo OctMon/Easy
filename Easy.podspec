@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
     s.name             = 'Easy'
-    s.version          = '0.4.3'
+    s.version          = '0.5.0'
     s.summary          = 'develop Swift with Easy'
     
     s.description      = <<-DESC
@@ -27,7 +27,7 @@ Pod::Spec.new do |s|
     s.subspec 'Core' do |ss|
         ss.source_files = 'Easy/Classes/Core/*'
         ss.resources = ['Easy/Resources/EasyCore.bundle']
-        ss.dependency 'SnapKit'#, '~> 4.0.1'
+        ss.dependency 'SnapKit'#, '~> 4.0.1' # https://github.com/SnapKit/SnapKit
     end
     
     s.subspec 'Common' do |ss|
