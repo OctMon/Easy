@@ -109,10 +109,10 @@ public extension EasySession {
         #if BETA
         let vc = EasySessionViewController()
         vc.config = config
-        let popupView = EasyPopupView(edgeViewController: vc, height: 300)
+        let popupView = EasyPopupView(vc, height: 300)
         vc.popupView = popupView
         vc.successHandler = handler
-        popupView.show()
+        popupView.showWithBottom()
         #endif
     }
     

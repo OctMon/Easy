@@ -10,12 +10,24 @@ import UIKit
 
 extension AppDelegate {
     
+    func configTheme() {
+        app.openFullScreenPopGesture()
+        global.backBarButtonItemTitle = ""
+        global.navigationBarBackgroundImage = UIColor.white.toImage
+        global.navigationBarTintColor = UIColor.black
+        global.navigationBarTitleTextAttributes = [.foregroundColor: UIColor.black]
+        easy.Global.tint = UIColor.hex(0xFF0000)
+    }
+    
+}
+
+extension AppDelegate {
+    
     func config(_ application: UIApplication, launchOptions: [UIApplication.LaunchOptionsKey: Any]?) {
         app.configTest()
 //        app.configCheckPgyer(api_key: "#replace your api_key", shortcutUrl: "")
         configSocial()
         configRouter()
-        configTheme()
     }
 
 }
@@ -51,19 +63,6 @@ private extension AppDelegate {
             guard let vc = NSClassFromString(package + name) as? easy.BaseViewController.Type else { return }
             app.currentViewController?.pushWithHidesBottomBar(to: vc.init())
         }
-    }
-    
-}
-
-private extension AppDelegate {
-    
-    func configTheme() {
-        app.openFullScreenPopGesture()
-        global.backBarButtonItemTitle = ""
-        global.navigationBarBackgroundImage = UIColor.white.toImage
-        global.navigationBarTintColor = UIColor.black
-        global.navigationBarTitleTextAttributes = [.foregroundColor: UIColor.black]
-        easy.Global.tint = UIColor.hex(0xFF0000)
     }
     
 }

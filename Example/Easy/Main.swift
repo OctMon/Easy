@@ -44,18 +44,11 @@ class Main: easy.BaseViewController {
                 
                 let imageView = UIImageView(image: image?.resize(to: CGSize(width: 300, height: 300))).then {
                     $0.contentMode = .scaleAspectFit
-                    $0.backgroundColor = UIColor.white
+                    $0.size = CGSize(width: .screenWidth, height: .screenHeight)
                 }
-                
-                let popupView = easy.PopupView(edgeView: UIView().then {
-                    $0.backgroundColor = UIColor.white
-                    $0.addSubview(imageView)
-                    imageView.snp.makeConstraints({ (make) in
-                        make.center.equalToSuperview()
-                    })
-                }, height: 350)
-                
-                popupView.show(showHandler: {
+                let popupView = easy.PopupView(imageView)
+                popupView.animationDuration = 0
+                popupView.showWithCenter(showHandler: {
                     switch Int.random(in: 1...3) {
                     case 1:
                         imageView.animationShake()
