@@ -18,6 +18,8 @@ public class EasyPopupView: UIView {
     private var dismissHandler: (() -> Void)?
     
     public var animationDuration: TimeInterval = 0.25
+    public var dismissOnBlackOverlayTap = true
+    public var blackOverlayColor = UIColor(white: 0, alpha: 0.4)
     
     deinit {
         EasyLog.debug(toDeinit)
@@ -69,8 +71,9 @@ public extension EasyPopupView {
         if animationDuration == 0 {
             self.view?.y = originY
             self.view?.alpha = 0
-            UIView.animate(withDuration: 0.25) {
-                self.backgroundColor = UIColor.black.withAlphaComponent(0.4)
+            UIView.animate(withDuration: 0.25) { [weak self] in
+                guard let `self` = self else { return }
+                self.backgroundColor = self.blackOverlayColor
                 self.view?.alpha = 1
                 showHandler?()
             }
@@ -78,7 +81,7 @@ public extension EasyPopupView {
             view?.y = EasyApp.screenHeight
             UIView.animate(withDuration: animationDuration) { [weak self] in
                 guard let `self` = self else { return }
-                self.backgroundColor = UIColor.black.withAlphaComponent(0.4)
+                self.backgroundColor = self.blackOverlayColor
                 self.view?.y = originY
                 showHandler?()
             }
@@ -98,6 +101,7 @@ public extension EasyPopupView {
                     self.subviews.forEach({ $0.removeFromSuperview() })
                     self.removeFromSuperview()
                     self.viewController = nil
+                    self.view = nil
                 }
 
             }
@@ -113,6 +117,7 @@ public extension EasyPopupView {
                     self.subviews.forEach({ $0.removeFromSuperview() })
                     self.removeFromSuperview()
                     self.viewController = nil
+                    self.view = nil
                 }
             }
         }
@@ -123,6 +128,9 @@ public extension EasyPopupView {
 extension EasyPopupView: UIGestureRecognizerDelegate {
     
     public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        if !dismissOnBlackOverlayTap {
+            return false
+        }
         if let view = touch.view, let popupView = self.view, view.isDescendant(of: popupView) {
             return false
         }

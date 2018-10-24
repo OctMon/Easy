@@ -42,9 +42,9 @@ class Main: easy.BaseViewController {
                     return
                 }
                 
-                let imageView = UIImageView(image: image?.resize(to: CGSize(width: 300, height: 300))).then {
+                let imageView = UIImageView(image: image?.resize(to: CGSize(width: .screenWidth * 2, height: index == 0 ? .screenWidth * 2 : .screenWidth))).then {
                     $0.contentMode = .scaleAspectFit
-                    $0.size = CGSize(width: .screenWidth, height: .screenHeight)
+                    $0.size = CGSize(width: .screenWidth, height: .screenWidth)
                 }
                 let popupView = easy.PopupView(imageView)
                 popupView.animationDuration = 0
