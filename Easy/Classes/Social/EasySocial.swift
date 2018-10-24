@@ -155,14 +155,14 @@ extension EasySocial {
 
 private class EasyVerticalButton: UIButton {
     
-    var imageSize = CGSize(width: 60, height: 60)
-    private var space: CGFloat = 5
+    var imageLess: CGFloat = 60
+    var imageSize = CGSize.zero
+    private var titleHeight: CGFloat = 15
     
     override init(frame: CGRect) {
         super .init(frame: frame)
         
-        imageView?.contentMode = .scaleAspectFit
-        titleLabel?.font = UIFont.systemFont(ofSize: 12)
+        titleLabel?.font = UIFont.size12
         titleLabel?.textAlignment = .center
         setTitleColor(UIColor.black, for: .normal)
     }
@@ -172,11 +172,13 @@ private class EasyVerticalButton: UIButton {
     }
     
     override func titleRect(forContentRect contentRect: CGRect) -> CGRect {
-        return CGRect(x: 0, y: self.frame.size.height - imageSize.height * 0.5 + space, width: contentRect.size.width, height: imageSize.height * 0.5 - space)
+        return CGRect(x: 0, y: height - titleHeight, width: contentRect.size.width, height: titleHeight)
     }
     
     override func imageRect(forContentRect contentRect: CGRect) -> CGRect {
-        return CGRect(x: self.frame.size.width / 2 - imageSize.height * 0.5, y: space, width: imageSize.width, height: imageSize.height)
+        let scaleWidth = imageSize.width > imageLess ? imageLess : imageSize.width
+        let scaleHeight = imageSize.height > imageLess ? imageLess : imageSize.height
+        return CGRect(x: (width - scaleWidth) * 0.5, y: (height - scaleHeight - titleHeight) * 0.5, width: scaleWidth, height: scaleHeight)
     }
     
 }
@@ -234,9 +236,25 @@ public extension EasySocial {
         return MonkeyKing.handleOpenURL(url)
     }
     
+    static var isShowCancelButton: Bool = true
+    static var shareButtonHeight: CGFloat?
+    static var shareButtonSpace: CGFloat?
+    static var shareImageLess: CGFloat?
+    
     static func share(title: String, description: String, thumbnail: UIImage?, url: String) {
         filterPlatformsItems()
-        EasySocialShareView().show(platforms: shared.sharePlatforms) { (platform) in
+        let share = EasySocialShareView()
+        share.isShowCancelButton = isShowCancelButton
+        shareButtonHeight.unwrapped { (value) in
+            share.shareButtonHeight = value
+        }
+        shareButtonSpace.unwrapped { (value) in
+            share.shareButtonSpace = value
+        }
+        shareImageLess.unwrapped { (value) in
+            share.shareImageLess = value
+        }
+        share.show(platforms: shared.sharePlatforms) { (platform) in
             EasyLog.debug(platform)
             guard let url = URL(string: url) else { return }
             var message: MonkeyKing.Message?
@@ -378,10 +396,8 @@ public extension EasySocial {
 
 private class EasySocialShareView: UIView {
     
-    private let kSocialShreButtonHeight: CGFloat = 90
-    private let kSocialShreButtonWidth: CGFloat = 76
-    private let kSocialShreHeightSpace: CGFloat = 15
-    private let kSocialShreCancelHeight: CGFloat = (EasyApp.isAllFaceIDCapableDevices ? 80 : 46)
+    private let kSocialShareButtonWidth: CGFloat = 76
+    private let kSocialShareCancelHeight: CGFloat = (EasyApp.isAllFaceIDCapableDevices ? 80 : 46)
     
     private var bottomViewHeight: CGFloat = 0
     private var platforms = [EasySocial.SharePlatform]()
@@ -392,6 +408,15 @@ private class EasySocialShareView: UIView {
         bottomView.backgroundColor = UIColor(red: 0.91, green: 0.91, blue: 0.91, alpha: 1)
         return bottomView
     }()
+    
+    var isShowCancelButton = true
+    var shareButtonHeight: CGFloat = 90
+    var shareButtonSpace: CGFloat = 15
+    var shareImageLess: CGFloat = 60
+    
+    deinit {
+        EasyLog.debug(toDeinit)
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -411,9 +436,9 @@ private class EasySocialShareView: UIView {
     private func addPlatformsItems() {
         let column: Int = 4
         let ceil = CGFloat(Double(platforms.count) / Double(column)).ceil
-        bottomViewHeight = kSocialShreHeightSpace * (CGFloat(platforms.count / column + 2)) + kSocialShreButtonHeight * ceil + kSocialShreCancelHeight
+        bottomViewHeight = shareButtonSpace * (CGFloat(platforms.count / column + 2)) + shareButtonHeight * ceil + (isShowCancelButton ? kSocialShareCancelHeight : 0)
         
-        let margin = (UIScreen.main.bounds.width - CGFloat(column) * kSocialShreButtonWidth) / (CGFloat(column) + 1)
+        let margin = (UIScreen.main.bounds.width - CGFloat(column) * kSocialShareButtonWidth) / (CGFloat(column) + 1)
         
         for index in 0 ..< platforms.count {
             let platform = platforms[index]
@@ -421,12 +446,15 @@ private class EasySocialShareView: UIView {
             let colX: Int = index % column
             let rowY: Int = Int(index / column)
             
-            let buttonX: CGFloat = margin + CGFloat(colX) * (kSocialShreButtonWidth + margin)
-            let buttonY: CGFloat = kSocialShreHeightSpace + CGFloat(rowY) * (kSocialShreButtonHeight + kSocialShreHeightSpace)
+            let buttonX: CGFloat = margin + CGFloat(colX) * (kSocialShareButtonWidth + margin)
+            let buttonY: CGFloat = shareButtonSpace + CGFloat(rowY) * (shareButtonHeight + shareButtonSpace)
             let button = EasyVerticalButton()
-            button.frame = CGRect(x: buttonX, y: buttonY, width: kSocialShreButtonWidth, height: kSocialShreButtonHeight)
+            button.frame = CGRect(x: buttonX, y: buttonY, width: kSocialShareButtonWidth, height: shareButtonHeight)
             button.setTitle(platform.name, for: .normal)
-            button.setImage(platforms[index].image, for: .normal)
+            let image = platforms[index].image
+            button.imageLess = shareImageLess
+            button.imageSize = image?.size ?? CGSize.zero
+            button.setImage(image, for: .normal)
             button.addTarget(self, action: #selector(show(_:)), for: .touchUpInside)
             button.tag = platform.type.rawValue
             self.bottomView.addSubview(button)
@@ -445,14 +473,16 @@ private class EasySocialShareView: UIView {
             }, completion: nil)
         }
         
-        let cancel = UIButton(type: .custom)
-        cancel.frame = CGRect(x: 0, y: bottomViewHeight - kSocialShreCancelHeight, width: UIScreen.main.bounds.width, height: kSocialShreCancelHeight)
-        cancel.setTitle("取消", for: .normal)
-        cancel.setTitleColor(UIColor.black, for: .normal)
-        cancel.titleLabel?.font = UIFont.systemFont(ofSize: 16)
-        cancel.backgroundColor = UIColor.white
-        cancel.addTarget(self, action: #selector(close), for: .touchUpInside)
-        self.bottomView.addSubview(cancel)
+        if isShowCancelButton {
+            let cancel = UIButton(type: .custom)
+            cancel.frame = CGRect(x: 0, y: bottomViewHeight - kSocialShareCancelHeight, width: UIScreen.main.bounds.width, height: kSocialShareCancelHeight)
+            cancel.setTitle("取消", for: .normal)
+            cancel.setTitleColor(UIColor.black, for: .normal)
+            cancel.titleLabel?.font = UIFont.systemFont(ofSize: 16)
+            cancel.backgroundColor = UIColor.white
+            cancel.addTarget(self, action: #selector(close), for: .touchUpInside)
+            self.bottomView.addSubview(cancel)
+        }
     }
     
     func show(platforms: [EasySocial.SharePlatform], completion: @escaping (EasySocial.SharePlatformType) -> Void) {

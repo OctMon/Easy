@@ -39,16 +39,22 @@ private extension AppDelegate {
         easy.Social.register(qqAppId: "1104881792")
         easy.Social.register(weiboAppId: "1772193724", appKey: "453283216b8c885dad2cdb430c74f62a", redirectURL: "http://sns.whalecloud.com/sina2/callback")
         easy.Social.register(alipayAppId: "2016012101112529")
-    
-        easy.Social.setSharePlatforms([.init(type: .wechat),
-                                       .init(type: .wechatTimeline),
-                                       .init(type: .wechatFavorite),
-                                       .init(type: .qq),
-                                       .init(type: .qqZone),
-                                       .init(type: .weibo),
-                                       .init(type: .alipayFirends),
-                                       .init(type: .alipayTimeline)
-                                       ])
+        
+//        easy.Social.isShowCancelButton = false
+//        easy.Social.shareButtonHeight = 70
+//        easy.Social.shareButtonSpace = 8
+//        easy.Social.shareImageLess = 30
+//        easy.Social.setSharePlatforms([
+//            .init(type: .wechat, image: #imageLiteral(resourceName: "share_icon_wechat")),
+//            .init(type: .wechatTimeline, image: #imageLiteral(resourceName: "share_icon_wechat_timeline")),
+//            .init(type: .wechatFavorite),
+//            .init(type: .qq, image: #imageLiteral(resourceName: "share_icon_qq")),
+//            .init(type: .qqZone, image: #imageLiteral(resourceName: "share_icon_qzone")),
+//            .init(type: .weibo),
+//            .init(type: .alipayFirends),
+//            .init(type: .alipayTimeline)
+//            ]
+//        )
     }
     
 }
