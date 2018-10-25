@@ -73,8 +73,25 @@ class Main: easy.BaseViewController {
         
         textView.placeholder = app.bundleName
         textView.placeholderColor = UIColor.random
+        
+        let tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: .screenWidth, height: 22 + 45)).then {
+            let button = UIButton().then {
+                $0.setTitleColor(easy.Global.tint, for: .normal)
+                $0.setBacdkgroundBorder()
+                $0.titleLabel?.font = UIFont.size16
+                $0.setTitle("Easy", for: .normal)
+            }
+            $0.addSubview(button)
+            button.snp.makeConstraints({ (make) in
+                make.left.equalTo(15)
+                make.right.equalTo(-15)
+                make.bottom.equalToSuperview()
+                make.height.equalTo(45)
+            })
+        }
+        
         tableView.tableHeaderView = textView
-        tableView.tableFooterView = UIView()
+        tableView.tableFooterView = tableFooterView
         setTableViewRegister(UITableViewCell.self, configureCell: { (cell, _, any) in
             cell.textLabel?.text = any as? String
         }) { (_, any) in
