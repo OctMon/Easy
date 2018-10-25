@@ -77,7 +77,7 @@ class Main: easy.BaseViewController {
         let tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: .screenWidth, height: 22 + 45)).then {
             let button = UIButton().then {
                 $0.setTitleColor(easy.Global.tint, for: .normal)
-                $0.setBacdkgroundBorder()
+                $0.setBackgroundBorder()
                 $0.titleLabel?.font = UIFont.size16
                 $0.setTitle("Easy", for: .normal)
             }

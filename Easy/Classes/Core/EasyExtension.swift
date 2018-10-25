@@ -966,7 +966,7 @@ public extension UIButton {
         layer.cornerRadius = cornerRadius
     }
     
-    func setBacdkgroundBorder(_ cornerRadius: CGFloat = 5, borderColor: UIColor = EasyGlobal.tint, borderWidth: CGFloat = 1) {
+    func setBackgroundBorder(_ cornerRadius: CGFloat = 5, borderColor: UIColor = EasyGlobal.tint, borderWidth: CGFloat = 1) {
         clipsToBounds = true
         layer.cornerRadius = cornerRadius
         layer.borderColor = borderColor.cgColor
