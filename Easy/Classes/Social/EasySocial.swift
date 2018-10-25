@@ -237,12 +237,15 @@ public extension EasySocial {
     }
     
     static var isShowCancelButton: Bool = true
+    static var isFilterPlatformsItems = true
     static var shareButtonHeight: CGFloat?
     static var shareButtonSpace: CGFloat?
     static var shareImageLess: CGFloat?
     
     static func share(title: String, description: String, thumbnail: UIImage?, url: String) {
-        filterPlatformsItems()
+        if isFilterPlatformsItems {
+            filterPlatformsItems()
+        }
         let share = EasySocialShareView()
         share.isShowCancelButton = isShowCancelButton
         shareButtonHeight.unwrapped { (value) in
@@ -436,7 +439,7 @@ private class EasySocialShareView: UIView {
     private func addPlatformsItems() {
         let column: Int = 4
         let ceil = CGFloat(Double(platforms.count) / Double(column)).ceil
-        bottomViewHeight = shareButtonSpace * (CGFloat(platforms.count / column + 2)) + shareButtonHeight * ceil + (isShowCancelButton ? kSocialShareCancelHeight : 0)
+        bottomViewHeight = shareButtonSpace * (CGFloat(platforms.count / column + 2)) + shareButtonHeight * ceil + (isShowCancelButton ? kSocialShareCancelHeight : EasyApp.safeBottomEdge)
         
         let margin = (UIScreen.main.bounds.width - CGFloat(column) * kSocialShareButtonWidth) / (CGFloat(column) + 1)
         
