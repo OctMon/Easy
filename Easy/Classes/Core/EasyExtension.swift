@@ -1094,11 +1094,11 @@ public extension UITextView {
 public extension UITableView {
     
     func setHeaderZero() {
-        tableHeaderView = UIView()
+        setHeaderHeight(0.001)
     }
     
     func setFooterZero() {
-        tableFooterView = UIView()
+        setFooterHeight(0.001)
     }
     
     func setHeaderHeight(_ height: CGFloat) {
