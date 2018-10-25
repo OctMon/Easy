@@ -45,30 +45,22 @@ class EasyTestViewController: EasyBaseViewController {
     override func configure() {
         super.configure()
         
-        setTableView(numberOfSections: { () -> Int in
-            return self.dataSource.count
-        }) { (section) -> Int in
-            return (self.dataSource[section] as? [Any])?.count ?? 0
-        }
-        
         setTableViewRegister([EasyTestCell.self, UITableViewCell.self], returnCell: { (indexPath) -> AnyClass? in
             if indexPath.section == 0 {
                 return EasyTestCell.self
             }
             return UITableViewCell.self
         }, configureCell: { [weak self] (cell, indexPath, any) in
-            guard var anys = (any as? [Any]) else { return }
             if let cell = (cell as? EasyTestCell) {
                 cell.do {
-                    let model = anys[indexPath.row] as? (String, Bool)
+                    let model = any as? (String, Bool)
                     $0.selectionStyle = .none
                     $0.textLabel?.text = model?.0
                     $0.switchView.isOn = model?.1 ?? false
                     $0.switchHandler { [weak self] (isOn) in
                         if var model = model {
                             model.1 = isOn
-                            anys[indexPath.row] = model
-                            self?.dataSource[indexPath.section] = anys
+                            self?.dataSource[indexPath.section] = model
                             switch (indexPath.section, indexPath.row) {
                             case (0, 0):
                                 EasyResult.logEnabel = isOn
@@ -80,7 +72,7 @@ class EasyTestViewController: EasyBaseViewController {
                 }
             } else {
                 cell.do {
-                    if let model = anys[indexPath.row] as? (String, String) {
+                    if let model = any as? (String, String) {
                         $0.accessoryType = .detailDisclosureButton
                         $0.selectionStyle = .default
                         $0.textLabel?.adjustsFontSizeToFitWidth = true
@@ -88,14 +80,12 @@ class EasyTestViewController: EasyBaseViewController {
                     }
                 }
             }
-        }) { (indexPath, any) in
+        }) { [weak self] (indexPath, any) in
             guard indexPath.section > 0 else { return }
-            guard var anys = (any as? [Any]) else { return }
             sessions[indexPath.row].showChangeBaseURL({ [weak self] (url) in
-                if var model = anys[indexPath.row] as? (String, String) {
+                if var model = any as? (String, String) {
                     model.1 = url
-                    anys[indexPath.row] = model
-                    self?.dataSource[indexPath.section] = anys
+                    self?.dataSource[indexPath.section] = model
                     self?.tableView.reloadData()
                 }
             })

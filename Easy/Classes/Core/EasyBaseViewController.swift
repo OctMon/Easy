@@ -117,8 +117,8 @@ public extension EasyBaseViewController {
     
     /// numberOfSections
     /**
-     setTableView(numberOfSections: { () -> Int in
-         return self.dataSource.count
+     setTableView(numberOfSections: { [weak self] () -> Int in
+         return self?.dataSource.count ?? 0
      }) { (section) -> Int in
          return 1
      }
@@ -172,8 +172,8 @@ public extension EasyBaseViewController {
     
     /// numberOfSections
     /**
-     setCollectionView(numberOfSections: { () -> Int in
-         return self.dataSource.count
+     setCollectionView(numberOfSections: { [weak self] () -> Int in
+         return self?.dataSource.count ?? 0
      }) { (section) -> Int in
          return 1
      }
@@ -230,19 +230,41 @@ public extension EasyBaseViewController {
 extension EasyBaseViewController: UITableViewDataSource, UITableViewDelegate {
     
     open func numberOfSections(in tableView: UITableView) -> Int {
-        return tableViewNumberOfSectionsHandler?() ?? 1
+        if let handler = tableViewNumberOfSectionsHandler {
+            return handler()
+        }
+        if self.dataSource.contains(where: { ($0 as? [Any]) != nil }) {
+            return dataSource.count
+        }
+        return 1
     }
     
     open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tableViewNumberOfRowsInSectionHandler?(section) ?? dataSource.count
+        if let handler = tableViewNumberOfRowsInSectionHandler {
+            return handler(section)
+        }
+        if section < dataSource.count {
+            if let array = (self.dataSource[section] as? [Any]) {
+                return array.count
+            }
+        }
+        return dataSource.count
     }
     
     open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let tableViewCellsHandler = tableViewCellsHandler, let cellReuseIdentifier = tableViewCellsHandler(indexPath).self?.description() {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) else { return UITableViewCell() }
-            if numberOfSections(in: tableView) > 1 {
-                tableViewCellHandler?(cell, indexPath, dataSource[indexPath.section])
-            } else {
+            if numberOfSections(in: tableView) > 0 {
+                if indexPath.section < dataSource.count {
+                    if let any = (dataSource[indexPath.section] as? [Any]) {
+                        if indexPath.row < any.count {
+                            tableViewCellHandler?(cell, indexPath, any[indexPath.row])
+                        }
+                    } else if indexPath.row < dataSource.count {
+                        tableViewCellHandler?(cell, indexPath, dataSource[indexPath.row])
+                    }
+                }
+            } else if indexPath.row < dataSource.count {
                 tableViewCellHandler?(cell, indexPath, dataSource[indexPath.row])
             }
             return cell
@@ -254,9 +276,17 @@ extension EasyBaseViewController: UITableViewDataSource, UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         
         if let tableViewDidSelectRowHandler = tableViewDidSelectRowHandler {
-            if numberOfSections(in: tableView) > 1 {
-                tableViewDidSelectRowHandler(indexPath, dataSource[indexPath.section])
-            } else {
+            if numberOfSections(in: tableView) > 0 {
+                if indexPath.section < dataSource.count {
+                    if let any = (dataSource[indexPath.section] as? [Any]) {
+                        if indexPath.row < any.count {
+                            tableViewDidSelectRowHandler(indexPath, any[indexPath.row])
+                        }
+                    } else if indexPath.row < dataSource.count {
+                        tableViewDidSelectRowHandler(indexPath, dataSource[indexPath.row])
+                    }
+                }
+            } else if indexPath.row < dataSource.count {
                 tableViewDidSelectRowHandler(indexPath, dataSource[indexPath.row])
             }
         }
@@ -267,19 +297,41 @@ extension EasyBaseViewController: UITableViewDataSource, UITableViewDelegate {
 extension EasyBaseViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     open func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return collectionViewNumberOfSectionsHandler?() ?? 1
+        if let handler = collectionViewNumberOfSectionsHandler {
+            return handler()
+        }
+        if self.dataSource.contains(where: { ($0 as? [Any]) != nil }) {
+            return dataSource.count
+        }
+        return 1
     }
     
     open func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return collectionViewNumberOfItemsInSectionHandler?(section) ?? dataSource.count
+        if let handler = collectionViewNumberOfItemsInSectionHandler {
+            return handler(section)
+        }
+        if section < dataSource.count {
+            if let array = (self.dataSource[section] as? [Any]) {
+                return array.count
+            }
+        }
+        return dataSource.count
     }
     
     open func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let collectionViewCellsHandler = collectionViewCellsHandler, let cellReuseIdentifier = collectionViewCellsHandler(indexPath).self?.description() {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellReuseIdentifier, for: indexPath)
-            if numberOfSections(in: collectionView) > 1 {
-                collectionViewCellHandler?(cell, indexPath, dataSource[indexPath.section])
-            } else {
+            if numberOfSections(in: collectionView) > 0 {
+                if indexPath.section < dataSource.count {
+                    if let any = (dataSource[indexPath.section] as? [Any]) {
+                        if indexPath.row < any.count {
+                            collectionViewCellHandler?(cell, indexPath, any[indexPath.row])
+                        }
+                    } else if indexPath.row < dataSource.count {
+                        collectionViewCellHandler?(cell, indexPath, dataSource[indexPath.row])
+                    }
+                }
+            } else if indexPath.row < dataSource.count {
                 collectionViewCellHandler?(cell, indexPath, dataSource[indexPath.row])
             }
             return cell
@@ -291,9 +343,17 @@ extension EasyBaseViewController: UICollectionViewDataSource, UICollectionViewDe
         collectionView.deselectItem(at: indexPath, animated: true)
         
         if let collectionViewDidSelectRowHandler = collectionViewDidSelectRowHandler {
-            if numberOfSections(in: collectionView) > 1 {
-                collectionViewDidSelectRowHandler(indexPath, dataSource[indexPath.section])
-            } else {
+            if numberOfSections(in: collectionView) > 0 {
+                if indexPath.section < dataSource.count {
+                    if let any = (dataSource[indexPath.section] as? [Any]) {
+                        if indexPath.row < any.count {
+                            collectionViewDidSelectRowHandler(indexPath, any[indexPath.row])
+                        }
+                    } else if indexPath.row < dataSource.count {
+                        collectionViewDidSelectRowHandler(indexPath, dataSource[indexPath.row])
+                    }
+                }
+            } else if indexPath.row < dataSource.count {
                 collectionViewDidSelectRowHandler(indexPath, dataSource[indexPath.row])
             }
         }

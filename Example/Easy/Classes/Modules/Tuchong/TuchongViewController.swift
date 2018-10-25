@@ -44,24 +44,23 @@ class TuchongViewController: easy.BaseViewController {
         collectionView.registerReusableView(supplementaryViewType: TuchongReusableView.self, ofKind: UICollectionView.elementKindSectionHeader)
 //        collectionView.registerReusableView(supplementaryViewType: UICollectionReusableView.self, ofKind: UICollectionView.elementKindSectionFooter)
         
-        setCollectionView(numberOfSections: { () -> Int in
-            return self.dataSource.count
-        }) { (section) -> Int in
-            return (self.dataSource as? [Tuchong])?[section].images?.count ?? 0
+        setCollectionView(numberOfSections: { [weak self] () -> Int in
+            return self?.dataSource.count ?? 0
+        }) { [weak self] (section) -> Int in
+            return (self?.dataSource as? [Tuchong])?[section].images?.count ?? 0
         }
         
-        setCollectionViewRegister([TuchongCollectionViewCell.self], layout: collectionViewWaterFlowLayout, returnCell: { (_) -> AnyClass? in
-            return TuchongCollectionViewCell.self
-        }, configureCell: { (cell, indexPath, any) in
-            guard let model = any as? Tuchong else { return }
-            guard let image = model.images?[indexPath.row] else { return }
+        setCollectionViewRegister(TuchongCollectionViewCell.self, layout: collectionViewWaterFlowLayout, configureCell: { [weak self] (cell, indexPath, _) in
+            guard let image = self?.getImage(indexPath) else { return }
             (cell as? TuchongCollectionViewCell)?.do {
                 $0.imageView.setFadeImage(url: image.imageURL, placeholderImage: UIColor.random.toImage)
                 $0.label.text = "(" + indexPath.section.toString + "," + indexPath.row.toString + ")\n" + image.imgID.toStringValue
             }
-        }) { (indexPath, any) in
-            
-        }
+        }, didSelectRow: nil)
+    }
+    
+    private func getImage(_ indexPath: IndexPath) -> Tuchong.Image? {
+        return (self.dataSource as? [Tuchong])?[indexPath.section].images?[indexPath.row]
     }
     
     override func request() {
@@ -76,6 +75,36 @@ class TuchongViewController: easy.BaseViewController {
 }
 
 extension TuchongViewController {
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let photoView = UIView(frame: app.screenBounds).then {
+            let imageView = UIImageView(frame: app.screenBounds).then {
+                $0.backgroundColor = UIColor.black
+                $0.contentMode = .scaleAspectFit
+                $0.setFadeImage(url: self.getImage(indexPath)?.imageURL ?? "", placeholderImage: nil)
+            }
+            $0.addSubview(imageView)
+            let button = UIButton(frame: CGRect(x: app.screenWidth - 80 - 30, y: app.screenHeight - app.safeBottomEdge - 50, width: 80, height: 44)).then {
+                $0.setTitle("保存", for: .normal)
+                $0.setBackgroundImage(easy.Global.tint.toImage, cornerRadius: 5)
+                $0.setTitleColor(UIColor.white, for: .normal)
+                $0.alpha = 0.5
+            }
+            $0.addSubview(button)
+            button.tap(handler: { (gesture) in
+                if let image = imageView.image, gesture.state == .ended {
+                    UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
+                    button.setTitle("保存成功", for: .normal)
+                    button.isEnabled = false
+                }
+            })
+        }
+        let popupView = easy.PopupView(photoView)
+        photoView.tap { (_) in
+            popupView.dismiss()
+        }
+        popupView.showWithCenter()
+    }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         
