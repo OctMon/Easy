@@ -51,6 +51,16 @@
 				<string>wb1772193724</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>Alipay</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>ap2016012101112529</string>
+			</array>
+		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
