@@ -129,9 +129,9 @@ class Main: easy.BaseViewController {
             """.getAttributedString(font: UIFont.size14, foregroundColor: UIColor.hex999999, lineSpacing: 8), buttonTitles: buttonTitles, buttonBackgroundImages: buttonBackgroundImages, tap: { offset in
                 if isForceUpdate || offset == 1 {
                     app.openAppStoreDetails(id: 414478124)
-                    log.debug("ForceUpdate")
+                    log.debug("Force update")
                 } else {
-                    log.debug("OptionalUpdate")
+                    log.debug("Say later")
                 }
         })
     }
