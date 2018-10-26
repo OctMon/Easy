@@ -463,6 +463,14 @@ public extension String {
         return NSMutableAttributedString(string: self)
     }
     
+    func getAttributedString(font: UIFont, foregroundColor: UIColor, lineSpacing: CGFloat? = nil)-> NSMutableAttributedString {
+        let paragraphStyle = NSMutableParagraphStyle()
+        if let lineSpacing = lineSpacing {
+            paragraphStyle.lineSpacing = lineSpacing
+        }
+        return NSMutableAttributedString(string: self, attributes: [.font: font, .foregroundColor: foregroundColor, .paragraphStyle: paragraphStyle])
+    }
+    
     func getWidth(with height: CGFloat, font: UIFont, lineBreakMode: NSLineBreakMode = .byTruncatingTail) -> CGFloat {
         return ceil(getSize(with: CGSize(width: CGFloat(Double.greatestFiniteMagnitude), height: height), font: font, lineBreakMode: lineBreakMode).width)
     }
@@ -477,6 +485,24 @@ public extension String {
         paragraphStyle.lineBreakMode = lineBreakMode
         attributed.updateValue(paragraphStyle, forKey: .paragraphStyle)
         return (self as NSString).boundingRect(with: size, options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: attributed, context: nil).size
+    }
+    
+}
+
+public extension NSAttributedString {
+    
+    func getSize(with size: CGSize) -> CGSize {
+        return boundingRect(with: size, options: NSStringDrawingOptions.usesLineFragmentOrigin, context: nil).size
+    }
+    
+}
+
+public extension NSMutableAttributedString {
+    
+    func getAttributedString(title: String, font: UIFont, foregroundColor: UIColor, lineSpacing: CGFloat? = nil)-> NSMutableAttributedString {
+        let mutableAttributedString = NSMutableAttributedString(attributedString: self)
+        mutableAttributedString.append(title.getAttributedString(font: font, foregroundColor: foregroundColor, lineSpacing: lineSpacing))
+        return mutableAttributedString
     }
     
 }
@@ -1588,19 +1614,20 @@ public extension UIView {
          Log.debug(offset)
      }
      */
-    func addBottomButton(titles: [NSAttributedString?], height: CGFloat, backgroundImages: [UIImage?], tap: @escaping (Int) -> Void) {
+    func addBottomButton(titles: [NSAttributedString?], height: CGFloat, backgroundImages: [UIImage?], bottomMargin: CGFloat = 0, tap: @escaping (Int) -> Void) {
         var bottomButtons = [UIButton]()
         
         let count = titles.count
         for offset in 0..<count {
             let button = UIButton()
+            button.addSeparatorTop()
             addSubview(button)
             
             button.snp.makeConstraints({ (make) in
                 if offset == 0 {
                     make.left.equalToSuperview()
                     make.height.equalTo(height)
-                    make.bottom.equalToSuperview().offset(-EasyApp.safeBottomEdge)
+                    make.bottom.equalToSuperview().offset(-bottomMargin)
                 } else if offset > 0 {
                     make.left.equalTo(bottomButtons[offset - 1].snp.right)
                     make.size.equalTo(bottomButtons[offset - 1])

@@ -40,7 +40,9 @@ private extension AppDelegate {
         easy.Social.register(weiboAppId: "1772193724", appKey: "453283216b8c885dad2cdb430c74f62a", redirectURL: "http://sns.whalecloud.com/sina2/callback")
         easy.Social.register(alipayAppId: "2016012101112529")
         
-        easy.Social.isFilterPlatformsItems = false
+        if app.isDebug {
+            easy.Social.isFilterPlatformsItems = false
+        }
         easy.Social.isShowCancelButton = false
         easy.Social.shareButtonHeight = 70
         easy.Social.shareButtonSpace = 8

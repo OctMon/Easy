@@ -366,3 +366,69 @@ public extension EasyApp {
     }
     
 }
+
+public extension EasyApp {
+    
+    static func showUpdateAlert(image: UIImage? = nil, title: NSAttributedString, message: NSAttributedString, buttonTitles: [NSAttributedString?], buttonBackgroundImages: [UIImage?], backgroundCornerRadius: CGFloat = 5, tap: @escaping (Int) -> Void) {
+        let backgroundView = UIView()
+        let popupView = EasyPopupView(backgroundView).then {
+            $0.dismissOnBlackOverlayTap = false
+            $0.animationDuration = 0
+        }
+        backgroundView.do {
+            let alertView = UIView().then {
+                $0.backgroundColor = UIColor.white
+                $0.setCornerRadius(backgroundCornerRadius)
+            }
+            $0.addSubview(alertView)
+            alertView.snp.makeConstraints { (make) in
+                make.top.equalTo(52)
+                make.left.right.equalToSuperview()
+                make.bottom.equalTo(-30)
+            }
+            let iconImageView = UIImageView(image: image)
+            $0.addSubview(iconImageView)
+            iconImageView.snp.makeConstraints({ (make) in
+                make.top.equalToSuperview()
+                make.centerX.equalToSuperview()
+            })
+            alertView.addBottomButton(titles: buttonTitles, height: 52, backgroundImages: buttonBackgroundImages, bottomMargin: 0) { (offset) in
+                tap(offset)
+                popupView.dismiss()
+            }
+            let titleLabel = UILabel().then {
+                $0.attributedText = title
+                $0.textAlignment = .center
+            }
+            alertView.addSubview(titleLabel)
+            titleLabel.snp.makeConstraints({ (make) in
+                if image != nil {
+                    make.top.equalTo(iconImageView.snp.bottom).offset(15)
+                } else {
+                    make.top.equalTo(15)
+                }
+                make.left.equalTo(15)
+                make.right.equalTo(-15)
+            })
+            let messageLabel = UILabel().then {
+                $0.attributedText = message
+                $0.numberOfLines = 0
+            }
+            alertView.addSubview(messageLabel)
+            messageLabel.snp.makeConstraints({ (make) in
+                make.top.equalTo(titleLabel.snp.bottom).offset(22)
+                make.bottom.equalTo(-80)
+                make.left.equalTo(22)
+                make.right.equalTo(-22)
+            })
+        }
+        backgroundView.snp.makeConstraints { (make) in
+            make.left.equalTo(40)
+            make.right.equalTo(-40)
+            make.center.equalToSuperview()
+            make.height.lessThanOrEqualTo(EasyApp.screenHeight - 40)
+        }
+        popupView.showWithCenter()
+    }
+    
+}
