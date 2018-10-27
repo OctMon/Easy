@@ -14,6 +14,7 @@ extension AppDelegate {
         app.openFullScreenPopGesture()
         global.backBarButtonItemTitle = ""
         global.navigationBarBackgroundImage = UIColor.white.toImage
+        global.navigationBarIsShadowNull = true
         global.navigationBarTintColor = UIColor.black
         global.navigationBarTitleTextAttributes = [.foregroundColor: UIColor.black]
         easy.Global.tint = UIColor.hex(0xFF0000)
@@ -69,7 +70,7 @@ private extension AppDelegate {
             log.debug(parameters)
             let package = app.bundleExecutable + "."
             guard let name = parameters[.className] as? String else { return }
-            guard let vc = NSClassFromString(package + name) as? easy.BaseViewController.Type else { return }
+            guard let vc = NSClassFromString(package + name) as? UIViewController.Type else { return }
             app.currentViewController?.pushWithHidesBottomBar(to: vc.init())
         }
     }

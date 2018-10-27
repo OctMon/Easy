@@ -56,6 +56,12 @@ Pod::Spec.new do |s|
         ss.dependency 'Easy/Core'
     end
     
+    s.subspec 'Paging' do |ss|
+        ss.source_files = 'Easy/Classes/Paging/*'
+        ss.dependency 'Easy/Core'
+        ss.dependency 'PagingKit'#, '~> 1.6.1' # https://github.com/kazuhiro4949/PagingKit
+    end
+    
     s.subspec 'Beta' do |ss|
         ss.source_files = 'Easy/Classes/Beta/*'
         ss.dependency 'Easy/Core'

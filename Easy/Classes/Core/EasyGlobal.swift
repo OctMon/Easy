@@ -21,6 +21,7 @@ public extension EasyGlobal {
     static var navigationBarBackgroundImage: UIImage?
     static var navigationBarTitleTextAttributes: [NSAttributedString.Key : Any]?
     
+    static var navigationBarIsShadowNull = false
 }
 
 public extension EasyGlobal {

@@ -1796,8 +1796,7 @@ public extension UINavigationBar {
     
     /// 去掉导航背景的阴影
     @discardableResult
-    func setTransparent() -> UINavigationBar {
-        setBackgroundImage(UIImage(), for: .default)
+    func setShadowNull() -> UINavigationBar {
         shadowImage = UIImage()
         isTranslucent = false
         return self
@@ -1806,8 +1805,8 @@ public extension UINavigationBar {
     /// 导航背景透明
     @discardableResult
     func setTranslucent() -> UINavigationBar {
+        setShadowNull()
         setBackgroundImage(UIImage(), for: .default)
-        shadowImage = UIImage()
         isTranslucent = true
         return self
     }

@@ -25,6 +25,8 @@
 		FE6652DF2170A58A007E7051 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		FEC882DF2176C65D009BDC1C /* SocialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC882DE2176C65D009BDC1C /* SocialViewController.swift */; };
 		FEC882E02176C65D009BDC1C /* SocialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC882DE2176C65D009BDC1C /* SocialViewController.swift */; };
+		FEDBDA7121844C3700D81C4F /* PagingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEDBDA7021844C3700D81C4F /* PagingViewController.swift */; };
+		FEDBDA7221844C3700D81C4F /* PagingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEDBDA7021844C3700D81C4F /* PagingViewController.swift */; };
 		FEE7B88B216C541A009EE5C7 /* TestsSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEE7B88A216C541A009EE5C7 /* TestsSession.swift */; };
 		FEF494CA2175879F00555C3F /* Tuchong.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF494C92175879F00555C3F /* Tuchong.swift */; };
 		FEF494CB2175879F00555C3F /* Tuchong.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF494C92175879F00555C3F /* Tuchong.swift */; };
@@ -68,6 +70,7 @@
 		FE391C5E216A249300D59D29 /* Main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Main.swift; sourceTree = "<group>"; };
 		FE6652E42170A58A007E7051 /* Easy_Example_Beta.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Easy_Example_Beta.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FEC882DE2176C65D009BDC1C /* SocialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialViewController.swift; sourceTree = "<group>"; };
+		FEDBDA7021844C3700D81C4F /* PagingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagingViewController.swift; sourceTree = "<group>"; };
 		FEE7B88A216C541A009EE5C7 /* TestsSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestsSession.swift; sourceTree = "<group>"; };
 		FEF494C92175879F00555C3F /* Tuchong.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tuchong.swift; sourceTree = "<group>"; };
 		FEF494D22175B8F700555C3F /* TuchongViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TuchongViewController.swift; sourceTree = "<group>"; };
@@ -208,6 +211,7 @@
 		FE388A40217317950050904B /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				FEDBDA6F21844C1D00D81C4F /* Paging */,
 				FE388A4D217322230050904B /* Scan */,
 				FEC882DD2176C645009BDC1C /* Social */,
 				FEF494C82175875E00555C3F /* Tuchong */,
@@ -237,6 +241,14 @@
 				FEC882DE2176C65D009BDC1C /* SocialViewController.swift */,
 			);
 			path = Social;
+			sourceTree = "<group>";
+		};
+		FEDBDA6F21844C1D00D81C4F /* Paging */ = {
+			isa = PBXGroup;
+			children = (
+				FEDBDA7021844C3700D81C4F /* PagingViewController.swift */,
+			);
+			path = Paging;
 			sourceTree = "<group>";
 		};
 		FEF494C82175875E00555C3F /* Tuchong */ = {
@@ -430,6 +442,7 @@
 				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
 				"${BUILT_PRODUCTS_DIR}/MonkeyKing/MonkeyKing.framework",
+				"${BUILT_PRODUCTS_DIR}/PagingKit/PagingKit.framework",
 				"${BUILT_PRODUCTS_DIR}/RTRootNavigationController/RTRootNavigationController.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
@@ -441,6 +454,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MonkeyKing.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PagingKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RTRootNavigationController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
@@ -480,6 +494,7 @@
 				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
 				"${BUILT_PRODUCTS_DIR}/MonkeyKing/MonkeyKing.framework",
+				"${BUILT_PRODUCTS_DIR}/PagingKit/PagingKit.framework",
 				"${BUILT_PRODUCTS_DIR}/RTRootNavigationController/RTRootNavigationController.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
@@ -494,6 +509,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MonkeyKing.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PagingKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RTRootNavigationController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
@@ -515,6 +531,7 @@
 			files = (
 				FE391C5F216A249300D59D29 /* Main.swift in Sources */,
 				FE388A47217318980050904B /* Config.swift in Sources */,
+				FEDBDA7121844C3700D81C4F /* PagingViewController.swift in Sources */,
 				FEC882DF2176C65D009BDC1C /* SocialViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 				FEF494D32175B8F700555C3F /* TuchongViewController.swift in Sources */,
@@ -538,6 +555,7 @@
 			files = (
 				FE6652D92170A58A007E7051 /* Main.swift in Sources */,
 				FE388A48217318980050904B /* Config.swift in Sources */,
+				FEDBDA7221844C3700D81C4F /* PagingViewController.swift in Sources */,
 				FEC882E02176C65D009BDC1C /* SocialViewController.swift in Sources */,
 				FE6652DA2170A58A007E7051 /* AppDelegate.swift in Sources */,
 				FEF494D42175B8F700555C3F /* TuchongViewController.swift in Sources */,

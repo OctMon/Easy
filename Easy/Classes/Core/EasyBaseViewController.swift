@@ -88,6 +88,32 @@ open class EasyBaseViewController: UIViewController {
         }
     }()
     
+    #if canImport(PagingKit)
+    public lazy var pagingMenuViewController: EasyPaging.MenuViewController = {
+        return Easy.Paging.MenuViewController().then {
+            view.addSubview($0.view)
+            $0.view.snp.makeConstraints({ (make) in
+                make.top.left.right.equalToSuperview()
+                make.height.equalTo(44)
+            })
+            $0.dataSource = self
+            $0.delegate = self
+        }
+    }()
+    public lazy var pagingContentViewController: Easy.Paging.ContentViewController = {
+        return EasyPaging.ContentViewController().then {
+            view.addSubview($0.view)
+            $0.view.snp.makeConstraints({ (make) in
+                make.top.equalTo(pagingMenuViewController.view.snp.bottom)
+                make.left.bottom.right.equalToSuperview()
+            })
+            $0.dataSource = self
+            $0.delegate = self
+        }
+    }()
+    lazy var pagingDataSource = [(menu: String, content: UIViewController)]()
+    #endif
+    
     open override var preferredStatusBarStyle: UIStatusBarStyle {
         return .default
     }
@@ -103,6 +129,9 @@ open class EasyBaseViewController: UIViewController {
         }
         navigationBar?.setBackgroundImage(EasyGlobal.navigationBarBackgroundImage, for: .default)
         navigationBar?.titleTextAttributes = EasyGlobal.navigationBarTitleTextAttributes
+        if EasyGlobal.navigationBarIsShadowNull {
+            navigationBar?.setShadowNull()
+        }
         
         configure()
     }

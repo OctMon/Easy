@@ -3,6 +3,7 @@ use_frameworks!
 target 'Easy_Example' do
   pod 'Easy', :path => '../'
   pod 'Easy/Common', :path => '../'
+  pod 'Easy/Paging', :path => '../'
   pod 'Easy/Social', :path => '../'
   pod 'Easy/Scan', :path => '../'
 
@@ -14,6 +15,7 @@ end
 target 'Easy_Example_Beta' do
     pod 'Easy', :path => '../'
     pod 'Easy/Common', :path => '../'
+    pod 'Easy/Paging', :path => '../'
     pod 'Easy/Social', :path => '../'
     pod 'Easy/Scan', :path => '../'
     pod 'Easy/Beta', :path => '../'
