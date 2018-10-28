@@ -60,9 +60,9 @@ public struct EasyConfig {
     
     public struct Code {
         public var success = 0
-        public var empty = 1
-        public var tokenExpired = -1
-        public var forceUpdate = -2
+        public var empty: Int?
+        public var tokenExpired: Int?
+        public var forceUpdate: Int?
         public var unknown = -990909
     }
     
