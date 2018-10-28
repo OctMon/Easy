@@ -139,7 +139,7 @@ extension DataRequest {
                 if let jsonData = try? JSONSerialization.data(withJSONObject: data), let jsonobject = try? JSONSerialization.jsonObject(with: jsonData), let json = jsonobject as? Parameters, JSONSerialization.isValidJSONObject(data) {
                     handler(json, nil)
                 } else {
-                    handler([:], EasyError.empty(EasyErrorReason.empty))
+                    handler([:], EasyError.empty(EasyErrorReason.serverError))
                 }
             case .failure(let error):
                 handler([:], error)
