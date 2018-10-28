@@ -286,15 +286,15 @@ public extension EasySocial {
         }
     }
     
-    static func oauth(platformType: OauthPlatformType, responseHandler: @escaping (UserInfo?, EasyParameters?, Error?) -> Void) {
+    static func oauth(platformType: OauthPlatformType, isGetUserInfo: Bool = false, responseHandler: @escaping (UserInfo?, EasyParameters?, Error?) -> Void) {
         switch platformType {
         case .wechat:
-            MonkeyKing.oauth(for: .weChat) { (dictionary, response, error) in
+            MonkeyKing.oauth(for: .weChat) { (info, response, error) in
                 if let error = error {
                     EasyLog.debug("error \(String(describing: error))")
                     responseHandler(nil, nil, error)
-                } else {
-                    guard let token = dictionary?["access_token"] as? String, let openid = dictionary?["openid"] as? String, let refreshToken = dictionary?["refresh_token"] as? String, let expiresIn = dictionary?["expires_in"] as? Int else { return }
+                } else if isGetUserInfo {
+                    guard let token = info?["access_token"] as? String, let openid = info?["openid"] as? String, let refreshToken = info?["refresh_token"] as? String, let expiresIn = info?["expires_in"] as? Int else { return }
                     let userInfoAPI = "https://api.weixin.qq.com/sns/userinfo"
                     let parameters = ["openid": openid, "access_token": token]
                     // https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421140839
@@ -325,6 +325,8 @@ public extension EasySocial {
                             }
                         }
                     })
+                } else {
+                    responseHandler(nil, info, nil)
                 }
             }
         case .qq:
@@ -332,7 +334,7 @@ public extension EasySocial {
                 if let error = error {
                     EasyLog.debug("error \(String(describing: error))")
                     responseHandler(nil, nil, error)
-                } else {
+                } else if isGetUserInfo {
                     guard let unwrappedInfo = info, let token = unwrappedInfo["access_token"] as? String, let openid = unwrappedInfo["openid"] as? String else { return }
                     let query = "get_user_info"
                     let userInfoAPI = "https://graph.qq.com/user/\(query)"
@@ -351,6 +353,8 @@ public extension EasySocial {
                             }
                         }
                     }
+                } else {
+                    responseHandler(nil, info, nil)
                 }
             }
         case .weibo:
@@ -358,7 +362,7 @@ public extension EasySocial {
                 if let error = error {
                     EasyLog.debug("error \(String(describing: error))")
                     responseHandler(nil, nil, error)
-                } else {
+                } else if isGetUserInfo {
                     guard let unwrappedInfo = info, let token = (unwrappedInfo["access_token"] as? String) ?? (unwrappedInfo["accessToken"] as? String), let userID = (unwrappedInfo["uid"] as? String) ?? (unwrappedInfo["userID"] as? String) else { return }
                     let userInfoAPI = "https://api.weibo.com/2/users/show.json"
                     let parameters = ["uid": userID, "access_token": token]
@@ -388,6 +392,8 @@ public extension EasySocial {
                             }
                         }
                     }
+                } else {
+                    responseHandler(nil, info, nil)
                 }
             }
         case .alipay:
