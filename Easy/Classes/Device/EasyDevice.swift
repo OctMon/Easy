@@ -256,9 +256,9 @@ public extension EasyDevice {
     }
     
     static var size: EasyDevice.DeviceSize {
-        let w: Double = Double(UIScreen.main.bounds.width)
-        let h: Double = Double(UIScreen.main.bounds.height)
-        let screenHeight: Double = max(w, h)
+        let w = UIScreen.main.bounds.width
+        let h = UIScreen.main.bounds.height
+        let screenHeight = max(w, h)
         
         switch screenHeight {
         case 480:
