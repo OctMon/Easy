@@ -476,6 +476,8 @@
 		FDE1452474479C8569346D7DD215F44D /* FLEXNetworkObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 5653DD867ED4809AA83AEA1BF5365121 /* FLEXNetworkObserver.m */; };
 		FE08EE9732832BB9853B6AE701FBEDA2 /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D15A8810CB7750B1E570A2029F61565 /* UIView+WebCacheOperation.m */; };
 		FE319DFFA6C8107E7764C44F6F03A1BE /* UIScrollView+MJExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = A269DC8126DDD0BC5C37468006512726 /* UIScrollView+MJExtension.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FEAB5ABC2187101B00C517F6 /* EasyThen.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEAB5ABB2187101B00C517F6 /* EasyThen.swift */; };
+		FEAB5ABD2187101B00C517F6 /* EasyThen.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEAB5ABB2187101B00C517F6 /* EasyThen.swift */; };
 		FEB45EF9A3EBFAEEB82C45FCAF3EA4B6 /* MJRefresh.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA304D5F051D6970D758B1FBF187D21E /* MJRefresh.framework */; };
 		FEC1B6B40EFAD692E7B5774FEE814569 /* FLEXIvarEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B88AF8BAA342B269B8D0A7DBE2F312E2 /* FLEXIvarEditorViewController.m */; };
 		FED9436BD27C2B1AFCAE53EA92390514 /* FLEXTableContentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8134091AA1BD3E052EB10C0A5951858C /* FLEXTableContentCell.m */; };
@@ -1296,6 +1298,7 @@
 		FBCDADD06688C66C42ED70FE61E0E26E /* FLEXManager+Private.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "FLEXManager+Private.h"; path = "Classes/Manager/FLEXManager+Private.h"; sourceTree = "<group>"; };
 		FD2AF646A64BF278F23DFD7C59C36B4E /* EasySessionViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EasySessionViewController.swift; path = Easy/Classes/Beta/EasySessionViewController.swift; sourceTree = "<group>"; };
 		FD453E1FF09AF5A9ED6158158BB3C591 /* FLEXNetworkRecorder.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXNetworkRecorder.m; path = Classes/Network/FLEXNetworkRecorder.m; sourceTree = "<group>"; };
+		FEAB5ABB2187101B00C517F6 /* EasyThen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EasyThen.swift; path = Easy/Classes/Core/EasyThen.swift; sourceTree = "<group>"; };
 		FF7DA1C8E079E70D7D91385B1BDB39E2 /* MJRefreshBackStateFooter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MJRefreshBackStateFooter.m; path = MJRefresh/Custom/Footer/Back/MJRefreshBackStateFooter.m; sourceTree = "<group>"; };
 		FFA60CA585A11973315308C4097AC14A /* Pods-Easy_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Easy_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		FFEEC73A159D9FD2E449ADFDB7E5E056 /* MJRefreshBackGifFooter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MJRefreshBackGifFooter.m; path = MJRefresh/Custom/Footer/Back/MJRefreshBackGifFooter.m; sourceTree = "<group>"; };
@@ -2311,6 +2314,7 @@
 				A6780DEFF08F587A6398C0AA003A2627 /* EasyPopupView.swift */,
 				42CC962375379D6E8A13771FAA869D9B /* EasyRefresh.swift */,
 				8BE9A3A73BCC8305E69B3B08BA70A113 /* EasyRouter.swift */,
+				FEAB5ABB2187101B00C517F6 /* EasyThen.swift */,
 				6109C371E8C2924A37E3968EA1E5542E /* EasyTo.swift */,
 				2BD6B02CC97148F93BABFFFEDA6C4803 /* EasyValid.swift */,
 				31C906A97254205E35E821130049B94F /* EasyWebImage.swift */,
@@ -3262,6 +3266,7 @@
 				1AC2DA44D4C02E3B5C5F424B7C5DBAE8 /* EasyDevice.swift in Sources */,
 				341065ED52324AFF18215E705EDEC75F /* EasyError.swift in Sources */,
 				92F7BEB9C8A5BF5BB670883F1C2751D5 /* EasyExtension.swift in Sources */,
+				FEAB5ABD2187101B00C517F6 /* EasyThen.swift in Sources */,
 				6583EB9F5051551CD5580FFD493D427C /* EasyGlobal.swift in Sources */,
 				44C1857303437477C13007BA1C3FE6EA /* EasyKeychain.swift in Sources */,
 				9725E37D4765AE4417F7DADA5C590CBE /* EasyLaunchView.swift in Sources */,
@@ -3467,6 +3472,7 @@
 				9CFCE76DF0CF6982173FF548B7F268A9 /* EasyConfig.swift in Sources */,
 				7E1936252DAB1C6BEDF60B2042493AA9 /* EasyCrypto.swift in Sources */,
 				4BF6854D75C0375FF822327805883069 /* EasyDevice.swift in Sources */,
+				FEAB5ABC2187101B00C517F6 /* EasyThen.swift in Sources */,
 				5AEC0639FB9FFC5A42BAB2D79BD6B2DF /* EasyError.swift in Sources */,
 				6D623D2CBB2C10E87EF985E8430D80DD /* EasyExtension.swift in Sources */,
 				38939F2BE9610504C8D257CBF564CDDE /* EasyGlobal.swift in Sources */,

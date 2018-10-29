@@ -7,68 +7,6 @@
 
 import UIKit
 
-public protocol Then {}
-
-public extension Then where Self: Any {
-    
-    /**
-     ```
-     let frame = CGRect().with {
-         $0.origin.x = 10
-         $0.size.width = 100
-     }
-     ```
-     */
-    func with(_ block: (inout Self) throws -> Void) rethrows -> Self {
-        var copy = self
-        try block(&copy)
-        return copy
-    }
-    
-    /**
-     ```
-     UserDefaults.standard.do {
-         $0.set("octmon", forKey: "username")
-         $0.set("octmon@qq.com", forKey: "email")
-         $0.synchronize()
-     }
-     ```
-     */
-    func `do`(_ block: (Self) throws -> Void) rethrows {
-        try block(self)
-    }
-    
-}
-
-public extension Then where Self: AnyObject {
-    
-    /**
-     ```
-     let label = UILabel().then {
-         $0.textAlignment = .center
-         $0.textColor = UIColor.black
-         $0.text = "Hello, World!"
-     }
-     ```
-     */
-    func then(_ block: (Self) throws -> Void) rethrows -> Self {
-        try block(self)
-        return self
-    }
-    
-}
-
-extension NSObject: Then {}
-
-extension CGPoint: Then {}
-extension CGRect: Then {}
-extension CGSize: Then {}
-extension CGVector: Then {}
-
-extension UIEdgeInsets: Then {}
-extension UIOffset: Then {}
-extension UIRectEdge: Then {}
-
 public extension Optional {
     
     /// 是否为nil
