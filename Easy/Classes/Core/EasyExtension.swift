@@ -301,6 +301,14 @@ public extension CGSize {
     
 }
 
+public extension CGRect {
+    
+    static var screenBounds: CGRect {
+        return EasyApp.screenBounds
+    }
+    
+}
+
 public extension String {
     
     mutating func trimmedWithoutSpacesAndNewLines() {
