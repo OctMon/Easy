@@ -62,7 +62,7 @@ open class EasyBaseViewController: UIViewController {
     
     public lazy var collectionViewFlowLayout: UICollectionViewFlowLayout = {
         return UICollectionViewFlowLayout().then {
-            $0.scrollDirection = .horizontal
+            $0.scrollDirection = .vertical
             $0.minimumLineSpacing = 15
             $0.minimumInteritemSpacing = 15
         }
