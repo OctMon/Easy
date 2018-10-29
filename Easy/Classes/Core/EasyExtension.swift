@@ -729,6 +729,12 @@ public extension UIColor {
         return white >= 0.5
     }
     
+    var invertColor: UIColor {
+        var r: CGFloat = 0, g: CGFloat = 0, b: CGFloat = 0
+        getRed(&r, green: &g, blue: &b, alpha: nil)
+        return UIColor(red:1.0 - r, green: 1.0 - g, blue: 1.0 - b, alpha: 1)
+    }
+    
     static var random: UIColor {
         return UIColor.rgb(red: Int(arc4random_uniform(255)), green: Int(arc4random_uniform(255)), blue: Int(arc4random_uniform(255)))
     }
