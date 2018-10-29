@@ -406,7 +406,7 @@ public extension EasySocial {
 private class EasySocialShareView: UIView {
     
     private let kSocialShareButtonWidth: CGFloat = 76
-    private let kSocialShareCancelHeight: CGFloat = (EasyApp.isAllFaceIDCapableDevices ? 80 : 46)
+    private let kSocialShareCancelHeight: CGFloat = (EasyDevice.isAllFaceIDCapableDevices ? 80 : 46)
     
     private var bottomViewHeight: CGFloat = 0
     private var platforms = [EasySocial.SharePlatform]()
@@ -445,7 +445,7 @@ private class EasySocialShareView: UIView {
     private func addPlatformsItems() {
         let column: Int = 4
         let ceil = CGFloat(Double(platforms.count) / Double(column)).ceil
-        bottomViewHeight = shareButtonSpace * (CGFloat(platforms.count / column + 2)) + shareButtonHeight * ceil + (isShowCancelButton ? kSocialShareCancelHeight : EasyApp.safeBottomEdge)
+        bottomViewHeight = shareButtonSpace * (CGFloat(platforms.count / column + 2)) + shareButtonHeight * ceil + (isShowCancelButton ? kSocialShareCancelHeight : EasyDevice.safeBottomEdge)
         
         let margin = (UIScreen.main.bounds.width - CGFloat(column) * kSocialShareButtonWidth) / (CGFloat(column) + 1)
         

@@ -22,12 +22,16 @@ Pod::Spec.new do |s|
     
     s.ios.deployment_target = '9.0'
     s.swift_version = '4.2'
-    s.default_subspec = ['Core', 'Session']
+    s.default_subspec = ['Core', 'Device', 'Session']
     
     s.subspec 'Core' do |ss|
         ss.source_files = 'Easy/Classes/Core/*'
         ss.resources = ['Easy/Resources/EasyCore.bundle']
         ss.dependency 'SnapKit'#, '~> 4.0.1' # https://github.com/SnapKit/SnapKit
+    end
+    
+    s.subspec 'Device' do |ss|
+        ss.source_files = 'Easy/Classes/Device/*'
     end
     
     s.subspec 'Common' do |ss|

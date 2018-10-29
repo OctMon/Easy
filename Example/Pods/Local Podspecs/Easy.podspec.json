@@ -1,6 +1,6 @@
 {
   "name": "Easy",
-  "version": "0.5.1",
+  "version": "0.6.0",
   "summary": "develop Swift with Easy",
   "description": "Reduce development time and increase development efficiency",
   "homepage": "https://github.com/OctMon/Easy",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/OctMon/Easy.git",
-    "tag": "0.5.1"
+    "tag": "0.6.0"
   },
   "platforms": {
     "ios": "9.0"
@@ -21,6 +21,7 @@
   "swift_version": "4.2",
   "default_subspecs": [
     "Core",
+    "Device",
     "Session"
   ],
   "subspecs": [
@@ -35,6 +36,10 @@
 
         ]
       }
+    },
+    {
+      "name": "Device",
+      "source_files": "Easy/Classes/Device/*"
     },
     {
       "name": "Common",

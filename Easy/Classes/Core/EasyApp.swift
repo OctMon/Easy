@@ -44,24 +44,7 @@ public extension EasyApp {
     }
     static let bundleExecutable = Bundle.main.infoDictionary!["CFBundleExecutable"] as? String ?? ""
     
-    static let aboutName = UIDevice.current.name
-    /// iOS/tvOS/watchOS
-    static let systemVersion = UIDevice.current.systemVersion
-    /// 0.0 - 1.0
-    static let batteryLevel = UIDevice.current.batteryLevel
-    
-    static let isiPadModel = UIDevice.current.model.contains("iPad")
-    static let isiPhoneModel = UIDevice.current.model.contains("iPhone")
-    static let isiPhone5 = screenWidth == 320
-    static let isiPhone6 = screenWidth == 375 && screenHeight == 667
-    static let isiPhone6Plus = screenWidth == 414 && screenHeight == 736
-    static let isiPhoneX = screenWidth == 375 && screenHeight == 812
-    static let isiPhoneXR = screenScale == 2 && screenWidth == 414 && screenHeight == 896
-    static let isiPhoneXSMax = screenScale == 3 && screenWidth == 414 && screenHeight == 896
-    static let isAllFaceIDCapableDevices = isiPhoneX || isiPhoneXR || isiPhoneXSMax
-    
     static let statusBarHeight = UIApplication.shared.statusBarFrame.height
-    static let safeBottomEdge = CGFloat(isAllFaceIDCapableDevices ? 34 : 0)
     
     static let userDefaults = UserDefaults.standard
     static let notificationCenter = NotificationCenter.default

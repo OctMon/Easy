@@ -84,7 +84,7 @@ extension TuchongViewController {
                 $0.setFadeImage(url: self.getImage(indexPath)?.imageURL ?? "", placeholderImage: nil)
             }
             $0.addSubview(imageView)
-            let button = UIButton(frame: CGRect(x: app.screenWidth - 80 - 30, y: app.screenHeight - app.safeBottomEdge - 50, width: 80, height: 44)).then {
+            let button = UIButton(frame: CGRect(x: app.screenWidth - 80 - 30, y: app.screenHeight - device.safeBottomEdge - 50, width: 80, height: 44)).then {
                 $0.setTitle("保存", for: .normal)
                 $0.setBackgroundImage(easy.Global.tint.toImage, cornerRadius: 5)
                 $0.setTitleColor(UIColor.white, for: .normal)
