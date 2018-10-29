@@ -154,7 +154,7 @@ public extension EasyBaseViewController {
                 collectionView.reloadData()
             }
         }
-        if ignoreTotalPage || response.total > self.currentPage {
+        if ignoreTotalPage ? response.models.count >= self.pageSize : response.total > self.currentPage {
             self.currentPage += incrementPage
             if scrollView.mj_footer != nil {
                 scrollView.mj_footer.isHidden = false

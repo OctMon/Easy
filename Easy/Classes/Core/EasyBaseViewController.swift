@@ -28,16 +28,19 @@ open class EasyBaseViewController: UIViewController {
     private lazy var collectionViewDidSelectRowHandler: ((IndexPath, Any) -> Void)? = { return nil }()
     
     /// 第一页
-    public lazy var firstPage: Int = 1
+    public lazy var firstPage: Int = EasyGlobal.tableViewFirstPage
     
     /// 当前页
-    public lazy var currentPage: Int = 1
+    public lazy var currentPage: Int = EasyGlobal.tableViewCurrentPage
+    
+    /// 分页数量
+    public lazy var pageSize: Int = EasyGlobal.tableViewPageSize
     
     /// 下一页增量(跳过的页数)
-    public lazy var incrementPage: Int = 1
+    public lazy var incrementPage: Int = EasyGlobal.tableViewIncrementPage
     
     /// 忽略总页数判断
-    public lazy var ignoreTotalPage: Bool = false
+    public lazy var ignoreTotalPage: Bool = EasyGlobal.tableViewIgnoreTotalPage
     
     public lazy var dataSource: [Any] = [Any]()
     

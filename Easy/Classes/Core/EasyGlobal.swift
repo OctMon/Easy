@@ -22,6 +22,13 @@ public extension EasyGlobal {
     static var navigationBarTitleTextAttributes: [NSAttributedString.Key : Any]?
     
     static var navigationBarIsShadowNull = false
+    
+    static var tableViewIgnoreTotalPage = true
+    static var tableViewFirstPage = 1
+    static var tableViewCurrentPage = 1
+    static var tableViewPageSize = 10
+    static var tableViewIncrementPage = 1
+    static var tableViewStyle = UITableView.Style.plain
 }
 
 public extension EasyGlobal {

@@ -68,7 +68,6 @@ public struct EasyConfig {
     
     public struct Other {
         public var timeout: TimeInterval = 10
-        public var pagesize = 10 // 分页数量
     }
     
     public var url = BaseURL()
