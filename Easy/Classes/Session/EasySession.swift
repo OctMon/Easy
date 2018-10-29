@@ -67,7 +67,7 @@ public struct EasySession {
 
 public extension EasySession {
     
-    func pageSize(_ page: Int, _ size: Int? = nil) -> Parameters {
+    func pageSize(_ page: Int, _ size: Int? = nil) -> EasyParameters {
         var parameters = [config.key.page: page]
         if let size = size {
             parameters[config.key.size] = size
