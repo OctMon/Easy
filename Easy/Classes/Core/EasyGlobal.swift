@@ -23,7 +23,8 @@ public extension EasyGlobal {
     
     static var navigationBarIsShadowNull = false
     
-    static var tableViewIgnoreTotalPage = true
+    static var tableViewAutoTotalPage = true
+    static var tableViewIgnoreTotalPage = false
     static var tableViewFirstPage = 1
     static var tableViewCurrentPage = 1
     static var tableViewPageSize = 10

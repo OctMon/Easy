@@ -60,10 +60,10 @@ Pod::Spec.new do |s|
         ss.dependency 'Easy/Core'
     end
     
-    s.subspec 'Paging' do |ss|
-        ss.source_files = 'Easy/Classes/Paging/*'
+    s.subspec 'Page' do |ss|
+        ss.source_files = 'Easy/Classes/Page/*'
         ss.dependency 'Easy/Core'
-        ss.dependency 'PagingKit'#, '~> 1.6.1' # https://github.com/kazuhiro4949/PagingKit
+        ss.dependency 'WMPageController'#, '~> 1.6.1' # https://github.com/wangmchn/WMPageController
     end
     
     s.subspec 'Beta' do |ss|

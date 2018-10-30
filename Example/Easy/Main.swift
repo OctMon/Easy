@@ -104,7 +104,7 @@ class Main: easy.BaseViewController {
     override func request() {
         super.request()
         
-        dataSource = [ScanViewController.toString, TuchongViewController.toString, SocialViewController.toString, PagingViewController.toString]
+        dataSource = [ScanViewController.toString, TuchongViewController.toString, SocialViewController.toString, PageViewController.toString]
         tableView.reloadData()
     }
     

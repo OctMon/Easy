@@ -95,13 +95,13 @@
       }
     },
     {
-      "name": "Paging",
-      "source_files": "Easy/Classes/Paging/*",
+      "name": "Page",
+      "source_files": "Easy/Classes/Page/*",
       "dependencies": {
         "Easy/Core": [
 
         ],
-        "PagingKit": [
+        "WMPageController": [
 
         ]
       }
