@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
     s.name             = 'Easy'
-    s.version          = '0.6.0'
+    s.version          = '0.6.1'
     s.summary          = 'develop Swift with Easy'
     
     s.description      = <<-DESC
@@ -32,6 +32,7 @@ Pod::Spec.new do |s|
     
     s.subspec 'Device' do |ss|
         ss.source_files = 'Easy/Classes/Device/*'
+        ss.dependency 'Easy/Core'
     end
     
     s.subspec 'Common' do |ss|
@@ -52,6 +53,7 @@ Pod::Spec.new do |s|
         ss.source_files = 'Easy/Classes/Social/*'
         ss.resources = ['Easy/Resources/EasySocial.bundle']
         ss.dependency 'Easy/Core'
+        ss.dependency 'Easy/Device'
         ss.dependency 'MonkeyKing'#, '~> 1.12.1' # https://github.com/nixzhu/MonkeyKing
     end
     
