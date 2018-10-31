@@ -400,7 +400,7 @@ public extension EasyApp {
             alertView.addSubview(messageLabel)
             messageLabel.snp.makeConstraints({ (make) in
                 make.top.equalTo(titleLabel.snp.bottom).offset(22)
-                make.bottom.equalTo(-60)
+                make.bottom.equalTo(-70)
                 make.left.equalTo(22)
                 make.right.equalTo(-22)
             })
