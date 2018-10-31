@@ -45,6 +45,7 @@ class EasyTestViewController: EasyBaseViewController {
     override func configure() {
         super.configure()
         
+        tableViewStyle = .grouped
         setTableViewRegister([EasyTestCell.self, UITableViewCell.self], returnCell: { (indexPath) -> AnyClass? in
             if indexPath.section == 0 {
                 return EasyTestCell.self
@@ -76,7 +77,7 @@ class EasyTestViewController: EasyBaseViewController {
                         $0.accessoryType = .detailDisclosureButton
                         $0.selectionStyle = .default
                         $0.textLabel?.adjustsFontSizeToFitWidth = true
-                        $0.textLabel?.text = model.0 + " --> " + model.1
+                        $0.textLabel?.text = model.0 + " -> " + model.1
                     }
                 }
             }
@@ -85,8 +86,12 @@ class EasyTestViewController: EasyBaseViewController {
             sessions[indexPath.row].showChangeBaseURL({ [weak self] (url) in
                 if var model = any as? (String, String) {
                     model.1 = url
-                    self?.dataSource[indexPath.section] = model
-                    self?.tableView.reloadData()
+                    let list = self?.dataSource[indexPath.section]
+                    if var models = list as? [Any] {
+                        models[indexPath.row] = model
+                        self?.dataSource[indexPath.section] = models
+                        self?.tableView.reloadData()
+                    }
                 }
             })
         }

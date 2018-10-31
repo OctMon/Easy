@@ -74,7 +74,7 @@ Pod::Spec.new do |s|
         ss.dependency 'Easy/Session'
         ss.dependency 'FLEX'#, '~> 2.4.0' # https://github.com/Flipboard/FLEX
         #ss.dependency 'GDPerformanceView-Swift'#, '~> 1.3.2' # https://github.com/dani-gavrilov/GDPerformanceView-Swift
-        ss.dependency 'NotificationBannerSwift'#, '~> 1.7.3' # https://github.com/Daltron/NotificationBanner
+        ss.dependency 'NotificationBannerSwift'#, '~> 1.8.0' # https://github.com/Daltron/NotificationBanner
         ss.xcconfig = { 'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => '$(inherited) BETA' }
     end
     

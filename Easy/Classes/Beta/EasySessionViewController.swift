@@ -30,8 +30,8 @@ class EasySessionViewController: EasyBaseViewController {
         dataSource = list
         
         let current = config.url.currentBaseURL
-        let text = "📡 Change 📡 BaseURL 📡"
-        let height = text.getHeight(with: EasyApp.screenWidth, font: UIFont.size14)
+        let text = "📡 Change \(config.url.alias) BaseURL 📡"
+        let height = text.getHeight(forConstrainedWidth: EasyApp.screenWidth, font: UIFont.size14)
         tableView.tableHeaderView = UILabel(frame: CGRect(x: 0, y: 0, width: EasyApp.screenWidth, height: height)).then {
             $0.numberOfLines = 0
             $0.font = UIFont.size14

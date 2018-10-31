@@ -417,28 +417,24 @@ public extension String {
         return NSMutableAttributedString(string: self, attributes: [.font: font, .foregroundColor: foregroundColor, .paragraphStyle: paragraphStyle])
     }
     
-    func getWidth(with height: CGFloat, font: UIFont, lineBreakMode: NSLineBreakMode = .byTruncatingTail) -> CGFloat {
-        return ceil(getSize(with: CGSize(width: CGFloat(Double.greatestFiniteMagnitude), height: height), font: font, lineBreakMode: lineBreakMode).width)
+    func getWidth(forConstrainedHeight: CGFloat, font: UIFont, options: NSStringDrawingOptions = [.usesLineFragmentOrigin, .usesFontLeading]) -> CGFloat {
+        return ceil(getSize(forConstrainedSize: CGSize(width: CGFloat(Double.greatestFiniteMagnitude), height: forConstrainedHeight), font: font).width)
     }
     
-    func getHeight(with width: CGFloat, font: UIFont, lineBreakMode: NSLineBreakMode = .byTruncatingTail) -> CGFloat {
-        return ceil(getSize(with: CGSize(width: width, height: CGFloat(Double.greatestFiniteMagnitude)), font: font, lineBreakMode: lineBreakMode).height)
+    func getHeight(forConstrainedWidth: CGFloat, font: UIFont, options: NSStringDrawingOptions = [.usesLineFragmentOrigin, .usesFontLeading]) -> CGFloat {
+        return ceil(getSize(forConstrainedSize: CGSize(width: forConstrainedWidth, height: CGFloat(Double.greatestFiniteMagnitude)), font: font).height)
     }
     
-    func getSize(with size: CGSize, font: UIFont, lineBreakMode: NSLineBreakMode = .byTruncatingTail) -> CGSize {
-        var attributed: [NSAttributedString.Key: Any] = [.font: font]
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineBreakMode = lineBreakMode
-        attributed.updateValue(paragraphStyle, forKey: .paragraphStyle)
-        return (self as NSString).boundingRect(with: size, options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: attributed, context: nil).size
+    func getSize(forConstrainedSize: CGSize, font: UIFont, options: NSStringDrawingOptions = [.usesLineFragmentOrigin, .usesFontLeading]) -> CGSize {
+        return self.boundingRect(with: forConstrainedSize, options: options, attributes: [.font: font], context: nil).size
     }
     
 }
 
 public extension NSAttributedString {
     
-    func getSize(with size: CGSize) -> CGSize {
-        return boundingRect(with: size, options: NSStringDrawingOptions.usesLineFragmentOrigin, context: nil).size
+    func getSize(forConstrainedSize: CGSize, options: NSStringDrawingOptions = [.usesLineFragmentOrigin, .usesFontLeading]) -> CGSize {
+        return self.boundingRect(with: forConstrainedSize, options: options, context: nil).size
     }
     
 }

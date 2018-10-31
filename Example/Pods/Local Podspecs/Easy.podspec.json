@@ -1,6 +1,6 @@
 {
   "name": "Easy",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "summary": "develop Swift with Easy",
   "description": "Reduce development time and increase development efficiency",
   "homepage": "https://github.com/OctMon/Easy",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/OctMon/Easy.git",
-    "tag": "0.6.0"
+    "tag": "0.6.1"
   },
   "platforms": {
     "ios": "9.0"
@@ -39,7 +39,12 @@
     },
     {
       "name": "Device",
-      "source_files": "Easy/Classes/Device/*"
+      "source_files": "Easy/Classes/Device/*",
+      "dependencies": {
+        "Easy/Core": [
+
+        ]
+      }
     },
     {
       "name": "Common",
@@ -78,6 +83,9 @@
       ],
       "dependencies": {
         "Easy/Core": [
+
+        ],
+        "Easy/Device": [
 
         ],
         "MonkeyKing": [
