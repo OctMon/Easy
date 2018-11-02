@@ -8,33 +8,39 @@
 
 /* Begin PBXBuildFile section */
 		00C0DF264C9FA0F75CD7EE45747893FB /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6306BAF9C86CF12A59947E0394E393D9 /* QuartzCore.framework */; };
-		011D3126BCDDB88B7F549AA62DEA4083 /* EasyScan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F73FAACD9263A772A90CB369EC1C3 /* EasyScan.swift */; };
 		0208DD92BBB3FFBD6CAA0649A3E635C0 /* SDImageCacheConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 5BC2F7ECC7B579364EB31B1CD8B52AB8 /* SDImageCacheConfig.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0296EE89AFEC095B99EBD3F520704281 /* BannerColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E2C1796397D7571A408994DD1C8EA0 /* BannerColors.swift */; };
 		02FB1529872284BDF2CE1A580E7914A0 /* FLEXMultilineTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3AA70B1A546E5805AA8C9CAABB671C /* FLEXMultilineTableViewCell.m */; };
 		037B79BF33526590CCCB28370D2D7810 /* ConstraintOffsetTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C53DB3723EB238AA01A43E1FE6218E /* ConstraintOffsetTarget.swift */; };
 		0443351C0CD6F937FA184847E2E965D0 /* FLEXNetworkCurlLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 576B76E628F03C1DE4F74712185A70D4 /* FLEXNetworkCurlLogger.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		055DD1C5D077C44A0F9867D5024DF0B4 /* EasyLaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654139B623460624C3E996520D05C8AC /* EasyLaunchView.swift */; };
 		06011CFF1F2A401482161074C8A978AF /* String+heightForConstrainedWidth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655DEB2D93A7AFA48A6BE558C2EA428A /* String+heightForConstrainedWidth.swift */; };
-		06F547CBBBC901BE06F4797D5E8F81F6 /* EasyWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43800A07E625BE42CA226CE68132B2F9 /* EasyWebViewController.swift */; };
+		066F38B0232D16936EB281C8D242B3B4 /* EasyError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D2A7EF91AF2E3F76584D9143F91E7D /* EasyError.swift */; };
 		070D0A7B5F203C107FF06901DF32CF54 /* FLEXNetworkRecorder.h in Headers */ = {isa = PBXBuildFile; fileRef = D63F9557222EA08A4B92477125CAB227 /* FLEXNetworkRecorder.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		096A7E6AA362FC3568A0BE67106FAAC7 /* MJRefreshAutoGifFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EC4894D43F662A17C11CCA7B02951B9 /* MJRefreshAutoGifFooter.m */; };
 		0A6A1CC933376338454B3F33F3857DBD /* FLEXTableContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7E1514BD243817C5933A78F1B49A344 /* FLEXTableContentViewController.m */; };
 		0A775039B0C7107B441CB0B3DC9879D0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A07F30D063D4C1051F6831EE02DFF7CB /* Foundation.framework */; };
+		0ACE440F60C554B60AFECFF48A046FE7 /* EasyPopupMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = F73924959291F8E325D9255D7F0F2352 /* EasyPopupMenu.swift */; };
 		0B54345F4BF10E4C015CF7A12EA2630F /* FLEXNetworkTransactionTableViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 341E9F9203691F537251E2FAC9F11E2A /* FLEXNetworkTransactionTableViewCell.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		0B5455483984DF9C1D159BAFFADEC17E /* FLEXArgumentInputJSONObjectView.h in Headers */ = {isa = PBXBuildFile; fileRef = E0EF1587333030591DE86893B86578CF /* FLEXArgumentInputJSONObjectView.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		0BBB775211F69B07AA348D684DFB6B2D /* MBProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0677DBFD65D2E2D3D05C2944EE8EAAAB /* MBProgressHUD.framework */; };
-		0CA839D5C25F87153DB42CC1C4612DA4 /* EasyWebImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E8F7A17AA3A1D77473E7D090CB642FF /* EasyWebImage.swift */; };
+		0C55DF2498A91FF1EE7F28D288187718 /* EasyBeta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE344236E6EBDFD4CC3122561CDF867 /* EasyBeta.swift */; };
 		0CCF927AC18FC12E9313F1B198296330 /* FLEXSQLiteDatabaseManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 4D64C24975E9B260CD363A8B783F4A70 /* FLEXSQLiteDatabaseManager.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		0CE5F04358C6E3DE57A001D339992E1E /* ConstraintLayoutSupportDSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6044E89BD4418E1F854054D06279FD66 /* ConstraintLayoutSupportDSL.swift */; };
+		0D05EEF6C15A2B0D399F516E2999E3B8 /* EasyResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F8F361CC8BC46F1D3E949D41F319396 /* EasyResult.swift */; };
 		0D3C70E206FAD81F928CAD713805A8FA /* SDWebImageCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 51E0C63C53CFD38A4BEA442F19EA42CE /* SDWebImageCoder.m */; };
 		0E0FE567D69A6812C0BB38BCD4906815 /* ConstraintRelatableTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9324756F43795D45926D284BCD277320 /* ConstraintRelatableTarget.swift */; };
 		0ECF2A7C1A71FD8B498026D969CC8144 /* FLEXKeyboardShortcutManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 88B9CAF778FAF73A0FE944A15247D673 /* FLEXKeyboardShortcutManager.m */; };
+		0EDEF92B4CE8AB0DDC5F92293967E870 /* EasyExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3858F2E335DF33413FAA687ADC47F8C4 /* EasyExtension.swift */; };
 		0F4CD426CC6B91C6B36D911FD2A9F61E /* FLEXNetworkHistoryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1922E159AC859516F2F091B78232F756 /* FLEXNetworkHistoryTableViewController.m */; };
 		0FCA4999D7799A74C989BD1A8AB77821 /* FLEXGlobalsTableViewControllerEntry.h in Headers */ = {isa = PBXBuildFile; fileRef = 2DA14B32F23F4089F8F9F80C564446D3 /* FLEXGlobalsTableViewControllerEntry.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		0FCE06D818118A1B8177A886F6089097 /* Easy.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEFFEBE1E49BB082E79A91C0B89DF588 /* Easy.swift */; };
+		0FFAF7C9971EF361B10B3C9566228316 /* EasyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3569FAE0438EA2B04CF2E9976B94C906 /* EasyViewController.swift */; };
 		1037B660515F6571A25C542312C9655C /* FLEXDictionaryExplorerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E859D3A4083738957760C77C8880DB4 /* FLEXDictionaryExplorerViewController.m */; };
 		106932A440E4723305DC987A73EFCD30 /* FLEXMultiColumnTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA127B8FD81C58750614C2FD87FF2594 /* FLEXMultiColumnTableView.m */; };
-		10EC394F34B831183A8ED9E03EED8250 /* EasyTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18E1487E0B003164EBE8417DFC550D9 /* EasyTestViewController.swift */; };
+		109B5FF99BE8EA35FEE64C75CF531BE3 /* EasyPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4889279EB7A22E8A0131BA2464873A7A /* EasyPlaceholder.swift */; };
 		116834E644D5A615D4402A9F93F2B1EA /* SnapKit-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 06E4FDFB6889AB79B20EB6DF2D7F79E8 /* SnapKit-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1305F518896E3014304C11A3AA8115F1 /* EasyPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25EDFF8D48CFB0C5248DAE35409CC1E0 /* EasyPage.swift */; };
 		13EDE4CC72EF4F8D49CED283FBAB2480 /* UILayoutSupport+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17102689BDC79008B7F0621BB533451E /* UILayoutSupport+Extensions.swift */; };
 		1433AB9923E8FE3CAAF806F146F18AFE /* FLEXArgumentInputTextView.h in Headers */ = {isa = PBXBuildFile; fileRef = FAE78790D4CC0A41A2142973277B4D75 /* FLEXArgumentInputTextView.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		158CBC191796C33F8417EEEE30601927 /* NSImage+WebCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 1FEE28235D3FB0F30CC4BFD2A0E46E55 /* NSImage+WebCache.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -47,16 +53,17 @@
 		197E43044EB5D8A7FA8556F413512500 /* FLEXDictionaryExplorerViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = CC6BFE6A814313EFEE85BB70E16975D5 /* FLEXDictionaryExplorerViewController.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		1A4AA1FA97A11799532FFD805D9CB950 /* BannerHapticGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 561C96C2AF639350F39FC3FCAFC34E77 /* BannerHapticGenerator.swift */; };
 		1AB4F7109D7189645E230E5B00E5624C /* FLEXHierarchyTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA44492AA58E99375C735844DB7A2C70 /* FLEXHierarchyTableViewController.m */; };
-		1AE49C3A34388EADA673598C49DD52F2 /* EasyCollectionViewWaterFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D049350130E3CCAA624BD0B27386E4B2 /* EasyCollectionViewWaterFlowLayout.swift */; };
 		1B994D9F5B60C73A6BC28FF86B67F519 /* SDWebImageFrame.h in Headers */ = {isa = PBXBuildFile; fileRef = A13DD240F84214E10D13C0C666A62E64 /* SDWebImageFrame.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1BBDDFA50B1C349616153FDDC4078F39 /* EasyGlobal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FC2DAC8517270DA30E6F5A58369D0A4 /* EasyGlobal.swift */; };
 		1CD4D9D176EFF831B98BA85A2C629484 /* FLEXPropertyEditorViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 44FFF863BAFFD2E685BF537CBAA1B8AB /* FLEXPropertyEditorViewController.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		1E2F737F7E25C075AE768225ACCE30C1 /* Easy.common-Beta-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 002C5145B36CD0935C37252D602258F3 /* Easy.common-Beta-dummy.m */; };
 		1E8E5134FFF82C506C2945159FFCFF2F /* FLEXResources.h in Headers */ = {isa = PBXBuildFile; fileRef = 6018C50DB8124819D73BA1528AC2CBA3 /* FLEXResources.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		1E91149BBD415AEE48E7A1DDC0B023E7 /* AnyActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A058B6BDD3802B642A4113E9AF20B8 /* AnyActivity.swift */; };
 		1EBBF1FC6E3C4C0D50D24D98C3320D58 /* SDWebImagePrefetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 01979511184D6A4E8174906D882C5DEF /* SDWebImagePrefetcher.m */; };
 		1FC3FD39157C2FFFF3869A1300730086 /* SessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A61F551494E76F56DD5E46B106020F64 /* SessionDelegate.swift */; };
 		21F77D2B380BDDCDE3BCC599198AF66D /* Constraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F17AFE4A32B70C896CF22474702D99 /* Constraint.swift */; };
+		2220D3E75FDD60EAF8B2F36B6B8A3B80 /* EasyLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E632D013E201CA359233FD53928989 /* EasyLog.swift */; };
 		224CF8DFD95F576CB068172BF54B0ADA /* FLEXDatabaseManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 56DE2B9C13CE4EA0F392CC642F0313D1 /* FLEXDatabaseManager.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		2285C46C3F6D17742ED66592CB3A69F4 /* EasyAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012AFCDEC45BB302789168692DC4D6B1 /* EasyAlert.swift */; };
 		228E8D63F839227427AE8A97701BEC23 /* FLEXArgumentInputNumberView.h in Headers */ = {isa = PBXBuildFile; fileRef = 5DB05FB2907CEAB3C44F283F4A292CEA /* FLEXArgumentInputNumberView.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		22F6DB6BBC013050A3CA54C71BE36F54 /* FLEXTableContentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C40082AAA86BB46E3663F1510A742ABB /* FLEXTableContentCell.m */; };
 		230726C10AC17EC4D05669693F7CEEF8 /* FLEXLiveObjectsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 688C5270481366F5B3FE27F373DCE33D /* FLEXLiveObjectsTableViewController.m */; };
@@ -74,25 +81,23 @@
 		265E9BB787441D8C3597E5F76BF4955D /* SDWebImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 406DF6D400FA2F8480D4398AA36DA89F /* SDWebImageDownloader.m */; };
 		26FCADF855B92B6510C5E930A9DC6B38 /* WMMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BAB3F16743D8129D17B50422EDB3766 /* WMMenuItem.m */; };
 		2723F1625789B81D46EB37C876A4BDEF /* Pods-Easy_Example_Beta-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 477DA2A5F22B1536B64046D5A3B1BB1C /* Pods-Easy_Example_Beta-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		27414365D14987D44B8E005B8DFDACEC /* EasyLoading.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD971D5D7132BBD72950B684AA3CE248 /* EasyLoading.swift */; };
 		29C97460B2D40CA3C6683EE634B12E8C /* UIView+MJExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = 6CA9FFF2A0379D27A266BC48A4D7C590 /* UIView+MJExtension.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2AE4CF7302A62D7479E085A4907729DD /* EasyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3569FAE0438EA2B04CF2E9976B94C906 /* EasyViewController.swift */; };
 		2AF65789EC6629B3C5FF3F9B9ADF7718 /* UIImage+ForceDecode.h in Headers */ = {isa = PBXBuildFile; fileRef = EC219E2B3942E5CCA352A2647689B325 /* UIImage+ForceDecode.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2B9E42425DA547387D6D024DA66242F7 /* ConstraintView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B4166199E12E5CD2CB61E0CAAA8F7F /* ConstraintView.swift */; };
+		2BE60E1724226BE18017EB18A8A860A3 /* EasyCollectionViewWaterFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA39326D365132060DF84672FE6286C0 /* EasyCollectionViewWaterFlowLayout.swift */; };
 		2C5A7CC37547206FB0282A48C3941733 /* MBProgressHUD-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = B4FB36FA27EDA5A31150F0EA60002165 /* MBProgressHUD-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		2CC8DA45B9F6030AF38A97BBAAFC7675 /* EasyValid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1543E7F8CF44B100A6326B7D83BB7649 /* EasyValid.swift */; };
 		2CD5834B0AD3ACCF32FE06E8E5B53FCD /* FLEXArgumentInputStructView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5193BF251AE5B00EEA463C48052BD726 /* FLEXArgumentInputStructView.m */; };
 		2D9CA8F8C450EB65CA271F3310CC51F5 /* FLEXToolbarItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 0F780999D5EFD7F4049BECDAB3A1E898 /* FLEXToolbarItem.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		2E8B51A024F42BFCA11B764852BCC81D /* FLEXExplorerViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 63F89FA1087BCE3609A05091B17A5A20 /* FLEXExplorerViewController.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		2F6F93961A3405EE6359AB8268E9AD5A /* Easy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B119E447A00321EB70F9A1D13F9B5A4 /* Easy.swift */; };
+		2E938AA810B7C2E39254D07FB6B953D0 /* EasyKeychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D89742F8EE514C4029DA3C72C386F86 /* EasyKeychain.swift */; };
 		3083B207DC4A19B65FBC993BB44A7A13 /* MJRefreshBackStateFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 296A1BFD9C90177F103A5A950F03B30D /* MJRefreshBackStateFooter.m */; };
 		3100C1D71A6164991C79DE052A3E1ED5 /* MarqueeLabel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD4D856662D2F393681DF3853FF4BED6 /* MarqueeLabel.framework */; };
-		311AD4CE3FFE3229DB944FED7BAB857A /* EasyWebImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E8F7A17AA3A1D77473E7D090CB642FF /* EasyWebImage.swift */; };
 		31828BB006EEFABFBD0A760B8F38692A /* FLEXDefaultEditorViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 14AA115734F0DE7B7F46BAADF0A4D6DA /* FLEXDefaultEditorViewController.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		31E29DBC5EF3FE80C13F0BFF3DBDBE37 /* FLEXArgumentInputColorView.h in Headers */ = {isa = PBXBuildFile; fileRef = C30B3C5553FD3307C237FCC8A378ACC3 /* FLEXArgumentInputColorView.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		32203BDE793DE2A14EBF89EEDBAC4DCB /* FLEX.h in Headers */ = {isa = PBXBuildFile; fileRef = DC9383DF2C8699B349177D3B331BD2AC /* FLEX.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3299691EF5E7FF7D9ECA9877A9973EC5 /* FLEXHierarchyTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 481661274BA51A9A136C8A20373D9307 /* FLEXHierarchyTableViewController.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		32C84BF906E7B8B2268C0410D04B7453 /* MJRefreshAutoStateFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = D6D38D55559955319F3042B6EA05F8A4 /* MJRefreshAutoStateFooter.m */; };
-		32FFA3DFA6F0913FE85AE9282E4BD170 /* Easy.common-Beta-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 002C5145B36CD0935C37252D602258F3 /* Easy.common-Beta-dummy.m */; };
 		357B7A1AA155B3C0A23A2A8F1736F0E7 /* MJRefreshBackFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = BFAD035EA2B9A41E248F738513F6025D /* MJRefreshBackFooter.m */; };
 		35A3532DF9E2AC7AC4AF26D22AFC71B6 /* FLEXArgumentInputViewFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 136185DA6DE829E6CA4A14FD9301D434 /* FLEXArgumentInputViewFactory.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		35D105A0B222A186BDE2B2CA3CD57DA9 /* MJRefreshGifHeader.h in Headers */ = {isa = PBXBuildFile; fileRef = A8150CCD8B7683F068EC0BC8397FDD48 /* MJRefreshGifHeader.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -102,47 +107,42 @@
 		36FF8853CB34A9297AFAA8F5F7456324 /* TaskDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D2830DCB0D70B0617BD057BE20303C /* TaskDelegate.swift */; };
 		37CD1723738AF8ED754A98B071B189DE /* MJRefreshConst.h in Headers */ = {isa = PBXBuildFile; fileRef = 39A6D105239AAE0A48F8EE09CF07B2D6 /* MJRefreshConst.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3A223D437F59471EABF998A1B56CA328 /* SDWebImageCompat.m in Sources */ = {isa = PBXBuildFile; fileRef = E43FAA7F647C5B0F68C1AB920445771B /* SDWebImageCompat.m */; };
-		3A9CC5747798EACD98B53FE4F5E9C449 /* EasyResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F8F361CC8BC46F1D3E949D41F319396 /* EasyResult.swift */; };
+		3B0895AFDA6504A1E66962C1BB9710B2 /* EasyRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B33F56B8E06F1C9E1A486C39C0245F /* EasyRouter.swift */; };
 		3B17ED25880AAC499B41BD0E92E16891 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A07F30D063D4C1051F6831EE02DFF7CB /* Foundation.framework */; };
 		3B6EEDA78CCED52150876D26AB35F157 /* FLEXNetworkTransaction.m in Sources */ = {isa = PBXBuildFile; fileRef = 28097A3029DCF941D069C6928855160E /* FLEXNetworkTransaction.m */; };
 		3C5F7B22C0CC495C97E0B0800AB13AA3 /* SDWebImagePrefetcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 21DC22D77B23D315453A163BD4AB12E7 /* SDWebImagePrefetcher.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3D4FBA756D4737FF2F8001401071ABC2 /* EasyScan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F73FAACD9263A772A90CB369EC1C3 /* EasyScan.swift */; };
+		3C6C4C1E52E9A00D7C90AF8935B87CFD /* EasyError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D2A7EF91AF2E3F76584D9143F91E7D /* EasyError.swift */; };
 		3DF6BDBC47961EC9DD484605C17EFE36 /* SDWebImageCompat.h in Headers */ = {isa = PBXBuildFile; fileRef = CAAE706AEA8F4A7E4474C4CC6525D15F /* SDWebImageCompat.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3E5D245CA0AAC8AB0F2CF1ABF4A32B93 /* EasySession.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27DB3C347C8AE90784E024363EC2C2A /* EasySession.swift */; };
 		3E9ADC7F3A87B0045E866E451771116F /* RTRootNavigationController-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 63732F38CA482212EE9F4D73090CAEAF /* RTRootNavigationController-dummy.m */; };
 		3EF134B17D669582AD30E0FE1B9688CC /* SDWebImageCoder.h in Headers */ = {isa = PBXBuildFile; fileRef = D52BD3A745AB50C305C765AE7173BE87 /* SDWebImageCoder.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3FCC7B2BA3F8590F4BA6BE57318DD1BE /* WMProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB46BACB9A0804CB91C177C412935217 /* WMProgressView.m */; };
-		40799AE30E73762FDEBF644164EFEBE0 /* EasyCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6480A45A2434EAB8B68E347808B27A2 /* EasyCheck.swift */; };
+		403F33D19B911C0F7384755D3BB9C277 /* EasyCollectionViewWaterFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA39326D365132060DF84672FE6286C0 /* EasyCollectionViewWaterFlowLayout.swift */; };
 		4091D727B10E7045891EFE6E95A343BF /* FLEXClassExplorerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4FA3BEEDAE172F849B1F69522106F82 /* FLEXClassExplorerViewController.m */; };
 		4130D38E0085388693BDF5B924E221DE /* SnapKit-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 260E3D22A1B22C94A1773979B2516120 /* SnapKit-dummy.m */; };
 		437A426C51F9802FFF8E4FFEFCE51662 /* NSImage+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B6EADA4B59B91A7FF85E86B493F2A1A1 /* NSImage+WebCache.m */; };
 		437C540010E35F9B32D155F59ACC9AD5 /* FLEXCookiesTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D1E30E82CD3A31C0AD6F57520814E4E /* FLEXCookiesTableViewController.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		446B9E2D8DC2A2211E76C93625B3B4CA /* RTRootNavigationController.h in Headers */ = {isa = PBXBuildFile; fileRef = 7BBC13BC2B74A163B523F89B1B20F6B3 /* RTRootNavigationController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		44834A7D7AC6A01EF526FF5448B58773 /* Easy.common-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = BCC9A9781904649E1F733F0D879167AC /* Easy.common-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		45577EB7537771A10EF2848203713536 /* EasyConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E4B4D68297DBA84D61D5228B11B5FAE /* EasyConfig.swift */; };
 		45704A7BA11F1871B240134E99322601 /* MBProgressHUD-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 926F3F4AB5A9B0E00C7E775B2DB0F7ED /* MBProgressHUD-dummy.m */; };
 		4571899367933F813809DEF0F1BF3CB4 /* NSData+ImageContentType.h in Headers */ = {isa = PBXBuildFile; fileRef = 18607A9A0D0A22E957EE5B645C64788A /* NSData+ImageContentType.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4582246637D6FEC0EB94D84FED079ABD /* ConstraintMakerPriortizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5777B419E8D4465497B9E6A94B049EBF /* ConstraintMakerPriortizable.swift */; };
 		45B43323D055F534BD5A6F1C5272CF3A /* WMPageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B3A30529471730BD83E943452795040 /* WMPageController.m */; };
 		45E29D72B8BF11B8A26B7165848BAE6A /* FLEXInstancesTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D49DB6100308B3AA0488B5072515396 /* FLEXInstancesTableViewController.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		461259A62F2F026B81A7531E92AE60DE /* EasyValid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7F1159D9E53CE0020DAA47EFFDE70B /* EasyValid.swift */; };
 		46701CE32802C19EB12EFEC262131DEA /* MJRefresh-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 926332179913CD542967F6DA2F9E79F2 /* MJRefresh-dummy.m */; };
 		4749924508046907F506E0C759FF6E4C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69BB297A4633FB3B14F7761FE0A1303C /* UIKit.framework */; };
 		47C409C9A00552156EA03C69A285D340 /* ConstraintMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C2E6AD1598CEB4152CBDC3E70728721 /* ConstraintMaker.swift */; };
 		48123CDF4BAC2245D9C26F2E4E04A454 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6306BAF9C86CF12A59947E0394E393D9 /* QuartzCore.framework */; };
 		484F1746D98A6C715953BB7349C85374 /* GrowingNotificationBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F32FDE92E2E01DB0ED10AF13FD5E10 /* GrowingNotificationBanner.swift */; };
 		48E3A541C77DBA3599B99D9B5463DCEA /* FLEXFieldEditorView.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C892E288878B25C6230670FACD4EA5E /* FLEXFieldEditorView.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		4B4687C582807A9939D4D8792FF12DEB /* EasyError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D2A7EF91AF2E3F76584D9143F91E7D /* EasyError.swift */; };
 		4C806CF08C60E623ED6673612AB208EC /* FLEXRealmDatabaseManager.h in Headers */ = {isa = PBXBuildFile; fileRef = F594773DD5C7EDD67853D6968D138C0D /* FLEXRealmDatabaseManager.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		4C86A821E38D5F373AA1C7453896C965 /* FLEXWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 841994C9B5D98924153EC6AB4B3526F4 /* FLEXWindow.m */; };
-		4C959686BC3ACA23076993F878B54F9D /* EasyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F954400C3B5C3C26C5F53EBB0D4057 /* EasyViewController.swift */; };
 		4C9F59CE002CC1F6951E50A6152CDFFB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A07F30D063D4C1051F6831EE02DFF7CB /* Foundation.framework */; };
 		4E1A913EFB404FB11524718FF0298EFE /* Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2895AD47718EC5F4CE625CEA30843610 /* Alamofire.swift */; };
 		4E5D98F8C6568C579E5BB2EB33C058DD /* NotificationBannerUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9388333C872025934FFE0595E7A36BC0 /* NotificationBannerUtilities.swift */; };
 		4E7BD734FE57F5F68F787560AFF5282A /* SDWebImageGIFCoder.h in Headers */ = {isa = PBXBuildFile; fileRef = DD0327792FAD16AC19787BD6AEF42F8C /* SDWebImageGIFCoder.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4F0D1027A9AE7CADFFF14067F02C60FE /* FLEXNetworkTransaction.h in Headers */ = {isa = PBXBuildFile; fileRef = DA57DD0A3B001E15C12A57F9E1BDDD08 /* FLEXNetworkTransaction.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		5008581FDFFEFC33E357A2F3A010594C /* EasyPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A9D42BDADBB7BBEB912480134C3419 /* EasyPopupView.swift */; };
 		500C8EDA60C07B0F127C7FC385E17D38 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC28392664D797F7F534E3B4B1CA17C /* Notifications.swift */; };
-		504A5BFDA288DFB632969C7130898171 /* EasySocial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B54225910DFA9DC77353667677B2B44 /* EasySocial.swift */; };
 		50DE395DE1339024D4E7D3AFBEB28E60 /* FLEXArrayExplorerViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A1ECADE2F1C2BB395069B580341213B /* FLEXArrayExplorerViewController.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		51EFF13356377056F010D85245BE9EE1 /* FLEXArgumentInputNumberView.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC25CA342D4A4BACB78BDE694521601 /* FLEXArgumentInputNumberView.m */; };
 		52237C35642089F77DD4D723CEB25737 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E11959147C878CBFD180A521D59660 /* Response.swift */; };
@@ -155,20 +155,21 @@
 		5664E09B7D4F9A65394AB45305BA3A51 /* FLEXManager.h in Headers */ = {isa = PBXBuildFile; fileRef = A8FD16DD2051F955B88D2358F77E0762 /* FLEXManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5670576B5AA37CC65D9BAD54076B8187 /* MBProgressHUD.h in Headers */ = {isa = PBXBuildFile; fileRef = ECCF15B69C5E9E057F449DABE971C012 /* MBProgressHUD.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		56C963CB2D3157ACAE836DBECEC2230E /* WMPageController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E8849125CD83A303DF435F0594E75FD /* WMPageController.framework */; };
+		56D219DB1DB96A47EC671FBB85386C22 /* EasyWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A9DABE033376985AACA8FC166037A3 /* EasyWebViewController.swift */; };
+		56DB56762AF86A060A0A8B7D4D95B42D /* EasyThen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27F566B0DEC9976777650CD897E185F /* EasyThen.swift */; };
 		571D90CC03BCC8DDB55AD13F72FE22FC /* FLEXNetworkCurlLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FD884962D4F4E7905A41D84FAAB88C0 /* FLEXNetworkCurlLogger.m */; };
+		576809AA4426FA02CC254FFF2551FD9A /* EasyResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F8F361CC8BC46F1D3E949D41F319396 /* EasyResult.swift */; };
 		57CF1DFDAA6B90D8203A6610C3740922 /* MJRefreshBackFooter.h in Headers */ = {isa = PBXBuildFile; fileRef = 2297E756EB27FDB24358E42FE9B517BF /* MJRefreshBackFooter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		586428E184C5F53FB467A98E039AD429 /* SDWebImage-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F05D82776C2BAA90C7C367FB2D40583 /* SDWebImage-dummy.m */; };
 		58A9719584AFA2D108D9E5C585A79329 /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358822ECEE7CEBD65E72F4FEADEBE967 /* Validation.swift */; };
 		595A174E8AF1F1CC37A6C1652B81F5FB /* WMMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = B9CC8CF9914597F5B7669607A24F0656 /* WMMenuView.m */; };
 		59BE97B5D9506D7CFAB72F126E4033B7 /* FLEXArgumentInputSwitchView.h in Headers */ = {isa = PBXBuildFile; fileRef = 8D4DB5AA1FA45450F1142CD9B25598A8 /* FLEXArgumentInputSwitchView.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		5A7C372E5CBDF8F4FFFB59CA7917298F /* UIImageView+HighlightedWebCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 1096288A89A15C2A755A080EABDAC645 /* UIImageView+HighlightedWebCache.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		5A8A0C81ABC4BB8FAA6771B92B507879 /* EasyRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5101B2E4660E442EDF58B6AA284E6AC9 /* EasyRouter.swift */; };
 		5A8F12E7238630957DA46A6C45BB8A27 /* MJRefresh-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 43A9C507C20A57E23E314814399B6D1A /* MJRefresh-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		5AC5FE82E1E6CCE11CB4D3D1831483C4 /* EasyExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790BFDA18702F865A55C59207E16D19F /* EasyExtension.swift */; };
-		5ACA6DBD64809B6C4AF3AFC54AF0D13B /* EasyLaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D977AD353345DC7DCB9E0E5D6993D0B5 /* EasyLaunchView.swift */; };
 		5AE2CC17DF0A1E83AA89E3859968450A /* UIImageView+HighlightedWebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B8539FD5493418F53C6E612DF216F188 /* UIImageView+HighlightedWebCache.m */; };
 		5B2FCC49D0304CC843CD903C9D965BD9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9AD944C810675A2FBBB23E8A3D75CCE /* CoreGraphics.framework */; };
 		5B9DEE34240CD499916F7F61104D5981 /* RTRootNavigationController-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = B704F9A288AB61111B180CF0A2F3B48A /* RTRootNavigationController-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5BC009773AB280EBEEEB01398C83B057 /* EasyRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B33F56B8E06F1C9E1A486C39C0245F /* EasyRouter.swift */; };
 		5BCE730CC57AEF45E737954E4064B08E /* FLEXArgumentInputView.h in Headers */ = {isa = PBXBuildFile; fileRef = 5388884C4DD3DC07575BBB92F84D317D /* FLEXArgumentInputView.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		5C5F748EBB4E70D93134DE3303F50B19 /* FLEX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9087C37350CD6672B355A1E1B5196DF4 /* FLEX.framework */; };
 		5C78963E34B4370408A57A410AE519D6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69BB297A4633FB3B14F7761FE0A1303C /* UIKit.framework */; };
@@ -180,19 +181,17 @@
 		5DC1064259ACAC51F5B315649692FB44 /* FLEXFileBrowserFileOperationController.m in Sources */ = {isa = PBXBuildFile; fileRef = E348C5A170A0791748A790914A9EA3B4 /* FLEXFileBrowserFileOperationController.m */; };
 		5DDAC56159325A2F3E5997B90D635611 /* MonkeyKing-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = A6982A11F9CDA368EDE48F5AD867BBD0 /* MonkeyKing-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5E0B2C1D072A20B7A4F0D6DE8FB6D644 /* MonkeyKing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9412AC91D2CFF55ED2BA462A9F3A836C /* MonkeyKing.framework */; };
+		5E61E25A06F171D7F1C493AD449C1E7F /* EasyRefresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FDB480F6C7704E16BF1703F95365567 /* EasyRefresh.swift */; };
 		5EE5FED83B90A606A763CF1114D1D6FB /* ResponseSerialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = D943AD4FE01D04021AC0429A81CCD763 /* ResponseSerialization.swift */; };
-		5EF0A88789E7320875D5E16DCDC26A77 /* EasyConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E4B4D68297DBA84D61D5228B11B5FAE /* EasyConfig.swift */; };
 		5F27039C2F2EDE8C038D1EAD720FF1D9 /* FLEXClassesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B5EC881E89656310F39A9B8C932B67 /* FLEXClassesTableViewController.m */; };
 		5F64EFFA4C9159768134ADA9B229B509 /* ConstraintLayoutGuide+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BADB1637C6B54B2E85A3B80DA9A8966 /* ConstraintLayoutGuide+Extensions.swift */; };
-		606D9FDA9B70AEC5D4A32112E7E806D9 /* EasyError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D2A7EF91AF2E3F76584D9143F91E7D /* EasyError.swift */; };
-		60DB52BD2EB1F08BA95601D80A62F547 /* EasyDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = F492A00DD06A078B7468BB482F86B68F /* EasyDevice.swift */; };
+		60502929B6E9CFC785A5C60437B380CC /* EasyDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = F492A00DD06A078B7468BB482F86B68F /* EasyDevice.swift */; };
 		60E46208CE44B2A7A3287502E9DBC905 /* MJRefresh.bundle in Resources */ = {isa = PBXBuildFile; fileRef = EBDE309B8D910FB8FBE00CE02D306E4F /* MJRefresh.bundle */; };
 		6260AC150737CB0114D0FDBAB12B827F /* UIView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = F5EB29F4E3F4CFB8D8705443D9624731 /* UIView+WebCache.m */; };
 		639834BEFD7CF2305DE77EB56A990CBF /* FLEXNetworkSettingsTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = B2106431D23880839E45FB530972178C /* FLEXNetworkSettingsTableViewController.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		641AA1E0E8AB5DA410A337C7639AB48A /* FLEXNetworkTransactionDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F8CD1F5077A77E8F6452B1BCB4C3D971 /* FLEXNetworkTransactionDetailTableViewController.m */; };
 		64BCFAE08E058687D76A194E622571BC /* FLEXHeapEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C7C795FF9202B85FA4EA203418AF358 /* FLEXHeapEnumerator.m */; };
 		6519E46A00457B7F9CA85D8894BDEB75 /* MJRefreshNormalHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = F11A9F6F687CF6C2B0302CEB443FADDD /* MJRefreshNormalHeader.m */; };
-		658A9E2CE0F46D34AD17EAA2A3D06ED6 /* EasyThen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F18BB96F37C454BE161CD1552C60FC /* EasyThen.swift */; };
 		6626FE6B8EF43C59D43B8257C440DD5E /* RTRootNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A86F33E64F632473A68DD499DAF7AA1 /* RTRootNavigationController.m */; };
 		672C459B39445241E6C6A719695E5F47 /* FLEXObjectExplorerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F8AB79489FADAB531DE88568330A02 /* FLEXObjectExplorerViewController.m */; };
 		676C5E773D37F9A7A94AAA20371BC926 /* FLEXSystemLogTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EB5BD181D0A6B944EF1D5044B4655531 /* FLEXSystemLogTableViewCell.m */; };
@@ -200,12 +199,11 @@
 		67C2B9A38431EEB8C6BDE99ADBA18B50 /* Pods-Easy_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A5D2459112CD6322B5F344F241A3DA /* Pods-Easy_Example-dummy.m */; };
 		69546210352DF4D9930166F3C3E717E6 /* MJRefreshHeader.h in Headers */ = {isa = PBXBuildFile; fileRef = CF223883683B0EB31EC91F505E08A3D1 /* MJRefreshHeader.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6A02BA3649DB6192C9829F254C015D3A /* WMScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A01DE3C93D151DF49C6DF8CCEF0222F /* WMScrollView.m */; };
-		6A08FF2B1990452B94F4DA23D103EFE6 /* EasyWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43800A07E625BE42CA226CE68132B2F9 /* EasyWebViewController.swift */; };
 		6AAA71BFFFF25386519DC98493F48915 /* FLEXHierarchyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F3410F4608B206EE179E7B527776251 /* FLEXHierarchyTableViewCell.m */; };
 		6BEA14EC335E07C7063CD1383C0C443C /* ServerTrustPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929FBE0031F1D6B368541D4F36CCA72E /* ServerTrustPolicy.swift */; };
 		6C337458163977E27F26659D125164FF /* FLEXArgumentInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C1EB424F6408E6DF81215C3081F3EBF /* FLEXArgumentInputView.m */; };
 		6D064C110F1AC2338C3BA80809FF0469 /* FLEXNetworkSettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D934B32F4A7B1F5D7AF1CEF56EA858C0 /* FLEXNetworkSettingsTableViewController.m */; };
-		6D5233A0DA0910629DE189DF0C1FDE87 /* EasyLaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D977AD353345DC7DCB9E0E5D6993D0B5 /* EasyLaunchView.swift */; };
+		6D23C9E461256B610E9FEAFADFBE3F12 /* EasyAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012AFCDEC45BB302789168692DC4D6B1 /* EasyAlert.swift */; };
 		6D8132BD13DD5B7FF7BDEF533775B9FE /* FLEXHierarchyTableViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 8F4D969F221387E707823D4C8B84B644 /* FLEXHierarchyTableViewCell.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		6DF2CB86EB43C6604C011C1F8EF9BA6F /* ConstraintView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517AEAAE51F3947B89EE270E687B3262 /* ConstraintView+Extensions.swift */; };
 		6DF613A1D14306D4CF6905E39B90C6C3 /* FLEXArgumentInputColorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 35344AD43CD57808CBD67402227B2138 /* FLEXArgumentInputColorView.m */; };
@@ -218,6 +216,7 @@
 		710F7A8950194F83DA8229CDB772D952 /* FLEXToolbarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = A9A4AB0ACD194BF3F49597CBB142A18D /* FLEXToolbarItem.m */; };
 		71C61BA5C0946C25A71BA8D1BC5F16A3 /* Debugging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12027EC49B72D5AEB79071C370D254F9 /* Debugging.swift */; };
 		7211F97BECB422ACE8D8109971EBDA63 /* FLEXArgumentInputNotSupportedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FA9D30FDC2BC5FB387E54C65358D09E /* FLEXArgumentInputNotSupportedView.m */; };
+		72CB766B51EAE38EBFC98626E07289E5 /* Easy.common-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 882D4524954FA50B08744C5ECC1BE4C7 /* Easy.common-dummy.m */; };
 		7381D2E124D2D41C5378EFEF2D10AF17 /* ConstraintInsetTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4702EF944924FDD47796D11BF1B143D2 /* ConstraintInsetTarget.swift */; };
 		74444C55BE4CF2D06C6A550984259583 /* ConstraintLayoutGuide.swift in Sources */ = {isa = PBXBuildFile; fileRef = A827F37A50E1CDE773B7D8ACACAC4562 /* ConstraintLayoutGuide.swift */; };
 		74B98FA8193B9204470D9BC28E29785C /* SDWebImageCodersManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EFF578C9C37EF13768BC0FAF8C24630 /* SDWebImageCodersManager.m */; };
@@ -226,7 +225,6 @@
 		763B38124348311F943087D2DEEDE997 /* FLEXArgumentInputFontView.h in Headers */ = {isa = PBXBuildFile; fileRef = 9035B004FE7A3F74F8DF31E76AA4902B /* FLEXArgumentInputFontView.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		76744AA2AB7BD138733A0051373A5009 /* WMMenuView.h in Headers */ = {isa = PBXBuildFile; fileRef = AD8A084BE59DDA4ECD7627A3CC528117 /* WMMenuView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		77B6F8AE2AA2CDA6B09E746C54899546 /* UIImage+MultiFormat.h in Headers */ = {isa = PBXBuildFile; fileRef = 39A04BB5914193EE2753E3297F965EDE /* UIImage+MultiFormat.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		78252E2F18681A0523B3B090FAF7AC5C /* EasyTo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023BB1126758A8488745DB88D4B0CCA5 /* EasyTo.swift */; };
 		796177DE2762F24DAC16A709FD954838 /* ParameterEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1F1EF8360B14B789F24C79988C7D2A /* ParameterEncoding.swift */; };
 		79A930F4EDB4F61ED3CD9A8FE2142A45 /* UIViewController+RTRootNavigationController.h in Headers */ = {isa = PBXBuildFile; fileRef = 74CAF6FD61545E1649B8F0B8D9418174 /* UIViewController+RTRootNavigationController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		79ECFC3EACCAB557FDE608667D7D2206 /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = AFA2FB6D46295D01AB7D78876043F87D /* UIImageView+WebCache.m */; };
@@ -236,9 +234,9 @@
 		7B604AA5EEA3E0D59979086E4079FEF6 /* SDWebImageImageIOCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = FA462162CB1ED48FB4115688EA93A2E0 /* SDWebImageImageIOCoder.m */; };
 		7B7FFB89CF9DFB130CBBA9F26E42B184 /* FLEXNetworkHistoryTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = BFA219E8A935DB8A09249757062528EE /* FLEXNetworkHistoryTableViewController.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		7C4E0AAAF45742E23A3475CE23BB2550 /* NotificationBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB548490D84B25E26FBF315BBD669EB2 /* NotificationBanner.swift */; };
+		7D06B6421624C223F22E42CD9D930848 /* EasyTo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5758E0754A620C35AA3630557CE395FE /* EasyTo.swift */; };
+		7D1B9E32E23946311104D1415DEC2EBD /* EasyLoading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60E2F03CB9C6B13B0C39AD16D12A262E /* EasyLoading.swift */; };
 		7D32E83F08E89CAFE0895FD21AA0E5AD /* MJRefreshFooter.h in Headers */ = {isa = PBXBuildFile; fileRef = A255C2699EFE02F0E320B378EE6C8AA3 /* MJRefreshFooter.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7D48416CA5F898B1488EA845BFACEFDD /* EasyKeychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C63035B8899D892427632E1B84F76FE /* EasyKeychain.swift */; };
-		7D7343F3EFD49F83EAF694BD46E25B32 /* EasyValid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1543E7F8CF44B100A6326B7D83BB7649 /* EasyValid.swift */; };
 		7D78ED6D27D504A17FA45B207175B425 /* FLEXMethodCallingViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = C587BB9C29EBAF5137613052ADB8259F /* FLEXMethodCallingViewController.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		7D8B95B9BC6B2D266B7ACE698E68C0ED /* FLEXArgumentInputStructView.h in Headers */ = {isa = PBXBuildFile; fileRef = B4CBD732B95344BA2DB2FDD229CCEBB3 /* FLEXArgumentInputStructView.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		7DF805B39113B79E1EDCDD4301DC4AB6 /* FLEXManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F3B33D8EA608D084E8B843BDFA1DAC /* FLEXManager.m */; };
@@ -247,17 +245,15 @@
 		7FC721E0F7E765699661FAF172FB1D5F /* MJRefreshAutoNormalFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 36663B0BC5A333EF7F2A547C6BA20CC7 /* MJRefreshAutoNormalFooter.m */; };
 		802B535E76161D7E8FD5E14217A7C536 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EAB124AFAC80CF633BE910EE21D4572 /* ImageIO.framework */; };
 		804EDA398A73190BB780FDF3169C4E40 /* MJRefreshConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EDE0F06A140591EE2CB8FB1B1417E83 /* MJRefreshConst.m */; };
-		807EEF637B5EFA0BFC9FA9ED92BDDF1A /* EasyRefresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBAA9A3888878C186F241964DE9BF35E /* EasyRefresh.swift */; };
-		813D106164051E8A5F8DB619FEA1F0E1 /* EasySessionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF4D1AB54E8309E0B9AE7C24D12A38A /* EasySessionViewController.swift */; };
 		8164F8C277ECB21BF07C8022AE8BE39D /* ConstraintViewDSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146AF1D36D202114BE9B4B413F966C8F /* ConstraintViewDSL.swift */; };
 		81CD9897EF98E08D06F34705C2689FB1 /* FLEXRealmDatabaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DFA973DFD2A33F1B9AF1F1E2AF4D59AC /* FLEXRealmDatabaseManager.m */; };
 		81EBFC48FA6F56299D88C8BD6A85A1C3 /* WMPageController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E8849125CD83A303DF435F0594E75FD /* WMPageController.framework */; };
+		81F78E676357EF2C5EDBF4AA44D3D3B4 /* EasyRefresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FDB480F6C7704E16BF1703F95365567 /* EasyRefresh.swift */; };
 		8224B384A5F741B0FF03DA6CFDA9487A /* FLEXImageExplorerViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B319FA0D4B2D0FDB4FDD5C7F6D38F37 /* FLEXImageExplorerViewController.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		82912E8E825D3AFDC26CB49B6C7B0554 /* FLEXViewExplorerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDED1C7537DB7904AB171D6354E5171C /* FLEXViewExplorerViewController.m */; };
 		82D614B53EB0644E441B806E35289D91 /* ConstraintMakerEditable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF0524F1FEA7DA44C3096B5FBCCAC5DA /* ConstraintMakerEditable.swift */; };
 		83C85BAA5C16C2AD6A3733E16D8580D8 /* ConstraintAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADAEEEB66B477F1DF2356F72D979C8A /* ConstraintAttributes.swift */; };
-		84E66D7A90FB3D70ACBACC781C8AFC22 /* EasyBeta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE344236E6EBDFD4CC3122561CDF867 /* EasyBeta.swift */; };
-		861503ED1452D4D23B078F8753A6D530 /* EasyRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5101B2E4660E442EDF58B6AA284E6AC9 /* EasyRouter.swift */; };
+		841E1B657A7BE0192728BC04A80E41D7 /* EasyLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E632D013E201CA359233FD53928989 /* EasyLog.swift */; };
 		86373830E8DB83DF7CF568C6578DF055 /* ConstraintPriority.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112DE884B94357BBAA1D011C33F1D905 /* ConstraintPriority.swift */; };
 		864F142046765E3EA7583CF38EC425E0 /* FLEXImagePreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 166D597245B9053DBA67815F8054CC4E /* FLEXImagePreviewViewController.m */; };
 		868A9C114D5C1C0BFDDFED03FC3AF0D9 /* FLEXUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = A65E1F0FD502952E5E67EED2A8C01CAF /* FLEXUtility.m */; };
@@ -265,34 +261,37 @@
 		86F5CB91B7D6D86266FA7B2F8F6FE9D6 /* ConstraintItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D410420EF400B99D78054911CE741FB /* ConstraintItem.swift */; };
 		8759DF86C0F7CD4FCEFC4B1DCB031BC9 /* LayoutConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4912872A6D43A7E3AABF4F60F8519B42 /* LayoutConstraint.swift */; };
 		87905FEA09AD8B237B7911952FCF7A39 /* EasySocial.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AD904B58A557D7D8506830256D0F120D /* EasySocial.bundle */; };
+		8797DD4F73B541FEE302103D350081E8 /* EasyPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7167E60477C83403E62F722FA858DF61 /* EasyPopupView.swift */; };
 		87C3F610B1C9B1085C698974B5BCB4E4 /* StatusBarNotificationBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6761FE78F5AB364E0BDB70256AD636A1 /* StatusBarNotificationBanner.swift */; };
 		87C68B034EF3E36CDB2AF9C440C42B7C /* FLEXTableColumnHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 6019042E95057D8B55A0CCED454A4688 /* FLEXTableColumnHeader.m */; };
 		880C567EA0D72DA5847A26E6550B1144 /* FLEXSetExplorerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F77D98C60FB858A3F7F32A221F7CDE3 /* FLEXSetExplorerViewController.m */; };
 		8811F5B69754EBEDF77A15DD7559003A /* FLEXExplorerToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 4150FF7EFA531C6F6F0EF1723D821659 /* FLEXExplorerToolbar.m */; };
 		88A4A52F0E2D15512564BC9C68F86319 /* FLEXFieldEditorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BB7131CE4CECF0C1E4363CCE0610F41 /* FLEXFieldEditorView.m */; };
 		8912E66E969D43E031BA56CB00EC9C18 /* MarqueeLabel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD4D856662D2F393681DF3853FF4BED6 /* MarqueeLabel.framework */; };
-		8A57CDA4045C48CFD9D4A0319464E23E /* EasyDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = F492A00DD06A078B7468BB482F86B68F /* EasyDevice.swift */; };
+		8AF5D7F68EEF1A853B206B88E2695F18 /* EasySession.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27DB3C347C8AE90784E024363EC2C2A /* EasySession.swift */; };
+		8B32AB8C640BAF8C8FB9A7AD27B8EFDB /* EasyDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = F492A00DD06A078B7468BB482F86B68F /* EasyDevice.swift */; };
 		8BDABB387BBDB44CA5201EA81FAA1CBA /* FLEXIvarEditorViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 04B5B73317D7E1C6A5282C7A694B0E9A /* FLEXIvarEditorViewController.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		8C38EE43216FE6691273A799A25983CA /* EasyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A4915C20D3FDD10515AC6F869EA7BA /* EasyApp.swift */; };
 		8C44BFACCDC9231DE27C318090FAC11A /* NSBundle+MJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = A1A17C54FB8615E18A1AAC9F8F2E2DCD /* NSBundle+MJRefresh.m */; };
 		8CA3E569B1F5082AD55C13E74EBAB0EC /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC90A746EF6F4F9C6D5E8FB223F6917C /* Alamofire.framework */; };
 		8CD94BB4929BE7B7BC7D6DF9BACA3FF3 /* FLEXArgumentInputNotSupportedView.h in Headers */ = {isa = PBXBuildFile; fileRef = 26801C85E1DFA49B642697F9D583021B /* FLEXArgumentInputNotSupportedView.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		8D1DD0EED25EB037892E4D0F6584AD4A /* UIImage+GIF.m in Sources */ = {isa = PBXBuildFile; fileRef = 2078816357CC6D9CB2FA85E8F00A4A60 /* UIImage+GIF.m */; };
+		8DAB5628EF9FF34024D7810AFC2F2BB1 /* EasyScan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F73FAACD9263A772A90CB369EC1C3 /* EasyScan.swift */; };
 		8E9602F163172CC893D2029907959904 /* FLEXLiveObjectsTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 337F608110FA0BA2CF868025386120C4 /* FLEXLiveObjectsTableViewController.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		8F3E4582A41BB391551AECD9CB9F898A /* FLEXGlobalsTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2429978601BD3CEBE205F587008754EB /* FLEXGlobalsTableViewController.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		8F9CC0744602139154BF379A992C7D2C /* FLEXSystemLogMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = A78068648ABB1B856CF82F9524A2D6FE /* FLEXSystemLogMessage.m */; };
 		9027535BEF6C43A1768EA4A1C4C7AC41 /* SDWebImageTransition.h in Headers */ = {isa = PBXBuildFile; fileRef = 6D9EB1E7DB2C2E6E2453B508D26847C3 /* SDWebImageTransition.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		915DCDA02ED3B3DF64519C0DCB536480 /* EasyPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25EDFF8D48CFB0C5248DAE35409CC1E0 /* EasyPage.swift */; };
 		91879E7711AFEA04F36C821342E5134E /* FLEXObjectExplorerViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B83B6FC12D18B6CCC58A839D753543E /* FLEXObjectExplorerViewController.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		9275F8321465E724DDB778856CEA19F0 /* FLEXIvarEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5C74CE1E5AD221A3FAD25D43190D725 /* FLEXIvarEditorViewController.m */; };
 		93E68BD44488BF66A5E22339BFAB8337 /* FLEXWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CB992B8AE171EEAD95953FA833B7775 /* FLEXWebViewController.m */; };
 		94DC8F749002C220F62D48A4065CF496 /* NSButton+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 50168C50BBCD6856A95D605B8512C31C /* NSButton+WebCache.m */; };
+		94DD5EA2204497BBDA568A589E4B63B0 /* EasyNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17FC3DC92FCEBDA386118E9B7359032 /* EasyNavigationController.swift */; };
+		962B7C4FA2900DFF7F9D5BE36B4B10C5 /* EasyKeychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D89742F8EE514C4029DA3C72C386F86 /* EasyKeychain.swift */; };
 		965DACF3DC02857ECBE66C5CBA3DA5D4 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14EFD59193C53722783E5B47BA91C9BB /* Request.swift */; };
-		968278FDC3649EE3040AC20B03EEC228 /* EasyAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F39925883C34204237A4921BAA798F4 /* EasyAlert.swift */; };
 		96EA18BB0EE3AE9504330A72C68622DC /* FLEXObjectExplorerFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = E61ECF7DF9598387FBC934EEFD057500 /* FLEXObjectExplorerFactory.m */; };
-		971CC8406954DC409807B336D0B019F0 /* EasyPopupMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2561F0DF274342E3DAA18D74550147D0 /* EasyPopupMenu.swift */; };
 		9764297A17D9D5C22269595311C3D48F /* Pods-Easy_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 8585F00955281CE78A9E3A036CF3344B /* Pods-Easy_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9781629F715BB520A231C39762838C45 /* FLEXHeapEnumerator.h in Headers */ = {isa = PBXBuildFile; fileRef = EC311A98AEC1E5631AA3F0122445B8A6 /* FLEXHeapEnumerator.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		97A881CACFA31D8727E5AAAB5E937DD6 /* EasyResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F8F361CC8BC46F1D3E949D41F319396 /* EasyResult.swift */; };
+		97902B2DBC98FA7B1B68A645B9FDCDBD /* EasyExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3858F2E335DF33413FAA687ADC47F8C4 /* EasyExtension.swift */; };
 		983C640C5D5633F41983833598E8ED25 /* FLEXSystemLogMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = A6BE78982E53C6CE1407B6D31E934749 /* FLEXSystemLogMessage.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		98C6F3135BC9BED21803FE1564E23B89 /* MJRefreshGifHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F3E426DB8F790ACE803376C2D485923 /* MJRefreshGifHeader.m */; };
 		98F68EBB933695CD222187AB7F66FD2E /* FLEXMultiColumnTableView.h in Headers */ = {isa = PBXBuildFile; fileRef = B8117953BE4DF6DC428C1481B6E9E476 /* FLEXMultiColumnTableView.h */; settings = {ATTRIBUTES = (Project, ); }; };
@@ -300,35 +299,38 @@
 		9A57EDA1E5E813435029492C3FAA4566 /* SDWebImageDownloader.h in Headers */ = {isa = PBXBuildFile; fileRef = C03E8A89ABEBE8952ABDB729166AE21C /* SDWebImageDownloader.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9A690CE8D8344E122165E6DFF82373DB /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B260E48D96D800C9BDAE7FFB275939 /* Extensions.swift */; };
 		9A866F6911F64FB598FDB96616835BE8 /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DDEC8B774677C5380B8F905D3F6E2EB /* SDWebImage.framework */; };
-		9AEABA47C0E072C34C2D723B3A0DBE41 /* EasyNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324EA68CB9C773062F2F1788CB336C7D /* EasyNavigationController.swift */; };
 		9AF22F9DA4690C9B3A28CD96FB50E2D1 /* FLEXSystemLogTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = D118695369F7C7D2506990A4BF417835 /* FLEXSystemLogTableViewController.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		9B19DA22E783ECFBC3022CAB554D53D8 /* FLEXTableLeftCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D381D98A02F7D7C310156325D3EC2EBB /* FLEXTableLeftCell.m */; };
 		9B6F250A800867CFC326FF3515168F8B /* SDWebImageFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 591509C322B1E9E73D1B62AE23719EBC /* SDWebImageFrame.m */; };
 		9B7D17C7D5137623BA2F9F648BAE452E /* BaseNotificationBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80662B4F59AE995EB4125238E20B8201 /* BaseNotificationBanner.swift */; };
+		9BB8ACB1D9BD6AE082126A6EC2F9846D /* EasyThen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27F566B0DEC9976777650CD897E185F /* EasyThen.swift */; };
 		9BCB73B3972A4E4B4DB63471D11A0093 /* MJRefreshComponent.h in Headers */ = {isa = PBXBuildFile; fileRef = 46DA6055385F92EEFB3F40334C366422 /* MJRefreshComponent.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		9BDFF53639A41F80A7D76BE0F717533C /* EasySocial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B54225910DFA9DC77353667677B2B44 /* EasySocial.swift */; };
 		9C26A10C0D71C783E17A77D7E0F44EB8 /* NotificationBannerQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69001D2B8568928F9367F39C506DAB09 /* NotificationBannerQueue.swift */; };
-		9E20AFB91CB3571A4C37B1C50103BEDF /* Easy.common-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 882D4524954FA50B08744C5ECC1BE4C7 /* Easy.common-dummy.m */; };
+		9CBF3E8E361D016032019EC40BB629DF /* EasySession.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27DB3C347C8AE90784E024363EC2C2A /* EasySession.swift */; };
+		9DA2CD5068A3CD19549608A16C74DDB1 /* EasyGlobal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023BED8E98CCFE2986A452EC3EA2A260 /* EasyGlobal.swift */; };
 		9E2C2C8297BE8451B76666BD5CC94952 /* UIImage+MultiFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 35BAD64616457D599493F452A9E16AA3 /* UIImage+MultiFormat.m */; };
 		A0186C58299CB0D6CC981984A032C2E5 /* FLEXLibrariesTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 68A44984681C355583DC9ED530FDD191 /* FLEXLibrariesTableViewController.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		A0855A9224C2F224CF0CC87A679FF952 /* MJRefreshAutoNormalFooter.h in Headers */ = {isa = PBXBuildFile; fileRef = B990D46A9D2DAC86C4EA11F90A95BA48 /* MJRefreshAutoNormalFooter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A151F69C1AFC7E8165DB13ADF66A462B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A07F30D063D4C1051F6831EE02DFF7CB /* Foundation.framework */; };
 		A26453093C7461EE2C6FD92DA345B9EF /* MJRefreshNormalHeader.h in Headers */ = {isa = PBXBuildFile; fileRef = FA39EDC7DF59DC8D5EFC2DF8D01B6CBD /* MJRefreshNormalHeader.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A2CF1DC8F076DAA2AC4B6EDCB2FE617D /* EasyLaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654139B623460624C3E996520D05C8AC /* EasyLaunchView.swift */; };
 		A365727875B7804F3C24081DD7A8729B /* MJRefresh.h in Headers */ = {isa = PBXBuildFile; fileRef = 0ED4FFD137B607D42F11255A96BC78C3 /* MJRefresh.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A3E48C4391A8E915119B35C48B7F1CBF /* EasyAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F39925883C34204237A4921BAA798F4 /* EasyAlert.swift */; };
+		A3E8C979B2432B1F234B5CA8349AD9C5 /* EasyTo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5758E0754A620C35AA3630557CE395FE /* EasyTo.swift */; };
 		A4A4D585F631DB5CF971298E365C326D /* WMPageController-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = AFAC1E83B6A83221EFE390057D9B4CE8 /* WMPageController-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A4D391E7B7A7153BE0075B38FD1939FB /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E277971079AA5464429A3CF6C4231971 /* SnapKit.framework */; };
 		A5B15AB5A323A35E71866E0F7184108B /* FLEXGlobalsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F078544F9DE11593BA84651773EE4F8 /* FLEXGlobalsTableViewController.m */; };
+		A62DCE0D3FE6CAA99A00596606D09EF7 /* Easy.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEFFEBE1E49BB082E79A91C0B89DF588 /* Easy.swift */; };
 		A63707D5FEC9B262CBDC250F56642414 /* UIImage+ForceDecode.m in Sources */ = {isa = PBXBuildFile; fileRef = 53EE65F6F18697B015F5E8F90C89B331 /* UIImage+ForceDecode.m */; };
 		A6A6421AEF39E8268AD396D8B58B48FA /* FLEXManager+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 9244143BE042922128C5A0401A16D828 /* FLEXManager+Private.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		A6CA48314645E31C0D1DDBC7ABE28534 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A07F30D063D4C1051F6831EE02DFF7CB /* Foundation.framework */; };
-		A893D3D5B3250FE10595E80EFD946279 /* EasySession.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27DB3C347C8AE90784E024363EC2C2A /* EasySession.swift */; };
 		A93AD624043A4A4A3BAD237947FB9174 /* FLEXCookiesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39C7958EB10C9BE58D0566AD9FB714A7 /* FLEXCookiesTableViewController.m */; };
+		A953D3D21AC67B23A762B150907A180C /* EasyPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7167E60477C83403E62F722FA858DF61 /* EasyPopupView.swift */; };
 		A990FD88ADE3BC789BB0CBC4677C12D0 /* UIViewController+WMPageController.h in Headers */ = {isa = PBXBuildFile; fileRef = 89B74BC611D2C51FCCEF6FA9CA5A26E6 /* UIViewController+WMPageController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AA0A997C8D3CC76CA2DAA2935C25D48D /* ConstraintMakerExtendable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070C2F8A98E22021F506D7749B5EDE63 /* ConstraintMakerExtendable.swift */; };
 		AAD02FC0B67BB72C3123E60A53E3D7A9 /* SDWebImageCoderHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 85AEACAB99AA850F4BC87D1DEF35B9CD /* SDWebImageCoderHelper.m */; };
 		AAEF49E4926259117C92791C5712982E /* ConstraintConstantTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E93A10356C434B8DFF151D82D3AB44 /* ConstraintConstantTarget.swift */; };
 		AAF640A1D4E80716A275C004BC87A9D6 /* SDImageCache.h in Headers */ = {isa = PBXBuildFile; fileRef = F482067CB315DAB204E1DB657731F8A7 /* SDImageCache.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AAFDC134D6CE525464E1EF00CC40A9D0 /* EasyGlobal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023BED8E98CCFE2986A452EC3EA2A260 /* EasyGlobal.swift */; };
 		AB6EBB6A8E717AA6DD6BD39E1B33553F /* MJRefreshBackNormalFooter.h in Headers */ = {isa = PBXBuildFile; fileRef = E14C02F13C35D7647C259A5D9840D678 /* MJRefreshBackNormalFooter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ABB684F435E7832B30C0B19D87B16652 /* FLEXViewControllerExplorerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F20497130221601B65365F2FF082F13 /* FLEXViewControllerExplorerViewController.m */; };
 		AC785517DC4AA1B8387EE1C9E318802A /* FLEXArgumentInputDateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18222D810D66D81252B16F9601A0B589 /* FLEXArgumentInputDateView.m */; };
@@ -339,15 +341,15 @@
 		ADF8E9BCADCFF0600988FF033B449690 /* MJRefreshBackNormalFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 985E4BA7BF5C4B12728EFC4299F894E8 /* MJRefreshBackNormalFooter.m */; };
 		ADFF2B5920BD9D90FD3EAC1017C73D31 /* MJRefreshBackStateFooter.h in Headers */ = {isa = PBXBuildFile; fileRef = C19263CCDC50605BD9DDF76FFC4225D6 /* MJRefreshBackStateFooter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AE3C8C84B407442EB2E7AF0816E8B1BD /* SDWebImageOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 47239FCAF5AAAB83AFB5385F8B9522D7 /* SDWebImageOperation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AE3F339A8EB5247A9CA0BF16EF52189E /* EasyCrypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706999684EC25BEB4EEB1C8C3A9DE006 /* EasyCrypto.swift */; };
 		AEDD5EC0A839705A7D4C3E4FE3ED827B /* UIButton+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = E9112162E21BBDE3BF35F1E802ECA297 /* UIButton+WebCache.m */; };
 		AF23340464E43A9937D717CFED72F55C /* FLEXArgumentInputFontsPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = F34E2AC6FDBB7A319075120220A06130 /* FLEXArgumentInputFontsPickerView.m */; };
 		AF342338FC16DB32EF90DC56E8FBF8E1 /* FLEXArgumentInputDateView.h in Headers */ = {isa = PBXBuildFile; fileRef = 792ADC39667E87A5B1951298912C11D9 /* FLEXArgumentInputDateView.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		AF3792F1389A20ACA95F093362D4E765 /* FLEXLayerExplorerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FDDB493C98C031BECCA46C8C8669DD8 /* FLEXLayerExplorerViewController.m */; };
 		AF94F2098833EDFC253EEA94388CF48E /* FLEXViewExplorerViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 969AF0A17E3D65F7123154DBFC889F1A /* FLEXViewExplorerViewController.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		B0582398570F66DD1E0619F51228C852 /* MonkeyKing+WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA194C738692EC5C64CE91E1FA81633F /* MonkeyKing+WebView.swift */; };
-		B08A7678B03C4CE66C310D7F6FB321C8 /* EasyCrypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21902B39C30AE6F62A4DA6FE32CA467 /* EasyCrypto.swift */; };
-		B0BA419A17A12A4C6A27F2B977C3E49F /* EasyCrypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21902B39C30AE6F62A4DA6FE32CA467 /* EasyCrypto.swift */; };
 		B194E2C94C56EF814BFA8A32084A28CC /* FLEXNetworkTransactionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 02ECEA8F2B3D1AB58C6FD53CF955ACA9 /* FLEXNetworkTransactionTableViewCell.m */; };
+		B1EBF46DFD275B5BD553FF5BFE6D9B90 /* EasyValid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7F1159D9E53CE0020DAA47EFFDE70B /* EasyValid.swift */; };
 		B3ACD2B99DE93504EF93FD8CA59FBBC6 /* FLEXResources.m in Sources */ = {isa = PBXBuildFile; fileRef = 286F1B81EAB13172BDDEA20EB66D7AD7 /* FLEXResources.m */; };
 		B3D3A2CCD0202141B09D0541975A0818 /* NSBundle+MJRefresh.h in Headers */ = {isa = PBXBuildFile; fileRef = D19D6E172D63B3032CB646D0BB6884C8 /* NSBundle+MJRefresh.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B41285CD4D10594CCD1C3A3BA0925F74 /* MJRefreshAutoFooter.h in Headers */ = {isa = PBXBuildFile; fileRef = 732BB9C8A368D1C4446AB2B8C69D7F6D /* MJRefreshAutoFooter.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -356,31 +358,31 @@
 		B55EB23E29D424D731FA0500BCECD2C4 /* UIViewController+RTRootNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9563443EF3F36769A28444367D31B3EB /* UIViewController+RTRootNavigationController.m */; };
 		B65B15B26D1172F4B05160BE11D841E4 /* EasySocial.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AD904B58A557D7D8506830256D0F120D /* EasySocial.bundle */; };
 		B6D13894DFD352D29FAC8D20D17E3933 /* SDImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = BC90B12E474CC3D77D263F79411D9C8C /* SDImageCache.m */; };
-		B7729679BE14B5147F42CF84A7E156F4 /* EasyLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66FC29936A2320565D5539C9ABB59A9F /* EasyLog.swift */; };
 		B77705737566AE83ED7E448923D7FA60 /* NetworkReachabilityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE25775C26990F05D9A689764ECC189 /* NetworkReachabilityManager.swift */; };
-		B8FC43FE564B17E21CDFA0165FE074C8 /* EasyExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790BFDA18702F865A55C59207E16D19F /* EasyExtension.swift */; };
+		B915C5145A9110E5219F2F2BD12DCE8C /* EasySessionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF4D1AB54E8309E0B9AE7C24D12A38A /* EasySessionViewController.swift */; };
+		B94F1814504ACEAC0668C00F0805E368 /* EasyWebImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C40838AF2E9AF264CAA433908F80E22 /* EasyWebImage.swift */; };
 		B9A3CD1C1681591B0752CA112DD3E380 /* MJRefreshComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 39305AB8DF3993C1ABEAA01756A4C335 /* MJRefreshComponent.m */; };
 		B9E6EB6BD0B5520969648BD55948E24A /* MonkeyKing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9412AC91D2CFF55ED2BA462A9F3A836C /* MonkeyKing.framework */; };
 		BA7B50B7C4DE4947B71C2AAD430BC820 /* MJRefreshStateHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B4F28C3CB8CAD88C46337BE2252DB2E /* MJRefreshStateHeader.m */; };
 		BB7D9264A38598C8F27157296E90D713 /* ConstraintMakerRelatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06057C5CBB380CD47506DA45077DDE71 /* ConstraintMakerRelatable.swift */; };
 		BC851D437F00BE5C3FFF62AE1CC7049E /* ConstraintRelation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B47AC2C58E9C9E0FFD442F60BBC10DF /* ConstraintRelation.swift */; };
-		BD217172DD9094BCFCD9142AA8D88076 /* EasyLoading.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD971D5D7132BBD72950B684AA3CE248 /* EasyLoading.swift */; };
-		BD7373767645A6588FD5DAF43195D532 /* EasyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F954400C3B5C3C26C5F53EBB0D4057 /* EasyViewController.swift */; };
+		BD36F9211E6643DA52A2175209FF9770 /* EasyNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17FC3DC92FCEBDA386118E9B7359032 /* EasyNavigationController.swift */; };
 		BE2FF20AA0D7132257BEF08A54B9CF19 /* SDWebImageImageIOCoder.h in Headers */ = {isa = PBXBuildFile; fileRef = F22B89D6B1D0481222DD2097762F1FD6 /* SDWebImageImageIOCoder.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BE4BA1EDE444A770F834605F4B65348E /* AFError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F475FF9AC058887FB0173571DB6C3483 /* AFError.swift */; };
 		BE8F7409793CE151B60DD9B38C8C276B /* FLEXSystemLogTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 16FF9A8F0FE6BF7E49975A343A3944BD /* FLEXSystemLogTableViewController.m */; };
 		BF92930B398816434FDA66339774C002 /* MJRefreshFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = E5A5BADAF53207A5C73A6965F123E37B /* MJRefreshFooter.m */; };
 		BFEA086CC2EF33B8D88F0B2679B2DA67 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A07F30D063D4C1051F6831EE02DFF7CB /* Foundation.framework */; };
 		C07405FF48DDB4D8822C056397FFD4FC /* FLEXFileBrowserFileOperationController.h in Headers */ = {isa = PBXBuildFile; fileRef = 5AFDBDC7DC52BF2C36F425BC64DFEDDA /* FLEXFileBrowserFileOperationController.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		C1A9A4FE4D5CE87323011BAFE88E95B7 /* EasyCore.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0499D206C2573C75019E123AF0DC0391 /* EasyCore.bundle */; };
+		C1A9A4FE4D5CE87323011BAFE88E95B7 /* EasyCore.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 30ECC6D80A1A414995E54E91BBF3433A /* EasyCore.bundle */; };
+		C1B4012325442956C4C1F51C9C74A1D8 /* EasyConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E4B4D68297DBA84D61D5228B11B5FAE /* EasyConfig.swift */; };
 		C1DD9607959A1297E3FEBE057C5CA259 /* NSData+ImageContentType.m in Sources */ = {isa = PBXBuildFile; fileRef = E8617DC198DE435262AE3D3B5B573835 /* NSData+ImageContentType.m */; };
-		C28EE08B86950EFDB0E4ACCE9092E96B /* EasyRefresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBAA9A3888878C186F241964DE9BF35E /* EasyRefresh.swift */; };
 		C3E959B7AB73097966B07FD1F368E401 /* BannerStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8337A420C30EB9E31A7BBC6B2CC35D91 /* BannerStyle.swift */; };
 		C41D392CE4DFE72F389A618F9D23E92C /* FLEXTableColumnHeader.h in Headers */ = {isa = PBXBuildFile; fileRef = B10B5234F3E30BC70E91F93BD012D189 /* FLEXTableColumnHeader.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		C465F466A2A90481339168E48EBC266C /* Pods-Easy_Example_Beta-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E2CDC492466ECA0C7AC4CEE2C46C381B /* Pods-Easy_Example_Beta-dummy.m */; };
 		C5DE684517BB553589EEA49451CC7880 /* MJRefresh.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B84B0B6A5834DA1FA34D1CD1533F651 /* MJRefresh.framework */; };
 		C6015BAAA7D601A3D1F1510DDAD328B4 /* FLEXDefaultsExplorerViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E23CB63A9620A0875D8C933C8621A98 /* FLEXDefaultsExplorerViewController.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		C65E10286421E0AE67043407F53C52FD /* FLEXTableListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFE211B548CC6BD0B84DC8E617A5F70D /* FLEXTableListViewController.m */; };
+		C6968B01ED0C7584600AD8440904FE5D /* EasyTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18E1487E0B003164EBE8417DFC550D9 /* EasyTestViewController.swift */; };
 		C8AB1F376BAE0152C119AC867460254C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A07F30D063D4C1051F6831EE02DFF7CB /* Foundation.framework */; };
 		C8C5BA3F9F58DE3615EFCDE39A435C2F /* MarqueeLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF56CDEAEF1C57CC64542CCD8D949A1E /* MarqueeLabel.swift */; };
 		C8EE9A0ADC37680356C08B05CC233524 /* ConstraintDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203BFFC39A8889367AB6EA96BCFD27A6 /* ConstraintDescription.swift */; };
@@ -388,7 +390,6 @@
 		CA850619C001B02E0643496BD9C7218B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A07F30D063D4C1051F6831EE02DFF7CB /* Foundation.framework */; };
 		CAC3D0BD172EECB247ED0875B9BD4E2C /* FLEX-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = A233677BC4C48AA35E7B929B4683A1A4 /* FLEX-dummy.m */; };
 		CC2151B9850809170EBFABC0381B0320 /* ConstraintPriorityTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E820D30D67412050AB4B40826CEEC695 /* ConstraintPriorityTarget.swift */; };
-		CCEA50D0F6114F5582FD49656E0F9E36 /* EasyCollectionViewWaterFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D049350130E3CCAA624BD0B27386E4B2 /* EasyCollectionViewWaterFlowLayout.swift */; };
 		CE27F5CB9FE0FE905A4EEE6C929DF106 /* NotificationBannerSwift-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E2BB832980F29447AC06A8C56CD6111A /* NotificationBannerSwift-dummy.m */; };
 		CE30F58B8D7C171629767FC8BDBDDF97 /* LayoutConstraintItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32BEF52F51F08E57EE763399F3B4DD8F /* LayoutConstraintItem.swift */; };
 		CEF2042DF65C378F1C3907D43469BAC4 /* ConstraintLayoutSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07F6CD5EBAACAFA59828203C5B50E9C /* ConstraintLayoutSupport.swift */; };
@@ -396,16 +397,14 @@
 		CFE86B88B19461A4AAFDBB5B83C1A6E0 /* FLEXArrayExplorerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2AB3EEA80815553FBED957989C3CEF5 /* FLEXArrayExplorerViewController.m */; };
 		D035CBE81631235E54C1A2F3B98491C5 /* MJRefreshStateHeader.h in Headers */ = {isa = PBXBuildFile; fileRef = 64C9C6BB3E67F5724392279E4705D3DB /* MJRefreshStateHeader.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D045B28BC73F15DACFD731F5D394B263 /* FLEXArgumentInputStringView.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E79B341FAC2768A9C536E8510EB0E6 /* FLEXArgumentInputStringView.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		D0BA958EA7464CEA1BE5DF33E1ED1EEE /* Easy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B119E447A00321EB70F9A1D13F9B5A4 /* Easy.swift */; };
 		D11B24DA5369E9B2F45DE0648710EA8B /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E3599A432A647C023206679B6DA4D23 /* Helpers.swift */; };
 		D12FE95078EB952F5AC8BB74433F29F3 /* MJRefreshBackGifFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6A48D3CE088E6D51FED8AF2CCAC5CC /* MJRefreshBackGifFooter.m */; };
 		D25E70F0ACA229E914EEC82D2E8C000D /* FLEXExplorerToolbar.h in Headers */ = {isa = PBXBuildFile; fileRef = 56672E48FD771D5AACB1FC360388A961 /* FLEXExplorerToolbar.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		D276A6548F19302849403D496CED4F72 /* WMPageController-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = A1E65A268EAC78E08AB397B50B15FFB0 /* WMPageController-dummy.m */; };
 		D2BA751D2C8DE4F363F6DB2A764D09F6 /* NSButton+WebCache.h in Headers */ = {isa = PBXBuildFile; fileRef = A6AFBFBFAE644818DC2FACB3FBB318B3 /* NSButton+WebCache.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D30DF087D73B91E58A090D8E8C1E6F51 /* EasyCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6480A45A2434EAB8B68E347808B27A2 /* EasyCheck.swift */; };
 		D4248C42E555E09E2802949880061603 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9AD944C810675A2FBBB23E8A3D75CCE /* CoreGraphics.framework */; };
-		D47961AE429D171657C1F304366297F0 /* EasyPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25EDFF8D48CFB0C5248DAE35409CC1E0 /* EasyPage.swift */; };
 		D4C3899574E9D5DF5E5DA52310560BCC /* Alamofire-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 02E68341210E77A9987314827980574F /* Alamofire-dummy.m */; };
-		D50DBA1570A4A36911090BAC33D96A36 /* EasyPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25EDFF8D48CFB0C5248DAE35409CC1E0 /* EasyPage.swift */; };
 		D5563869FE3013DD8142F8739671D096 /* MonkeyKing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408B9923915049153D64A41B7EDA1E45 /* MonkeyKing.swift */; };
 		D5D2599E93B49BC65B289F874CA076BF /* FLEXPropertyEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22D4321F277C98A20750174F2F1A4656 /* FLEXPropertyEditorViewController.m */; };
 		D6111CBCCE95D557E9998ED3C0BB5379 /* MJRefreshHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = FFB1EC298DC39E4913ABE216A50132A7 /* MJRefreshHeader.m */; };
@@ -413,10 +412,10 @@
 		D6F43AE292C2CA54AD2131E7756F5872 /* FLEXInstancesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3B4224A43092387AB8B97710156FA76 /* FLEXInstancesTableViewController.m */; };
 		D7531146E1AB2BE8C4BD97998ED07D15 /* SDAnimatedImageRep.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A0521A2A587F51754214C7AE923E823 /* SDAnimatedImageRep.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D8EC5B74B9B5DC842F4179D19E6DE6D4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A07F30D063D4C1051F6831EE02DFF7CB /* Foundation.framework */; };
+		D94499E87991195AC0ACCB2A19E7136C /* EasyPopupMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = F73924959291F8E325D9255D7F0F2352 /* EasyPopupMenu.swift */; };
 		DB90D4AEB7B36F57021687D807FFC58D /* FLEXKeyboardHelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ADA534809A9995EBEBC97C6ED287BF6 /* FLEXKeyboardHelpViewController.m */; };
 		DBE6E2E4D205545E7988CFA5057C31D6 /* DispatchQueue+Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FF97B096A064D6A1FA04C496147EB7 /* DispatchQueue+Alamofire.swift */; };
 		DBFE2338EDD0869A817ADD735EF25B59 /* Pods-Easy_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 28A40C4F219E0817CB08B4C1E6BEBBEC /* Pods-Easy_Tests-dummy.m */; };
-		DCBD5EA59DEDF5CFFC147C5B917745D0 /* EasyPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F029095789801CB5B1EA8FD6F6F4E7 /* EasyPlaceholder.swift */; };
 		DD86F2EAD72F4103820389E6D62CEA98 /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E277971079AA5464429A3CF6C4231971 /* SnapKit.framework */; };
 		DDEFA958B62725BF0A53C0C31B8FC55D /* FLEXFieldEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4587CC3B4340F3B8D193C436AD0304F /* FLEXFieldEditorViewController.m */; };
 		DDFA3A9AF70AD6F804D27F26D279E276 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69BB297A4633FB3B14F7761FE0A1303C /* UIKit.framework */; };
@@ -428,23 +427,24 @@
 		E0B640BA0E60A88A6F5D59F8492B96FD /* FLEXRuntimeUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = 8A7683EFE220CC0818B21A6BB4789D16 /* FLEXRuntimeUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		E14A660A0995DFCA1F5D65C6598B30BE /* UIButton+WebCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 44C7CA887307D988D60ED0116923CACE /* UIButton+WebCache.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E27ABC48ABF1F3E2D8B9E2671CF0EA9C /* FLEXArgumentInputTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 06CF9340DC74B04C690E6DB9B22F1F56 /* FLEXArgumentInputTextView.m */; };
+		E3175331145F9EFA27D84C6031ACBECC /* EasySocial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B54225910DFA9DC77353667677B2B44 /* EasySocial.swift */; };
 		E3A32B12BB094299A294046990EBFF3B /* MJRefreshAutoGifFooter.h in Headers */ = {isa = PBXBuildFile; fileRef = 4FB00732D18A25BA4CEC2BEB0D461659 /* MJRefreshAutoGifFooter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E3DF2027C50C6C95F850DA5AC04D4318 /* FLEXClassExplorerViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 6424FF151CF4236793BCC49370404CDE /* FLEXClassExplorerViewController.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		E44BA55A802FA057915225831FF43213 /* EasyPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A9D42BDADBB7BBEB912480134C3419 /* EasyPopupView.swift */; };
 		E469472CA46851E452C3CE957BE6FA87 /* SDAnimatedImageRep.m in Sources */ = {isa = PBXBuildFile; fileRef = 10D9056667792DBE0945C43749173699 /* SDAnimatedImageRep.m */; };
-		E4B60FADB337BB4DA5631ED2B586933F /* EasyPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F029095789801CB5B1EA8FD6F6F4E7 /* EasyPlaceholder.swift */; };
 		E4C401000CCEDA78850CE9F2731D669C /* FLEXTableContentCell.h in Headers */ = {isa = PBXBuildFile; fileRef = E9B3E5D50CF60C824FE18E2F6F5BB96D /* FLEXTableContentCell.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		E4D7AB3C0F8548BAD20E78C06B2A6E88 /* EasyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8F99978065C03BD9A959720125FA7E /* EasyApp.swift */; };
 		E58A846ECC1B2A089959074F26069555 /* UIScrollView+MJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B665B2CCC255B84B7E80F30E2767D8 /* UIScrollView+MJRefresh.m */; };
 		E5EDC42BABBD3E1BA9FE0855DC2B289B /* SDWebImage-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = DCA2801A7617133AA332CD38D558B63E /* SDWebImage-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E6D025EB2F9C68161938ED52CF94BD94 /* FLEXTableContentViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = EDF1FB196BE36BF96712B613F988A450 /* FLEXTableContentViewController.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		E78E3477EF16D9AEB500FE00AE902198 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A07F30D063D4C1051F6831EE02DFF7CB /* Foundation.framework */; };
 		E8101961FEA2F2E70B8A2BF394A894A6 /* ConstraintMakerFinalizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9A584B3C00497632B67FF2A1D17DE0 /* ConstraintMakerFinalizable.swift */; };
 		E9DE41AD3179370A34B4DFA16792A24E /* SDWebImageManager.h in Headers */ = {isa = PBXBuildFile; fileRef = F4CD5CA4C276EA411291A7A409A37320 /* SDWebImageManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E9E443165098F0E50D3F29490A3C9670 /* EasyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A4915C20D3FDD10515AC6F869EA7BA /* EasyApp.swift */; };
+		E9F8A1B22EDA06E6C0DE15153A846CCF /* EasyCrypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706999684EC25BEB4EEB1C8C3A9DE006 /* EasyCrypto.swift */; };
 		EADD198EA4F42993912E4255613A6C94 /* UIView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = A759B8954FD08503E2C45FE669447151 /* UIView+MJExtension.m */; };
 		EAFBDA21120F1BBA7076DE41189B1CA0 /* FLEXGlobalsTableViewControllerEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A75CF11CDDA7E519126AD2DAEFB2D33 /* FLEXGlobalsTableViewControllerEntry.m */; };
 		EB578EE684A5E158978B4F831F5902F3 /* SDWebImageGIFCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 52110675F603677221A7E352734A3D08 /* SDWebImageGIFCoder.m */; };
 		EB90CF352D1A9BB10BC1406F9C5C6D85 /* UIView+WebCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 9578A5A1186AA8B0D49D3CCB2A944A57 /* UIView+WebCache.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EC0FDE21F9EC2270A9C3F59893C99585 /* EasyWebImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C40838AF2E9AF264CAA433908F80E22 /* EasyWebImage.swift */; };
 		EC2E6B49FDA14C967D79B47E3C19536E /* FLEXSetExplorerViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = E25D08B914D23A0BF0B4C45580EA19CC /* FLEXSetExplorerViewController.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		EC95E4DAA07E6C09525AF354A85B1E46 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A07F30D063D4C1051F6831EE02DFF7CB /* Foundation.framework */; };
 		ED28337F76F05A5FC7FFABBB6BB3CF49 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A07F30D063D4C1051F6831EE02DFF7CB /* Foundation.framework */; };
@@ -460,34 +460,34 @@
 		F00DB8BCC0773ED626E0DD71E0FC8FDA /* FLEXDefaultEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF9C67941192E2494777689A336BBC53 /* FLEXDefaultEditorViewController.m */; };
 		F0F93FA55D58114120AD7BEB1D751CD4 /* FLEXArgumentInputSwitchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BDD2F1F92F8027CF02B9AF24B4A7EF0 /* FLEXArgumentInputSwitchView.m */; };
 		F1F87803E2B85FD9E06BB8EDE2F1AE1C /* SDWebImageDownloaderOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 5C2E9D7C0DE41A49AF81C8683A6FF134 /* SDWebImageDownloaderOperation.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F202D15BEB18208C1C844EE098C90607 /* EasyLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66FC29936A2320565D5539C9ABB59A9F /* EasyLog.swift */; };
 		F28D3757C24E238B8B0526B7D14454FF /* SDWebImageDownloaderOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = AFE7034E53B67F2DEF7AC15C3716455E /* SDWebImageDownloaderOperation.m */; };
 		F2AA96140DD15DAAFEC5398454C36D9C /* UIViewController+WMPageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 414D63B0604AF5FFAA8A920391789066 /* UIViewController+WMPageController.m */; };
-		F2EF559E5C46BDCC2991821DC412B251 /* EasyThen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F18BB96F37C454BE161CD1552C60FC /* EasyThen.swift */; };
+		F3D5A54C2F65E22E99A8B92730234CF5 /* EasyConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E4B4D68297DBA84D61D5228B11B5FAE /* EasyConfig.swift */; };
 		F40E150214A10439D231F7F4FBB1F18C /* SDImageCacheConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F0547A85FAC65F9CE57152E99FF2076 /* SDImageCacheConfig.m */; };
 		F552204577FAFBD8ED19EFC7FB705C13 /* UIView+WebCacheOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = EA57D9B9C55028FE949481BF86BBB92A /* UIView+WebCacheOperation.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F59C05D7EBA67E6C425801212FD20745 /* EasyPopupMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2561F0DF274342E3DAA18D74550147D0 /* EasyPopupMenu.swift */; };
-		F5CC103E85633615923385D9BB03CC30 /* EasyGlobal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FC2DAC8517270DA30E6F5A58369D0A4 /* EasyGlobal.swift */; };
 		F5F17D590D63E9C9C80096148D8BCB2C /* WMProgressView.h in Headers */ = {isa = PBXBuildFile; fileRef = 695D19E72A600FD816E324BA6D8329D3 /* WMProgressView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F6384CEEC49FA03E1474C4A0004D88EF /* FLEXSystemLogTableViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = F18F617A92C77CC31A54DAFAF75D409A /* FLEXSystemLogTableViewCell.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		F64B91E019481ADFB40326328D74AC87 /* FLEXNetworkRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = C1B8448BFFEEBC7F5807039C40CBD8CF /* FLEXNetworkRecorder.m */; };
+		F7304DC8D0090FAA9FBC86D63D24619D /* EasyWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A9DABE033376985AACA8FC166037A3 /* EasyWebViewController.swift */; };
+		F73351A2B9D09670EF03236DB4C6929B /* EasySocial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B54225910DFA9DC77353667677B2B44 /* EasySocial.swift */; };
 		F789B8984639E8DFF8E9F60D40F0C086 /* FLEXWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 7B3A122923BD2E6C564327F3FE0777D6 /* FLEXWindow.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		F804DA2AE2992E4C70F5190A8B86EF6C /* UIScrollView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 876A5A9925CE4797021DD475514E60CC /* UIScrollView+MJExtension.m */; };
+		F81A525223794883A6BF28AD46873C32 /* EasyScan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F73FAACD9263A772A90CB369EC1C3 /* EasyScan.swift */; };
 		F95C480E5C47324D5FB07A1D529C4FB8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A07F30D063D4C1051F6831EE02DFF7CB /* Foundation.framework */; };
 		F98CED27AC608B2EBDFAA02B47DA845C /* ConstraintDSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D657A74E3410E7DD3504C939C422B7B /* ConstraintDSL.swift */; };
-		F9A5399147E4B389645E131521B81BC8 /* EasyTo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023BB1126758A8488745DB88D4B0CCA5 /* EasyTo.swift */; };
 		F9EA61D484CC15FDDAB0D8C0D26D7949 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376725C60A7FF469CE6E216976B1D004 /* Result.swift */; };
-		FA0172D2475C7CD4616C18621533E50D /* EasyCore.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0499D206C2573C75019E123AF0DC0391 /* EasyCore.bundle */; };
+		FA0172D2475C7CD4616C18621533E50D /* EasyCore.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 30ECC6D80A1A414995E54E91BBF3433A /* EasyCore.bundle */; };
 		FA9F076002182638A5A8155A2A35C6B7 /* Easy.common-Beta-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 8B34B02443CF17D26DF600E3347FBF5A /* Easy.common-Beta-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FAE93D4230D8658D4E3C60C88F97CC25 /* FLEXLayerExplorerViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 1698702B1F8C8BB6B6C27748FDB37B86 /* FLEXLayerExplorerViewController.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		FB8169E46896B95157C608EAC8351599 /* MonkeyKing-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = EFDD504C6201015BCC4F2A8D96BEE338 /* MonkeyKing-dummy.m */; };
 		FBAD5CA5223BB89E27805A4E84E436B7 /* FLEXExplorerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BEAF734F4128565C7F51557CB8CBBAE /* FLEXExplorerViewController.m */; };
-		FC2913AC12022F0AC410F732A33CDC46 /* EasyKeychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C63035B8899D892427632E1B84F76FE /* EasyKeychain.swift */; };
-		FCC0A64BE34BB38BBB90F319B9F051C6 /* EasyNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324EA68CB9C773062F2F1788CB336C7D /* EasyNavigationController.swift */; };
 		FD38B3C96E14A584C799A4A924213656 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A07F30D063D4C1051F6831EE02DFF7CB /* Foundation.framework */; };
 		FD599EA67215B9728259CFBFF771CB7F /* SDWebImageCoderHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 176524D9C0EF742F4D1B7A247CB7E255 /* SDWebImageCoderHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FD8EED3ECCD1EC38072DA0A407A2AB61 /* FLEXObjectExplorerFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 6DA7682B521B12E928E99EF32014677A /* FLEXObjectExplorerFactory.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		FD92728CE34DBB8672581F185BC1F607 /* EasyLoading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60E2F03CB9C6B13B0C39AD16D12A262E /* EasyLoading.swift */; };
+		FE28FDA2B7965DFF982D76B5A20C9886 /* EasyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8F99978065C03BD9A959720125FA7E /* EasyApp.swift */; };
 		FE8115157713023EC0AEBD4D6EAC819F /* FLEXNetworkObserver.h in Headers */ = {isa = PBXBuildFile; fileRef = AD7E329308B70C60B01A73F8779D8784 /* FLEXNetworkObserver.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		FE88CB1DB57834F34F4A309C3697B122 /* EasyPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4889279EB7A22E8A0131BA2464873A7A /* EasyPlaceholder.swift */; };
 		FE8F4583A30271192BC05CD49383D6B8 /* FLEXMethodCallingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BC61A2029138DEB1E87435E98C5D84F /* FLEXMethodCallingViewController.m */; };
 		FF75F2BED43B448474D1FE819FACD003 /* FLEXRuntimeUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = F91C70173CC4E0E60E68A55548AE0F18 /* FLEXRuntimeUtility.m */; };
 		FF9C7BC64DB23D2CED48197DE67F0335 /* MultipartFormData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5681A6155FADC815628E7C02ED00B47C /* MultipartFormData.swift */; };
@@ -800,23 +800,23 @@
 /* Begin PBXFileReference section */
 		002C5145B36CD0935C37252D602258F3 /* Easy.common-Beta-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "Easy.common-Beta-dummy.m"; path = "../Easy.common-Beta/Easy.common-Beta-dummy.m"; sourceTree = "<group>"; };
 		00E2C1796397D7571A408994DD1C8EA0 /* BannerColors.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BannerColors.swift; path = NotificationBanner/Classes/BannerColors.swift; sourceTree = "<group>"; };
+		012AFCDEC45BB302789168692DC4D6B1 /* EasyAlert.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EasyAlert.swift; path = Easy/Classes/Core/EasyAlert.swift; sourceTree = "<group>"; };
 		01979511184D6A4E8174906D882C5DEF /* SDWebImagePrefetcher.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDWebImagePrefetcher.m; path = SDWebImage/SDWebImagePrefetcher.m; sourceTree = "<group>"; };
 		01F3B33D8EA608D084E8B843BDFA1DAC /* FLEXManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXManager.m; path = Classes/Manager/FLEXManager.m; sourceTree = "<group>"; };
-		023BB1126758A8488745DB88D4B0CCA5 /* EasyTo.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EasyTo.swift; path = Easy/Classes/Core/EasyTo.swift; sourceTree = "<group>"; };
+		023BED8E98CCFE2986A452EC3EA2A260 /* EasyGlobal.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EasyGlobal.swift; path = Easy/Classes/Core/EasyGlobal.swift; sourceTree = "<group>"; };
 		02E68341210E77A9987314827980574F /* Alamofire-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Alamofire-dummy.m"; sourceTree = "<group>"; };
 		02EB18F070EA740C39EBA30A04A1EB77 /* MJRefresh.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = MJRefresh.xcconfig; sourceTree = "<group>"; };
 		02ECD1495936243BC5C39500488B0B3C /* Pods-Easy_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Easy_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		02ECEA8F2B3D1AB58C6FD53CF955ACA9 /* FLEXNetworkTransactionTableViewCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXNetworkTransactionTableViewCell.m; path = Classes/Network/FLEXNetworkTransactionTableViewCell.m; sourceTree = "<group>"; };
-		0499D206C2573C75019E123AF0DC0391 /* EasyCore.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = EasyCore.bundle; path = Easy/Resources/EasyCore.bundle; sourceTree = "<group>"; };
 		04B5B73317D7E1C6A5282C7A694B0E9A /* FLEXIvarEditorViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXIvarEditorViewController.h; path = Classes/Editing/FLEXIvarEditorViewController.h; sourceTree = "<group>"; };
 		05F32FDE92E2E01DB0ED10AF13FD5E10 /* GrowingNotificationBanner.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GrowingNotificationBanner.swift; path = NotificationBanner/Classes/GrowingNotificationBanner.swift; sourceTree = "<group>"; };
 		05F8E1705A3980CA4052ACD8FF1DF262 /* FLEXNetworkTransactionDetailTableViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXNetworkTransactionDetailTableViewController.h; path = Classes/Network/FLEXNetworkTransactionDetailTableViewController.h; sourceTree = "<group>"; };
-		05F954400C3B5C3C26C5F53EBB0D4057 /* EasyViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EasyViewController.swift; path = Easy/Classes/Core/EasyViewController.swift; sourceTree = "<group>"; };
 		06057C5CBB380CD47506DA45077DDE71 /* ConstraintMakerRelatable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintMakerRelatable.swift; path = Source/ConstraintMakerRelatable.swift; sourceTree = "<group>"; };
 		0677DBFD65D2E2D3D05C2944EE8EAAAB /* MBProgressHUD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MBProgressHUD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		06CF9340DC74B04C690E6DB9B22F1F56 /* FLEXArgumentInputTextView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXArgumentInputTextView.m; path = Classes/Editing/ArgumentInputViews/FLEXArgumentInputTextView.m; sourceTree = "<group>"; };
 		06E4FDFB6889AB79B20EB6DF2D7F79E8 /* SnapKit-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SnapKit-umbrella.h"; sourceTree = "<group>"; };
 		070C2F8A98E22021F506D7749B5EDE63 /* ConstraintMakerExtendable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintMakerExtendable.swift; path = Source/ConstraintMakerExtendable.swift; sourceTree = "<group>"; };
+		07E632D013E201CA359233FD53928989 /* EasyLog.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EasyLog.swift; path = Easy/Classes/Core/EasyLog.swift; sourceTree = "<group>"; };
 		083FABE5CB93E89818CC73CDE4D7C291 /* FLEXArgumentInputViewFactory.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXArgumentInputViewFactory.m; path = Classes/Editing/ArgumentInputViews/FLEXArgumentInputViewFactory.m; sourceTree = "<group>"; };
 		091C21FD14D2DC6314EFC0532738C8C6 /* UIScrollView+MJExtension.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIScrollView+MJExtension.h"; path = "MJRefresh/UIScrollView+MJExtension.h"; sourceTree = "<group>"; };
 		09C28F80F0EF941D59DEB260B0968665 /* NotificationBannerSwift-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "NotificationBannerSwift-prefix.pch"; sourceTree = "<group>"; };
@@ -826,7 +826,6 @@
 		0B3A30529471730BD83E943452795040 /* WMPageController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = WMPageController.m; path = WMPageController/WMPageController.m; sourceTree = "<group>"; };
 		0BB7131CE4CECF0C1E4363CCE0610F41 /* FLEXFieldEditorView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXFieldEditorView.m; path = Classes/Editing/FLEXFieldEditorView.m; sourceTree = "<group>"; };
 		0C2E6AD1598CEB4152CBDC3E70728721 /* ConstraintMaker.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintMaker.swift; path = Source/ConstraintMaker.swift; sourceTree = "<group>"; };
-		0C63035B8899D892427632E1B84F76FE /* EasyKeychain.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EasyKeychain.swift; path = Easy/Classes/Core/EasyKeychain.swift; sourceTree = "<group>"; };
 		0CC0521F829AB888445C3D6060B40703 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0D1289D7D5E217840F2F144A51DF422F /* FLEXViewControllerExplorerViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXViewControllerExplorerViewController.h; path = Classes/ObjectExplorers/FLEXViewControllerExplorerViewController.h; sourceTree = "<group>"; };
 		0D1E30E82CD3A31C0AD6F57520814E4E /* FLEXCookiesTableViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXCookiesTableViewController.h; path = Classes/GlobalStateExplorers/FLEXCookiesTableViewController.h; sourceTree = "<group>"; };
@@ -840,7 +839,6 @@
 		10D9056667792DBE0945C43749173699 /* SDAnimatedImageRep.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDAnimatedImageRep.m; path = SDWebImage/SDAnimatedImageRep.m; sourceTree = "<group>"; };
 		112DE884B94357BBAA1D011C33F1D905 /* ConstraintPriority.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintPriority.swift; path = Source/ConstraintPriority.swift; sourceTree = "<group>"; };
 		12027EC49B72D5AEB79071C370D254F9 /* Debugging.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Debugging.swift; path = Source/Debugging.swift; sourceTree = "<group>"; };
-		12F029095789801CB5B1EA8FD6F6F4E7 /* EasyPlaceholder.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EasyPlaceholder.swift; path = Easy/Classes/Core/EasyPlaceholder.swift; sourceTree = "<group>"; };
 		136185DA6DE829E6CA4A14FD9301D434 /* FLEXArgumentInputViewFactory.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXArgumentInputViewFactory.h; path = Classes/Editing/ArgumentInputViews/FLEXArgumentInputViewFactory.h; sourceTree = "<group>"; };
 		13B665B2CCC255B84B7E80F30E2767D8 /* UIScrollView+MJRefresh.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIScrollView+MJRefresh.m"; path = "MJRefresh/UIScrollView+MJRefresh.m"; sourceTree = "<group>"; };
 		146AF1D36D202114BE9B4B413F966C8F /* ConstraintViewDSL.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintViewDSL.swift; path = Source/ConstraintViewDSL.swift; sourceTree = "<group>"; };
@@ -848,7 +846,6 @@
 		14AA115734F0DE7B7F46BAADF0A4D6DA /* FLEXDefaultEditorViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXDefaultEditorViewController.h; path = Classes/Editing/FLEXDefaultEditorViewController.h; sourceTree = "<group>"; };
 		14E93A10356C434B8DFF151D82D3AB44 /* ConstraintConstantTarget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintConstantTarget.swift; path = Source/ConstraintConstantTarget.swift; sourceTree = "<group>"; };
 		14EFD59193C53722783E5B47BA91C9BB /* Request.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Request.swift; path = Source/Request.swift; sourceTree = "<group>"; };
-		1543E7F8CF44B100A6326B7D83BB7649 /* EasyValid.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EasyValid.swift; path = Easy/Classes/Core/EasyValid.swift; sourceTree = "<group>"; };
 		162F46CA44DBE5DAD334B3E4F5124F53 /* FLEXNetworkObserver.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXNetworkObserver.m; path = Classes/Network/PonyDebugger/FLEXNetworkObserver.m; sourceTree = "<group>"; };
 		166D597245B9053DBA67815F8054CC4E /* FLEXImagePreviewViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXImagePreviewViewController.m; path = Classes/ViewHierarchy/FLEXImagePreviewViewController.m; sourceTree = "<group>"; };
 		1698702B1F8C8BB6B6C27748FDB37B86 /* FLEXLayerExplorerViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXLayerExplorerViewController.h; path = Classes/ObjectExplorers/FLEXLayerExplorerViewController.h; sourceTree = "<group>"; };
@@ -880,10 +877,10 @@
 		21DC22D77B23D315453A163BD4AB12E7 /* SDWebImagePrefetcher.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDWebImagePrefetcher.h; path = SDWebImage/SDWebImagePrefetcher.h; sourceTree = "<group>"; };
 		22057C62EB4616E22DECFE317E08F135 /* FLEX.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FLEX.xcconfig; sourceTree = "<group>"; };
 		2297E756EB27FDB24358E42FE9B517BF /* MJRefreshBackFooter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MJRefreshBackFooter.h; path = MJRefresh/Base/MJRefreshBackFooter.h; sourceTree = "<group>"; };
+		22B33F56B8E06F1C9E1A486C39C0245F /* EasyRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EasyRouter.swift; path = Easy/Classes/Core/EasyRouter.swift; sourceTree = "<group>"; };
 		22D4321F277C98A20750174F2F1A4656 /* FLEXPropertyEditorViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXPropertyEditorViewController.m; path = Classes/Editing/FLEXPropertyEditorViewController.m; sourceTree = "<group>"; };
 		2429978601BD3CEBE205F587008754EB /* FLEXGlobalsTableViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXGlobalsTableViewController.h; path = Classes/GlobalStateExplorers/FLEXGlobalsTableViewController.h; sourceTree = "<group>"; };
 		2547577A69C5A6520BCD9D1EB70B9C6A /* MonkeyKing+Error.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "MonkeyKing+Error.swift"; path = "Sources/MonkeyKing+Error.swift"; sourceTree = "<group>"; };
-		2561F0DF274342E3DAA18D74550147D0 /* EasyPopupMenu.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EasyPopupMenu.swift; path = Easy/Classes/Core/EasyPopupMenu.swift; sourceTree = "<group>"; };
 		25D2830DCB0D70B0617BD057BE20303C /* TaskDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TaskDelegate.swift; path = Source/TaskDelegate.swift; sourceTree = "<group>"; };
 		25EDFF8D48CFB0C5248DAE35409CC1E0 /* EasyPage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EasyPage.swift; path = Easy/Classes/Page/EasyPage.swift; sourceTree = "<group>"; };
 		260E3D22A1B22C94A1773979B2516120 /* SnapKit-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SnapKit-dummy.m"; sourceTree = "<group>"; };
@@ -895,25 +892,27 @@
 		28A40C4F219E0817CB08B4C1E6BEBBEC /* Pods-Easy_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Easy_Tests-dummy.m"; sourceTree = "<group>"; };
 		296A1BFD9C90177F103A5A950F03B30D /* MJRefreshBackStateFooter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MJRefreshBackStateFooter.m; path = MJRefresh/Custom/Footer/Back/MJRefreshBackStateFooter.m; sourceTree = "<group>"; };
 		2BC61A2029138DEB1E87435E98C5D84F /* FLEXMethodCallingViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXMethodCallingViewController.m; path = Classes/Editing/FLEXMethodCallingViewController.m; sourceTree = "<group>"; };
+		2C40838AF2E9AF264CAA433908F80E22 /* EasyWebImage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EasyWebImage.swift; path = Easy/Classes/Core/EasyWebImage.swift; sourceTree = "<group>"; };
 		2C5C72980D18FF7F3173E393FB21616F /* WMMenuItem.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = WMMenuItem.h; path = WMPageController/WMMenuView/WMMenuItem.h; sourceTree = "<group>"; };
 		2DA14B32F23F4089F8F9F80C564446D3 /* FLEXGlobalsTableViewControllerEntry.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXGlobalsTableViewControllerEntry.h; path = Classes/ObjectExplorers/FLEXGlobalsTableViewControllerEntry.h; sourceTree = "<group>"; };
 		2E4DACF6F1F2A49CB991EA1023C75E3C /* FLEXFileBrowserTableViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXFileBrowserTableViewController.h; path = Classes/GlobalStateExplorers/FLEXFileBrowserTableViewController.h; sourceTree = "<group>"; };
-		2E8F7A17AA3A1D77473E7D090CB642FF /* EasyWebImage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EasyWebImage.swift; path = Easy/Classes/Core/EasyWebImage.swift; sourceTree = "<group>"; };
 		2F0547A85FAC65F9CE57152E99FF2076 /* SDImageCacheConfig.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDImageCacheConfig.m; path = SDWebImage/SDImageCacheConfig.m; sourceTree = "<group>"; };
 		2F05D82776C2BAA90C7C367FB2D40583 /* SDWebImage-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SDWebImage-dummy.m"; sourceTree = "<group>"; };
 		30701D058EB25044D93081B92FACA506 /* Easy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Easy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		30ECC6D80A1A414995E54E91BBF3433A /* EasyCore.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = EasyCore.bundle; path = Easy/Resources/EasyCore.bundle; sourceTree = "<group>"; };
 		321A8DAAE6D30ED9E4FDCBC1A4E94D18 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = Info.plist; path = "../Easy.common-Beta/Info.plist"; sourceTree = "<group>"; };
-		324EA68CB9C773062F2F1788CB336C7D /* EasyNavigationController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EasyNavigationController.swift; path = Easy/Classes/Core/EasyNavigationController.swift; sourceTree = "<group>"; };
 		3258337190FCA4B97C51567C97266CBA /* Timeline.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Timeline.swift; path = Source/Timeline.swift; sourceTree = "<group>"; };
 		32BEF52F51F08E57EE763399F3B4DD8F /* LayoutConstraintItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LayoutConstraintItem.swift; path = Source/LayoutConstraintItem.swift; sourceTree = "<group>"; };
 		337F608110FA0BA2CF868025386120C4 /* FLEXLiveObjectsTableViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXLiveObjectsTableViewController.h; path = Classes/GlobalStateExplorers/FLEXLiveObjectsTableViewController.h; sourceTree = "<group>"; };
 		341E9F9203691F537251E2FAC9F11E2A /* FLEXNetworkTransactionTableViewCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXNetworkTransactionTableViewCell.h; path = Classes/Network/FLEXNetworkTransactionTableViewCell.h; sourceTree = "<group>"; };
 		35344AD43CD57808CBD67402227B2138 /* FLEXArgumentInputColorView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXArgumentInputColorView.m; path = Classes/Editing/ArgumentInputViews/FLEXArgumentInputColorView.m; sourceTree = "<group>"; };
+		3569FAE0438EA2B04CF2E9976B94C906 /* EasyViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EasyViewController.swift; path = Easy/Classes/Core/EasyViewController.swift; sourceTree = "<group>"; };
 		358822ECEE7CEBD65E72F4FEADEBE967 /* Validation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Validation.swift; path = Source/Validation.swift; sourceTree = "<group>"; };
 		35BAD64616457D599493F452A9E16AA3 /* UIImage+MultiFormat.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIImage+MultiFormat.m"; path = "SDWebImage/UIImage+MultiFormat.m"; sourceTree = "<group>"; };
 		36663B0BC5A333EF7F2A547C6BA20CC7 /* MJRefreshAutoNormalFooter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MJRefreshAutoNormalFooter.m; path = MJRefresh/Custom/Footer/Auto/MJRefreshAutoNormalFooter.m; sourceTree = "<group>"; };
 		36825BB8399C28E842961EDB9951855E /* MarqueeLabel-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MarqueeLabel-prefix.pch"; sourceTree = "<group>"; };
 		376725C60A7FF469CE6E216976B1D004 /* Result.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Result.swift; path = Source/Result.swift; sourceTree = "<group>"; };
+		3858F2E335DF33413FAA687ADC47F8C4 /* EasyExtension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EasyExtension.swift; path = Easy/Classes/Core/EasyExtension.swift; sourceTree = "<group>"; };
 		39305AB8DF3993C1ABEAA01756A4C335 /* MJRefreshComponent.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MJRefreshComponent.m; path = MJRefresh/Base/MJRefreshComponent.m; sourceTree = "<group>"; };
 		39A04BB5914193EE2753E3297F965EDE /* UIImage+MultiFormat.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImage+MultiFormat.h"; path = "SDWebImage/UIImage+MultiFormat.h"; sourceTree = "<group>"; };
 		39A6D105239AAE0A48F8EE09CF07B2D6 /* MJRefreshConst.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MJRefreshConst.h; path = MJRefresh/MJRefreshConst.h; sourceTree = "<group>"; };
@@ -936,7 +935,6 @@
 		414D63B0604AF5FFAA8A920391789066 /* UIViewController+WMPageController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+WMPageController.m"; path = "WMPageController/UIViewController+WMPageController.m"; sourceTree = "<group>"; };
 		4150FF7EFA531C6F6F0EF1723D821659 /* FLEXExplorerToolbar.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXExplorerToolbar.m; path = Classes/Toolbar/FLEXExplorerToolbar.m; sourceTree = "<group>"; };
 		437FBEFE30A18B7F177287BBE54226D7 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		43800A07E625BE42CA226CE68132B2F9 /* EasyWebViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EasyWebViewController.swift; path = Easy/Classes/Core/EasyWebViewController.swift; sourceTree = "<group>"; };
 		43A9C507C20A57E23E314814399B6D1A /* MJRefresh-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MJRefresh-umbrella.h"; sourceTree = "<group>"; };
 		44C7CA887307D988D60ED0116923CACE /* UIButton+WebCache.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIButton+WebCache.h"; path = "SDWebImage/UIButton+WebCache.h"; sourceTree = "<group>"; };
 		44FFF863BAFFD2E685BF537CBAA1B8AB /* FLEXPropertyEditorViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXPropertyEditorViewController.h; path = Classes/Editing/FLEXPropertyEditorViewController.h; sourceTree = "<group>"; };
@@ -947,6 +945,7 @@
 		475477D57AE6441078B3004D1577C49E /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		477DA2A5F22B1536B64046D5A3B1BB1C /* Pods-Easy_Example_Beta-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Easy_Example_Beta-umbrella.h"; sourceTree = "<group>"; };
 		481661274BA51A9A136C8A20373D9307 /* FLEXHierarchyTableViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXHierarchyTableViewController.h; path = Classes/ViewHierarchy/FLEXHierarchyTableViewController.h; sourceTree = "<group>"; };
+		4889279EB7A22E8A0131BA2464873A7A /* EasyPlaceholder.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EasyPlaceholder.swift; path = Easy/Classes/Core/EasyPlaceholder.swift; sourceTree = "<group>"; };
 		490052E570EE257707545734857BF340 /* UIImageView+WebCache.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImageView+WebCache.h"; path = "SDWebImage/UIImageView+WebCache.h"; sourceTree = "<group>"; };
 		4912872A6D43A7E3AABF4F60F8519B42 /* LayoutConstraint.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LayoutConstraint.swift; path = Source/LayoutConstraint.swift; sourceTree = "<group>"; };
 		4B1F1EF8360B14B789F24C79988C7D2A /* ParameterEncoding.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ParameterEncoding.swift; path = Source/ParameterEncoding.swift; sourceTree = "<group>"; };
@@ -955,13 +954,12 @@
 		4C6A48D3CE088E6D51FED8AF2CCAC5CC /* MJRefreshBackGifFooter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MJRefreshBackGifFooter.m; path = MJRefresh/Custom/Footer/Back/MJRefreshBackGifFooter.m; sourceTree = "<group>"; };
 		4D64C24975E9B260CD363A8B783F4A70 /* FLEXSQLiteDatabaseManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXSQLiteDatabaseManager.h; path = Classes/GlobalStateExplorers/DatabaseBrowser/FLEXSQLiteDatabaseManager.h; sourceTree = "<group>"; };
 		4D6ED36CB1EDCF105F99FE8466A75BFC /* Alamofire.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Alamofire.modulemap; sourceTree = "<group>"; };
+		4D89742F8EE514C4029DA3C72C386F86 /* EasyKeychain.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EasyKeychain.swift; path = Easy/Classes/Core/EasyKeychain.swift; sourceTree = "<group>"; };
 		4E23CB63A9620A0875D8C933C8621A98 /* FLEXDefaultsExplorerViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXDefaultsExplorerViewController.h; path = Classes/ObjectExplorers/FLEXDefaultsExplorerViewController.h; sourceTree = "<group>"; };
 		4EFF578C9C37EF13768BC0FAF8C24630 /* SDWebImageCodersManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDWebImageCodersManager.m; path = SDWebImage/SDWebImageCodersManager.m; sourceTree = "<group>"; };
-		4F39925883C34204237A4921BAA798F4 /* EasyAlert.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EasyAlert.swift; path = Easy/Classes/Core/EasyAlert.swift; sourceTree = "<group>"; };
 		4F8F361CC8BC46F1D3E949D41F319396 /* EasyResult.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EasyResult.swift; path = Easy/Classes/Session/EasyResult.swift; sourceTree = "<group>"; };
 		4FB00732D18A25BA4CEC2BEB0D461659 /* MJRefreshAutoGifFooter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MJRefreshAutoGifFooter.h; path = MJRefresh/Custom/Footer/Auto/MJRefreshAutoGifFooter.h; sourceTree = "<group>"; };
 		50168C50BBCD6856A95D605B8512C31C /* NSButton+WebCache.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSButton+WebCache.m"; path = "SDWebImage/NSButton+WebCache.m"; sourceTree = "<group>"; };
-		5101B2E4660E442EDF58B6AA284E6AC9 /* EasyRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EasyRouter.swift; path = Easy/Classes/Core/EasyRouter.swift; sourceTree = "<group>"; };
 		517AEAAE51F3947B89EE270E687B3262 /* ConstraintView+Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "ConstraintView+Extensions.swift"; path = "Source/ConstraintView+Extensions.swift"; sourceTree = "<group>"; };
 		5193BF251AE5B00EEA463C48052BD726 /* FLEXArgumentInputStructView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXArgumentInputStructView.m; path = Classes/Editing/ArgumentInputViews/FLEXArgumentInputStructView.m; sourceTree = "<group>"; };
 		51DE21C0DC96279BE19E120F6C863645 /* RTRootNavigationController.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = RTRootNavigationController.modulemap; sourceTree = "<group>"; };
@@ -975,6 +973,7 @@
 		56672E48FD771D5AACB1FC360388A961 /* FLEXExplorerToolbar.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXExplorerToolbar.h; path = Classes/Toolbar/FLEXExplorerToolbar.h; sourceTree = "<group>"; };
 		5681A6155FADC815628E7C02ED00B47C /* MultipartFormData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MultipartFormData.swift; path = Source/MultipartFormData.swift; sourceTree = "<group>"; };
 		56DE2B9C13CE4EA0F392CC642F0313D1 /* FLEXDatabaseManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXDatabaseManager.h; path = Classes/GlobalStateExplorers/DatabaseBrowser/FLEXDatabaseManager.h; sourceTree = "<group>"; };
+		5758E0754A620C35AA3630557CE395FE /* EasyTo.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EasyTo.swift; path = Easy/Classes/Core/EasyTo.swift; sourceTree = "<group>"; };
 		576B76E628F03C1DE4F74712185A70D4 /* FLEXNetworkCurlLogger.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXNetworkCurlLogger.h; path = Classes/Network/FLEXNetworkCurlLogger.h; sourceTree = "<group>"; };
 		5777B419E8D4465497B9E6A94B049EBF /* ConstraintMakerPriortizable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintMakerPriortizable.swift; path = Source/ConstraintMakerPriortizable.swift; sourceTree = "<group>"; };
 		58B4166199E12E5CD2CB61E0CAAA8F7F /* ConstraintView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintView.swift; path = Source/ConstraintView.swift; sourceTree = "<group>"; };
@@ -994,6 +993,7 @@
 		6018C50DB8124819D73BA1528AC2CBA3 /* FLEXResources.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXResources.h; path = Classes/Utility/FLEXResources.h; sourceTree = "<group>"; };
 		6019042E95057D8B55A0CCED454A4688 /* FLEXTableColumnHeader.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXTableColumnHeader.m; path = Classes/GlobalStateExplorers/DatabaseBrowser/FLEXTableColumnHeader.m; sourceTree = "<group>"; };
 		6044E89BD4418E1F854054D06279FD66 /* ConstraintLayoutSupportDSL.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintLayoutSupportDSL.swift; path = Source/ConstraintLayoutSupportDSL.swift; sourceTree = "<group>"; };
+		60E2F03CB9C6B13B0C39AD16D12A262E /* EasyLoading.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EasyLoading.swift; path = Easy/Classes/Core/EasyLoading.swift; sourceTree = "<group>"; };
 		6306BAF9C86CF12A59947E0394E393D9 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.3.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
 		63732F38CA482212EE9F4D73090CAEAF /* RTRootNavigationController-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "RTRootNavigationController-dummy.m"; sourceTree = "<group>"; };
 		63F89FA1087BCE3609A05091B17A5A20 /* FLEXExplorerViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXExplorerViewController.h; path = Classes/ExplorerInterface/FLEXExplorerViewController.h; sourceTree = "<group>"; };
@@ -1001,10 +1001,9 @@
 		648C83297CE7FFAF756D6C1068CC6164 /* Pods-Easy_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Easy_Example-frameworks.sh"; sourceTree = "<group>"; };
 		64C9C6BB3E67F5724392279E4705D3DB /* MJRefreshStateHeader.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MJRefreshStateHeader.h; path = MJRefresh/Custom/Header/MJRefreshStateHeader.h; sourceTree = "<group>"; };
 		65210A80975EDEE3A8B789DD3BB4DF80 /* Easy.common-Beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Easy.common-Beta.xcconfig"; path = "../Easy.common-Beta/Easy.common-Beta.xcconfig"; sourceTree = "<group>"; };
+		654139B623460624C3E996520D05C8AC /* EasyLaunchView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EasyLaunchView.swift; path = Easy/Classes/Core/EasyLaunchView.swift; sourceTree = "<group>"; };
 		655DEB2D93A7AFA48A6BE558C2EA428A /* String+heightForConstrainedWidth.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "String+heightForConstrainedWidth.swift"; path = "NotificationBanner/Classes/String+heightForConstrainedWidth.swift"; sourceTree = "<group>"; };
-		66FC29936A2320565D5539C9ABB59A9F /* EasyLog.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EasyLog.swift; path = Easy/Classes/Core/EasyLog.swift; sourceTree = "<group>"; };
 		6761FE78F5AB364E0BDB70256AD636A1 /* StatusBarNotificationBanner.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = StatusBarNotificationBanner.swift; path = NotificationBanner/Classes/StatusBarNotificationBanner.swift; sourceTree = "<group>"; };
-		67F18BB96F37C454BE161CD1552C60FC /* EasyThen.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EasyThen.swift; path = Easy/Classes/Core/EasyThen.swift; sourceTree = "<group>"; };
 		683B9D2B87678F6DF5F9679A965F6AF7 /* FLEXWebViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXWebViewController.h; path = Classes/GlobalStateExplorers/FLEXWebViewController.h; sourceTree = "<group>"; };
 		688C5270481366F5B3FE27F373DCE33D /* FLEXLiveObjectsTableViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXLiveObjectsTableViewController.m; path = Classes/GlobalStateExplorers/FLEXLiveObjectsTableViewController.m; sourceTree = "<group>"; };
 		68A44984681C355583DC9ED530FDD191 /* FLEXLibrariesTableViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXLibrariesTableViewController.h; path = Classes/GlobalStateExplorers/FLEXLibrariesTableViewController.h; sourceTree = "<group>"; };
@@ -1012,18 +1011,19 @@
 		69001D2B8568928F9367F39C506DAB09 /* NotificationBannerQueue.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NotificationBannerQueue.swift; path = NotificationBanner/Classes/NotificationBannerQueue.swift; sourceTree = "<group>"; };
 		695D19E72A600FD816E324BA6D8329D3 /* WMProgressView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = WMProgressView.h; path = WMPageController/WMMenuView/WMProgressView.h; sourceTree = "<group>"; };
 		69BB297A4633FB3B14F7761FE0A1303C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.3.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
-		6B119E447A00321EB70F9A1D13F9B5A4 /* Easy.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Easy.swift; path = Easy/Classes/Core/Easy.swift; sourceTree = "<group>"; };
 		6BB8B9B627CB95627E4E24C8FD059B73 /* FLEXFileBrowserSearchOperation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXFileBrowserSearchOperation.h; path = Classes/GlobalStateExplorers/FLEXFileBrowserSearchOperation.h; sourceTree = "<group>"; };
 		6C30216E747AC3C6A3C7C73D71620117 /* ConstraintLayoutGuideDSL.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintLayoutGuideDSL.swift; path = Source/ConstraintLayoutGuideDSL.swift; sourceTree = "<group>"; };
 		6C7C795FF9202B85FA4EA203418AF358 /* FLEXHeapEnumerator.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXHeapEnumerator.m; path = Classes/Utility/FLEXHeapEnumerator.m; sourceTree = "<group>"; };
 		6C91CE7EB3EFAD669B599056C3EBC7A1 /* SDWebImage.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SDWebImage.xcconfig; sourceTree = "<group>"; };
 		6CA9FFF2A0379D27A266BC48A4D7C590 /* UIView+MJExtension.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIView+MJExtension.h"; path = "MJRefresh/UIView+MJExtension.h"; sourceTree = "<group>"; };
+		6D7F1159D9E53CE0020DAA47EFFDE70B /* EasyValid.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EasyValid.swift; path = Easy/Classes/Core/EasyValid.swift; sourceTree = "<group>"; };
 		6D9EB1E7DB2C2E6E2453B508D26847C3 /* SDWebImageTransition.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDWebImageTransition.h; path = SDWebImage/SDWebImageTransition.h; sourceTree = "<group>"; };
 		6DA7682B521B12E928E99EF32014677A /* FLEXObjectExplorerFactory.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXObjectExplorerFactory.h; path = Classes/ObjectExplorers/FLEXObjectExplorerFactory.h; sourceTree = "<group>"; };
 		6E4B4D68297DBA84D61D5228B11B5FAE /* EasyConfig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EasyConfig.swift; path = Easy/Classes/Session/EasyConfig.swift; sourceTree = "<group>"; };
 		6EDE0F06A140591EE2CB8FB1B1417E83 /* MJRefreshConst.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MJRefreshConst.m; path = MJRefresh/MJRefreshConst.m; sourceTree = "<group>"; };
-		6FC2DAC8517270DA30E6F5A58369D0A4 /* EasyGlobal.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EasyGlobal.swift; path = Easy/Classes/Core/EasyGlobal.swift; sourceTree = "<group>"; };
+		706999684EC25BEB4EEB1C8C3A9DE006 /* EasyCrypto.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EasyCrypto.swift; path = Easy/Classes/Core/EasyCrypto.swift; sourceTree = "<group>"; };
 		70C406FE9555C26E5CA8DA67AA87B166 /* MJRefreshAutoStateFooter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MJRefreshAutoStateFooter.h; path = MJRefresh/Custom/Footer/Auto/MJRefreshAutoStateFooter.h; sourceTree = "<group>"; };
+		7167E60477C83403E62F722FA858DF61 /* EasyPopupView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EasyPopupView.swift; path = Easy/Classes/Core/EasyPopupView.swift; sourceTree = "<group>"; };
 		71FE4D85BF372D323DF6E2D49D196487 /* Typealiases.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Typealiases.swift; path = Source/Typealiases.swift; sourceTree = "<group>"; };
 		732BB9C8A368D1C4446AB2B8C69D7F6D /* MJRefreshAutoFooter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MJRefreshAutoFooter.h; path = MJRefresh/Base/MJRefreshAutoFooter.h; sourceTree = "<group>"; };
 		7380900457B3878AE0427DCA47663283 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -1032,7 +1032,6 @@
 		74E79B341FAC2768A9C536E8510EB0E6 /* FLEXArgumentInputStringView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXArgumentInputStringView.h; path = Classes/Editing/ArgumentInputViews/FLEXArgumentInputStringView.h; sourceTree = "<group>"; };
 		759238DF84FE8F0D5333346DF319F0DD /* ConstraintMultiplierTarget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintMultiplierTarget.swift; path = Source/ConstraintMultiplierTarget.swift; sourceTree = "<group>"; };
 		77B260E48D96D800C9BDAE7FFB275939 /* Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Extensions.swift; path = Sources/Extensions.swift; sourceTree = "<group>"; };
-		790BFDA18702F865A55C59207E16D19F /* EasyExtension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EasyExtension.swift; path = Easy/Classes/Core/EasyExtension.swift; sourceTree = "<group>"; };
 		792ADC39667E87A5B1951298912C11D9 /* FLEXArgumentInputDateView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXArgumentInputDateView.h; path = Classes/Editing/ArgumentInputViews/FLEXArgumentInputDateView.h; sourceTree = "<group>"; };
 		79B1FFCE009514D583723BB036DAD9A6 /* MonkeyKing-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MonkeyKing-prefix.pch"; sourceTree = "<group>"; };
 		7A1ECADE2F1C2BB395069B580341213B /* FLEXArrayExplorerViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXArrayExplorerViewController.h; path = Classes/ObjectExplorers/FLEXArrayExplorerViewController.h; sourceTree = "<group>"; };
@@ -1112,6 +1111,7 @@
 		9E74B82486B19FEDFCCAC327DCA572C8 /* SnapKit.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SnapKit.xcconfig; sourceTree = "<group>"; };
 		9E7B8DF181DC46E45A2A3E1CBB451F16 /* Pods-Easy_Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Easy_Example-resources.sh"; sourceTree = "<group>"; };
 		9E8849125CD83A303DF435F0594E75FD /* WMPageController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = WMPageController.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9FDB480F6C7704E16BF1703F95365567 /* EasyRefresh.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EasyRefresh.swift; path = Easy/Classes/Core/EasyRefresh.swift; sourceTree = "<group>"; };
 		A07F30D063D4C1051F6831EE02DFF7CB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		A13DD240F84214E10D13C0C666A62E64 /* SDWebImageFrame.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDWebImageFrame.h; path = SDWebImage/SDWebImageFrame.h; sourceTree = "<group>"; };
 		A18E1487E0B003164EBE8417DFC550D9 /* EasyTestViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EasyTestViewController.swift; path = Easy/Classes/Beta/EasyTestViewController.swift; sourceTree = "<group>"; };
@@ -1140,6 +1140,7 @@
 		A8FD16DD2051F955B88D2358F77E0762 /* FLEXManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXManager.h; path = Classes/FLEXManager.h; sourceTree = "<group>"; };
 		A9A4AB0ACD194BF3F49597CBB142A18D /* FLEXToolbarItem.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXToolbarItem.m; path = Classes/Toolbar/FLEXToolbarItem.m; sourceTree = "<group>"; };
 		A9AD944C810675A2FBBB23E8A3D75CCE /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.3.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
+		AA39326D365132060DF84672FE6286C0 /* EasyCollectionViewWaterFlowLayout.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EasyCollectionViewWaterFlowLayout.swift; path = Easy/Classes/Core/EasyCollectionViewWaterFlowLayout.swift; sourceTree = "<group>"; };
 		ABC25CA342D4A4BACB78BDE694521601 /* FLEXArgumentInputNumberView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXArgumentInputNumberView.m; path = Classes/Editing/ArgumentInputViews/FLEXArgumentInputNumberView.m; sourceTree = "<group>"; };
 		ACF57A83AECB33F31E1F75E52180FFC8 /* SDWebImageManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDWebImageManager.m; path = SDWebImage/SDWebImageManager.m; sourceTree = "<group>"; };
 		AD7E329308B70C60B01A73F8779D8784 /* FLEXNetworkObserver.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXNetworkObserver.h; path = Classes/Network/PonyDebugger/FLEXNetworkObserver.h; sourceTree = "<group>"; };
@@ -1149,6 +1150,7 @@
 		AFAC1E83B6A83221EFE390057D9B4CE8 /* WMPageController-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "WMPageController-umbrella.h"; sourceTree = "<group>"; };
 		AFE7034E53B67F2DEF7AC15C3716455E /* SDWebImageDownloaderOperation.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDWebImageDownloaderOperation.m; path = SDWebImage/SDWebImageDownloaderOperation.m; sourceTree = "<group>"; };
 		B07D05C3C6A381E47551C2E1B5307949 /* NotificationBannerSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NotificationBannerSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B0A9DABE033376985AACA8FC166037A3 /* EasyWebViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EasyWebViewController.swift; path = Easy/Classes/Core/EasyWebViewController.swift; sourceTree = "<group>"; };
 		B10B5234F3E30BC70E91F93BD012D189 /* FLEXTableColumnHeader.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXTableColumnHeader.h; path = Classes/GlobalStateExplorers/DatabaseBrowser/FLEXTableColumnHeader.h; sourceTree = "<group>"; };
 		B2106431D23880839E45FB530972178C /* FLEXNetworkSettingsTableViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXNetworkSettingsTableViewController.h; path = Classes/Network/FLEXNetworkSettingsTableViewController.h; sourceTree = "<group>"; };
 		B2456F5F388C2C240DDBD14A5A28969C /* Pods-Easy_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-Easy_Example.modulemap"; sourceTree = "<group>"; };
@@ -1182,11 +1184,14 @@
 		BC3A54C37F72CE6430FB623407EF55A8 /* MarqueeLabel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MarqueeLabel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC90B12E474CC3D77D263F79411D9C8C /* SDImageCache.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDImageCache.m; path = SDWebImage/SDImageCache.m; sourceTree = "<group>"; };
 		BCC9A9781904649E1F733F0D879167AC /* Easy.common-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Easy.common-umbrella.h"; sourceTree = "<group>"; };
+		BE8F99978065C03BD9A959720125FA7E /* EasyApp.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EasyApp.swift; path = Easy/Classes/Core/EasyApp.swift; sourceTree = "<group>"; };
 		BED5C40B911029F488126574BE37565A /* SnapKit.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = SnapKit.modulemap; sourceTree = "<group>"; };
+		BEFFEBE1E49BB082E79A91C0B89DF588 /* Easy.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Easy.swift; path = Easy/Classes/Core/Easy.swift; sourceTree = "<group>"; };
 		BFA219E8A935DB8A09249757062528EE /* FLEXNetworkHistoryTableViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXNetworkHistoryTableViewController.h; path = Classes/Network/FLEXNetworkHistoryTableViewController.h; sourceTree = "<group>"; };
 		BFA4D8AE4D8BE2C1A53D517243000C3E /* Pods-Easy_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Easy_Tests-frameworks.sh"; sourceTree = "<group>"; };
 		BFAD035EA2B9A41E248F738513F6025D /* MJRefreshBackFooter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MJRefreshBackFooter.m; path = MJRefresh/Base/MJRefreshBackFooter.m; sourceTree = "<group>"; };
 		C03E8A89ABEBE8952ABDB729166AE21C /* SDWebImageDownloader.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDWebImageDownloader.h; path = SDWebImage/SDWebImageDownloader.h; sourceTree = "<group>"; };
+		C17FC3DC92FCEBDA386118E9B7359032 /* EasyNavigationController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EasyNavigationController.swift; path = Easy/Classes/Core/EasyNavigationController.swift; sourceTree = "<group>"; };
 		C19263CCDC50605BD9DDF76FFC4225D6 /* MJRefreshBackStateFooter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MJRefreshBackStateFooter.h; path = MJRefresh/Custom/Footer/Back/MJRefreshBackStateFooter.h; sourceTree = "<group>"; };
 		C1B8448BFFEEBC7F5807039C40CBD8CF /* FLEXNetworkRecorder.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXNetworkRecorder.m; path = Classes/Network/FLEXNetworkRecorder.m; sourceTree = "<group>"; };
 		C30B3C5553FD3307C237FCC8A378ACC3 /* FLEXArgumentInputColorView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXArgumentInputColorView.h; path = Classes/Editing/ArgumentInputViews/FLEXArgumentInputColorView.h; sourceTree = "<group>"; };
@@ -1202,12 +1207,10 @@
 		CC6BFE6A814313EFEE85BB70E16975D5 /* FLEXDictionaryExplorerViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXDictionaryExplorerViewController.h; path = Classes/ObjectExplorers/FLEXDictionaryExplorerViewController.h; sourceTree = "<group>"; };
 		CCB09E17E1F062F630A856EDC1FD8CC2 /* Easy.common.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Easy.common.modulemap; sourceTree = "<group>"; };
 		CD1219F11560D03FB59205526EBFC57A /* MarqueeLabel.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = MarqueeLabel.modulemap; sourceTree = "<group>"; };
-		CD971D5D7132BBD72950B684AA3CE248 /* EasyLoading.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EasyLoading.swift; path = Easy/Classes/Core/EasyLoading.swift; sourceTree = "<group>"; };
 		CE309BE7D62F8A2C704EC7DD46A80614 /* FLEXFieldEditorViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXFieldEditorViewController.h; path = Classes/Editing/FLEXFieldEditorViewController.h; sourceTree = "<group>"; };
 		CF14243DC187DFB2C3ABE8AB2E04DAE5 /* FLEXArgumentInputStringView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXArgumentInputStringView.m; path = Classes/Editing/ArgumentInputViews/FLEXArgumentInputStringView.m; sourceTree = "<group>"; };
 		CF223883683B0EB31EC91F505E08A3D1 /* MJRefreshHeader.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MJRefreshHeader.h; path = MJRefresh/Base/MJRefreshHeader.h; sourceTree = "<group>"; };
 		CFE211B548CC6BD0B84DC8E617A5F70D /* FLEXTableListViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXTableListViewController.m; path = Classes/GlobalStateExplorers/DatabaseBrowser/FLEXTableListViewController.m; sourceTree = "<group>"; };
-		D049350130E3CCAA624BD0B27386E4B2 /* EasyCollectionViewWaterFlowLayout.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EasyCollectionViewWaterFlowLayout.swift; path = Easy/Classes/Core/EasyCollectionViewWaterFlowLayout.swift; sourceTree = "<group>"; };
 		D07F6CD5EBAACAFA59828203C5B50E9C /* ConstraintLayoutSupport.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintLayoutSupport.swift; path = Source/ConstraintLayoutSupport.swift; sourceTree = "<group>"; };
 		D118695369F7C7D2506990A4BF417835 /* FLEXSystemLogTableViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXSystemLogTableViewController.h; path = Classes/GlobalStateExplorers/SystemLog/FLEXSystemLogTableViewController.h; sourceTree = "<group>"; };
 		D19D6E172D63B3032CB646D0BB6884C8 /* NSBundle+MJRefresh.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSBundle+MJRefresh.h"; path = "MJRefresh/NSBundle+MJRefresh.h"; sourceTree = "<group>"; };
@@ -1222,15 +1225,12 @@
 		D63F9557222EA08A4B92477125CAB227 /* FLEXNetworkRecorder.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXNetworkRecorder.h; path = Classes/Network/FLEXNetworkRecorder.h; sourceTree = "<group>"; };
 		D6D38D55559955319F3042B6EA05F8A4 /* MJRefreshAutoStateFooter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MJRefreshAutoStateFooter.m; path = MJRefresh/Custom/Footer/Auto/MJRefreshAutoStateFooter.m; sourceTree = "<group>"; };
 		D77361B15A129FAC808B38E75AF3D9A0 /* MBProgressHUD.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
-		D8A4915C20D3FDD10515AC6F869EA7BA /* EasyApp.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EasyApp.swift; path = Easy/Classes/Core/EasyApp.swift; sourceTree = "<group>"; };
 		D934B32F4A7B1F5D7AF1CEF56EA858C0 /* FLEXNetworkSettingsTableViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXNetworkSettingsTableViewController.m; path = Classes/Network/FLEXNetworkSettingsTableViewController.m; sourceTree = "<group>"; };
 		D943AD4FE01D04021AC0429A81CCD763 /* ResponseSerialization.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ResponseSerialization.swift; path = Source/ResponseSerialization.swift; sourceTree = "<group>"; };
-		D977AD353345DC7DCB9E0E5D6993D0B5 /* EasyLaunchView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EasyLaunchView.swift; path = Easy/Classes/Core/EasyLaunchView.swift; sourceTree = "<group>"; };
 		D9D2A7EF91AF2E3F76584D9143F91E7D /* EasyError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EasyError.swift; path = Easy/Classes/Session/EasyError.swift; sourceTree = "<group>"; };
 		DA57DD0A3B001E15C12A57F9E1BDDD08 /* FLEXNetworkTransaction.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXNetworkTransaction.h; path = Classes/Network/FLEXNetworkTransaction.h; sourceTree = "<group>"; };
 		DB151C7614FCDE73AA73F9B07D43150D /* SDWebImage.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = SDWebImage.modulemap; sourceTree = "<group>"; };
 		DB3967F00515ADBFDAF7D54FE2A0D453 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DBAA9A3888878C186F241964DE9BF35E /* EasyRefresh.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EasyRefresh.swift; path = Easy/Classes/Core/EasyRefresh.swift; sourceTree = "<group>"; };
 		DBEB101FD780CDC2F2371F803376A9C7 /* WMPageController.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = WMPageController.xcconfig; sourceTree = "<group>"; };
 		DC90A746EF6F4F9C6D5E8FB223F6917C /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC9383DF2C8699B349177D3B331BD2AC /* FLEX.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEX.h; path = Classes/FLEX.h; sourceTree = "<group>"; };
@@ -1247,7 +1247,6 @@
 		E0EF1587333030591DE86893B86578CF /* FLEXArgumentInputJSONObjectView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXArgumentInputJSONObjectView.h; path = Classes/Editing/ArgumentInputViews/FLEXArgumentInputJSONObjectView.h; sourceTree = "<group>"; };
 		E11A5CCCD3D86D592C940EE1AC5E73D9 /* MJRefresh-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MJRefresh-prefix.pch"; sourceTree = "<group>"; };
 		E14C02F13C35D7647C259A5D9840D678 /* MJRefreshBackNormalFooter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MJRefreshBackNormalFooter.h; path = MJRefresh/Custom/Footer/Back/MJRefreshBackNormalFooter.h; sourceTree = "<group>"; };
-		E21902B39C30AE6F62A4DA6FE32CA467 /* EasyCrypto.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EasyCrypto.swift; path = Easy/Classes/Core/EasyCrypto.swift; sourceTree = "<group>"; };
 		E25D08B914D23A0BF0B4C45580EA19CC /* FLEXSetExplorerViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXSetExplorerViewController.h; path = Classes/ObjectExplorers/FLEXSetExplorerViewController.h; sourceTree = "<group>"; };
 		E277971079AA5464429A3CF6C4231971 /* SnapKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SnapKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2BB832980F29447AC06A8C56CD6111A /* NotificationBannerSwift-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "NotificationBannerSwift-dummy.m"; sourceTree = "<group>"; };
@@ -1257,7 +1256,6 @@
 		E43FAA7F647C5B0F68C1AB920445771B /* SDWebImageCompat.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDWebImageCompat.m; path = SDWebImage/SDWebImageCompat.m; sourceTree = "<group>"; };
 		E4B49B3C6FEDE271D4FB96357503B603 /* Networking.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Networking.swift; path = Sources/Networking.swift; sourceTree = "<group>"; };
 		E5A5BADAF53207A5C73A6965F123E37B /* MJRefreshFooter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MJRefreshFooter.m; path = MJRefresh/Base/MJRefreshFooter.m; sourceTree = "<group>"; };
-		E5A9D42BDADBB7BBEB912480134C3419 /* EasyPopupView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EasyPopupView.swift; path = Easy/Classes/Core/EasyPopupView.swift; sourceTree = "<group>"; };
 		E5C53DB3723EB238AA01A43E1FE6218E /* ConstraintOffsetTarget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintOffsetTarget.swift; path = Source/ConstraintOffsetTarget.swift; sourceTree = "<group>"; };
 		E61ECF7DF9598387FBC934EEFD057500 /* FLEXObjectExplorerFactory.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXObjectExplorerFactory.m; path = Classes/ObjectExplorers/FLEXObjectExplorerFactory.m; sourceTree = "<group>"; };
 		E67F4A1459982E799435B05DC1EE2A0A /* NotificationBannerSwift-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "NotificationBannerSwift-umbrella.h"; sourceTree = "<group>"; };
@@ -1295,6 +1293,7 @@
 		F1F1694D16AD2E6B4CC7A6D4F268CD45 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F1FC6DD0AE619FF97A15960CB59D516D /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F22B89D6B1D0481222DD2097762F1FD6 /* SDWebImageImageIOCoder.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDWebImageImageIOCoder.h; path = SDWebImage/SDWebImageImageIOCoder.h; sourceTree = "<group>"; };
+		F27F566B0DEC9976777650CD897E185F /* EasyThen.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EasyThen.swift; path = Easy/Classes/Core/EasyThen.swift; sourceTree = "<group>"; };
 		F34E2AC6FDBB7A319075120220A06130 /* FLEXArgumentInputFontsPickerView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXArgumentInputFontsPickerView.m; path = Classes/Editing/ArgumentInputViews/FLEXArgumentInputFontsPickerView.m; sourceTree = "<group>"; };
 		F475FF9AC058887FB0173571DB6C3483 /* AFError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AFError.swift; path = Source/AFError.swift; sourceTree = "<group>"; };
 		F482067CB315DAB204E1DB657731F8A7 /* SDImageCache.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDImageCache.h; path = SDWebImage/SDImageCache.h; sourceTree = "<group>"; };
@@ -1302,6 +1301,7 @@
 		F4CD5CA4C276EA411291A7A409A37320 /* SDWebImageManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDWebImageManager.h; path = SDWebImage/SDWebImageManager.h; sourceTree = "<group>"; };
 		F594773DD5C7EDD67853D6968D138C0D /* FLEXRealmDatabaseManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXRealmDatabaseManager.h; path = Classes/GlobalStateExplorers/DatabaseBrowser/FLEXRealmDatabaseManager.h; sourceTree = "<group>"; };
 		F5EB29F4E3F4CFB8D8705443D9624731 /* UIView+WebCache.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIView+WebCache.m"; path = "SDWebImage/UIView+WebCache.m"; sourceTree = "<group>"; };
+		F73924959291F8E325D9255D7F0F2352 /* EasyPopupMenu.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EasyPopupMenu.swift; path = Easy/Classes/Core/EasyPopupMenu.swift; sourceTree = "<group>"; };
 		F86628BE55985AEBA89EDAFE9B0C7F54 /* Pods-Easy_Example_Beta-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Easy_Example_Beta-acknowledgements.plist"; sourceTree = "<group>"; };
 		F8CD1F5077A77E8F6452B1BCB4C3D971 /* FLEXNetworkTransactionDetailTableViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXNetworkTransactionDetailTableViewController.m; path = Classes/Network/FLEXNetworkTransactionDetailTableViewController.m; sourceTree = "<group>"; };
 		F91C70173CC4E0E60E68A55548AE0F18 /* FLEXRuntimeUtility.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXRuntimeUtility.m; path = Classes/Utility/FLEXRuntimeUtility.m; sourceTree = "<group>"; };
@@ -1512,6 +1512,14 @@
 			path = NotificationBannerSwift;
 			sourceTree = "<group>";
 		};
+		0A7EAF1B497522F2E1B2B53B58E076FD /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				30ECC6D80A1A414995E54E91BBF3433A /* EasyCore.bundle */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		0CC7F60A6B0B962BB72925FA0A7D82F1 /* Social */ = {
 			isa = PBXGroup;
 			children = (
@@ -1639,37 +1647,6 @@
 			name = "Development Pods";
 			sourceTree = "<group>";
 		};
-		2B5B4F0098D72A02FF67287E6E684625 /* Core */ = {
-			isa = PBXGroup;
-			children = (
-				6B119E447A00321EB70F9A1D13F9B5A4 /* Easy.swift */,
-				4F39925883C34204237A4921BAA798F4 /* EasyAlert.swift */,
-				D8A4915C20D3FDD10515AC6F869EA7BA /* EasyApp.swift */,
-				D049350130E3CCAA624BD0B27386E4B2 /* EasyCollectionViewWaterFlowLayout.swift */,
-				E21902B39C30AE6F62A4DA6FE32CA467 /* EasyCrypto.swift */,
-				790BFDA18702F865A55C59207E16D19F /* EasyExtension.swift */,
-				6FC2DAC8517270DA30E6F5A58369D0A4 /* EasyGlobal.swift */,
-				0C63035B8899D892427632E1B84F76FE /* EasyKeychain.swift */,
-				D977AD353345DC7DCB9E0E5D6993D0B5 /* EasyLaunchView.swift */,
-				CD971D5D7132BBD72950B684AA3CE248 /* EasyLoading.swift */,
-				66FC29936A2320565D5539C9ABB59A9F /* EasyLog.swift */,
-				324EA68CB9C773062F2F1788CB336C7D /* EasyNavigationController.swift */,
-				12F029095789801CB5B1EA8FD6F6F4E7 /* EasyPlaceholder.swift */,
-				2561F0DF274342E3DAA18D74550147D0 /* EasyPopupMenu.swift */,
-				E5A9D42BDADBB7BBEB912480134C3419 /* EasyPopupView.swift */,
-				DBAA9A3888878C186F241964DE9BF35E /* EasyRefresh.swift */,
-				5101B2E4660E442EDF58B6AA284E6AC9 /* EasyRouter.swift */,
-				67F18BB96F37C454BE161CD1552C60FC /* EasyThen.swift */,
-				023BB1126758A8488745DB88D4B0CCA5 /* EasyTo.swift */,
-				1543E7F8CF44B100A6326B7D83BB7649 /* EasyValid.swift */,
-				05F954400C3B5C3C26C5F53EBB0D4057 /* EasyViewController.swift */,
-				2E8F7A17AA3A1D77473E7D090CB642FF /* EasyWebImage.swift */,
-				43800A07E625BE42CA226CE68132B2F9 /* EasyWebViewController.swift */,
-				A0551EAA91364209F7CC5467C01395AC /* Resources */,
-			);
-			name = Core;
-			sourceTree = "<group>";
-		};
 		2C0119FBBFCEFB0A8E426F6352EA5841 /* SnapKit */ = {
 			isa = PBXGroup;
 			children = (
@@ -1716,7 +1693,7 @@
 			isa = PBXGroup;
 			children = (
 				D8C20C01A40BC752B781126405E8CA24 /* Beta */,
-				2B5B4F0098D72A02FF67287E6E684625 /* Core */,
+				DD1FF28B0B277E76081C5EC5AB2E04EA /* Core */,
 				6BF6D537BE159B3FBC69B58527494FEC /* Device */,
 				C1281C952884CF2D3E808A65B2D8EC12 /* Page */,
 				74517833C5EA9A436E409F1C7947F953 /* Pod */,
@@ -2237,14 +2214,6 @@
 			name = Session;
 			sourceTree = "<group>";
 		};
-		A0551EAA91364209F7CC5467C01395AC /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				0499D206C2573C75019E123AF0DC0391 /* EasyCore.bundle */,
-			);
-			name = Resources;
-			sourceTree = "<group>";
-		};
 		A606D8E4D9B1112BEC55469D1046C845 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -2354,6 +2323,37 @@
 				A18E1487E0B003164EBE8417DFC550D9 /* EasyTestViewController.swift */,
 			);
 			name = Beta;
+			sourceTree = "<group>";
+		};
+		DD1FF28B0B277E76081C5EC5AB2E04EA /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				BEFFEBE1E49BB082E79A91C0B89DF588 /* Easy.swift */,
+				012AFCDEC45BB302789168692DC4D6B1 /* EasyAlert.swift */,
+				BE8F99978065C03BD9A959720125FA7E /* EasyApp.swift */,
+				AA39326D365132060DF84672FE6286C0 /* EasyCollectionViewWaterFlowLayout.swift */,
+				706999684EC25BEB4EEB1C8C3A9DE006 /* EasyCrypto.swift */,
+				3858F2E335DF33413FAA687ADC47F8C4 /* EasyExtension.swift */,
+				023BED8E98CCFE2986A452EC3EA2A260 /* EasyGlobal.swift */,
+				4D89742F8EE514C4029DA3C72C386F86 /* EasyKeychain.swift */,
+				654139B623460624C3E996520D05C8AC /* EasyLaunchView.swift */,
+				60E2F03CB9C6B13B0C39AD16D12A262E /* EasyLoading.swift */,
+				07E632D013E201CA359233FD53928989 /* EasyLog.swift */,
+				C17FC3DC92FCEBDA386118E9B7359032 /* EasyNavigationController.swift */,
+				4889279EB7A22E8A0131BA2464873A7A /* EasyPlaceholder.swift */,
+				F73924959291F8E325D9255D7F0F2352 /* EasyPopupMenu.swift */,
+				7167E60477C83403E62F722FA858DF61 /* EasyPopupView.swift */,
+				9FDB480F6C7704E16BF1703F95365567 /* EasyRefresh.swift */,
+				22B33F56B8E06F1C9E1A486C39C0245F /* EasyRouter.swift */,
+				F27F566B0DEC9976777650CD897E185F /* EasyThen.swift */,
+				5758E0754A620C35AA3630557CE395FE /* EasyTo.swift */,
+				6D7F1159D9E53CE0020DAA47EFFDE70B /* EasyValid.swift */,
+				3569FAE0438EA2B04CF2E9976B94C906 /* EasyViewController.swift */,
+				2C40838AF2E9AF264CAA433908F80E22 /* EasyWebImage.swift */,
+				B0A9DABE033376985AACA8FC166037A3 /* EasyWebViewController.swift */,
+				0A7EAF1B497522F2E1B2B53B58E076FD /* Resources */,
+			);
+			name = Core;
 			sourceTree = "<group>";
 		};
 		F91D8FEC70605BD761552144C64183E0 /* Support Files */ = {
@@ -2667,7 +2667,7 @@
 			buildConfigurationList = 7622306DC3AED5D7F13FE096AF104814 /* Build configuration list for PBXNativeTarget "Easy.common-Beta" */;
 			buildPhases = (
 				C9A092DE5C7C803D278A2C52B610518A /* Headers */,
-				D594632A9930A5EC35427A7FFBB23F47 /* Sources */,
+				7537F8718E277472E225786F14BCB8CF /* Sources */,
 				498154C9801497AF716AE7EF377093A8 /* Frameworks */,
 				B78DD90E1D2A2F00AA5788A38454748B /* Resources */,
 			);
@@ -2843,7 +2843,7 @@
 			buildConfigurationList = FC6C02B158B8C15BB5A1369A37904D51 /* Build configuration list for PBXNativeTarget "Easy.common" */;
 			buildPhases = (
 				A1293D9991668760A10266A56EE8A827 /* Headers */,
-				A6086BF539C968B11FF707E845A7225B /* Sources */,
+				F8CDF26EB5B40DC9CACD76E58D7ED50B /* Sources */,
 				9742A741CC120EE1743F9F598F0DAB8D /* Frameworks */,
 				D24EAEB6A6FDBE8655F619C96F55743D /* Resources */,
 			);
@@ -3271,6 +3271,49 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		7537F8718E277472E225786F14BCB8CF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1E2F737F7E25C075AE768225ACCE30C1 /* Easy.common-Beta-dummy.m in Sources */,
+				A62DCE0D3FE6CAA99A00596606D09EF7 /* Easy.swift in Sources */,
+				2285C46C3F6D17742ED66592CB3A69F4 /* EasyAlert.swift in Sources */,
+				FE28FDA2B7965DFF982D76B5A20C9886 /* EasyApp.swift in Sources */,
+				0C55DF2498A91FF1EE7F28D288187718 /* EasyBeta.swift in Sources */,
+				D30DF087D73B91E58A090D8E8C1E6F51 /* EasyCheck.swift in Sources */,
+				403F33D19B911C0F7384755D3BB9C277 /* EasyCollectionViewWaterFlowLayout.swift in Sources */,
+				C1B4012325442956C4C1F51C9C74A1D8 /* EasyConfig.swift in Sources */,
+				E9F8A1B22EDA06E6C0DE15153A846CCF /* EasyCrypto.swift in Sources */,
+				60502929B6E9CFC785A5C60437B380CC /* EasyDevice.swift in Sources */,
+				066F38B0232D16936EB281C8D242B3B4 /* EasyError.swift in Sources */,
+				97902B2DBC98FA7B1B68A645B9FDCDBD /* EasyExtension.swift in Sources */,
+				9DA2CD5068A3CD19549608A16C74DDB1 /* EasyGlobal.swift in Sources */,
+				962B7C4FA2900DFF7F9D5BE36B4B10C5 /* EasyKeychain.swift in Sources */,
+				055DD1C5D077C44A0F9867D5024DF0B4 /* EasyLaunchView.swift in Sources */,
+				FD92728CE34DBB8672581F185BC1F607 /* EasyLoading.swift in Sources */,
+				2220D3E75FDD60EAF8B2F36B6B8A3B80 /* EasyLog.swift in Sources */,
+				BD36F9211E6643DA52A2175209FF9770 /* EasyNavigationController.swift in Sources */,
+				1305F518896E3014304C11A3AA8115F1 /* EasyPage.swift in Sources */,
+				109B5FF99BE8EA35FEE64C75CF531BE3 /* EasyPlaceholder.swift in Sources */,
+				0ACE440F60C554B60AFECFF48A046FE7 /* EasyPopupMenu.swift in Sources */,
+				8797DD4F73B541FEE302103D350081E8 /* EasyPopupView.swift in Sources */,
+				5E61E25A06F171D7F1C493AD449C1E7F /* EasyRefresh.swift in Sources */,
+				0D05EEF6C15A2B0D399F516E2999E3B8 /* EasyResult.swift in Sources */,
+				5BC009773AB280EBEEEB01398C83B057 /* EasyRouter.swift in Sources */,
+				8DAB5628EF9FF34024D7810AFC2F2BB1 /* EasyScan.swift in Sources */,
+				8AF5D7F68EEF1A853B206B88E2695F18 /* EasySession.swift in Sources */,
+				B915C5145A9110E5219F2F2BD12DCE8C /* EasySessionViewController.swift in Sources */,
+				E3175331145F9EFA27D84C6031ACBECC /* EasySocial.swift in Sources */,
+				C6968B01ED0C7584600AD8440904FE5D /* EasyTestViewController.swift in Sources */,
+				56DB56762AF86A060A0A8B7D4D95B42D /* EasyThen.swift in Sources */,
+				7D06B6421624C223F22E42CD9D930848 /* EasyTo.swift in Sources */,
+				B1EBF46DFD275B5BD553FF5BFE6D9B90 /* EasyValid.swift in Sources */,
+				2AE4CF7302A62D7479E085A4907729DD /* EasyViewController.swift in Sources */,
+				EC0FDE21F9EC2270A9C3F59893C99585 /* EasyWebImage.swift in Sources */,
+				56D219DB1DB96A47EC671FBB85386C22 /* EasyWebViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		90FE0F314F245270006175CC33B3B259 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -3302,45 +3345,6 @@
 				79ECFC3EACCAB557FDE608667D7D2206 /* UIImageView+WebCache.m in Sources */,
 				6260AC150737CB0114D0FDBAB12B827F /* UIView+WebCache.m in Sources */,
 				23EA759EBC041A316726655D0907DDA8 /* UIView+WebCacheOperation.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A6086BF539C968B11FF707E845A7225B /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				9E20AFB91CB3571A4C37B1C50103BEDF /* Easy.common-dummy.m in Sources */,
-				D0BA958EA7464CEA1BE5DF33E1ED1EEE /* Easy.swift in Sources */,
-				968278FDC3649EE3040AC20B03EEC228 /* EasyAlert.swift in Sources */,
-				E9E443165098F0E50D3F29490A3C9670 /* EasyApp.swift in Sources */,
-				FCC0A64BE34BB38BBB90F319B9F051C6 /* EasyNavigationController.swift in Sources */,
-				4C959686BC3ACA23076993F878B54F9D /* EasyViewController.swift in Sources */,
-				1AE49C3A34388EADA673598C49DD52F2 /* EasyCollectionViewWaterFlowLayout.swift in Sources */,
-				5EF0A88789E7320875D5E16DCDC26A77 /* EasyConfig.swift in Sources */,
-				B08A7678B03C4CE66C310D7F6FB321C8 /* EasyCrypto.swift in Sources */,
-				8A57CDA4045C48CFD9D4A0319464E23E /* EasyDevice.swift in Sources */,
-				606D9FDA9B70AEC5D4A32112E7E806D9 /* EasyError.swift in Sources */,
-				5AC5FE82E1E6CCE11CB4D3D1831483C4 /* EasyExtension.swift in Sources */,
-				1BBDDFA50B1C349616153FDDC4078F39 /* EasyGlobal.swift in Sources */,
-				FC2913AC12022F0AC410F732A33CDC46 /* EasyKeychain.swift in Sources */,
-				6D5233A0DA0910629DE189DF0C1FDE87 /* EasyLaunchView.swift in Sources */,
-				27414365D14987D44B8E005B8DFDACEC /* EasyLoading.swift in Sources */,
-				B7729679BE14B5147F42CF84A7E156F4 /* EasyLog.swift in Sources */,
-				D47961AE429D171657C1F304366297F0 /* EasyPage.swift in Sources */,
-				DCBD5EA59DEDF5CFFC147C5B917745D0 /* EasyPlaceholder.swift in Sources */,
-				971CC8406954DC409807B336D0B019F0 /* EasyPopupMenu.swift in Sources */,
-				5008581FDFFEFC33E357A2F3A010594C /* EasyPopupView.swift in Sources */,
-				807EEF637B5EFA0BFC9FA9ED92BDDF1A /* EasyRefresh.swift in Sources */,
-				97A881CACFA31D8727E5AAAB5E937DD6 /* EasyResult.swift in Sources */,
-				861503ED1452D4D23B078F8753A6D530 /* EasyRouter.swift in Sources */,
-				3D4FBA756D4737FF2F8001401071ABC2 /* EasyScan.swift in Sources */,
-				3E5D245CA0AAC8AB0F2CF1ABF4A32B93 /* EasySession.swift in Sources */,
-				504A5BFDA288DFB632969C7130898171 /* EasySocial.swift in Sources */,
-				658A9E2CE0F46D34AD17EAA2A3D06ED6 /* EasyThen.swift in Sources */,
-				78252E2F18681A0523B3B090FAF7AC5C /* EasyTo.swift in Sources */,
-				7D7343F3EFD49F83EAF694BD46E25B32 /* EasyValid.swift in Sources */,
-				311AD4CE3FFE3229DB944FED7BAB857A /* EasyWebImage.swift in Sources */,
-				06F547CBBBC901BE06F4797D5E8F81F6 /* EasyWebViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3462,49 +3466,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D594632A9930A5EC35427A7FFBB23F47 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				32FFA3DFA6F0913FE85AE9282E4BD170 /* Easy.common-Beta-dummy.m in Sources */,
-				2F6F93961A3405EE6359AB8268E9AD5A /* Easy.swift in Sources */,
-				A3E48C4391A8E915119B35C48B7F1CBF /* EasyAlert.swift in Sources */,
-				8C38EE43216FE6691273A799A25983CA /* EasyApp.swift in Sources */,
-				9AEABA47C0E072C34C2D723B3A0DBE41 /* EasyNavigationController.swift in Sources */,
-				BD7373767645A6588FD5DAF43195D532 /* EasyViewController.swift in Sources */,
-				84E66D7A90FB3D70ACBACC781C8AFC22 /* EasyBeta.swift in Sources */,
-				40799AE30E73762FDEBF644164EFEBE0 /* EasyCheck.swift in Sources */,
-				CCEA50D0F6114F5582FD49656E0F9E36 /* EasyCollectionViewWaterFlowLayout.swift in Sources */,
-				45577EB7537771A10EF2848203713536 /* EasyConfig.swift in Sources */,
-				B0BA419A17A12A4C6A27F2B977C3E49F /* EasyCrypto.swift in Sources */,
-				60DB52BD2EB1F08BA95601D80A62F547 /* EasyDevice.swift in Sources */,
-				4B4687C582807A9939D4D8792FF12DEB /* EasyError.swift in Sources */,
-				B8FC43FE564B17E21CDFA0165FE074C8 /* EasyExtension.swift in Sources */,
-				F5CC103E85633615923385D9BB03CC30 /* EasyGlobal.swift in Sources */,
-				7D48416CA5F898B1488EA845BFACEFDD /* EasyKeychain.swift in Sources */,
-				5ACA6DBD64809B6C4AF3AFC54AF0D13B /* EasyLaunchView.swift in Sources */,
-				BD217172DD9094BCFCD9142AA8D88076 /* EasyLoading.swift in Sources */,
-				F202D15BEB18208C1C844EE098C90607 /* EasyLog.swift in Sources */,
-				D50DBA1570A4A36911090BAC33D96A36 /* EasyPage.swift in Sources */,
-				E4B60FADB337BB4DA5631ED2B586933F /* EasyPlaceholder.swift in Sources */,
-				F59C05D7EBA67E6C425801212FD20745 /* EasyPopupMenu.swift in Sources */,
-				E44BA55A802FA057915225831FF43213 /* EasyPopupView.swift in Sources */,
-				C28EE08B86950EFDB0E4ACCE9092E96B /* EasyRefresh.swift in Sources */,
-				3A9CC5747798EACD98B53FE4F5E9C449 /* EasyResult.swift in Sources */,
-				5A8A0C81ABC4BB8FAA6771B92B507879 /* EasyRouter.swift in Sources */,
-				011D3126BCDDB88B7F549AA62DEA4083 /* EasyScan.swift in Sources */,
-				A893D3D5B3250FE10595E80EFD946279 /* EasySession.swift in Sources */,
-				813D106164051E8A5F8DB619FEA1F0E1 /* EasySessionViewController.swift in Sources */,
-				9BDFF53639A41F80A7D76BE0F717533C /* EasySocial.swift in Sources */,
-				10EC394F34B831183A8ED9E03EED8250 /* EasyTestViewController.swift in Sources */,
-				F2EF559E5C46BDCC2991821DC412B251 /* EasyThen.swift in Sources */,
-				F9A5399147E4B389645E131521B81BC8 /* EasyTo.swift in Sources */,
-				2CC8DA45B9F6030AF38A97BBAAFC7675 /* EasyValid.swift in Sources */,
-				0CA839D5C25F87153DB42CC1C4612DA4 /* EasyWebImage.swift in Sources */,
-				6A08FF2B1990452B94F4DA23D103EFE6 /* EasyWebViewController.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		DDF4E4876C8A55A3D7E6FE4E545ABB94 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -3545,6 +3506,45 @@
 				F804DA2AE2992E4C70F5190A8B86EF6C /* UIScrollView+MJExtension.m in Sources */,
 				E58A846ECC1B2A089959074F26069555 /* UIScrollView+MJRefresh.m in Sources */,
 				EADD198EA4F42993912E4255613A6C94 /* UIView+MJExtension.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F8CDF26EB5B40DC9CACD76E58D7ED50B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				72CB766B51EAE38EBFC98626E07289E5 /* Easy.common-dummy.m in Sources */,
+				0FCE06D818118A1B8177A886F6089097 /* Easy.swift in Sources */,
+				6D23C9E461256B610E9FEAFADFBE3F12 /* EasyAlert.swift in Sources */,
+				E4D7AB3C0F8548BAD20E78C06B2A6E88 /* EasyApp.swift in Sources */,
+				2BE60E1724226BE18017EB18A8A860A3 /* EasyCollectionViewWaterFlowLayout.swift in Sources */,
+				F3D5A54C2F65E22E99A8B92730234CF5 /* EasyConfig.swift in Sources */,
+				AE3F339A8EB5247A9CA0BF16EF52189E /* EasyCrypto.swift in Sources */,
+				8B32AB8C640BAF8C8FB9A7AD27B8EFDB /* EasyDevice.swift in Sources */,
+				3C6C4C1E52E9A00D7C90AF8935B87CFD /* EasyError.swift in Sources */,
+				0EDEF92B4CE8AB0DDC5F92293967E870 /* EasyExtension.swift in Sources */,
+				AAFDC134D6CE525464E1EF00CC40A9D0 /* EasyGlobal.swift in Sources */,
+				2E938AA810B7C2E39254D07FB6B953D0 /* EasyKeychain.swift in Sources */,
+				A2CF1DC8F076DAA2AC4B6EDCB2FE617D /* EasyLaunchView.swift in Sources */,
+				7D1B9E32E23946311104D1415DEC2EBD /* EasyLoading.swift in Sources */,
+				841E1B657A7BE0192728BC04A80E41D7 /* EasyLog.swift in Sources */,
+				94DD5EA2204497BBDA568A589E4B63B0 /* EasyNavigationController.swift in Sources */,
+				915DCDA02ED3B3DF64519C0DCB536480 /* EasyPage.swift in Sources */,
+				FE88CB1DB57834F34F4A309C3697B122 /* EasyPlaceholder.swift in Sources */,
+				D94499E87991195AC0ACCB2A19E7136C /* EasyPopupMenu.swift in Sources */,
+				A953D3D21AC67B23A762B150907A180C /* EasyPopupView.swift in Sources */,
+				81F78E676357EF2C5EDBF4AA44D3D3B4 /* EasyRefresh.swift in Sources */,
+				576809AA4426FA02CC254FFF2551FD9A /* EasyResult.swift in Sources */,
+				3B0895AFDA6504A1E66962C1BB9710B2 /* EasyRouter.swift in Sources */,
+				F81A525223794883A6BF28AD46873C32 /* EasyScan.swift in Sources */,
+				9CBF3E8E361D016032019EC40BB629DF /* EasySession.swift in Sources */,
+				F73351A2B9D09670EF03236DB4C6929B /* EasySocial.swift in Sources */,
+				9BB8ACB1D9BD6AE082126A6EC2F9846D /* EasyThen.swift in Sources */,
+				A3E8C979B2432B1F234B5CA8349AD9C5 /* EasyTo.swift in Sources */,
+				461259A62F2F026B81A7531E92AE60DE /* EasyValid.swift in Sources */,
+				0FFAF7C9971EF361B10B3C9566228316 /* EasyViewController.swift in Sources */,
+				B94F1814504ACEAC0668C00F0805E368 /* EasyWebImage.swift in Sources */,
+				F7304DC8D0090FAA9FBC86D63D24619D /* EasyWebViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
