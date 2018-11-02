@@ -41,6 +41,8 @@ class TuchongViewController: easy.ViewController {
         collectionViewWaterFlowLayout.minimumInteritemSpacing = space
         collectionViewWaterFlowLayout.minimumLineSpacing = space
         collectionViewWaterFlowLayout.sectionInset = UIEdgeInsets(top: space, left: space, bottom: space, right: space)
+        collectionView.collectionViewLayout = collectionViewWaterFlowLayout
+        collectionView.registerReusableCell(TuchongCollectionViewCell.self)
         collectionView.registerReusableView(supplementaryViewType: TuchongReusableView.self, ofKind: UICollectionView.elementKindSectionHeader)
 //        collectionView.registerReusableView(supplementaryViewType: UICollectionReusableView.self, ofKind: UICollectionView.elementKindSectionFooter)
         
@@ -49,14 +51,6 @@ class TuchongViewController: easy.ViewController {
         }) { [weak self] (section) -> Int in
             return (self?.dataSource as? [Tuchong])?[section].images?.count ?? 0
         }
-        
-        setCollectionViewRegister(TuchongCollectionViewCell.self, layout: collectionViewWaterFlowLayout, configureCell: { [weak self] (cell, indexPath, _) in
-            guard let image = self?.getImage(indexPath) else { return }
-            (cell as? TuchongCollectionViewCell)?.do {
-                $0.imageView.setFadeImage(url: image.imageURL, placeholderImage: UIColor.random.toImage)
-                $0.label.text = "(" + indexPath.section.toString + "," + indexPath.row.toString + ")\n" + image.imgID.toStringValue
-            }
-        }, didSelectRow: nil)
     }
     
     private func getImage(_ indexPath: IndexPath) -> Tuchong.Image? {
@@ -75,6 +69,16 @@ class TuchongViewController: easy.ViewController {
 }
 
 extension TuchongViewController {
+    
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let image = self.getImage(indexPath) else { return UICollectionViewCell() }
+        let cell = collectionView.dequeueReusableCell(for: indexPath, with: TuchongCollectionViewCell.self)
+        cell.do {
+            $0.imageView.setFadeImage(url: image.imageURL, placeholderImage: UIColor.random.toImage)
+            $0.label.text = "(" + indexPath.section.toString + "," + indexPath.row.toString + ")\n" + image.imgID.toStringValue
+        }
+        return cell
+    }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let photoView = UIView(frame: app.screenBounds).then {
@@ -107,7 +111,6 @@ extension TuchongViewController {
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        
         if kind == UICollectionView.elementKindSectionHeader {
             let view = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, for: indexPath, viewType: TuchongReusableView.self)
             view.backgroundColor = UIColor.gray
@@ -135,15 +138,7 @@ extension TuchongViewController {
         guard let models = dataSource as? [Tuchong] else { return CGSize.zero }
         guard let images = models[indexPath.section].images else { return CGSize.zero }
         let model = images[indexPath.row]
-        var scale: CGFloat = 0.5
-        var column: CGFloat = 2
-        if images.count == 1 {
-            scale = 1
-            column = 1
-        }
-        let width = (app.screenWidth - (column + 1) * space) * scale
-        let height = CGSize(width: model.width?.toCGFloat ?? 1, height: model.height?.toCGFloat ?? 1).calcFlowHeight(in: width)
-        return CGSize(width: width, height: height)
+        return images.count > 1 ? model.imageSize : CGSize(width: .screenWidth - space * 3, height: .screenWidth - space * 3)
     }
     
 }

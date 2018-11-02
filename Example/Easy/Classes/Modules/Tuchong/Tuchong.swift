@@ -6,7 +6,7 @@
 //  Copyright © 2018 CocoaPods. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 private let session: easy.Session = {
     var config = easy.Config()
@@ -155,6 +155,16 @@ extension Tuchong.Image {
         let id = userID?.toString ?? ""
         let img = imgID.toString ?? ""
         return "https://photo.tuchong.com/" + id + "/f/" + img + ".jpg"
+    }
+    
+    var imageSize: CGSize {
+        if let width = width?.toCGFloat, let height = height?.toCGFloat {
+            let space: CGFloat = 2.5
+            let imageWidth = (app.screenWidth - space * 3) / 2
+            let imageHeight = CGSize(width: width, height: height).calcFlowHeight(in: imageWidth)
+            return CGSize(width: imageWidth, height: imageHeight)
+        }
+        return .zero
     }
     
 }
