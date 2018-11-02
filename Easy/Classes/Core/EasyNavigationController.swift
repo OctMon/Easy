@@ -1,5 +1,5 @@
 //
-//  EasyBaseNavigationController.swift
+//  EasyNavigationController.swift
 //  Easy
 //
 //  Created by OctMon on 2018/10/12.
@@ -11,10 +11,10 @@ import UIKit
 import RTRootNavigationController
 
 public extension Easy {
-    typealias BaseNavigationController = EasyBaseNavigationController
+    typealias NavigationController = EasyNavigationController
 }
 
-public class EasyBaseNavigationController: RTRootNavigationController {
+public class EasyNavigationController: RTRootNavigationController {
     
     deinit { EasyLog.debug(toDeinit) }
     

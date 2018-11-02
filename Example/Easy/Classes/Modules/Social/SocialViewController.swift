@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SocialViewController: easy.BaseViewController {
+class SocialViewController: easy.ViewController {
 
     enum Module: String {
         case 分享, 微信登录, QQ登录, 微博登录

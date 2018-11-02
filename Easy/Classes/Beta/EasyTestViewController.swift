@@ -8,7 +8,7 @@
 import UIKit
 import FLEX
 
-class EasyTestViewController: EasyBaseViewController {
+class EasyTestViewController: EasyViewController {
     
     private let textView: UITextView = UITextView(frame: CGRect(x: 0, y: 0, width: EasyApp.screenWidth, height: 200))
     

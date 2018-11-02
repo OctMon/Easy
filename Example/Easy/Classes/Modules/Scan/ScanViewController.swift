@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ScanViewController: easy.BaseViewController {
+class ScanViewController: easy.ViewController {
 
     private var scanView: easy.Scan!
     

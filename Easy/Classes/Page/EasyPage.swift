@@ -84,7 +84,7 @@ extension EasyPage {
     }
     
     open override func pageController(_ pageController: WMPageController, viewControllerAt index: Int) -> UIViewController {
-        return viewControllerHandler?(index) ?? EasyBaseViewController()
+        return viewControllerHandler?(index) ?? EasyViewController()
     }
     
     open override func menuView(_ menu: WMMenuView!, titleSizeFor state: WMMenuItemState, at index: Int) -> CGFloat {

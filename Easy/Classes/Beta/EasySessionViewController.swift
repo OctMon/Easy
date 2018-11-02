@@ -7,7 +7,7 @@
 
 import UIKit
 
-class EasySessionViewController: EasyBaseViewController {
+class EasySessionViewController: EasyViewController {
     
     var popupView: EasyPopupView?
     var config: EasyConfig!

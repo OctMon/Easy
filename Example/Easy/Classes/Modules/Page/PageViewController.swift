@@ -27,7 +27,7 @@ class PageViewController: easy.Page {
                 case 1:
                     return TuchongViewController()
                 default:
-                    return easy.BaseViewController()
+                    return easy.ViewController()
                 }
             }
         }

@@ -1,5 +1,5 @@
 //
-//  EasyBaseViewController.swift
+//  EasyViewController.swift
 //  Easy
 //
 //  Created by OctMon on 2018/10/11.
@@ -8,10 +8,10 @@
 import UIKit
 
 public extension Easy {
-    typealias BaseViewController = EasyBaseViewController
+    typealias ViewController = EasyViewController
 }
 
-open class EasyBaseViewController: UIViewController {
+open class EasyViewController: UIViewController {
     
     deinit { EasyLog.debug(toDeinit) }
     
@@ -121,7 +121,7 @@ open class EasyBaseViewController: UIViewController {
 
 }
 
-public extension EasyBaseViewController {
+public extension EasyViewController {
     
     /// numberOfSections
     /**
@@ -235,7 +235,7 @@ public extension EasyBaseViewController {
     
 }
 
-extension EasyBaseViewController: UITableViewDataSource, UITableViewDelegate {
+extension EasyViewController: UITableViewDataSource, UITableViewDelegate {
     
     open func numberOfSections(in tableView: UITableView) -> Int {
         if let handler = tableViewNumberOfSectionsHandler {
@@ -302,7 +302,7 @@ extension EasyBaseViewController: UITableViewDataSource, UITableViewDelegate {
 
 }
 
-extension EasyBaseViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+extension EasyViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     open func numberOfSections(in collectionView: UICollectionView) -> Int {
         if let handler = collectionViewNumberOfSectionsHandler {

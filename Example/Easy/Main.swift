@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Main: easy.BaseViewController {
+class Main: easy.ViewController {
     
     private let textView: UITextView = UITextView(frame: CGRect(x: 0, y: 0, width: app.screenWidth, height: 100))
     

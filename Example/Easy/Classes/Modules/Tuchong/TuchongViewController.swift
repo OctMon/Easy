@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TuchongViewController: easy.BaseViewController {
+class TuchongViewController: easy.ViewController {
     
     private var poseID: Int?
     

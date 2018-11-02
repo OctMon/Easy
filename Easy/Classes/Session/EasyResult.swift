@@ -98,7 +98,7 @@ public extension JSONDecoder {
 
 #if canImport(MJRefresh)
 import MJRefresh
-public extension EasyBaseViewController {
+public extension EasyViewController {
     
     func appendRefresh(_ scrollView: UIScrollView, isApeendHeader: Bool, isApeendFooter: Bool) {
         if isApeendHeader {
