@@ -38,7 +38,7 @@ Pod::Spec.new do |s|
     s.subspec 'Common' do |ss|
         ss.dependency 'MBProgressHUD'#, '~> 1.1.0' # https://github.com/jdg/MBProgressHUD
         ss.dependency 'MJRefresh'#, '~> 3.1.15.7' # https://github.com/CoderMJLee/MJRefresh
-        ss.dependency 'RTRootNavigationController'#, '~> 0.6.7' # https://github.com/rickytan/RTRootNavigationController
+        ss.dependency 'RTRootNavigationController'#, '~> 0.7.0' # https://github.com/rickytan/RTRootNavigationController
         ss.dependency 'SDWebImage'#, '~> 4.4.2' # https://github.com/rs/SDWebImage
         #ss.dependency 'SwiftyAttributes'#, '~> 5.0.0' # https://github.com/eddiekaiger/SwiftyAttributes
     end
