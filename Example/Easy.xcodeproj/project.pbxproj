@@ -25,7 +25,6 @@
 		FE6652DF2170A58A007E7051 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		FEC882DF2176C65D009BDC1C /* SocialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC882DE2176C65D009BDC1C /* SocialViewController.swift */; };
 		FEC882E02176C65D009BDC1C /* SocialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC882DE2176C65D009BDC1C /* SocialViewController.swift */; };
-		FEE7B88B216C541A009EE5C7 /* TestsSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEE7B88A216C541A009EE5C7 /* TestsSession.swift */; };
 		FEF494CA2175879F00555C3F /* Tuchong.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF494C92175879F00555C3F /* Tuchong.swift */; };
 		FEF494CB2175879F00555C3F /* Tuchong.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF494C92175879F00555C3F /* Tuchong.swift */; };
 		FEF494D32175B8F700555C3F /* TuchongViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF494D22175B8F700555C3F /* TuchongViewController.swift */; };
@@ -70,7 +69,6 @@
 		FE391C5E216A249300D59D29 /* Main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Main.swift; sourceTree = "<group>"; };
 		FE6652E42170A58A007E7051 /* Easy_Example_Beta.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Easy_Example_Beta.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FEC882DE2176C65D009BDC1C /* SocialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialViewController.swift; sourceTree = "<group>"; };
-		FEE7B88A216C541A009EE5C7 /* TestsSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestsSession.swift; sourceTree = "<group>"; };
 		FEF494C92175879F00555C3F /* Tuchong.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tuchong.swift; sourceTree = "<group>"; };
 		FEF494D22175B8F700555C3F /* TuchongViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TuchongViewController.swift; sourceTree = "<group>"; };
 		FEFE116E2187EC1E00BDDD9F /* PageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
@@ -162,7 +160,6 @@
 			isa = PBXGroup;
 			children = (
 				607FACEB1AFB9204008FA782 /* Tests.swift */,
-				FEE7B88A216C541A009EE5C7 /* TestsSession.swift */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
 			);
 			path = Tests;
@@ -544,7 +541,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FEE7B88B216C541A009EE5C7 /* TestsSession.swift in Sources */,
 				607FACEC1AFB9204008FA782 /* Tests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
