@@ -163,6 +163,7 @@ private class EasyVerticalButton: UIButton {
         super .init(frame: frame)
         
         titleLabel?.font = UIFont.size12
+        titleLabel?.adjustsFontSizeToFitWidth = true
         titleLabel?.textAlignment = .center
         setTitleColor(UIColor.black, for: .normal)
     }
@@ -241,6 +242,7 @@ public extension EasySocial {
     static var shareButtonHeight: CGFloat?
     static var shareButtonSpace: CGFloat?
     static var shareImageLess: CGFloat?
+    static var shareColumn: Int?
     
     static func share(title: String, description: String, thumbnail: UIImage?, url: String) {
         if isFilterPlatformsItems {
@@ -256,6 +258,9 @@ public extension EasySocial {
         }
         shareImageLess.unwrapped { (value) in
             share.shareImageLess = value
+        }
+        shareColumn.unwrapped { (value) in
+            share.shareColumn = value
         }
         share.show(platforms: shared.sharePlatforms) { (platform) in
             EasyLog.debug(platform)
@@ -422,6 +427,7 @@ private class EasySocialShareView: UIView {
     var shareButtonHeight: CGFloat = 90
     var shareButtonSpace: CGFloat = 15
     var shareImageLess: CGFloat = 60
+    var shareColumn: Int = 4
     
     deinit {
         EasyLog.debug(toDeinit)
@@ -443,17 +449,16 @@ private class EasySocialShareView: UIView {
     }
     
     private func addPlatformsItems() {
-        let column: Int = 4
-        let ceil = CGFloat(Double(platforms.count) / Double(column)).ceil
-        bottomViewHeight = shareButtonSpace * (CGFloat(platforms.count / column + 2)) + shareButtonHeight * ceil + (isShowCancelButton ? kSocialShareCancelHeight : EasyDevice.safeBottomEdge)
+        let ceil = CGFloat(Double(platforms.count) / Double(shareColumn)).ceil
+        bottomViewHeight = shareButtonSpace * (CGFloat(platforms.count / shareColumn + 2)) + shareButtonHeight * ceil + (isShowCancelButton ? kSocialShareCancelHeight : EasyDevice.safeBottomEdge)
         
-        let margin = (UIScreen.main.bounds.width - CGFloat(column) * kSocialShareButtonWidth) / (CGFloat(column) + 1)
+        let margin = (UIScreen.main.bounds.width - CGFloat(shareColumn) * kSocialShareButtonWidth) / (CGFloat(shareColumn) + 1)
         
         for index in 0 ..< platforms.count {
             let platform = platforms[index]
             
-            let colX: Int = index % column
-            let rowY: Int = Int(index / column)
+            let colX: Int = index % shareColumn
+            let rowY: Int = Int(index / shareColumn)
             
             let buttonX: CGFloat = margin + CGFloat(colX) * (kSocialShareButtonWidth + margin)
             let buttonY: CGFloat = shareButtonSpace + CGFloat(rowY) * (shareButtonHeight + shareButtonSpace)
