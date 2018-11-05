@@ -382,6 +382,7 @@ public extension EasyApp {
             let titleLabel = UILabel().then {
                 $0.attributedText = title
                 $0.textAlignment = .center
+                $0.adjustsFontSizeToFitWidth = true
             }
             alertView.addSubview(titleLabel)
             titleLabel.snp.makeConstraints({ (make) in
