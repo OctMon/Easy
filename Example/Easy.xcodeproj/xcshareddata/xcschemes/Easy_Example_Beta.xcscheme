@@ -14,23 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "607FACCF1AFB9204008FA782"
-               BuildableName = "Easy_Example.app"
-               BlueprintName = "Easy_Example"
-               ReferencedContainer = "container:Easy.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "607FACE41AFB9204008FA782"
-               BuildableName = "Easy_Tests.xctest"
-               BlueprintName = "Easy_Tests"
+               BlueprintIdentifier = "FE6652D62170A58A007E7051"
+               BuildableName = "Easy_Example_Beta.app"
+               BlueprintName = "Easy_Example_Beta"
                ReferencedContainer = "container:Easy.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -42,23 +28,13 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "607FACE41AFB9204008FA782"
-               BuildableName = "Easy_Tests.xctest"
-               BlueprintName = "Easy_Tests"
-               ReferencedContainer = "container:Easy.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "607FACCF1AFB9204008FA782"
-            BuildableName = "Easy_Example.app"
-            BlueprintName = "Easy_Example"
+            BlueprintIdentifier = "FE6652D62170A58A007E7051"
+            BuildableName = "Easy_Example_Beta.app"
+            BlueprintName = "Easy_Example_Beta"
             ReferencedContainer = "container:Easy.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -79,9 +55,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "607FACCF1AFB9204008FA782"
-            BuildableName = "Easy_Example.app"
-            BlueprintName = "Easy_Example"
+            BlueprintIdentifier = "FE6652D62170A58A007E7051"
+            BuildableName = "Easy_Example_Beta.app"
+            BlueprintName = "Easy_Example_Beta"
             ReferencedContainer = "container:Easy.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -98,9 +74,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "607FACCF1AFB9204008FA782"
-            BuildableName = "Easy_Example.app"
-            BlueprintName = "Easy_Example"
+            BlueprintIdentifier = "FE6652D62170A58A007E7051"
+            BuildableName = "Easy_Example_Beta.app"
+            BlueprintName = "Easy_Example_Beta"
             ReferencedContainer = "container:Easy.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

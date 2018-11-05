@@ -12,10 +12,8 @@ project_path=$(pwd)
 project_name="Easy"
 #指定项目的scheme名称
 scheme="Easy_Example_Beta"
-#指定要打包的配置名
-configuration="ad-hoc"
 #指定打包所使用的输出方式，目前支持app-store, package, ad-hoc, enterprise, development, 和developer-id，即xcodebuild的method参数
-export_method='ad-hoc'
+export_method='enterprise'
 
 #指定项目地址
 workspace_path="$project_path/$project_name.xcworkspace"
@@ -65,7 +63,7 @@ N | n) echo
 esac
 
 #先清空前一次build
-fastlane gym --workspace ${workspace_path} --scheme ${scheme} --clean --configuration ${configuration} --archive_path ${archive_path} --export_method ${export_method} --output_directory ${output_path} --output_name ${ipa_name}
+fastlane gym --workspace ${workspace_path} --scheme ${scheme} --clean --archive_path ${archive_path} --export_method ${export_method} --output_directory ${output_path} --output_name ${ipa_name}
 
 #上传到pgy https://www.pgyer.com/account/api
 curl -F "file=@${ipa_path}" -F "_api_key=替换APIKey" -F "buildUpdateDescription=${commit_msg}" https://www.pgyer.com/apiv2/app/upload
