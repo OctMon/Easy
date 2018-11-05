@@ -336,9 +336,9 @@ public extension EasyApp {
 
 public extension EasyApp {
     
-    static func configCheckPgyer(api_key: String , shortcutUrl: String, delay: TimeInterval = 3, isWillEnterForegroundCheck: Bool = true) {
+    static func configCheckPgyer(api_key: String , shortcutUrl: String, headerImage: UIImage? = nil, delay: TimeInterval = 3, isWillEnterForegroundCheck: Bool = true) {
         #if BETA
-        EasyCheck.configPgyerBeta(api_key: api_key, shortcutUrl: shortcutUrl, delay: delay, isWillEnterForegroundCheck: isWillEnterForegroundCheck)
+        EasyCheck.configPgyerBeta(api_key: api_key, shortcutUrl: shortcutUrl, headerImage: headerImage, delay: delay, isWillEnterForegroundCheck: isWillEnterForegroundCheck)
         #endif
     }
     
