@@ -1,12 +1,26 @@
 use_frameworks!
 #inhibit_all_warnings!
 
+def appstore_pods
+    pod 'Easy', :path => '../'
+    pod 'Easy/Common', :path => '../'
+    pod 'Easy/Marquee', :path => '../'
+    pod 'Easy/Page', :path => '../'
+    pod 'Easy/Social', :path => '../'
+    pod 'Easy/Scan', :path => '../'
+    sdk_pods
+end
+
+def sdk_pods
+    
+end
+
+def beta_pods
+    pod 'Easy/Beta', :path => '../'
+end
+
 target 'Easy_Example' do
-  pod 'Easy', :path => '../'
-  pod 'Easy/Common', :path => '../'
-  pod 'Easy/Page', :path => '../'
-  pod 'Easy/Social', :path => '../'
-  pod 'Easy/Scan', :path => '../'
+  appstore_pods
 
   target 'Easy_Tests' do
     inherit! :search_paths
@@ -14,10 +28,6 @@ target 'Easy_Example' do
 end
 
 target 'Easy_Example_Beta' do
-    pod 'Easy', :path => '../'
-    pod 'Easy/Common', :path => '../'
-    pod 'Easy/Page', :path => '../'
-    pod 'Easy/Social', :path => '../'
-    pod 'Easy/Scan', :path => '../'
-    pod 'Easy/Beta', :path => '../'
+    appstore_pods
+    beta_pods
 end

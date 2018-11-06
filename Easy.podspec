@@ -43,6 +43,11 @@ Pod::Spec.new do |s|
         #ss.dependency 'SwiftyAttributes'#, '~> 5.0.0' # https://github.com/eddiekaiger/SwiftyAttributes
     end
     
+    s.subspec 'Marquee' do |ss|
+        ss.source_files = 'Easy/Classes/Marquee/*'
+        ss.dependency 'Easy/Core'
+    end
+    
     s.subspec 'Session' do |ss|
         ss.source_files = 'Easy/Classes/Session/*'
         ss.dependency 'Easy/Core'
