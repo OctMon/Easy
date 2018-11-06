@@ -968,18 +968,14 @@ public extension UITextField {
     }
     
     /// 左边icon
-    func setLeftIcon(image: UIImage, size: CGSize? = nil, padding: CGFloat) {
-        let imageView = UIImageView(image: image)
-        imageView.contentMode = .left
-        self.leftView = imageView
-        var imageSize: CGSize!
-        if size == nil {
-            imageSize = image.size
-        } else {
-            imageSize = size
+    func setLeftIcon(image: UIImage?, padding: CGFloat) {
+        if let image = image {
+            let imageView = UIImageView(image: image)
+            imageView.contentMode = .left
+            self.leftView = imageView
+            self.leftView?.frame.size = CGSize(width: image.size.width + padding, height: image.size.height)
+            self.leftViewMode = .always
         }
-        self.leftView?.frame.size = CGSize(width: imageSize.width + padding, height: imageSize.height)
-        self.leftViewMode = .always
     }
     
     func setLimit(_ length: Int, handler: (() -> Void)? = nil) {

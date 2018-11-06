@@ -23,6 +23,8 @@
 		FE6652D92170A58A007E7051 /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE391C5E216A249300D59D29 /* Main.swift */; };
 		FE6652DA2170A58A007E7051 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		FE6652DF2170A58A007E7051 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
+		FEBBE4EA219123C700654926 /* InputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEBBE4E9219123C700654926 /* InputViewController.swift */; };
+		FEBBE4EB219123C700654926 /* InputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEBBE4E9219123C700654926 /* InputViewController.swift */; };
 		FEC882DF2176C65D009BDC1C /* SocialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC882DE2176C65D009BDC1C /* SocialViewController.swift */; };
 		FEC882E02176C65D009BDC1C /* SocialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC882DE2176C65D009BDC1C /* SocialViewController.swift */; };
 		FEF494CA2175879F00555C3F /* Tuchong.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF494C92175879F00555C3F /* Tuchong.swift */; };
@@ -68,6 +70,7 @@
 		FE388A4E2173223C0050904B /* ScanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanViewController.swift; sourceTree = "<group>"; };
 		FE391C5E216A249300D59D29 /* Main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Main.swift; sourceTree = "<group>"; };
 		FE6652E42170A58A007E7051 /* Easy_Example_Beta.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Easy_Example_Beta.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FEBBE4E9219123C700654926 /* InputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputViewController.swift; sourceTree = "<group>"; };
 		FEC882DE2176C65D009BDC1C /* SocialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialViewController.swift; sourceTree = "<group>"; };
 		FEF494C92175879F00555C3F /* Tuchong.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tuchong.swift; sourceTree = "<group>"; };
 		FEF494D22175B8F700555C3F /* TuchongViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TuchongViewController.swift; sourceTree = "<group>"; };
@@ -208,6 +211,7 @@
 		FE388A40217317950050904B /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				FEBBE4E8219123BB00654926 /* Input */,
 				FEFE116D2187EC1E00BDDD9F /* Page */,
 				FE388A4D217322230050904B /* Scan */,
 				FEC882DD2176C645009BDC1C /* Social */,
@@ -230,6 +234,14 @@
 				FE388A4E2173223C0050904B /* ScanViewController.swift */,
 			);
 			path = Scan;
+			sourceTree = "<group>";
+		};
+		FEBBE4E8219123BB00654926 /* Input */ = {
+			isa = PBXGroup;
+			children = (
+				FEBBE4E9219123C700654926 /* InputViewController.swift */,
+			);
+			path = Input;
 			sourceTree = "<group>";
 		};
 		FEC882DD2176C645009BDC1C /* Social */ = {
@@ -527,6 +539,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FEBBE4EA219123C700654926 /* InputViewController.swift in Sources */,
 				FE391C5F216A249300D59D29 /* Main.swift in Sources */,
 				FE388A47217318980050904B /* Config.swift in Sources */,
 				FEFE116F2187EC1E00BDDD9F /* PageViewController.swift in Sources */,
@@ -550,6 +563,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FEBBE4EB219123C700654926 /* InputViewController.swift in Sources */,
 				FE6652D92170A58A007E7051 /* Main.swift in Sources */,
 				FE388A48217318980050904B /* Config.swift in Sources */,
 				FEFE11702187EC1E00BDDD9F /* PageViewController.swift in Sources */,

@@ -489,6 +489,8 @@
 		FE8115157713023EC0AEBD4D6EAC819F /* FLEXNetworkObserver.h in Headers */ = {isa = PBXBuildFile; fileRef = AD7E329308B70C60B01A73F8779D8784 /* FLEXNetworkObserver.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		FE88CB1DB57834F34F4A309C3697B122 /* EasyPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4889279EB7A22E8A0131BA2464873A7A /* EasyPlaceholder.swift */; };
 		FE8F4583A30271192BC05CD49383D6B8 /* FLEXMethodCallingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BC61A2029138DEB1E87435E98C5D84F /* FLEXMethodCallingViewController.m */; };
+		FEBBE4E62191234C00654926 /* EasyInputCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEBBE4E52191234C00654926 /* EasyInputCell.swift */; };
+		FEBBE4E72191234C00654926 /* EasyInputCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEBBE4E52191234C00654926 /* EasyInputCell.swift */; };
 		FF75F2BED43B448474D1FE819FACD003 /* FLEXRuntimeUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = F91C70173CC4E0E60E68A55548AE0F18 /* FLEXRuntimeUtility.m */; };
 		FF9C7BC64DB23D2CED48197DE67F0335 /* MultipartFormData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5681A6155FADC815628E7C02ED00B47C /* MultipartFormData.swift */; };
 /* End PBXBuildFile section */
@@ -1312,6 +1314,7 @@
 		FB548490D84B25E26FBF315BBD669EB2 /* NotificationBanner.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NotificationBanner.swift; path = NotificationBanner/Classes/NotificationBanner.swift; sourceTree = "<group>"; };
 		FB9A584B3C00497632B67FF2A1D17DE0 /* ConstraintMakerFinalizable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintMakerFinalizable.swift; path = Source/ConstraintMakerFinalizable.swift; sourceTree = "<group>"; };
 		FD4D856662D2F393681DF3853FF4BED6 /* MarqueeLabel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MarqueeLabel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FEBBE4E52191234C00654926 /* EasyInputCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EasyInputCell.swift; path = Easy/Classes/Core/EasyInputCell.swift; sourceTree = "<group>"; };
 		FFA60CA585A11973315308C4097AC14A /* Pods-Easy_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Easy_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		FFB1EC298DC39E4913ABE216A50132A7 /* MJRefreshHeader.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MJRefreshHeader.m; path = MJRefresh/Base/MJRefreshHeader.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -2335,6 +2338,7 @@
 				706999684EC25BEB4EEB1C8C3A9DE006 /* EasyCrypto.swift */,
 				3858F2E335DF33413FAA687ADC47F8C4 /* EasyExtension.swift */,
 				023BED8E98CCFE2986A452EC3EA2A260 /* EasyGlobal.swift */,
+				FEBBE4E52191234C00654926 /* EasyInputCell.swift */,
 				4D89742F8EE514C4029DA3C72C386F86 /* EasyKeychain.swift */,
 				654139B623460624C3E996520D05C8AC /* EasyLaunchView.swift */,
 				60E2F03CB9C6B13B0C39AD16D12A262E /* EasyLoading.swift */,
@@ -3288,6 +3292,7 @@
 				066F38B0232D16936EB281C8D242B3B4 /* EasyError.swift in Sources */,
 				97902B2DBC98FA7B1B68A645B9FDCDBD /* EasyExtension.swift in Sources */,
 				9DA2CD5068A3CD19549608A16C74DDB1 /* EasyGlobal.swift in Sources */,
+				FEBBE4E72191234C00654926 /* EasyInputCell.swift in Sources */,
 				962B7C4FA2900DFF7F9D5BE36B4B10C5 /* EasyKeychain.swift in Sources */,
 				055DD1C5D077C44A0F9867D5024DF0B4 /* EasyLaunchView.swift in Sources */,
 				FD92728CE34DBB8672581F185BC1F607 /* EasyLoading.swift in Sources */,
@@ -3522,6 +3527,7 @@
 				AE3F339A8EB5247A9CA0BF16EF52189E /* EasyCrypto.swift in Sources */,
 				8B32AB8C640BAF8C8FB9A7AD27B8EFDB /* EasyDevice.swift in Sources */,
 				3C6C4C1E52E9A00D7C90AF8935B87CFD /* EasyError.swift in Sources */,
+				FEBBE4E62191234C00654926 /* EasyInputCell.swift in Sources */,
 				0EDEF92B4CE8AB0DDC5F92293967E870 /* EasyExtension.swift in Sources */,
 				AAFDC134D6CE525464E1EF00CC40A9D0 /* EasyGlobal.swift in Sources */,
 				2E938AA810B7C2E39254D07FB6B953D0 /* EasyKeychain.swift in Sources */,

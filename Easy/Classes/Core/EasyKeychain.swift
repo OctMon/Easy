@@ -7,6 +7,10 @@
 
 import UIKit
 
+public extension Easy {
+    typealias Keychain = EasyKeychain
+}
+
 public struct EasyKeychain {
     
     private init() {}

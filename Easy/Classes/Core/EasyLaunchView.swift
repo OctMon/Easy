@@ -27,7 +27,7 @@ public extension EasyApp {
     
 }
 
-public class EasyLaunchView: UIView {
+class EasyLaunchView: UIView {
     
     private let imageView = UIImageView(image: UIImage.launchImage)
     
