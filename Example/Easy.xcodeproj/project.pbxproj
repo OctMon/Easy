@@ -293,6 +293,7 @@
 				607FACCD1AFB9204008FA782 /* Frameworks */,
 				607FACCE1AFB9204008FA782 /* Resources */,
 				87421F0A16DB983A8A5FEB66 /* [CP] Embed Pods Frameworks */,
+				FE683ABB2192FF7C0065AD59 /* Release */,
 			);
 			buildRules = (
 			);
@@ -331,6 +332,7 @@
 				FE6652DB2170A58A007E7051 /* Frameworks */,
 				FE6652DD2170A58A007E7051 /* Resources */,
 				FE6652E02170A58A007E7051 /* [CP] Embed Pods Frameworks */,
+				FE683ABC2192FF850065AD59 /* Release */,
 			);
 			buildRules = (
 			);
@@ -543,6 +545,42 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Easy_Example_Beta/Pods-Easy_Example_Beta-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		FE683ABB2192FF7C0065AD59 /* Release */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = Release;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#!/bin/bash\n\n#Release Debug\nif [ \"Release\" = \"${CONFIGURATION}\" ]; then\n#跟随时间变化\nbuildNumber=$(date +%Y%m%d%H%M%S)\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"$INFOPLIST_FILE\"\n\n#自动加1\n#buildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"$INFOPLIST_FILE\")\n#buildNumber=$(($buildNumber + 1))\n#/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"$INFOPLIST_FILE\"\nfi\n";
+		};
+		FE683ABC2192FF850065AD59 /* Release */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = Release;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#!/bin/bash\n\n#Release Debug\nif [ \"Release\" = \"${CONFIGURATION}\" ]; then\n#跟随时间变化\nbuildNumber=$(date +%Y%m%d%H%M%S)\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"$INFOPLIST_FILE\"\n\n#自动加1\n#buildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"$INFOPLIST_FILE\")\n#buildNumber=$(($buildNumber + 1))\n#/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"$INFOPLIST_FILE\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
