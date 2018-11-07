@@ -24,6 +24,7 @@ class EasyTestViewController: EasyViewController {
         navigationItem.appendRightBarButtonItem(title: "Done") {
             isShowTestTool.toggle()
         }
+        addTableView(style: .plain, inView: view)
         tableView.tableHeaderView = textView
         tableView.tableFooterView = UIView()
         

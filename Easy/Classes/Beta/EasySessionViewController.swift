@@ -13,8 +13,8 @@ class EasySessionViewController: EasyViewController {
     var config: EasyConfig!
     var successHandler: ((String) -> Void)?
     
-    override func configure() {
-        super.configure()
+    override func viewDidLoad() {
+        super.viewDidLoad()
         
         var list = [String]()
         var tmp = [config.url.release, config.url.test]
@@ -28,6 +28,12 @@ class EasySessionViewController: EasyViewController {
             }
         }
         tableViewDataSource = list
+    }
+    
+    override func configure() {
+        super.configure()
+        
+        addTableView(style: .plain, inView: view)
         
         let current = config.url.currentBaseURL
         let text = "📡 Change \(config.url.alias) BaseURL 📡"
