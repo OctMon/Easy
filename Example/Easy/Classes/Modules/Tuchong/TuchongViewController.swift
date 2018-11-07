@@ -23,7 +23,7 @@ class TuchongViewController: easy.ViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidLoad()
         
-        if dataSource.count == 0 {
+        if collectionViewDataSource.count == 0 {
             self.view.showLoading()
             self.request()
         }
@@ -35,26 +35,27 @@ class TuchongViewController: easy.ViewController {
         firstPage = 1
         ignoreTotalPage = true
         
-        appendRefresh(collectionView, isApeendHeader: true, isApeendFooter: true)
+        addRefresh(collectionView, isAddHeader: true, isAddFooter: true)
+        addCollectionView(layout: collectionViewWaterFlowLayout, inView: view)
         
         collectionViewWaterFlowLayout.sectionSpacing = 0
         collectionViewWaterFlowLayout.minimumInteritemSpacing = space
         collectionViewWaterFlowLayout.minimumLineSpacing = space
         collectionViewWaterFlowLayout.sectionInset = UIEdgeInsets(top: space, left: space, bottom: space, right: space)
-        collectionView.collectionViewLayout = collectionViewWaterFlowLayout
+        
         collectionView.registerReusableCell(TuchongCollectionViewCell.self)
         collectionView.registerReusableView(supplementaryViewType: TuchongReusableView.self, ofKind: UICollectionView.elementKindSectionHeader)
 //        collectionView.registerReusableView(supplementaryViewType: UICollectionReusableView.self, ofKind: UICollectionView.elementKindSectionFooter)
         
         setCollectionView(numberOfSections: { [weak self] () -> Int in
-            return self?.dataSource.count ?? 0
+            return self?.collectionViewDataSource.count ?? 0
         }) { [weak self] (section) -> Int in
-            return (self?.dataSource as? [Tuchong])?[section].images?.count ?? 0
+            return (self?.collectionViewDataSource as? [Tuchong])?[section].images?.count ?? 0
         }
     }
     
     private func getImage(_ indexPath: IndexPath) -> Tuchong.Image? {
-        return (self.dataSource as? [Tuchong])?[indexPath.section].images?[indexPath.row]
+        return (self.collectionViewDataSource as? [Tuchong])?[indexPath.section].images?[indexPath.row]
     }
     
     override func request() {
@@ -62,7 +63,7 @@ class TuchongViewController: easy.ViewController {
         
         Tuchong.getTuchong(page: currentPage, poseId: firstPage == currentPage ? nil : poseID) { (result) in
             self.poseID = (result.models as? [Tuchong])?.last?.postID
-            self.setRefresh(self.collectionView, response: result)
+            self.setCollectionViewRefresh(self.collectionView, response: result)
         }
     }
 
@@ -115,7 +116,7 @@ extension TuchongViewController {
             let view = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, for: indexPath, viewType: TuchongReusableView.self)
             view.backgroundColor = UIColor.gray
             view.alpha = 0.5
-            view.label.text = (self.dataSource as? [Tuchong])?[indexPath.section].tags?.joined(separator: ",")
+            view.label.text = (self.collectionViewDataSource as? [Tuchong])?[indexPath.section].tags?.joined(separator: ",")
             return view
         } else {
             let view = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionFooter, for: indexPath)
@@ -135,7 +136,7 @@ extension TuchongViewController {
 //    }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        guard let models = dataSource as? [Tuchong] else { return CGSize.zero }
+        guard let models = collectionViewDataSource as? [Tuchong] else { return CGSize.zero }
         guard let images = models[indexPath.section].images else { return CGSize.zero }
         let model = images[indexPath.row]
         return images.count > 1 ? model.imageSize : CGSize(width: .screenWidth - space * 3, height: .screenWidth - space * 3)

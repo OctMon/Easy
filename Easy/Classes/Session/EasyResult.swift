@@ -100,21 +100,30 @@ public extension JSONDecoder {
 import MJRefresh
 public extension EasyViewController {
     
-    func appendRefresh(_ scrollView: UIScrollView, isApeendHeader: Bool, isApeendFooter: Bool) {
-        if isApeendHeader {
+    func addRefresh(_ scrollView: UIScrollView, isAddHeader: Bool, isAddFooter: Bool) {
+        if isAddHeader {
             scrollView.mj_header = EasyRefresh.headerWithHandler { [weak self] in
                 self?.currentPage = self?.firstPage ?? 0
                 self?.request()
             }
         }
-        if isApeendFooter {
+        if isAddFooter {
             scrollView.mj_footer = EasyRefresh.footerWithHandler { [weak self] in
                 self?.request()
             }
         }
     }
     
-    func setRefresh(_ scrollView: UIScrollView, response: EasyResult, errorHandler: ((Error?) -> Void)? = nil) {
+    func setTableViewRefresh(_ scrollView: UIScrollView, response: EasyResult, errorHandler: ((Error?) -> Void)? = nil) {
+        setRefresh(tableView, response: response, errorHandler: errorHandler)
+    }
+    
+    func setCollectionViewRefresh(_ scrollView: UIScrollView, response: EasyResult, errorHandler: ((Error?) -> Void)? = nil) {
+        setRefresh(collectionView, response: response, errorHandler: errorHandler)
+    }
+    
+    private func setRefresh(_ scrollView: UIScrollView, response: EasyResult, errorHandler: ((Error?) -> Void)? = nil) {
+        let isTableView = scrollView is UITableView
         self.view.hideLoading()
         if self.currentPage == self.firstPage {
             if scrollView.mj_header != nil {
@@ -129,7 +138,7 @@ public extension EasyViewController {
             if let handler = errorHandler {
                 handler(response.error)
             } else {
-                if dataSource.count > 0 {
+                if (isTableView && tableViewDataSource.count > 0) || (!isTableView && collectionViewDataSource.count > 0) {
                     self.view.showText(response.error?.localizedDescription)
                 } else {
                     self.view.showPlaceholder(error: response.error, image: nil, tap: { [weak self] in
@@ -143,9 +152,17 @@ public extension EasyViewController {
         }
         self.view.hidePlaceholder()
         if self.currentPage == self.firstPage {
-            self.dataSource = response.models
+            if isTableView {
+                self.tableViewDataSource = response.models
+            } else {
+                self.collectionViewDataSource = response.models
+            }
         } else {
-            self.dataSource.append(contentsOf: response.models)
+            if isTableView {
+                self.tableViewDataSource.append(contentsOf: response.models)
+            } else {
+                self.collectionViewDataSource.append(contentsOf: response.models)
+            }
         }
         if let tableView = scrollView as? UITableView {
             tableView.reloadData()

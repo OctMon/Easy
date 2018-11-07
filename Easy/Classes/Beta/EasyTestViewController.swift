@@ -61,7 +61,7 @@ class EasyTestViewController: EasyViewController {
                     $0.switchHandler { [weak self] (isOn) in
                         if var model = model {
                             model.1 = isOn
-                            self?.dataSource[indexPath.section] = model
+                            self?.tableViewDataSource[indexPath.section] = model
                             switch (indexPath.section, indexPath.row) {
                             case (0, 0):
                                 EasyResult.logEnabel = isOn
@@ -86,10 +86,10 @@ class EasyTestViewController: EasyViewController {
             sessions[indexPath.row].showChangeBaseURL({ [weak self] (url) in
                 if var model = any as? (String, String) {
                     model.1 = url
-                    let list = self?.dataSource[indexPath.section]
+                    let list = self?.tableViewDataSource[indexPath.section]
                     if var models = list as? [Any] {
                         models[indexPath.row] = model
-                        self?.dataSource[indexPath.section] = models
+                        self?.tableViewDataSource[indexPath.section] = models
                         self?.tableView.reloadData()
                     }
                 }
@@ -100,11 +100,11 @@ class EasyTestViewController: EasyViewController {
     override func request() {
         super.request()
         
-        dataSource = [[("show EasyResult banner", EasyResult.logEnabel)]]//, (GDPerformanceMonitor.toString, omIsShowGDPerformanceMonitor)]]
+        tableViewDataSource = [[("show EasyResult banner", EasyResult.logEnabel)]]//, (GDPerformanceMonitor.toString, omIsShowGDPerformanceMonitor)]]
         var tmp = [Any]()
         sessions.forEach({ tmp.append(($0.config.url.alias, $0.config.url.currentBaseURL)) })
         if tmp.count > 0 {
-            dataSource.append(tmp)
+            tableViewDataSource.append(tmp)
         }
         tableView.reloadData()
     }

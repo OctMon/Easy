@@ -27,7 +27,7 @@ class EasySessionViewController: EasyViewController {
                 list.append(url)
             }
         }
-        dataSource = list
+        tableViewDataSource = list
         
         let current = config.url.currentBaseURL
         let text = "📡 Change \(config.url.alias) BaseURL 📡"

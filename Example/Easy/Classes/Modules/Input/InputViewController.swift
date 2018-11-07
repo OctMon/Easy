@@ -20,7 +20,7 @@ class InputViewController: easy.ViewController {
     override func configure() {
         super.configure()
         
-        tableViewStyle = .grouped
+        addTableView(style: .grouped, inView: view)
         tableView.allowsSelection = false
         tableView.separatorStyle = .none
         
@@ -47,7 +47,7 @@ class InputViewController: easy.ViewController {
                     (any as? easy.InputCell.Model)?.do {
                         var model = $0
                         model.title = input
-                        self?.dataSource[indexPath.row] = model
+                        self?.tableViewDataSource[indexPath.row] = model
                     }
                 })
             }
@@ -57,7 +57,7 @@ class InputViewController: easy.ViewController {
     override func request() {
         super.request()
         
-        dataSource = [
+        tableViewDataSource = [
             easy.InputCell.Model(icon: UIColor.random.toImage?.resize(to: CGSize(width: 20, height: 20)), title: "", placeholder: "请输入手机号"),
             easy.InputCell.Model(icon: UIColor.random.toImage?.resize(to: CGSize(width: 20, height: 20)), title: "", placeholder: "请输入密码"),
         ]

@@ -44,17 +44,14 @@ open class EasyViewController: UIViewController {
     /// 忽略总页数判断
     public lazy var ignoreTotalPage: Bool = EasyGlobal.tableViewIgnoreTotalPage
     
-    public lazy var dataSource: [Any] = [Any]()
+    public lazy var tableViewDataSource: [Any] = [Any]()
+    public lazy var collectionViewDataSource: [Any] = [Any]()
     
     /// must be set first
     public lazy var tableViewStyle: UITableView.Style = .plain
     
     public lazy var tableView: UITableView = {
         return UITableView(frame: view.frame, style: tableViewStyle).then {
-            view.addSubview($0)
-            $0.snp.makeConstraints({ (make) in
-                make.edges.equalTo(view)
-            })
             $0.backgroundColor = EasyGlobal.tableViewBackground
             $0.showsVerticalScrollIndicator = false
             $0.delegate = self
@@ -81,10 +78,6 @@ open class EasyViewController: UIViewController {
     
     public lazy var collectionView: UICollectionView = {
         return UICollectionView(frame: CGRect.zero, collectionViewLayout: collectionViewFlowLayout).then {
-            view.addSubview($0)
-            $0.snp.makeConstraints({ (make) in
-                make.edges.equalTo(view)
-            })
             $0.backgroundColor = EasyGlobal.collectionViewBackground
             $0.showsVerticalScrollIndicator = false
             $0.showsHorizontalScrollIndicator = false
@@ -122,6 +115,22 @@ open class EasyViewController: UIViewController {
 }
 
 public extension EasyViewController {
+    
+    func addTableView(style: UITableView.Style, inView: UIView) {
+        tableViewStyle = style
+        inView.addSubview(tableView)
+        tableView.snp.makeConstraints({ (make) in
+            make.edges.equalToSuperview()
+        })
+    }
+    
+    func addCollectionView(layout: UICollectionViewLayout, inView: UIView) {
+        collectionView.collectionViewLayout = layout
+        inView.addSubview(collectionView)
+        collectionView.snp.makeConstraints({ (make) in
+            make.edges.equalToSuperview()
+        })
+    }
     
     /// numberOfSections
     /**
@@ -193,22 +202,22 @@ public extension EasyViewController {
     
     /**
      ```
-     setCollectionViewRegister(CCell.self, layout: collectionViewWaterFlowLayout, configureCell: { (cell, _, any) in
+     setCollectionViewRegister(CCell.self, configureCell: { (cell, _, any) in
          cell.textLabel?.text = any as? String
      }) { [weak self] (indexPath, any) in
          // dosomething
      }
      ```
      */
-    func setCollectionViewRegister(_ cellClass: AnyClass?, layout: UICollectionViewLayout, configureCell: @escaping (UICollectionViewCell, IndexPath, Any) -> Void, didSelectRow collectionViewDidSelectRowHandler: ((IndexPath, Any) -> Void)?) {
-        setCollectionViewRegister([cellClass], layout: layout, returnCell: { (_) -> AnyClass? in
+    func setCollectionViewRegister(_ cellClass: AnyClass?, configureCell: @escaping (UICollectionViewCell, IndexPath, Any) -> Void, didSelectRow collectionViewDidSelectRowHandler: ((IndexPath, Any) -> Void)?) {
+        setCollectionViewRegister([cellClass], returnCell: { (_) -> AnyClass? in
             return cellClass.self
         }, configureCell: configureCell, didSelectRow: collectionViewDidSelectRowHandler)
     }
     
     /// cellForItemAt & didSelectItemAt
     /**
-     setCollectionViewRegister([CollectionViewCell.self, TestCollectionViewCell.self], layout: collectionViewWaterFlowLayout, returnCell: { (indexPath) -> AnyClass? in
+     setCollectionViewRegister([CollectionViewCell.self, TestCollectionViewCell.self], returnCell: { (indexPath) -> AnyClass? in
          switch indexPath.row {
          case 0:
              return CollectionViewCell.self
@@ -221,8 +230,7 @@ public extension EasyViewController {
          // dosomething
      }
      */
-    func setCollectionViewRegister(_ cellsClass: [AnyClass?], layout: UICollectionViewLayout, returnCell collectionViewCellsHandler: @escaping (IndexPath) -> AnyClass?, configureCell collectionViewCellHandler: @escaping (UICollectionViewCell, IndexPath, Any) -> Void, didSelectRow collectionViewDidSelectRowHandler: ((IndexPath, Any) -> Void)?) {
-        collectionView.collectionViewLayout = layout
+    func setCollectionViewRegister(_ cellsClass: [AnyClass?], returnCell collectionViewCellsHandler: @escaping (IndexPath) -> AnyClass?, configureCell collectionViewCellHandler: @escaping (UICollectionViewCell, IndexPath, Any) -> Void, didSelectRow collectionViewDidSelectRowHandler: ((IndexPath, Any) -> Void)?) {
         cellsClass.forEach { (cc) in
             guard let cellClass = cc else { return }
             guard let cellReuseIdentifier = cc.self?.description() else { return }
@@ -241,8 +249,8 @@ extension EasyViewController: UITableViewDataSource, UITableViewDelegate {
         if let handler = tableViewNumberOfSectionsHandler {
             return handler()
         }
-        if self.dataSource.contains(where: { ($0 as? [Any]) != nil }) {
-            return dataSource.count
+        if self.tableViewDataSource.contains(where: { ($0 as? [Any]) != nil }) {
+            return tableViewDataSource.count
         }
         return 1
     }
@@ -251,29 +259,29 @@ extension EasyViewController: UITableViewDataSource, UITableViewDelegate {
         if let handler = tableViewNumberOfRowsInSectionHandler {
             return handler(section)
         }
-        if section < dataSource.count {
-            if let array = (self.dataSource[section] as? [Any]) {
+        if section < tableViewDataSource.count {
+            if let array = (self.tableViewDataSource[section] as? [Any]) {
                 return array.count
             }
         }
-        return dataSource.count
+        return tableViewDataSource.count
     }
     
     open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let tableViewCellsHandler = tableViewCellsHandler, let cellReuseIdentifier = tableViewCellsHandler(indexPath).self?.description() {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) else { return UITableViewCell() }
             if numberOfSections(in: tableView) > 0 {
-                if indexPath.section < dataSource.count {
-                    if let any = (dataSource[indexPath.section] as? [Any]) {
+                if indexPath.section < tableViewDataSource.count {
+                    if let any = (tableViewDataSource[indexPath.section] as? [Any]) {
                         if indexPath.row < any.count {
                             tableViewCellHandler?(cell, indexPath, any[indexPath.row])
                         }
-                    } else if indexPath.row < dataSource.count {
-                        tableViewCellHandler?(cell, indexPath, dataSource[indexPath.row])
+                    } else if indexPath.row < tableViewDataSource.count {
+                        tableViewCellHandler?(cell, indexPath, tableViewDataSource[indexPath.row])
                     }
                 }
-            } else if indexPath.row < dataSource.count {
-                tableViewCellHandler?(cell, indexPath, dataSource[indexPath.row])
+            } else if indexPath.row < tableViewDataSource.count {
+                tableViewCellHandler?(cell, indexPath, tableViewDataSource[indexPath.row])
             }
             return cell
         }
@@ -285,17 +293,17 @@ extension EasyViewController: UITableViewDataSource, UITableViewDelegate {
         
         if let tableViewDidSelectRowHandler = tableViewDidSelectRowHandler {
             if numberOfSections(in: tableView) > 0 {
-                if indexPath.section < dataSource.count {
-                    if let any = (dataSource[indexPath.section] as? [Any]) {
+                if indexPath.section < tableViewDataSource.count {
+                    if let any = (tableViewDataSource[indexPath.section] as? [Any]) {
                         if indexPath.row < any.count {
                             tableViewDidSelectRowHandler(indexPath, any[indexPath.row])
                         }
-                    } else if indexPath.row < dataSource.count {
-                        tableViewDidSelectRowHandler(indexPath, dataSource[indexPath.row])
+                    } else if indexPath.row < tableViewDataSource.count {
+                        tableViewDidSelectRowHandler(indexPath, tableViewDataSource[indexPath.row])
                     }
                 }
-            } else if indexPath.row < dataSource.count {
-                tableViewDidSelectRowHandler(indexPath, dataSource[indexPath.row])
+            } else if indexPath.row < tableViewDataSource.count {
+                tableViewDidSelectRowHandler(indexPath, tableViewDataSource[indexPath.row])
             }
         }
     }
@@ -308,8 +316,8 @@ extension EasyViewController: UICollectionViewDataSource, UICollectionViewDelega
         if let handler = collectionViewNumberOfSectionsHandler {
             return handler()
         }
-        if self.dataSource.contains(where: { ($0 as? [Any]) != nil }) {
-            return dataSource.count
+        if self.collectionViewDataSource.contains(where: { ($0 as? [Any]) != nil }) {
+            return collectionViewDataSource.count
         }
         return 1
     }
@@ -318,29 +326,29 @@ extension EasyViewController: UICollectionViewDataSource, UICollectionViewDelega
         if let handler = collectionViewNumberOfItemsInSectionHandler {
             return handler(section)
         }
-        if section < dataSource.count {
-            if let array = (self.dataSource[section] as? [Any]) {
+        if section < collectionViewDataSource.count {
+            if let array = (self.collectionViewDataSource[section] as? [Any]) {
                 return array.count
             }
         }
-        return dataSource.count
+        return collectionViewDataSource.count
     }
     
     open func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let collectionViewCellsHandler = collectionViewCellsHandler, let cellReuseIdentifier = collectionViewCellsHandler(indexPath).self?.description() {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellReuseIdentifier, for: indexPath)
             if numberOfSections(in: collectionView) > 0 {
-                if indexPath.section < dataSource.count {
-                    if let any = (dataSource[indexPath.section] as? [Any]) {
+                if indexPath.section < collectionViewDataSource.count {
+                    if let any = (collectionViewDataSource[indexPath.section] as? [Any]) {
                         if indexPath.row < any.count {
                             collectionViewCellHandler?(cell, indexPath, any[indexPath.row])
                         }
-                    } else if indexPath.row < dataSource.count {
-                        collectionViewCellHandler?(cell, indexPath, dataSource[indexPath.row])
+                    } else if indexPath.row < collectionViewDataSource.count {
+                        collectionViewCellHandler?(cell, indexPath, collectionViewDataSource[indexPath.row])
                     }
                 }
-            } else if indexPath.row < dataSource.count {
-                collectionViewCellHandler?(cell, indexPath, dataSource[indexPath.row])
+            } else if indexPath.row < collectionViewDataSource.count {
+                collectionViewCellHandler?(cell, indexPath, collectionViewDataSource[indexPath.row])
             }
             return cell
         }
@@ -352,17 +360,17 @@ extension EasyViewController: UICollectionViewDataSource, UICollectionViewDelega
         
         if let collectionViewDidSelectRowHandler = collectionViewDidSelectRowHandler {
             if numberOfSections(in: collectionView) > 0 {
-                if indexPath.section < dataSource.count {
-                    if let any = (dataSource[indexPath.section] as? [Any]) {
+                if indexPath.section < collectionViewDataSource.count {
+                    if let any = (collectionViewDataSource[indexPath.section] as? [Any]) {
                         if indexPath.row < any.count {
                             collectionViewDidSelectRowHandler(indexPath, any[indexPath.row])
                         }
-                    } else if indexPath.row < dataSource.count {
-                        collectionViewDidSelectRowHandler(indexPath, dataSource[indexPath.row])
+                    } else if indexPath.row < collectionViewDataSource.count {
+                        collectionViewDidSelectRowHandler(indexPath, collectionViewDataSource[indexPath.row])
                     }
                 }
-            } else if indexPath.row < dataSource.count {
-                collectionViewDidSelectRowHandler(indexPath, dataSource[indexPath.row])
+            } else if indexPath.row < collectionViewDataSource.count {
+                collectionViewDidSelectRowHandler(indexPath, collectionViewDataSource[indexPath.row])
             }
         }
     }

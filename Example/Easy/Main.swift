@@ -74,6 +74,8 @@ class Main: easy.ViewController {
         textView.placeholder = app.bundleName
         textView.placeholderColor = UIColor.random
         
+        addTableView(style: .plain, inView: view)
+        
         let tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: .screenWidth, height: 22 + 45)).then {
             let button = UIButton().then {
                 $0.setTitleColor(easy.Global.tint, for: .normal)
@@ -104,7 +106,7 @@ class Main: easy.ViewController {
     override func request() {
         super.request()
         
-        dataSource = [ScanViewController.toString, TuchongViewController.toString, SocialViewController.toString, PageViewController.toString, InputViewController.toString, MarqueeViewController.toString]
+        tableViewDataSource = [ScanViewController.toString, TuchongViewController.toString, SocialViewController.toString, PageViewController.toString, InputViewController.toString, MarqueeViewController.toString]
         tableView.reloadData()
     }
     
