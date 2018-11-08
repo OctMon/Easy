@@ -1,6 +1,6 @@
 //
 //  EasyMarqueeLabel.swift
-//  Pods
+//  Easy
 //
 //  Created by OctMon on 2018/11/6.
 //

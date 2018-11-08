@@ -11,6 +11,12 @@ import UIKit
 class MarqueeViewController: easy.ViewController {
 
     private var marqueeLabel: easy.MarqueeLabel!
+    
+    private let subListView = easy.ListView().then {
+        $0.collectionViewWaterFlowLayout.minimumInteritemSpacing = 0
+        $0.collectionViewWaterFlowLayout.minimumLineSpacing = 0
+        $0.addCollectionView(layout: $0.collectionViewWaterFlowLayout)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,31 +27,28 @@ class MarqueeViewController: easy.ViewController {
             log.debug(index)
         }
         
-        collectionViewDataSource = marqueeLabel.dataSource
+        subListView.collectionViewDataSource = marqueeLabel.dataSource
     }
     
     override func configure() {
         super.configure()
         
-        addTableView(style: .grouped, inView: view)
-        tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: .screenWidth, height: 200)).then {
+        listView.addTableView(style: .grouped)
+        listView.tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: .screenWidth, height: 200)).then {
             $0.backgroundColor = UIColor.gray
             marqueeLabel = easy.MarqueeLabel(frame: CGRect(x: 15, y: 0, width: $0.width - 30, height: 40))
             $0.addSubview(marqueeLabel)
             
-            addCollectionView(layout: collectionViewWaterFlowLayout, inView: $0)
-            collectionView.snp.remakeConstraints({ (make) in
+            $0.addSubview(subListView)
+            subListView.snp.makeConstraints({ (make) in
                 make.edges.equalToSuperview().inset(UIEdgeInsets(top: 40, left: 0, bottom: 0, right: 0))
             })
-        }
-        
-        collectionViewWaterFlowLayout.minimumInteritemSpacing = 0
-        collectionViewWaterFlowLayout.minimumLineSpacing = 0
-        
-        setCollectionViewRegister(UICollectionViewCell.self, configureCell: { (cell, _, _) in
-            cell.backgroundColor = UIColor.random
-        }) { (_, any) in
-            log.debug(any)
+            
+            subListView.setCollectionViewRegister(UICollectionViewCell.self, configureCell: { (cell, _, _) in
+                cell.backgroundColor = UIColor.random
+            }) { (_, any) in
+                log.debug(any)
+            }
         }
     }
 

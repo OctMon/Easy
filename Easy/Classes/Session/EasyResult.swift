@@ -98,33 +98,57 @@ public extension JSONDecoder {
 
 #if canImport(MJRefresh)
 import MJRefresh
-public extension EasyViewController {
+public extension EasyListView {
     
-    func addRefresh(_ scrollView: UIScrollView, isAddHeader: Bool, isAddFooter: Bool) {
+    func addTableView(style: UITableView.Style, isAddHeader: Bool, isAddFooter: Bool, requestHandler: @escaping (() -> Void)) {
+        addTableView(style: style)
+        addRefresh(tableView, isAddHeader: isAddFooter, isAddFooter: isAddFooter, requestHandler: requestHandler)
+    }
+    
+    func addCollectionView(layout: UICollectionViewLayout, isAddHeader: Bool, isAddFooter: Bool, requestHandler: @escaping (() -> Void)) {
+        addCollectionView(layout: layout)
+        addRefresh(collectionView, isAddHeader: isAddFooter, isAddFooter: isAddFooter, requestHandler: requestHandler)
+    }
+    
+    private func addRefresh(_ scrollView: UIScrollView, isAddHeader: Bool, isAddFooter: Bool, requestHandler: @escaping (() -> Void)) {
+        if scrollView is UITableView {
+            tableViewRequestHandler = requestHandler
+        } else if scrollView is UICollectionView {
+            collectionViewRequestHandler = requestHandler
+        }
         if isAddHeader {
             scrollView.mj_header = EasyRefresh.headerWithHandler { [weak self] in
                 self?.currentPage = self?.firstPage ?? 0
-                self?.request()
+                if scrollView is UITableView {
+                    self?.tableViewRequestHandler?()
+                } else if scrollView is UICollectionView {
+                    self?.collectionViewRequestHandler?()
+                }
             }
         }
         if isAddFooter {
             scrollView.mj_footer = EasyRefresh.footerWithHandler { [weak self] in
-                self?.request()
+                if scrollView is UITableView {
+                    self?.tableViewRequestHandler?()
+                } else if scrollView is UICollectionView {
+                    self?.collectionViewRequestHandler?()
+                }
             }
         }
     }
     
-    func setTableViewRefresh(_ scrollView: UIScrollView, response: EasyResult, errorHandler: ((Error?) -> Void)? = nil) {
+    func setTableViewRefresh(response: EasyResult, errorHandler: ((Error?) -> Void)? = nil) {
         setRefresh(tableView, response: response, errorHandler: errorHandler)
     }
     
-    func setCollectionViewRefresh(_ scrollView: UIScrollView, response: EasyResult, errorHandler: ((Error?) -> Void)? = nil) {
+    func setCollectionViewRefresh(response: EasyResult, errorHandler: ((Error?) -> Void)? = nil) {
         setRefresh(collectionView, response: response, errorHandler: errorHandler)
     }
     
     private func setRefresh(_ scrollView: UIScrollView, response: EasyResult, errorHandler: ((Error?) -> Void)? = nil) {
         let isTableView = scrollView is UITableView
-        self.view.hideLoading()
+        let isCollectionView = scrollView is UICollectionView
+        hideLoading()
         if self.currentPage == self.firstPage {
             if scrollView.mj_header != nil {
                 scrollView.mj_header.endRefreshing()
@@ -138,29 +162,29 @@ public extension EasyViewController {
             if let handler = errorHandler {
                 handler(response.error)
             } else {
-                if (isTableView && tableViewDataSource.count > 0) || (!isTableView && collectionViewDataSource.count > 0) {
-                    self.view.showText(response.error?.localizedDescription)
+                if (isTableView && tableViewDataSource.count > 0) || (isCollectionView && collectionViewDataSource.count > 0) {
+                    showText(response.error?.localizedDescription)
                 } else {
-                    self.view.showPlaceholder(error: response.error, image: nil, tap: { [weak self] in
-                        self?.view.showLoading()
-                        self?.request()
+                    showPlaceholder(error: response.error, image: nil, tap: { [weak self] in
+                        self?.showLoading()
+                        self?.collectionViewRequestHandler?()
                     })
                 }
                 
             }
             return
         }
-        self.view.hidePlaceholder()
+        hidePlaceholder()
         if self.currentPage == self.firstPage {
             if isTableView {
                 self.tableViewDataSource = response.models
-            } else {
+            } else if isCollectionView {
                 self.collectionViewDataSource = response.models
             }
         } else {
             if isTableView {
                 self.tableViewDataSource.append(contentsOf: response.models)
-            } else {
+            } else if isCollectionView {
                 self.collectionViewDataSource.append(contentsOf: response.models)
             }
         }

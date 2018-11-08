@@ -24,9 +24,6 @@ class EasyTestViewController: EasyViewController {
         navigationItem.appendRightBarButtonItem(title: "Done") {
             isShowTestTool.toggle()
         }
-        addTableView(style: .plain, inView: view)
-        tableView.tableHeaderView = textView
-        tableView.tableFooterView = UIView()
         
         refreshLog(EasyLog.log)
         EasyLog.logHandler = { [weak self] (log) in
@@ -46,8 +43,11 @@ class EasyTestViewController: EasyViewController {
     override func configure() {
         super.configure()
         
-        tableViewStyle = .grouped
-        setTableViewRegister([EasyTestCell.self, UITableViewCell.self], returnCell: { (indexPath) -> AnyClass? in
+        listView.addTableView(style: .plain)
+        listView.tableView.tableHeaderView = textView
+        listView.tableView.tableFooterView = UIView()
+        
+        listView.setTableViewRegister([EasyTestCell.self, UITableViewCell.self], returnCell: { (indexPath) -> AnyClass? in
             if indexPath.section == 0 {
                 return EasyTestCell.self
             }
@@ -62,7 +62,7 @@ class EasyTestViewController: EasyViewController {
                     $0.switchHandler { [weak self] (isOn) in
                         if var model = model {
                             model.1 = isOn
-                            self?.tableViewDataSource[indexPath.section] = model
+                            self?.listView.tableViewDataSource[indexPath.section] = model
                             switch (indexPath.section, indexPath.row) {
                             case (0, 0):
                                 EasyResult.logEnabel = isOn
@@ -87,11 +87,11 @@ class EasyTestViewController: EasyViewController {
             sessions[indexPath.row].showChangeBaseURL({ [weak self] (url) in
                 if var model = any as? (String, String) {
                     model.1 = url
-                    let list = self?.tableViewDataSource[indexPath.section]
+                    let list = self?.listView.tableViewDataSource[indexPath.section]
                     if var models = list as? [Any] {
                         models[indexPath.row] = model
-                        self?.tableViewDataSource[indexPath.section] = models
-                        self?.tableView.reloadData()
+                        self?.listView.tableViewDataSource[indexPath.section] = models
+                        self?.listView.tableView.reloadData()
                     }
                 }
             })
@@ -101,13 +101,13 @@ class EasyTestViewController: EasyViewController {
     override func request() {
         super.request()
         
-        tableViewDataSource = [[("show EasyResult banner", EasyResult.logEnabel)]]//, (GDPerformanceMonitor.toString, omIsShowGDPerformanceMonitor)]]
+        listView.tableViewDataSource = [[("show EasyResult banner", EasyResult.logEnabel)]]//, (GDPerformanceMonitor.toString, omIsShowGDPerformanceMonitor)]]
         var tmp = [Any]()
         sessions.forEach({ tmp.append(($0.config.url.alias, $0.config.url.currentBaseURL)) })
         if tmp.count > 0 {
-            tableViewDataSource.append(tmp)
+            listView.tableViewDataSource.append(tmp)
         }
-        tableView.reloadData()
+        listView.tableView.reloadData()
     }
     
 }

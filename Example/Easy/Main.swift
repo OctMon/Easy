@@ -74,7 +74,7 @@ class Main: easy.ViewController {
         textView.placeholder = app.bundleName
         textView.placeholderColor = UIColor.random
         
-        addTableView(style: .plain, inView: view)
+        listView.addTableView(style: .grouped)
         
         let tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: .screenWidth, height: 22 + 45)).then {
             let button = UIButton().then {
@@ -93,9 +93,9 @@ class Main: easy.ViewController {
             button.addTarget(self, action: #selector(showCheckAlert), for: .touchUpInside)
         }
         
-        tableView.tableHeaderView = textView
-        tableView.tableFooterView = tableFooterView
-        setTableViewRegister(UITableViewCell.self, configureCell: { (cell, _, any) in
+        listView.tableView.tableHeaderView = textView
+        listView.tableView.tableFooterView = tableFooterView
+        listView.setTableViewRegister(UITableViewCell.self, configureCell: { (cell, _, any) in
             cell.textLabel?.text = any as? String
         }) { (_, any) in
             guard let aClassName = any as? String else { return }
@@ -106,8 +106,8 @@ class Main: easy.ViewController {
     override func request() {
         super.request()
         
-        tableViewDataSource = [ScanViewController.toString, TuchongViewController.toString, SocialViewController.toString, PageViewController.toString, InputViewController.toString, MarqueeViewController.toString]
-        tableView.reloadData()
+        listView.tableViewDataSource = [ScanViewController.toString, TuchongViewController.toString, SocialViewController.toString, PageViewController.toString, InputViewController.toString, MarqueeViewController.toString]
+        listView.tableView.reloadData()
     }
     
     @objc private func showCheckAlert() {

@@ -25,13 +25,13 @@ class SocialViewController: easy.ViewController {
     override func configure() {
         super.configure()
         
-        addCollectionView(layout: collectionViewWaterFlowLayout, inView: view)
+        listView.addCollectionView(layout: listView.collectionViewWaterFlowLayout)
         
-        collectionViewWaterFlowLayout.minimumInteritemSpacing = 0
-        collectionViewWaterFlowLayout.minimumLineSpacing = 0
-        collectionViewWaterFlowLayout.itemSize = CGSize(width: .screenWidth * 0.5, height: CGSize(width: .screenWidth, height: .screenWidth).calcFlowHeight(in: app.screenWidth * 0.5))
+        listView.collectionViewWaterFlowLayout.minimumInteritemSpacing = 0
+        listView.collectionViewWaterFlowLayout.minimumLineSpacing = 0
+        listView.collectionViewWaterFlowLayout.itemSize = CGSize(width: .screenWidth * 0.5, height: CGSize(width: .screenWidth, height: .screenWidth).calcFlowHeight(in: app.screenWidth * 0.5))
         
-        setCollectionViewRegister(TuchongCollectionViewCell.self, configureCell: { (cell, _, any) in
+        listView.setCollectionViewRegister(TuchongCollectionViewCell.self, configureCell: { (cell, _, any) in
             (cell as? TuchongCollectionViewCell)?.do {
                 $0.backgroundColor = UIColor.random
                 $0.label.text = (any as? Module)?.name
@@ -73,8 +73,8 @@ class SocialViewController: easy.ViewController {
     override func request() {
         super.request()
         
-        collectionViewDataSource = [Module.分享, Module.微信登录, Module.QQ登录, Module.微博登录]
-        collectionView.reloadData()
+        listView.collectionViewDataSource = [Module.分享, Module.微信登录, Module.QQ登录, Module.微博登录]
+        listView.collectionView.reloadData()
     }
     
     private func showUserInfo(_ userInfo: easy.Social.UserInfo) {

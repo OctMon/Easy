@@ -27,18 +27,18 @@ class EasySessionViewController: EasyViewController {
                 list.append(url)
             }
         }
-        tableViewDataSource = list
+        listView.tableViewDataSource = list
     }
     
     override func configure() {
         super.configure()
         
-        addTableView(style: .plain, inView: view)
+        listView.addTableView(style: .plain)
         
         let current = config.url.currentBaseURL
         let text = "📡 Change \(config.url.alias) BaseURL 📡"
         let height = text.getHeight(forConstrainedWidth: EasyApp.screenWidth, font: UIFont.size14)
-        tableView.tableHeaderView = UILabel(frame: CGRect(x: 0, y: 0, width: EasyApp.screenWidth, height: height)).then {
+        listView.tableView.tableHeaderView = UILabel(frame: CGRect(x: 0, y: 0, width: EasyApp.screenWidth, height: height)).then {
             $0.numberOfLines = 0
             $0.font = UIFont.size14
             $0.textAlignment = .center
@@ -47,7 +47,7 @@ class EasySessionViewController: EasyViewController {
             $0.backgroundColor = UIColor.lightGray
         }
         
-        setTableViewRegister(UITableViewCell.self, configureCell: { [weak self] (cell, _, any) in
+        listView.setTableViewRegister(UITableViewCell.self, configureCell: { [weak self] (cell, _, any) in
             cell.textLabel?.numberOfLines = 0
             cell.textLabel?.textAlignment = .center
             if let url = any as? String {
