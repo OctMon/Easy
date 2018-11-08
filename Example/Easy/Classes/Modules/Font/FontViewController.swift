@@ -34,31 +34,10 @@ class FontViewController: easy.ViewController {
     override func configure() {
         super.configure()
         
-        listView.addTableView(style: .grouped)
+        listView.addTableView(style: .plain)
         listView.tableView.dataSource = self
         listView.tableView.delegate = self
-        listView.setTableView(numberOfSections: { [weak self] () -> Int in
-            let fonts = self?.listView.tableViewDataSource as? [Font] ?? []
-            return fonts.count
-        }) { [weak self] (section) -> Int in
-            let fonts = self?.listView.tableViewDataSource as? [Font] ?? []
-            return fonts[section].name.count
-        }
-        listView.setTableViewRegister(UITableViewCell.self, configureCell: { [weak self] (cell, indexPath, any) in
-            (any as? Font)?.do {
-                cell.textLabel?.numberOfLines = 0
-                cell.textLabel?.font = UIFont.size19
-                var text = (self?.textField.text ?? "") + "\n" + $0.family
-                if $0.name.count < indexPath.row {
-                    print(indexPath.row)
-                    print($0.name[indexPath.row])
-                    text = text + $0.name[indexPath.row]
-                }
-                cell.textLabel?.text = text
-            }
-        }) { (_, any) in
-            
-        }
+        listView.tableView.registerReusableCell(UITableViewCell.self)
     }
     
     @objc override func request() {
@@ -89,9 +68,18 @@ extension FontViewController: UITableViewDataSource, UITableViewDelegate {
         let fonts = listView.tableViewDataSource as? [Font] ?? []
         cell.textLabel?.numberOfLines = 0
         cell.textLabel?.font = UIFont(name: fonts[indexPath.section].name[indexPath.row], size: 19)
-        let text = (self.textField.text ?? "") + "\n" + fonts[indexPath.section].family + fonts[indexPath.section].name[indexPath.row]
+        let text = (self.textField.text ?? "") + "\n" + fonts[indexPath.section].name[indexPath.row]
         cell.textLabel?.text = text
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 44
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        let fonts = listView.tableViewDataSource as? [Font] ?? []
+        return fonts[section].family
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -103,7 +91,7 @@ extension FontViewController: UITableViewDataSource, UITableViewDelegate {
             $0.numberOfLines = 0
             $0.font = UIFont(name: fonts[indexPath.section].name[indexPath.row], size: 48)
             $0.textAlignment = .center
-            let text = (self.textField.text ?? "") + "\n" + fonts[indexPath.section].family + fonts[indexPath.section].name[indexPath.row]
+            let text = (self.textField.text ?? "") + "\n" + fonts[indexPath.section].name[indexPath.row]
             $0.text = text
         }
         easy.PopupView(label).showWithCenter()
