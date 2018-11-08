@@ -29,6 +29,8 @@
 		FEBBE4F321916FCD00654926 /* MarqueeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEBBE4F121916FCD00654926 /* MarqueeViewController.swift */; };
 		FEC882DF2176C65D009BDC1C /* SocialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC882DE2176C65D009BDC1C /* SocialViewController.swift */; };
 		FEC882E02176C65D009BDC1C /* SocialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC882DE2176C65D009BDC1C /* SocialViewController.swift */; };
+		FECA315821942FF900C29B37 /* FontViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECA315721942FF900C29B37 /* FontViewController.swift */; };
+		FECA315921942FF900C29B37 /* FontViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECA315721942FF900C29B37 /* FontViewController.swift */; };
 		FEF494CA2175879F00555C3F /* Tuchong.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF494C92175879F00555C3F /* Tuchong.swift */; };
 		FEF494CB2175879F00555C3F /* Tuchong.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF494C92175879F00555C3F /* Tuchong.swift */; };
 		FEF494D32175B8F700555C3F /* TuchongViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF494D22175B8F700555C3F /* TuchongViewController.swift */; };
@@ -75,6 +77,7 @@
 		FEBBE4E9219123C700654926 /* InputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputViewController.swift; sourceTree = "<group>"; };
 		FEBBE4F121916FCD00654926 /* MarqueeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarqueeViewController.swift; sourceTree = "<group>"; };
 		FEC882DE2176C65D009BDC1C /* SocialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialViewController.swift; sourceTree = "<group>"; };
+		FECA315721942FF900C29B37 /* FontViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontViewController.swift; sourceTree = "<group>"; };
 		FEF494C92175879F00555C3F /* Tuchong.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tuchong.swift; sourceTree = "<group>"; };
 		FEF494D22175B8F700555C3F /* TuchongViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TuchongViewController.swift; sourceTree = "<group>"; };
 		FEFE116E2187EC1E00BDDD9F /* PageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
@@ -214,6 +217,7 @@
 		FE388A40217317950050904B /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				FECA315621942FE500C29B37 /* Font */,
 				FEBBE4E8219123BB00654926 /* Input */,
 				FEBBE4F021916FC100654926 /* Marquee */,
 				FEFE116D2187EC1E00BDDD9F /* Page */,
@@ -262,6 +266,14 @@
 				FEC882DE2176C65D009BDC1C /* SocialViewController.swift */,
 			);
 			path = Social;
+			sourceTree = "<group>";
+		};
+		FECA315621942FE500C29B37 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				FECA315721942FF900C29B37 /* FontViewController.swift */,
+			);
+			path = Font;
 			sourceTree = "<group>";
 		};
 		FEF494C82175875E00555C3F /* Tuchong */ = {
@@ -598,6 +610,7 @@
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 				FEF494D32175B8F700555C3F /* TuchongViewController.swift in Sources */,
 				FEF494CA2175879F00555C3F /* Tuchong.swift in Sources */,
+				FECA315821942FF900C29B37 /* FontViewController.swift in Sources */,
 				FE388A4F2173223C0050904B /* ScanViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -623,6 +636,7 @@
 				FE6652DA2170A58A007E7051 /* AppDelegate.swift in Sources */,
 				FEF494D42175B8F700555C3F /* TuchongViewController.swift in Sources */,
 				FEF494CB2175879F00555C3F /* Tuchong.swift in Sources */,
+				FECA315921942FF900C29B37 /* FontViewController.swift in Sources */,
 				FE388A502173223C0050904B /* ScanViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

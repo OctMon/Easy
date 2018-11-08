@@ -106,7 +106,7 @@ class Main: easy.ViewController {
     override func request() {
         super.request()
         
-        listView.tableViewDataSource = [ScanViewController.toString, TuchongViewController.toString, SocialViewController.toString, PageViewController.toString, InputViewController.toString, MarqueeViewController.toString]
+        listView.tableViewDataSource = [ScanViewController.toString, TuchongViewController.toString, SocialViewController.toString, PageViewController.toString, InputViewController.toString, MarqueeViewController.toString, FontViewController.toString]
         listView.tableView.reloadData()
     }
     
