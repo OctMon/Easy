@@ -101,6 +101,10 @@ public extension EasyListView {
         })
     }
     
+    func tableViewDataSource<T>(_ class: T.Type) -> [T] {
+        return tableViewDataSource as? [T] ?? []
+    }
+    
     /// numberOfSections
     /**
      setTableView(numberOfSections: { [weak self] () -> Int in
@@ -191,6 +195,8 @@ extension EasyListView: UITableViewDataSource, UITableViewDelegate {
                         if indexPath.row < any.count {
                             tableViewCellHandler?(cell, indexPath, any[indexPath.row])
                         }
+                    } else if let row = tableViewNumberOfRowsInSectionHandler?(indexPath.section), row > 0 {
+                        tableViewCellHandler?(cell, indexPath, tableViewDataSource[indexPath.section])
                     } else if indexPath.row < tableViewDataSource.count {
                         tableViewCellHandler?(cell, indexPath, tableViewDataSource[indexPath.row])
                     }
@@ -213,6 +219,8 @@ extension EasyListView: UITableViewDataSource, UITableViewDelegate {
                         if indexPath.row < any.count {
                             tableViewDidSelectRowHandler(indexPath, any[indexPath.row])
                         }
+                    } else if let row = tableViewNumberOfRowsInSectionHandler?(indexPath.section), row > 0 {
+                        tableViewDidSelectRowHandler(indexPath, tableViewDataSource[indexPath.section])
                     } else if indexPath.row < tableViewDataSource.count {
                         tableViewDidSelectRowHandler(indexPath, tableViewDataSource[indexPath.row])
                     }
@@ -233,6 +241,10 @@ public extension EasyListView {
         collectionView.snp.makeConstraints({ (make) in
             make.edges.equalToSuperview()
         })
+    }
+    
+    func collectionViewDataSource<T>(_ class: T.Type) -> [T] {
+        return collectionViewDataSource as? [T] ?? []
     }
     
     /// numberOfSections
@@ -324,6 +336,8 @@ extension EasyListView: UICollectionViewDataSource, UICollectionViewDelegate, UI
                         if indexPath.row < any.count {
                             collectionViewCellHandler?(cell, indexPath, any[indexPath.row])
                         }
+                    } else if let row = collectionViewNumberOfItemsInSectionHandler?(indexPath.section), row > 0 {
+                        collectionViewCellHandler?(cell, indexPath, collectionViewDataSource[indexPath.section])
                     } else if indexPath.row < collectionViewDataSource.count {
                         collectionViewCellHandler?(cell, indexPath, collectionViewDataSource[indexPath.row])
                     }
@@ -346,6 +360,8 @@ extension EasyListView: UICollectionViewDataSource, UICollectionViewDelegate, UI
                         if indexPath.row < any.count {
                             collectionViewDidSelectRowHandler(indexPath, any[indexPath.row])
                         }
+                    } else if let row = collectionViewNumberOfItemsInSectionHandler?(indexPath.section), row > 0 {
+                        collectionViewDidSelectRowHandler(indexPath, collectionViewDataSource[indexPath.section])
                     } else if indexPath.row < collectionViewDataSource.count {
                         collectionViewDidSelectRowHandler(indexPath, collectionViewDataSource[indexPath.row])
                     }

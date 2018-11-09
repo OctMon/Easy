@@ -38,6 +38,30 @@ class FontViewController: easy.ViewController {
         listView.tableView.dataSource = self
         listView.tableView.delegate = self
         listView.tableView.registerReusableCell(UITableViewCell.self)
+        
+        /*listView.addTableView(style: .grouped)
+        listView.setTableView(numberOfSections: { [weak self] () -> Int in
+            self?.listView.tableViewDataSource.count ?? 0
+        }) { [weak self] (section) -> Int in
+            return self?.listView.tableViewDataSource(Font.self)[section].name.count ?? 0
+        }
+        listView.setTableViewRegister(UITableViewCell.self, configureCell: { [weak self] (cell, indexPath, any) in
+            guard let font = any as? Font else { return }
+            cell.textLabel?.numberOfLines = 0
+            cell.textLabel?.font = UIFont(name: font.name[indexPath.row], size: 19)
+            cell.textLabel?.text = (self?.textField.text ?? "") + "\n" + font.name[indexPath.row]
+        }) { [weak self] (indexPath, any) in
+            let label = UILabel(frame: app.screenBounds).then {
+                guard let font = any as? Font else { return }
+                $0.backgroundColor = UIColor.white
+                $0.numberOfLines = 0
+                $0.font = UIFont(name: font.name[indexPath.row], size: 48)
+                $0.textAlignment = .center
+                let text = (self?.textField.text ?? "") + "\n" + font.name[indexPath.row]
+                $0.text = text
+            }
+            easy.PopupView(label).showWithCenter()
+        }*/
     }
     
     @objc override func request() {
