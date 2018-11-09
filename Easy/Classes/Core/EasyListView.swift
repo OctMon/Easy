@@ -9,9 +9,51 @@ import UIKit
 
 public extension Easy {
     typealias ListView = EasyListView
+    typealias ListProtocol = EasyListProtocol
 }
 
-public class EasyListView: UIView {
+public protocol EasyListProtocol: class {
+//    var listView: ListView { get set }
+    func addListView(in: UIView) -> ListView
+    
+    associatedtype ListView: EasyListView
+}
+
+private struct Key {
+    static var listViewKey: Void?
+}
+
+public extension EasyListProtocol {
+    
+    var listView: ListView! {
+        get {
+            if let listView = objc_getAssociatedObject(self, &Key.listViewKey) as? ListView {
+                return listView
+            }
+            return nil
+        }
+        set {
+            objc_setAssociatedObject(self, &Key.listViewKey, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        }
+    }
+    
+    @discardableResult
+    func addListView(in view: UIView) -> ListView {
+        if let listView = listView {
+            view.addSubview(listView)
+        } else {
+            listView = ListView()
+            view.addSubview(listView)
+        }
+        
+        listView.snp.makeConstraints { (make) in
+            make.edges.equalToSuperview()
+        }
+        return listView
+    }
+}
+
+open class EasyListView: UIView {
 
     deinit { EasyLog.debug(toDeinit) }
     
@@ -22,6 +64,7 @@ public class EasyListView: UIView {
     private lazy var tableViewCellHandler: ((UITableViewCell, IndexPath, Any) -> Void)? = { return nil }()
     private lazy var tableViewCellsHandler: ((IndexPath) -> AnyClass?)? = { return nil }()
     private lazy var tableViewDidSelectRowHandler: ((IndexPath, Any) -> Void)? = { return nil }()
+    private lazy var tableViewAccessoryButtonTappedForRowWithHandler: ((IndexPath, Any) -> Void)? = { return nil }()
     lazy var tableViewRequestHandler: (() -> Void)? = { return nil }()
     
     /// must be set first
@@ -89,16 +132,30 @@ public class EasyListView: UIView {
     /// 忽略总页数判断
     public lazy var ignoreTotalPage: Bool = EasyGlobal.tableViewIgnoreTotalPage
     
+    public override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        configure()
+    }
+    
+    required public init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    open func configure() { }
+    
 }
 
 public extension EasyListView {
     
-    func addTableView(style: UITableView.Style) {
+    @discardableResult
+    func addTableView(style: UITableView.Style) -> UITableView {
         tableViewStyle = style
         addSubview(tableView)
         tableView.snp.makeConstraints({ (make) in
             make.edges.equalToSuperview()
         })
+        return tableView
     }
     
     func tableViewDataSource<T>(_ class: T.Type) -> [T] {
@@ -218,6 +275,21 @@ public extension EasyListView {
         }
     }
     
+    func setTableViewAccessoryButtonTappedForRowWith(_ tableViewAccessoryButtonTappedForRowWithHandler: ((IndexPath, Any) -> Void)?) {
+        self.tableViewAccessoryButtonTappedForRowWithHandler = tableViewAccessoryButtonTappedForRowWithHandler
+    }
+    
+    func setTableViewAccessoryButtonTappedForRowWith<T>(_ type: T.Type, accessoryButtonTappedForRowWith tableViewAccessoryButtonTappedForRowWithHandler: ((IndexPath, T) -> Void)?) {
+        self.tableViewAccessoryButtonTappedForRowWithHandler = { (indexPath, any) in
+            if let t = any as? T {
+                tableViewAccessoryButtonTappedForRowWithHandler?(indexPath, t)
+            } else {
+                EasyLog.print(any)
+                EasyLog.print("warning:类型T转换失败")
+            }
+        }
+    }
+    
 }
 
 extension EasyListView: UITableViewDataSource, UITableViewDelegate {
@@ -289,16 +361,38 @@ extension EasyListView: UITableViewDataSource, UITableViewDelegate {
         }
     }
     
+    open func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+        if let tableViewAccessoryButtonTappedForRowWithHandler = tableViewAccessoryButtonTappedForRowWithHandler {
+            if numberOfSections(in: tableView) > 0 {
+                if indexPath.section < tableViewDataSource.count {
+                    if let any = (tableViewDataSource[indexPath.section] as? [Any]) {
+                        if indexPath.row < any.count {
+                            tableViewAccessoryButtonTappedForRowWithHandler(indexPath, any[indexPath.row])
+                        }
+                    } else if let row = tableViewNumberOfRowsInSectionHandler?(indexPath.section), row > 0 {
+                        tableViewAccessoryButtonTappedForRowWithHandler(indexPath, tableViewDataSource[indexPath.section])
+                    } else if indexPath.row < tableViewDataSource.count {
+                        tableViewAccessoryButtonTappedForRowWithHandler(indexPath, tableViewDataSource[indexPath.row])
+                    }
+                }
+            } else if indexPath.row < tableViewDataSource.count {
+                tableViewAccessoryButtonTappedForRowWithHandler(indexPath, tableViewDataSource[indexPath.row])
+            }
+        }
+    }
+    
 }
 
 public extension EasyListView {
     
-    func addCollectionView(layout: UICollectionViewLayout) {
+    @discardableResult
+    func addCollectionView(layout: UICollectionViewLayout) -> UICollectionView {
         collectionView.collectionViewLayout = layout
         addSubview(collectionView)
         collectionView.snp.makeConstraints({ (make) in
             make.edges.equalToSuperview()
         })
+        return collectionView
     }
     
     func collectionViewDataSource<T>(_ class: T.Type) -> [T] {
