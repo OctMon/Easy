@@ -8,16 +8,12 @@
 
 import UIKit
 
-class MarqueeViewController: easy.ViewController {
+class MarqueeViewController: easy.ViewController, easy.ListProtocol {
+    
+    typealias ListView = MarqueeListView
 
     private var marqueeLabel: easy.MarqueeLabel!
     
-    private let subListView = easy.ListView().then {
-        $0.collectionViewWaterFlowLayout.minimumInteritemSpacing = 0
-        $0.collectionViewWaterFlowLayout.minimumLineSpacing = 0
-        $0.addCollectionView(layout: $0.collectionViewWaterFlowLayout)
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -27,29 +23,56 @@ class MarqueeViewController: easy.ViewController {
             log.debug(index)
         }
         
-        subListView.collectionViewDataSource = marqueeLabel.dataSource
+        listView.collectionViewDataSource = marqueeLabel.dataSource
     }
     
     override func configure() {
         super.configure()
         
-        listView.addTableView(style: .grouped)
-        listView.tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: .screenWidth, height: 200)).then {
-            $0.backgroundColor = UIColor.gray
-            marqueeLabel = easy.MarqueeLabel(frame: CGRect(x: 15, y: 0, width: $0.width - 30, height: 40))
-            $0.addSubview(marqueeLabel)
-            
-            $0.addSubview(subListView)
-            subListView.snp.makeConstraints({ (make) in
-                make.edges.equalToSuperview().inset(UIEdgeInsets(top: 40, left: 0, bottom: 0, right: 0))
-            })
-            
-            subListView.setCollectionViewRegister(UICollectionViewCell.self, configureCell: { (cell, _, _) in
-                cell.backgroundColor = UIColor.random
-            }) { (_, any) in
-                log.debug(any)
+        lazyListView.addTableView(style: .grouped).do {
+            $0.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: .screenWidth, height: 40 + .screenWidth * 0.25)).then {
+                $0.backgroundColor = UIColor.gray
+                marqueeLabel = easy.MarqueeLabel(frame: CGRect(x: 15, y: 0, width: $0.width - 30, height: 40))
+                $0.addSubview(marqueeLabel)
+                
+                addListView(in: $0).do {
+                    $0.addCollectionView(layout: $0.collectionViewWaterFlowLayout)
+                    $0.snp.updateConstraints({ (make) in
+                        make.edges.equalToSuperview().inset(UIEdgeInsets(top: 40, left: 0, bottom: 0, right: 0))
+                    })
+                }
             }
         }
     }
+
+}
+
+class MarqueeListView: easy.ListView {
+    
+    override func configure() {
+        super.configure()
+        
+        collectionViewWaterFlowLayout.do {
+            $0.minimumInteritemSpacing = 0
+            $0.minimumLineSpacing = 0
+        }
+        
+        setCollectionViewRegister(UICollectionViewCell.self, configureCell: { (cell, _, _) in
+            cell.backgroundColor = UIColor.random
+        }) { (_, any) in
+            log.debug(any)
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: .screenWidth * 0.25, height: .screenWidth * 0.25)
+    }
+    
+    /*override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(for: indexPath).then {
+            $0.backgroundColor = UIColor.red
+        }
+        return cell
+    }*/
 
 }

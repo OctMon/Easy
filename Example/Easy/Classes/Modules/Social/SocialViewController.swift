@@ -19,20 +19,22 @@ class SocialViewController: easy.ViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        listView.collectionViewDataSource = [Module.分享, Module.微信登录, Module.QQ登录, Module.微博登录]
-        listView.collectionView.reloadData()
+        lazyListView.collectionViewDataSource = [Module.分享, Module.微信登录, Module.QQ登录, Module.微博登录]
+        lazyListView.collectionView.reloadData()
     }
     
     override func configure() {
         super.configure()
         
-        listView.addCollectionView(layout: listView.collectionViewWaterFlowLayout)
+        lazyListView.addCollectionView(layout: lazyListView.collectionViewWaterFlowLayout)
         
-        listView.collectionViewWaterFlowLayout.minimumInteritemSpacing = 0
-        listView.collectionViewWaterFlowLayout.minimumLineSpacing = 0
-        listView.collectionViewWaterFlowLayout.itemSize = CGSize(width: .screenWidth * 0.5, height: CGSize(width: .screenWidth, height: .screenWidth).calcFlowHeight(in: app.screenWidth * 0.5))
+        lazyListView.collectionViewWaterFlowLayout.do {
+            $0.minimumInteritemSpacing = 0
+            $0.minimumLineSpacing = 0
+            $0.itemSize = CGSize(width: .screenWidth * 0.5, height: CGSize(width: .screenWidth, height: .screenWidth).calcFlowHeight(in: app.screenWidth * 0.5))
+        }
         
-        listView.setCollectionViewRegister(Module.self, cellClass:TuchongCollectionViewCell.self, configureCell: { (cell, _, any) in
+        lazyListView.setCollectionViewRegister(Module.self, cellClass:TuchongCollectionViewCell.self, configureCell: { (cell, _, any) in
             (cell as? TuchongCollectionViewCell)?.do {
                 $0.backgroundColor = UIColor.random
                 $0.label.text = any.name

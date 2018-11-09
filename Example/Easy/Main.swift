@@ -74,7 +74,7 @@ class Main: easy.ViewController {
         textView.placeholder = app.bundleName
         textView.placeholderColor = UIColor.random
         
-        listView.addTableView(style: .grouped)
+        lazyListView.addTableView(style: .grouped)
         
         let tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: .screenWidth, height: 22 + 45)).then {
             let button = UIButton().then {
@@ -85,17 +85,17 @@ class Main: easy.ViewController {
             }
             $0.addSubview(button)
             button.snp.makeConstraints({ (make) in
-                make.left.equalTo(15)
-                make.right.equalTo(-15)
+                make.centerX.equalToSuperview()
                 make.bottom.equalToSuperview()
                 make.height.equalTo(45)
+                make.width.equalTo(.screenWidth - 30)
             })
             button.addTarget(self, action: #selector(showCheckAlert), for: .touchUpInside)
         }
         
-        listView.tableView.tableHeaderView = textView
-        listView.tableView.tableFooterView = tableFooterView
-        listView.setTableViewRegister(String.self, cellClass: UITableViewCell.self, configureCell: { (cell, _, any) in
+        lazyListView.tableView.tableHeaderView = textView
+        lazyListView.tableView.tableFooterView = tableFooterView
+        lazyListView.setTableViewRegister(String.self, cellClass: UITableViewCell.self, configureCell: { (cell, _, any) in
             cell.textLabel?.text = any
         }) { (_, any) in
             easy.Router.openURL("easy://", routerParameters: [.className: any])
@@ -105,8 +105,8 @@ class Main: easy.ViewController {
     override func request() {
         super.request()
         
-        listView.tableViewDataSource = [ScanViewController.toString, TuchongViewController.toString, SocialViewController.toString, PageViewController.toString, InputViewController.toString, MarqueeViewController.toString, FontViewController.toString]
-        listView.tableView.reloadData()
+        lazyListView.tableViewDataSource = [ScanViewController.toString, TuchongViewController.toString, SocialViewController.toString, PageViewController.toString, InputViewController.toString, MarqueeViewController.toString, FontViewController.toString]
+        lazyListView.tableView.reloadData()
     }
     
     @objc private func showCheckAlert() {

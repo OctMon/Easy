@@ -43,11 +43,11 @@ class EasyTestViewController: EasyViewController {
     override func configure() {
         super.configure()
         
-        listView.addTableView(style: .plain)
-        listView.tableView.tableHeaderView = textView
-        listView.tableView.tableFooterView = UIView()
+        lazyListView.addTableView(style: .plain)
+        lazyListView.tableView.tableHeaderView = textView
+        lazyListView.tableView.tableFooterView = UIView()
         
-        listView.setTableViewRegister((String, String).self, cellsClass: [EasyTestCell.self, UITableViewCell.self], returnCell: { (indexPath) -> AnyClass? in
+        lazyListView.setTableViewRegister((String, String).self, cellsClass: [EasyTestCell.self, UITableViewCell.self], returnCell: { (indexPath) -> AnyClass? in
             if indexPath.section == 0 {
                 return EasyTestCell.self
             }
@@ -61,7 +61,7 @@ class EasyTestViewController: EasyViewController {
                     $0.switchHandler { [weak self] (isOn) in
                         var model = any
                         model.1 = isOn.toStringValue
-                        self?.listView.tableViewDataSource[indexPath.section] = model
+                        self?.lazyListView.tableViewDataSource[indexPath.section] = model
                         switch (indexPath.section, indexPath.row) {
                         case (0, 0):
                             EasyResult.logEnabel = isOn
@@ -83,98 +83,44 @@ class EasyTestViewController: EasyViewController {
             sessions[indexPath.row].showChangeBaseURL({ [weak self] (url) in
                 var model = any
                 model.1 = url
-                let list = self?.listView.tableViewDataSource[indexPath.section]
+                let list = self?.lazyListView.tableViewDataSource[indexPath.section]
                 if var models = list as? [Any] {
                     models[indexPath.row] = model
-                    self?.listView.tableViewDataSource[indexPath.section] = models
-                    self?.listView.tableView.reloadData()
+                    self?.lazyListView.tableViewDataSource[indexPath.section] = models
+                    self?.lazyListView.tableView.reloadData()
                 }
             })
         }
         
-//        listView.setTableViewRegister([EasyTestCell.self, UITableViewCell.self], returnCell: { (indexPath) -> AnyClass? in
-//            if indexPath.section == 0 {
-//                return EasyTestCell.self
-//            }
-//            return UITableViewCell.self
-//        }, configureCell: { [weak self] (cell, indexPath, any) in
-//            if let cell = (cell as? EasyTestCell) {
-//                cell.do {
-//                    let model = any as? (String, Bool)
-//                    $0.selectionStyle = .none
-//                    $0.textLabel?.text = model?.0
-//                    $0.switchView.isOn = model?.1 ?? false
-//                    $0.switchHandler { [weak self] (isOn) in
-//                        if var model = model {
-//                            model.1 = isOn
-//                            self?.listView.tableViewDataSource[indexPath.section] = model
-//                            switch (indexPath.section, indexPath.row) {
-//                            case (0, 0):
-//                                EasyResult.logEnabel = isOn
-//                            default:
-//                                break
-//                            }
-//                        }
-//                    }
-//                }
-//            } else {
-//                cell.do {
-//                    if let model = any as? (String, String) {
-//                        $0.accessoryType = .detailDisclosureButton
-//                        $0.selectionStyle = .default
-//                        $0.textLabel?.adjustsFontSizeToFitWidth = true
-//                        $0.textLabel?.text = model.0 + " -> " + model.1
-//                    }
-//                }
-//            }
-//        }) { [weak self] (indexPath, any) in
-//            guard indexPath.section > 0 else { return }
-//            sessions[indexPath.row].showChangeBaseURL({ [weak self] (url) in
-//                if var model = any as? (String, String) {
-//                    model.1 = url
-//                    let list = self?.listView.tableViewDataSource[indexPath.section]
-//                    if var models = list as? [Any] {
-//                        models[indexPath.row] = model
-//                        self?.listView.tableViewDataSource[indexPath.section] = models
-//                        self?.listView.tableView.reloadData()
-//                    }
-//                }
-//            })
-//        }
+        lazyListView.setTableViewAccessoryButtonTappedForRowWith { [weak self] (indexPath, _) in
+            guard indexPath.section > 0 else { return }
+            let session = sessions[indexPath.row]
+            var textField = UITextField()
+            textField.keyboardType = .URL
+            textField.placeholder = session.config.url.currentBaseURL
+            EasyAlert(message: "input custom").addTextField(&textField, required: true).addAction(title: "取消", style: .cancel).addAction(title: "确定", style: .default, preferredAction: true, handler: { [weak self] (_) in
+                guard let url = textField.text, !url.isEmpty else { return }
+                UserDefaults.standard.set(url, forKey: session.config.url.defaultCustomBaseURLKey)
+                if UserDefaults.standard.synchronize() {
+                    self?.request()
+                    EasyLog.debug("ChangeBaseURL Success: \(url)")
+                } else {
+                    EasyLog.debug("ChangeBaseURL Failure")
+                }
+            }).show()
+        }
     }
     
     override func request() {
         super.request()
         
-        listView.tableViewDataSource = [[("show EasyResult banner", EasyResult.logEnabel.toStringValue)]]//, (GDPerformanceMonitor.toString, omIsShowGDPerformanceMonitor.toStringValue)]]
+        lazyListView.tableViewDataSource = [[("show EasyResult banner", EasyResult.logEnabel.toStringValue)]]//, (GDPerformanceMonitor.toString, omIsShowGDPerformanceMonitor.toStringValue)]]
         var tmp = [Any]()
         sessions.forEach({ tmp.append(($0.config.url.alias, $0.config.url.currentBaseURL)) })
         if tmp.count > 0 {
-            listView.tableViewDataSource.append(tmp)
+            lazyListView.tableViewDataSource.append(tmp)
         }
-        listView.tableView.reloadData()
-    }
-    
-}
-
-extension EasyTestViewController {
-    
-    func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
-        guard indexPath.section > 0 else { return }
-        let session = sessions[indexPath.row]
-        var textField = UITextField()
-        textField.keyboardType = .URL
-        textField.placeholder = session.config.url.currentBaseURL
-        EasyAlert(message: "input custom").addTextField(&textField, required: true).addAction(title: "取消", style: .cancel).addAction(title: "确定", style: .default, preferredAction: true, handler: { [weak self] (_) in
-            guard let url = textField.text, !url.isEmpty else { return }
-            UserDefaults.standard.set(url, forKey: session.config.url.defaultCustomBaseURLKey)
-            if UserDefaults.standard.synchronize() {
-                self?.request()
-                EasyLog.debug("ChangeBaseURL Success: \(url)")
-            } else {
-                EasyLog.debug("ChangeBaseURL Failure")
-            }
-        }).show()
+        lazyListView.tableView.reloadData()
     }
     
 }

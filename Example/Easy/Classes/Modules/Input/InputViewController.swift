@@ -20,11 +20,12 @@ class InputViewController: easy.ViewController {
     override func configure() {
         super.configure()
         
-        listView.addTableView(style: .grouped)
-        listView.tableView.allowsSelection = false
-        listView.tableView.separatorStyle = .none
+        lazyListView.addTableView(style: .grouped).do {
+            $0.allowsSelection = false
+            $0.separatorStyle = .none
+        }
         
-        listView.setTableViewRegister(easy.InputCell.Model.self, cellClass: easy.InputCell.self, configureCell: { [weak self] (cell, indexPath, any) in
+        lazyListView.setTableViewRegister(easy.InputCell.Model.self, cellClass: easy.InputCell.self, configureCell: { [weak self] (cell, indexPath, any) in
             (cell as? easy.InputCell)?.do {
                 var limit = Int.max
                 switch indexPath.row {
@@ -47,7 +48,7 @@ class InputViewController: easy.ViewController {
                     any.do {
                         var model = $0
                         model.title = input
-                        self?.listView.tableViewDataSource[indexPath.row] = model
+                        self?.lazyListView.tableViewDataSource[indexPath.row] = model
                     }
                 })
             }
@@ -57,7 +58,7 @@ class InputViewController: easy.ViewController {
     override func request() {
         super.request()
         
-        listView.tableViewDataSource = [
+        lazyListView.tableViewDataSource = [
             easy.InputCell.Model(icon: UIColor.random.toImage?.resize(to: CGSize(width: 20, height: 20)), title: "", placeholder: "请输入手机号"),
             easy.InputCell.Model(icon: UIColor.random.toImage?.resize(to: CGSize(width: 20, height: 20)), title: "", placeholder: "请输入密码"),
         ]
