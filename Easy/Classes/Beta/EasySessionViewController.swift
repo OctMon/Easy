@@ -47,36 +47,32 @@ class EasySessionViewController: EasyViewController {
             $0.backgroundColor = UIColor.lightGray
         }
         
-        listView.setTableViewRegister(UITableViewCell.self, configureCell: { [weak self] (cell, _, any) in
+        listView.setTableViewRegister(String.self, cellClass: UITableViewCell.self, configureCell: { [weak self] (cell, _, any) in
             cell.textLabel?.numberOfLines = 0
             cell.textLabel?.textAlignment = .center
-            if let url = any as? String {
-                if current == url {
-                    cell.backgroundColor = UIColor.gray
-                    cell.textLabel?.textColor = UIColor.white
-                    cell.selectionStyle = .none
-                    cell.accessoryType = .none
-                } else {
-                    cell.backgroundColor = UIColor.white
-                    cell.textLabel?.textColor = UIColor.black
-                    cell.selectionStyle = .default
-                    cell.accessoryType = .disclosureIndicator
-                }
-                if let any = any as? String, let addition = self?.config.url.addition?[any]?.toPrettyPrintedString {
-                    cell.textLabel?.text = "\n📡baseURL : \(url)" + "\n" + addition.replacingOccurrences(of: "\\", with: "").replacingOccurrences(of: "{", with: "").replacingOccurrences(of: "}", with: "")
-                } else {
-                    cell.textLabel?.text = "\n📡baseURL : \(url)\n"
-                }
+            if current == any {
+                cell.backgroundColor = UIColor.gray
+                cell.textLabel?.textColor = UIColor.white
+                cell.selectionStyle = .none
+                cell.accessoryType = .none
+            } else {
+                cell.backgroundColor = UIColor.white
+                cell.textLabel?.textColor = UIColor.black
+                cell.selectionStyle = .default
+                cell.accessoryType = .disclosureIndicator
             }
-            
+            if let addition = self?.config.url.addition?[any]?.toPrettyPrintedString {
+                cell.textLabel?.text = "\n📡baseURL : \(any)" + "\n" + addition.replacingOccurrences(of: "\\", with: "").replacingOccurrences(of: "{", with: "").replacingOccurrences(of: "}", with: "")
+            } else {
+                cell.textLabel?.text = "\n📡baseURL : \(any)\n"
+            }
             }, didSelectRow: { [weak self] (_, any) in
                 guard let `self` = self else { return }
-                guard let url = any as? String else { return }
-                guard current != url else { return }
-                UserDefaults.standard.set(url, forKey: self.config.url.defaultCustomBaseURLKey)
+                guard current != any else { return }
+                UserDefaults.standard.set(any, forKey: self.config.url.defaultCustomBaseURLKey)
                 if UserDefaults.standard.synchronize() {
-                    EasyLog.debug("ChangeBaseURL Success: \(url)")
-                    self.successHandler?(url)
+                    EasyLog.debug("ChangeBaseURL Success: \(any)")
+                    self.successHandler?(any)
                     self.popupView?.dismiss()
                 } else {
                     EasyLog.debug("ChangeBaseURL Failure")

@@ -160,6 +160,64 @@ public extension EasyListView {
         self.tableViewDidSelectRowHandler = tableViewDidSelectRowHandler
     }
     
+    /// cellForRowAt & didSelectRowAt
+    /**
+     ```
+     setTableViewRegister(String.self, cellClass: TableViewCell.self, configureCell: { (cell, _, any) in
+     cell.textLabel?.text = any as? String
+     }) { [weak self] (indexPath, any) in
+     // dosomething
+     }
+     ```
+     */
+    func setTableViewRegister<T>(_ type: T.Type, cellClass: AnyClass?, configureCell: @escaping (UITableViewCell, IndexPath, T) -> Void, didSelectRow tableViewDidSelectRowHandler: ((IndexPath, T) -> Void)?) {
+        setTableViewRegister(type, cellsClass: [cellClass], returnCell: { (_) -> AnyClass? in
+            return cellClass.self
+        }, configureCell: configureCell, didSelectRow: tableViewDidSelectRowHandler)
+    }
+    
+    /// cellForRowAt & didSelectRowAt
+    /**
+     setTableViewRegister(String.self, cellsClass: [TableViewCell.self, TestCell.self], returnCell: { (indexPath) -> AnyClass? in
+     switch indexPath.row {
+     case 0:
+     return TableViewCell.self
+     default:
+     return TestCell.self
+     }
+     }, configureCell: { (cell, _, any) in
+     cell.textLabel?.text = (any as? Model)?.name
+     }) { [weak self] (indexPath, any) in
+     // dosomething
+     }
+     */
+    func setTableViewRegister<T>(_ type: T.Type, cellsClass: [AnyClass?], returnCell tableViewCellsHandler: @escaping (IndexPath) -> AnyClass?, configureCell tableViewCellHandler: @escaping (UITableViewCell, IndexPath, T) -> Void, didSelectRow tableViewDidSelectRowHandler: ((IndexPath, T) -> Void)?) {
+        cellsClass.forEach { (cc) in
+            guard let cellClass = cc else { return }
+            guard let cellReuseIdentifier = cc.self?.description() else { return }
+            tableView.register(cellClass, forCellReuseIdentifier: cellReuseIdentifier)
+        }
+        self.tableViewCellsHandler = tableViewCellsHandler
+        
+        self.tableViewCellHandler = { (cell, indexPath, any) in
+            if let t = any as? T {
+                tableViewCellHandler(cell, indexPath, t)
+            } else {
+                EasyLog.print(any)
+                EasyLog.print("warning:类型T转换失败")
+            }
+        }
+        
+        self.tableViewDidSelectRowHandler = { (indexPath, any) in
+            if let t = any as? T {
+                tableViewDidSelectRowHandler?(indexPath, t)
+            } else {
+                EasyLog.print(any)
+                EasyLog.print("warning:类型T转换失败")
+            }
+        }
+    }
+    
 }
 
 extension EasyListView: UITableViewDataSource, UITableViewDelegate {
@@ -299,6 +357,63 @@ public extension EasyListView {
         self.collectionViewCellsHandler = collectionViewCellsHandler
         self.collectionViewCellHandler = collectionViewCellHandler
         self.collectionViewDidSelectRowHandler = collectionViewDidSelectRowHandler
+    }
+    
+    /**
+     ```
+     setCollectionViewRegister(String.self, cellClass: CCell.self, configureCell: { (cell, _, any) in
+     cell.textLabel?.text = any as? String
+     }) { [weak self] (indexPath, any) in
+     // dosomething
+     }
+     ```
+     */
+    func setCollectionViewRegister<T>(_ type: T.Type, cellClass: AnyClass?, configureCell: @escaping (UICollectionViewCell, IndexPath, T) -> Void, didSelectRow collectionViewDidSelectRowHandler: ((IndexPath, T) -> Void)?) {
+        setCollectionViewRegister(type, cellsClass: [cellClass], returnCell: { (_) -> AnyClass? in
+            return cellClass.self
+        }, configureCell: configureCell, didSelectRow: collectionViewDidSelectRowHandler)
+    }
+    
+    /// cellForItemAt & didSelectItemAt
+    /**
+     setCollectionViewRegister(String.self, cellsClass: [CollectionViewCell.self, TestCollectionViewCell.self], returnCell: { (indexPath) -> AnyClass? in
+     switch indexPath.row {
+     case 0:
+     return CollectionViewCell.self
+     default:
+     return TestCollectionViewCell.self
+     }
+     }, configureCell: { (cell, _, any) in
+     cell.textLabel?.text = (any as? Model)?.name
+     }) { [weak self] (indexPath, any) in
+     // dosomething
+     }
+     */
+    func setCollectionViewRegister<T>(_ type: T.Type, cellsClass: [AnyClass?], returnCell collectionViewCellsHandler: @escaping (IndexPath) -> AnyClass?, configureCell collectionViewCellHandler: @escaping (UICollectionViewCell, IndexPath, T) -> Void, didSelectRow collectionViewDidSelectRowHandler: ((IndexPath, T) -> Void)?) {
+        cellsClass.forEach { (cc) in
+            guard let cellClass = cc else { return }
+            guard let cellReuseIdentifier = cc.self?.description() else { return }
+            collectionView.register(cellClass, forCellWithReuseIdentifier: cellReuseIdentifier)
+        }
+        self.collectionViewCellsHandler = collectionViewCellsHandler
+        
+        self.collectionViewCellHandler = { (cell, indexPath, any) in
+            if let t = any as? T {
+                collectionViewCellHandler(cell, indexPath, t)
+            } else {
+                EasyLog.print(any)
+                EasyLog.print("warning:类型T转换失败")
+            }
+        }
+        
+        self.collectionViewDidSelectRowHandler = { (indexPath, any) in
+            if let t = any as? T {
+                collectionViewDidSelectRowHandler?(indexPath, t)
+            } else {
+                EasyLog.print(any)
+                EasyLog.print("warning:类型T转换失败")
+            }
+        }
     }
     
 }

@@ -95,11 +95,10 @@ class Main: easy.ViewController {
         
         listView.tableView.tableHeaderView = textView
         listView.tableView.tableFooterView = tableFooterView
-        listView.setTableViewRegister(UITableViewCell.self, configureCell: { (cell, _, any) in
-            cell.textLabel?.text = any as? String
+        listView.setTableViewRegister(String.self, cellClass: UITableViewCell.self, configureCell: { (cell, _, any) in
+            cell.textLabel?.text = any
         }) { (_, any) in
-            guard let aClassName = any as? String else { return }
-            easy.Router.openURL("easy://", routerParameters: [.className: aClassName])
+            easy.Router.openURL("easy://", routerParameters: [.className: any])
         }
     }
     

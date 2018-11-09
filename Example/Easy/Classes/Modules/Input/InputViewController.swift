@@ -24,7 +24,7 @@ class InputViewController: easy.ViewController {
         listView.tableView.allowsSelection = false
         listView.tableView.separatorStyle = .none
         
-        listView.setTableViewRegister(easy.InputCell.self, configureCell: { [weak self] (cell, indexPath, any) in
+        listView.setTableViewRegister(easy.InputCell.Model.self, cellClass: easy.InputCell.self, configureCell: { [weak self] (cell, indexPath, any) in
             (cell as? easy.InputCell)?.do {
                 var limit = Int.max
                 switch indexPath.row {
@@ -42,9 +42,9 @@ class InputViewController: easy.ViewController {
                 }
                 $0.addSeparatorBottom()
                 $0.textField.clearButtonMode = .always
-                $0.setModel((any as? easy.InputCell.Model), imagePadding: 15)
+                $0.setModel(any, imagePadding: 15)
                 $0.setTextFieldEditingChangedHandler(textCount: limit, handler: { (input) in
-                    (any as? easy.InputCell.Model)?.do {
+                    any.do {
                         var model = $0
                         model.title = input
                         self?.listView.tableViewDataSource[indexPath.row] = model

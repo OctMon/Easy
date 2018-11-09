@@ -19,7 +19,8 @@ class SocialViewController: easy.ViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        request()
+        listView.collectionViewDataSource = [Module.分享, Module.微信登录, Module.QQ登录, Module.微博登录]
+        listView.collectionView.reloadData()
     }
     
     override func configure() {
@@ -31,13 +32,13 @@ class SocialViewController: easy.ViewController {
         listView.collectionViewWaterFlowLayout.minimumLineSpacing = 0
         listView.collectionViewWaterFlowLayout.itemSize = CGSize(width: .screenWidth * 0.5, height: CGSize(width: .screenWidth, height: .screenWidth).calcFlowHeight(in: app.screenWidth * 0.5))
         
-        listView.setCollectionViewRegister(TuchongCollectionViewCell.self, configureCell: { (cell, _, any) in
+        listView.setCollectionViewRegister(Module.self, cellClass:TuchongCollectionViewCell.self, configureCell: { (cell, _, any) in
             (cell as? TuchongCollectionViewCell)?.do {
                 $0.backgroundColor = UIColor.random
-                $0.label.text = (any as? Module)?.name
+                $0.label.text = any.name
             }
         }) { [weak self] (indexPath, any) in
-            switch any as? Module ?? .default {
+            switch any {
             case .分享:
                 easy.Social.share(title: "Apple", description: "China", thumbnail: UIImage.setColor(UIColor.red), url: "http://www.apple.com/cn")
             case .微信登录:
@@ -68,13 +69,6 @@ class SocialViewController: easy.ViewController {
                 break
             }
         }
-    }
-    
-    override func request() {
-        super.request()
-        
-        listView.collectionViewDataSource = [Module.分享, Module.微信登录, Module.QQ登录, Module.微博登录]
-        listView.collectionView.reloadData()
     }
     
     private func showUserInfo(_ userInfo: easy.Social.UserInfo) {

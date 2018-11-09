@@ -52,6 +52,10 @@ public extension Bool {
     var toInt: Int {
         return self ? 1 : 0
     }
+    
+    var toStringValue: String {
+        return self ? "1" : "0"
+    }
 
 }
 
