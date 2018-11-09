@@ -62,13 +62,21 @@ class MarqueeListView: easy.ListView {
         }) { (_, any) in
             log.debug(any)
         }
+        
+//        setCollectionViewSizeForItemAt { (_, _) -> CGSize in
+//            return CGSize(width: .screenWidth * 0.25, height: .screenWidth * 0.25)
+//        }
+        
+        setCollectionViewSizeForItemAt(NSAttributedString.self) { (_, _) -> CGSize in
+            return CGSize(width: .screenWidth * 0.25, height: .screenWidth * 0.25)
+        }
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    /*override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: .screenWidth * 0.25, height: .screenWidth * 0.25)
     }
     
-    /*override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(for: indexPath).then {
             $0.backgroundColor = UIColor.red
         }

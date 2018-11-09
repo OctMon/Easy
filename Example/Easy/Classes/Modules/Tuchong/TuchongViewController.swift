@@ -114,6 +114,12 @@ class TuchongListView: easy.ListView {
             }
             popupView.showWithCenter()
         }
+        
+        setCollectionViewSizeForItemAt(Tuchong.self) { (indexPath, any) -> CGSize in
+            guard let images = any.images else { return CGSize.zero }
+            let model = images[indexPath.row]
+            return images.count > 1 ? model.imageSize : CGSize(width: .screenWidth - space * 3, height: .screenWidth - space * 3)
+        }
     }
     
     /*private func getImage(_ indexPath: IndexPath) -> Tuchong.Image? {
@@ -166,6 +172,13 @@ class TuchongListView: easy.ListView {
             popupView.dismiss()
         }
         popupView.showWithCenter()
+    }
+     
+    override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        guard let models = collectionViewDataSource as? [Tuchong] else { return CGSize.zero }
+        guard let images = models[indexPath.section].images else { return CGSize.zero }
+        let model = images[indexPath.row]
+        return images.count > 1 ? model.imageSize : CGSize(width: .screenWidth - space * 3, height: .screenWidth - space * 3)
     }*/
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -191,13 +204,6 @@ class TuchongListView: easy.ListView {
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
         return CGSize(width: .screenWidth - space * 2, height: 50)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        guard let models = collectionViewDataSource as? [Tuchong] else { return CGSize.zero }
-        guard let images = models[indexPath.section].images else { return CGSize.zero }
-        let model = images[indexPath.row]
-        return images.count > 1 ? model.imageSize : CGSize(width: .screenWidth - space * 3, height: .screenWidth - space * 3)
     }
     
 }

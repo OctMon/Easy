@@ -31,7 +31,6 @@ class SocialViewController: easy.ViewController {
         lazyListView.collectionViewWaterFlowLayout.do {
             $0.minimumInteritemSpacing = 0
             $0.minimumLineSpacing = 0
-            $0.itemSize = CGSize(width: .screenWidth * 0.5, height: CGSize(width: .screenWidth, height: .screenWidth).calcFlowHeight(in: app.screenWidth * 0.5))
         }
         
         lazyListView.setCollectionViewRegister(Module.self, cellClass:TuchongCollectionViewCell.self, configureCell: { (cell, _, any) in
@@ -70,6 +69,10 @@ class SocialViewController: easy.ViewController {
             default:
                 break
             }
+        }
+        
+        lazyListView.setCollectionViewSizeForItemAt { (_, _) -> CGSize in
+            return CGSize(width: .screenWidth * 0.5, height: .screenWidth * 0.5)
         }
     }
     

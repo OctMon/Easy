@@ -89,6 +89,7 @@ open class EasyListView: UIView {
     private lazy var collectionViewCellHandler: ((UICollectionViewCell, IndexPath, Any) -> Void)? = { return nil }()
     private lazy var collectionViewCellsHandler: ((IndexPath) -> AnyClass?)? = { return nil }()
     private lazy var collectionViewDidSelectRowHandler: ((IndexPath, Any) -> Void)? = { return nil }()
+    private lazy var collectionViewSizeForItemAtHandler: ((IndexPath, Any) -> CGSize)? = { return nil }()
     lazy var collectionViewRequestHandler: (() -> Void)? = { return nil }()
     
     public lazy var collectionViewFlowLayout: UICollectionViewFlowLayout = {
@@ -510,6 +511,24 @@ public extension EasyListView {
         }
     }
     
+    func setCollectionViewSizeForItemAt(_ collectionViewSizeForItemAtHandler: @escaping (IndexPath, Any) -> CGSize) {
+        self.collectionViewSizeForItemAtHandler = { (indexPath, any) -> CGSize in
+            return collectionViewSizeForItemAtHandler(indexPath, any) 
+        }
+    }
+    
+    func setCollectionViewSizeForItemAt<T>(_ type: T.Type, sizeForItemAt collectionViewSizeForItemAtHandler: @escaping (IndexPath, T) -> CGSize) {
+        self.collectionViewSizeForItemAtHandler = { (indexPath, any) -> CGSize in
+            if let t = any as? T {
+                return collectionViewSizeForItemAtHandler(indexPath, t) 
+            } else {
+                EasyLog.print(any)
+                EasyLog.print("warning:类型T转换失败")
+                return .zero
+            }
+        }
+    }
+    
 }
 
 extension EasyListView: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
@@ -579,6 +598,27 @@ extension EasyListView: UICollectionViewDataSource, UICollectionViewDelegate, UI
                 collectionViewDidSelectRowHandler(indexPath, collectionViewDataSource[indexPath.row])
             }
         }
+    }
+    
+    open func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        if let collectionViewSizeForItemAtHandler = collectionViewSizeForItemAtHandler {
+            if numberOfSections(in: collectionView) > 0 {
+                if indexPath.section < collectionViewDataSource.count {
+                    if let any = (collectionViewDataSource[indexPath.section] as? [Any]) {
+                        if indexPath.row < any.count {
+                            return collectionViewSizeForItemAtHandler(indexPath, any[indexPath.row])
+                        }
+                    } else if let row = collectionViewNumberOfItemsInSectionHandler?(indexPath.section), row > 0 {
+                        return collectionViewSizeForItemAtHandler(indexPath, collectionViewDataSource[indexPath.section])
+                    } else if indexPath.row < collectionViewDataSource.count {
+                        return collectionViewSizeForItemAtHandler(indexPath, collectionViewDataSource[indexPath.row])
+                    }
+                }
+            } else if indexPath.row < collectionViewDataSource.count {
+                return collectionViewSizeForItemAtHandler(indexPath, collectionViewDataSource[indexPath.row])
+            }
+        }
+        return .zero
     }
     
 }
