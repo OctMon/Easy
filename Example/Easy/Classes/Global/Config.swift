@@ -70,8 +70,12 @@ private extension AppDelegate {
             log.debug(parameters)
             let package = app.bundleExecutable + "."
             guard let name = parameters[.className] as? String else { return }
-            guard let vc = NSClassFromString(package + name) as? UIViewController.Type else { return }
-            app.currentViewController?.pushWithHidesBottomBar(to: vc.init())
+            guard let vcType = NSClassFromString(package + name) as? UIViewController.Type else { return }
+            let vc = vcType.init()
+            if let title = (parameters[.userInfo] as? easy.Parameters)?["title"] as? String {
+                vc.navigationItem.title = title
+            }
+            app.currentViewController?.pushWithHidesBottomBar(to: vc)
         }
     }
     

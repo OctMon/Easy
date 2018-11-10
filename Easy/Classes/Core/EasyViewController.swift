@@ -15,15 +15,6 @@ open class EasyViewController: UIViewController {
     
     deinit { EasyLog.debug(toDeinit) }
     
-    public lazy var lazyListView: EasyListView = {
-        return EasyListView().then {
-            view.addSubview($0)
-            $0.snp.makeConstraints({ (make) in
-                make.edges.equalToSuperview()
-            })
-        }
-    }()
-    
     open override var preferredStatusBarStyle: UIStatusBarStyle {
         return .default
     }

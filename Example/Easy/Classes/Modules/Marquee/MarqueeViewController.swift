@@ -10,7 +10,7 @@ import UIKit
 
 class MarqueeViewController: easy.ViewController, easy.ListProtocol {
     
-    typealias ListView = MarqueeListView
+    typealias EasyListViewAssociatedType = MarqueeListView
 
     private var marqueeLabel: easy.MarqueeLabel!
     
@@ -23,25 +23,27 @@ class MarqueeViewController: easy.ViewController, easy.ListProtocol {
             log.debug(index)
         }
         
-        listView.collectionViewDataSource = marqueeLabel.dataSource
+        listView.tableViewDataSource = marqueeLabel.dataSource
     }
     
     override func configure() {
         super.configure()
         
-        lazyListView.addTableView(style: .grouped).do {
-            $0.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: .screenWidth, height: 40 + .screenWidth * 0.25)).then {
+        addListView(in: view).addTableView(style: .grouped).do {
+            $0.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: .screenWidth, height: 40)).then {
                 $0.backgroundColor = UIColor.gray
                 marqueeLabel = easy.MarqueeLabel(frame: CGRect(x: 15, y: 0, width: $0.width - 30, height: 40))
                 $0.addSubview(marqueeLabel)
-                
-                addListView(in: $0).do {
-                    $0.addCollectionView(layout: $0.collectionViewWaterFlowLayout)
-                    $0.snp.updateConstraints({ (make) in
-                        make.edges.equalToSuperview().inset(UIEdgeInsets(top: 40, left: 0, bottom: 0, right: 0))
-                    })
-                }
             }
+        }
+        
+        listView.do {
+            $0.setTableViewRegister(NSAttributedString.self, cellClass: UITableViewCell.self, configureCell: { (cell, _, any) in
+                cell.textLabel?.do {
+                    $0.numberOfLines = 0
+                    $0.attributedText = any
+                }
+            }, didSelectRow: nil)
         }
     }
 

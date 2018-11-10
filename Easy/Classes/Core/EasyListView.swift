@@ -13,10 +13,8 @@ public extension Easy {
 }
 
 public protocol EasyListProtocol: class {
-//    var listView: ListView { get set }
-    func addListView(in: UIView) -> ListView
-    
-    associatedtype ListView: EasyListView
+    func addListView(in: UIView) -> EasyListViewAssociatedType
+    associatedtype EasyListViewAssociatedType: EasyListView
 }
 
 private struct Key {
@@ -25,9 +23,9 @@ private struct Key {
 
 public extension EasyListProtocol {
     
-    var listView: ListView! {
+    var listView: EasyListViewAssociatedType! {
         get {
-            if let listView = objc_getAssociatedObject(self, &Key.listViewKey) as? ListView {
+            if let listView = objc_getAssociatedObject(self, &Key.listViewKey) as? EasyListViewAssociatedType {
                 return listView
             }
             return nil
@@ -38,11 +36,11 @@ public extension EasyListProtocol {
     }
     
     @discardableResult
-    func addListView(in view: UIView) -> ListView {
+    func addListView(in view: UIView) -> EasyListViewAssociatedType {
         if let listView = listView {
             view.addSubview(listView)
         } else {
-            listView = ListView()
+            listView = EasyListViewAssociatedType()
             view.addSubview(listView)
         }
         

@@ -14,7 +14,8 @@ private struct Font: easy.Then {
 }
 
 class FontViewController: easy.ViewController, easy.ListProtocol {
-    typealias ListView = FontListView
+    
+    typealias EasyListViewAssociatedType = FontListView
     
     private let textField: UITextField = UITextField(frame: CGRect(x: 0, y: 0, width: app.screenWidth, height: 100)).then {
         $0.text = "爆款促销"

@@ -8,7 +8,9 @@
 
 import UIKit
 
-class InputViewController: easy.ViewController {
+class InputViewController: easy.ViewController, easy.ListProtocol {
+    
+    typealias EasyListViewAssociatedType = easy.ListView
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,12 +22,12 @@ class InputViewController: easy.ViewController {
     override func configure() {
         super.configure()
         
-        lazyListView.addTableView(style: .grouped).do {
+        addListView(in: view).addTableView(style: .grouped).do {
             $0.allowsSelection = false
             $0.separatorStyle = .none
         }
         
-        lazyListView.setTableViewRegister(easy.InputCell.Model.self, cellClass: easy.InputCell.self, configureCell: { [weak self] (cell, indexPath, any) in
+        listView.setTableViewRegister(easy.InputCell.Model.self, cellClass: easy.InputCell.self, configureCell: { [weak self] (cell, indexPath, any) in
             (cell as? easy.InputCell)?.do {
                 var limit = Int.max
                 switch indexPath.row {
@@ -48,7 +50,7 @@ class InputViewController: easy.ViewController {
                     any.do {
                         var model = $0
                         model.title = input
-                        self?.lazyListView.tableViewDataSource[indexPath.row] = model
+                        self?.listView.tableViewDataSource[indexPath.row] = model
                     }
                 })
             }
@@ -58,7 +60,7 @@ class InputViewController: easy.ViewController {
     override func request() {
         super.request()
         
-        lazyListView.tableViewDataSource = [
+        listView.tableViewDataSource = [
             easy.InputCell.Model(icon: UIColor.random.toImage?.resize(to: CGSize(width: 20, height: 20)), title: "", placeholder: "请输入手机号"),
             easy.InputCell.Model(icon: UIColor.random.toImage?.resize(to: CGSize(width: 20, height: 20)), title: "", placeholder: "请输入密码"),
         ]

@@ -8,7 +8,9 @@
 import UIKit
 import FLEX
 
-class EasyTestViewController: EasyViewController {
+class EasyTestViewController: EasyViewController, EasyListProtocol {
+    
+    typealias EasyListViewAssociatedType = EasyListView
     
     private let textView: UITextView = UITextView(frame: CGRect(x: 0, y: 0, width: EasyApp.screenWidth, height: 200))
     
@@ -43,11 +45,11 @@ class EasyTestViewController: EasyViewController {
     override func configure() {
         super.configure()
         
-        lazyListView.addTableView(style: .plain)
-        lazyListView.tableView.tableHeaderView = textView
-        lazyListView.tableView.tableFooterView = UIView()
+        listView.addTableView(style: .plain)
+        listView.tableView.tableHeaderView = textView
+        listView.tableView.tableFooterView = UIView()
         
-        lazyListView.setTableViewRegister((String, String).self, cellsClass: [EasyTestCell.self, UITableViewCell.self], returnCell: { (indexPath) -> AnyClass? in
+        listView.setTableViewRegister((String, String).self, cellsClass: [EasyTestCell.self, UITableViewCell.self], returnCell: { (indexPath) -> AnyClass? in
             if indexPath.section == 0 {
                 return EasyTestCell.self
             }
@@ -61,7 +63,7 @@ class EasyTestViewController: EasyViewController {
                     $0.switchHandler { [weak self] (isOn) in
                         var model = any
                         model.1 = isOn.toStringValue
-                        self?.lazyListView.tableViewDataSource[indexPath.section] = model
+                        self?.listView.tableViewDataSource[indexPath.section] = model
                         switch (indexPath.section, indexPath.row) {
                         case (0, 0):
                             EasyResult.logEnabel = isOn
@@ -83,16 +85,16 @@ class EasyTestViewController: EasyViewController {
             sessions[indexPath.row].showChangeBaseURL({ [weak self] (url) in
                 var model = any
                 model.1 = url
-                let list = self?.lazyListView.tableViewDataSource[indexPath.section]
+                let list = self?.listView.tableViewDataSource[indexPath.section]
                 if var models = list as? [Any] {
                     models[indexPath.row] = model
-                    self?.lazyListView.tableViewDataSource[indexPath.section] = models
-                    self?.lazyListView.tableView.reloadData()
+                    self?.listView.tableViewDataSource[indexPath.section] = models
+                    self?.listView.tableView.reloadData()
                 }
             })
         }
         
-        lazyListView.setTableViewAccessoryButtonTappedForRowWith { [weak self] (indexPath, _) in
+        listView.setTableViewAccessoryButtonTappedForRowWith { [weak self] (indexPath, _) in
             guard indexPath.section > 0 else { return }
             let session = sessions[indexPath.row]
             var textField = UITextField()
@@ -114,13 +116,13 @@ class EasyTestViewController: EasyViewController {
     override func request() {
         super.request()
         
-        lazyListView.tableViewDataSource = [[("show EasyResult banner", EasyResult.logEnabel.toStringValue)]]//, (GDPerformanceMonitor.toString, omIsShowGDPerformanceMonitor.toStringValue)]]
+        listView.tableViewDataSource = [[("show EasyResult banner", EasyResult.logEnabel.toStringValue)]]//, (GDPerformanceMonitor.toString, omIsShowGDPerformanceMonitor.toStringValue)]]
         var tmp = [Any]()
         sessions.forEach({ tmp.append(($0.config.url.alias, $0.config.url.currentBaseURL)) })
         if tmp.count > 0 {
-            lazyListView.tableViewDataSource.append(tmp)
+            listView.tableViewDataSource.append(tmp)
         }
-        lazyListView.tableView.reloadData()
+        listView.tableView.reloadData()
     }
     
 }

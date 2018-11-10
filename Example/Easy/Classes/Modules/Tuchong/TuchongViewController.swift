@@ -12,7 +12,7 @@ private let space: CGFloat = 2.5
 
 class TuchongViewController: easy.ViewController, easy.ListProtocol {
     
-    typealias ListView = TuchongListView
+    typealias EasyListViewAssociatedType = TuchongListView
     
     private var poseID: Int?
     
