@@ -49,21 +49,21 @@ class EasyTestViewController: EasyViewController, EasyListProtocol {
         listView.tableView.tableHeaderView = textView
         listView.tableView.tableFooterView = UIView()
         
-        listView.setTableViewRegister((String, String).self, cellsClass: [EasyTestCell.self, UITableViewCell.self], returnCell: { (indexPath) -> AnyClass? in
+        listView.setTableViewRegister((String, String).self, cellsClass: [EasyTestCell.self, UITableViewCell.self], returnCell: { (_, indexPath) -> AnyClass? in
             if indexPath.section == 0 {
                 return EasyTestCell.self
             }
             return UITableViewCell.self
-        }, configureCell: { [weak self] (cell, indexPath, any) in
+        }, configureCell: { (listView, cell, indexPath, any) in
             if let cell = (cell as? EasyTestCell) {
                 cell.do {
                     $0.selectionStyle = .none
                     $0.textLabel?.text = any.0
                     $0.switchView.isOn = any.1.toBoolValue
-                    $0.switchHandler { [weak self] (isOn) in
+                    $0.switchHandler { (isOn) in
                         var model = any
                         model.1 = isOn.toStringValue
-                        self?.listView.tableViewDataSource[indexPath.section] = model
+                        listView.tableViewDataSource[indexPath.section] = model
                         switch (indexPath.section, indexPath.row) {
                         case (0, 0):
                             EasyResult.logEnabel = isOn
@@ -80,21 +80,21 @@ class EasyTestViewController: EasyViewController, EasyListProtocol {
                     $0.textLabel?.text = any.0 + " -> " + any.1
                 }
             }
-        }) { [weak self] (indexPath, any) in
+        }) { (listView, indexPath, any) in
             guard indexPath.section > 0 else { return }
             sessions[indexPath.row].showChangeBaseURL({ [weak self] (url) in
                 var model = any
                 model.1 = url
-                let list = self?.listView.tableViewDataSource[indexPath.section]
+                let list = listView.tableViewDataSource[indexPath.section]
                 if var models = list as? [Any] {
                     models[indexPath.row] = model
-                    self?.listView.tableViewDataSource[indexPath.section] = models
-                    self?.listView.tableView.reloadData()
+                    listView.tableViewDataSource[indexPath.section] = models
+                    listView.tableView.reloadData()
                 }
             })
         }
         
-        listView.setTableViewAccessoryButtonTappedForRowWith { [weak self] (indexPath, _) in
+        listView.setTableViewAccessoryButtonTappedForRowWith { [weak self] (_, indexPath, _) in
             guard indexPath.section > 0 else { return }
             let session = sessions[indexPath.row]
             var textField = UITextField()

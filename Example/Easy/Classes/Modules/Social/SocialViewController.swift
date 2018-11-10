@@ -29,25 +29,25 @@ class SocialViewController: easy.ViewController, easy.ListProtocol {
         
         addListView(in: view).addTableView(style: .grouped)
         
-        listView.setTableView(numberOfSections: { [weak self] () -> Int in
-            return self?.listView.tableViewDataSource.count ?? 0
-        }) { (section) -> Int in
+        listView.setTableView(numberOfSections: { (listView) -> Int in
+            return listView.tableViewDataSource.count
+        }) { (_, _) -> Int in
             return 1
         }
-        listView.setTableViewRegister([UITableViewCell.self, SocialCell.self], returnCell: { (indexPath) -> AnyClass? in
+        listView.setTableViewRegister([UITableViewCell.self, SocialCell.self], returnCell: { (_, indexPath) -> AnyClass? in
             switch indexPath.section {
             case 0:
                 return UITableViewCell.self
             default:
                 return SocialCell.self
             }
-        }, configureCell: { [weak self] (cell, indexPath, any) in
+        }, configureCell: { (listView, cell, indexPath, any) in
             if let cell = cell as? SocialCell {
-                cell.modules = self?.listView.tableViewDataSource[indexPath.section] as? [Module] ?? []
+                cell.modules = listView.tableViewDataSource[indexPath.section] as? [Module] ?? []
             } else {
                 cell.textLabel?.text = (any as? Module)?.name
             }
-        }) { (_, any) in
+        }) { (_, _, any) in
             easy.Social.share(title: "Apple", description: "China", thumbnail: UIImage.setColor(UIColor.red), url: "http://www.apple.com/cn")
         }
     }

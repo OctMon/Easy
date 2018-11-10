@@ -57,12 +57,12 @@ open class EasyListView: UIView {
     
     public lazy var tableViewDataSource: [Any] = [Any]()
     
-    private lazy var tableViewNumberOfSectionsHandler: (() -> Int)? = { return nil }()
-    private lazy var tableViewNumberOfRowsInSectionHandler: ((Int) -> Int)? = { return nil }()
-    private lazy var tableViewCellHandler: ((UITableViewCell, IndexPath, Any) -> Void)? = { return nil }()
-    private lazy var tableViewCellsHandler: ((IndexPath) -> AnyClass?)? = { return nil }()
-    private lazy var tableViewDidSelectRowHandler: ((IndexPath, Any) -> Void)? = { return nil }()
-    private lazy var tableViewAccessoryButtonTappedForRowWithHandler: ((IndexPath, Any) -> Void)? = { return nil }()
+    private lazy var tableViewNumberOfSectionsHandler: ((EasyListView) -> Int)? = { return nil }()
+    private lazy var tableViewNumberOfRowsInSectionHandler: ((EasyListView, Int) -> Int)? = { return nil }()
+    private lazy var tableViewCellHandler: ((EasyListView, UITableViewCell, IndexPath, Any) -> Void)? = { return nil }()
+    private lazy var tableViewCellsHandler: ((EasyListView, IndexPath) -> AnyClass?)? = { return nil }()
+    private lazy var tableViewDidSelectRowHandler: ((EasyListView, IndexPath, Any) -> Void)? = { return nil }()
+    private lazy var tableViewAccessoryButtonTappedForRowWithHandler: ((EasyListView, IndexPath, Any) -> Void)? = { return nil }()
     lazy var tableViewRequestHandler: (() -> Void)? = { return nil }()
     
     /// must be set first
@@ -162,50 +162,20 @@ public extension EasyListView {
     }
     
     /// numberOfSections
-    /**
-     setTableView(numberOfSections: { [weak self] () -> Int in
-     return self?.dataSource.count ?? 0
-     }) { (section) -> Int in
-     return 1
-     }
-     */
-    func setTableView(numberOfSections tableViewNumberOfSectionsHandler: @escaping () -> Int, numberOfRowsInSection tableViewNumberOfRowsInSectionHandler: @escaping (Int) -> Int) {
+    func setTableView(numberOfSections tableViewNumberOfSectionsHandler: @escaping (EasyListView) -> Int, numberOfRowsInSection tableViewNumberOfRowsInSectionHandler: @escaping (EasyListView, Int) -> Int) {
         self.tableViewNumberOfSectionsHandler = tableViewNumberOfSectionsHandler
         self.tableViewNumberOfRowsInSectionHandler = tableViewNumberOfRowsInSectionHandler
     }
     
     /// cellForRowAt & didSelectRowAt
-    /**
-     ```
-     setTableViewRegister(TableViewCell.self, configureCell: { (cell, _, any) in
-     cell.textLabel?.text = any as? String
-     }) { [weak self] (indexPath, any) in
-     // dosomething
-     }
-     ```
-     */
-    func setTableViewRegister(_ cellClass: AnyClass?, configureCell: @escaping (UITableViewCell, IndexPath, Any) -> Void, didSelectRow tableViewDidSelectRowHandler: ((IndexPath, Any) -> Void)?) {
-        setTableViewRegister([cellClass], returnCell: { (_) -> AnyClass? in
+    func setTableViewRegister(_ cellClass: AnyClass?, configureCell: @escaping (EasyListView, UITableViewCell, IndexPath, Any) -> Void, didSelectRow tableViewDidSelectRowHandler: ((EasyListView, IndexPath, Any) -> Void)?) {
+        setTableViewRegister([cellClass], returnCell: { (_, _) -> AnyClass? in
             return cellClass.self
         }, configureCell: configureCell, didSelectRow: tableViewDidSelectRowHandler)
     }
     
     /// cellForRowAt & didSelectRowAt
-    /**
-     setTableViewRegister([TableViewCell.self, TestCell.self], returnCell: { (indexPath) -> AnyClass? in
-     switch indexPath.row {
-     case 0:
-     return TableViewCell.self
-     default:
-     return TestCell.self
-     }
-     }, configureCell: { (cell, _, any) in
-     cell.textLabel?.text = (any as? Model)?.name
-     }) { [weak self] (indexPath, any) in
-     // dosomething
-     }
-     */
-    func setTableViewRegister(_ cellsClass: [AnyClass?], returnCell tableViewCellsHandler: @escaping (IndexPath) -> AnyClass?, configureCell tableViewCellHandler: @escaping (UITableViewCell, IndexPath, Any) -> Void, didSelectRow tableViewDidSelectRowHandler: ((IndexPath, Any) -> Void)?) {
+    func setTableViewRegister(_ cellsClass: [AnyClass?], returnCell tableViewCellsHandler: @escaping (EasyListView, IndexPath) -> AnyClass?, configureCell tableViewCellHandler: @escaping (EasyListView, UITableViewCell, IndexPath, Any) -> Void, didSelectRow tableViewDidSelectRowHandler: ((EasyListView, IndexPath, Any) -> Void)?) {
         cellsClass.forEach { (cc) in
             guard let cellClass = cc else { return }
             guard let cellReuseIdentifier = cc.self?.description() else { return }
@@ -217,37 +187,14 @@ public extension EasyListView {
     }
     
     /// cellForRowAt & didSelectRowAt
-    /**
-     ```
-     setTableViewRegister(String.self, cellClass: TableViewCell.self, configureCell: { (cell, _, any) in
-     cell.textLabel?.text = any as? String
-     }) { [weak self] (indexPath, any) in
-     // dosomething
-     }
-     ```
-     */
-    func setTableViewRegister<T>(_ type: T.Type, cellClass: AnyClass?, configureCell: @escaping (UITableViewCell, IndexPath, T) -> Void, didSelectRow tableViewDidSelectRowHandler: ((IndexPath, T) -> Void)?) {
-        setTableViewRegister(type, cellsClass: [cellClass], returnCell: { (_) -> AnyClass? in
+    func setTableViewRegister<T>(_ type: T.Type, cellClass: AnyClass?, configureCell: @escaping (EasyListView, UITableViewCell, IndexPath, T) -> Void, didSelectRow tableViewDidSelectRowHandler: ((EasyListView, IndexPath, T) -> Void)?) {
+        setTableViewRegister(type, cellsClass: [cellClass], returnCell: { (_, _) -> AnyClass? in
             return cellClass.self
         }, configureCell: configureCell, didSelectRow: tableViewDidSelectRowHandler)
     }
     
     /// cellForRowAt & didSelectRowAt
-    /**
-     setTableViewRegister(String.self, cellsClass: [TableViewCell.self, TestCell.self], returnCell: { (indexPath) -> AnyClass? in
-     switch indexPath.row {
-     case 0:
-     return TableViewCell.self
-     default:
-     return TestCell.self
-     }
-     }, configureCell: { (cell, _, any) in
-     cell.textLabel?.text = (any as? Model)?.name
-     }) { [weak self] (indexPath, any) in
-     // dosomething
-     }
-     */
-    func setTableViewRegister<T>(_ type: T.Type, cellsClass: [AnyClass?], returnCell tableViewCellsHandler: @escaping (IndexPath) -> AnyClass?, configureCell tableViewCellHandler: @escaping (UITableViewCell, IndexPath, T) -> Void, didSelectRow tableViewDidSelectRowHandler: ((IndexPath, T) -> Void)?) {
+    func setTableViewRegister<T>(_ type: T.Type, cellsClass: [AnyClass?], returnCell tableViewCellsHandler: @escaping (EasyListView, IndexPath) -> AnyClass?, configureCell tableViewCellHandler: @escaping (EasyListView, UITableViewCell, IndexPath, T) -> Void, didSelectRow tableViewDidSelectRowHandler: ((EasyListView, IndexPath, T) -> Void)?) {
         cellsClass.forEach { (cc) in
             guard let cellClass = cc else { return }
             guard let cellReuseIdentifier = cc.self?.description() else { return }
@@ -255,18 +202,18 @@ public extension EasyListView {
         }
         self.tableViewCellsHandler = tableViewCellsHandler
         
-        self.tableViewCellHandler = { (cell, indexPath, any) in
+        self.tableViewCellHandler = { (listView, cell, indexPath, any) in
             if let t = any as? T {
-                tableViewCellHandler(cell, indexPath, t)
+                tableViewCellHandler(listView, cell, indexPath, t)
             } else {
                 EasyLog.print(any)
                 EasyLog.print("warning:类型T转换失败")
             }
         }
         
-        self.tableViewDidSelectRowHandler = { (indexPath, any) in
+        self.tableViewDidSelectRowHandler = { (listView, indexPath, any) in
             if let t = any as? T {
-                tableViewDidSelectRowHandler?(indexPath, t)
+                tableViewDidSelectRowHandler?(listView, indexPath, t)
             } else {
                 EasyLog.print(any)
                 EasyLog.print("warning:类型T转换失败")
@@ -274,14 +221,14 @@ public extension EasyListView {
         }
     }
     
-    func setTableViewAccessoryButtonTappedForRowWith(_ tableViewAccessoryButtonTappedForRowWithHandler: ((IndexPath, Any) -> Void)?) {
+    func setTableViewAccessoryButtonTappedForRowWith(_ tableViewAccessoryButtonTappedForRowWithHandler: ((EasyListView, IndexPath, Any) -> Void)?) {
         self.tableViewAccessoryButtonTappedForRowWithHandler = tableViewAccessoryButtonTappedForRowWithHandler
     }
     
-    func setTableViewAccessoryButtonTappedForRowWith<T>(_ type: T.Type, accessoryButtonTappedForRowWith tableViewAccessoryButtonTappedForRowWithHandler: ((IndexPath, T) -> Void)?) {
-        self.tableViewAccessoryButtonTappedForRowWithHandler = { (indexPath, any) in
+    func setTableViewAccessoryButtonTappedForRowWith<T>(_ type: T.Type, accessoryButtonTappedForRowWith tableViewAccessoryButtonTappedForRowWithHandler: ((EasyListView, IndexPath, T) -> Void)?) {
+        self.tableViewAccessoryButtonTappedForRowWithHandler = { (listView, indexPath, any) in
             if let t = any as? T {
-                tableViewAccessoryButtonTappedForRowWithHandler?(indexPath, t)
+                tableViewAccessoryButtonTappedForRowWithHandler?(listView, indexPath, t)
             } else {
                 EasyLog.print(any)
                 EasyLog.print("warning:类型T转换失败")
@@ -295,7 +242,7 @@ extension EasyListView: UITableViewDataSource, UITableViewDelegate {
     
     open func numberOfSections(in tableView: UITableView) -> Int {
         if let handler = tableViewNumberOfSectionsHandler {
-            return handler()
+            return handler(self)
         }
         if self.tableViewDataSource.contains(where: { ($0 as? [Any]) != nil }) {
             return tableViewDataSource.count
@@ -305,7 +252,7 @@ extension EasyListView: UITableViewDataSource, UITableViewDelegate {
     
     open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let handler = tableViewNumberOfRowsInSectionHandler {
-            return handler(section)
+            return handler(self, section)
         }
         if section < tableViewDataSource.count {
             if let array = (self.tableViewDataSource[section] as? [Any]) {
@@ -316,22 +263,22 @@ extension EasyListView: UITableViewDataSource, UITableViewDelegate {
     }
     
     open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let tableViewCellsHandler = tableViewCellsHandler, let cellReuseIdentifier = tableViewCellsHandler(indexPath).self?.description() {
+        if let tableViewCellsHandler = tableViewCellsHandler, let cellReuseIdentifier = tableViewCellsHandler(self, indexPath).self?.description() {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) else { return UITableViewCell() }
             if numberOfSections(in: tableView) > 0 {
                 if indexPath.section < tableViewDataSource.count {
                     if let any = (tableViewDataSource[indexPath.section] as? [Any]) {
                         if indexPath.row < any.count {
-                            tableViewCellHandler?(cell, indexPath, any[indexPath.row])
+                            tableViewCellHandler?(self, cell, indexPath, any[indexPath.row])
                         }
-                    } else if let row = tableViewNumberOfRowsInSectionHandler?(indexPath.section), row > 0 {
-                        tableViewCellHandler?(cell, indexPath, tableViewDataSource[indexPath.section])
+                    } else if let row = tableViewNumberOfRowsInSectionHandler?(self, indexPath.section), row > 0 {
+                        tableViewCellHandler?(self, cell, indexPath, tableViewDataSource[indexPath.section])
                     } else if indexPath.row < tableViewDataSource.count {
-                        tableViewCellHandler?(cell, indexPath, tableViewDataSource[indexPath.row])
+                        tableViewCellHandler?(self, cell, indexPath, tableViewDataSource[indexPath.row])
                     }
                 }
             } else if indexPath.row < tableViewDataSource.count {
-                tableViewCellHandler?(cell, indexPath, tableViewDataSource[indexPath.row])
+                tableViewCellHandler?(self, cell, indexPath, tableViewDataSource[indexPath.row])
             }
             return cell
         }
@@ -346,16 +293,16 @@ extension EasyListView: UITableViewDataSource, UITableViewDelegate {
                 if indexPath.section < tableViewDataSource.count {
                     if let any = (tableViewDataSource[indexPath.section] as? [Any]) {
                         if indexPath.row < any.count {
-                            tableViewDidSelectRowHandler(indexPath, any[indexPath.row])
+                            tableViewDidSelectRowHandler(self, indexPath, any[indexPath.row])
                         }
-                    } else if let row = tableViewNumberOfRowsInSectionHandler?(indexPath.section), row > 0 {
-                        tableViewDidSelectRowHandler(indexPath, tableViewDataSource[indexPath.section])
+                    } else if let row = tableViewNumberOfRowsInSectionHandler?(self, indexPath.section), row > 0 {
+                        tableViewDidSelectRowHandler(self, indexPath, tableViewDataSource[indexPath.section])
                     } else if indexPath.row < tableViewDataSource.count {
-                        tableViewDidSelectRowHandler(indexPath, tableViewDataSource[indexPath.row])
+                        tableViewDidSelectRowHandler(self, indexPath, tableViewDataSource[indexPath.row])
                     }
                 }
             } else if indexPath.row < tableViewDataSource.count {
-                tableViewDidSelectRowHandler(indexPath, tableViewDataSource[indexPath.row])
+                tableViewDidSelectRowHandler(self, indexPath, tableViewDataSource[indexPath.row])
             }
         }
     }
@@ -366,16 +313,16 @@ extension EasyListView: UITableViewDataSource, UITableViewDelegate {
                 if indexPath.section < tableViewDataSource.count {
                     if let any = (tableViewDataSource[indexPath.section] as? [Any]) {
                         if indexPath.row < any.count {
-                            tableViewAccessoryButtonTappedForRowWithHandler(indexPath, any[indexPath.row])
+                            tableViewAccessoryButtonTappedForRowWithHandler(self, indexPath, any[indexPath.row])
                         }
-                    } else if let row = tableViewNumberOfRowsInSectionHandler?(indexPath.section), row > 0 {
-                        tableViewAccessoryButtonTappedForRowWithHandler(indexPath, tableViewDataSource[indexPath.section])
+                    } else if let row = tableViewNumberOfRowsInSectionHandler?(self, indexPath.section), row > 0 {
+                        tableViewAccessoryButtonTappedForRowWithHandler(self, indexPath, tableViewDataSource[indexPath.section])
                     } else if indexPath.row < tableViewDataSource.count {
-                        tableViewAccessoryButtonTappedForRowWithHandler(indexPath, tableViewDataSource[indexPath.row])
+                        tableViewAccessoryButtonTappedForRowWithHandler(self, indexPath, tableViewDataSource[indexPath.row])
                     }
                 }
             } else if indexPath.row < tableViewDataSource.count {
-                tableViewAccessoryButtonTappedForRowWithHandler(indexPath, tableViewDataSource[indexPath.row])
+                tableViewAccessoryButtonTappedForRowWithHandler(self, indexPath, tableViewDataSource[indexPath.row])
             }
         }
     }

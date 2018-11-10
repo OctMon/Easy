@@ -27,7 +27,7 @@ class InputViewController: easy.ViewController, easy.ListProtocol {
             $0.separatorStyle = .none
         }
         
-        listView.setTableViewRegister(easy.InputCell.Model.self, cellClass: easy.InputCell.self, configureCell: { [weak self] (cell, indexPath, any) in
+        listView.setTableViewRegister(easy.InputCell.Model.self, cellClass: easy.InputCell.self, configureCell: { (listView, cell, indexPath, any) in
             (cell as? easy.InputCell)?.do {
                 var limit = Int.max
                 switch indexPath.row {
@@ -50,7 +50,7 @@ class InputViewController: easy.ViewController, easy.ListProtocol {
                     any.do {
                         var model = $0
                         model.title = input
-                        self?.listView.tableViewDataSource[indexPath.row] = model
+                        listView.tableViewDataSource[indexPath.row] = model
                     }
                 })
             }

@@ -38,17 +38,17 @@ class FontViewController: easy.ViewController, easy.ListProtocol {
         
         addListView(in: view)
         listView.addTableView(style: .grouped)
-        listView.setTableView(numberOfSections: { [weak self] () -> Int in
-            self?.listView.tableViewDataSource.count ?? 0
-        }) { [weak self] (section) -> Int in
-            return self?.listView.tableViewDataSource(Font.self)[section].name.count ?? 0
+        listView.setTableView(numberOfSections: { (listView) -> Int in
+            return listView.tableViewDataSource.count
+        }) { (listView, section) -> Int in
+            return listView.tableViewDataSource(Font.self)[section].name.count
         }
-        listView.setTableViewRegister(UITableViewCell.self, configureCell: { [weak self] (cell, indexPath, any) in
+        listView.setTableViewRegister(UITableViewCell.self, configureCell: { [weak self] (_, cell, indexPath, any) in
             guard let font = any as? Font else { return }
             cell.textLabel?.numberOfLines = 0
             cell.textLabel?.font = UIFont(name: font.name[indexPath.row], size: 19)
             cell.textLabel?.text = (self?.textField.text ?? "") + "\n" + font.name[indexPath.row]
-        }) { [weak self] (indexPath, any) in
+        }) { [weak self] (_, indexPath, any) in
             let label = UILabel(frame: app.screenBounds).then {
                 guard let font = any as? Font else { return }
                 $0.backgroundColor = UIColor.white

@@ -38,7 +38,7 @@ class MarqueeViewController: easy.ViewController, easy.ListProtocol {
         }
         
         listView.do {
-            $0.setTableViewRegister(NSAttributedString.self, cellClass: UITableViewCell.self, configureCell: { (cell, _, any) in
+            $0.setTableViewRegister(NSAttributedString.self, cellClass: UITableViewCell.self, configureCell: { (_, cell, _, any) in
                 cell.textLabel?.do {
                     $0.numberOfLines = 0
                     $0.attributedText = any
