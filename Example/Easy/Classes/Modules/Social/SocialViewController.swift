@@ -29,9 +29,9 @@ class SocialViewController: easy.ViewController, easy.ListProtocol {
         
         addListView(in: view).addTableView(style: .grouped)
         
-        listView.setTableView(numberOfSections: { [weak self] () -> Int in
-            return self?.listView.tableViewDataSource.count ?? 0
-        }) { (section) -> Int in
+        listView.setTableView(numberOfSections: { (listView) -> Int in
+            return listView.tableViewDataSource.count
+        }) { (_, section) -> Int in
             return 1
         }
         listView.setTableViewRegister([UITableViewCell.self, SocialCell.self], returnCell: { (indexPath) -> AnyClass? in

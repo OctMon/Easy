@@ -38,10 +38,10 @@ class FontViewController: easy.ViewController, easy.ListProtocol {
         
         addListView(in: view)
         listView.addTableView(style: .grouped)
-        listView.setTableView(numberOfSections: { [weak self] () -> Int in
-            return self?.listView.tableViewDataSource.count ?? 0
-        }) { [weak self] (section) -> Int in
-            return self?.listView.tableViewDataSource(Font.self)[section].name.count ?? 0
+        listView.setTableView(numberOfSections: { (listView) -> Int in
+            return listView.tableViewDataSource.count
+        }) { (listView, section) -> Int in
+            return listView.tableViewDataSource(Font.self)[section].name.count
         }
         listView.setTableViewRegister(UITableViewCell.self, configureCell: { [weak self] (cell, indexPath, any) in
             guard let font = any as? Font else { return }

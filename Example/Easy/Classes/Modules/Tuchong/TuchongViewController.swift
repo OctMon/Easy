@@ -73,10 +73,10 @@ class TuchongListView: easy.ListView {
             $0.registerReusableView(supplementaryViewType: TuchongReusableView.self, ofKind: UICollectionView.elementKindSectionFooter)
         }
         
-        setCollectionView(numberOfSections: { [weak self] () -> Int in
-            return self?.collectionViewDataSource.count ?? 0
-        }) { [weak self] (section) -> Int in
-            return (self?.collectionViewDataSource as? [Tuchong])?[section].images?.count ?? 0
+        setCollectionView(numberOfSections: { (listView) -> Int in
+            return listView.collectionViewDataSource.count
+        }) { (listView, section) -> Int in
+            return (listView.collectionViewDataSource as? [Tuchong])?[section].images?.count ?? 0
         }
         
         setCollectionViewRegister(Tuchong.self, cellClass: TuchongCollectionViewCell.self, configureCell: { (cell, indexPath, any) in
