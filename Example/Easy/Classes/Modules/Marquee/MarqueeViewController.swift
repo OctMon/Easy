@@ -40,15 +40,6 @@ class MarqueeViewController: easy.ViewController, easy.ListProtocol {
             }
             
             $0.tableFooterView = marqueeListView
-            marqueeListView.setCollectionViewRegister(UICollectionViewCell.self, configureCell: { (cell, _, _) in
-                cell.backgroundColor = UIColor.random
-            }) { (_, any) in
-                log.debug(any)
-            }
-            
-            marqueeListView.setCollectionViewSizeForItemAt(NSAttributedString.self) { (_, _) -> CGSize in
-                return CGSize(width: .screenWidth * 0.25, height: .screenWidth * 0.25)
-            }
         }
         
         listView.do {
@@ -77,6 +68,15 @@ class MarqueeListView: easy.ListView {
         
 //        collectionView.registerReusableCell(UICollectionViewCell.self)
 
+        setCollectionViewRegister(UICollectionViewCell.self, configureCell: { (cell, _, _) in
+            cell.backgroundColor = UIColor.random
+        }) { (_, any) in
+            log.debug(any)
+        }
+        
+        setCollectionViewSizeForItemAt(NSAttributedString.self) { (_, _) -> CGSize in
+            return CGSize(width: .screenWidth * 0.25, height: .screenWidth * 0.25)
+        }
         
     }
     
