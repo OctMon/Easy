@@ -97,9 +97,9 @@ class Main: easy.ViewController, easy.ListProtocol {
         
         listView.tableView.tableHeaderView = textView
         listView.tableView.tableFooterView = tableFooterView
-        listView.setTableViewRegister(String.self, cellClass: UITableViewCell.self, configureCell: { (_, cell, _, any) in
+        listView.setTableViewRegister(String.self, cellClass: UITableViewCell.self, configureCell: { (cell, _, any) in
             cell.textLabel?.text = any
-        }) { (_, _, any) in
+        }) { (_, any) in
             easy.Router.openURL("easy://", routerParameters: [.className: any, .userInfo: ["title": any]])
         }
     }

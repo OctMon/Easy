@@ -29,25 +29,25 @@ class SocialViewController: easy.ViewController, easy.ListProtocol {
         
         addListView(in: view).addTableView(style: .grouped)
         
-        listView.setTableView(numberOfSections: { (listView) -> Int in
-            return listView.tableViewDataSource.count
-        }) { (_, _) -> Int in
+        listView.setTableView(numberOfSections: { [weak self] () -> Int in
+            return self?.listView.tableViewDataSource.count ?? 0
+        }) { (section) -> Int in
             return 1
         }
-        listView.setTableViewRegister([UITableViewCell.self, SocialCell.self], returnCell: { (_, indexPath) -> AnyClass? in
+        listView.setTableViewRegister([UITableViewCell.self, SocialCell.self], returnCell: { (indexPath) -> AnyClass? in
             switch indexPath.section {
             case 0:
                 return UITableViewCell.self
             default:
                 return SocialCell.self
             }
-        }, configureCell: { (listView, cell, indexPath, any) in
+        }, configureCell: { [weak self] (cell, indexPath, any) in
             if let cell = cell as? SocialCell {
-                cell.modules = listView.tableViewDataSource[indexPath.section] as? [Module] ?? []
+                cell.modules = self?.listView.tableViewDataSource[indexPath.section] as? [Module] ?? []
             } else {
                 cell.textLabel?.text = (any as? Module)?.name
             }
-        }) { (_, _, any) in
+        }) { (_, any) in
             easy.Social.share(title: "Apple", description: "China", thumbnail: UIImage.setColor(UIColor.red), url: "http://www.apple.com/cn")
         }
     }
@@ -84,12 +84,12 @@ private class SocialCell: UITableViewCell, easy.ListProtocol {
             }
         }
         
-        listView.setCollectionViewRegister(Module.self, cellClass:TuchongCollectionViewCell.self, configureCell: { (_, cell, _, any) in
+        listView.setCollectionViewRegister(Module.self, cellClass:TuchongCollectionViewCell.self, configureCell: { (cell, _, any) in
             (cell as? TuchongCollectionViewCell)?.do {
                 $0.backgroundColor = UIColor.random
                 $0.label.text = any.name
             }
-        }) { (_, indexPath, any) in
+        }) { (indexPath, any) in
             switch any {
             case .微信登录:
                 easy.Social.oauth(platformType: .wechat) { (userInfo, _, error) in
@@ -120,7 +120,7 @@ private class SocialCell: UITableViewCell, easy.ListProtocol {
             }
         }
         
-        listView.setCollectionViewSizeForItemAt { (_, _, _) -> CGSize in
+        listView.setCollectionViewSizeForItemAt { (_, _) -> CGSize in
             return CGSize(width: .screenWidth * 0.5, height: .screenWidth * 0.5)
         }
     }

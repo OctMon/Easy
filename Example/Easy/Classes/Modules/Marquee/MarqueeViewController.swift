@@ -10,7 +10,7 @@ import UIKit
 
 class MarqueeViewController: easy.ViewController, easy.ListProtocol {
     
-    typealias EasyListViewAssociatedType = MarqueeListView
+    typealias EasyListViewAssociatedType = easy.ListView
 
     private var marqueeLabel: easy.MarqueeLabel!
     
@@ -40,10 +40,19 @@ class MarqueeViewController: easy.ViewController, easy.ListProtocol {
             }
             
             $0.tableFooterView = marqueeListView
+            marqueeListView.setCollectionViewRegister(UICollectionViewCell.self, configureCell: { (cell, _, _) in
+                cell.backgroundColor = UIColor.random
+            }) { (_, any) in
+                log.debug(any)
+            }
+            
+            marqueeListView.setCollectionViewSizeForItemAt(NSAttributedString.self) { (_, _) -> CGSize in
+                return CGSize(width: .screenWidth * 0.25, height: .screenWidth * 0.25)
+            }
         }
         
         listView.do {
-            $0.setTableViewRegister(NSAttributedString.self, cellClass: UITableViewCell.self, configureCell: { (_, cell, _, any) in
+            $0.setTableViewRegister(NSAttributedString.self, cellClass: UITableViewCell.self, configureCell: { (cell, _, any) in
                 cell.textLabel?.do {
                     $0.numberOfLines = 0
                     $0.attributedText = any
@@ -66,26 +75,20 @@ class MarqueeListView: easy.ListView {
             $0.minimumLineSpacing = 0
         }
         
-        setCollectionViewRegister(UICollectionViewCell.self, configureCell: { (_, cell, _, _) in
-            cell.backgroundColor = UIColor.random
-        }) { (_, _, any) in
-            log.debug(any)
-        }
+//        collectionView.registerReusableCell(UICollectionViewCell.self)
+
         
-        setCollectionViewSizeForItemAt(NSAttributedString.self) { (_, _, _) -> CGSize in
-            return CGSize(width: .screenWidth * 0.25, height: .screenWidth * 0.25)
-        }
     }
     
-    /*override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: .screenWidth * 0.25, height: .screenWidth * 0.25)
-    }
-    
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(for: indexPath).then {
-            $0.backgroundColor = UIColor.red
-        }
-        return cell
-    }*/
+//    override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//        return CGSize(width: .screenWidth * 0.25, height: .screenWidth * 0.25)
+//    }
+//
+//    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+//        let cell = collectionView.dequeueReusableCell(for: indexPath).then {
+//            $0.backgroundColor = UIColor.red
+//        }
+//        return cell
+//    }
 
 }

@@ -57,12 +57,12 @@ open class EasyListView: UIView {
     
     public lazy var tableViewDataSource: [Any] = [Any]()
     
-    private lazy var tableViewNumberOfSectionsHandler: ((EasyListView) -> Int)? = { return nil }()
-    private lazy var tableViewNumberOfRowsInSectionHandler: ((EasyListView, Int) -> Int)? = { return nil }()
-    private lazy var tableViewCellHandler: ((EasyListView, UITableViewCell, IndexPath, Any) -> Void)? = { return nil }()
-    private lazy var tableViewCellsHandler: ((EasyListView, IndexPath) -> AnyClass?)? = { return nil }()
-    private lazy var tableViewDidSelectRowHandler: ((EasyListView, IndexPath, Any) -> Void)? = { return nil }()
-    private lazy var tableViewAccessoryButtonTappedForRowWithHandler: ((EasyListView, IndexPath, Any) -> Void)? = { return nil }()
+    private lazy var tableViewNumberOfSectionsHandler: (() -> Int)? = { return nil }()
+    private lazy var tableViewNumberOfRowsInSectionHandler: ((Int) -> Int)? = { return nil }()
+    private lazy var tableViewCellHandler: ((UITableViewCell, IndexPath, Any) -> Void)? = { return nil }()
+    private lazy var tableViewCellsHandler: ((IndexPath) -> AnyClass?)? = { return nil }()
+    private lazy var tableViewDidSelectRowHandler: ((IndexPath, Any) -> Void)? = { return nil }()
+    private lazy var tableViewAccessoryButtonTappedForRowWithHandler: ((IndexPath, Any) -> Void)? = { return nil }()
     lazy var tableViewRequestHandler: (() -> Void)? = { return nil }()
     
     /// must be set first
@@ -82,12 +82,12 @@ open class EasyListView: UIView {
     
     public lazy var collectionViewDataSource: [Any] = [Any]()
 
-    private lazy var collectionViewNumberOfSectionsHandler: ((EasyListView) -> Int)? = { return nil }()
-    private lazy var collectionViewNumberOfItemsInSectionHandler: ((EasyListView, Int) -> Int)? = { return nil }()
-    private lazy var collectionViewCellHandler: ((EasyListView, UICollectionViewCell, IndexPath, Any) -> Void)? = { return nil }()
-    private lazy var collectionViewCellsHandler: ((EasyListView, IndexPath) -> AnyClass?)? = { return nil }()
-    private lazy var collectionViewDidSelectRowHandler: ((EasyListView, IndexPath, Any) -> Void)? = { return nil }()
-    private lazy var collectionViewSizeForItemAtHandler: ((EasyListView, IndexPath, Any) -> CGSize)? = { return nil }()
+    private lazy var collectionViewNumberOfSectionsHandler: (() -> Int)? = { return nil }()
+    private lazy var collectionViewNumberOfItemsInSectionHandler: ((Int) -> Int)? = { return nil }()
+    private lazy var collectionViewCellHandler: ((UICollectionViewCell, IndexPath, Any) -> Void)? = { return nil }()
+    private lazy var collectionViewCellsHandler: ((IndexPath) -> AnyClass?)? = { return nil }()
+    private lazy var collectionViewDidSelectRowHandler: ((IndexPath, Any) -> Void)? = { return nil }()
+    private lazy var collectionViewSizeForItemAtHandler: ((IndexPath, Any) -> CGSize)? = { return nil }()
     lazy var collectionViewRequestHandler: (() -> Void)? = { return nil }()
     
     public lazy var collectionViewFlowLayout: UICollectionViewFlowLayout = {
@@ -162,20 +162,20 @@ public extension EasyListView {
     }
     
     /// numberOfSections
-    func setTableView(numberOfSections tableViewNumberOfSectionsHandler: @escaping (EasyListView) -> Int, numberOfRowsInSection tableViewNumberOfRowsInSectionHandler: @escaping (EasyListView, Int) -> Int) {
+    func setTableView(numberOfSections tableViewNumberOfSectionsHandler: @escaping () -> Int, numberOfRowsInSection tableViewNumberOfRowsInSectionHandler: @escaping (Int) -> Int) {
         self.tableViewNumberOfSectionsHandler = tableViewNumberOfSectionsHandler
         self.tableViewNumberOfRowsInSectionHandler = tableViewNumberOfRowsInSectionHandler
     }
     
     /// cellForRowAt & didSelectRowAt
-    func setTableViewRegister(_ cellClass: AnyClass?, configureCell: @escaping (EasyListView, UITableViewCell, IndexPath, Any) -> Void, didSelectRow tableViewDidSelectRowHandler: ((EasyListView, IndexPath, Any) -> Void)?) {
-        setTableViewRegister([cellClass], returnCell: { (_, _) -> AnyClass? in
+    func setTableViewRegister(_ cellClass: AnyClass?, configureCell: @escaping (UITableViewCell, IndexPath, Any) -> Void, didSelectRow tableViewDidSelectRowHandler: ((IndexPath, Any) -> Void)?) {
+        setTableViewRegister([cellClass], returnCell: { (_) -> AnyClass? in
             return cellClass.self
         }, configureCell: configureCell, didSelectRow: tableViewDidSelectRowHandler)
     }
     
     /// cellForRowAt & didSelectRowAt
-    func setTableViewRegister(_ cellsClass: [AnyClass?], returnCell tableViewCellsHandler: @escaping (EasyListView, IndexPath) -> AnyClass?, configureCell tableViewCellHandler: @escaping (EasyListView, UITableViewCell, IndexPath, Any) -> Void, didSelectRow tableViewDidSelectRowHandler: ((EasyListView, IndexPath, Any) -> Void)?) {
+    func setTableViewRegister(_ cellsClass: [AnyClass?], returnCell tableViewCellsHandler: @escaping (IndexPath) -> AnyClass?, configureCell tableViewCellHandler: @escaping (UITableViewCell, IndexPath, Any) -> Void, didSelectRow tableViewDidSelectRowHandler: ((IndexPath, Any) -> Void)?) {
         cellsClass.forEach { (cc) in
             guard let cellClass = cc else { return }
             guard let cellReuseIdentifier = cc.self?.description() else { return }
@@ -187,14 +187,14 @@ public extension EasyListView {
     }
     
     /// cellForRowAt & didSelectRowAt
-    func setTableViewRegister<T>(_ type: T.Type, cellClass: AnyClass?, configureCell: @escaping (EasyListView, UITableViewCell, IndexPath, T) -> Void, didSelectRow tableViewDidSelectRowHandler: ((EasyListView, IndexPath, T) -> Void)?) {
-        setTableViewRegister(type, cellsClass: [cellClass], returnCell: { (_, _) -> AnyClass? in
+    func setTableViewRegister<T>(_ type: T.Type, cellClass: AnyClass?, configureCell: @escaping (UITableViewCell, IndexPath, T) -> Void, didSelectRow tableViewDidSelectRowHandler: ((IndexPath, T) -> Void)?) {
+        setTableViewRegister(type, cellsClass: [cellClass], returnCell: { (_) -> AnyClass? in
             return cellClass.self
         }, configureCell: configureCell, didSelectRow: tableViewDidSelectRowHandler)
     }
     
     /// cellForRowAt & didSelectRowAt
-    func setTableViewRegister<T>(_ type: T.Type, cellsClass: [AnyClass?], returnCell tableViewCellsHandler: @escaping (EasyListView, IndexPath) -> AnyClass?, configureCell tableViewCellHandler: @escaping (EasyListView, UITableViewCell, IndexPath, T) -> Void, didSelectRow tableViewDidSelectRowHandler: ((EasyListView, IndexPath, T) -> Void)?) {
+    func setTableViewRegister<T>(_ type: T.Type, cellsClass: [AnyClass?], returnCell tableViewCellsHandler: @escaping (IndexPath) -> AnyClass?, configureCell tableViewCellHandler: @escaping (UITableViewCell, IndexPath, T) -> Void, didSelectRow tableViewDidSelectRowHandler: ((IndexPath, T) -> Void)?) {
         cellsClass.forEach { (cc) in
             guard let cellClass = cc else { return }
             guard let cellReuseIdentifier = cc.self?.description() else { return }
@@ -202,18 +202,18 @@ public extension EasyListView {
         }
         self.tableViewCellsHandler = tableViewCellsHandler
         
-        self.tableViewCellHandler = { (listView, cell, indexPath, any) in
+        self.tableViewCellHandler = { (cell, indexPath, any) in
             if let t = any as? T {
-                tableViewCellHandler(listView, cell, indexPath, t)
+                tableViewCellHandler(cell, indexPath, t)
             } else {
                 EasyLog.print(any)
                 EasyLog.print("warning:类型T转换失败")
             }
         }
         
-        self.tableViewDidSelectRowHandler = { (listView, indexPath, any) in
+        self.tableViewDidSelectRowHandler = { (indexPath, any) in
             if let t = any as? T {
-                tableViewDidSelectRowHandler?(listView, indexPath, t)
+                tableViewDidSelectRowHandler?(indexPath, t)
             } else {
                 EasyLog.print(any)
                 EasyLog.print("warning:类型T转换失败")
@@ -221,14 +221,14 @@ public extension EasyListView {
         }
     }
     
-    func setTableViewAccessoryButtonTappedForRowWith(_ tableViewAccessoryButtonTappedForRowWithHandler: ((EasyListView, IndexPath, Any) -> Void)?) {
+    func setTableViewAccessoryButtonTappedForRowWith(_ tableViewAccessoryButtonTappedForRowWithHandler: ((IndexPath, Any) -> Void)?) {
         self.tableViewAccessoryButtonTappedForRowWithHandler = tableViewAccessoryButtonTappedForRowWithHandler
     }
     
-    func setTableViewAccessoryButtonTappedForRowWith<T>(_ type: T.Type, accessoryButtonTappedForRowWith tableViewAccessoryButtonTappedForRowWithHandler: ((EasyListView, IndexPath, T) -> Void)?) {
-        self.tableViewAccessoryButtonTappedForRowWithHandler = { (listView, indexPath, any) in
+    func setTableViewAccessoryButtonTappedForRowWith<T>(_ type: T.Type, accessoryButtonTappedForRowWith tableViewAccessoryButtonTappedForRowWithHandler: ((IndexPath, T) -> Void)?) {
+        self.tableViewAccessoryButtonTappedForRowWithHandler = { (indexPath, any) in
             if let t = any as? T {
-                tableViewAccessoryButtonTappedForRowWithHandler?(listView, indexPath, t)
+                tableViewAccessoryButtonTappedForRowWithHandler?(indexPath, t)
             } else {
                 EasyLog.print(any)
                 EasyLog.print("warning:类型T转换失败")
@@ -242,7 +242,7 @@ extension EasyListView: UITableViewDataSource, UITableViewDelegate {
     
     open func numberOfSections(in tableView: UITableView) -> Int {
         if let handler = tableViewNumberOfSectionsHandler {
-            return handler(self)
+            return handler()
         }
         if self.tableViewDataSource.contains(where: { ($0 as? [Any]) != nil }) {
             return tableViewDataSource.count
@@ -252,7 +252,7 @@ extension EasyListView: UITableViewDataSource, UITableViewDelegate {
     
     open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let handler = tableViewNumberOfRowsInSectionHandler {
-            return handler(self, section)
+            return handler(section)
         }
         if section < tableViewDataSource.count {
             if let array = (self.tableViewDataSource[section] as? [Any]) {
@@ -263,22 +263,22 @@ extension EasyListView: UITableViewDataSource, UITableViewDelegate {
     }
     
     open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let tableViewCellsHandler = tableViewCellsHandler, let cellReuseIdentifier = tableViewCellsHandler(self, indexPath).self?.description() {
+        if let tableViewCellsHandler = tableViewCellsHandler, let cellReuseIdentifier = tableViewCellsHandler(indexPath).self?.description() {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) else { return UITableViewCell() }
             if numberOfSections(in: tableView) > 0 {
                 if indexPath.section < tableViewDataSource.count {
                     if let any = (tableViewDataSource[indexPath.section] as? [Any]) {
                         if indexPath.row < any.count {
-                            tableViewCellHandler?(self, cell, indexPath, any[indexPath.row])
+                            tableViewCellHandler?(cell, indexPath, any[indexPath.row])
                         }
-                    } else if let row = tableViewNumberOfRowsInSectionHandler?(self, indexPath.section), row > 0 {
-                        tableViewCellHandler?(self, cell, indexPath, tableViewDataSource[indexPath.section])
+                    } else if let row = tableViewNumberOfRowsInSectionHandler?(indexPath.section), row > 0 {
+                        tableViewCellHandler?(cell, indexPath, tableViewDataSource[indexPath.section])
                     } else if indexPath.row < tableViewDataSource.count {
-                        tableViewCellHandler?(self, cell, indexPath, tableViewDataSource[indexPath.row])
+                        tableViewCellHandler?(cell, indexPath, tableViewDataSource[indexPath.row])
                     }
                 }
             } else if indexPath.row < tableViewDataSource.count {
-                tableViewCellHandler?(self, cell, indexPath, tableViewDataSource[indexPath.row])
+                tableViewCellHandler?(cell, indexPath, tableViewDataSource[indexPath.row])
             }
             return cell
         }
@@ -293,16 +293,16 @@ extension EasyListView: UITableViewDataSource, UITableViewDelegate {
                 if indexPath.section < tableViewDataSource.count {
                     if let any = (tableViewDataSource[indexPath.section] as? [Any]) {
                         if indexPath.row < any.count {
-                            tableViewDidSelectRowHandler(self, indexPath, any[indexPath.row])
+                            tableViewDidSelectRowHandler(indexPath, any[indexPath.row])
                         }
-                    } else if let row = tableViewNumberOfRowsInSectionHandler?(self, indexPath.section), row > 0 {
-                        tableViewDidSelectRowHandler(self, indexPath, tableViewDataSource[indexPath.section])
+                    } else if let row = tableViewNumberOfRowsInSectionHandler?(indexPath.section), row > 0 {
+                        tableViewDidSelectRowHandler(indexPath, tableViewDataSource[indexPath.section])
                     } else if indexPath.row < tableViewDataSource.count {
-                        tableViewDidSelectRowHandler(self, indexPath, tableViewDataSource[indexPath.row])
+                        tableViewDidSelectRowHandler(indexPath, tableViewDataSource[indexPath.row])
                     }
                 }
             } else if indexPath.row < tableViewDataSource.count {
-                tableViewDidSelectRowHandler(self, indexPath, tableViewDataSource[indexPath.row])
+                tableViewDidSelectRowHandler(indexPath, tableViewDataSource[indexPath.row])
             }
         }
     }
@@ -313,16 +313,16 @@ extension EasyListView: UITableViewDataSource, UITableViewDelegate {
                 if indexPath.section < tableViewDataSource.count {
                     if let any = (tableViewDataSource[indexPath.section] as? [Any]) {
                         if indexPath.row < any.count {
-                            tableViewAccessoryButtonTappedForRowWithHandler(self, indexPath, any[indexPath.row])
+                            tableViewAccessoryButtonTappedForRowWithHandler(indexPath, any[indexPath.row])
                         }
-                    } else if let row = tableViewNumberOfRowsInSectionHandler?(self, indexPath.section), row > 0 {
-                        tableViewAccessoryButtonTappedForRowWithHandler(self, indexPath, tableViewDataSource[indexPath.section])
+                    } else if let row = tableViewNumberOfRowsInSectionHandler?(indexPath.section), row > 0 {
+                        tableViewAccessoryButtonTappedForRowWithHandler(indexPath, tableViewDataSource[indexPath.section])
                     } else if indexPath.row < tableViewDataSource.count {
-                        tableViewAccessoryButtonTappedForRowWithHandler(self, indexPath, tableViewDataSource[indexPath.row])
+                        tableViewAccessoryButtonTappedForRowWithHandler(indexPath, tableViewDataSource[indexPath.row])
                     }
                 }
             } else if indexPath.row < tableViewDataSource.count {
-                tableViewAccessoryButtonTappedForRowWithHandler(self, indexPath, tableViewDataSource[indexPath.row])
+                tableViewAccessoryButtonTappedForRowWithHandler(indexPath, tableViewDataSource[indexPath.row])
             }
         }
     }
@@ -346,20 +346,20 @@ public extension EasyListView {
     }
     
     /// numberOfSections
-    func setCollectionView(numberOfSections collectionViewNumberOfSectionsHandler: @escaping (EasyListView) -> Int, numberOfRowsInSection collectionViewNumberOfRowsInSectionHandler: @escaping (EasyListView, Int) -> Int) {
+    func setCollectionView(numberOfSections collectionViewNumberOfSectionsHandler: @escaping () -> Int, numberOfRowsInSection collectionViewNumberOfRowsInSectionHandler: @escaping (Int) -> Int) {
         self.collectionViewNumberOfSectionsHandler = collectionViewNumberOfSectionsHandler
         self.collectionViewNumberOfItemsInSectionHandler = collectionViewNumberOfRowsInSectionHandler
     }
     
     /// cellForItemAt & didSelectItemAt
-    func setCollectionViewRegister(_ cellClass: AnyClass?, configureCell: @escaping (EasyListView, UICollectionViewCell, IndexPath, Any) -> Void, didSelectRow collectionViewDidSelectRowHandler: ((EasyListView, IndexPath, Any) -> Void)?) {
-        setCollectionViewRegister([cellClass], returnCell: { (_, _) -> AnyClass? in
+    func setCollectionViewRegister(_ cellClass: AnyClass?, configureCell: @escaping (UICollectionViewCell, IndexPath, Any) -> Void, didSelectRow collectionViewDidSelectRowHandler: ((IndexPath, Any) -> Void)?) {
+        setCollectionViewRegister([cellClass], returnCell: { (_) -> AnyClass? in
             return cellClass.self
         }, configureCell: configureCell, didSelectRow: collectionViewDidSelectRowHandler)
     }
     
     /// cellForItemAt & didSelectItemAt
-    func setCollectionViewRegister(_ cellsClass: [AnyClass?], returnCell collectionViewCellsHandler: @escaping (EasyListView, IndexPath) -> AnyClass?, configureCell collectionViewCellHandler: @escaping (EasyListView, UICollectionViewCell, IndexPath, Any) -> Void, didSelectRow collectionViewDidSelectRowHandler: ((EasyListView, IndexPath, Any) -> Void)?) {
+    func setCollectionViewRegister(_ cellsClass: [AnyClass?], returnCell collectionViewCellsHandler: @escaping (IndexPath) -> AnyClass?, configureCell collectionViewCellHandler: @escaping (UICollectionViewCell, IndexPath, Any) -> Void, didSelectRow collectionViewDidSelectRowHandler: ((IndexPath, Any) -> Void)?) {
         cellsClass.forEach { (cc) in
             guard let cellClass = cc else { return }
             guard let cellReuseIdentifier = cc.self?.description() else { return }
@@ -371,14 +371,14 @@ public extension EasyListView {
     }
     
     /// cellForItemAt & didSelectItemAt
-    func setCollectionViewRegister<T>(_ type: T.Type, cellClass: AnyClass?, configureCell: @escaping (EasyListView, UICollectionViewCell, IndexPath, T) -> Void, didSelectRow collectionViewDidSelectRowHandler: ((EasyListView, IndexPath, T) -> Void)?) {
-        setCollectionViewRegister(type, cellsClass: [cellClass], returnCell: { (_, _) -> AnyClass? in
+    func setCollectionViewRegister<T>(_ type: T.Type, cellClass: AnyClass?, configureCell: @escaping (UICollectionViewCell, IndexPath, T) -> Void, didSelectRow collectionViewDidSelectRowHandler: ((IndexPath, T) -> Void)?) {
+        setCollectionViewRegister(type, cellsClass: [cellClass], returnCell: { (_) -> AnyClass? in
             return cellClass.self
         }, configureCell: configureCell, didSelectRow: collectionViewDidSelectRowHandler)
     }
     
     /// cellForItemAt & didSelectItemAt
-    func setCollectionViewRegister<T>(_ type: T.Type, cellsClass: [AnyClass?], returnCell collectionViewCellsHandler: @escaping (EasyListView, IndexPath) -> AnyClass?, configureCell collectionViewCellHandler: @escaping (EasyListView, UICollectionViewCell, IndexPath, T) -> Void, didSelectRow collectionViewDidSelectRowHandler: ((EasyListView, IndexPath, T) -> Void)?) {
+    func setCollectionViewRegister<T>(_ type: T.Type, cellsClass: [AnyClass?], returnCell collectionViewCellsHandler: @escaping (IndexPath) -> AnyClass?, configureCell collectionViewCellHandler: @escaping (UICollectionViewCell, IndexPath, T) -> Void, didSelectRow collectionViewDidSelectRowHandler: ((IndexPath, T) -> Void)?) {
         cellsClass.forEach { (cc) in
             guard let cellClass = cc else { return }
             guard let cellReuseIdentifier = cc.self?.description() else { return }
@@ -386,18 +386,18 @@ public extension EasyListView {
         }
         self.collectionViewCellsHandler = collectionViewCellsHandler
         
-        self.collectionViewCellHandler = { (EasyListView, cell, indexPath, any) in
+        self.collectionViewCellHandler = { (cell, indexPath, any) in
             if let t = any as? T {
-                collectionViewCellHandler(self, cell, indexPath, t)
+                collectionViewCellHandler(cell, indexPath, t)
             } else {
                 EasyLog.print(any)
                 EasyLog.print("warning:类型T转换失败")
             }
         }
         
-        self.collectionViewDidSelectRowHandler = { (EasyListView, indexPath, any) in
+        self.collectionViewDidSelectRowHandler = { (indexPath, any) in
             if let t = any as? T {
-                collectionViewDidSelectRowHandler?(self, indexPath, t)
+                collectionViewDidSelectRowHandler?(indexPath, t)
             } else {
                 EasyLog.print(any)
                 EasyLog.print("warning:类型T转换失败")
@@ -405,16 +405,16 @@ public extension EasyListView {
         }
     }
     
-    func setCollectionViewSizeForItemAt(_ collectionViewSizeForItemAtHandler: @escaping (EasyListView, IndexPath, Any) -> CGSize) {
-        self.collectionViewSizeForItemAtHandler = { (EasyListView, indexPath, any) -> CGSize in
-            return collectionViewSizeForItemAtHandler(self, indexPath, any)
+    func setCollectionViewSizeForItemAt(_ collectionViewSizeForItemAtHandler: @escaping (IndexPath, Any) -> CGSize) {
+        self.collectionViewSizeForItemAtHandler = { (indexPath, any) -> CGSize in
+            return collectionViewSizeForItemAtHandler(indexPath, any)
         }
     }
     
-    func setCollectionViewSizeForItemAt<T>(_ type: T.Type, sizeForItemAt collectionViewSizeForItemAtHandler: @escaping (EasyListView, IndexPath, T) -> CGSize) {
-        self.collectionViewSizeForItemAtHandler = { (EasyListView, indexPath, any) -> CGSize in
+    func setCollectionViewSizeForItemAt<T>(_ type: T.Type, sizeForItemAt collectionViewSizeForItemAtHandler: @escaping (IndexPath, T) -> CGSize) {
+        self.collectionViewSizeForItemAtHandler = { (indexPath, any) -> CGSize in
             if let t = any as? T {
-                return collectionViewSizeForItemAtHandler(self, indexPath, t)
+                return collectionViewSizeForItemAtHandler(indexPath, t)
             } else {
                 EasyLog.print(any)
                 EasyLog.print("warning:类型T转换失败")
@@ -429,7 +429,7 @@ extension EasyListView: UICollectionViewDataSource, UICollectionViewDelegate, UI
     
     open func numberOfSections(in collectionView: UICollectionView) -> Int {
         if let handler = collectionViewNumberOfSectionsHandler {
-            return handler(self)
+            return handler()
         }
         if self.collectionViewDataSource.contains(where: { ($0 as? [Any]) != nil }) {
             return collectionViewDataSource.count
@@ -439,7 +439,7 @@ extension EasyListView: UICollectionViewDataSource, UICollectionViewDelegate, UI
     
     open func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if let handler = collectionViewNumberOfItemsInSectionHandler {
-            return handler(self, section)
+            return handler(section)
         }
         if section < collectionViewDataSource.count {
             if let array = (self.collectionViewDataSource[section] as? [Any]) {
@@ -450,22 +450,22 @@ extension EasyListView: UICollectionViewDataSource, UICollectionViewDelegate, UI
     }
     
     open func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if let collectionViewCellsHandler = collectionViewCellsHandler, let cellReuseIdentifier = collectionViewCellsHandler(self, indexPath).self?.description() {
+        if let collectionViewCellsHandler = collectionViewCellsHandler, let cellReuseIdentifier = collectionViewCellsHandler(indexPath).self?.description() {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellReuseIdentifier, for: indexPath)
             if numberOfSections(in: collectionView) > 0 {
                 if indexPath.section < collectionViewDataSource.count {
                     if let any = (collectionViewDataSource[indexPath.section] as? [Any]) {
                         if indexPath.row < any.count {
-                            collectionViewCellHandler?(self, cell, indexPath, any[indexPath.row])
+                            collectionViewCellHandler?(cell, indexPath, any[indexPath.row])
                         }
-                    } else if let row = collectionViewNumberOfItemsInSectionHandler?(self, indexPath.section), row > 0 {
-                        collectionViewCellHandler?(self, cell, indexPath, collectionViewDataSource[indexPath.section])
+                    } else if let row = collectionViewNumberOfItemsInSectionHandler?(indexPath.section), row > 0 {
+                        collectionViewCellHandler?(cell, indexPath, collectionViewDataSource[indexPath.section])
                     } else if indexPath.row < collectionViewDataSource.count {
-                        collectionViewCellHandler?(self, cell, indexPath, collectionViewDataSource[indexPath.row])
+                        collectionViewCellHandler?(cell, indexPath, collectionViewDataSource[indexPath.row])
                     }
                 }
             } else if indexPath.row < collectionViewDataSource.count {
-                collectionViewCellHandler?(self, cell, indexPath, collectionViewDataSource[indexPath.row])
+                collectionViewCellHandler?(cell, indexPath, collectionViewDataSource[indexPath.row])
             }
             return cell
         }
@@ -480,16 +480,16 @@ extension EasyListView: UICollectionViewDataSource, UICollectionViewDelegate, UI
                 if indexPath.section < collectionViewDataSource.count {
                     if let any = (collectionViewDataSource[indexPath.section] as? [Any]) {
                         if indexPath.row < any.count {
-                            collectionViewDidSelectRowHandler(self, indexPath, any[indexPath.row])
+                            collectionViewDidSelectRowHandler(indexPath, any[indexPath.row])
                         }
-                    } else if let row = collectionViewNumberOfItemsInSectionHandler?(self, indexPath.section), row > 0 {
-                        collectionViewDidSelectRowHandler(self, indexPath, collectionViewDataSource[indexPath.section])
+                    } else if let row = collectionViewNumberOfItemsInSectionHandler?(indexPath.section), row > 0 {
+                        collectionViewDidSelectRowHandler(indexPath, collectionViewDataSource[indexPath.section])
                     } else if indexPath.row < collectionViewDataSource.count {
-                        collectionViewDidSelectRowHandler(self, indexPath, collectionViewDataSource[indexPath.row])
+                        collectionViewDidSelectRowHandler(indexPath, collectionViewDataSource[indexPath.row])
                     }
                 }
             } else if indexPath.row < collectionViewDataSource.count {
-                collectionViewDidSelectRowHandler(self, indexPath, collectionViewDataSource[indexPath.row])
+                collectionViewDidSelectRowHandler(indexPath, collectionViewDataSource[indexPath.row])
             }
         }
     }
@@ -500,16 +500,16 @@ extension EasyListView: UICollectionViewDataSource, UICollectionViewDelegate, UI
                 if indexPath.section < collectionViewDataSource.count {
                     if let any = (collectionViewDataSource[indexPath.section] as? [Any]) {
                         if indexPath.row < any.count {
-                            return collectionViewSizeForItemAtHandler(self, indexPath, any[indexPath.row])
+                            return collectionViewSizeForItemAtHandler(indexPath, any[indexPath.row])
                         }
-                    } else if let row = collectionViewNumberOfItemsInSectionHandler?(self, indexPath.section), row > 0 {
-                        return collectionViewSizeForItemAtHandler(self, indexPath, collectionViewDataSource[indexPath.section])
+                    } else if let row = collectionViewNumberOfItemsInSectionHandler?(indexPath.section), row > 0 {
+                        return collectionViewSizeForItemAtHandler(indexPath, collectionViewDataSource[indexPath.section])
                     } else if indexPath.row < collectionViewDataSource.count {
-                        return collectionViewSizeForItemAtHandler(self, indexPath, collectionViewDataSource[indexPath.row])
+                        return collectionViewSizeForItemAtHandler(indexPath, collectionViewDataSource[indexPath.row])
                     }
                 }
             } else if indexPath.row < collectionViewDataSource.count {
-                return collectionViewSizeForItemAtHandler(self, indexPath, collectionViewDataSource[indexPath.row])
+                return collectionViewSizeForItemAtHandler(indexPath, collectionViewDataSource[indexPath.row])
             }
         }
         return .zero

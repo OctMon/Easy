@@ -38,17 +38,17 @@ class FontViewController: easy.ViewController, easy.ListProtocol {
         
         addListView(in: view)
         listView.addTableView(style: .grouped)
-        listView.setTableView(numberOfSections: { (listView) -> Int in
-            return listView.tableViewDataSource.count
-        }) { (listView, section) -> Int in
-            return listView.tableViewDataSource(Font.self)[section].name.count
+        listView.setTableView(numberOfSections: { [weak self] () -> Int in
+            return self?.listView.tableViewDataSource.count ?? 0
+        }) { [weak self] (section) -> Int in
+            return self?.listView.tableViewDataSource(Font.self)[section].name.count ?? 0
         }
-        listView.setTableViewRegister(UITableViewCell.self, configureCell: { [weak self] (_, cell, indexPath, any) in
+        listView.setTableViewRegister(UITableViewCell.self, configureCell: { [weak self] (cell, indexPath, any) in
             guard let font = any as? Font else { return }
             cell.textLabel?.numberOfLines = 0
             cell.textLabel?.font = UIFont(name: font.name[indexPath.row], size: 19)
             cell.textLabel?.text = (self?.textField.text ?? "") + "\n" + font.name[indexPath.row]
-        }) { [weak self] (_, indexPath, any) in
+        }) { [weak self] (indexPath, any) in
             let label = UILabel(frame: app.screenBounds).then {
                 guard let font = any as? Font else { return }
                 $0.backgroundColor = UIColor.white
@@ -68,15 +68,12 @@ class FontViewController: easy.ViewController, easy.ListProtocol {
         UIFont.familyNames.sorted().forEach({ (family) in
             listView.tableViewDataSource.append(Font(family: family, name: UIFont.fontNames(forFamilyName: family).sorted()))
         })
-        listView.title = textField.text ?? "请输入"
         listView.tableView.reloadData()
     }
 
 }
 
 class FontListView: easy.ListView {
-    
-    var title = ""
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 44
