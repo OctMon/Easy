@@ -19,18 +19,8 @@ public struct EasyLog {
 
 public extension EasyLog {
     
-    static var log: String? {
-        return EasyApp.userDefaults.string(forKey: defaultLogLKey)
-    }
-    
-    static var logHandler: ((String) -> Void)?
-    
-    static func clear() {
-        EasyApp.userDefaults.set(nil, forKey: defaultLogLKey)
-    }
-    
     static func debug<T>(_ message: T, file: String = #file, method: String = #function, lineNumber: Int = #line) {
-        #if DEBUG
+        #if DEBUG || BETA
         let fileName = (file as NSString).lastPathComponent
         let now = Date()
         let formatter = DateFormatter()
@@ -43,13 +33,23 @@ public extension EasyLog {
     }
     
     static func print<T>(_ message: T) {
-        #if DEBUG
+        #if DEBUG || BETA
         Swift.print(message)
         record(message)
         #endif
     }
     
-    #if DEBUG
+    #if DEBUG || BETA
+    static var log: String? {
+        return EasyApp.userDefaults.string(forKey: defaultLogLKey)
+    }
+    
+    static var logHandler: ((String) -> Void)?
+    
+    static func clear() {
+        EasyApp.userDefaults.set(nil, forKey: defaultLogLKey)
+    }
+    
     private static func record<T>(_ message: T) {
         autoreleasepool { () in
             var log = "\(message)\n"
