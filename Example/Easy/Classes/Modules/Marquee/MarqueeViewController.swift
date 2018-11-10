@@ -14,6 +14,8 @@ class MarqueeViewController: easy.ViewController, easy.ListProtocol {
 
     private var marqueeLabel: easy.MarqueeLabel!
     
+    private let marqueeListView = MarqueeListView(frame: CGRect(x: 0, y: 0, width: .screenWidth, height: .screenWidth * 0.25))
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -24,17 +26,20 @@ class MarqueeViewController: easy.ViewController, easy.ListProtocol {
         }
         
         listView.tableViewDataSource = marqueeLabel.dataSource
+        marqueeListView.collectionViewDataSource = marqueeLabel.dataSource
     }
     
     override func configure() {
         super.configure()
         
-        addListView(in: view).addTableView(style: .grouped).do {
+        addListView(in: view).addTableView(style: .plain).do {
             $0.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: .screenWidth, height: 40)).then {
                 $0.backgroundColor = UIColor.gray
                 marqueeLabel = easy.MarqueeLabel(frame: CGRect(x: 15, y: 0, width: $0.width - 30, height: 40))
                 $0.addSubview(marqueeLabel)
             }
+            
+            $0.tableFooterView = marqueeListView
         }
         
         listView.do {
@@ -54,22 +59,20 @@ class MarqueeListView: easy.ListView {
     override func configure() {
         super.configure()
         
+        addCollectionView(layout: collectionViewWaterFlowLayout)
+        
         collectionViewWaterFlowLayout.do {
             $0.minimumInteritemSpacing = 0
             $0.minimumLineSpacing = 0
         }
         
-        setCollectionViewRegister(UICollectionViewCell.self, configureCell: { (cell, _, _) in
+        setCollectionViewRegister(UICollectionViewCell.self, configureCell: { (_, cell, _, _) in
             cell.backgroundColor = UIColor.random
-        }) { (_, any) in
+        }) { (_, _, any) in
             log.debug(any)
         }
         
-//        setCollectionViewSizeForItemAt { (_, _) -> CGSize in
-//            return CGSize(width: .screenWidth * 0.25, height: .screenWidth * 0.25)
-//        }
-        
-        setCollectionViewSizeForItemAt(NSAttributedString.self) { (_, _) -> CGSize in
+        setCollectionViewSizeForItemAt(NSAttributedString.self) { (_, _, _) -> CGSize in
             return CGSize(width: .screenWidth * 0.25, height: .screenWidth * 0.25)
         }
     }

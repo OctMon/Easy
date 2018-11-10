@@ -84,12 +84,12 @@ private class SocialCell: UITableViewCell, easy.ListProtocol {
             }
         }
         
-        listView.setCollectionViewRegister(Module.self, cellClass:TuchongCollectionViewCell.self, configureCell: { (cell, _, any) in
+        listView.setCollectionViewRegister(Module.self, cellClass:TuchongCollectionViewCell.self, configureCell: { (_, cell, _, any) in
             (cell as? TuchongCollectionViewCell)?.do {
                 $0.backgroundColor = UIColor.random
                 $0.label.text = any.name
             }
-        }) { (indexPath, any) in
+        }) { (_, indexPath, any) in
             switch any {
             case .微信登录:
                 easy.Social.oauth(platformType: .wechat) { (userInfo, _, error) in
@@ -120,7 +120,7 @@ private class SocialCell: UITableViewCell, easy.ListProtocol {
             }
         }
         
-        listView.setCollectionViewSizeForItemAt { (_, _) -> CGSize in
+        listView.setCollectionViewSizeForItemAt { (_, _, _) -> CGSize in
             return CGSize(width: .screenWidth * 0.5, height: .screenWidth * 0.5)
         }
     }
