@@ -207,7 +207,7 @@ public extension EasyListView {
                 tableViewCellHandler(cell, indexPath, t)
             } else {
                 EasyLog.print(any)
-                EasyLog.print("warning:类型T转换失败")
+                EasyLog.debug("warning:类型\(T.self)转换失败")
             }
         }
         
@@ -216,7 +216,7 @@ public extension EasyListView {
                 tableViewDidSelectRowHandler?(indexPath, t)
             } else {
                 EasyLog.print(any)
-                EasyLog.print("warning:类型T转换失败")
+                EasyLog.debug("warning:类型\(T.self)转换失败")
             }
         }
     }
@@ -231,7 +231,7 @@ public extension EasyListView {
                 tableViewAccessoryButtonTappedForRowWithHandler?(indexPath, t)
             } else {
                 EasyLog.print(any)
-                EasyLog.print("warning:类型T转换失败")
+                EasyLog.debug("warning:类型\(T.self)转换失败")
             }
         }
     }
@@ -391,7 +391,7 @@ public extension EasyListView {
                 collectionViewCellHandler(cell, indexPath, t)
             } else {
                 EasyLog.print(any)
-                EasyLog.print("warning:类型T转换失败")
+                EasyLog.debug("warning:类型\(T.self)转换失败")
             }
         }
         
@@ -400,7 +400,7 @@ public extension EasyListView {
                 collectionViewDidSelectRowHandler?(indexPath, t)
             } else {
                 EasyLog.print(any)
-                EasyLog.print("warning:类型T转换失败")
+                EasyLog.debug("warning:类型\(T.self)转换失败")
             }
         }
     }
@@ -417,7 +417,7 @@ public extension EasyListView {
                 return collectionViewSizeForItemAtHandler(indexPath, t)
             } else {
                 EasyLog.print(any)
-                EasyLog.print("warning:类型T转换失败")
+                EasyLog.debug("warning:类型\(T.self)转换失败")
                 return .zero
             }
         }
