@@ -38,12 +38,12 @@ class FontViewController: easy.ViewController, easy.TableListProtocol {
         
         addTableListView(in: view, style: .grouped)
         tableView.estimatedRowHeight = 88
-        tableListView.setTableView(numberOfSections: { (listView) -> Int in
+        tableListView.setNumberOfSections({ (listView) -> Int in
             return listView.list.count
         }) { (listView, section) -> Int in
             return listView.listTo(Font.self)[section].name.count
         }
-        tableListView.setTableViewRegister(UITableViewCell.self, configureCell: { [weak self] (cell, indexPath, any) in
+        tableListView.register(UITableViewCell.self, configureCell: { [weak self] (cell, indexPath, any) in
             guard let font = any as? Font else { return }
             cell.textLabel?.numberOfLines = 0
             cell.textLabel?.font = UIFont(name: font.name[indexPath.row], size: 19)

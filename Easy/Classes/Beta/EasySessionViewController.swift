@@ -49,7 +49,7 @@ class EasySessionViewController: EasyViewController, EasyTableListProtocol {
             $0.backgroundColor = UIColor.lightGray
         }
         
-        tableListView.setTableViewRegister(String.self, cellClass: UITableViewCell.self, configureCell: { [weak self] (cell, _, any) in
+        tableListView.register(String.self, cellClass: UITableViewCell.self, configureCell: { [weak self] (cell, _, any) in
             cell.textLabel?.numberOfLines = 0
             cell.textLabel?.textAlignment = .center
             if current == any {

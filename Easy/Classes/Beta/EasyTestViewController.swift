@@ -49,7 +49,7 @@ class EasyTestViewController: EasyViewController, EasyTableListProtocol {
         tableView.tableHeaderView = textView
         tableView.tableFooterView = UIView()
         
-        tableListView.setTableViewRegister((String, String).self, cellsClass: [EasyTestCell.self, UITableViewCell.self], returnCell: { (indexPath) -> AnyClass? in
+        tableListView.register((String, String).self, cellsClass: [EasyTestCell.self, UITableViewCell.self], returnCell: { (indexPath) -> AnyClass? in
             if indexPath.section == 0 {
                 return EasyTestCell.self
             }
@@ -94,7 +94,7 @@ class EasyTestViewController: EasyViewController, EasyTableListProtocol {
             })
         }
         
-        tableListView.setTableViewAccessoryButtonTappedForRowWith { [weak self] (indexPath, _) in
+        tableListView.setAccessoryButtonTappedForRowWith { [weak self] (indexPath, _) in
             guard indexPath.section > 0 else { return }
             let session = sessions[indexPath.row]
             var textField = UITextField()

@@ -133,7 +133,7 @@ open class EasyTableListView: EasyListView {
     private lazy var numberOfSectionsHandler: ((EasyTableListView) -> Int)? = { return nil }()
     private lazy var numberOfRowsInSectionHandler: ((EasyTableListView, Int) -> Int)? = { return nil }()
     private lazy var cellHandler: ((UITableViewCell, IndexPath, Any?) -> Void)? = { return nil }()
-    private lazy var tableViewCellsHandler: ((IndexPath) -> AnyClass?)? = { return nil }()
+    private lazy var cellsHandler: ((IndexPath) -> AnyClass?)? = { return nil }()
     private lazy var didSelectRowHandler: ((IndexPath, Any?) -> Void)? = { return nil }()
     private lazy var accessoryButtonTappedForRowWithHandler: ((IndexPath, Any?) -> Void)? = { return nil }()
     
@@ -167,45 +167,45 @@ public extension EasyTableListView {
     }
     
     /// numberOfSections
-    func setTableView(numberOfSections numberOfSectionsHandler: @escaping (EasyTableListView) -> Int, numberOfRowsInSection numberOfRowsInSectionHandler: @escaping (EasyTableListView, Int) -> Int) {
+    func setNumberOfSections(_ numberOfSectionsHandler: @escaping (EasyTableListView) -> Int, numberOfRowsInSection numberOfRowsInSectionHandler: @escaping (EasyTableListView, Int) -> Int) {
         self.numberOfSectionsHandler = numberOfSectionsHandler
         self.numberOfRowsInSectionHandler = numberOfRowsInSectionHandler
     }
     
     /// cellForRowAt & didSelectRowAt
-    func setTableViewRegister(_ cellClass: AnyClass?, configureCell: @escaping (UITableViewCell, IndexPath, Any) -> Void, didSelectRow didSelectRowHandler: ((IndexPath, Any) -> Void)?) {
-        setTableViewRegister([cellClass], returnCell: { (_) -> AnyClass? in
+    func register(_ cellClass: AnyClass?, configureCell: @escaping (UITableViewCell, IndexPath, Any) -> Void, didSelectRow didSelectRowHandler: ((IndexPath, Any) -> Void)?) {
+        register([cellClass], returnCell: { (_) -> AnyClass? in
             return cellClass.self
         }, configureCell: configureCell, didSelectRow: didSelectRowHandler)
     }
     
     /// cellForRowAt & didSelectRowAt
-    func setTableViewRegister(_ cellsClass: [AnyClass?], returnCell tableViewCellsHandler: @escaping (IndexPath) -> AnyClass?, configureCell cellHandler: @escaping (UITableViewCell, IndexPath, Any) -> Void, didSelectRow didSelectRowHandler: ((IndexPath, Any) -> Void)?) {
+    func register(_ cellsClass: [AnyClass?], returnCell cellsHandler: @escaping (IndexPath) -> AnyClass?, configureCell cellHandler: @escaping (UITableViewCell, IndexPath, Any) -> Void, didSelectRow didSelectRowHandler: ((IndexPath, Any) -> Void)?) {
         cellsClass.forEach { (cc) in
             guard let cellClass = cc else { return }
             guard let cellReuseIdentifier = cc.self?.description() else { return }
             tableView.register(cellClass, forCellReuseIdentifier: cellReuseIdentifier)
         }
-        self.tableViewCellsHandler = tableViewCellsHandler
+        self.cellsHandler = cellsHandler
         self.cellHandler = cellHandler
         self.didSelectRowHandler = didSelectRowHandler
     }
     
     /// cellForRowAt & didSelectRowAt
-    func setTableViewRegister<T>(_ type: T.Type, cellClass: AnyClass?, configureCell: @escaping (UITableViewCell, IndexPath, T) -> Void, didSelectRow didSelectRowHandler: ((IndexPath, T) -> Void)?) {
-        setTableViewRegister(type, cellsClass: [cellClass], returnCell: { (_) -> AnyClass? in
+    func register<T>(_ type: T.Type, cellClass: AnyClass?, configureCell: @escaping (UITableViewCell, IndexPath, T) -> Void, didSelectRow didSelectRowHandler: ((IndexPath, T) -> Void)?) {
+        register(type, cellsClass: [cellClass], returnCell: { (_) -> AnyClass? in
             return cellClass.self
         }, configureCell: configureCell, didSelectRow: didSelectRowHandler)
     }
     
     /// cellForRowAt & didSelectRowAt
-    func setTableViewRegister<T>(_ type: T.Type, cellsClass: [AnyClass?], returnCell tableViewCellsHandler: @escaping (IndexPath) -> AnyClass?, configureCell cellHandler: @escaping (UITableViewCell, IndexPath, T) -> Void, didSelectRow didSelectRowHandler: ((IndexPath, T) -> Void)?) {
+    func register<T>(_ type: T.Type, cellsClass: [AnyClass?], returnCell cellsHandler: @escaping (IndexPath) -> AnyClass?, configureCell cellHandler: @escaping (UITableViewCell, IndexPath, T) -> Void, didSelectRow didSelectRowHandler: ((IndexPath, T) -> Void)?) {
         cellsClass.forEach { (cc) in
             guard let cellClass = cc else { return }
             guard let cellReuseIdentifier = cc.self?.description() else { return }
             tableView.register(cellClass, forCellReuseIdentifier: cellReuseIdentifier)
         }
-        self.tableViewCellsHandler = tableViewCellsHandler
+        self.cellsHandler = cellsHandler
         
         self.cellHandler = { (cell, indexPath, any) in
             if let t = any as? T {
@@ -226,11 +226,11 @@ public extension EasyTableListView {
         }
     }
     
-    func setTableViewAccessoryButtonTappedForRowWith(_ accessoryButtonTappedForRowWithHandler: ((IndexPath, Any) -> Void)?) {
+    func setAccessoryButtonTappedForRowWith(_ accessoryButtonTappedForRowWithHandler: ((IndexPath, Any) -> Void)?) {
         self.accessoryButtonTappedForRowWithHandler = accessoryButtonTappedForRowWithHandler
     }
     
-    func setTableViewAccessoryButtonTappedForRowWith<T>(_ type: T.Type, accessoryButtonTappedForRowWith accessoryButtonTappedForRowWithHandler: ((IndexPath, T) -> Void)?) {
+    func setAccessoryButtonTappedForRowWith<T>(_ type: T.Type, accessoryButtonTappedForRowWith accessoryButtonTappedForRowWithHandler: ((IndexPath, T) -> Void)?) {
         self.accessoryButtonTappedForRowWithHandler = { (indexPath, any) in
             if let t = any as? T {
                 accessoryButtonTappedForRowWithHandler?(indexPath, t)
@@ -268,7 +268,7 @@ extension EasyTableListView: UITableViewDataSource, UITableViewDelegate {
     }
     
     open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let tableViewCellsHandler = tableViewCellsHandler, let cellReuseIdentifier = tableViewCellsHandler(indexPath).self?.description() {
+        if let cellsHandler = cellsHandler, let cellReuseIdentifier = cellsHandler(indexPath).self?.description() {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) else { return UITableViewCell() }
             if let cellHandler = cellHandler {
                 cellHandler(cell, indexPath, getAny(list, indexPath: indexPath, numberOfSections: numberOfSections(in: tableView), numberOfRowsInSectionHandler: numberOfRowsInSectionHandler))
@@ -396,20 +396,20 @@ public extension EasyCollectionListView {
     }
     
     /// numberOfSections
-    func setCollectionView(numberOfSections numberOfSectionsHandler: @escaping (EasyCollectionListView) -> Int, numberOfRowsInSection collectionViewNumberOfRowsInSectionHandler: @escaping (EasyCollectionListView, Int) -> Int) {
+    func setNumberOfSections(_ numberOfSectionsHandler: @escaping (EasyCollectionListView) -> Int, numberOfRowsInSection collectionViewNumberOfRowsInSectionHandler: @escaping (EasyCollectionListView, Int) -> Int) {
         self.numberOfSectionsHandler = numberOfSectionsHandler
         self.numberOfItemsInSectionHandler = collectionViewNumberOfRowsInSectionHandler
     }
     
     /// cellForItemAt & didSelectItemAt
-    func setCollectionViewRegister(_ cellClass: AnyClass?, configureCell: @escaping (UICollectionViewCell, IndexPath, Any) -> Void, didSelectRow didSelectRowHandler: ((IndexPath, Any) -> Void)?) {
-        setCollectionViewRegister([cellClass], returnCell: { (_) -> AnyClass? in
+    func register(_ cellClass: AnyClass?, configureCell: @escaping (UICollectionViewCell, IndexPath, Any) -> Void, didSelectRow didSelectRowHandler: ((IndexPath, Any) -> Void)?) {
+        register([cellClass], returnCell: { (_) -> AnyClass? in
             return cellClass.self
         }, configureCell: configureCell, didSelectRow: didSelectRowHandler)
     }
     
     /// cellForItemAt & didSelectItemAt
-    func setCollectionViewRegister(_ cellsClass: [AnyClass?], returnCell cellsHandler: @escaping (IndexPath) -> AnyClass?, configureCell cellHandler: @escaping (UICollectionViewCell, IndexPath, Any) -> Void, didSelectRow didSelectRowHandler: ((IndexPath, Any) -> Void)?) {
+    func register(_ cellsClass: [AnyClass?], returnCell cellsHandler: @escaping (IndexPath) -> AnyClass?, configureCell cellHandler: @escaping (UICollectionViewCell, IndexPath, Any) -> Void, didSelectRow didSelectRowHandler: ((IndexPath, Any) -> Void)?) {
         cellsClass.forEach { (cc) in
             guard let cellClass = cc else { return }
             guard let cellReuseIdentifier = cc.self?.description() else { return }
@@ -421,14 +421,14 @@ public extension EasyCollectionListView {
     }
     
     /// cellForItemAt & didSelectItemAt
-    func setCollectionViewRegister<T>(_ type: T.Type, cellClass: AnyClass?, configureCell: @escaping (UICollectionViewCell, IndexPath, T) -> Void, didSelectRow didSelectRowHandler: ((IndexPath, T) -> Void)?) {
-        setCollectionViewRegister(type, cellsClass: [cellClass], returnCell: { (_) -> AnyClass? in
+    func register<T>(_ type: T.Type, cellClass: AnyClass?, configureCell: @escaping (UICollectionViewCell, IndexPath, T) -> Void, didSelectRow didSelectRowHandler: ((IndexPath, T) -> Void)?) {
+        register(type, cellsClass: [cellClass], returnCell: { (_) -> AnyClass? in
             return cellClass.self
         }, configureCell: configureCell, didSelectRow: didSelectRowHandler)
     }
     
     /// cellForItemAt & didSelectItemAt
-    func setCollectionViewRegister<T>(_ type: T.Type, cellsClass: [AnyClass?], returnCell cellsHandler: @escaping (IndexPath) -> AnyClass?, configureCell cellHandler: @escaping (UICollectionViewCell, IndexPath, T) -> Void, didSelectRow didSelectRowHandler: ((IndexPath, T) -> Void)?) {
+    func register<T>(_ type: T.Type, cellsClass: [AnyClass?], returnCell cellsHandler: @escaping (IndexPath) -> AnyClass?, configureCell cellHandler: @escaping (UICollectionViewCell, IndexPath, T) -> Void, didSelectRow didSelectRowHandler: ((IndexPath, T) -> Void)?) {
         cellsClass.forEach { (cc) in
             guard let cellClass = cc else { return }
             guard let cellReuseIdentifier = cc.self?.description() else { return }
@@ -455,13 +455,13 @@ public extension EasyCollectionListView {
         }
     }
     
-    func setCollectionViewSizeForItemAt(_ sizeForItemAtHandler: @escaping (IndexPath, Any?) -> CGSize) {
+    func setSizeForItemAt(_ sizeForItemAtHandler: @escaping (IndexPath, Any?) -> CGSize) {
         self.sizeForItemAtHandler = { (indexPath, any) -> CGSize in
             return sizeForItemAtHandler(indexPath, any)
         }
     }
     
-    func setCollectionViewSizeForItemAt<T>(_ type: T.Type, sizeForItemAt sizeForItemAtHandler: @escaping (IndexPath, T) -> CGSize) {
+    func setSizeForItemAt<T>(_ type: T.Type, sizeForItemAt sizeForItemAtHandler: @escaping (IndexPath, T) -> CGSize) {
         self.sizeForItemAtHandler = { (indexPath, any) -> CGSize in
             if let t = any as? T {
                 return sizeForItemAtHandler(indexPath, t)

@@ -30,7 +30,7 @@ class InputViewController: easy.ViewController, easy.TableListProtocol {
             $0.separatorStyle = .none
         }
         
-        tableListView.setTableViewRegister(easy.InputCell.Model.self, cellClass: easy.InputCell.self, configureCell: { [weak self] (cell, indexPath, any) in
+        tableListView.register(easy.InputCell.Model.self, cellClass: easy.InputCell.self, configureCell: { [weak self] (cell, indexPath, any) in
             (cell as? easy.InputCell)?.do {
                 var limit = Int.max
                 switch indexPath.row {

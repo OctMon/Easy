@@ -48,7 +48,7 @@ class MarqueeViewController: easy.ViewController, easy.TableListProtocol, easy.C
         }
         
         tableListView.do {
-            $0.setTableViewRegister(NSAttributedString.self, cellClass: UITableViewCell.self, configureCell: { (cell, _, any) in
+            $0.register(NSAttributedString.self, cellClass: UITableViewCell.self, configureCell: { (cell, _, any) in
                 cell.textLabel?.do {
                     $0.numberOfLines = 0
                     $0.attributedText = any
@@ -72,13 +72,13 @@ class MarqueeCollectionListView: easy.CollectionListView {
         
 //        collectionView.registerReusableCell(UICollectionViewCell.self)
 
-        setCollectionViewRegister(UICollectionViewCell.self, configureCell: { (cell, _, _) in
+        register(UICollectionViewCell.self, configureCell: { (cell, _, _) in
             cell.backgroundColor = UIColor.random
         }) { (_, any) in
             log.debug(any)
         }
         
-        setCollectionViewSizeForItemAt(NSAttributedString.self) { (_, _) -> CGSize in
+        setSizeForItemAt(NSAttributedString.self) { (_, _) -> CGSize in
             return CGSize(width: .screenWidth * 0.25, height: .screenWidth * 0.25)
         }
         

@@ -29,12 +29,12 @@ class SocialViewController: easy.ViewController, easy.TableListProtocol {
         
         addTableListView(in: view, style: .grouped)
         tableView.estimatedRowHeight = 88
-        tableListView.setTableView(numberOfSections: { (listView) -> Int in
+        tableListView.setNumberOfSections({ (listView) -> Int in
             return listView.list.count
         }) { (_, section) -> Int in
             return 1
         }
-        tableListView.setTableViewRegister([UITableViewCell.self, SocialCell.self], returnCell: { (indexPath) -> AnyClass? in
+        tableListView.register([UITableViewCell.self, SocialCell.self], returnCell: { (indexPath) -> AnyClass? in
             switch indexPath.section {
             case 0:
                 return UITableViewCell.self
@@ -82,7 +82,7 @@ private class SocialCell: UITableViewCell, easy.CollectionListProtocol {
         }
         collectionView.collectionViewLayout = waterFlowLayout
         
-        collectionListView.setCollectionViewRegister(Module.self, cellClass:TuchongCollectionViewCell.self, configureCell: { (cell, _, any) in
+        collectionListView.register(Module.self, cellClass:TuchongCollectionViewCell.self, configureCell: { (cell, _, any) in
             (cell as? TuchongCollectionViewCell)?.do {
                 $0.backgroundColor = UIColor.random
                 $0.label.text = any.name
@@ -118,7 +118,7 @@ private class SocialCell: UITableViewCell, easy.CollectionListProtocol {
             }
         }
         
-        collectionListView.setCollectionViewSizeForItemAt { (_, _) -> CGSize in
+        collectionListView.setSizeForItemAt { (_, _) -> CGSize in
             return CGSize(width: .screenWidth * 0.5, height: .screenWidth * 0.5)
         }
     }
