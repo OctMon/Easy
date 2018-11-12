@@ -36,6 +36,7 @@ class MarqueeViewController: easy.ViewController, easy.TableListProtocol, easy.C
         addTableListView(in: view, style: .plain)
         
         tableView.do {
+            $0.estimatedRowHeight = 88
             $0.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: .screenWidth, height: 40)).then {
                 $0.backgroundColor = UIColor.gray
                 marqueeLabel = easy.MarqueeLabel(frame: CGRect(x: 15, y: 0, width: $0.width - 30, height: 40))

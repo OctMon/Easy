@@ -25,6 +25,7 @@ class InputViewController: easy.ViewController, easy.TableListProtocol {
         addTableListView(in: view, style: .grouped)
         
         tableView.do {
+            $0.estimatedRowHeight = 88
             $0.allowsSelection = false
             $0.separatorStyle = .none
         }

@@ -28,6 +28,7 @@ class SocialViewController: easy.ViewController, easy.TableListProtocol {
         super.configure()
         
         addTableListView(in: view, style: .grouped)
+        tableView.estimatedRowHeight = 88
         tableListView.setTableView(numberOfSections: { (listView) -> Int in
             return listView.list.count
         }) { (_, section) -> Int in
@@ -63,9 +64,8 @@ private class SocialCell: UITableViewCell, easy.CollectionListProtocol {
     
     var modules: [Module] = [] {
         didSet {
-            collectionListView.snp.remakeConstraints { (make) in
-                make.edges.equalToSuperview()
-                make.height.equalTo(.screenWidth * 0.5 * (modules.count.toCGFloat * 0.5).ceil)
+            contentView.snp.makeConstraints { (make) in
+                make.height.equalTo(.screenWidth * 0.5 * (modules.count.toCGFloat * 0.5).ceil).priority(.low)
             }
             collectionListView.list = modules
             collectionView.reloadData()
