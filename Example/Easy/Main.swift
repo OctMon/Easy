@@ -8,9 +8,9 @@
 
 import UIKit
 
-class Main: easy.ViewController, easy.ListProtocol {
+class Main: easy.ViewController, easy.TableListProtocol {
     
-    typealias EasyListViewAssociatedType = easy.ListView
+    typealias EasyTableListViewAssociatedType = easy.TableListView
     
     private let textView: UITextView = UITextView(frame: CGRect(x: 0, y: 0, width: app.screenWidth, height: 100))
     
@@ -76,7 +76,7 @@ class Main: easy.ViewController, easy.ListProtocol {
         textView.placeholder = app.bundleName
         textView.placeholderColor = UIColor.random
         
-        addListView(in: view).addTableView(style: .grouped)
+        addTableListView(in: view, style: .grouped)
         
         let tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: .screenWidth, height: 22 + 45)).then {
             let button = UIButton().then {
@@ -95,9 +95,9 @@ class Main: easy.ViewController, easy.ListProtocol {
             button.addTarget(self, action: #selector(showCheckAlert), for: .touchUpInside)
         }
         
-        listView.tableView.tableHeaderView = textView
-        listView.tableView.tableFooterView = tableFooterView
-        listView.setTableViewRegister(String.self, cellClass: UITableViewCell.self, configureCell: { (cell, _, any) in
+        tableListView.tableView.tableHeaderView = textView
+        tableListView.tableView.tableFooterView = tableFooterView
+        tableListView.setTableViewRegister(String.self, cellClass: UITableViewCell.self, configureCell: { (cell, _, any) in
             cell.textLabel?.text = any
         }) { (_, any) in
             easy.Router.openURL("easy://", routerParameters: [.className: any, .userInfo: ["title": any]])
@@ -107,8 +107,8 @@ class Main: easy.ViewController, easy.ListProtocol {
     override func request() {
         super.request()
         
-        listView.tableViewDataSource = [ScanViewController.toString, TuchongViewController.toString, SocialViewController.toString, PageViewController.toString, InputViewController.toString, MarqueeViewController.toString, FontViewController.toString]
-        listView.tableView.reloadData()
+        tableListView.tableViewDataSource = [ScanViewController.toString, TuchongViewController.toString, SocialViewController.toString, PageViewController.toString, InputViewController.toString, MarqueeViewController.toString, FontViewController.toString]
+        tableListView.tableView.reloadData()
     }
     
     @objc private func showCheckAlert() {

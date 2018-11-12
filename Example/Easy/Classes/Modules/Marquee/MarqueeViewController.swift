@@ -8,13 +8,14 @@
 
 import UIKit
 
-class MarqueeViewController: easy.ViewController, easy.ListProtocol {
+class MarqueeViewController: easy.ViewController, easy.TableListProtocol, easy.CollectionListProtocol {
     
-    typealias EasyListViewAssociatedType = easy.ListView
+    typealias EasyTableListViewAssociatedType = easy.TableListView
+    typealias EasyCollectionListViewAssociatedType = MarqueeCollectionListView
 
     private var marqueeLabel: easy.MarqueeLabel!
     
-    private let marqueeListView = MarqueeListView(frame: CGRect(x: 0, y: 0, width: .screenWidth, height: .screenWidth * 0.25))
+//    private let marqueeListView = MarqueeCollectionListView(frame: CGRect(x: 0, y: 0, width: .screenWidth, height: .screenWidth * 0.25))
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,24 +26,25 @@ class MarqueeViewController: easy.ViewController, easy.ListProtocol {
             log.debug(index)
         }
         
-        listView.tableViewDataSource = marqueeLabel.dataSource
-        marqueeListView.collectionViewDataSource = marqueeLabel.dataSource
+        tableListView.tableViewDataSource = marqueeLabel.dataSource
+        collectionViewListView.collectionViewDataSource = marqueeLabel.dataSource
     }
     
     override func configure() {
         super.configure()
         
-        addListView(in: view).addTableView(style: .plain).do {
+        addTableListView(in: view, style: .plain).do {
             $0.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: .screenWidth, height: 40)).then {
                 $0.backgroundColor = UIColor.gray
                 marqueeLabel = easy.MarqueeLabel(frame: CGRect(x: 15, y: 0, width: $0.width - 30, height: 40))
                 $0.addSubview(marqueeLabel)
             }
-            
-            $0.tableFooterView = marqueeListView
+            let tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: .screenWidth, height: .screenWidth * 0.25))
+            addCollectionView(in: tableFooterView)
+            $0.tableFooterView = tableFooterView
         }
         
-        listView.do {
+        tableListView.do {
             $0.setTableViewRegister(NSAttributedString.self, cellClass: UITableViewCell.self, configureCell: { (cell, _, any) in
                 cell.textLabel?.do {
                     $0.numberOfLines = 0
@@ -54,12 +56,12 @@ class MarqueeViewController: easy.ViewController, easy.ListProtocol {
 
 }
 
-class MarqueeListView: easy.ListView {
+class MarqueeCollectionListView: easy.CollectionListView {
     
     override func configure() {
         super.configure()
         
-        addCollectionView(layout: collectionViewWaterFlowLayout)
+        collectionView.collectionViewLayout = collectionViewWaterFlowLayout
         
         collectionViewWaterFlowLayout.do {
             $0.minimumInteritemSpacing = 0

@@ -7,9 +7,9 @@
 
 import UIKit
 
-class EasySessionViewController: EasyViewController, EasyListProtocol {
+class EasySessionViewController: EasyViewController, EasyTableListProtocol {
     
-    typealias EasyListViewAssociatedType = EasyListView
+    typealias EasyTableListViewAssociatedType = EasyTableListView
     
     var popupView: EasyPopupView?
     var config: EasyConfig!
@@ -29,18 +29,18 @@ class EasySessionViewController: EasyViewController, EasyListProtocol {
                 list.append(url)
             }
         }
-        listView.tableViewDataSource = list
+        tableListView.tableViewDataSource = list
     }
     
     override func configure() {
         super.configure()
         
-        addListView(in: view).addTableView(style: .plain)
+        addTableListView(in: view, style: .plain)
         
         let current = config.url.currentBaseURL
         let text = "📡 Change \(config.url.alias) BaseURL 📡"
         let height = text.getHeight(forConstrainedWidth: EasyApp.screenWidth, font: UIFont.size14)
-        listView.tableView.tableHeaderView = UILabel(frame: CGRect(x: 0, y: 0, width: EasyApp.screenWidth, height: height)).then {
+        tableListView.tableView.tableHeaderView = UILabel(frame: CGRect(x: 0, y: 0, width: EasyApp.screenWidth, height: height)).then {
             $0.numberOfLines = 0
             $0.font = UIFont.size14
             $0.textAlignment = .center
@@ -49,7 +49,7 @@ class EasySessionViewController: EasyViewController, EasyListProtocol {
             $0.backgroundColor = UIColor.lightGray
         }
         
-        listView.setTableViewRegister(String.self, cellClass: UITableViewCell.self, configureCell: { [weak self] (cell, _, any) in
+        tableListView.setTableViewRegister(String.self, cellClass: UITableViewCell.self, configureCell: { [weak self] (cell, _, any) in
             cell.textLabel?.numberOfLines = 0
             cell.textLabel?.textAlignment = .center
             if current == any {

@@ -100,17 +100,7 @@ public extension JSONDecoder {
 import MJRefresh
 public extension EasyListView {
     
-    func addTableView(style: UITableView.Style, isAddHeader: Bool, isAddFooter: Bool, requestHandler: @escaping (() -> Void)) {
-        addTableView(style: style)
-        addRefresh(tableView, isAddHeader: isAddFooter, isAddFooter: isAddFooter, requestHandler: requestHandler)
-    }
-    
-    func addCollectionView(layout: UICollectionViewLayout, isAddHeader: Bool, isAddFooter: Bool, requestHandler: @escaping (() -> Void)) {
-        addCollectionView(layout: layout)
-        addRefresh(collectionView, isAddHeader: isAddFooter, isAddFooter: isAddFooter, requestHandler: requestHandler)
-    }
-    
-    private func addRefresh(_ scrollView: UIScrollView, isAddHeader: Bool, isAddFooter: Bool, requestHandler: @escaping (() -> Void)) {
+    fileprivate func addRefresh(_ scrollView: UIScrollView, isAddHeader: Bool, isAddFooter: Bool, requestHandler: @escaping (() -> Void)) {
         if scrollView is UITableView {
             tableViewRequestHandler = requestHandler
         } else if scrollView is UICollectionView {
@@ -137,15 +127,7 @@ public extension EasyListView {
         }
     }
     
-    func setTableViewRefresh(response: EasyResult, errorHandler: ((Error?) -> Void)? = nil) {
-        setRefresh(tableView, response: response, errorHandler: errorHandler)
-    }
-    
-    func setCollectionViewRefresh(response: EasyResult, errorHandler: ((Error?) -> Void)? = nil) {
-        setRefresh(collectionView, response: response, errorHandler: errorHandler)
-    }
-    
-    private func setRefresh(_ scrollView: UIScrollView, response: EasyResult, errorHandler: ((Error?) -> Void)? = nil) {
+    fileprivate func setRefresh(_ scrollView: UIScrollView, response: EasyResult, errorHandler: ((Error?) -> Void)? = nil) {
         let isTableView = scrollView is UITableView
         let isCollectionView = scrollView is UICollectionView
         hideLoading()
@@ -209,5 +191,26 @@ public extension EasyListView {
         }
     }
     
+}
+public extension EasyTableListView {
+    
+    func addRefresh(isAddHeader: Bool, isAddFooter: Bool, requestHandler: @escaping (() -> Void)) {
+        addRefresh(tableView, isAddHeader: isAddFooter, isAddFooter: isAddFooter, requestHandler: requestHandler)
+    }
+    
+    func setRefresh(response: EasyResult, errorHandler: ((Error?) -> Void)? = nil) {
+        setRefresh(tableView, response: response, errorHandler: errorHandler)
+    }
+    
+}
+public extension EasyCollectionListView {
+    
+    func addRefresh(isAddHeader: Bool, isAddFooter: Bool, requestHandler: @escaping (() -> Void)) {
+        addRefresh(collectionView, isAddHeader: isAddFooter, isAddFooter: isAddFooter, requestHandler: requestHandler)
+    }
+    
+    func setRefresh(response: EasyResult, errorHandler: ((Error?) -> Void)? = nil) {
+        setRefresh(collectionView, response: response, errorHandler: errorHandler)
+    }
 }
 #endif

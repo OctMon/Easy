@@ -10,9 +10,9 @@ import UIKit
 
 private let space: CGFloat = 2.5
 
-class TuchongViewController: easy.ViewController, easy.ListProtocol {
+class TuchongViewController: easy.ViewController, easy.CollectionListProtocol {
     
-    typealias EasyListViewAssociatedType = TuchongListView
+    typealias EasyCollectionListViewAssociatedType = TuchongCollectionListView
     
     private var poseID: Int?
     
@@ -25,8 +25,8 @@ class TuchongViewController: easy.ViewController, easy.ListProtocol {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidLoad()
         
-        if listView.collectionViewDataSource.count == 0 {
-            self.listView.showLoading()
+        if collectionViewListView.collectionViewDataSource.count == 0 {
+            self.collectionViewListView.showLoading()
             self.request()
         }
     }
@@ -34,25 +34,24 @@ class TuchongViewController: easy.ViewController, easy.ListProtocol {
     override func configure() {
         super.configure()
         
-        addListView(in: view).do {
-            $0.addCollectionView(layout: $0.collectionViewWaterFlowLayout, isAddHeader: true, isAddFooter: true) { [weak self] in
-                self?.request()
-            }
+        addCollectionView(in: view)
+        collectionViewListView.addRefresh(isAddHeader: true, isAddFooter: true) { [weak self] in
+            self?.request()
         }
     }
     
     override func request() {
         super.request()
         
-        Tuchong.getTuchong(page: listView.currentPage, poseId: listView.firstPage == listView.currentPage ? nil : poseID) { (result) in
+        Tuchong.getTuchong(page: collectionViewListView.currentPage, poseId: collectionViewListView.firstPage == collectionViewListView.currentPage ? nil : poseID) { (result) in
             self.poseID = (result.models as? [Tuchong])?.last?.postID
-            self.listView.setCollectionViewRefresh(response: result)
+            self.collectionViewListView.setRefresh(response: result)
         }
     }
 
 }
 
-class TuchongListView: easy.ListView {
+class TuchongCollectionListView: easy.CollectionListView {
     
     override func configure() {
         super.configure()
@@ -71,6 +70,7 @@ class TuchongListView: easy.ListView {
 //            $0.registerReusableCell(TuchongCollectionViewCell.self)
             $0.registerReusableView(supplementaryViewType: TuchongReusableView.self, ofKind: UICollectionView.elementKindSectionHeader)
             $0.registerReusableView(supplementaryViewType: TuchongReusableView.self, ofKind: UICollectionView.elementKindSectionFooter)
+            collectionView.collectionViewLayout = collectionViewWaterFlowLayout
         }
         
         setCollectionView(numberOfSections: { (listView) -> Int in

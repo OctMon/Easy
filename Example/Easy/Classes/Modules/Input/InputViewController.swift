@@ -8,9 +8,9 @@
 
 import UIKit
 
-class InputViewController: easy.ViewController, easy.ListProtocol {
+class InputViewController: easy.ViewController, easy.TableListProtocol {
     
-    typealias EasyListViewAssociatedType = easy.ListView
+    typealias EasyTableListViewAssociatedType = easy.TableListView
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,12 +22,12 @@ class InputViewController: easy.ViewController, easy.ListProtocol {
     override func configure() {
         super.configure()
         
-        addListView(in: view).addTableView(style: .grouped).do {
+        addTableListView(in: view, style: .grouped).do {
             $0.allowsSelection = false
             $0.separatorStyle = .none
         }
         
-        listView.setTableViewRegister(easy.InputCell.Model.self, cellClass: easy.InputCell.self, configureCell: { [weak self] (cell, indexPath, any) in
+        tableListView.setTableViewRegister(easy.InputCell.Model.self, cellClass: easy.InputCell.self, configureCell: { [weak self] (cell, indexPath, any) in
             (cell as? easy.InputCell)?.do {
                 var limit = Int.max
                 switch indexPath.row {
@@ -50,7 +50,7 @@ class InputViewController: easy.ViewController, easy.ListProtocol {
                     any.do {
                         var model = $0
                         model.title = input
-                        self?.listView.tableViewDataSource[indexPath.row] = model
+                        self?.tableListView.tableViewDataSource[indexPath.row] = model
                     }
                 })
             }
@@ -60,7 +60,7 @@ class InputViewController: easy.ViewController, easy.ListProtocol {
     override func request() {
         super.request()
         
-        listView.tableViewDataSource = [
+        tableListView.tableViewDataSource = [
             easy.InputCell.Model(icon: UIColor.random.toImage?.resize(to: CGSize(width: 20, height: 20)), title: "", placeholder: "请输入手机号"),
             easy.InputCell.Model(icon: UIColor.random.toImage?.resize(to: CGSize(width: 20, height: 20)), title: "", placeholder: "请输入密码"),
         ]

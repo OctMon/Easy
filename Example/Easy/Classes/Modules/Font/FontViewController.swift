@@ -13,9 +13,9 @@ private struct Font: easy.Then {
     let name: [String]
 }
 
-class FontViewController: easy.ViewController, easy.ListProtocol {
+class FontViewController: easy.ViewController, easy.TableListProtocol {
     
-    typealias EasyListViewAssociatedType = FontListView
+    typealias EasyTableListViewAssociatedType = FontTableListView
     
     private let textField: UITextField = UITextField(frame: CGRect(x: 0, y: 0, width: app.screenWidth, height: 100)).then {
         $0.text = "爆款促销"
@@ -36,14 +36,13 @@ class FontViewController: easy.ViewController, easy.ListProtocol {
     override func configure() {
         super.configure()
         
-        addListView(in: view)
-        listView.addTableView(style: .grouped)
-        listView.setTableView(numberOfSections: { (listView) -> Int in
+        addTableListView(in: view, style: .grouped)
+        tableListView.setTableView(numberOfSections: { (listView) -> Int in
             return listView.tableViewDataSource.count
         }) { (listView, section) -> Int in
             return listView.tableViewToDataSource(Font.self)[section].name.count
         }
-        listView.setTableViewRegister(UITableViewCell.self, configureCell: { [weak self] (cell, indexPath, any) in
+        tableListView.setTableViewRegister(UITableViewCell.self, configureCell: { [weak self] (cell, indexPath, any) in
             guard let font = any as? Font else { return }
             cell.textLabel?.numberOfLines = 0
             cell.textLabel?.font = UIFont(name: font.name[indexPath.row], size: 19)
@@ -66,14 +65,14 @@ class FontViewController: easy.ViewController, easy.ListProtocol {
         super.request()
         
         UIFont.familyNames.sorted().forEach({ (family) in
-            listView.tableViewDataSource.append(Font(family: family, name: UIFont.fontNames(forFamilyName: family).sorted()))
+            tableListView.tableViewDataSource.append(Font(family: family, name: UIFont.fontNames(forFamilyName: family).sorted()))
         })
-        listView.tableView.reloadData()
+        tableListView.tableView.reloadData()
     }
 
 }
 
-class FontListView: easy.ListView {
+class FontTableListView: easy.TableListView {
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 44

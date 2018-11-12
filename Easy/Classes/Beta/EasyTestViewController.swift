@@ -8,9 +8,9 @@
 import UIKit
 import FLEX
 
-class EasyTestViewController: EasyViewController, EasyListProtocol {
+class EasyTestViewController: EasyViewController, EasyTableListProtocol {
     
-    typealias EasyListViewAssociatedType = EasyListView
+    typealias EasyTableListViewAssociatedType = EasyTableListView
     
     private let textView: UITextView = UITextView(frame: CGRect(x: 0, y: 0, width: EasyApp.screenWidth, height: 200))
     
@@ -45,11 +45,11 @@ class EasyTestViewController: EasyViewController, EasyListProtocol {
     override func configure() {
         super.configure()
         
-        addListView(in: view).addTableView(style: .plain)
-        listView.tableView.tableHeaderView = textView
-        listView.tableView.tableFooterView = UIView()
+        addTableListView(in: view, style: .plain)
+        tableListView.tableView.tableHeaderView = textView
+        tableListView.tableView.tableFooterView = UIView()
         
-        listView.setTableViewRegister((String, String).self, cellsClass: [EasyTestCell.self, UITableViewCell.self], returnCell: { (indexPath) -> AnyClass? in
+        tableListView.setTableViewRegister((String, String).self, cellsClass: [EasyTestCell.self, UITableViewCell.self], returnCell: { (indexPath) -> AnyClass? in
             if indexPath.section == 0 {
                 return EasyTestCell.self
             }
@@ -63,7 +63,7 @@ class EasyTestViewController: EasyViewController, EasyListProtocol {
                     $0.switchHandler { [weak self] (isOn) in
                         var model = any
                         model.1 = isOn.toStringValue
-                        self?.listView.tableViewDataSource[indexPath.section] = model
+                        self?.tableListView.tableViewDataSource[indexPath.section] = model
                         switch (indexPath.section, indexPath.row) {
                         case (0, 0):
                             EasyResult.logEnabel = isOn
@@ -85,16 +85,16 @@ class EasyTestViewController: EasyViewController, EasyListProtocol {
             sessions[indexPath.row].showChangeBaseURL({ [weak self] (url) in
                 var model = any
                 model.1 = url
-                let list = self?.listView.tableViewDataSource[indexPath.section]
+                let list = self?.tableListView.tableViewDataSource[indexPath.section]
                 if var models = list as? [Any] {
                     models[indexPath.row] = model
-                    self?.listView.tableViewDataSource[indexPath.section] = models
-                    self?.listView.tableView.reloadData()
+                    self?.tableListView.tableViewDataSource[indexPath.section] = models
+                    self?.tableListView.tableView.reloadData()
                 }
             })
         }
         
-        listView.setTableViewAccessoryButtonTappedForRowWith { [weak self] (indexPath, _) in
+        tableListView.setTableViewAccessoryButtonTappedForRowWith { [weak self] (indexPath, _) in
             guard indexPath.section > 0 else { return }
             let session = sessions[indexPath.row]
             var textField = UITextField()
@@ -116,13 +116,13 @@ class EasyTestViewController: EasyViewController, EasyListProtocol {
     override func request() {
         super.request()
         
-        listView.tableViewDataSource = [[("show EasyResult banner", EasyResult.logEnabel.toStringValue)]]//, (GDPerformanceMonitor.toString, omIsShowGDPerformanceMonitor.toStringValue)]]
+        tableListView.tableViewDataSource = [[("show EasyResult banner", EasyResult.logEnabel.toStringValue)]]//, (GDPerformanceMonitor.toString, omIsShowGDPerformanceMonitor.toStringValue)]]
         var tmp = [Any]()
         sessions.forEach({ tmp.append(($0.config.url.alias, $0.config.url.currentBaseURL)) })
         if tmp.count > 0 {
-            listView.tableViewDataSource.append(tmp)
+            tableListView.tableViewDataSource.append(tmp)
         }
-        listView.tableView.reloadData()
+        tableListView.tableView.reloadData()
     }
     
 }
