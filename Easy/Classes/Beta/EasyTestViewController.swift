@@ -63,7 +63,7 @@ class EasyTestViewController: EasyViewController, EasyTableListProtocol {
                     $0.switchHandler { [weak self] (isOn) in
                         var model = any
                         model.1 = isOn.toStringValue
-                        self?.tableListView.tableViewDataSource[indexPath.section] = model
+                        self?.tableListView.list[indexPath.section] = model
                         switch (indexPath.section, indexPath.row) {
                         case (0, 0):
                             EasyResult.logEnabel = isOn
@@ -85,10 +85,10 @@ class EasyTestViewController: EasyViewController, EasyTableListProtocol {
             sessions[indexPath.row].showChangeBaseURL({ [weak self] (url) in
                 var model = any
                 model.1 = url
-                let list = self?.tableListView.tableViewDataSource[indexPath.section]
+                let list = self?.tableListView.list[indexPath.section]
                 if var models = list as? [Any] {
                     models[indexPath.row] = model
-                    self?.tableListView.tableViewDataSource[indexPath.section] = models
+                    self?.tableListView.list[indexPath.section] = models
                     self?.tableListView.tableView.reloadData()
                 }
             })
@@ -116,11 +116,11 @@ class EasyTestViewController: EasyViewController, EasyTableListProtocol {
     override func request() {
         super.request()
         
-        tableListView.tableViewDataSource = [[("show EasyResult banner", EasyResult.logEnabel.toStringValue)]]//, (GDPerformanceMonitor.toString, omIsShowGDPerformanceMonitor.toStringValue)]]
+        tableListView.list = [[("show EasyResult banner", EasyResult.logEnabel.toStringValue)]]//, (GDPerformanceMonitor.toString, omIsShowGDPerformanceMonitor.toStringValue)]]
         var tmp = [Any]()
         sessions.forEach({ tmp.append(($0.config.url.alias, $0.config.url.currentBaseURL)) })
         if tmp.count > 0 {
-            tableListView.tableViewDataSource.append(tmp)
+            tableListView.list.append(tmp)
         }
         tableListView.tableView.reloadData()
     }

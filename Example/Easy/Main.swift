@@ -107,7 +107,7 @@ class Main: easy.ViewController, easy.TableListProtocol {
     override func request() {
         super.request()
         
-        tableListView.tableViewDataSource = [ScanViewController.toString, TuchongViewController.toString, SocialViewController.toString, PageViewController.toString, InputViewController.toString, MarqueeViewController.toString, FontViewController.toString]
+        tableListView.list = [ScanViewController.toString, TuchongViewController.toString, SocialViewController.toString, PageViewController.toString, InputViewController.toString, MarqueeViewController.toString, FontViewController.toString]
         tableListView.tableView.reloadData()
     }
     

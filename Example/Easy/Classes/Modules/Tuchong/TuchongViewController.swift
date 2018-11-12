@@ -25,7 +25,7 @@ class TuchongViewController: easy.ViewController, easy.CollectionListProtocol {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidLoad()
         
-        if collectionViewListView.collectionViewDataSource.count == 0 {
+        if collectionViewListView.list.count == 0 {
             self.collectionViewListView.showLoading()
             self.request()
         }
@@ -74,9 +74,9 @@ class TuchongCollectionListView: easy.CollectionListView {
         }
         
         setCollectionView(numberOfSections: { (listView) -> Int in
-            return listView.collectionViewDataSource.count
+            return listView.list.count
         }) { (listView, section) -> Int in
-            return listView.collectionViewToDataSource(Tuchong.self)[section].images?.count ?? 0
+            return listView.listTo(Tuchong.self)[section].images?.count ?? 0
         }
         
         setCollectionViewRegister(Tuchong.self, cellClass: TuchongCollectionViewCell.self, configureCell: { (cell, indexPath, any) in
@@ -123,15 +123,15 @@ class TuchongCollectionListView: easy.CollectionListView {
     }
     
     /*private func getImage(_ indexPath: IndexPath) -> Tuchong.Image? {
-        return (collectionViewDataSource as? [Tuchong])?[indexPath.section].images?[indexPath.row]
+        return (list as? [Tuchong])?[indexPath.section].images?[indexPath.row]
     }
     
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return collectionViewDataSource.count
+        return list.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return (collectionViewDataSource as? [Tuchong])?[section].images?.count ?? 0
+        return (list as? [Tuchong])?[section].images?.count ?? 0
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -175,7 +175,7 @@ class TuchongCollectionListView: easy.CollectionListView {
     }
      
     override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        guard let models = collectionViewDataSource as? [Tuchong] else { return CGSize.zero }
+        guard let models = list as? [Tuchong] else { return CGSize.zero }
         guard let images = models[indexPath.section].images else { return CGSize.zero }
         let model = images[indexPath.row]
         return images.count > 1 ? model.imageSize : CGSize(width: .screenWidth - space * 3, height: .screenWidth - space * 3)
@@ -186,13 +186,13 @@ class TuchongCollectionListView: easy.CollectionListView {
             let view = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, for: indexPath, viewType: TuchongReusableView.self)
             view.backgroundColor = UIColor.gray
             view.alpha = 0.5
-            view.label.text = (collectionViewToDataSource(Tuchong.self))[indexPath.section].tags?.joined(separator: ",")
+            view.label.text = (listTo(Tuchong.self))[indexPath.section].tags?.joined(separator: ",")
             return view
         } else {
             let view = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionFooter, for: indexPath, viewType: TuchongReusableView.self)
             view.backgroundColor = UIColor.lightGray
             view.alpha = 0.5
-            view.label.text = (collectionViewToDataSource(Tuchong.self))[indexPath.section].excerpt
+            view.label.text = (listTo(Tuchong.self))[indexPath.section].excerpt
             return view
         }
 

@@ -21,7 +21,7 @@ class SocialViewController: easy.ViewController, easy.TableListProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableListView.tableViewDataSource = [[Module.分享], [Module.微信登录, Module.QQ登录, Module.微博登录]]
+        tableListView.list = [[Module.分享], [Module.微信登录, Module.QQ登录, Module.微博登录]]
     }
     
     override func configure() {
@@ -29,7 +29,7 @@ class SocialViewController: easy.ViewController, easy.TableListProtocol {
         
         addTableListView(in: view, style: .grouped)
         tableListView.setTableView(numberOfSections: { (listView) -> Int in
-            return listView.tableViewDataSource.count
+            return listView.list.count
         }) { (_, section) -> Int in
             return 1
         }
@@ -42,7 +42,7 @@ class SocialViewController: easy.ViewController, easy.TableListProtocol {
             }
         }, configureCell: { [weak self] (cell, indexPath, any) in
             if let cell = cell as? SocialCell {
-                cell.modules = self?.tableListView.tableViewDataSource[indexPath.section] as? [Module] ?? []
+                cell.modules = self?.tableListView.list[indexPath.section] as? [Module] ?? []
             } else {
                 cell.textLabel?.text = (any as? Module)?.name
             }
@@ -67,7 +67,7 @@ private class SocialCell: UITableViewCell, easy.CollectionListProtocol {
                 make.edges.equalToSuperview()
                 make.height.equalTo(.screenWidth * 0.5 * (modules.count.toCGFloat * 0.5).ceil)
             }
-            collectionViewListView.collectionViewDataSource = modules
+            collectionViewListView.list = modules
             collectionViewListView.collectionView.reloadData()
         }
     }

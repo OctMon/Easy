@@ -26,8 +26,8 @@ class MarqueeViewController: easy.ViewController, easy.TableListProtocol, easy.C
             log.debug(index)
         }
         
-        tableListView.tableViewDataSource = marqueeLabel.dataSource
-        collectionViewListView.collectionViewDataSource = marqueeLabel.dataSource
+        tableListView.list = marqueeLabel.dataSource
+        collectionViewListView.list = marqueeLabel.dataSource
     }
     
     override func configure() {

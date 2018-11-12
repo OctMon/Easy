@@ -38,9 +38,9 @@ class FontViewController: easy.ViewController, easy.TableListProtocol {
         
         addTableListView(in: view, style: .grouped)
         tableListView.setTableView(numberOfSections: { (listView) -> Int in
-            return listView.tableViewDataSource.count
+            return listView.list.count
         }) { (listView, section) -> Int in
-            return listView.tableViewToDataSource(Font.self)[section].name.count
+            return listView.listTo(Font.self)[section].name.count
         }
         tableListView.setTableViewRegister(UITableViewCell.self, configureCell: { [weak self] (cell, indexPath, any) in
             guard let font = any as? Font else { return }
@@ -65,7 +65,7 @@ class FontViewController: easy.ViewController, easy.TableListProtocol {
         super.request()
         
         UIFont.familyNames.sorted().forEach({ (family) in
-            tableListView.tableViewDataSource.append(Font(family: family, name: UIFont.fontNames(forFamilyName: family).sorted()))
+            tableListView.list.append(Font(family: family, name: UIFont.fontNames(forFamilyName: family).sorted()))
         })
         tableListView.tableView.reloadData()
     }
@@ -79,7 +79,7 @@ class FontTableListView: easy.TableListView {
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        let fonts = tableViewToDataSource(Font.self)
+        let fonts = listTo(Font.self)
         return fonts[section].family
     }
     

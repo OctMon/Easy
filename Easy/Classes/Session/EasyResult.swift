@@ -144,7 +144,7 @@ public extension EasyListView {
             if let handler = errorHandler {
                 handler(response.error)
             } else {
-                if (isTableView && tableViewDataSource.count > 0) || (isCollectionView && collectionViewDataSource.count > 0) {
+                if list.count > 0 {
                     showText(response.error?.localizedDescription)
                 } else {
                     showPlaceholder(error: response.error, image: nil, tap: { [weak self] in
@@ -159,15 +159,15 @@ public extension EasyListView {
         hidePlaceholder()
         if self.currentPage == self.firstPage {
             if isTableView {
-                self.tableViewDataSource = response.models
+                self.list = response.models
             } else if isCollectionView {
-                self.collectionViewDataSource = response.models
+                self.list = response.models
             }
         } else {
             if isTableView {
-                self.tableViewDataSource.append(contentsOf: response.models)
+                self.list.append(contentsOf: response.models)
             } else if isCollectionView {
-                self.collectionViewDataSource.append(contentsOf: response.models)
+                self.list.append(contentsOf: response.models)
             }
         }
         if let tableView = scrollView as? UITableView {

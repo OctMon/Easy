@@ -29,7 +29,7 @@ class EasySessionViewController: EasyViewController, EasyTableListProtocol {
                 list.append(url)
             }
         }
-        tableListView.tableViewDataSource = list
+        tableListView.list = list
     }
     
     override func configure() {
