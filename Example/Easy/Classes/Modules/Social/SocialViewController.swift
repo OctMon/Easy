@@ -63,28 +63,26 @@ private class SocialCell: UITableViewCell, easy.CollectionListProtocol {
     
     var modules: [Module] = [] {
         didSet {
-            collectionViewListView.snp.remakeConstraints { (make) in
+            collectionListView.snp.remakeConstraints { (make) in
                 make.edges.equalToSuperview()
                 make.height.equalTo(.screenWidth * 0.5 * (modules.count.toCGFloat * 0.5).ceil)
             }
-            collectionViewListView.list = modules
-            collectionViewListView.collectionView.reloadData()
+            collectionListView.list = modules
+            collectionView.reloadData()
         }
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        addCollectionView(in: self).do {
-            $0.collectionViewLayout = collectionViewListView.collectionViewWaterFlowLayout
-        }
-//        collectionViewListView.collectionView.collectionViewLayout = collectionViewListView.collectionViewWaterFlowLayout
-        collectionViewListView.collectionViewWaterFlowLayout.do {
+        addCollectionView(in: self)
+        waterFlowLayout.do {
             $0.minimumInteritemSpacing = 0
             $0.minimumLineSpacing = 0
         }
+        collectionView.collectionViewLayout = waterFlowLayout
         
-        collectionViewListView.setCollectionViewRegister(Module.self, cellClass:TuchongCollectionViewCell.self, configureCell: { (cell, _, any) in
+        collectionListView.setCollectionViewRegister(Module.self, cellClass:TuchongCollectionViewCell.self, configureCell: { (cell, _, any) in
             (cell as? TuchongCollectionViewCell)?.do {
                 $0.backgroundColor = UIColor.random
                 $0.label.text = any.name
@@ -120,7 +118,7 @@ private class SocialCell: UITableViewCell, easy.CollectionListProtocol {
             }
         }
         
-        collectionViewListView.setCollectionViewSizeForItemAt { (_, _) -> CGSize in
+        collectionListView.setCollectionViewSizeForItemAt { (_, _) -> CGSize in
             return CGSize(width: .screenWidth * 0.5, height: .screenWidth * 0.5)
         }
     }

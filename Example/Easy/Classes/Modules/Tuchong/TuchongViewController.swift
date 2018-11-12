@@ -25,8 +25,8 @@ class TuchongViewController: easy.ViewController, easy.CollectionListProtocol {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidLoad()
         
-        if collectionViewListView.list.count == 0 {
-            self.collectionViewListView.showLoading()
+        if collectionListView.list.count == 0 {
+            self.collectionListView.showLoading()
             self.request()
         }
     }
@@ -35,7 +35,7 @@ class TuchongViewController: easy.ViewController, easy.CollectionListProtocol {
         super.configure()
         
         addCollectionView(in: view)
-        collectionViewListView.addRefresh(isAddHeader: true, isAddFooter: true) { [weak self] in
+        collectionListView.addRefresh(isAddHeader: true, isAddFooter: true) { [weak self] in
             self?.request()
         }
     }
@@ -43,9 +43,9 @@ class TuchongViewController: easy.ViewController, easy.CollectionListProtocol {
     override func request() {
         super.request()
         
-        Tuchong.getTuchong(page: collectionViewListView.currentPage, poseId: collectionViewListView.firstPage == collectionViewListView.currentPage ? nil : poseID) { (result) in
+        Tuchong.getTuchong(page: collectionListView.currentPage, poseId: collectionListView.firstPage == collectionListView.currentPage ? nil : poseID) { (result) in
             self.poseID = (result.models as? [Tuchong])?.last?.postID
-            self.collectionViewListView.setRefresh(response: result)
+            self.collectionListView.setRefresh(response: result)
         }
     }
 
@@ -59,7 +59,7 @@ class TuchongCollectionListView: easy.CollectionListView {
         firstPage = 1
         ignoreTotalPage = true
         
-        collectionViewWaterFlowLayout.do {
+        waterFlowLayout.do {
             $0.sectionSpacing = 0
             $0.minimumInteritemSpacing = space
             $0.minimumLineSpacing = space
@@ -70,7 +70,7 @@ class TuchongCollectionListView: easy.CollectionListView {
 //            $0.registerReusableCell(TuchongCollectionViewCell.self)
             $0.registerReusableView(supplementaryViewType: TuchongReusableView.self, ofKind: UICollectionView.elementKindSectionHeader)
             $0.registerReusableView(supplementaryViewType: TuchongReusableView.self, ofKind: UICollectionView.elementKindSectionFooter)
-            collectionView.collectionViewLayout = collectionViewWaterFlowLayout
+            collectionView.collectionViewLayout = waterFlowLayout
         }
         
         setCollectionView(numberOfSections: { (listView) -> Int in

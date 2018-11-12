@@ -83,11 +83,24 @@ private struct Key {
 }
 
 public protocol EasyTableListProtocol: class {
-    func addTableListView(in: UIView, style: UITableView.Style) -> UITableView!
+    func addTableListView(in: UIView, style: UITableView.Style) -> EasyTableListViewAssociatedType
     associatedtype EasyTableListViewAssociatedType: EasyTableListView
 }
 
 public extension EasyTableListProtocol {
+    
+    var tableView: UITableView {
+        return tableListView.tableView
+    }
+    
+    var tableList: [Any] {
+        get {
+            return tableListView.list
+        }
+        set {
+            tableListView.list = newValue
+        }
+    }
     
     var tableListView: EasyTableListViewAssociatedType! {
         get {
@@ -102,16 +115,16 @@ public extension EasyTableListProtocol {
     }
     
     @discardableResult
-    func addTableListView(in view: UIView, style: UITableView.Style) -> UITableView! {
+    func addTableListView(in view: UIView, style: UITableView.Style) -> EasyTableListViewAssociatedType {
         if tableListView == nil {
             tableListView = EasyTableListViewAssociatedType()
             view.addSubview(tableListView)
             tableListView.snp.makeConstraints { (make) in
                 make.edges.equalToSuperview()
             }
-            return tableListView.add(style: style)
+            tableListView.add(style: style)
         }
-        return nil
+        return tableListView
     }
 }
 
@@ -282,13 +295,35 @@ extension EasyTableListView: UITableViewDataSource, UITableViewDelegate {
 }
 
 public protocol EasyCollectionListProtocol: class {
-    func addCollectionView(in: UIView) -> UICollectionView!
+    func addCollectionView(in: UIView) -> EasyCollectionListViewAssociatedType
     associatedtype EasyCollectionListViewAssociatedType: EasyCollectionListView
 }
 
 public extension EasyCollectionListProtocol {
     
-    var collectionViewListView: EasyCollectionListViewAssociatedType! {
+    var collectionView: UICollectionView {
+        return collectionListView.collectionView
+    }
+    
+    
+    var flowLayout: UICollectionViewFlowLayout {
+        return collectionListView.flowLayout
+    }
+    
+    var waterFlowLayout: EasyCollectionViewWaterFlowLayout {
+        return collectionListView.waterFlowLayout
+    }
+    
+    var collectionList: [Any] {
+        get {
+            return collectionListView.list
+        }
+        set {
+            collectionListView.list = newValue
+        }
+    }
+    
+    var collectionListView: EasyCollectionListViewAssociatedType! {
         get {
             if let listView = objc_getAssociatedObject(self, &Key.collectionListViewKey) as? EasyCollectionListViewAssociatedType {
                 return listView
@@ -301,16 +336,16 @@ public extension EasyCollectionListProtocol {
     }
     
     @discardableResult
-    func addCollectionView(in view: UIView) -> UICollectionView! {
-        if collectionViewListView == nil {
-            collectionViewListView = EasyCollectionListViewAssociatedType()
-            view.addSubview(collectionViewListView)
-            collectionViewListView.snp.makeConstraints { (make) in
+    func addCollectionView(in view: UIView) -> EasyCollectionListViewAssociatedType {
+        if collectionListView == nil {
+            collectionListView = EasyCollectionListViewAssociatedType()
+            view.addSubview(collectionListView)
+            collectionListView.snp.makeConstraints { (make) in
                 make.edges.equalToSuperview()
             }
-            return collectionViewListView.add()
+            collectionListView.add()
         }
-        return nil
+        return collectionListView
     }
 }
 
@@ -323,7 +358,7 @@ open class EasyCollectionListView: EasyListView {
     private lazy var didSelectRowHandler: ((IndexPath, Any?) -> Void)? = { return nil }()
     private lazy var sizeForItemAtHandler: ((IndexPath, Any?) -> CGSize)? = { return nil }()
     
-    public lazy var collectionViewFlowLayout: UICollectionViewFlowLayout = {
+    public lazy var flowLayout: UICollectionViewFlowLayout = {
         return UICollectionViewFlowLayout().then {
             $0.scrollDirection = .vertical
             $0.minimumLineSpacing = 15
@@ -331,14 +366,14 @@ open class EasyCollectionListView: EasyListView {
         }
     }()
     
-    public lazy var collectionViewWaterFlowLayout: EasyCollectionViewWaterFlowLayout = {
+    public lazy var waterFlowLayout: EasyCollectionViewWaterFlowLayout = {
         return EasyCollectionViewWaterFlowLayout().then {
             $0.delegate = self
         }
     }()
     
     public lazy var collectionView: UICollectionView = {
-        return UICollectionView(frame: CGRect.zero, collectionViewLayout: collectionViewFlowLayout).then {
+        return UICollectionView(frame: CGRect.zero, collectionViewLayout: flowLayout).then {
             $0.backgroundColor = EasyGlobal.collectionViewBackground
             $0.showsVerticalScrollIndicator = false
             $0.showsHorizontalScrollIndicator = false

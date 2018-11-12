@@ -26,14 +26,16 @@ class MarqueeViewController: easy.ViewController, easy.TableListProtocol, easy.C
             log.debug(index)
         }
         
-        tableListView.list = marqueeLabel.dataSource
-        collectionViewListView.list = marqueeLabel.dataSource
+        tableList = marqueeLabel.dataSource
+        collectionList = marqueeLabel.dataSource
     }
     
     override func configure() {
         super.configure()
         
-        addTableListView(in: view, style: .plain).do {
+        addTableListView(in: view, style: .plain)
+        
+        tableView.do {
             $0.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: .screenWidth, height: 40)).then {
                 $0.backgroundColor = UIColor.gray
                 marqueeLabel = easy.MarqueeLabel(frame: CGRect(x: 15, y: 0, width: $0.width - 30, height: 40))
@@ -61,12 +63,11 @@ class MarqueeCollectionListView: easy.CollectionListView {
     override func configure() {
         super.configure()
         
-        collectionView.collectionViewLayout = collectionViewWaterFlowLayout
-        
-        collectionViewWaterFlowLayout.do {
+        waterFlowLayout.do {
             $0.minimumInteritemSpacing = 0
             $0.minimumLineSpacing = 0
         }
+        collectionView.collectionViewLayout = waterFlowLayout
         
 //        collectionView.registerReusableCell(UICollectionViewCell.self)
 

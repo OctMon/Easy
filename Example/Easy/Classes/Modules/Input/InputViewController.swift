@@ -22,7 +22,9 @@ class InputViewController: easy.ViewController, easy.TableListProtocol {
     override func configure() {
         super.configure()
         
-        addTableListView(in: view, style: .grouped).do {
+        addTableListView(in: view, style: .grouped)
+        
+        tableView.do {
             $0.allowsSelection = false
             $0.separatorStyle = .none
         }

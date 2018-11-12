@@ -46,8 +46,8 @@ class EasyTestViewController: EasyViewController, EasyTableListProtocol {
         super.configure()
         
         addTableListView(in: view, style: .plain)
-        tableListView.tableView.tableHeaderView = textView
-        tableListView.tableView.tableFooterView = UIView()
+        tableView.tableHeaderView = textView
+        tableView.tableFooterView = UIView()
         
         tableListView.setTableViewRegister((String, String).self, cellsClass: [EasyTestCell.self, UITableViewCell.self], returnCell: { (indexPath) -> AnyClass? in
             if indexPath.section == 0 {
@@ -89,7 +89,7 @@ class EasyTestViewController: EasyViewController, EasyTableListProtocol {
                 if var models = list as? [Any] {
                     models[indexPath.row] = model
                     self?.tableListView.list[indexPath.section] = models
-                    self?.tableListView.tableView.reloadData()
+                    self?.tableView.reloadData()
                 }
             })
         }

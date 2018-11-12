@@ -95,8 +95,8 @@ class Main: easy.ViewController, easy.TableListProtocol {
             button.addTarget(self, action: #selector(showCheckAlert), for: .touchUpInside)
         }
         
-        tableListView.tableView.tableHeaderView = textView
-        tableListView.tableView.tableFooterView = tableFooterView
+        tableView.tableHeaderView = textView
+        tableView.tableFooterView = tableFooterView
         tableListView.setTableViewRegister(String.self, cellClass: UITableViewCell.self, configureCell: { (cell, _, any) in
             cell.textLabel?.text = any
         }) { (_, any) in
@@ -107,8 +107,8 @@ class Main: easy.ViewController, easy.TableListProtocol {
     override func request() {
         super.request()
         
-        tableListView.list = [ScanViewController.toString, TuchongViewController.toString, SocialViewController.toString, PageViewController.toString, InputViewController.toString, MarqueeViewController.toString, FontViewController.toString]
-        tableListView.tableView.reloadData()
+        tableList = [ScanViewController.toString, TuchongViewController.toString, SocialViewController.toString, PageViewController.toString, InputViewController.toString, MarqueeViewController.toString, FontViewController.toString]
+        tableView.reloadData()
     }
     
     @objc private func showCheckAlert() {

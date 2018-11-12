@@ -67,7 +67,7 @@ class FontViewController: easy.ViewController, easy.TableListProtocol {
         UIFont.familyNames.sorted().forEach({ (family) in
             tableListView.list.append(Font(family: family, name: UIFont.fontNames(forFamilyName: family).sorted()))
         })
-        tableListView.tableView.reloadData()
+        tableView.reloadData()
     }
 
 }
