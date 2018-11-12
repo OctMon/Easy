@@ -76,7 +76,7 @@ class TuchongListView: easy.ListView {
         setCollectionView(numberOfSections: { (listView) -> Int in
             return listView.collectionViewDataSource.count
         }) { (listView, section) -> Int in
-            return (listView.collectionViewDataSource as? [Tuchong])?[section].images?.count ?? 0
+            return listView.collectionViewToDataSource(Tuchong.self)[section].images?.count ?? 0
         }
         
         setCollectionViewRegister(Tuchong.self, cellClass: TuchongCollectionViewCell.self, configureCell: { (cell, indexPath, any) in
@@ -186,13 +186,13 @@ class TuchongListView: easy.ListView {
             let view = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, for: indexPath, viewType: TuchongReusableView.self)
             view.backgroundColor = UIColor.gray
             view.alpha = 0.5
-            view.label.text = (collectionViewDataSource as? [Tuchong])?[indexPath.section].tags?.joined(separator: ",")
+            view.label.text = (collectionViewToDataSource(Tuchong.self))[indexPath.section].tags?.joined(separator: ",")
             return view
         } else {
             let view = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionFooter, for: indexPath, viewType: TuchongReusableView.self)
             view.backgroundColor = UIColor.lightGray
             view.alpha = 0.5
-            view.label.text = (collectionViewDataSource as? [Tuchong])?[indexPath.section].excerpt
+            view.label.text = (collectionViewToDataSource(Tuchong.self))[indexPath.section].excerpt
             return view
         }
 

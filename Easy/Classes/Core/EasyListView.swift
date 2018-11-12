@@ -59,10 +59,10 @@ open class EasyListView: UIView {
     
     private lazy var tableViewNumberOfSectionsHandler: ((EasyListView) -> Int)? = { return nil }()
     private lazy var tableViewNumberOfRowsInSectionHandler: ((EasyListView, Int) -> Int)? = { return nil }()
-    private lazy var tableViewCellHandler: ((UITableViewCell, IndexPath, Any) -> Void)? = { return nil }()
+    private lazy var tableViewCellHandler: ((UITableViewCell, IndexPath, Any?) -> Void)? = { return nil }()
     private lazy var tableViewCellsHandler: ((IndexPath) -> AnyClass?)? = { return nil }()
-    private lazy var tableViewDidSelectRowHandler: ((IndexPath, Any) -> Void)? = { return nil }()
-    private lazy var tableViewAccessoryButtonTappedForRowWithHandler: ((IndexPath, Any) -> Void)? = { return nil }()
+    private lazy var tableViewDidSelectRowHandler: ((IndexPath, Any?) -> Void)? = { return nil }()
+    private lazy var tableViewAccessoryButtonTappedForRowWithHandler: ((IndexPath, Any?) -> Void)? = { return nil }()
     lazy var tableViewRequestHandler: (() -> Void)? = { return nil }()
     
     /// must be set first
@@ -84,10 +84,10 @@ open class EasyListView: UIView {
 
     private lazy var collectionViewNumberOfSectionsHandler: ((EasyListView) -> Int)? = { return nil }()
     private lazy var collectionViewNumberOfItemsInSectionHandler: ((EasyListView, Int) -> Int)? = { return nil }()
-    private lazy var collectionViewCellHandler: ((UICollectionViewCell, IndexPath, Any) -> Void)? = { return nil }()
+    private lazy var collectionViewCellHandler: ((UICollectionViewCell, IndexPath, Any?) -> Void)? = { return nil }()
     private lazy var collectionViewCellsHandler: ((IndexPath) -> AnyClass?)? = { return nil }()
-    private lazy var collectionViewDidSelectRowHandler: ((IndexPath, Any) -> Void)? = { return nil }()
-    private lazy var collectionViewSizeForItemAtHandler: ((IndexPath, Any) -> CGSize)? = { return nil }()
+    private lazy var collectionViewDidSelectRowHandler: ((IndexPath, Any?) -> Void)? = { return nil }()
+    private lazy var collectionViewSizeForItemAtHandler: ((IndexPath, Any?) -> CGSize)? = { return nil }()
     lazy var collectionViewRequestHandler: (() -> Void)? = { return nil }()
     
     public lazy var collectionViewFlowLayout: UICollectionViewFlowLayout = {
@@ -143,6 +143,31 @@ open class EasyListView: UIView {
     
     open func configure() { }
     
+    private func getAny(_ dataSource: [Any], indexPath: IndexPath, in scrollView: UIScrollView, numberOfRowsInSectionHandler: ((EasyListView, Int) -> Int)?) -> Any? {
+        var count = 0
+        if scrollView is UITableView {
+            count = numberOfSections(in: tableView)
+        } else if scrollView is UICollectionView {
+            count = numberOfSections(in: collectionView)
+        }
+        if count > 0 {
+            if indexPath.section < dataSource.count {
+                if let any = (dataSource[indexPath.section] as? [Any]) {
+                    if indexPath.row < any.count {
+                        return any[indexPath.row]
+                    }
+                } else if let row = numberOfRowsInSectionHandler?(self, indexPath.section), row > 0 {
+                    return dataSource[indexPath.section]
+                } else if indexPath.row < dataSource.count {
+                    return dataSource[indexPath.row]
+                }
+            }
+        } else if indexPath.row < dataSource.count {
+            return dataSource[indexPath.row]
+        }
+        return nil
+    }
+    
 }
 
 public extension EasyListView {
@@ -157,7 +182,7 @@ public extension EasyListView {
         return tableView
     }
     
-    func tableViewDataSource<T>(_ class: T.Type) -> [T] {
+    func tableViewToDataSource<T>(_ class: T.Type) -> [T] {
         return tableViewDataSource as? [T] ?? []
     }
     
@@ -265,20 +290,8 @@ extension EasyListView: UITableViewDataSource, UITableViewDelegate {
     open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let tableViewCellsHandler = tableViewCellsHandler, let cellReuseIdentifier = tableViewCellsHandler(indexPath).self?.description() {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) else { return UITableViewCell() }
-            if numberOfSections(in: tableView) > 0 {
-                if indexPath.section < tableViewDataSource.count {
-                    if let any = (tableViewDataSource[indexPath.section] as? [Any]) {
-                        if indexPath.row < any.count {
-                            tableViewCellHandler?(cell, indexPath, any[indexPath.row])
-                        }
-                    } else if let row = tableViewNumberOfRowsInSectionHandler?(self, indexPath.section), row > 0 {
-                        tableViewCellHandler?(cell, indexPath, tableViewDataSource[indexPath.section])
-                    } else if indexPath.row < tableViewDataSource.count {
-                        tableViewCellHandler?(cell, indexPath, tableViewDataSource[indexPath.row])
-                    }
-                }
-            } else if indexPath.row < tableViewDataSource.count {
-                tableViewCellHandler?(cell, indexPath, tableViewDataSource[indexPath.row])
+            if let tableViewCellHandler = tableViewCellHandler {
+                tableViewCellHandler(cell, indexPath, getAny(tableViewDataSource, indexPath: indexPath, in: tableView, numberOfRowsInSectionHandler: tableViewNumberOfRowsInSectionHandler))
             }
             return cell
         }
@@ -289,41 +302,13 @@ extension EasyListView: UITableViewDataSource, UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         
         if let tableViewDidSelectRowHandler = tableViewDidSelectRowHandler {
-            if numberOfSections(in: tableView) > 0 {
-                if indexPath.section < tableViewDataSource.count {
-                    if let any = (tableViewDataSource[indexPath.section] as? [Any]) {
-                        if indexPath.row < any.count {
-                            tableViewDidSelectRowHandler(indexPath, any[indexPath.row])
-                        }
-                    } else if let row = tableViewNumberOfRowsInSectionHandler?(self, indexPath.section), row > 0 {
-                        tableViewDidSelectRowHandler(indexPath, tableViewDataSource[indexPath.section])
-                    } else if indexPath.row < tableViewDataSource.count {
-                        tableViewDidSelectRowHandler(indexPath, tableViewDataSource[indexPath.row])
-                    }
-                }
-            } else if indexPath.row < tableViewDataSource.count {
-                tableViewDidSelectRowHandler(indexPath, tableViewDataSource[indexPath.row])
-            }
+            tableViewDidSelectRowHandler(indexPath, getAny(tableViewDataSource, indexPath: indexPath, in: tableView, numberOfRowsInSectionHandler: tableViewNumberOfRowsInSectionHandler))
         }
     }
     
     open func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
         if let tableViewAccessoryButtonTappedForRowWithHandler = tableViewAccessoryButtonTappedForRowWithHandler {
-            if numberOfSections(in: tableView) > 0 {
-                if indexPath.section < tableViewDataSource.count {
-                    if let any = (tableViewDataSource[indexPath.section] as? [Any]) {
-                        if indexPath.row < any.count {
-                            tableViewAccessoryButtonTappedForRowWithHandler(indexPath, any[indexPath.row])
-                        }
-                    } else if let row = tableViewNumberOfRowsInSectionHandler?(self, indexPath.section), row > 0 {
-                        tableViewAccessoryButtonTappedForRowWithHandler(indexPath, tableViewDataSource[indexPath.section])
-                    } else if indexPath.row < tableViewDataSource.count {
-                        tableViewAccessoryButtonTappedForRowWithHandler(indexPath, tableViewDataSource[indexPath.row])
-                    }
-                }
-            } else if indexPath.row < tableViewDataSource.count {
-                tableViewAccessoryButtonTappedForRowWithHandler(indexPath, tableViewDataSource[indexPath.row])
-            }
+            tableViewAccessoryButtonTappedForRowWithHandler(indexPath, getAny(tableViewDataSource, indexPath: indexPath, in: tableView, numberOfRowsInSectionHandler: tableViewNumberOfRowsInSectionHandler))
         }
     }
     
@@ -341,7 +326,7 @@ public extension EasyListView {
         return collectionView
     }
     
-    func collectionViewDataSource<T>(_ class: T.Type) -> [T] {
+    func collectionViewToDataSource<T>(_ class: T.Type) -> [T] {
         return collectionViewDataSource as? [T] ?? []
     }
     
@@ -405,7 +390,7 @@ public extension EasyListView {
         }
     }
     
-    func setCollectionViewSizeForItemAt(_ collectionViewSizeForItemAtHandler: @escaping (IndexPath, Any) -> CGSize) {
+    func setCollectionViewSizeForItemAt(_ collectionViewSizeForItemAtHandler: @escaping (IndexPath, Any?) -> CGSize) {
         self.collectionViewSizeForItemAtHandler = { (indexPath, any) -> CGSize in
             return collectionViewSizeForItemAtHandler(indexPath, any)
         }
@@ -452,20 +437,8 @@ extension EasyListView: UICollectionViewDataSource, UICollectionViewDelegate, UI
     open func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let collectionViewCellsHandler = collectionViewCellsHandler, let cellReuseIdentifier = collectionViewCellsHandler(indexPath).self?.description() {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellReuseIdentifier, for: indexPath)
-            if numberOfSections(in: collectionView) > 0 {
-                if indexPath.section < collectionViewDataSource.count {
-                    if let any = (collectionViewDataSource[indexPath.section] as? [Any]) {
-                        if indexPath.row < any.count {
-                            collectionViewCellHandler?(cell, indexPath, any[indexPath.row])
-                        }
-                    } else if let row = collectionViewNumberOfItemsInSectionHandler?(self, indexPath.section), row > 0 {
-                        collectionViewCellHandler?(cell, indexPath, collectionViewDataSource[indexPath.section])
-                    } else if indexPath.row < collectionViewDataSource.count {
-                        collectionViewCellHandler?(cell, indexPath, collectionViewDataSource[indexPath.row])
-                    }
-                }
-            } else if indexPath.row < collectionViewDataSource.count {
-                collectionViewCellHandler?(cell, indexPath, collectionViewDataSource[indexPath.row])
+            if let collectionViewCellHandler = collectionViewCellHandler {
+                collectionViewCellHandler(cell, indexPath, getAny(collectionViewDataSource, indexPath: indexPath, in: collectionView, numberOfRowsInSectionHandler: collectionViewNumberOfItemsInSectionHandler))
             }
             return cell
         }
@@ -476,41 +449,13 @@ extension EasyListView: UICollectionViewDataSource, UICollectionViewDelegate, UI
         collectionView.deselectItem(at: indexPath, animated: true)
         
         if let collectionViewDidSelectRowHandler = collectionViewDidSelectRowHandler {
-            if numberOfSections(in: collectionView) > 0 {
-                if indexPath.section < collectionViewDataSource.count {
-                    if let any = (collectionViewDataSource[indexPath.section] as? [Any]) {
-                        if indexPath.row < any.count {
-                            collectionViewDidSelectRowHandler(indexPath, any[indexPath.row])
-                        }
-                    } else if let row = collectionViewNumberOfItemsInSectionHandler?(self, indexPath.section), row > 0 {
-                        collectionViewDidSelectRowHandler(indexPath, collectionViewDataSource[indexPath.section])
-                    } else if indexPath.row < collectionViewDataSource.count {
-                        collectionViewDidSelectRowHandler(indexPath, collectionViewDataSource[indexPath.row])
-                    }
-                }
-            } else if indexPath.row < collectionViewDataSource.count {
-                collectionViewDidSelectRowHandler(indexPath, collectionViewDataSource[indexPath.row])
-            }
+            collectionViewDidSelectRowHandler(indexPath, getAny(collectionViewDataSource, indexPath: indexPath, in: collectionView, numberOfRowsInSectionHandler: collectionViewNumberOfItemsInSectionHandler))
         }
     }
     
     open func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if let collectionViewSizeForItemAtHandler = collectionViewSizeForItemAtHandler {
-            if numberOfSections(in: collectionView) > 0 {
-                if indexPath.section < collectionViewDataSource.count {
-                    if let any = (collectionViewDataSource[indexPath.section] as? [Any]) {
-                        if indexPath.row < any.count {
-                            return collectionViewSizeForItemAtHandler(indexPath, any[indexPath.row])
-                        }
-                    } else if let row = collectionViewNumberOfItemsInSectionHandler?(self, indexPath.section), row > 0 {
-                        return collectionViewSizeForItemAtHandler(indexPath, collectionViewDataSource[indexPath.section])
-                    } else if indexPath.row < collectionViewDataSource.count {
-                        return collectionViewSizeForItemAtHandler(indexPath, collectionViewDataSource[indexPath.row])
-                    }
-                }
-            } else if indexPath.row < collectionViewDataSource.count {
-                return collectionViewSizeForItemAtHandler(indexPath, collectionViewDataSource[indexPath.row])
-            }
+            return collectionViewSizeForItemAtHandler(indexPath, getAny(collectionViewDataSource, indexPath: indexPath, in: collectionView, numberOfRowsInSectionHandler: collectionViewNumberOfItemsInSectionHandler))
         }
         return .zero
     }

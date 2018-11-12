@@ -41,7 +41,7 @@ class FontViewController: easy.ViewController, easy.ListProtocol {
         listView.setTableView(numberOfSections: { (listView) -> Int in
             return listView.tableViewDataSource.count
         }) { (listView, section) -> Int in
-            return listView.tableViewDataSource(Font.self)[section].name.count
+            return listView.tableViewToDataSource(Font.self)[section].name.count
         }
         listView.setTableViewRegister(UITableViewCell.self, configureCell: { [weak self] (cell, indexPath, any) in
             guard let font = any as? Font else { return }
@@ -80,7 +80,7 @@ class FontListView: easy.ListView {
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        let fonts = tableViewDataSource as? [Font] ?? []
+        let fonts = tableViewToDataSource(Font.self)
         return fonts[section].family
     }
     
