@@ -60,8 +60,7 @@ class EasyTestViewController: EasyViewController, EasyTableListProtocol {
                     $0.selectionStyle = .none
                     $0.textLabel?.text = any.0
                     $0.switchView.isOn = any.1.toBoolValue
-                    weak var listView = listView
-                    $0.switchHandler { (isOn) in
+                    $0.switchHandler { [weak listView](isOn) in
                         var model = any
                         model.1 = isOn.toStringValue
                         listView?.list[indexPath.section] = model

@@ -49,8 +49,7 @@ class InputViewController: easy.ViewController, easy.TableListProtocol {
                 cell.addSeparatorBottom()
                 cell.textField.clearButtonMode = .always
                 cell.setModel(any, imagePadding: 15)
-                weak var listView = listView
-                cell.setTextFieldEditingChangedHandler(textCount: limit, handler: { (input) in
+                cell.setTextFieldEditingChangedHandler(textCount: limit, handler: { [weak listView] (input) in
                     any.do {
                         var model = $0
                         model.title = input
