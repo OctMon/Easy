@@ -202,8 +202,8 @@ public extension EasySocial {
         return MonkeyKing.SupportedPlatform.alipay.isAppInstalled
     }
     
-    static func register(weChatAppId: String, weChatAppKey: String) {
-        MonkeyKing.registerAccount(MonkeyKing.Account.weChat(appID: weChatAppId, appKey: weChatAppKey, miniAppID: ""))
+    static func register(weChatAppId: String, weChatAppKey: String, miniAppID: String) {
+        MonkeyKing.registerAccount(MonkeyKing.Account.weChat(appID: weChatAppId, appKey: weChatAppKey, miniAppID: miniAppID))
     }
     
     static func register(qqAppId: String) {
@@ -224,7 +224,13 @@ public extension EasySocial {
         MonkeyKing.deliver(order, completionHandler: completionHandler)
     }
     
-    static func orderAlipay(_ urlString: String, scheme: String, completionHandler: @escaping (Bool) -> Void) {
+    static func launchWechatMiniApp(username: String, path: String?, type: MonkeyKing.MiniAppType, completionHandler: @escaping MonkeyKing.LaunchCompletionHandler) {
+        MonkeyKing.launch(.weChat(.miniApp(username: username, path: path, type: type))) { (result) in
+            completionHandler(result)
+        }
+    }
+    
+    static func orderAlipay(_ urlString: String, scheme: String?, completionHandler: @escaping (Bool) -> Void) {
         let order = MonkeyKing.Order.alipay(urlString: urlString, scheme: scheme)
         MonkeyKing.deliver(order, completionHandler: completionHandler)
     }
