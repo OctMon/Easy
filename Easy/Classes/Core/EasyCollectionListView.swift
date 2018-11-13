@@ -12,9 +12,7 @@ public extension Easy {
     typealias CollectionListProtocol = EasyCollectionListProtocol
 }
 
-private struct Key {
-    static var collectionListViewKey: Void?
-}
+private var keyCollectionListView: Void?
 
 public protocol EasyCollectionListProtocol: class {
     func addCollectionView(in: UIView) -> EasyCollectionListViewAssociatedType
@@ -46,13 +44,13 @@ public extension EasyCollectionListProtocol {
     
     var collectionListView: EasyCollectionListViewAssociatedType! {
         get {
-            if let listView = objc_getAssociatedObject(self, &Key.collectionListViewKey) as? EasyCollectionListViewAssociatedType {
+            if let listView = objc_getAssociatedObject(self, &keyCollectionListView) as? EasyCollectionListViewAssociatedType {
                 return listView
             }
             return nil
         }
         set {
-            objc_setAssociatedObject(self, &Key.collectionListViewKey, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            objc_setAssociatedObject(self, &keyCollectionListView, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         }
     }
     

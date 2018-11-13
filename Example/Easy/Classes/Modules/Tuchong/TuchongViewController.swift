@@ -43,9 +43,9 @@ class TuchongViewController: easy.ViewController, easy.CollectionListProtocol {
     override func request() {
         super.request()
         
-        Tuchong.getTuchong(page: collectionListView.currentPage, poseId: collectionListView.firstPage == collectionListView.currentPage ? nil : poseID) { (result) in
-            self.poseID = (result.models as? [Tuchong])?.last?.postID
-            self.collectionListView.setRefresh(response: result)
+        Tuchong.getTuchong(page: collectionListView.currentPage, poseId: collectionListView.firstPage == collectionListView.currentPage ? nil : poseID) { (dataResponse) in
+            self.poseID = (dataResponse.models as? [Tuchong])?.last?.postID
+            self.collectionListView.setRefresh(dataResponse: dataResponse)
         }
     }
 

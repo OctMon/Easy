@@ -19,7 +19,7 @@ public extension Easy {
 public extension Easy {
     typealias Session = EasySession
     typealias Config = EasyConfig
-    typealias Result = EasyResult
+    typealias DataResponse = EasyDataResponse
     typealias Error = EasyError
 }
 
@@ -33,6 +33,8 @@ public struct EasySession {
     public let config: EasyConfig
     
     private let manager = SessionManager.default
+    
+    static var logEnabel = false
     
     public init(_ config: EasyConfig) {
         self.config = config
@@ -75,28 +77,28 @@ public extension EasySession {
         return parameters
     }
     
-    func get(parameters: EasyParameters?, timeoutInterval: TimeInterval? = nil, requestHandler: ((URLRequest) -> URLRequest)? = nil, completionHandler: @escaping (EasyResult) -> Void) {
+    func get(parameters: EasyParameters?, timeoutInterval: TimeInterval? = nil, requestHandler: ((URLRequest) -> URLRequest)? = nil, completionHandler: @escaping (EasyDataResponse) -> Void) {
         get(path: nil, parameters: parameters, timeoutInterval: timeoutInterval, requestHandler: requestHandler, completionHandler: completionHandler)
     }
     
-    func get(path: String?, parameters: EasyParameters?, timeoutInterval: TimeInterval? = nil, requestHandler: ((URLRequest) -> URLRequest)? = nil, completionHandler: @escaping (EasyResult) -> Void) {
-        manager.easyRequest(Router.requestURLEncoding(config.url.currentBaseURL, path, .get, parameters, timeoutInterval ?? config.other.timeout, requestHandler: requestHandler)).easyResponse { (json, error) in
-            completionHandler(EasyResult(config: self.config, json: json, error: error))
+    func get(path: String?, parameters: EasyParameters?, timeoutInterval: TimeInterval? = nil, requestHandler: ((URLRequest) -> URLRequest)? = nil, completionHandler: @escaping (EasyDataResponse) -> Void) {
+        manager.easyRequest(Router.requestURLEncoding(config.url.currentBaseURL, path, .get, parameters, timeoutInterval ?? config.other.timeout, requestHandler: requestHandler)).easyResponse { (dataResponse) in
+            completionHandler(dataResponse.toEasyDataResponse(config: self.config))
         }
     }
     
-    func post(isURLEncoding: Bool = false, parameters: EasyParameters? = nil, timeoutInterval: TimeInterval? = nil, requestHandler: ((URLRequest) -> URLRequest)? = nil, completionHandler: @escaping (EasyResult) -> Void) {
+    func post(isURLEncoding: Bool = false, parameters: EasyParameters? = nil, timeoutInterval: TimeInterval? = nil, requestHandler: ((URLRequest) -> URLRequest)? = nil, completionHandler: @escaping (EasyDataResponse) -> Void) {
         post(path: nil, isURLEncoding: isURLEncoding, parameters: parameters, timeoutInterval: timeoutInterval, requestHandler: requestHandler, completionHandler: completionHandler)
     }
     
-    func post(path: String?, isURLEncoding: Bool = false, parameters: EasyParameters? = nil, timeoutInterval: TimeInterval? = nil, requestHandler: ((URLRequest) -> URLRequest)? = nil, completionHandler: @escaping (EasyResult) -> Void) {
+    func post(path: String?, isURLEncoding: Bool = false, parameters: EasyParameters? = nil, timeoutInterval: TimeInterval? = nil, requestHandler: ((URLRequest) -> URLRequest)? = nil, completionHandler: @escaping (EasyDataResponse) -> Void) {
         if isURLEncoding {
-            manager.easyRequest(Router.requestURLEncoding(config.url.currentBaseURL, path, .post, parameters, timeoutInterval ?? config.other.timeout, requestHandler: requestHandler)).easyResponse { (json, error) in
-                completionHandler(EasyResult(config: self.config, json: json, error: error))
+            manager.easyRequest(Router.requestURLEncoding(config.url.currentBaseURL, path, .post, parameters, timeoutInterval ?? config.other.timeout, requestHandler: requestHandler)).easyResponse { (dataResponse) in
+                completionHandler(dataResponse.toEasyDataResponse(config: self.config))
             }
         } else {
-            manager.easyRequest(Router.requestJSONEncoding(config.url.currentBaseURL, path, .post, parameters, timeoutInterval ?? config.other.timeout, requestHandler: requestHandler)).easyResponse { (json, error) in
-                completionHandler(EasyResult(config: self.config, json: json, error: error))
+            manager.easyRequest(Router.requestJSONEncoding(config.url.currentBaseURL, path, .post, parameters, timeoutInterval ?? config.other.timeout, requestHandler: requestHandler)).easyResponse { (dataResponse) in
+                completionHandler(dataResponse.toEasyDataResponse(config: self.config))
             }
         }
     }
@@ -131,19 +133,10 @@ extension SessionManager {
 
 extension DataRequest {
     
-    func easyResponse(handler: @escaping (EasyParameters, Error?) -> Void) {
-        responseJSON { (response) in
-            self.logResponseJSON(response)
-            switch response.result {
-            case .success(let data):
-                if let jsonData = try? JSONSerialization.data(withJSONObject: data), let jsonobject = try? JSONSerialization.jsonObject(with: jsonData), let json = jsonobject as? Parameters, JSONSerialization.isValidJSONObject(data) {
-                    handler(json, nil)
-                } else {
-                    handler([:], EasyError.empty(EasyErrorReason.serverError))
-                }
-            case .failure(let error):
-                handler([:], error)
-            }
+    func easyResponse(_ handler: @escaping (DataResponse<Any>) -> Void) {
+        responseJSON { (dataResponse) in
+            logResponseJSON(dataResponse)
+            handler(dataResponse)
         }
     }
     
@@ -153,29 +146,25 @@ extension DataRequest {
 import NotificationBannerSwift
 #endif
 
-private extension DataRequest {
-    
-    func logResponseJSON(_ response: DataResponse<Any>) {
-        #if DEBUG || BETA
-        let title = self.request?.printResponseLog(isPrintBase64DecodeBody: true, response: response.response, data: response.data, error: response.result.error, requestDuration: response.timeline.requestDuration)
-        if EasyResult.logEnabel {
-            #if canImport(NotificationBannerSwift)
-            let banner = StatusBarNotificationBanner(title: "查看日志 📋 [接口响应时间] 🔌 " + String(format: "%.3f秒", response.timeline.requestDuration))
-            banner.duration = 1
-            banner.show(queuePosition: .front, bannerPosition: .top)
-            banner.onTap = {
-                let alert = EasyAlert(title: (title?.requestLog ?? "").replacingOccurrences(of: ">", with: "").replacingOccurrences(of: "----", with: "--"), message: (title?.responseLog
-                    ?? "").replacingOccurrences(of: ">", with: ""))
-                alert.addAction(title: "复制", style: .default, handler: { (_) in
-                    ((title?.requestLog ?? "") + (title?.responseLog ?? "")).copyToPasteboard()
-                })
-                alert.showOk()
-            }
-            #endif
+private func logResponseJSON(_ dataResponse: DataResponse<Any>) {
+    #if DEBUG || BETA
+    let title = dataResponse.request?.printResponseLog(isPrintBase64DecodeBody: true, response: dataResponse.response, data: dataResponse.data, error: dataResponse.result.error, requestDuration: dataResponse.timeline.requestDuration)
+    if EasySession.logEnabel {
+        #if canImport(NotificationBannerSwift)
+        let banner = StatusBarNotificationBanner(title: "查看日志 📋 [接口响应时间] 🔌 " + String(format: "%.3f秒", dataResponse.timeline.requestDuration))
+        banner.duration = 1
+        banner.show(queuePosition: .front, bannerPosition: .top)
+        banner.onTap = {
+            let alert = EasyAlert(title: (title?.requestLog ?? "").replacingOccurrences(of: ">", with: "").replacingOccurrences(of: "----", with: "--"), message: (title?.responseLog
+                ?? "").replacingOccurrences(of: ">", with: ""))
+            alert.addAction(title: "复制", style: .default, handler: { (_) in
+                ((title?.requestLog ?? "") + (title?.responseLog ?? "")).copyToPasteboard()
+            })
+            alert.showOk()
         }
         #endif
     }
-    
+    #endif
 }
 
 extension URLRequestConvertible {

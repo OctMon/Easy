@@ -12,9 +12,7 @@ public extension Easy {
     typealias TableListProtocol = EasyTableListProtocol
 }
 
-private struct Key {
-    static var tableListViewKey: Void?
-}
+private var keyTableListView: Void?
 
 public protocol EasyTableListProtocol: class {
     func addTableListView(in: UIView, style: UITableView.Style) -> EasyTableListViewAssociatedType
@@ -38,13 +36,13 @@ public extension EasyTableListProtocol {
     
     var tableListView: EasyTableListViewAssociatedType! {
         get {
-            if let listView = objc_getAssociatedObject(self, &Key.tableListViewKey) as? EasyTableListViewAssociatedType {
+            if let listView = objc_getAssociatedObject(self, &keyTableListView) as? EasyTableListViewAssociatedType {
                 return listView
             }
             return nil
         }
         set {
-            objc_setAssociatedObject(self, &Key.tableListViewKey, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            objc_setAssociatedObject(self, &keyTableListView, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         }
     }
     

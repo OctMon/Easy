@@ -22,32 +22,37 @@ public struct EasyCheck {
     
     static func requestPgyerBeta(api_key: String, shortcutUrl: String, headerImage: UIImage?) {
         guard !isShow else { return }
-        session.post(path: "apiv2/app/getByShortcut", isURLEncoding: true, parameters: ["_api_key": api_key, "buildShortcutUrl": shortcutUrl]) { (response) in
-            guard response.valid else { return }
-            let buildVersionNo = response.data["buildVersionNo"].toIntValue
-            let buildBundle = EasyApp.bundleBuild.toIntValue
-            guard buildVersionNo > buildBundle else { return }
-            let ignoreBuild = UserDefaults.standard.integer(forKey: ignoreBuildKey)
-            guard buildBundle != ignoreBuild else { return }
-            
-            var buttonTitles = ["立即升级".getAttributedString(font: UIFont.size15, foregroundColor: UIColor.white)]
-            var buttonBackgroundImages = [EasyGlobal.tint.toImage]
-            buttonTitles.insert("稍后再说".getAttributedString(font: UIFont.size15, foregroundColor: UIColor.hex666666), at: 0)
-            buttonBackgroundImages.insert(UIColor.white.toImage, at: 0)
-            EasyApp.showUpdateAlert(image: headerImage, title: "发现新版本beta".getAttributedString(font: UIFont.size21, foregroundColor: UIColor.hex333333).getAttributedString(title: "  v\(buildVersionNo)", font: UIFont.size12, foregroundColor: UIColor.hex999999), message: response.data["buildUpdateDescription"].toStringValue.getAttributedString(font: UIFont.size14, foregroundColor: UIColor.hex999999, lineSpacing: 8), buttonTitles: buttonTitles, buttonBackgroundImages: buttonBackgroundImages, tap: { offset in
-                isShow = false
-                if offset == 1 {
-                    let buildKey = response.data["buildKey"].toStringValue
-                    guard let url = URL(string: "itms-services://?action=download-manifest&url=https://www.pgyer.com/app/plist/\(buildKey)") else { return }
-                    if UIApplication.shared.openURL(url) {
-                        exit(EXIT_SUCCESS);
+        session.post(path: "apiv2/app/getByShortcut", isURLEncoding: true, parameters: ["_api_key": api_key, "buildShortcutUrl": shortcutUrl]) { (dataResponse) in
+            switch dataResponse.result {
+            case .success(let result):
+                guard result.valid else { return }
+                let buildVersionNo = result.data["buildVersionNo"].toIntValue
+                let buildBundle = EasyApp.bundleBuild.toIntValue
+                guard buildVersionNo > buildBundle else { return }
+                let ignoreBuild = UserDefaults.standard.integer(forKey: ignoreBuildKey)
+                guard buildBundle != ignoreBuild else { return }
+                
+                var buttonTitles = ["立即升级".getAttributedString(font: UIFont.size15, foregroundColor: UIColor.white)]
+                var buttonBackgroundImages = [EasyGlobal.tint.toImage]
+                buttonTitles.insert("稍后再说".getAttributedString(font: UIFont.size15, foregroundColor: UIColor.hex666666), at: 0)
+                buttonBackgroundImages.insert(UIColor.white.toImage, at: 0)
+                EasyApp.showUpdateAlert(image: headerImage, title: "发现新版本beta".getAttributedString(font: UIFont.size21, foregroundColor: UIColor.hex333333).getAttributedString(title: "  v\(buildVersionNo)", font: UIFont.size12, foregroundColor: UIColor.hex999999), message: result.data["buildUpdateDescription"].toStringValue.getAttributedString(font: UIFont.size14, foregroundColor: UIColor.hex999999, lineSpacing: 8), buttonTitles: buttonTitles, buttonBackgroundImages: buttonBackgroundImages, tap: { offset in
+                    isShow = false
+                    if offset == 1 {
+                        let buildKey = result.data["buildKey"].toStringValue
+                        guard let url = URL(string: "itms-services://?action=download-manifest&url=https://www.pgyer.com/app/plist/\(buildKey)") else { return }
+                        if UIApplication.shared.openURL(url) {
+                            exit(EXIT_SUCCESS);
+                        }
+                    } else {
+                        UserDefaults.standard.set(buildBundle, forKey: ignoreBuildKey)
+                        UserDefaults.standard.synchronize()
                     }
-                } else {
-                    UserDefaults.standard.set(buildBundle, forKey: ignoreBuildKey)
-                    UserDefaults.standard.synchronize()
-                }
-            })
-            isShow = true
+                })
+                isShow = true
+            case .failure(let error):
+                EasyLog.debug(error)
+            }
         }
     }
     

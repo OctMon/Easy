@@ -175,9 +175,19 @@ extension Tuchong.Image {
 extension Tuchong {
     
     /// 图虫
-    static func getTuchong(page: Int, poseId: Int?, handler: @escaping (easy.Result) -> Void) {
-        session.get(parameters: session.pageSize(page, poseId)) { (result) in
-            handler(result.fill(models: result.list.compactMap({ JSONDecoder().decode(Tuchong.self, from: $0) })))
+    static func getTuchong(page: Int, poseId: Int?, handler: @escaping (easy.DataResponse) -> Void) {
+        session.get(parameters: session.pageSize(page, poseId)) { (dataResponse) in
+            switch dataResponse.result {
+            case .success(let result):
+                if result.valid {
+                    handler(dataResponse.fill(models: result.list.compactMap({ JSONDecoder().decode(Tuchong.self, from: $0) })))
+                } else {
+                    handler(dataResponse)
+                }
+                
+            case .failure(_):
+                handler(dataResponse)
+            }
         }
     }
 
