@@ -41,13 +41,13 @@ class SocialViewController: easy.ViewController, easy.TableListProtocol {
             default:
                 return SocialCell.self
             }
-        }, configureCell: { [weak self] (cell, indexPath, any) in
+        }, configureCell: { (listView, cell, indexPath, any) in
             if let cell = cell as? SocialCell {
-                cell.modules = self?.tableListView.list[indexPath.section] as? [Module] ?? []
+                cell.modules = listView.list[indexPath.section] as? [Module] ?? []
             } else {
                 cell.textLabel?.text = (any as? Module)?.name
             }
-        }) { (_, any) in
+        }) { (_, _, any) in
             easy.Social.share(title: "Apple", description: "China", thumbnail: UIImage.setColor(UIColor.red), url: "http://www.apple.com/cn")
         }
     }
@@ -82,12 +82,12 @@ private class SocialCell: UITableViewCell, easy.CollectionListProtocol {
         }
         collectionView.collectionViewLayout = waterFlowLayout
         
-        collectionListView.register(Module.self, cellClass:TuchongCollectionViewCell.self, configureCell: { (cell, _, any) in
+        collectionListView.register(Module.self, cellClass:TuchongCollectionViewCell.self, configureCell: { (_, cell, _, any) in
             (cell as? TuchongCollectionViewCell)?.do {
                 $0.backgroundColor = UIColor.random
                 $0.label.text = any.name
             }
-        }) { (indexPath, any) in
+        }) { (_, indexPath, any) in
             switch any {
             case .微信登录:
                 easy.Social.oauth(platformType: .wechat) { (userInfo, _, error) in
@@ -118,7 +118,7 @@ private class SocialCell: UITableViewCell, easy.CollectionListProtocol {
             }
         }
         
-        collectionListView.setSizeForItemAt { (_, _) -> CGSize in
+        collectionListView.setSizeForItemAt { (_, _, _) -> CGSize in
             return CGSize(width: .screenWidth * 0.5, height: .screenWidth * 0.5)
         }
     }

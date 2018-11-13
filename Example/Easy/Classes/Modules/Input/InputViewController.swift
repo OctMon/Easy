@@ -30,30 +30,31 @@ class InputViewController: easy.ViewController, easy.TableListProtocol {
             $0.separatorStyle = .none
         }
         
-        tableListView.register(easy.InputCell.Model.self, cellClass: easy.InputCell.self, configureCell: { [weak self] (cell, indexPath, any) in
-            (cell as? easy.InputCell)?.do {
+        tableListView.register(easy.InputCell.Model.self, cellClass: easy.InputCell.self, configureCell: { (listView, cell, indexPath, any) in
+            if let cell = cell as? easy.InputCell {
                 var limit = Int.max
                 switch indexPath.row {
                 case 0:
-                    $0.textField.keyboardType = .numberPad
+                    cell.textField.keyboardType = .numberPad
                     limit = 11
                 case 1:
-                    $0.textField.isSecureTextEntry = true
+                    cell.textField.isSecureTextEntry = true
                     limit = 16
-//                    $0.smsCodeButton.tap(handler: { [weak self] (_) in
+//                    cell.smsCodeButton.tap(handler: { [weak self] (_) in
 //                        self?.view.showText("sms")
 //                    })
                 default:
                     break
                 }
-                $0.addSeparatorBottom()
-                $0.textField.clearButtonMode = .always
-                $0.setModel(any, imagePadding: 15)
-                $0.setTextFieldEditingChangedHandler(textCount: limit, handler: { (input) in
+                cell.addSeparatorBottom()
+                cell.textField.clearButtonMode = .always
+                cell.setModel(any, imagePadding: 15)
+                weak var listView = listView
+                cell.setTextFieldEditingChangedHandler(textCount: limit, handler: { (input) in
                     any.do {
                         var model = $0
                         model.title = input
-                        self?.tableListView.list[indexPath.row] = model
+                        listView?.list[indexPath.row] = model
                     }
                 })
             }

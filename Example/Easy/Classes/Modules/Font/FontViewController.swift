@@ -43,12 +43,12 @@ class FontViewController: easy.ViewController, easy.TableListProtocol {
         }) { (listView, section) -> Int in
             return listView.listTo(Font.self)[section].name.count
         }
-        tableListView.register(UITableViewCell.self, configureCell: { [weak self] (cell, indexPath, any) in
+        tableListView.register(UITableViewCell.self, configureCell: { [weak self] (_, cell, indexPath, any) in
             guard let font = any as? Font else { return }
             cell.textLabel?.numberOfLines = 0
             cell.textLabel?.font = UIFont(name: font.name[indexPath.row], size: 19)
             cell.textLabel?.text = (self?.textField.text ?? "") + "\n" + font.name[indexPath.row]
-        }) { [weak self] (indexPath, any) in
+        }) { [weak self] (_, indexPath, any) in
             let label = UILabel(frame: app.screenBounds).then {
                 guard let font = any as? Font else { return }
                 $0.backgroundColor = UIColor.white

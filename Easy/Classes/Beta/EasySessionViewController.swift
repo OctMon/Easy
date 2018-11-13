@@ -49,7 +49,7 @@ class EasySessionViewController: EasyViewController, EasyTableListProtocol {
             $0.backgroundColor = UIColor.lightGray
         }
         
-        tableListView.register(String.self, cellClass: UITableViewCell.self, configureCell: { [weak self] (cell, _, any) in
+        tableListView.register(String.self, cellClass: UITableViewCell.self, configureCell: { [weak self] (_, cell, _, any) in
             cell.textLabel?.numberOfLines = 0
             cell.textLabel?.textAlignment = .center
             if current == any {
@@ -68,7 +68,7 @@ class EasySessionViewController: EasyViewController, EasyTableListProtocol {
             } else {
                 cell.textLabel?.text = "\n📡baseURL : \(any)\n"
             }
-            }, didSelectRow: { [weak self] (_, any) in
+            }, didSelectRow: { [weak self] (_, _, any) in
                 guard let `self` = self else { return }
                 guard current != any else { return }
                 UserDefaults.standard.set(any, forKey: self.config.url.defaultCustomBaseURLKey)

@@ -79,13 +79,13 @@ class TuchongCollectionListView: easy.CollectionListView {
             return listView.listTo(Tuchong.self)[section].images?.count ?? 0
         }
         
-        register(Tuchong.self, cellClass: TuchongCollectionViewCell.self, configureCell: { (cell, indexPath, any) in
+        register(Tuchong.self, cellClass: TuchongCollectionViewCell.self, configureCell: { (_, cell, indexPath, any) in
             (cell as? TuchongCollectionViewCell)?.do {
                 guard let image = any.images?[indexPath.row] else { return }
                 $0.imageView.setFadeImage(url: image.imageURL, placeholderImage: UIColor.random.toImage)
                 $0.label.text = "(" + indexPath.section.toString + "," + indexPath.row.toString + ")\n" + image.imgID.toStringValue
             }
-        }) { (indexPath, any) in
+        }) { (_, indexPath, any) in
             let photoView = UIView(frame: app.screenBounds).then {
                 let imageView = UIImageView(frame: app.screenBounds).then {
                     $0.backgroundColor = UIColor.black
@@ -115,7 +115,7 @@ class TuchongCollectionListView: easy.CollectionListView {
             popupView.showWithCenter()
         }
         
-        setSizeForItemAt(Tuchong.self) { (indexPath, any) -> CGSize in
+        setSizeForItemAt(Tuchong.self) { (_, indexPath, any) -> CGSize in
             guard let images = any.images else { return CGSize.zero }
             let model = images[indexPath.row]
             return images.count > 1 ? model.imageSize : CGSize(width: .screenWidth - space * 3, height: .screenWidth - space * 3)
