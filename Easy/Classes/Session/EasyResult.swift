@@ -67,8 +67,7 @@ public struct EasyDataResponse {
     /// Returns the associated error value if the result if it is a failure, `nil` otherwise.
     public var error: Error? { return result.error }
 
-    public var models = [Any]()
-    public var model: Any?
+    var list: [Any] = []
     
     var _config: EasyConfig
 }
@@ -84,10 +83,10 @@ extension DataResponse {
             } else {
                 dataResult = EasyDataResult(config: config, json: [:], error: EasyError.empty(EasyErrorReason.serverError))
             }
-            return EasyDataResponse(request: request, response: response, data: data, result: .success(dataResult), timeline: timeline, models: [], model: nil, _config: config)
+            return EasyDataResponse(request: request, response: response, data: data, result: .success(dataResult), timeline: timeline, list: [], _config: config)
         case .failure(let error):
             dataResult = EasyDataResult(config: config, json: [:], error: error)
-            return EasyDataResponse(request: request, response: response, data: data, result: .failure(error), timeline: timeline, models: [], model: nil, _config: config)
+            return EasyDataResponse(request: request, response: response, data: data, result: .failure(error), timeline: timeline, list: [], _config: config)
         }
     }
 
@@ -152,16 +151,14 @@ public extension EasyDataResult {
 
 public extension EasyDataResponse {
     
-    func fill<T: Any>(models: [T]) -> EasyDataResponse {
+    func fill<T: Any>(list: [T]) -> EasyDataResponse {
         var dataResponse = self
-        dataResponse.models = models
+        dataResponse.list = list
         return dataResponse
     }
     
-    func fill<T: Any>(model: T?) -> EasyDataResponse {
-        var dataResponse = self
-        dataResponse.model = model
-        return dataResponse
+    public func list<T>(_ class: T.Type) -> [T] {
+        return list as? [T] ?? []
     }
     
 }
@@ -230,15 +227,15 @@ public extension EasyListView {
             hidePlaceholder()
             if self.currentPage == self.firstPage {
                 if isTableView {
-                    self.list = dataResponse.models
+                    self.list = dataResponse.list
                 } else if isCollectionView {
-                    self.list = dataResponse.models
+                    self.list = dataResponse.list
                 }
             } else {
                 if isTableView {
-                    self.list.append(contentsOf: dataResponse.models)
+                    self.list.append(contentsOf: dataResponse.list)
                 } else if isCollectionView {
-                    self.list.append(contentsOf: dataResponse.models)
+                    self.list.append(contentsOf: dataResponse.list)
                 }
             }
             if let tableView = scrollView as? UITableView {
@@ -248,7 +245,7 @@ public extension EasyListView {
                     collectionView.reloadData()
                 }
             }
-            if ignoreTotalPage || (autoTotalPage ? dataResponse.models.count >= self.pageSize : result.total > self.currentPage) {
+            if ignoreTotalPage || (autoTotalPage ? dataResponse.list.count >= self.pageSize : result.total > self.currentPage) {
                 self.currentPage += incrementPage
                 if scrollView.mj_footer != nil {
                     scrollView.mj_footer.isHidden = false

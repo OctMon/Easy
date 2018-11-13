@@ -180,7 +180,7 @@ extension Tuchong {
             switch dataResponse.result {
             case .success(let result):
                 if result.valid {
-                    handler(dataResponse.fill(models: result.list.compactMap({ JSONDecoder().decode(Tuchong.self, from: $0) })))
+                    handler(dataResponse.fill(list: result.list.compactMap({ JSONDecoder().decode(Tuchong.self, from: $0) })))
                 } else {
                     handler(dataResponse)
                 }

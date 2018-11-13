@@ -45,7 +45,7 @@ open class EasyListView: UIView {
     
     open func configure() { }
     
-    public func listTo<T>(_ class: T.Type) -> [T] {
+    public func list<T>(_ class: T.Type) -> [T] {
         return list as? [T] ?? []
     }
     
