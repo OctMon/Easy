@@ -38,8 +38,7 @@ open class EasyListView: UIView {
     
     public lazy var list: [Any] = [Any]()
     
-    lazy var tableViewRequestHandler: (() -> Void)? = { return nil }()
-    lazy var collectionViewRequestHandler: (() -> Void)? = { return nil }()
+    lazy var requestHandler: (() -> Void)? = { return nil }()
     
     public override init(frame: CGRect) {
         super.init(frame: frame)
@@ -306,12 +305,11 @@ public extension EasyCollectionListProtocol {
         return collectionListView.collectionView
     }
     
-    
     var flowLayout: UICollectionViewFlowLayout {
         return collectionListView.flowLayout
     }
     
-    var waterFlowLayout: EasyCollectionViewWaterFlowLayout {
+    var waterFlowLayout: EasyWaterFlowLayout {
         return collectionListView.waterFlowLayout
     }
     
@@ -367,8 +365,8 @@ open class EasyCollectionListView: EasyListView {
         }
     }()
     
-    public lazy var waterFlowLayout: EasyCollectionViewWaterFlowLayout = {
-        return EasyCollectionViewWaterFlowLayout().then {
+    public lazy var waterFlowLayout: EasyWaterFlowLayout = {
+        return EasyWaterFlowLayout().then {
             $0.delegate = self
         }
     }()

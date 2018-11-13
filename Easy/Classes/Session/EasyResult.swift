@@ -101,28 +101,16 @@ import MJRefresh
 public extension EasyListView {
     
     fileprivate func addRefresh(_ scrollView: UIScrollView, isAddHeader: Bool, isAddFooter: Bool, requestHandler: @escaping (() -> Void)) {
-        if scrollView is UITableView {
-            tableViewRequestHandler = requestHandler
-        } else if scrollView is UICollectionView {
-            collectionViewRequestHandler = requestHandler
-        }
+        self.requestHandler = requestHandler
         if isAddHeader {
             scrollView.mj_header = EasyRefresh.headerWithHandler { [weak self] in
                 self?.currentPage = self?.firstPage ?? 0
-                if scrollView is UITableView {
-                    self?.tableViewRequestHandler?()
-                } else if scrollView is UICollectionView {
-                    self?.collectionViewRequestHandler?()
-                }
+                self?.requestHandler?()
             }
         }
         if isAddFooter {
             scrollView.mj_footer = EasyRefresh.footerWithHandler { [weak self] in
-                if scrollView is UITableView {
-                    self?.tableViewRequestHandler?()
-                } else if scrollView is UICollectionView {
-                    self?.collectionViewRequestHandler?()
-                }
+                self?.requestHandler?()
             }
         }
     }
@@ -149,7 +137,7 @@ public extension EasyListView {
                 } else {
                     showPlaceholder(error: response.error, image: nil, tap: { [weak self] in
                         self?.showLoading()
-                        self?.collectionViewRequestHandler?()
+                        self?.requestHandler?()
                     })
                 }
                 

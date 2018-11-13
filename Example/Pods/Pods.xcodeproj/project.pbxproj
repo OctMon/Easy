@@ -49,7 +49,7 @@
 		16729F5037FB82D0E00E3CD44FB6E5A4 /* ConstraintConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF0B006FFB638F5094840BFAA47FFC1 /* ConstraintConfig.swift */; };
 		17473FB6A6CA9EBCC96E8F569EC52903 /* FLEXViewExplorerViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 969AF0A17E3D65F7123154DBFC889F1A /* FLEXViewExplorerViewController.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		17BC00AE001D110C658359B8DA4BBC16 /* FLEXRealmDatabaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DFA973DFD2A33F1B9AF1F1E2AF4D59AC /* FLEXRealmDatabaseManager.m */; };
-		18CF6368F392A2C89A01FF0602BD6CBC /* EasyCollectionViewWaterFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C5CB7FA199986C8FC967EF202AF45B7 /* EasyCollectionViewWaterFlowLayout.swift */; };
+		18CF6368F392A2C89A01FF0602BD6CBC /* EasyWaterFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C5CB7FA199986C8FC967EF202AF45B7 /* EasyWaterFlowLayout.swift */; };
 		195F001CC4901F12AB513E6554D2823F /* SDWebImageDownloaderOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = AFE7034E53B67F2DEF7AC15C3716455E /* SDWebImageDownloaderOperation.m */; };
 		19DF1C63751FA7F82EE4C023ACBE3FF1 /* EasyCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = C621AAFC1F1451FB95D4D5E420190244 /* EasyCheck.swift */; };
 		1A063B1B88707C6D309E85E08182688A /* EasyTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5929EB4550A447C20881098107ACC663 /* EasyTestViewController.swift */; };
@@ -260,7 +260,7 @@
 		87F238BDA71A5D8625D77BBCCD80A4FF /* FLEXSystemLogTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = D118695369F7C7D2506990A4BF417835 /* FLEXSystemLogTableViewController.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		8938B13B42A19EE80C7EE3E6D7420090 /* FLEXFileBrowserSearchOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E713CA45AC525EE07745E3F543B43EC /* FLEXFileBrowserSearchOperation.m */; };
 		899F5F5F6F448BAB83E410DC8DBF98F8 /* MJRefreshConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EDE0F06A140591EE2CB8FB1B1417E83 /* MJRefreshConst.m */; };
-		89D7EFB25BC00DE865C155832162BC90 /* EasyCollectionViewWaterFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C5CB7FA199986C8FC967EF202AF45B7 /* EasyCollectionViewWaterFlowLayout.swift */; };
+		89D7EFB25BC00DE865C155832162BC90 /* EasyWaterFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C5CB7FA199986C8FC967EF202AF45B7 /* EasyWaterFlowLayout.swift */; };
 		8A863CF0243F2229713EFE282742F830 /* FLEXNetworkObserver.h in Headers */ = {isa = PBXBuildFile; fileRef = AD7E329308B70C60B01A73F8779D8784 /* FLEXNetworkObserver.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		8B2B47DC051B466B1823B95C70926E5B /* FLEXObjectExplorerFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = E61ECF7DF9598387FBC934EEFD057500 /* FLEXObjectExplorerFactory.m */; };
 		8B4E0A1EDE289320591998E0BFEDA09C /* SDWebImageGIFCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 52110675F603677221A7E352734A3D08 /* SDWebImageGIFCoder.m */; };
@@ -876,7 +876,7 @@
 		1BF305BA9C7066A3BB06EBE16249EA73 /* Pods-Easy_Example_Beta.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Easy_Example_Beta.debug.xcconfig"; sourceTree = "<group>"; };
 		1C09C673866C7D2DBC9EE9BB51BE9D51 /* UIScrollView+MJRefresh.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIScrollView+MJRefresh.h"; path = "MJRefresh/UIScrollView+MJRefresh.h"; sourceTree = "<group>"; };
 		1C1EB424F6408E6DF81215C3081F3EBF /* FLEXArgumentInputView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXArgumentInputView.m; path = Classes/Editing/ArgumentInputViews/FLEXArgumentInputView.m; sourceTree = "<group>"; };
-		1C5CB7FA199986C8FC967EF202AF45B7 /* EasyCollectionViewWaterFlowLayout.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EasyCollectionViewWaterFlowLayout.swift; path = Easy/Classes/Core/EasyCollectionViewWaterFlowLayout.swift; sourceTree = "<group>"; };
+		1C5CB7FA199986C8FC967EF202AF45B7 /* EasyWaterFlowLayout.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EasyWaterFlowLayout.swift; path = Easy/Classes/Core/EasyWaterFlowLayout.swift; sourceTree = "<group>"; };
 		1D49DB6100308B3AA0488B5072515396 /* FLEXInstancesTableViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXInstancesTableViewController.h; path = Classes/GlobalStateExplorers/FLEXInstancesTableViewController.h; sourceTree = "<group>"; };
 		1F3410F4608B206EE179E7B527776251 /* FLEXHierarchyTableViewCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXHierarchyTableViewCell.m; path = Classes/ViewHierarchy/FLEXHierarchyTableViewCell.m; sourceTree = "<group>"; };
 		1FD884962D4F4E7905A41D84FAAB88C0 /* FLEXNetworkCurlLogger.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXNetworkCurlLogger.m; path = Classes/Network/FLEXNetworkCurlLogger.m; sourceTree = "<group>"; };
@@ -1628,7 +1628,7 @@
 				A37433305B964075AFAC7E0D4816A37E /* Easy.swift */,
 				7D799E60AFD810348AAA7AFB5F7B2E2D /* EasyAlert.swift */,
 				4B54292BE3CC52849929047C9EA18A79 /* EasyApp.swift */,
-				1C5CB7FA199986C8FC967EF202AF45B7 /* EasyCollectionViewWaterFlowLayout.swift */,
+				1C5CB7FA199986C8FC967EF202AF45B7 /* EasyWaterFlowLayout.swift */,
 				73C6A4796C0CB21C3A04F69DA00A79EA /* EasyCrypto.swift */,
 				B81FA85DECF89C978DA786D047AE83CB /* EasyExtension.swift */,
 				A28D809392C4BE8F4934052E1D5A84C7 /* EasyGlobal.swift */,
@@ -3183,7 +3183,7 @@
 				249F75CBDAF7A5E30262A3F64C2F9CD6 /* Easy.swift in Sources */,
 				ABF8F1BE55355AC6775D926C03DD2175 /* EasyAlert.swift in Sources */,
 				11E034DC461F356374CC0DE0C87529EF /* EasyApp.swift in Sources */,
-				18CF6368F392A2C89A01FF0602BD6CBC /* EasyCollectionViewWaterFlowLayout.swift in Sources */,
+				18CF6368F392A2C89A01FF0602BD6CBC /* EasyWaterFlowLayout.swift in Sources */,
 				FC9070548300700E31073E77E2265604 /* EasyConfig.swift in Sources */,
 				D575897A2BBE77BFEB5D000FC58B824D /* EasyCrypto.swift in Sources */,
 				7A7979E988DD4EECAF17938B24C2E1E6 /* EasyDevice.swift in Sources */,
@@ -3349,7 +3349,7 @@
 				045ADDA2557BE99940DE16D3EF93D660 /* EasyApp.swift in Sources */,
 				FB2024358CF8765933E3F8E487F3A342 /* EasyBeta.swift in Sources */,
 				19DF1C63751FA7F82EE4C023ACBE3FF1 /* EasyCheck.swift in Sources */,
-				89D7EFB25BC00DE865C155832162BC90 /* EasyCollectionViewWaterFlowLayout.swift in Sources */,
+				89D7EFB25BC00DE865C155832162BC90 /* EasyWaterFlowLayout.swift in Sources */,
 				CC9DAF1F3DFAB3CF3B3D3E8BCF9A96E8 /* EasyConfig.swift in Sources */,
 				A640A74DC5DB28CD63C16ECA3B12455D /* EasyCrypto.swift in Sources */,
 				E3B07871F6FD464DCFD280E52638B2A8 /* EasyDevice.swift in Sources */,

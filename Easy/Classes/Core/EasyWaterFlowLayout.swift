@@ -1,5 +1,5 @@
 //
-//  EasyCollectionViewWaterFlowLayout.swift
+//  EasyWaterFlowLayout.swift
 //  Easy
 //
 //  Created by OctMon on 2018/10/11.
@@ -8,10 +8,10 @@
 import UIKit
 
 public extension Easy {
-    typealias CollectionViewWaterFlowLayout = EasyCollectionViewWaterFlowLayout
+    typealias WaterFlowLayout = EasyWaterFlowLayout
 }
 
-public class EasyCollectionViewWaterFlowLayout: UICollectionViewFlowLayout {
+public class EasyWaterFlowLayout: UICollectionViewFlowLayout {
     
     struct AttributesInfo {
         var indexPath: IndexPath?
@@ -76,7 +76,7 @@ public class EasyCollectionViewWaterFlowLayout: UICollectionViewFlowLayout {
     
 }
 
-private extension EasyCollectionViewWaterFlowLayout {
+private extension EasyWaterFlowLayout {
     
     func calcLayoutInfo() {
         guard let collectionView = collectionView else { return }
@@ -188,7 +188,7 @@ private extension EasyCollectionViewWaterFlowLayout {
     
 }
 
-private extension EasyCollectionViewWaterFlowLayout {
+private extension EasyWaterFlowLayout {
     
     func getItemSize(with indexPath: IndexPath) -> CGSize {
         guard let delegate = delegate else {
