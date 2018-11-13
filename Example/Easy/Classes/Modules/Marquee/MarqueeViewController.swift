@@ -15,8 +15,6 @@ class MarqueeViewController: easy.ViewController, easy.TableListProtocol, easy.C
 
     private var marqueeLabel: easy.MarqueeLabel!
     
-//    private let marqueeListView = MarqueeCollectionListView(frame: CGRect(x: 0, y: 0, width: .screenWidth, height: .screenWidth * 0.25))
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
