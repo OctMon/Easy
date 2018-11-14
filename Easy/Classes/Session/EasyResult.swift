@@ -8,46 +8,6 @@
 import Foundation
 import Alamofire
 
-public enum EasyResult {
-    case success(EasyDataResult)
-    case failure(Error)
-    
-    /// Returns `true` if the result is a success, `false` otherwise.
-    public var isSuccess: Bool {
-        switch self {
-        case .success:
-            return true
-        case .failure:
-            return false
-        }
-    }
-    
-    /// Returns `true` if the result is a failure, `false` otherwise.
-    public var isFailure: Bool {
-        return !isSuccess
-    }
-    
-    /// Returns the EasyDataResult if the result is a success, `nil` otherwise.
-    public var value: EasyDataResult? {
-        switch self {
-        case .success(let value):
-            return value
-        case .failure:
-            return nil
-        }
-    }
-
-    /// Returns the associated error value if the result is a failure, `nil` otherwise.
-    public var error: Error? {
-        switch self {
-        case .success:
-            return nil
-        case .failure(let error):
-            return error
-        }
-    }
-}
-
 public struct EasyDataResponse {
     /// The URL request sent to the server.
     public let request: URLRequest?
@@ -66,37 +26,76 @@ public struct EasyDataResponse {
     
     /// Returns the associated error value if the result if it is a failure, `nil` otherwise.
     public var error: Error? { return result.error }
-
+    
     var list: [Any] = []
     
-    var _config: EasyConfig
+    var config: EasyConfig
+}
+
+public extension EasyDataResponse {
+    
+    /// Returns `true` if the result.valid is a success, `false` otherwise.
+    var resultValid: Bool {
+        return result.valid
+    }
+    
+    /// Returns the totalPgee
+    var resultTotal: Int {
+        return result.total
+    }
+    
+    /// Returns the code
+    var resultCode: Int {
+        return result.code
+    }
+    
+    /// Returns the message
+    var resultMsg: String {
+        return result.msg
+    }
+    
+    /// Returns the data -> [String: Any]
+    var resultData: EasyParameters {
+        return result.data
+    }
+
+    /// Returns the list -> [[String: Any]]
+    var resultList: [EasyParameters] {
+        return result.list
+    }
+    
+    /// Returns the Outermost json -> [String: Any]
+    var resultJson: EasyParameters {
+        return result.data
+    }
+    
 }
 
 extension DataResponse {
     
     func toEasyDataResponse(config: EasyConfig) -> EasyDataResponse {
-        var dataResult: EasyDataResult
+        var dataResult: EasyResult
         switch result {
         case .success(let dataResponse):
             if let jsonData = try? JSONSerialization.data(withJSONObject: dataResponse), let jsonobject = try? JSONSerialization.jsonObject(with: jsonData), let json = jsonobject as? Parameters, JSONSerialization.isValidJSONObject(dataResponse) {
-                dataResult = EasyDataResult(config: config, json: json, error: nil)
+                dataResult = EasyResult(config: config, json: json, error: nil)
             } else {
-                dataResult = EasyDataResult(config: config, json: [:], error: EasyError.empty(EasyErrorReason.serverError))
+                dataResult = EasyResult(config: config, json: [:], error: EasyError.empty(EasyErrorReason.serverError))
             }
-            return EasyDataResponse(request: request, response: response, data: data, result: .success(dataResult), timeline: timeline, list: [], _config: config)
+            return EasyDataResponse(request: request, response: response, data: data, result: dataResult, timeline: timeline, list: [], config: config)
         case .failure(let error):
-            dataResult = EasyDataResult(config: config, json: [:], error: error)
-            return EasyDataResponse(request: request, response: response, data: data, result: .failure(error), timeline: timeline, list: [], _config: config)
+            dataResult = EasyResult(config: config, json: [:], error: error)
+            return EasyDataResponse(request: request, response: response, data: data, result: dataResult, timeline: timeline, list: [], config: config)
         }
     }
 
 }
 
-public struct EasyDataResult {
+public struct EasyResult {
     
     private let config: EasyConfig
     private let easyError: EasyError?
-    let json: EasyParameters
+    public let json: EasyParameters
     
     init(config: EasyConfig, json: EasyParameters, error: Error?) {
         self.config = config
@@ -115,7 +114,7 @@ public struct EasyDataResult {
     
 }
 
-public extension EasyDataResult {
+public extension EasyResult {
     
     var code: Int { return json[config.key.code].toInt ?? config.code.unknown }
     var msg: String { return json[config.key.msg].toString ?? EasyErrorReason.serverError }
@@ -206,24 +205,7 @@ public extension EasyListView {
                 scrollView.mj_footer.endRefreshing()
             }
         }
-        switch dataResponse.result {
-        case .success(let result):
-            guard result.valid else {
-                if let handler = errorHandler {
-                    handler(dataResponse.error)
-                } else {
-                    if list.count > 0 {
-                        showText(dataResponse.error?.localizedDescription)
-                    } else {
-                        showPlaceholder(error: dataResponse.error, image: nil, tap: { [weak self] in
-                            self?.showLoading()
-                            self?.requestHandler?()
-                        })
-                    }
-                    
-                }
-                return
-            }
+        if dataResponse.resultValid {
             hidePlaceholder()
             if self.currentPage == self.firstPage {
                 if isTableView {
@@ -245,7 +227,7 @@ public extension EasyListView {
                     collectionView.reloadData()
                 }
             }
-            if ignoreTotalPage || (autoTotalPage ? dataResponse.list.count >= self.pageSize : result.total > self.currentPage) {
+            if ignoreTotalPage || (autoTotalPage ? dataResponse.list.count >= self.pageSize : dataResponse.resultTotal > self.currentPage) {
                 self.currentPage += incrementPage
                 if scrollView.mj_footer != nil {
                     scrollView.mj_footer.isHidden = false
@@ -257,11 +239,20 @@ public extension EasyListView {
                     scrollView.mj_footer.endRefreshingWithNoMoreData()
                 }
             }
-        case .failure(let error):
-            showPlaceholder(error: error, image: nil, tap: { [weak self] in
-                self?.showLoading()
-                self?.requestHandler?()
-            })
+        } else {
+            if let handler = errorHandler {
+                handler(dataResponse.error)
+            } else {
+                if list.count > 0 {
+                    showText(dataResponse.error?.localizedDescription)
+                } else {
+                    showPlaceholder(error: dataResponse.error, image: nil, tap: { [weak self] in
+                        self?.showLoading()
+                        self?.requestHandler?()
+                    })
+                }
+                
+            }
         }
     }
     

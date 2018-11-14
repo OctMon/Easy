@@ -177,15 +177,9 @@ extension Tuchong {
     /// 图虫
     static func getTuchong(page: Int, poseId: Int?, handler: @escaping (easy.DataResponse) -> Void) {
         session.get(parameters: session.pageSize(page, poseId)) { (dataResponse) in
-            switch dataResponse.result {
-            case .success(let result):
-                if result.valid {
-                    handler(dataResponse.fill(list: result.list.compactMap({ JSONDecoder().decode(Tuchong.self, from: $0) })))
-                } else {
-                    handler(dataResponse)
-                }
-                
-            case .failure(_):
+            if dataResponse.resultValid {
+                handler(dataResponse.fill(list: dataResponse.resultList.compactMap({ JSONDecoder().decode(Tuchong.self, from: $0) })))
+            } else {
                 handler(dataResponse)
             }
         }
