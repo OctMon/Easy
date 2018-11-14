@@ -9,9 +9,7 @@ import Foundation
 
 public struct EasyConfig {
     
-    public init() {
-        
-    }
+    public init() { }
     
     public struct BaseURL {
         public var global: String?
@@ -60,10 +58,17 @@ public struct EasyConfig {
     
     public struct Code {
         public var success = 0
+        /// HTTP status code validate
+        public var successStatusCode = 200
         public var empty: Int?
         public var tokenExpired: Int?
         public var forceUpdate: Int?
         public var unknown = -990909
+        
+        /// Successfully valid with HTTP status code.
+        public var validWithHTTPstatusCode = false
+        /// Validates that the response has a status code in the specified sequence.
+        public var acceptableStatusCodes: Array? = Array(200..<300)
     }
     
     public struct Other {
@@ -74,9 +79,6 @@ public struct EasyConfig {
     public var key = Key()
     public var code = Code()
     public var other = Other()
-    
-    /// Validates that the response has a status code in the specified sequence.
-    public var acceptableStatusCodes = Array(200..<300)
 }
 
 extension EasyConfig.BaseURL {

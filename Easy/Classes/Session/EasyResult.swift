@@ -69,44 +69,33 @@ public extension EasyDataResponse {
     
 }
 
-extension DataResponse {
-    
-    func toEasyDataResponse(config: EasyConfig) -> EasyDataResponse {
-        var dataResult: EasyResult
-        switch result {
-        case .success(let dataResponse):
-            if let jsonData = try? JSONSerialization.data(withJSONObject: dataResponse), let jsonobject = try? JSONSerialization.jsonObject(with: jsonData), let json = jsonobject as? Parameters, JSONSerialization.isValidJSONObject(dataResponse) {
-                dataResult = EasyResult(config: config, json: json, error: nil)
-            } else {
-                dataResult = EasyResult(config: config, json: [:], error: EasyError.empty(EasyErrorReason.serverError))
-            }
-            return EasyDataResponse(request: request, response: response, data: data, result: dataResult, timeline: timeline, list: [])
-        case .failure(let error):
-            dataResult = EasyResult(config: config, json: [:], error: error)
-            return EasyDataResponse(request: request, response: response, data: data, result: dataResult, timeline: timeline, list: [])
-        }
-    }
-
-}
-
 public struct EasyResult {
     
     private let config: EasyConfig
     private let easyError: EasyError?
+    private let dataResponse: DataResponse<Any>
     public let json: EasyParameters
     
-    init(config: EasyConfig, json: EasyParameters, error: Error?) {
+    init(config: EasyConfig, dataResponse: DataResponse<Any>) {
         self.config = config
-        self.json = json
-        if let error = error {
+        self.dataResponse = dataResponse
+        switch dataResponse.result {
+        case .success(let dataResponse):
+            if let jsonData = try? JSONSerialization.data(withJSONObject: dataResponse), let jsonobject = try? JSONSerialization.jsonObject(with: jsonData), let json = jsonobject as? Parameters, JSONSerialization.isValidJSONObject(dataResponse) {
+                self.json = json
+                self.easyError = nil
+            } else {
+                self.json = [:]
+                self.easyError = EasyError.serviceError(EasyErrorReason.serverError)
+            }
+        case .failure(let error):
+            self.json = [:]
             switch URLError.Code(rawValue: (error as NSError).code) {
             case URLError.Code.notConnectedToInternet, URLError.Code.timedOut:
                 self.easyError = EasyError.networkFailed
             default:
                 self.easyError = EasyError.serviceError(error.localizedDescription)
             }
-        } else {
-            easyError = nil
         }
     }
     
@@ -114,8 +103,13 @@ public struct EasyResult {
 
 public extension EasyResult {
     
-    var code: Int { return json[config.key.code].toInt ?? config.code.unknown }
-    var msg: String { return json[config.key.msg].toString ?? (error?.localizedDescription ?? EasyErrorReason.serverError) }
+    var code: Int {
+        if config.code.validWithHTTPstatusCode {
+            return dataResponse.response?.statusCode ?? config.code.unknown
+        }
+        return json[config.key.code].toInt ?? config.code.unknown
+    }
+    var msg: String { return json[config.key.msg].toString ?? easyError?.localizedDescription ?? EasyErrorReason.serverError }
     var data: EasyParameters { return (json[config.key.data] as? EasyParameters) ?? [:] }
 
     var total: Int { return json[config.key.total].toIntValue }
@@ -123,6 +117,9 @@ public extension EasyResult {
     
     var valid: Bool {
         guard easyError == nil else { return false}
+        if config.code.validWithHTTPstatusCode {
+            return dataResponse.response?.statusCode == config.code.successStatusCode
+        }
         return code == config.code.success
     }
     
@@ -139,7 +136,7 @@ public extension EasyResult {
                 return EasyError.forceUpdate(msg.isEmpty ? EasyErrorReason.force : msg)
             default:
                 if valid { return nil }
-                return EasyError.serviceError(EasyErrorReason.serverError)
+                return EasyError.serviceError(msg.isEmpty ? EasyErrorReason.serverError : msg)
             }
         }
     }
