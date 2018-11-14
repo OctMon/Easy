@@ -74,6 +74,9 @@ public struct EasyConfig {
     public var key = Key()
     public var code = Code()
     public var other = Other()
+    
+    /// Validates that the response has a status code in the specified sequence.
+    public var acceptableStatusCodes = Array(200..<300)
 }
 
 extension EasyConfig.BaseURL {

@@ -28,8 +28,6 @@ public struct EasyDataResponse {
     public var error: Error? { return result.error }
     
     var list: [Any] = []
-    
-    var config: EasyConfig
 }
 
 public extension EasyDataResponse {
@@ -66,7 +64,7 @@ public extension EasyDataResponse {
     
     /// Returns the Outermost json -> [String: Any]
     var resultJson: EasyParameters {
-        return result.data
+        return result.json
     }
     
 }
@@ -82,10 +80,10 @@ extension DataResponse {
             } else {
                 dataResult = EasyResult(config: config, json: [:], error: EasyError.empty(EasyErrorReason.serverError))
             }
-            return EasyDataResponse(request: request, response: response, data: data, result: dataResult, timeline: timeline, list: [], config: config)
+            return EasyDataResponse(request: request, response: response, data: data, result: dataResult, timeline: timeline, list: [])
         case .failure(let error):
             dataResult = EasyResult(config: config, json: [:], error: error)
-            return EasyDataResponse(request: request, response: response, data: data, result: dataResult, timeline: timeline, list: [], config: config)
+            return EasyDataResponse(request: request, response: response, data: data, result: dataResult, timeline: timeline, list: [])
         }
     }
 
@@ -117,7 +115,7 @@ public struct EasyResult {
 public extension EasyResult {
     
     var code: Int { return json[config.key.code].toInt ?? config.code.unknown }
-    var msg: String { return json[config.key.msg].toString ?? EasyErrorReason.serverError }
+    var msg: String { return json[config.key.msg].toString ?? (error?.localizedDescription ?? EasyErrorReason.serverError) }
     var data: EasyParameters { return (json[config.key.data] as? EasyParameters) ?? [:] }
 
     var total: Int { return json[config.key.total].toIntValue }
@@ -141,7 +139,7 @@ public extension EasyResult {
                 return EasyError.forceUpdate(msg.isEmpty ? EasyErrorReason.force : msg)
             default:
                 if valid { return nil }
-                return EasyError.serviceError(msg.isEmpty ? EasyErrorReason.serverError : msg)
+                return EasyError.serviceError(EasyErrorReason.serverError)
             }
         }
     }

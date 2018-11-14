@@ -82,7 +82,7 @@ public extension EasySession {
     }
     
     func get(path: String?, parameters: EasyParameters?, timeoutInterval: TimeInterval? = nil, requestHandler: ((URLRequest) -> URLRequest)? = nil, completionHandler: @escaping (EasyDataResponse) -> Void) {
-        manager.easyRequest(Router.requestURLEncoding(config.url.currentBaseURL, path, .get, parameters, timeoutInterval ?? config.other.timeout, requestHandler: requestHandler)).easyResponse { (dataResponse) in
+        manager.easyRequest(Router.requestURLEncoding(config.url.currentBaseURL, path, .get, parameters, timeoutInterval ?? config.other.timeout, requestHandler: requestHandler), config: config).easyResponse { (dataResponse) in
             completionHandler(dataResponse.toEasyDataResponse(config: self.config))
         }
     }
@@ -93,11 +93,11 @@ public extension EasySession {
     
     func post(path: String?, isURLEncoding: Bool = false, parameters: EasyParameters? = nil, timeoutInterval: TimeInterval? = nil, requestHandler: ((URLRequest) -> URLRequest)? = nil, completionHandler: @escaping (EasyDataResponse) -> Void) {
         if isURLEncoding {
-            manager.easyRequest(Router.requestURLEncoding(config.url.currentBaseURL, path, .post, parameters, timeoutInterval ?? config.other.timeout, requestHandler: requestHandler)).easyResponse { (dataResponse) in
+            manager.easyRequest(Router.requestURLEncoding(config.url.currentBaseURL, path, .post, parameters, timeoutInterval ?? config.other.timeout, requestHandler: requestHandler), config: config).easyResponse { (dataResponse) in
                 completionHandler(dataResponse.toEasyDataResponse(config: self.config))
             }
         } else {
-            manager.easyRequest(Router.requestJSONEncoding(config.url.currentBaseURL, path, .post, parameters, timeoutInterval ?? config.other.timeout, requestHandler: requestHandler)).easyResponse { (dataResponse) in
+            manager.easyRequest(Router.requestJSONEncoding(config.url.currentBaseURL, path, .post, parameters, timeoutInterval ?? config.other.timeout, requestHandler: requestHandler), config: config).easyResponse { (dataResponse) in
                 completionHandler(dataResponse.toEasyDataResponse(config: self.config))
             }
         }
@@ -122,11 +122,11 @@ public extension EasySession {
 
 extension SessionManager {
     
-    func easyRequest(_ urlRequest: URLRequestConvertible) -> DataRequest {
+    func easyRequest(_ urlRequest: URLRequestConvertible, config: EasyConfig) -> DataRequest {
         #if DEBUG || BETA
             urlRequest.urlRequest?.printRequestLog()
         #endif
-        return request(urlRequest).validate()
+        return request(urlRequest).validate(statusCode: config.acceptableStatusCodes)
     }
     
 }
