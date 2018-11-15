@@ -95,12 +95,12 @@ public extension String {
     }
     
     /// 加密
-    func encrypt(algorithm: EasyCryptoAlgorithm, options: CCOptions = CCOptions(kCCOptionECBMode + kCCOptionPKCS7Padding), key: String, iv: String = "") -> String? {
+    func encryptAlgorithm(_ algorithm: EasyCryptoAlgorithm, options: CCOptions = CCOptions(kCCOptionECBMode + kCCOptionPKCS7Padding), key: String, iv: String = "") -> String? {
         return data(using: .utf8)?.encrypt(algorithm: algorithm, options: options, key: key, iv: iv)?.base64EncodedString()
     }
     
     /// 解密
-    func decrypt(algorithm: EasyCryptoAlgorithm, options: CCOptions = CCOptions(kCCOptionECBMode + kCCOptionPKCS7Padding), key: String, iv: String = "") -> String? {
+    func decryptAlgorithm(_ algorithm: EasyCryptoAlgorithm, options: CCOptions = CCOptions(kCCOptionECBMode + kCCOptionPKCS7Padding), key: String, iv: String = "") -> String? {
         guard let data = Data(base64Encoded: self)?.decrypt(algorithm: algorithm, options: options, key: key, iv: iv) else { return nil }
         return String(data: data, encoding: .utf8)
     }

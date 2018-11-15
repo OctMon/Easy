@@ -43,6 +43,11 @@ Pod::Spec.new do |s|
         #ss.dependency 'SwiftyAttributes'#, '~> 5.0.0' # https://github.com/eddiekaiger/SwiftyAttributes
     end
     
+    s.subspec 'RSA' do |ss|
+        ss.source_files = 'Easy/Classes/RSA/*'
+        ss.dependency 'SwiftyRSA'#, '~> 1.5.0' # https://github.com/TakeScoop/SwiftyRSA
+    end
+    
     s.subspec 'Session' do |ss|
         ss.source_files = 'Easy/Classes/Session/*'
         ss.dependency 'Easy/Core'
