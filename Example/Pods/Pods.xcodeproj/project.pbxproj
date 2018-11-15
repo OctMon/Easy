@@ -518,6 +518,8 @@
 		FD7BE3D3ABDACD2EBAC343371725EE02 /* ConstraintAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A44F6B8D6786E6483AD1280E75F8E3E /* ConstraintAttributes.swift */; };
 		FD82FD1954A7292C139996E3E12B86D9 /* FLEXImagePreviewViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C8AB4B983BB48CF3A790034C97D4506 /* FLEXImagePreviewViewController.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		FD8415ED8FE8939680E7CA1A448C2EDC /* ConstraintConstantTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC813EB4AEB2EB38345FB96BA81F7BE3 /* ConstraintConstantTarget.swift */; };
+		FE25CD59219D866000D178B4 /* EasyNotificationBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE25CD58219D866000D178B4 /* EasyNotificationBanner.swift */; };
+		FE25CD5A219D866000D178B4 /* EasyNotificationBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE25CD58219D866000D178B4 /* EasyNotificationBanner.swift */; };
 		FEF48762AD57412EDCF16F77972DE5C2 /* ConstraintViewDSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99078DCE21DF100E02C5C319D4D19242 /* ConstraintViewDSL.swift */; };
 		FF20A073551D0FB2FE92454E8DCA14DD /* FLEXPropertyEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E1680038C8803B0206A2483412EFF3 /* FLEXPropertyEditorViewController.m */; };
 		FF6092071341546FED47D5A6BC23E2E8 /* WMScrollView.h in Headers */ = {isa = PBXBuildFile; fileRef = BFE92BB3EA6D56352DEABA779896B93D /* WMScrollView.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -1399,6 +1401,7 @@
 		FCCC727847AA2CF4A857CB002BCEE72F /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FCD3EDF22790D147B3373C3A0FC8EE05 /* EasySocial.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = EasySocial.bundle; path = Easy/Resources/EasySocial.bundle; sourceTree = "<group>"; };
 		FD395DB1BF6BB08278407F0A7022A62C /* FLEXExplorerViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXExplorerViewController.m; path = Classes/ExplorerInterface/FLEXExplorerViewController.m; sourceTree = "<group>"; };
+		FE25CD58219D866000D178B4 /* EasyNotificationBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EasyNotificationBanner.swift; path = Easy/Classes/Core/EasyNotificationBanner.swift; sourceTree = "<group>"; };
 		FEE9C15EC28012D2130316D1930B2CEA /* SDWebImageImageIOCoder.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDWebImageImageIOCoder.h; path = SDWebImage/SDWebImageImageIOCoder.h; sourceTree = "<group>"; };
 		FF13BEE2D7747ADEF13B148A56D1945A /* SDWebImageTransition.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDWebImageTransition.h; path = SDWebImage/SDWebImageTransition.h; sourceTree = "<group>"; };
 		FFA60CA585A11973315308C4097AC14A /* Pods-Easy_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Easy_Tests.release.xcconfig"; sourceTree = "<group>"; };
@@ -2537,6 +2540,7 @@
 				5C390A1F6BB2B2610EF62F7FCDF84E08 /* EasyLog.swift */,
 				09EFC8E9C15BACC0D2BB5269E2118316 /* EasyMarqueeLabel.swift */,
 				3530A1F21D126F9870F16F2BD2398460 /* EasyNavigationController.swift */,
+				FE25CD58219D866000D178B4 /* EasyNotificationBanner.swift */,
 				141FDEC0FEFE6B552C25FF0AB58FE0FA /* EasyPlaceholder.swift */,
 				5620D0E926BB7D86BD25287DC47CA469 /* EasyPopupMenu.swift */,
 				2A982178DDBFC69B1947A102E4926EB9 /* EasyPopupView.swift */,
@@ -3439,6 +3443,7 @@
 				64376D520078B00861226B0C39B1CCCE /* EasyPopupView.swift in Sources */,
 				7C8182BBC45724C50FC2FF7109803FAE /* EasyRefresh.swift in Sources */,
 				BD9682AC2225265C41C21DFA913A581A /* EasyResult.swift in Sources */,
+				FE25CD59219D866000D178B4 /* EasyNotificationBanner.swift in Sources */,
 				5DDC4390ACB0AA1FA6588B74606D56C7 /* EasyRouter.swift in Sources */,
 				229B4E66DEDA3F6ED47BC22FB44982E1 /* EasyRSA.swift in Sources */,
 				34DFA4EB5C5F1B740D439B8D7A5AC740 /* EasyScan.swift in Sources */,
@@ -3499,6 +3504,7 @@
 				F3D686A9E38F4B2FC747F01B833C434B /* Easy.swift in Sources */,
 				C22EFCE0FF0D24C8A7685BA66C757D93 /* EasyAlert.swift in Sources */,
 				90CBD9E63FD89A95BFBBA03FC309E5F3 /* EasyApp.swift in Sources */,
+				FE25CD5A219D866000D178B4 /* EasyNotificationBanner.swift in Sources */,
 				72142ED46F308AF73626757986C0BF60 /* EasyBeta.swift in Sources */,
 				8C4D6F362F9DE07B373E2B448204DEC0 /* EasyCheck.swift in Sources */,
 				A985B9FA4BBE6570D54E9FAA7DAF4705 /* EasyCollectionListView.swift in Sources */,
