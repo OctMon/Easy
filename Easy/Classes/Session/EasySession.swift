@@ -77,27 +77,32 @@ public extension EasySession {
         return parameters
     }
     
-    func get(parameters: EasyParameters?, timeoutInterval: TimeInterval? = nil, requestHandler: ((URLRequest) -> URLRequest)? = nil, completionHandler: @escaping (EasyDataResponse) -> Void) {
-        get(path: nil, parameters: parameters, timeoutInterval: timeoutInterval, requestHandler: requestHandler, completionHandler: completionHandler)
+    func get(parameters: EasyParameters?, timeoutInterval: TimeInterval? = nil, inView view: UIView? = nil, requestHandler: ((URLRequest) -> URLRequest)? = nil, completionHandler: @escaping (EasyDataResponse) -> Void) {
+        get(path: nil, parameters: parameters, timeoutInterval: timeoutInterval, inView: view, requestHandler: requestHandler, completionHandler: completionHandler)
     }
     
-    func get(path: String?, parameters: EasyParameters?, timeoutInterval: TimeInterval? = nil, requestHandler: ((URLRequest) -> URLRequest)? = nil, completionHandler: @escaping (EasyDataResponse) -> Void) {
+    func get(path: String?, parameters: EasyParameters?, timeoutInterval: TimeInterval? = nil, inView view: UIView? = nil, requestHandler: ((URLRequest) -> URLRequest)? = nil, completionHandler: @escaping (EasyDataResponse) -> Void) {
+        view?.showLoading()
         manager.easyRequest(Router.requestURLEncoding(config.url.currentBaseURL, path, .get, parameters, timeoutInterval ?? config.other.timeout, requestHandler: requestHandler), config: config).easyResponse { (dataResponse) in
+            view?.hideLoading()
             completionHandler(self.getEasyDataResponse(dataResponse: dataResponse))
         }
     }
     
-    func post(isURLEncoding: Bool = false, parameters: EasyParameters? = nil, timeoutInterval: TimeInterval? = nil, requestHandler: ((URLRequest) -> URLRequest)? = nil, completionHandler: @escaping (EasyDataResponse) -> Void) {
+    func post(isURLEncoding: Bool = false, parameters: EasyParameters? = nil, timeoutInterval: TimeInterval? = nil, inView view: UIView? = nil, requestHandler: ((URLRequest) -> URLRequest)? = nil, completionHandler: @escaping (EasyDataResponse) -> Void) {
         post(path: nil, isURLEncoding: isURLEncoding, parameters: parameters, timeoutInterval: timeoutInterval, requestHandler: requestHandler, completionHandler: completionHandler)
     }
     
-    func post(path: String?, isURLEncoding: Bool = false, parameters: EasyParameters? = nil, timeoutInterval: TimeInterval? = nil, requestHandler: ((URLRequest) -> URLRequest)? = nil, completionHandler: @escaping (EasyDataResponse) -> Void) {
+    func post(path: String?, isURLEncoding: Bool = false, parameters: EasyParameters? = nil, timeoutInterval: TimeInterval? = nil, inView view: UIView? = nil, requestHandler: ((URLRequest) -> URLRequest)? = nil, completionHandler: @escaping (EasyDataResponse) -> Void) {
+        view?.showLoading()
         if isURLEncoding {
             manager.easyRequest(Router.requestURLEncoding(config.url.currentBaseURL, path, .post, parameters, timeoutInterval ?? config.other.timeout, requestHandler: requestHandler), config: config).easyResponse { (dataResponse) in
+                view?.hideLoading()
                 completionHandler(self.getEasyDataResponse(dataResponse: dataResponse))
             }
         } else {
             manager.easyRequest(Router.requestJSONEncoding(config.url.currentBaseURL, path, .post, parameters, timeoutInterval ?? config.other.timeout, requestHandler: requestHandler), config: config).easyResponse { (dataResponse) in
+                view?.hideLoading()
                 completionHandler(self.getEasyDataResponse(dataResponse: dataResponse))
             }
         }

@@ -25,10 +25,7 @@ class TuchongViewController: easy.ViewController, easy.CollectionListProtocol {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidLoad()
         
-        if collectionListView.list.count == 0 {
-            self.collectionListView.showLoading()
-            self.request()
-        }
+        self.request()
     }
     
     override func configure() {
@@ -43,7 +40,7 @@ class TuchongViewController: easy.ViewController, easy.CollectionListProtocol {
     override func request() {
         super.request()
         
-        Tuchong.getTuchong(page: collectionListView.currentPage, poseId: collectionListView.firstPage == collectionListView.currentPage ? nil : poseID) { (dataResponse) in
+        getTuchong(page: collectionListView.currentPage, poseId: collectionListView.firstPage == collectionListView.currentPage ? nil : poseID) { (dataResponse) in
             self.poseID = (dataResponse.list(Tuchong.self)).last?.postID
             self.collectionListView.setRefresh(dataResponse: dataResponse)
         }
