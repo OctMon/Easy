@@ -154,27 +154,18 @@ extension DataRequest {
     
 }
 
-#if canImport(NotificationBannerSwift)
-import NotificationBannerSwift
-#endif
-
 private func logResponseJSON(_ dataResponse: DataResponse<Any>) {
     #if DEBUG || BETA
     let title = dataResponse.request?.printResponseLog(isPrintBase64DecodeBody: true, response: dataResponse.response, data: dataResponse.data, error: dataResponse.result.error, requestDuration: dataResponse.timeline.requestDuration)
     if EasySession.logEnabel {
-        #if canImport(NotificationBannerSwift)
-        let banner = StatusBarNotificationBanner(title: "查看日志 📋 [接口响应时间] 🔌 " + String(format: "%.3f秒", dataResponse.timeline.requestDuration))
-        banner.duration = 1
-        banner.show(queuePosition: .front, bannerPosition: .top)
-        banner.onTap = {
+        EasyNotificationBanner().show(text: "查看日志 📋 [接口响应时间] 🔌 " + String(format: "%.3f秒", dataResponse.timeline.requestDuration) + "\n" + (dataResponse.request?.url?.absoluteString ?? ""), tap: {
             let alert = EasyAlert(title: (title?.requestLog ?? "").replacingOccurrences(of: ">", with: "").replacingOccurrences(of: "----", with: "--"), message: (title?.responseLog
                 ?? "").replacingOccurrences(of: ">", with: ""))
             alert.addAction(title: "复制", style: .default, handler: { (_) in
                 ((title?.requestLog ?? "") + (title?.responseLog ?? "")).copyToPasteboard()
             })
             alert.showOk()
-        }
-        #endif
+        })
     }
     #endif
 }
