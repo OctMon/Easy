@@ -202,7 +202,7 @@ public extension EasySocial {
         return MonkeyKing.SupportedPlatform.alipay.isAppInstalled
     }
     
-    static func register(weChatAppId: String, weChatAppKey: String, miniAppID: String) {
+    static func register(weChatAppId: String, weChatAppKey: String?, miniAppID: String?) {
         MonkeyKing.registerAccount(MonkeyKing.Account.weChat(appID: weChatAppId, appKey: weChatAppKey, miniAppID: miniAppID))
     }
     
@@ -294,6 +294,12 @@ public extension EasySocial {
             MonkeyKing.deliver(m, completionHandler: { (result) in
                 EasyLog.debug("result: \(result)")
             })
+        }
+    }
+    
+    static func weChatOAuthForCode(scope: String? = nil, requestToken: String? = nil, responseHandler: @escaping (String?, Error?) -> Void) {
+        MonkeyKing.weChatOAuthForCode(scope: scope, requestToken: requestToken) { (code, error) in
+            responseHandler(code, error)
         }
     }
     
