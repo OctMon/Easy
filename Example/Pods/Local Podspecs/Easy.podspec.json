@@ -1,6 +1,6 @@
 {
   "name": "Easy",
-  "version": "0.8.0",
+  "version": "0.9.0",
   "summary": "develop Swift with Easy",
   "description": "Reduce development time and increase development efficiency",
   "homepage": "https://github.com/OctMon/Easy",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/OctMon/Easy.git",
-    "tag": "0.8.0"
+    "tag": "0.9.0"
   },
   "platforms": {
     "ios": "9.0"
@@ -21,7 +21,6 @@
   "swift_version": "4.2",
   "default_subspecs": [
     "Core",
-    "Device",
     "Session"
   ],
   "subspecs": [
@@ -33,15 +32,6 @@
       ],
       "dependencies": {
         "SnapKit": [
-
-        ]
-      }
-    },
-    {
-      "name": "Device",
-      "source_files": "Easy/Classes/Device/*",
-      "dependencies": {
-        "Easy/Core": [
 
         ]
       }
@@ -67,6 +57,9 @@
       "name": "RSA",
       "source_files": "Easy/Classes/RSA/*",
       "dependencies": {
+        "Easy/Core": [
+
+        ],
         "SwiftyRSA": [
 
         ]
@@ -92,9 +85,6 @@
       ],
       "dependencies": {
         "Easy/Core": [
-
-        ],
-        "Easy/Device": [
 
         ],
         "MonkeyKing": [

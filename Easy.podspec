@@ -22,17 +22,12 @@ Pod::Spec.new do |s|
     
     s.ios.deployment_target = '9.0'
     s.swift_version = '4.2'
-    s.default_subspec = ['Core', 'Device', 'Session']
+    s.default_subspec = ['Core', 'Session']
     
     s.subspec 'Core' do |ss|
         ss.source_files = 'Easy/Classes/Core/*'
         ss.resources = ['Easy/Resources/EasyCore.bundle']
         ss.dependency 'SnapKit'#, '~> 4.0.1' # https://github.com/SnapKit/SnapKit
-    end
-    
-    s.subspec 'Device' do |ss|
-        ss.source_files = 'Easy/Classes/Device/*'
-        ss.dependency 'Easy/Core'
     end
     
     s.subspec 'Common' do |ss|
@@ -45,6 +40,7 @@ Pod::Spec.new do |s|
     
     s.subspec 'RSA' do |ss|
         ss.source_files = 'Easy/Classes/RSA/*'
+        ss.dependency 'Easy/Core'
         ss.dependency 'SwiftyRSA'#, '~> 1.5.0' # https://github.com/TakeScoop/SwiftyRSA
     end
     
@@ -58,7 +54,6 @@ Pod::Spec.new do |s|
         ss.source_files = 'Easy/Classes/Social/*'
         ss.resources = ['Easy/Resources/EasySocial.bundle']
         ss.dependency 'Easy/Core'
-        ss.dependency 'Easy/Device'
         ss.dependency 'MonkeyKing'#, '~> 1.12.1' # https://github.com/nixzhu/MonkeyKing
     end
     

@@ -11,7 +11,6 @@ import Easy
 
 typealias easy = Easy
 typealias app = EasyApp
-typealias device = EasyDevice
 typealias log = EasyLog
 typealias alert = EasyAlert
 typealias actionSheet = EasyActionSheet

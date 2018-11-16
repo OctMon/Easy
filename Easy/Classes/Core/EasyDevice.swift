@@ -7,15 +7,7 @@
 
 import UIKit
 
-public extension Easy {
-    typealias Device = EasyDevice
-}
-
-public struct EasyDevice {
-    private init() {}
-}
-
-public extension EasyDevice {
+public extension EasyApp {
     
     enum DeviceModel: String {
         /*** iPhone ***/
@@ -116,15 +108,15 @@ public extension EasyDevice {
     
 }
 
-public func <(lhs: EasyDevice.DeviceSize, rhs: EasyDevice.DeviceSize) -> Bool {
+public func <(lhs: EasyApp.DeviceSize, rhs: EasyApp.DeviceSize) -> Bool {
     return lhs.rawValue < rhs.rawValue
 }
 
-public func ==(lhs: EasyDevice.DeviceSize, rhs: EasyDevice.DeviceSize) -> Bool {
+public func ==(lhs: EasyApp.DeviceSize, rhs: EasyApp.DeviceSize) -> Bool {
     return lhs.rawValue == rhs.rawValue
 }
 
-public extension EasyDevice {
+public extension EasyApp {
     
     /// My iPhone
     static let aboutName = UIDevice.current.name
@@ -135,7 +127,7 @@ public extension EasyDevice {
     /// 0.0 - 1.0
     static let batteryLevel = UIDevice.current.batteryLevel
     
-    static var machine: String {
+    static var deviceMachine: String {
         var systemInfo = utsname()
         uname(&systemInfo)
         let machineMirror = Mirror(reflecting: systemInfo.machine)
@@ -146,8 +138,8 @@ public extension EasyDevice {
         return identifier
     }
     
-    static var model: EasyDevice.DeviceModel {
-        switch machine {
+    static var deviceModel: EasyApp.DeviceModel {
+        switch deviceMachine {
             /*** iPhone ***/
         case "iPhone3,1", "iPhone3,2", "iPhone3,3":
             return .iPhone4
@@ -240,8 +232,8 @@ public extension EasyDevice {
         }
     }
     
-    static var type: EasyDevice.DeviceType {
-        let model = machine
+    static var deviceType: EasyApp.DeviceType {
+        let model = deviceMachine
         if model.contains("iPhone") {
             return .iPhone
         } else if model.contains("iPad") {
@@ -255,7 +247,7 @@ public extension EasyDevice {
         }
     }
     
-    static var size: EasyDevice.DeviceSize {
+    static var deviceSize: EasyApp.DeviceSize {
         let w = UIScreen.main.bounds.width
         let h = UIScreen.main.bounds.height
         let screenHeight = max(w, h)
@@ -274,7 +266,7 @@ public extension EasyDevice {
         case 896:
             return UIScreen.main.scale == 3.0 ? .screen6_5Inch : .screen6_1Inch
         case 1024:
-            switch model {
+            switch deviceModel {
             case .iPadMini,.iPadMini2,.iPadMini3,.iPadMini4:
                 return .screen7_9Inch
             case .iPadPro10_5Inch:
@@ -291,11 +283,11 @@ public extension EasyDevice {
         }
     }
     
-    static let isPad = type == .iPad
-    static let isPhone = type == .iPhone
-    static let isPod = type == .iPod
-    static let isSimulator = type == .simulator
-    static let isAllFaceIDCapableDevices = size == .screen5_8Inch || size == .screen6_1Inch || size == .screen6_5Inch
+    static let isPad = deviceType == .iPad
+    static let isPhone = deviceType == .iPhone
+    static let isPod = deviceType == .iPod
+    static let isSimulator = deviceType == .simulator
+    static let isAllFaceIDCapableDevices = deviceSize == .screen5_8Inch || deviceSize == .screen6_1Inch || deviceSize == .screen6_5Inch
     static let safeBottomEdge = CGFloat(isAllFaceIDCapableDevices ? 34 : 0)
     
 }

@@ -11,7 +11,7 @@ extension Easy {
     typealias NotificationBanner = EasyNotificationBanner
 }
 
-private var bannerTop: CGFloat = .screenHeight - 44 - EasyDevice.safeBottomEdge
+private var bannerTop: CGFloat = .screenHeight - 44 - EasyApp.safeBottomEdge
 private var bannerWidth: CGFloat = .screenWidth * 0.8
 private var bannerStart: CGFloat = .screenWidth * 2
 
