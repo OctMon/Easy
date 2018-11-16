@@ -33,8 +33,8 @@ public extension UIView {
         #endif
     }
     
+    #if canImport(MBProgressHUD)
     func show(mode: MBProgressHUDMode, text: String?, afterDelay: TimeInterval = 1) {
-        #if canImport(MBProgressHUD)
         let hud = MBProgressHUD.showAdded(to: self, animated: true)
         hud.animationType = .fade
         hud.mode = mode
@@ -44,7 +44,7 @@ public extension UIView {
         if mode == .text {
             hud.hide(animated: true, afterDelay: afterDelay)
         }
-        #endif
     }
+    #endif
     
 }
