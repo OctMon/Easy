@@ -25,7 +25,7 @@ public struct EasyDataResponse {
     public let timeline: Timeline
     
     /// Returns the associated error value if the result if it is a failure, `nil` otherwise.
-    public var error: Error? { return result.error }
+    public var error: EasyError? { return result.error }
     
     var list: [Any] = []
 }
