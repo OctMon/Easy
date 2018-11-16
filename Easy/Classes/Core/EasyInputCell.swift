@@ -54,7 +54,7 @@ public class EasyInputCell: UITableViewCell {
         
         button.snp.makeConstraints({ (make) in
             make.top.bottom.equalToSuperview()
-            make.right.equalTo(-30)
+            make.right.equalTo(textField.snp.right).offset(-15)
         })
         
         button.setTitleColor(UIColor.hex(0xFF4040), for: .normal)

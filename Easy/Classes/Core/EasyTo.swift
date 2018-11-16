@@ -35,6 +35,14 @@ public extension Optional {
         return toInt ?? 0
     }
     
+    /// 强转为Bool类型
+    var toBoolValue: Bool {
+        guard let value = self else {
+            return false
+        }
+        return "\(value)".toBoolValue
+    }
+    
     /// 强转为String类型
     var toString: String? {
         return (self as? String) ?? NumberFormatter().string(for: self)
