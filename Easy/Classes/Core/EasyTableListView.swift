@@ -58,6 +58,11 @@ public extension EasyTableListProtocol {
         }
         return tableListView
     }
+    
+    func tableList<T>(_ class: T.Type) -> [T] {
+        return tableList as? [T] ?? []
+    }
+
 }
 
 open class EasyTableListView: EasyListView {

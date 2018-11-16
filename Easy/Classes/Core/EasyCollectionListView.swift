@@ -66,6 +66,11 @@ public extension EasyCollectionListProtocol {
         }
         return collectionListView
     }
+    
+    func collectionList<T>(_ class: T.Type) -> [T] {
+        return collectionList as? [T] ?? []
+    }
+
 }
 
 open class EasyCollectionListView: EasyListView {

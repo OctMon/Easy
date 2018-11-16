@@ -12,11 +12,23 @@ class InputViewController: easy.ViewController, easy.TableListProtocol {
     
     typealias EasyTableListViewAssociatedType = easy.TableListView
 
+    var mobile: String {
+        return tableList(easy.InputCell.Model.self)[0].title
+    }
+    
+    var smsCode: String {
+        return tableList(easy.InputCell.Model.self)[1].title
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         navigationItem.title = easy.InputCell.toString
-        request()
+        
+        tableList = [
+            easy.InputCell.Model(icon: UIColor.random.toImage?.resize(to: CGSize(width: 20, height: 20)), title: "", placeholder: "请输入手机号"),
+            easy.InputCell.Model(icon: UIColor.random.toImage?.resize(to: CGSize(width: 20, height: 20)), title: "", placeholder: "请输入密码"),
+        ]
     }
     
     override func configure() {
@@ -30,7 +42,7 @@ class InputViewController: easy.ViewController, easy.TableListProtocol {
             $0.separatorStyle = .none
         }
         
-        tableListView.register(easy.InputCell.Model.self, cellClass: easy.InputCell.self, configureCell: { (listView, cell, indexPath, any) in
+        tableListView.register(easy.InputCell.Model.self, cellClass: easy.InputCell.self, configureCell: { [weak self] (listView, cell, indexPath, any) in
             if let cell = cell as? easy.InputCell {
                 var limit = Int.max
                 switch indexPath.row {
@@ -40,9 +52,9 @@ class InputViewController: easy.ViewController, easy.TableListProtocol {
                 case 1:
                     cell.textField.isSecureTextEntry = true
                     limit = 16
-//                    cell.smsCodeButton.tap(handler: { [weak self] (_) in
-//                        self?.view.showText("sms")
-//                    })
+                    cell.smsCodeButton.tap(handler: { [weak self] (_) in
+                        self?.view.showText(self?.mobile)
+                    })
                 default:
                     break
                 }
@@ -58,14 +70,5 @@ class InputViewController: easy.ViewController, easy.TableListProtocol {
                 })
             }
         }, didSelectRow: nil)
-    }
-    
-    override func request() {
-        super.request()
-        
-        tableListView.list = [
-            easy.InputCell.Model(icon: UIColor.random.toImage?.resize(to: CGSize(width: 20, height: 20)), title: "", placeholder: "请输入手机号"),
-            easy.InputCell.Model(icon: UIColor.random.toImage?.resize(to: CGSize(width: 20, height: 20)), title: "", placeholder: "请输入密码"),
-        ]
     }
 }

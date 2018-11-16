@@ -176,7 +176,7 @@ extension TuchongViewController {
     
     /// 图虫
     func getTuchong(page: Int, poseId: Int?, handler: @escaping (easy.DataResponse) -> Void) {
-        session.get(parameters: session.pageSize(page, poseId), inView: collectionListView.list.count > 0 ? nil : view) { (dataResponse) in
+        session.get(parameters: session.pageSize(page, poseId), inView: collectionList.count > 0 ? nil : view) { (dataResponse) in
             if dataResponse.resultValid {
                 handler(dataResponse.fill(list: dataResponse.resultList.compactMap({ JSONDecoder().decode(Tuchong.self, from: $0) })))
             } else {

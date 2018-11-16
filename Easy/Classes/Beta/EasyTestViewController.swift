@@ -116,11 +116,11 @@ class EasyTestViewController: EasyViewController, EasyTableListProtocol {
     override func request() {
         super.request()
         
-        tableListView.list = [[("show request log banner", EasySession.logEnabel.toStringValue)]]//, (GDPerformanceMonitor.toString, omIsShowGDPerformanceMonitor.toStringValue)]]
+        tableList = [[("show request log banner", EasySession.logEnabel.toStringValue)]]//, (GDPerformanceMonitor.toString, omIsShowGDPerformanceMonitor.toStringValue)]]
         var tmp = [Any]()
         sessions.forEach({ tmp.append(($0.config.url.alias, $0.config.url.currentBaseURL)) })
         if tmp.count > 0 {
-            tableListView.list.append(tmp)
+            tableList.append(tmp)
         }
         tableListView.tableView.reloadData()
     }

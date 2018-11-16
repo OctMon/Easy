@@ -21,7 +21,7 @@ class SocialViewController: easy.ViewController, easy.TableListProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableListView.list = [[Module.分享], [Module.微信登录, Module.QQ登录, Module.微博登录]]
+        tableList = [[Module.分享], [Module.微信登录, Module.QQ登录, Module.微博登录]]
     }
     
     override func configure() {
@@ -67,7 +67,7 @@ private class SocialCell: UITableViewCell, easy.CollectionListProtocol {
             contentView.snp.makeConstraints { (make) in
                 make.height.equalTo(.screenWidth * 0.5 * (modules.count.toCGFloat * 0.5).ceil).priority(.low)
             }
-            collectionListView.list = modules
+            collectionList = modules
             collectionView.reloadData()
         }
     }
