@@ -57,6 +57,7 @@ public extension EasyApp {
     static let isCameraAvailableFront = UIImagePickerController.isCameraDeviceAvailable(.front)
     static let isCameraAvailableRear = UIImagePickerController.isCameraDeviceAvailable(.rear)
     
+    static var randomUUID: String { return UUID().uuidString }
     static let getKeychainUUID: String = EasyKeychain.getUUID(service: "EasyKeychain") ?? ""
     
 }
