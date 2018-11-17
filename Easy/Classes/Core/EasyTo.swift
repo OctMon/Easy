@@ -53,6 +53,16 @@ public extension Optional {
         return toString ?? ""
     }
     
+    /// 强转为Array类型
+    var toArray: [EasyParameters]? {
+        return self as? [EasyParameters]
+    }
+    
+    /// 强转为Array类型 失败为[]
+    var toArrayValue: [EasyParameters] {
+        return toArray ?? []
+    }
+
 }
 
 public extension Bool {
