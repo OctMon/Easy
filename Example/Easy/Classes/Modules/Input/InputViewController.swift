@@ -59,7 +59,7 @@ class InputViewController: easy.ViewController, easy.TableListProtocol {
                     break
                 }
                 cell.addSeparatorBottom()
-                cell.textField.clearButtonMode = .always
+                cell.textField.clearButtonMode = .whileEditing
                 cell.setModel(any, imagePadding: 15)
                 cell.setTextFieldEditingChangedHandler(textCount: limit, handler: { [weak listView] (input) in
                     any.do {

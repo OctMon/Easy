@@ -34,9 +34,7 @@ public class EasyInputCell: UITableViewCell {
         addSubview(textField)
         
         textField.snp.makeConstraints({ (make) in
-            make.top.bottom.equalToSuperview()
-            make.left.equalTo(15)
-            make.right.equalTo(-15)
+            make.edges.equalToSuperview().inset(UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15))
             make.height.equalTo(60)
         })
         
