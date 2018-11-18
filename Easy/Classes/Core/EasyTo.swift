@@ -62,6 +62,19 @@ public extension Optional {
     var toArrayValue: [EasyParameters] {
         return toArray ?? []
     }
+    
+    /// 强转为EasyParameters类型
+    var toParameters: EasyParameters? {
+        if let dictionary = self as? EasyParameters {
+            return dictionary
+        }
+        return nil
+    }
+    
+    /// 强转为EasyParameters类型
+    var toParametersValue: EasyParameters {
+        return toParameters ?? [:]
+    }
 
 }
 
