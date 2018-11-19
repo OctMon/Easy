@@ -74,8 +74,7 @@ open class EasyTableListView: EasyListView {
     private lazy var didSelectRowHandler: ((EasyTableListView, IndexPath, Any?) -> Void)? = { return nil }()
     private lazy var accessoryButtonTappedForRowWithHandler: ((EasyTableListView, IndexPath, Any?) -> Void)? = { return nil }()
     
-    /// must be set first
-    public lazy var tableViewStyle: UITableView.Style = .plain
+    private lazy var tableViewStyle: UITableView.Style = .plain
     
     public lazy var tableView: UITableView = {
         return UITableView(frame: frame, style: tableViewStyle).then {
