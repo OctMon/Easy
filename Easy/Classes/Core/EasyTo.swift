@@ -128,6 +128,14 @@ public extension Double {
     }
 }
 
+public extension Array {
+    
+    var toAny: [Any] {
+        return self
+    }
+    
+}
+
 public extension CGSize {
     
     var toRect: CGRect {
