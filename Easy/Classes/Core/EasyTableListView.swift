@@ -46,7 +46,6 @@ public extension EasyTableListProtocol {
         }
     }
     
-    @discardableResult
     func addTableListView(in view: UIView, style: UITableView.Style) -> EasyTableListViewAssociatedType {
         if tableListView == nil {
             tableListView = EasyTableListViewAssociatedType()

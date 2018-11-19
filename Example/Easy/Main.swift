@@ -76,7 +76,7 @@ class Main: easy.ViewController, easy.TableListProtocol {
         textView.placeholder = app.bundleName
         textView.placeholderColor = UIColor.random
         
-        addTableListView(in: view, style: .grouped)
+        addTableListView(in: view, style: .grouped).configure()
         
         let tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: .screenWidth, height: 22 + 45)).then {
             let button = UIButton().then {

@@ -36,7 +36,7 @@ class FontViewController: easy.ViewController, easy.TableListProtocol {
     override func configure() {
         super.configure()
         
-        addTableListView(in: view, style: .grouped)
+        addTableListView(in: view, style: .grouped).configure()
         tableView.estimatedRowHeight = 88
         tableListView.setNumberOfSections({ (listView) -> Int in
             return listView.list.count

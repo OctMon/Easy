@@ -54,7 +54,6 @@ public extension EasyCollectionListProtocol {
         }
     }
     
-    @discardableResult
     func addCollectionView(in view: UIView) -> EasyCollectionListViewAssociatedType {
         if collectionListView == nil {
             collectionListView = EasyCollectionListViewAssociatedType()
