@@ -78,7 +78,7 @@ open class EasyCollectionListView: EasyListView {
     private lazy var numberOfSectionsHandler: ((EasyCollectionListView) -> Int)? = { return nil }()
     private lazy var numberOfItemsInSectionHandler: ((EasyCollectionListView, Int) -> Int)? = { return nil }()
     private lazy var cellHandler: ((EasyCollectionListView, UICollectionViewCell, IndexPath, Any?) -> Void)? = { return nil }()
-    private lazy var cellsHandler: ((IndexPath) -> AnyClass?)? = { return nil }()
+    private lazy var cellsHandler: ((EasyCollectionListView, IndexPath) -> AnyClass?)? = { return nil }()
     private lazy var didSelectRowHandler: ((EasyCollectionListView, IndexPath, Any?) -> Void)? = { return nil }()
     private lazy var sizeForItemAtHandler: ((EasyCollectionListView, IndexPath, Any?) -> CGSize)? = { return nil }()
     
@@ -127,13 +127,13 @@ public extension EasyCollectionListView {
     
     /// cellForItemAt & didSelectItemAt
     func register(_ cellClass: AnyClass?, configureCell: @escaping (EasyCollectionListView, UICollectionViewCell, IndexPath, Any) -> Void, didSelectRow didSelectRowHandler: ((EasyCollectionListView, IndexPath, Any) -> Void)?) {
-        register([cellClass], returnCell: { (_) -> AnyClass? in
+        register([cellClass], returnCell: { (_, _) -> AnyClass? in
             return cellClass.self
         }, configureCell: configureCell, didSelectRow: didSelectRowHandler)
     }
     
     /// cellForItemAt & didSelectItemAt
-    func register(_ cellsClass: [AnyClass?], returnCell cellsHandler: @escaping (IndexPath) -> AnyClass?, configureCell cellHandler: @escaping (EasyCollectionListView, UICollectionViewCell, IndexPath, Any) -> Void, didSelectRow didSelectRowHandler: ((EasyCollectionListView, IndexPath, Any) -> Void)?) {
+    func register(_ cellsClass: [AnyClass?], returnCell cellsHandler: @escaping (EasyCollectionListView, IndexPath) -> AnyClass?, configureCell cellHandler: @escaping (EasyCollectionListView, UICollectionViewCell, IndexPath, Any) -> Void, didSelectRow didSelectRowHandler: ((EasyCollectionListView, IndexPath, Any) -> Void)?) {
         cellsClass.forEach { (cc) in
             guard let cellClass = cc else { return }
             guard let cellReuseIdentifier = cc.self?.description() else { return }
@@ -146,13 +146,13 @@ public extension EasyCollectionListView {
     
     /// cellForItemAt & didSelectItemAt
     func register<T>(_ type: T.Type, cellClass: AnyClass?, configureCell: @escaping (EasyCollectionListView, UICollectionViewCell, IndexPath, T) -> Void, didSelectRow didSelectRowHandler: ((EasyCollectionListView, IndexPath, T) -> Void)?) {
-        register(type, cellsClass: [cellClass], returnCell: { (_) -> AnyClass? in
+        register(type, cellsClass: [cellClass], returnCell: { (_, _) -> AnyClass? in
             return cellClass.self
         }, configureCell: configureCell, didSelectRow: didSelectRowHandler)
     }
     
     /// cellForItemAt & didSelectItemAt
-    func register<T>(_ type: T.Type, cellsClass: [AnyClass?], returnCell cellsHandler: @escaping (IndexPath) -> AnyClass?, configureCell cellHandler: @escaping (EasyCollectionListView, UICollectionViewCell, IndexPath, T) -> Void, didSelectRow didSelectRowHandler: ((EasyCollectionListView, IndexPath, T) -> Void)?) {
+    func register<T>(_ type: T.Type, cellsClass: [AnyClass?], returnCell cellsHandler: @escaping (EasyCollectionListView, IndexPath) -> AnyClass?, configureCell cellHandler: @escaping (EasyCollectionListView, UICollectionViewCell, IndexPath, T) -> Void, didSelectRow didSelectRowHandler: ((EasyCollectionListView, IndexPath, T) -> Void)?) {
         cellsClass.forEach { (cc) in
             guard let cellClass = cc else { return }
             guard let cellReuseIdentifier = cc.self?.description() else { return }
@@ -224,7 +224,7 @@ extension EasyCollectionListView: UICollectionViewDataSource, UICollectionViewDe
     }
     
     open func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if let cellsHandler = cellsHandler, let cellReuseIdentifier = cellsHandler(indexPath).self?.description() {
+        if let cellsHandler = cellsHandler, let cellReuseIdentifier = cellsHandler(self, indexPath).self?.description() {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellReuseIdentifier, for: indexPath)
             if let cellHandler = cellHandler {
                 cellHandler(self, cell, indexPath, getAny(list, indexPath: indexPath, numberOfSections: numberOfSections(in: collectionView), numberOfRowsInSectionHandler: numberOfItemsInSectionHandler))
