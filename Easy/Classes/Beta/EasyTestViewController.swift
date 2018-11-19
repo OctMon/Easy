@@ -45,11 +45,11 @@ class EasyTestViewController: EasyViewController, EasyTableListProtocol {
     override func configure() {
         super.configure()
         
-        addTableListView(in: view, style: .plain)
+        addTableListView(in: view, style: .grouped)
         tableView.tableHeaderView = textView
         tableView.tableFooterView = UIView()
         
-        tableListView.register((String, String).self, cellsClass: [EasyTestCell.self, UITableViewCell.self], returnCell: { (indexPath) -> AnyClass? in
+        tableListView.register((String, String).self, cellsClass: [EasyTestCell.self, UITableViewCell.self], returnCell: { (_, indexPath) -> AnyClass? in
             if indexPath.section == 0 {
                 return EasyTestCell.self
             }
@@ -74,42 +74,51 @@ class EasyTestViewController: EasyViewController, EasyTableListProtocol {
                 }
             } else {
                 cell.do {
-                    $0.accessoryType = .detailDisclosureButton
-                    $0.selectionStyle = .default
-                    $0.textLabel?.adjustsFontSizeToFitWidth = true
-                    $0.textLabel?.text = any.0 + " -> " + any.1
+                    if indexPath.section + 1 == listView.list.count && sessions.count > indexPath.row {
+                        $0.accessoryType = .detailDisclosureButton
+                        $0.selectionStyle = .default
+                        $0.textLabel?.adjustsFontSizeToFitWidth = true
+                        $0.textLabel?.text = any.0 + " -> " + any.1
+                    } else {
+                        $0.accessoryType = .none
+                        cell.textLabel?.text = any.0
+                    }
                 }
             }
         }) { (listView, indexPath, any) in
             guard indexPath.section > 0 else { return }
-            sessions[indexPath.row].showChangeBaseURL({ (url) in
-                var model = any
-                model.1 = url
-                let list = listView.list[indexPath.section]
-                if var models = list as? [Any] {
-                    models[indexPath.row] = model
-                    listView.list[indexPath.section] = models
-                    listView.tableView.reloadData()
-                }
-            })
+            if indexPath.section + 1 == listView.list.count && sessions.count > indexPath.row {
+                sessions[indexPath.row].showChangeBaseURL({ (url) in
+                    var model = any
+                    model.1 = url
+                    let list = listView.list[indexPath.section]
+                    if var models = list as? [Any] {
+                        models[indexPath.row] = model
+                        listView.list[indexPath.section] = models
+                        listView.tableView.reloadData()
+                    }
+                })
+            }
         }
         
-        tableListView.setAccessoryButtonTappedForRowWith { [weak self] (_, indexPath, _) in
+        tableListView.setAccessoryButtonTappedForRowWith { [weak self] (listView, indexPath, _) in
             guard indexPath.section > 0 else { return }
-            let session = sessions[indexPath.row]
-            var textField = UITextField()
-            textField.keyboardType = .URL
-            textField.placeholder = session.config.url.currentBaseURL
-            EasyAlert(message: "input custom").addTextField(&textField, required: true).addAction(title: "取消", style: .cancel).addAction(title: "确定", style: .default, preferredAction: true, handler: { [weak self] (_) in
-                guard let url = textField.text, !url.isEmpty else { return }
-                UserDefaults.standard.set(url, forKey: session.config.url.defaultCustomBaseURLKey)
-                if UserDefaults.standard.synchronize() {
-                    self?.request()
-                    EasyLog.debug("ChangeBaseURL Success: \(url)")
-                } else {
-                    EasyLog.debug("ChangeBaseURL Failure")
-                }
-            }).show()
+            if indexPath.section + 1 == listView.list.count && sessions.count > indexPath.row {
+                let session = sessions[indexPath.row]
+                var textField = UITextField()
+                textField.keyboardType = .URL
+                textField.placeholder = session.config.url.currentBaseURL
+                EasyAlert(message: "input custom").addTextField(&textField, required: true).addAction(title: "取消", style: .cancel).addAction(title: "确定", style: .default, preferredAction: true, handler: { [weak self] (_) in
+                    guard let url = textField.text, !url.isEmpty else { return }
+                    UserDefaults.standard.set(url, forKey: session.config.url.defaultCustomBaseURLKey)
+                    if UserDefaults.standard.synchronize() {
+                        self?.request()
+                        EasyLog.debug("ChangeBaseURL Success: \(url)")
+                    } else {
+                        EasyLog.debug("ChangeBaseURL Failure")
+                    }
+                }).show()
+            }
         }
     }
     

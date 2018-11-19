@@ -34,7 +34,7 @@ class SocialViewController: easy.ViewController, easy.TableListProtocol {
         }) { (_, section) -> Int in
             return 1
         }
-        tableListView.register([UITableViewCell.self, SocialCell.self], returnCell: { (indexPath) -> AnyClass? in
+        tableListView.register([UITableViewCell.self, SocialCell.self], returnCell: { (_, indexPath) -> AnyClass? in
             switch indexPath.section {
             case 0:
                 return UITableViewCell.self
