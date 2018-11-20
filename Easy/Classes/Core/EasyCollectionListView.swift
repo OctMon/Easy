@@ -63,6 +63,7 @@ public extension EasyCollectionListProtocol {
                 make.edges.equalToSuperview()
             }
             collectionListView.add()
+            collectionListView.configure()
         }
         return collectionListView
     }

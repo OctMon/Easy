@@ -55,6 +55,7 @@ public extension EasyTableListProtocol {
                 make.edges.equalToSuperview()
             }
             tableListView.add(style: style)
+            tableListView.configure()
         }
         return tableListView
     }

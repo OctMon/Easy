@@ -33,16 +33,6 @@ open class EasyListView: UIView {
     
     lazy var requestHandler: (() -> Void)? = { return nil }()
     
-    public override init(frame: CGRect) {
-        super.init(frame: frame)
-        
-        configure()
-    }
-    
-    required public init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     open func configure() { }
     
     public func list<T>(_ class: T.Type) -> [T] {
