@@ -1,6 +1,6 @@
 {
   "name": "Easy",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "summary": "develop Swift with Easy",
   "description": "Reduce development time and increase development efficiency",
   "homepage": "https://github.com/OctMon/Easy",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/OctMon/Easy.git",
-    "tag": "0.9.0"
+    "tag": "0.9.1"
   },
   "platforms": {
     "ios": "9.0"
@@ -124,6 +124,9 @@
 
         ],
         "FLEX": [
+
+        ],
+        "GDPerformanceView-Swift": [
 
         ]
       },

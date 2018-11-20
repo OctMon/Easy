@@ -32,7 +32,13 @@ class EasyTestViewController: EasyViewController, EasyTableListProtocol {
             self?.refreshLog(log)
         }
         
-        request()
+        tableList = [[("show request log banner", EasySession.logEnabel.toStringValue), ("PerformanceMonitor", isShowPerformanceMonitor.toStringValue)]]
+        var tmp = [Any]()
+        sessions.forEach({ tmp.append(($0.config.url.alias, $0.config.url.currentBaseURL)) })
+        if tmp.count > 0 {
+            tableList.append(tmp)
+        }
+        tableListView.tableView.reloadData()
     }
     
     private func refreshLog(_ log: String?) {
@@ -60,13 +66,19 @@ class EasyTestViewController: EasyViewController, EasyTableListProtocol {
                     $0.selectionStyle = .none
                     $0.textLabel?.text = any.0
                     $0.switchView.isOn = any.1.toBoolValue
-                    $0.switchHandler { [weak listView](isOn) in
+                    $0.switchHandler { [weak listView] (isOn) in
                         var model = any
                         model.1 = isOn.toStringValue
-                        listView?.list[indexPath.section] = model
+                        var list = listView?.list[indexPath.section] as? [(String, String)]
+                        list?[indexPath.row] = model
+                        if let list = list {
+                            listView?.list[indexPath.section] = list
+                        }
                         switch (indexPath.section, indexPath.row) {
                         case (0, 0):
                             EasySession.logEnabel = isOn
+                        case (0, 1):
+                            isShowPerformanceMonitor = isOn
                         default:
                             break
                         }
@@ -121,19 +133,6 @@ class EasyTestViewController: EasyViewController, EasyTableListProtocol {
             }
         }
     }
-    
-    override func request() {
-        super.request()
-        
-        tableList = [[("show request log banner", EasySession.logEnabel.toStringValue)]]//, (GDPerformanceMonitor.toString, omIsShowGDPerformanceMonitor.toStringValue)]]
-        var tmp = [Any]()
-        sessions.forEach({ tmp.append(($0.config.url.alias, $0.config.url.currentBaseURL)) })
-        if tmp.count > 0 {
-            tableList.append(tmp)
-        }
-        tableListView.tableView.reloadData()
-    }
-    
 }
 
 class EasyTestCell: UITableViewCell {

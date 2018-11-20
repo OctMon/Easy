@@ -154,6 +154,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/SwiftyRSA/SwiftyRSA.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/WMPageController/WMPageController.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/FLEX/FLEX.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/GDPerformanceView-Swift/GDPerformanceView_Swift.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework"
@@ -167,6 +168,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/SwiftyRSA/SwiftyRSA.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/WMPageController/WMPageController.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/FLEX/FLEX.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/GDPerformanceView-Swift/GDPerformanceView_Swift.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then
   wait

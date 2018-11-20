@@ -7,6 +7,7 @@
 
 import UIKit
 import FLEX
+import GDPerformanceView_Swift
 
 public struct EasyBeta {
     
@@ -16,6 +17,8 @@ public extension EasyBeta {
     
     static func configTest() {
         FLEXManager.shared().isNetworkDebuggingEnabled = true
+        PerformanceMonitor.shared().performanceViewConfigurator.options = .all
+        PerformanceMonitor.shared().performanceViewConfigurator.style = .light
         EasyLog.clear()
         EasyApp.window?.longPress(numberOfTapsRequired: 3, numberOfTouchesRequired: 1, handler: { (r) in
             if r.state == .began {
@@ -39,9 +42,20 @@ extension EasySession {
 }
 
 var sessions = [EasySession]()
+var isShowPerformanceMonitor = false {
+    willSet {
+        if newValue {
+            PerformanceMonitor.shared().start()
+            PerformanceMonitor.shared().show()
+        } else {
+            PerformanceMonitor.shared().pause()
+            PerformanceMonitor.shared().hide()
+        }
+    }
+}
 var isShowTestTool = false {
-    didSet {
-        if isShowTestTool {
+    willSet {
+        if newValue {
             (EasyApp.currentViewController ?? EasyApp.currentTabBarController)?.showDetailViewController(UINavigationController(rootViewController: EasyTestViewController()), sender: nil)
         } else {
             EasyApp.currentViewController?.dismiss(animated: true, completion: nil)

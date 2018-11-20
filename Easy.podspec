@@ -73,7 +73,7 @@ Pod::Spec.new do |s|
         ss.dependency 'Easy/Core'
         ss.dependency 'Easy/Session'
         ss.dependency 'FLEX'#, '~> 2.4.0' # https://github.com/Flipboard/FLEX
-        #ss.dependency 'GDPerformanceView-Swift'#, '~> 1.3.2' # https://github.com/dani-gavrilov/GDPerformanceView-Swift
+        ss.dependency 'GDPerformanceView-Swift'#, '~> 2.0.0' # https://github.com/dani-gavrilov/GDPerformanceView-Swift
         ss.xcconfig = { 'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => '$(inherited) BETA' }
     end
     
