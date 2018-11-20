@@ -34,7 +34,7 @@ class InputViewController: easy.ViewController, easy.TableListProtocol {
     override func configure() {
         super.configure()
         
-        addTableListView(in: view, style: .grouped).configure()
+        addTableListView(in: view, style: .grouped)
         
         tableView.do {
             $0.estimatedRowHeight = 88

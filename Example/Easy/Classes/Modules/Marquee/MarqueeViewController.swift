@@ -31,7 +31,7 @@ class MarqueeViewController: easy.ViewController, easy.TableListProtocol, easy.C
     override func configure() {
         super.configure()
         
-        addTableListView(in: view, style: .plain).configure()
+        addTableListView(in: view, style: .plain)
         
         tableView.do {
             $0.estimatedRowHeight = 88
@@ -41,7 +41,7 @@ class MarqueeViewController: easy.ViewController, easy.TableListProtocol, easy.C
                 $0.addSubview(marqueeLabel)
             }
             let tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: .screenWidth, height: .screenWidth * 0.25))
-            addCollectionView(in: tableFooterView).configure()
+            addCollectionView(in: tableFooterView)
             $0.tableFooterView = tableFooterView
         }
         

@@ -27,7 +27,7 @@ class SocialViewController: easy.ViewController, easy.TableListProtocol {
     override func configure() {
         super.configure()
         
-        addTableListView(in: view, style: .grouped).configure()
+        addTableListView(in: view, style: .grouped)
         tableView.estimatedRowHeight = 88
         tableListView.setNumberOfSections({ (listView) -> Int in
             return listView.list.count
@@ -75,7 +75,7 @@ private class SocialCell: UITableViewCell, easy.CollectionListProtocol {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        addCollectionView(in: self).configure()
+        addCollectionView(in: self)
         waterFlowLayout.do {
             $0.minimumInteritemSpacing = 0
             $0.minimumLineSpacing = 0

@@ -31,7 +31,7 @@ class TuchongViewController: easy.ViewController, easy.CollectionListProtocol {
     override func configure() {
         super.configure()
         
-        addCollectionView(in: view).configure()
+        addCollectionView(in: view)
         collectionListView.addRefresh(isAddHeader: true, isAddFooter: true) { [weak self] in
             self?.request()
         }
