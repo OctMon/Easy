@@ -23,12 +23,12 @@ public struct EasyCheck {
     static func requestPgyerBeta(api_key: String, shortcutUrl: String, headerImage: UIImage?) {
         guard !isShow else { return }
         session.post(path: "apiv2/app/getByShortcut", isURLEncoding: true, parameters: ["_api_key": api_key, "buildShortcutUrl": shortcutUrl]) { (dataResponse) in
-            guard dataResponse.resultValid else {
+            guard dataResponse.valid else {
                 EasyLog.debug(dataResponse.error)
                 return
             }
             
-            let buildVersionNo = dataResponse.resultData["buildVersionNo"].toIntValue
+            let buildVersionNo = dataResponse.dataParameters["buildVersionNo"].toIntValue
             let buildBundle = EasyApp.bundleBuild.toIntValue
             guard buildVersionNo > buildBundle else { return }
             let ignoreBuild = UserDefaults.standard.integer(forKey: ignoreBuildKey)
@@ -38,10 +38,10 @@ public struct EasyCheck {
             var buttonBackgroundImages = [EasyGlobal.tint.toImage]
             buttonTitles.insert("以后再说".getAttributedString(font: UIFont.size15, foregroundColor: UIColor.hex666666), at: 0)
             buttonBackgroundImages.insert(UIColor.white.toImage, at: 0)
-            EasyApp.showUpdateAlert(image: headerImage, title: "发现新版本beta".getAttributedString(font: UIFont.size21, foregroundColor: UIColor.hex333333).getAttributedString(title: "  v\(buildVersionNo)", font: UIFont.size12, foregroundColor: UIColor.hex999999), message: dataResponse.resultData["buildUpdateDescription"].toStringValue.getAttributedString(font: UIFont.size14, foregroundColor: UIColor.hex999999, lineSpacing: 8), buttonTitles: buttonTitles, buttonBackgroundImages: buttonBackgroundImages, tap: { offset in
+            EasyApp.showUpdateAlert(image: headerImage, title: "发现新版本beta".getAttributedString(font: UIFont.size21, foregroundColor: UIColor.hex333333).getAttributedString(title: "  v\(buildVersionNo)", font: UIFont.size12, foregroundColor: UIColor.hex999999), message: dataResponse.dataParameters["buildUpdateDescription"].toStringValue.getAttributedString(font: UIFont.size14, foregroundColor: UIColor.hex999999, lineSpacing: 8), buttonTitles: buttonTitles, buttonBackgroundImages: buttonBackgroundImages, tap: { offset in
                 isShow = false
                 if offset == 1 {
-                    let buildKey = dataResponse.resultData["buildKey"].toStringValue
+                    let buildKey = dataResponse.dataParameters["buildKey"].toStringValue
                     guard let url = URL(string: "itms-services://?action=download-manifest&url=https://www.pgyer.com/app/plist/\(buildKey)") else { return }
                     if UIApplication.shared.openURL(url) {
                         exit(EXIT_SUCCESS);

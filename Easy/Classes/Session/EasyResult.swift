@@ -32,38 +32,53 @@ public struct EasyDataResponse {
 
 public extension EasyDataResponse {
     
+    /// Returns the config
+    var config: EasyConfig {
+        return result.config
+    }
+    
+    /// The response’s HTTP status code
+    var statusCode: Int {
+        return result.statusCode
+    }
+    
+    /// Returns `true` if the result.validStatusCode is a success, `false` otherwise.
+    var validStatusCode: Bool {
+        return result.validStatusCode
+    }
+    
     /// Returns `true` if the result.valid is a success, `false` otherwise.
-    var resultValid: Bool {
+    var valid: Bool {
         return result.valid
     }
     
     /// Returns the totalPgee
-    var resultTotal: Int {
+    var total: Int {
         return result.total
     }
     
     /// Returns the code
-    var resultCode: Int {
+    var code: Int {
         return result.code
     }
     
     /// Returns the message
-    var resultMsg: String {
+    var msg: String {
         return result.msg
     }
     
     /// Returns the data -> [String: Any]
-    var resultData: EasyParameters {
+    var dataParameters: EasyParameters {
         return result.data
     }
 
     /// Returns the list -> [[String: Any]]
-    var resultList: [EasyParameters] {
+    var listParameters: [EasyParameters] {
         return result.list
     }
     
     /// Returns the Outermost json -> [String: Any]
-    var resultJson: EasyParameters {
+    var jsonParameters: EasyParameters {
         return result.json
     }
     
@@ -71,9 +86,9 @@ public extension EasyDataResponse {
 
 public struct EasyResult {
     
-    private let config: EasyConfig
     private let easyError: EasyError?
     private let dataResponse: DataResponse<Any>
+    public let config: EasyConfig
     public let json: EasyParameters
     
     init(config: EasyConfig, dataResponse: DataResponse<Any>) {
@@ -103,30 +118,24 @@ public struct EasyResult {
 
 public extension EasyResult {
     
-    var code: Int {
-        if config.code.validWithHTTPstatusCode {
-            return dataResponse.response?.statusCode ?? config.code.unknown
-        }
-        return json[config.key.code].toInt ?? config.code.unknown
-    }
+    var code: Int { return json[config.key.code].toInt ?? config.code.unknown }
+    var statusCode: Int { return dataResponse.response?.statusCode ?? config.code.unknown }
     var msg: String { return json[config.key.msg].toString ?? easyError?.localizedDescription ?? EasyErrorReason.serverError }
     var data: EasyParameters { return (json[config.key.data] as? EasyParameters) ?? [:] }
 
     var total: Int { return json[config.key.total].toIntValue }
     var list: [EasyParameters] { return (json[config.key.list] as? [EasyParameters]) ?? [] }
     
-    var valid: Bool {
-        guard easyError == nil else { return false}
-        if config.code.validWithHTTPstatusCode {
-            return dataResponse.response?.statusCode == config.code.successStatusCode
-        }
-        return code == config.code.success
-    }
+    var valid: Bool { return code == config.code.success && easyError == nil }
+    var validStatusCode: Bool { return statusCode == config.code.successStatusCode && easyError == nil }
     
     var error: EasyError? {
         if let error = easyError {
             return error
         } else {
+            if config.code.onlyValidWithHTTPstatusCode {
+                return EasyError.serviceError(msg.isEmpty ? EasyErrorReason.serverError : msg)
+            }
             switch code {
             case config.code.empty:
                 return EasyError.empty(msg.isEmpty ? EasyErrorReason.empty : msg)
@@ -200,7 +209,7 @@ public extension EasyListView {
                 scrollView.mj_footer.endRefreshing()
             }
         }
-        if dataResponse.resultValid {
+        if (dataResponse.config.code.onlyValidWithHTTPstatusCode && dataResponse.validStatusCode) || dataResponse.valid {
             hidePlaceholder()
             if self.currentPage == self.firstPage {
                 if isTableView {
@@ -222,7 +231,8 @@ public extension EasyListView {
                     collectionView.reloadData()
                 }
             }
-            if ignoreTotalPage || (autoTotalPage ? dataResponse.list.count >= self.pageSize : dataResponse.resultTotal > self.currentPage) {
+            if ignoreTotalPage || (autoTotalPage ? dataResponse.list.count >= self.pageSize : dataResponse.total
+                > self.currentPage) {
                 self.currentPage += incrementPage
                 if scrollView.mj_footer != nil {
                     scrollView.mj_footer.isHidden = false

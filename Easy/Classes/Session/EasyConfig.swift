@@ -65,8 +65,8 @@ public struct EasyConfig {
         public var forceUpdate: Int?
         public var unknown = -990909
         
-        /// Successfully valid with HTTP status code.
-        public var validWithHTTPstatusCode = false
+        /// Successfully only valid with HTTP status code.
+        public var onlyValidWithHTTPstatusCode = false
         /// Validates that the response has a status code in the specified sequence.
         public var acceptableStatusCodes: Array? = Array(200..<300)
     }
