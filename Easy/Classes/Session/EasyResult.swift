@@ -52,6 +52,11 @@ public extension EasyDataResponse {
         return result.valid
     }
     
+    /// Returns `true` if the result.validList is a success, `false` otherwise.
+    var validList: Bool {
+        return result.validList
+    }
+    
     /// Returns the totalPgee
     var total: Int {
         return result.total
@@ -127,6 +132,7 @@ public extension EasyResult {
     var list: [EasyParameters] { return (json[config.key.list] as? [EasyParameters]) ?? [] }
     
     var valid: Bool { return code == config.code.success && easyError == nil }
+    var validList: Bool { return valid && list.count > 0 }
     var validStatusCode: Bool { return statusCode == config.code.successStatusCode && easyError == nil }
     
     var error: EasyError? {
@@ -196,7 +202,7 @@ public extension EasyListView {
         }
     }
     
-    fileprivate func setRefresh(_ scrollView: UIScrollView, dataResponse: EasyDataResponse, errorHandler: ((Error?) -> Void)? = nil) {
+    fileprivate func setRefresh(_ scrollView: UIScrollView, dataResponse: EasyDataResponse, isValidList: Bool, errorHandler: ((Error?) -> Void)? = nil) {
         let isTableView = scrollView is UITableView
         let isCollectionView = scrollView is UICollectionView
         hideLoading()
@@ -209,7 +215,15 @@ public extension EasyListView {
                 scrollView.mj_footer.endRefreshing()
             }
         }
-        if (dataResponse.config.code.onlyValidWithHTTPstatusCode && dataResponse.validStatusCode) || dataResponse.valid {
+        var valid = true
+        if isValidList {
+            valid = dataResponse.validList
+        } else if dataResponse.config.code.onlyValidWithHTTPstatusCode {
+            valid = dataResponse.validStatusCode
+        } else {
+            valid = dataResponse.valid
+        }
+        if valid {
             hidePlaceholder()
             if self.currentPage == self.firstPage {
                 if isTableView {
@@ -248,9 +262,17 @@ public extension EasyListView {
             if let handler = errorHandler {
                 handler(dataResponse.error)
             } else {
-                if list.count > 0 {
+                if currentPage != firstPage && list.count > 0 {
                     showText(dataResponse.error?.localizedDescription)
                 } else {
+                    list.removeAll()
+                    if let tableView = scrollView as? UITableView {
+                        tableView.reloadData()
+                    } else if let collectionView = scrollView as? UICollectionView {
+                        UIView.performWithoutAnimation {
+                            collectionView.reloadData()
+                        }
+                    }
                     showPlaceholder(error: dataResponse.error, image: nil, tap: { [weak self] in
                         self?.showLoading()
                         self?.requestHandler?()
@@ -269,8 +291,8 @@ public extension EasyTableListView {
         addRefresh(tableView, isAddHeader: isAddFooter, isAddFooter: isAddFooter, requestHandler: requestHandler)
     }
     
-    func setRefresh(dataResponse: EasyDataResponse, errorHandler: ((Error?) -> Void)? = nil) {
-        setRefresh(tableView, dataResponse: dataResponse, errorHandler: errorHandler)
+    func setRefresh(dataResponse: EasyDataResponse, isValidList: Bool, errorHandler: ((Error?) -> Void)? = nil) {
+        setRefresh(tableView, dataResponse: dataResponse, isValidList: isValidList, errorHandler: errorHandler)
     }
     
 }
@@ -281,8 +303,8 @@ public extension EasyCollectionListView {
         addRefresh(collectionView, isAddHeader: isAddFooter, isAddFooter: isAddFooter, requestHandler: requestHandler)
     }
     
-    func setRefresh(dataResponse: EasyDataResponse, errorHandler: ((Error?) -> Void)? = nil) {
-        setRefresh(collectionView, dataResponse: dataResponse, errorHandler: errorHandler)
+    func setRefresh(dataResponse: EasyDataResponse, isValidList: Bool, errorHandler: ((Error?) -> Void)? = nil) {
+        setRefresh(collectionView, dataResponse: dataResponse, isValidList: isValidList, errorHandler: errorHandler)
     }
 
 }
