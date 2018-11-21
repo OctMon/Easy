@@ -18,6 +18,9 @@ PODS:
   - Easy/Page (0.9.1):
     - Easy/Core
     - WMPageController
+  - Easy/PhotoBrowser (0.9.1):
+    - Easy/Core
+    - ZLPhotoBrowser
   - Easy/RSA (0.9.1):
     - Easy/Core
     - SwiftyRSA
@@ -31,6 +34,7 @@ PODS:
     - MonkeyKing
   - FLEX (2.4.0)
   - GDPerformanceView-Swift (2.0.0)
+  - GPUImage (0.1.7)
   - MBProgressHUD (1.1.0)
   - MJRefresh (3.1.15.7)
   - MonkeyKing (1.12.1)
@@ -45,12 +49,16 @@ PODS:
     - SwiftyRSA/ObjC (= 1.5.0)
   - SwiftyRSA/ObjC (1.5.0)
   - WMPageController (2.5.2)
+  - ZLPhotoBrowser (2.7.5):
+    - GPUImage
+    - SDWebImage
 
 DEPENDENCIES:
   - Easy (from `../`)
   - Easy/Beta (from `../`)
   - Easy/Common (from `../`)
   - Easy/Page (from `../`)
+  - Easy/PhotoBrowser (from `../`)
   - Easy/RSA (from `../`)
   - Easy/Scan (from `../`)
   - Easy/Social (from `../`)
@@ -60,6 +68,7 @@ SPEC REPOS:
     - Alamofire
     - FLEX
     - GDPerformanceView-Swift
+    - GPUImage
     - MBProgressHUD
     - MJRefresh
     - MonkeyKing
@@ -68,6 +77,7 @@ SPEC REPOS:
     - SnapKit
     - SwiftyRSA
     - WMPageController
+    - ZLPhotoBrowser
 
 EXTERNAL SOURCES:
   Easy:
@@ -75,9 +85,10 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
-  Easy: 88bbfa3dba563076a8f8a693adecad2303f3208f
+  Easy: 1506ccd25fefa466141edd5175ff54d1b93a538e
   FLEX: bd1a39e55b56bb413b6f1b34b3c10a0dc44ef079
   GDPerformanceView-Swift: 42458987e2f5bbfd097a8706d7ca38e961171c3f
+  GPUImage: 733a5f0fab92df9de1c37ba9df520a833ccb406d
   MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
   MJRefresh: 697f8ec75ebdbe9207767bb682cf0f51b0d8a41f
   MonkeyKing: 280cdc68eb39f8b899b17fdfe994a695f6fdc636
@@ -86,7 +97,8 @@ SPEC CHECKSUMS:
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
   SwiftyRSA: 6e528fb1b1a87d5111c48081083b141d6d65f1cf
   WMPageController: 0c7624d2b48e4f1ab92371688cf6744ed701575d
+  ZLPhotoBrowser: 32f2e065486c64fcde9381887694bf4ec17c53dc
 
-PODFILE CHECKSUM: 541792f7a80a683722c63e26d72fbb51767e4eb0
+PODFILE CHECKSUM: 0c5468e29963430f57221be5b942dca34c9d0c35
 
 COCOAPODS: 1.5.3

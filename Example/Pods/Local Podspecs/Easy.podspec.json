@@ -54,6 +54,18 @@
       }
     },
     {
+      "name": "PhotoBrowser",
+      "source_files": "Easy/Classes/PhotoBrowser/*",
+      "dependencies": {
+        "Easy/Core": [
+
+        ],
+        "ZLPhotoBrowser": [
+
+        ]
+      }
+    },
+    {
       "name": "RSA",
       "source_files": "Easy/Classes/RSA/*",
       "dependencies": {
