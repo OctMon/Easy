@@ -92,7 +92,7 @@ public extension EasyDataResponse {
 public struct EasyResult {
     
     private let easyError: EasyError?
-    private let dataResponse: DataResponse<Any>
+    private let dataResponse: DataResponse<Any>?
     public let config: EasyConfig
     public let json: EasyParameters
     
@@ -101,12 +101,17 @@ public struct EasyResult {
         self.dataResponse = dataResponse
         switch dataResponse.result {
         case .success(let dataResponse):
-            if let jsonData = try? JSONSerialization.data(withJSONObject: dataResponse), let jsonobject = try? JSONSerialization.jsonObject(with: jsonData), let json = jsonobject as? Parameters, JSONSerialization.isValidJSONObject(dataResponse) {
-                self.json = json
+            if config.code.onlyValidWithHTTPstatusCode {
+                self.json = [:]
                 self.easyError = nil
             } else {
-                self.json = [:]
-                self.easyError = EasyError.serviceError(EasyErrorReason.serverError)
+                if let jsonData = try? JSONSerialization.data(withJSONObject: dataResponse), let jsonobject = try? JSONSerialization.jsonObject(with: jsonData), let json = jsonobject as? Parameters, JSONSerialization.isValidJSONObject(dataResponse) {
+                    self.json = json
+                    self.easyError = nil
+                } else {
+                    self.json = [:]
+                    self.easyError = EasyError.serviceError(EasyErrorReason.serverError)
+                }
             }
         case .failure(let error):
             self.json = [:]
@@ -119,12 +124,19 @@ public struct EasyResult {
         }
     }
     
+    init(config: EasyConfig, error: Error) {
+        self.config = config
+        self.easyError = EasyError.unknown(error.localizedDescription)
+        self.json = [:]
+        self.dataResponse = nil
+    }
+    
 }
 
 public extension EasyResult {
     
     var code: Int { return json[config.key.code].toInt ?? config.code.unknown }
-    var statusCode: Int { return dataResponse.response?.statusCode ?? config.code.unknown }
+    var statusCode: Int { return dataResponse?.response?.statusCode ?? config.code.unknown }
     var msg: String { return json[config.key.msg].toString ?? easyError?.localizedDescription ?? EasyErrorReason.serverError }
     var data: EasyParameters { return (json[config.key.data] as? EasyParameters) ?? [:] }
 

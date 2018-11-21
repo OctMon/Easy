@@ -17,6 +17,7 @@ public struct EasyErrorReason {
 
 public enum EasyError: Error {
     case empty(String), tokenExpired(String), forceUpdate(String), serviceError(String), networkFailed
+    case unknown(String)
 }
 
 extension EasyError: LocalizedError {
@@ -25,7 +26,7 @@ extension EasyError: LocalizedError {
         switch self {
         case .networkFailed:
             return EasyErrorReason.networkFailed
-        case .empty(let reason), .tokenExpired(let reason), .forceUpdate(let reason), .serviceError(let reason):
+        case .empty(let reason), .tokenExpired(let reason), .forceUpdate(let reason), .serviceError(let reason), .unknown(let reason):
             return reason
         }
     }

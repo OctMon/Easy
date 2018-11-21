@@ -112,6 +112,24 @@ public extension EasySession {
         }
     }
     
+    func upload(multipartFormData: @escaping (MultipartFormData) -> Void, host: String? = nil, path: String?, method: EasyHttpMethod = .post, timeoutInterval: TimeInterval? = nil, inView view: UIView? = nil, requestHandler: ((URLRequest) -> URLRequest)? = nil, completionHandler: @escaping (EasyDataResponse) -> Void) {
+        let urlRequest = Router.requestJSONEncoding(host ?? config.url.currentBaseURL, path, method, nil, timeoutInterval ?? config.other.timeout, requestHandler: requestHandler)
+        logRequest(urlRequest)
+        Alamofire.upload(multipartFormData: multipartFormData, with: urlRequest) { (encodingResult) in
+            switch encodingResult {
+            case .success(let upload, _, _):
+                view?.showLoading()
+                upload.responseJSON { dataResponse in
+                    view?.hideLoading()
+                    logResponseJSON(dataResponse)
+                    completionHandler(self.getEasyDataResponse(dataResponse: dataResponse))
+                }
+            case .failure(let encodingError):
+                completionHandler(EasyDataResponse(request: nil, response: nil, data: nil, result: EasyResult(config: self.config, error: encodingError), timeline: Timeline(), list: []))
+            }
+        }
+    }
+    
     private func getEasyDataResponse(dataResponse: DataResponse<Any>) -> EasyDataResponse {
         return EasyDataResponse(request: dataResponse.request, response: dataResponse.response, data: dataResponse.data, result: EasyResult(config: config, dataResponse: dataResponse), timeline: dataResponse.timeline, list: [])
     }
@@ -136,9 +154,7 @@ public extension EasySession {
 extension SessionManager {
     
     func easyRequest(_ urlRequest: URLRequestConvertible, config: EasyConfig) -> DataRequest {
-        #if DEBUG || BETA
-            urlRequest.urlRequest?.printRequestLog()
-        #endif
+        logRequest(urlRequest)
         if let acceptableStatusCodes = config.code.acceptableStatusCodes {
             return request(urlRequest).validate(statusCode: acceptableStatusCodes)
         }
@@ -156,6 +172,12 @@ extension DataRequest {
         }
     }
     
+}
+
+private func logRequest(_ urlRequest: URLRequestConvertible) {
+    #if DEBUG || BETA
+    urlRequest.urlRequest?.printRequestLog()
+    #endif
 }
 
 private func logResponseJSON(_ dataResponse: DataResponse<Any>) {
