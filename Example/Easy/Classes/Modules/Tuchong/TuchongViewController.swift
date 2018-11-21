@@ -23,7 +23,7 @@ class TuchongViewController: easy.ViewController, easy.CollectionListProtocol {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        super.viewDidLoad()
+        super.viewDidAppear(animated)
         
         if collectionList.count < 1 {
             self.request()
