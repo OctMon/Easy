@@ -87,6 +87,11 @@ public extension EasyDataResponse {
         return result.json
     }
     
+    /// Returns the Outermost array -> [[String: Any]]
+    var arrayParameters: [EasyParameters] {
+        return result.array
+    }
+    
 }
 
 public struct EasyResult {
@@ -95,14 +100,16 @@ public struct EasyResult {
     private let dataResponse: DataResponse<Any>?
     public let config: EasyConfig
     public let json: EasyParameters
+    public let array: [EasyParameters]
     
     init(config: EasyConfig, dataResponse: DataResponse<Any>) {
         self.config = config
         self.dataResponse = dataResponse
         switch dataResponse.result {
         case .success(let value):
-            if let jsonData = try? JSONSerialization.data(withJSONObject: value), let jsonobject = try? JSONSerialization.jsonObject(with: jsonData), let json = jsonobject as? Parameters, JSONSerialization.isValidJSONObject(value) || config.code.onlyValidWithHTTPstatusCode {
-                self.json = json
+            if let jsonData = try? JSONSerialization.data(withJSONObject: value), let jsonobject = try? JSONSerialization.jsonObject(with: jsonData), JSONSerialization.isValidJSONObject(value) || config.code.onlyValidWithHTTPstatusCode {
+                self.json = (jsonobject as? EasyParameters) ?? [:]
+                self.array = (jsonobject as? [EasyParameters]) ?? []
                 if config.code.onlyValidWithHTTPstatusCode && (dataResponse.response?.statusCode != config.code.successStatusCode) {
                     let err = json[config.key.msg].toString ?? EasyErrorReason.serverError
                     self.easyError = EasyError.serviceError(err)
@@ -111,10 +118,12 @@ public struct EasyResult {
                 }
             } else {
                 self.json = [:]
+                self.array = []
                 self.easyError = EasyError.serviceError(EasyErrorReason.serverError)
             }
         case .failure(let error):
             self.json = [:]
+            self.array = []
             switch URLError.Code(rawValue: (error as NSError).code) {
             case URLError.Code.notConnectedToInternet, URLError.Code.timedOut:
                 self.easyError = EasyError.networkFailed
@@ -132,6 +141,7 @@ public struct EasyResult {
         self.config = config
         self.easyError = EasyError.unknown(error.localizedDescription)
         self.json = [:]
+        self.array = []
         self.dataResponse = nil
     }
     
