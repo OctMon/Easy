@@ -17,7 +17,10 @@ class PhotoBrowserViewController: easy.ViewController, easy.CollectionListProtoc
         
         navigationItem.appendRightBarButtonItem(title: "📷") { [weak self] in
             guard let `self` = self else { return }
-            app.showPhotoPick(in: self, maxSelectCount: 11, selectImageHandler: { [weak self] (images, assets, isOriginal) in
+            app.showPhotoPick(in: self, configurationHandler: { configuration in
+                configuration.maxSelectCount = Int.max
+                configuration.allowEditImage = true
+            }, selectImageHandler: { [weak self] (images, assets, isOriginal) in
                 self?.collectionList = images
                 self?.collectionView.reloadData()
             })
