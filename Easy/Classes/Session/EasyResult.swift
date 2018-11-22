@@ -100,18 +100,18 @@ public struct EasyResult {
         self.config = config
         self.dataResponse = dataResponse
         switch dataResponse.result {
-        case .success(let dataResponse):
-            if config.code.onlyValidWithHTTPstatusCode {
-                self.json = [:]
-                self.easyError = nil
-            } else {
-                if let jsonData = try? JSONSerialization.data(withJSONObject: dataResponse), let jsonobject = try? JSONSerialization.jsonObject(with: jsonData), let json = jsonobject as? Parameters, JSONSerialization.isValidJSONObject(dataResponse) {
-                    self.json = json
-                    self.easyError = nil
+        case .success(let value):
+            if let jsonData = try? JSONSerialization.data(withJSONObject: value), let jsonobject = try? JSONSerialization.jsonObject(with: jsonData), let json = jsonobject as? Parameters, JSONSerialization.isValidJSONObject(value) || config.code.onlyValidWithHTTPstatusCode {
+                self.json = json
+                if config.code.onlyValidWithHTTPstatusCode && (dataResponse.response?.statusCode != config.code.successStatusCode) {
+                    let err = json[config.key.msg].toString ?? EasyErrorReason.serverError
+                    self.easyError = EasyError.serviceError(err)
                 } else {
-                    self.json = [:]
-                    self.easyError = EasyError.serviceError(EasyErrorReason.serverError)
+                    self.easyError = nil
                 }
+            } else {
+                self.json = [:]
+                self.easyError = EasyError.serviceError(EasyErrorReason.serverError)
             }
         case .failure(let error):
             self.json = [:]
@@ -119,7 +119,11 @@ public struct EasyResult {
             case URLError.Code.notConnectedToInternet, URLError.Code.timedOut:
                 self.easyError = EasyError.networkFailed
             default:
-                self.easyError = EasyError.serviceError(error.localizedDescription)
+                if config.code.onlyValidWithHTTPstatusCode {
+                    self.easyError = (dataResponse.response?.statusCode == config.code.successStatusCode) ? nil : EasyError.serviceError(error.localizedDescription)
+                } else {
+                    self.easyError = EasyError.serviceError(error.localizedDescription)
+                }
             }
         }
     }
@@ -152,7 +156,7 @@ public extension EasyResult {
             return error
         } else {
             if config.code.onlyValidWithHTTPstatusCode {
-                return EasyError.serviceError(msg.isEmpty ? EasyErrorReason.serverError : msg)
+                return validStatusCode ? nil : EasyError.serviceError(msg.isEmpty ? EasyErrorReason.serverError : msg)
             }
             switch code {
             case config.code.empty:
