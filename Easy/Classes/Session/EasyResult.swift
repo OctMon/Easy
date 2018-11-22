@@ -299,7 +299,7 @@ public extension EasyListView {
                             collectionView.reloadData()
                         }
                     }
-                    showPlaceholder(error: dataResponse.error, image: nil, tap: { [weak self] in
+                    showPlaceholder(error: dataResponse.error ?? EasyError.empty(dataResponse.msg.isEmpty ? EasyErrorReason.empty : dataResponse.msg), image: nil, tap: { [weak self] in
                         self?.showLoading()
                         self?.requestHandler?()
                     })
