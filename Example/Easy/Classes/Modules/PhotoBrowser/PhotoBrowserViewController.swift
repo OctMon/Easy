@@ -46,7 +46,7 @@ class PhotoBrowserViewController: easy.ViewController, easy.CollectionListProtoc
             if let cell = cell as? TuchongCollectionViewCell {
                 cell.imageView.image = image
             }
-        }) { (listView, indexPath, image) in
+        }) { [weak self] (listView, indexPath, image) in
             let photoActionSheet = easy.PhotoActionSheet()
             photoActionSheet.sender = self
             let photos = listView.list.map({ (any) -> [AnyHashable : Any] in
