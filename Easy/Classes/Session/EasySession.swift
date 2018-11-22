@@ -24,8 +24,10 @@ public extension Easy {
 }
 
 public typealias EasyHttpMethod = HTTPMethod
+public typealias EasyMultipartFormData = MultipartFormData
 public extension Easy {
     typealias HttpMethod = EasyHttpMethod
+    typealias MultipartFormData = EasyMultipartFormData
 }
 
 public struct EasySession {
