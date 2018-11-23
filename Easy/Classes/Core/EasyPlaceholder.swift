@@ -58,7 +58,7 @@ public extension EasyPlaceholder {
         return empty(title: title, image: EasyGlobal.placholderEmptyImage)
     }
     static func emptyGlobal(image: UIImage?) -> EasyPlaceholder {
-        return empty(title: EasyErrorReason.empty, image: image)
+        return empty(title: EasyGlobal.errorEmpty, image: image)
     }
     static func empty(title: String?, image: UIImage?) -> EasyPlaceholder {
         return EasyPlaceholder(style: .empty, title: title, image: image)

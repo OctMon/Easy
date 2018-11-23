@@ -111,31 +111,31 @@ public struct EasyResult {
                 self.json = (jsonobject as? EasyParameters) ?? [:]
                 self.array = (jsonobject as? [EasyParameters]) ?? []
                 if config.code.onlyValidWithHTTPstatusCode && (dataResponse.response?.statusCode != config.code.successStatusCode) {
-                    let err = json[config.key.msg].toString ?? EasyErrorReason.serverError
-                    self.easyError = EasyError.serviceError(err)
+                    let server = json[config.key.msg].toString ?? EasyGlobal.errorServer
+                    self.easyError = EasyError.server(server)
                 } else {
                     self.easyError = nil
                 }
             } else {
                 self.json = [:]
                 self.array = []
-                self.easyError = EasyError.serviceError(EasyErrorReason.serverError)
+                self.easyError = EasyError.server(EasyGlobal.errorServer)
             }
         case .failure(let error):
             self.json = [:]
             self.array = []
             switch URLError.Code(rawValue: (error as NSError).code) {
             case URLError.Code.notConnectedToInternet, URLError.Code.timedOut, URLError.Code.networkConnectionLost:
-                if let reason = EasyErrorReason.networkFailed {
-                    self.easyError = EasyError.networkFailed(reason)
+                if let reason = EasyGlobal.errorNetwork {
+                    self.easyError = EasyError.network(reason)
                 } else {
-                    self.easyError = EasyError.networkFailed(error.localizedDescription)
+                    self.easyError = EasyError.network(error.localizedDescription)
                 }
             default:
                 if config.code.onlyValidWithHTTPstatusCode {
-                    self.easyError = (dataResponse.response?.statusCode == config.code.successStatusCode) ? nil : EasyError.serviceError(error.localizedDescription)
+                    self.easyError = (dataResponse.response?.statusCode == config.code.successStatusCode) ? nil : EasyError.server(error.localizedDescription)
                 } else {
-                    self.easyError = EasyError.serviceError(error.localizedDescription)
+                    self.easyError = EasyError.server(error.localizedDescription)
                 }
             }
         }
@@ -155,7 +155,7 @@ public extension EasyResult {
     
     var code: Int { return json[config.key.code].toInt ?? config.code.unknown }
     var statusCode: Int { return dataResponse?.response?.statusCode ?? config.code.unknown }
-    var msg: String { return json[config.key.msg].toString ?? easyError?.localizedDescription ?? EasyErrorReason.serverError }
+    var msg: String { return json[config.key.msg].toString ?? easyError?.localizedDescription ?? EasyGlobal.errorServer }
     var data: EasyParameters { return (json[config.key.data] as? EasyParameters) ?? [:] }
 
     var total: Int { return json[config.key.total].toIntValue }
@@ -170,18 +170,18 @@ public extension EasyResult {
             return error
         } else {
             if config.code.onlyValidWithHTTPstatusCode {
-                return validStatusCode ? nil : EasyError.serviceError(msg.isEmpty ? EasyErrorReason.serverError : msg)
+                return validStatusCode ? nil : EasyError.server(msg.isEmpty ? EasyGlobal.errorServer : msg)
             }
             switch code {
             case config.code.empty:
-                return EasyError.empty(msg.isEmpty ? EasyErrorReason.empty : msg)
+                return EasyError.empty(msg.isEmpty ? EasyGlobal.errorEmpty : msg)
             case config.code.tokenExpired:
-                return EasyError.tokenExpired(msg.isEmpty ? EasyErrorReason.token : msg)
+                return EasyError.token(msg.isEmpty ? EasyGlobal.errorToken : msg)
             case config.code.forceUpdate:
-                return EasyError.forceUpdate(msg.isEmpty ? EasyErrorReason.force : msg)
+                return EasyError.version(msg.isEmpty ? EasyGlobal.errorVersion : msg)
             default:
                 if valid { return nil }
-                return EasyError.serviceError(msg.isEmpty ? EasyErrorReason.serverError : msg)
+                return EasyError.server(msg.isEmpty ? EasyGlobal.errorServer : msg)
             }
         }
     }
@@ -307,7 +307,7 @@ public extension EasyListView {
                     var image: UIImage?
                     if (isValidList && !dataResponse.validList && error == nil) || (dataResponse.code == dataResponse.config.code.empty) {
                         image = EasyGlobal.placholderEmptyImage
-                        error = EasyError.empty((dataResponse.msg.isEmpty ? EasyErrorReason.empty : dataResponse.msg))
+                        error = EasyError.empty((dataResponse.msg.isEmpty ? EasyGlobal.errorEmpty : dataResponse.msg))
                         for placeholder in placeholders {
                             if placeholder.style == .empty {
                                 image = placeholder.image
