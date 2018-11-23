@@ -24,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        configTheme()
+        configGlobal()
         window = easy.NavigationController(rootViewController: Main()).makeRootViewController()
         config(application, launchOptions: launchOptions)
         return true

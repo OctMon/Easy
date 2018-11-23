@@ -10,7 +10,7 @@ import UIKit
 
 extension AppDelegate {
     
-    func configTheme() {
+    func configGlobal() {
         app.openFullScreenPopGesture()
         global.backBarButtonItemTitle = ""
         global.navigationBarBackgroundImage = UIColor.white.toImage
