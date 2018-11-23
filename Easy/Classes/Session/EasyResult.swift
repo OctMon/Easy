@@ -125,8 +125,12 @@ public struct EasyResult {
             self.json = [:]
             self.array = []
             switch URLError.Code(rawValue: (error as NSError).code) {
-            case URLError.Code.notConnectedToInternet, URLError.Code.timedOut:
-                self.easyError = EasyError.networkFailed
+            case URLError.Code.notConnectedToInternet, URLError.Code.timedOut, URLError.Code.networkConnectionLost:
+                if let reason = EasyErrorReason.networkFailed {
+                    self.easyError = EasyError.networkFailed(reason)
+                } else {
+                    self.easyError = EasyError.networkFailed(error.localizedDescription)
+                }
             default:
                 if config.code.onlyValidWithHTTPstatusCode {
                     self.easyError = (dataResponse.response?.statusCode == config.code.successStatusCode) ? nil : EasyError.serviceError(error.localizedDescription)
