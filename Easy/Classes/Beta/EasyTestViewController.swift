@@ -32,7 +32,7 @@ class EasyTestViewController: EasyViewController, EasyTableListProtocol {
             self?.refreshLog(log)
         }
         
-        tableList = [[("show request log banner", EasySession.logEnabel.toStringValue), ("PerformanceMonitor", isShowPerformanceMonitor.toStringValue)]]
+        tableList = [[("show request log banner", EasySession.logEnabel.toStringValue), ("PerformanceMonitor", isShowPerformanceMonitor.toStringValue), ("MemoryDetectorMonitor", isShowMemoryDetectorMonitor.toStringValue)]]
         var tmp = [Any]()
         sessions.forEach({ tmp.append(($0.config.url.alias, $0.config.url.currentBaseURL)) })
         if tmp.count > 0 {
@@ -79,6 +79,8 @@ class EasyTestViewController: EasyViewController, EasyTableListProtocol {
                             EasySession.logEnabel = isOn
                         case (0, 1):
                             isShowPerformanceMonitor = isOn
+                        case (0, 2):
+                            isShowMemoryDetectorMonitor = isOn
                         default:
                             break
                         }

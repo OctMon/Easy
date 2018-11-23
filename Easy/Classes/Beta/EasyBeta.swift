@@ -8,6 +8,7 @@
 import UIKit
 import FLEX
 import GDPerformanceView_Swift
+import OOMDetector
 
 public struct EasyBeta {
     
@@ -51,6 +52,17 @@ var isShowPerformanceMonitor = false {
             PerformanceMonitor.shared().pause()
             PerformanceMonitor.shared().hide()
         }
+    }
+}
+var isShowMemoryDetectorMonitor = false {
+    willSet {
+        if newValue {
+            OOMDetector.getInstance()?.setupWithDefaultConfig()
+            OOMDetector.getInstance()?.setupLeakChecker()
+        } else {
+            OOMDetector.getInstance()?.stopMallocStackMonitor()
+        }
+        OOMDetector.getInstance()?.showMemoryIndicatorView(newValue)
     }
 }
 var isShowTestTool = false {
