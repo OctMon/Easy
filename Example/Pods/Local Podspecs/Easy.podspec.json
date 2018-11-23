@@ -140,6 +140,9 @@
         ],
         "GDPerformanceView-Swift": [
 
+        ],
+        "OOMDetector": [
+
         ]
       },
       "xcconfig": {
