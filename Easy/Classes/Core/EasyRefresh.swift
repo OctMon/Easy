@@ -11,7 +11,7 @@ import UIKit
 import MJRefresh
 
 public extension Easy {
-    typealias refresh = EasyResult
+    typealias refresh = EasyRefresh
 }
 
 public class EasyRefresh: MJRefreshComponent {

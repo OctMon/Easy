@@ -1,35 +1,35 @@
 PODS:
   - Alamofire (4.7.3)
-  - Easy (0.9.1):
-    - Easy/Core (= 0.9.1)
-    - Easy/Session (= 0.9.1)
-  - Easy/Beta (0.9.1):
+  - Easy (0.9.2):
+    - Easy/Core (= 0.9.2)
+    - Easy/Session (= 0.9.2)
+  - Easy/Beta (0.9.2):
     - Easy/Core
     - Easy/Session
     - FLEX
     - GDPerformanceView-Swift
-  - Easy/Common (0.9.1):
+  - Easy/Common (0.9.2):
     - MBProgressHUD
     - MJRefresh
     - RTRootNavigationController
     - SDWebImage
-  - Easy/Core (0.9.1):
+  - Easy/Core (0.9.2):
     - SnapKit
-  - Easy/Page (0.9.1):
+  - Easy/Page (0.9.2):
     - Easy/Core
     - WMPageController
-  - Easy/PhotoBrowser (0.9.1):
+  - Easy/PhotoBrowser (0.9.2):
     - Easy/Core
     - ZLPhotoBrowser
-  - Easy/RSA (0.9.1):
+  - Easy/RSA (0.9.2):
     - Easy/Core
     - SwiftyRSA
-  - Easy/Scan (0.9.1):
+  - Easy/Scan (0.9.2):
     - Easy/Core
-  - Easy/Session (0.9.1):
+  - Easy/Session (0.9.2):
     - Alamofire
     - Easy/Core
-  - Easy/Social (0.9.1):
+  - Easy/Social (0.9.2):
     - Easy/Core
     - MonkeyKing
   - FLEX (2.4.0)
@@ -85,7 +85,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
-  Easy: 1506ccd25fefa466141edd5175ff54d1b93a538e
+  Easy: 4e90dd724c5d2d705ce801487a0fb348ac0c0493
   FLEX: bd1a39e55b56bb413b6f1b34b3c10a0dc44ef079
   GDPerformanceView-Swift: 42458987e2f5bbfd097a8706d7ca38e961171c3f
   GPUImage: 733a5f0fab92df9de1c37ba9df520a833ccb406d

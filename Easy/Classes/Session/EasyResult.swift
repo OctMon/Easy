@@ -228,7 +228,7 @@ public extension EasyListView {
         }
     }
     
-    fileprivate func setRefresh(_ scrollView: UIScrollView, dataResponse: EasyDataResponse, isValidList: Bool, errorHandler: ((Error?) -> Void)? = nil) {
+    fileprivate func setRefresh(_ scrollView: UIScrollView, dataResponse: EasyDataResponse, isValidList: Bool, placeholders: [EasyPlaceholder], errorHandler: ((Error?) -> Void)? = nil) {
         let isTableView = scrollView is UITableView
         let isCollectionView = scrollView is UICollectionView
         hideLoading()
@@ -299,7 +299,21 @@ public extension EasyListView {
                             collectionView.reloadData()
                         }
                     }
-                    showPlaceholder(error: dataResponse.error ?? EasyError.empty(dataResponse.msg.isEmpty ? EasyErrorReason.empty : dataResponse.msg), image: nil, tap: { [weak self] in
+                    var error = dataResponse.error
+                    var image: UIImage?
+                    if (isValidList && !dataResponse.validList && error == nil) || (dataResponse.code == dataResponse.config.code.empty) {
+                        image = EasyGlobal.placholderEmptyImage
+                        error = EasyError.empty((dataResponse.msg.isEmpty ? EasyErrorReason.empty : dataResponse.msg))
+                        for placeholder in placeholders {
+                            if placeholder.style == .empty {
+                                image = placeholder.image
+                                if let title = placeholder.title {
+                                    error = EasyError.empty(title)
+                                }
+                            }
+                        }
+                    }
+                    showPlaceholder(error: error, image: image, tap: { [weak self] in
                         self?.showLoading()
                         self?.requestHandler?()
                     })
@@ -317,8 +331,8 @@ public extension EasyTableListView {
         addRefresh(tableView, isAddHeader: isAddFooter, isAddFooter: isAddFooter, requestHandler: requestHandler)
     }
     
-    func setRefresh(dataResponse: EasyDataResponse, isValidList: Bool, errorHandler: ((Error?) -> Void)? = nil) {
-        setRefresh(tableView, dataResponse: dataResponse, isValidList: isValidList, errorHandler: errorHandler)
+    func setRefresh(dataResponse: EasyDataResponse, isValidList: Bool, placeholders: [EasyPlaceholder] = [], errorHandler: ((Error?) -> Void)? = nil) {
+        setRefresh(tableView, dataResponse: dataResponse, isValidList: isValidList, placeholders: placeholders, errorHandler: errorHandler)
     }
     
 }
@@ -329,8 +343,8 @@ public extension EasyCollectionListView {
         addRefresh(collectionView, isAddHeader: isAddFooter, isAddFooter: isAddFooter, requestHandler: requestHandler)
     }
     
-    func setRefresh(dataResponse: EasyDataResponse, isValidList: Bool, errorHandler: ((Error?) -> Void)? = nil) {
-        setRefresh(collectionView, dataResponse: dataResponse, isValidList: isValidList, errorHandler: errorHandler)
+    func setRefresh(dataResponse: EasyDataResponse, isValidList: Bool, placeholders: [EasyPlaceholder] = [], errorHandler: ((Error?) -> Void)? = nil) {
+        setRefresh(collectionView, dataResponse: dataResponse, isValidList: isValidList, placeholders: placeholders, errorHandler: errorHandler)
     }
 
 }
