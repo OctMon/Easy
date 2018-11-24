@@ -249,12 +249,12 @@ class TuchongCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        addSubview(imageView)
+        contentView.addSubview(imageView)
         imageView.snp.makeConstraints({ (make) in
             make.edges.equalToSuperview()
         })
         
-        addSubview(label)
+        contentView.addSubview(label)
         label.snp.makeConstraints { (make) in
             make.center.equalToSuperview()
         }

@@ -31,7 +31,7 @@ public class EasyInputCell: UITableViewCell {
     
     public lazy var textField: UITextField = {
         let textField = UITextField()
-        addSubview(textField)
+        contentView.addSubview(textField)
         
         textField.snp.makeConstraints({ (make) in
             make.edges.equalToSuperview().inset(UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15))
@@ -48,7 +48,7 @@ public class EasyInputCell: UITableViewCell {
     
     public lazy var smsCodeButton: UIButton = {
         let button = UIButton()
-        addSubview(button)
+        contentView.addSubview(button)
         
         button.snp.makeConstraints({ (make) in
             make.top.bottom.equalToSuperview()
