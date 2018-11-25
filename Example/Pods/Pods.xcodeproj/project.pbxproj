@@ -1000,6 +1000,8 @@
 		FDDB00E5C4A41D1BDFD9F37F20A6AA00 /* GPUImageTextureOutput.m in Sources */ = {isa = PBXBuildFile; fileRef = 80DAC5AFED09756AAF45F356C09D918C /* GPUImageTextureOutput.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		FE3738F9EF37CA9D50B25DA240411252 /* FLEXWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9252A57D85813A63730A935B54DCBC0 /* FLEXWebViewController.m */; };
 		FEC425F3CBE76B28E2859A6078B5FD55 /* GPUImageSphereRefractionFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = E0ADC5456A7FC6B208B3317833C6B880 /* GPUImageSphereRefractionFilter.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		FEDAE49F21A94D940037F6AB /* EasyCycleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEDAE49E21A94D930037F6AB /* EasyCycleView.swift */; };
+		FEDAE4A021A94D940037F6AB /* EasyCycleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEDAE49E21A94D930037F6AB /* EasyCycleView.swift */; };
 		FEFFA3270EEF72C744ADA87D00B4199F /* GDPerformanceView_Swift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BBD4E44E36523F1963473B20EA5148B /* GDPerformanceView_Swift.framework */; };
 		FF1F0728B222E7B669C567E1E5901ABD /* GPUImagePixellatePositionFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = 2B4C80321F619FAE0A9CFFDBCAB003CE /* GPUImagePixellatePositionFilter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FF92891AABF0FE2ABF97BF8622D9DF47 /* SDWebImageCompat.m in Sources */ = {isa = PBXBuildFile; fileRef = 10842B93DA5A59A8B69031C2F5EEAD0F /* SDWebImageCompat.m */; };
@@ -2441,6 +2443,7 @@
 		FE8E240696F3182BE63ABCC929438ECD /* GPUImageRGBClosingFilter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GPUImageRGBClosingFilter.h; path = framework/Source/GPUImageRGBClosingFilter.h; sourceTree = "<group>"; };
 		FEB06DCDCA362645918DFBBFD5A1A7DB /* GPUImageGaussianSelectiveBlurFilter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GPUImageGaussianSelectiveBlurFilter.h; path = framework/Source/GPUImageGaussianSelectiveBlurFilter.h; sourceTree = "<group>"; };
 		FED6CC7999E0F28867C0B1C931C6FA42 /* MJRefreshConst.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MJRefreshConst.h; path = MJRefresh/MJRefreshConst.h; sourceTree = "<group>"; };
+		FEDAE49E21A94D930037F6AB /* EasyCycleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EasyCycleView.swift; path = Easy/Classes/Core/EasyCycleView.swift; sourceTree = "<group>"; };
 		FEFC2E8A8C12B08F2ED243BE8F9DE60A /* ZLBigImageCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZLBigImageCell.h; path = PhotoBrowser/ZLBigImageCell.h; sourceTree = "<group>"; };
 		FF4D2A4F7B9E3F1F5186D000A75E7FC9 /* SDWebImageOperation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDWebImageOperation.h; path = SDWebImage/SDWebImageOperation.h; sourceTree = "<group>"; };
 		FFA60CA585A11973315308C4097AC14A /* Pods-Easy_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Easy_Tests.release.xcconfig"; sourceTree = "<group>"; };
@@ -3271,6 +3274,7 @@
 				3D3C482E40FD2EA322ADA5A9F405F70D /* EasyApp.swift */,
 				F7D570FB7E3C8CFA2C7F5BEF1DCB2DF9 /* EasyCollectionListView.swift */,
 				4ED9384DEDC5262746E51E5ECE9173EB /* EasyCrypto.swift */,
+				FEDAE49E21A94D930037F6AB /* EasyCycleView.swift */,
 				B8F9F2EE396AECCCB35C4CF944230E5A /* EasyDevice.swift */,
 				C0C3E7055852CE401E5496C1DB54E71D /* EasyExtension.swift */,
 				EA09D80385C1923836671F28A11A3CC7 /* EasyGlobal.swift */,
@@ -5745,6 +5749,7 @@
 				6740D097C56BC47F33FEC08CF8E92F47 /* EasyListView.swift in Sources */,
 				5FE66878D09213678D1121F0D8C36DE6 /* EasyLoading.swift in Sources */,
 				77D24F10BEAAE0C53BD3F96309052428 /* EasyLog.swift in Sources */,
+				FEDAE49F21A94D940037F6AB /* EasyCycleView.swift in Sources */,
 				3556FE2AB5BAF70E9CA8881334E1A99D /* EasyMarqueeLabel.swift in Sources */,
 				11DE00A0CEC21914F85DD8CB48DAFEF9 /* EasyNavigationController.swift in Sources */,
 				58AFA8CDA0F63E20BA26CA57F8AA6C02 /* EasyNotificationBanner.swift in Sources */,
@@ -5820,6 +5825,7 @@
 				6B290B944CE47CCD7995EDE1F1EE4808 /* EasyRefresh.swift in Sources */,
 				31457966BF6E84E69C4BB0630576FAEA /* EasyResult.swift in Sources */,
 				220D4F5BC4B59037F090CFFD451CD47F /* EasyRouter.swift in Sources */,
+				FEDAE4A021A94D940037F6AB /* EasyCycleView.swift in Sources */,
 				15AF979E122D977EA9976C481F39CAB8 /* EasyRSA.swift in Sources */,
 				4BFAC2D6E9DD0DBE1B29FAFDEC09695E /* EasyScan.swift in Sources */,
 				207774C6DB8CF00E036FDF427BCF62A2 /* EasySession.swift in Sources */,
