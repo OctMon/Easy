@@ -247,7 +247,7 @@ extension EasyCollectionListView: UICollectionViewDataSource, UICollectionViewDe
         if let sizeForItemAtHandler = sizeForItemAtHandler {
             return sizeForItemAtHandler(self, indexPath, getAny(list, indexPath: indexPath, numberOfSections: numberOfSections(in: collectionView), numberOfRowsInSectionHandler: numberOfItemsInSectionHandler))
         }
-        return .zero
+        return size
     }
     
 }
