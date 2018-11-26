@@ -19,8 +19,14 @@ public class EasyCycleView: UIView, EasyCollectionListProtocol {
     
     public typealias EasyCollectionListViewAssociatedType = ListView
     
-    private var tap: ((Int) -> Void)?
+    public var timeInterval: TimeInterval = 2 {
+        willSet {
+            collectionListView.timeInterval = newValue
+        }
+    }
 
+    private var tap: ((Int) -> Void)?
+    
     public override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -33,9 +39,10 @@ public class EasyCycleView: UIView, EasyCollectionListProtocol {
     
     public func setImageURLs(_ urls: [String], placeholderImage: UIImage?, tap: @escaping (Int) -> Void) {
         collectionList = urls
-        collectionListView.count = urls.count <= 0 ? urls.count : urls.count * 2
+        collectionListView.count = urls.count <= 1 ? urls.count : urls.count * 2
         collectionListView.placeholderImage = placeholderImage
         collectionListView.tap = tap
+        collectionListView.timerRunLoop()
     }
     
     public func reload() {
@@ -49,9 +56,12 @@ extension EasyCycleView {
     
     public class ListView: EasyCollectionListView {
         
+        var timeInterval: TimeInterval = 2
         var count = 0
         var placeholderImage: UIImage?
         var tap: ((Int) -> Void)?
+        
+        private var timer: Timer?
         
         public override func configure() {
             super.configure()
@@ -82,6 +92,40 @@ extension EasyCycleView {
             }
         }
         
+        override public func willMove(toWindow newWindow: UIWindow?) {
+            super.willMove(toWindow: newWindow)
+            if newWindow != nil {
+                timerRunLoop()
+            } else {
+                timerInvalidate()
+            }
+        }
+        
+        func timerRunLoop() {
+            guard timeInterval != 0 else { return }
+            guard count > 1 else { return }
+            timerInvalidate()
+            timer = Timer(timeInterval: timeInterval, target: self, selector: #selector(timerRepeat), userInfo: nil, repeats: true)
+            if let timer = timer {
+                RunLoop.main.add(timer, forMode: .common)
+            }
+        }
+        
+        private func timerInvalidate() {
+            guard timer != nil else { return }
+            timer?.invalidate()
+            timer = nil
+        }
+        
+        @objc private func timerRepeat() {
+            var item = current + 1
+            if current == count - 1 {
+                check()
+                item = count / 2
+            }
+            collectionView.scrollToItem(at: IndexPath(item: item, section: 0), at: .centeredHorizontally, animated: true)
+        }
+        
         private func check() {
             guard count > 1 else { return }
             if current == 0 {
@@ -99,7 +143,12 @@ extension EasyCycleView {
         }
         
         public func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+            timerInvalidate()
             check()
+        }
+        
+        public func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+            timerRunLoop()
         }
         
     }
