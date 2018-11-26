@@ -95,7 +95,9 @@ extension EasyCycleView {
             register(imageCell.self, configureCell: { [weak self] (listView, cell, indexPath, _) in
                 if let cell = cell as? imageCell {
                     let offset = indexPath.item % listView.list.count
+                    #if canImport(SDWebImage) || canImport(Kingfisher) 
                     cell.imageView.setImage(url: listView.list(String.self)[offset], placeholderImage: self?.placeholderImage)
+                    #endif
                 }
             }) { [weak self] (listView, indexPath, _) in
                 let offset = indexPath.item % listView.list.count
