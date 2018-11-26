@@ -34,6 +34,11 @@ public class PerformanceMonitor {
         case custom(backgroundColor: UIColor, borderColor: UIColor, borderWidth: CGFloat, cornerRadius: CGFloat, textColor: UIColor, font: UIFont)
     }
     
+    public enum UserInfo {
+        case none
+        case custom(string: String)
+    }
+    
     private enum States {
         case started
         case paused
@@ -111,13 +116,14 @@ public class PerformanceMonitor {
     required public init(options: DisplayOptions = .default, style: Style = .dark, delegate: PerformanceMonitorDelegate? = nil) {
         self.performanceView.options = options
         self.performanceView.style = style
+        
         self.performanceCalculator.onReport = { [weak self] (performanceReport) in
             DispatchQueue.main.async {
                 self?.apply(performanceReport: performanceReport)
             }
         }
-        self.delegate = delegate
         
+        self.delegate = delegate
         self.subscribeToNotifications()
     }
     

@@ -47,10 +47,23 @@ internal class PerformanceView: UIWindow, PerformanceViewConfigurator {
         }
     }
     
+    public var userInfo = PerformanceMonitor.UserInfo.none {
+        didSet {
+            self.configureUserInformation()
+        }
+    }
+    
     /// Allows to change the appearance of the displayed information.
     public var style = PerformanceMonitor.Style.dark {
         didSet {
-            self.configureView(withStyle: style)
+            self.configureView(withStyle: self.style)
+        }
+    }
+    
+    /// Allows to add gesture recognizers to the view.
+    public var interactors: [UIGestureRecognizer]? {
+        didSet {
+            self.configureView(withInteractors: self.interactors)
         }
     }
     
@@ -58,6 +71,7 @@ internal class PerformanceView: UIWindow, PerformanceViewConfigurator {
     
     private let monitoringTextLabel = MarginLabel()
     private var staticInformation: String?
+    private var userInformation: String?
     
     // MARK: Init Methods & Superclass Overriders
     
@@ -88,7 +102,10 @@ internal class PerformanceView: UIWindow, PerformanceViewConfigurator {
     }
     
     override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
-        return false
+        guard let interactors = self.interactors, interactors.count > 0 else {
+            return false
+        }
+        return super.point(inside: point, with: event)
     }
     
     deinit {
@@ -118,6 +135,7 @@ internal extension PerformanceView {
             let performance = String(format: "CPU: %.1f%%, FPS: %d", report.cpuUsage, report.fps)
             monitoringTexts.append(performance)
         }
+        
         if self.options.contains(.memory) {
             let bytesInMegabyte = 1024.0 * 1024.0
             let usedMemory = Double(report.memoryUsage.used) / bytesInMegabyte
@@ -125,8 +143,13 @@ internal extension PerformanceView {
             let memory = String(format: "%.1f of %.0f MB used", usedMemory, totalMemory)
             monitoringTexts.append(memory)
         }
+        
         if let staticInformation = self.staticInformation {
             monitoringTexts.append(staticInformation)
+        }
+        
+        if let userInformation = self.userInformation {
+            monitoringTexts.append(userInformation)
         }
         
         self.monitoringTextLabel.text = (monitoringTexts.count > 0 ? monitoringTexts.joined(separator: "\n") : nil)
@@ -179,6 +202,18 @@ private extension PerformanceView {
         self.staticInformation = (staticInformations.count > 0 ? staticInformations.joined(separator: ", ") : nil)
     }
     
+    func configureUserInformation() {
+        var staticInformation: String?
+        switch self.userInfo {
+        case .none:
+            break
+        case .custom(let string):
+            staticInformation = string
+        }
+        
+        self.userInformation = staticInformation
+    }
+    
     func subscribeToNotifications() {
         NotificationCenter.default.addObserver(forName: UIApplication.willChangeStatusBarFrameNotification, object: nil, queue: .main) { [weak self] (notification) in
             self?.applicationWillChangeStatusBarFrame(notification: notification)
@@ -208,6 +243,20 @@ private extension PerformanceView {
             self.monitoringTextLabel.layer.cornerRadius = cornerRadius
             self.monitoringTextLabel.textColor = textColor
             self.monitoringTextLabel.font = font
+        }
+    }
+    
+    func configureView(withInteractors interactors: [UIGestureRecognizer]?) {
+        if let recognizers = self.gestureRecognizers {
+            for recognizer in recognizers {
+                self.removeGestureRecognizer(recognizer)
+            }
+        }
+        
+        if let recognizers = interactors {
+            for recognizer in recognizers {
+                self.addGestureRecognizer(recognizer)
+            }
         }
     }
 }

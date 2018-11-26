@@ -1,8 +1,8 @@
-#GDPerformanceView-Swift
+# GDPerformanceView-Swift
 Shows FPS, CPU and memory usage, device model, app and iOS versions above the status bar and report FPS, CPU and memory usage via delegate.
 
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-brightgreen.svg)](https://github.com/Carthage/Carthage) 
-[![Pod Version](https://img.shields.io/badge/Pod-2.0.0-6193DF.svg)](https://cocoapods.org/)
+[![Pod Version](https://img.shields.io/badge/Pod-2.0.2-6193DF.svg)](https://cocoapods.org/)
 ![Swift Version](https://img.shields.io/badge/xCode-10.1+-blue.svg)
 ![Swift Version](https://img.shields.io/badge/iOS-8.0+-blue.svg) 
 ![Swift Version](https://img.shields.io/badge/Swift-4.2+-orange.svg)
@@ -21,7 +21,7 @@ Simply add GDPerformanceMonitoring folder with files to your project, or use Coc
 Create a `Cartfile` that lists the framework and run `carthage update`. Follow the [instructions](https://github.com/Carthage/Carthage#if-youre-building-for-ios) to add `$(SRCROOT)/Carthage/Build/iOS/GDPerformanceView.framework` to an iOS project.
 
 ```ruby
-github "dani-gavrilov/GDPerformanceView-Swift" ~> 2.0.0
+github "dani-gavrilov/GDPerformanceView-Swift" ~> 2.0.2
 ```
 Don't forget to import GDPerformanceView by adding: 
 
@@ -37,7 +37,7 @@ platform :ios, '8.0'
 use_frameworks!
 
 target 'project_name' do
-	pod 'GDPerformanceView-Swift', '~> 2.0.0'
+	pod 'GDPerformanceView-Swift', '~> 2.0.2'
 end
 ```
 Don't forget to import GDPerformanceView by adding: 
@@ -108,6 +108,13 @@ self.performanceView?.performanceViewConfigurator.options = [.performance, .appl
 ```
 By default, set of [.performance, .application, .system] options is used.
 
+You can also add your custom information by using:
+
+```swift
+self.performanceView?.performanceViewConfigurator.userInfo = .custom(string: "Launch date \(Date())")
+```
+Keep in mind that custom string will not automatically fit the screen, use `\n` if it is too long.
+
 #### Appearance
 
 You can change monitoring view appearance by changing style of the performance monitor:
@@ -133,6 +140,20 @@ self.performanceView?.statusBarConfigurator.statusBarHidden = false
 self.performanceView?.statusBarConfigurator.statusBarStyle = .lightContent
 ```
 
+#### Interactions
+
+You can interact with performance view via gesture recognizers. Add them by using:
+
+```swift
+self.performanceView?.performanceViewConfigurator.interactors = [tapGesture, swipeGesture]
+```
+If interactors is nil or empty `point(inside:with:)` of the view will return false to make all touches pass underneath. So to remove interactors just call the following command:
+
+```swift
+self.performanceView?.performanceViewConfigurator.interactors = nil
+```
+By default, interactors are nil.
+
 #### Delegate
 
 Set the delegate and implement its method:
@@ -153,11 +174,11 @@ func performanceMonitor(didReport performanceReport: PerformanceReport) {
 
 ## Donations
 
-Wanna say thanks? You can do it using [PayPal](paypal.me/danigavrilov).
+Wanna say thanks? You can do it using [PayPal](https://paypal.me/danigavrilov).
 
 ## Meta
 
-Daniil Gavrilov - [VK](https://vk.com/dani_gavrilov) - [FB](https://www.facebook.com/danigavrilov)
+Daniil Gavrilov - [VK](https://vk.com/dani_gavrilov) - [FB](https://facebook.com/danigavrilov)
 
 I will be pleased to know that your project uses this framework. You can send a link to your project in App Store to my email - [daniilmbox@gmail.com](mailto:daniilmbox@gmail.com).
 
