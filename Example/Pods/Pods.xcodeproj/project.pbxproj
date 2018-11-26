@@ -999,6 +999,8 @@
 		FCED82AB342C0115B707FAE809C7203C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3D087C1B6C57A14C5EE132BD214278F /* Foundation.framework */; };
 		FDDB00E5C4A41D1BDFD9F37F20A6AA00 /* GPUImageTextureOutput.m in Sources */ = {isa = PBXBuildFile; fileRef = 80DAC5AFED09756AAF45F356C09D918C /* GPUImageTextureOutput.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		FE3738F9EF37CA9D50B25DA240411252 /* FLEXWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9252A57D85813A63730A935B54DCBC0 /* FLEXWebViewController.m */; };
+		FE8BAA8821ABC1A200FA339B /* EasyPageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8BAA8721ABC1A200FA339B /* EasyPageControl.swift */; };
+		FE8BAA8921ABC1A200FA339B /* EasyPageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8BAA8721ABC1A200FA339B /* EasyPageControl.swift */; };
 		FEC425F3CBE76B28E2859A6078B5FD55 /* GPUImageSphereRefractionFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = E0ADC5456A7FC6B208B3317833C6B880 /* GPUImageSphereRefractionFilter.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		FEDAE49F21A94D940037F6AB /* EasyCycleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEDAE49E21A94D930037F6AB /* EasyCycleView.swift */; };
 		FEDAE4A021A94D940037F6AB /* EasyCycleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEDAE49E21A94D930037F6AB /* EasyCycleView.swift */; };
@@ -2440,6 +2442,7 @@
 		FD6E5271C29EFADCD55532A1E990AEDF /* GPUImageChromaKeyBlendFilter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = GPUImageChromaKeyBlendFilter.m; path = framework/Source/GPUImageChromaKeyBlendFilter.m; sourceTree = "<group>"; };
 		FE4313770B19FB30311AD8C083ACE7A3 /* GPUImageBilateralFilter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = GPUImageBilateralFilter.m; path = framework/Source/GPUImageBilateralFilter.m; sourceTree = "<group>"; };
 		FE7B9346DCB5DA3BBD66A1331CECBF00 /* FLEXResources.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXResources.h; path = Classes/Utility/FLEXResources.h; sourceTree = "<group>"; };
+		FE8BAA8721ABC1A200FA339B /* EasyPageControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EasyPageControl.swift; path = Easy/Classes/Core/EasyPageControl.swift; sourceTree = "<group>"; };
 		FE8E240696F3182BE63ABCC929438ECD /* GPUImageRGBClosingFilter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GPUImageRGBClosingFilter.h; path = framework/Source/GPUImageRGBClosingFilter.h; sourceTree = "<group>"; };
 		FEB06DCDCA362645918DFBBFD5A1A7DB /* GPUImageGaussianSelectiveBlurFilter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GPUImageGaussianSelectiveBlurFilter.h; path = framework/Source/GPUImageGaussianSelectiveBlurFilter.h; sourceTree = "<group>"; };
 		FED6CC7999E0F28867C0B1C931C6FA42 /* MJRefreshConst.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MJRefreshConst.h; path = MJRefresh/MJRefreshConst.h; sourceTree = "<group>"; };
@@ -3287,6 +3290,7 @@
 				CA6DF06A30648B68B4A596183AB27708 /* EasyMarqueeLabel.swift */,
 				A6945E44C7FB0A41E402BA627D12AB46 /* EasyNavigationController.swift */,
 				85E61715F3984E3E8C0A4F29F3CF80CC /* EasyNotificationBanner.swift */,
+				FE8BAA8721ABC1A200FA339B /* EasyPageControl.swift */,
 				8834C1589EA2B33ACCBB91F54963338D /* EasyPlaceholder.swift */,
 				D82556FF458AEC9AAE2A4D42E3C62CE0 /* EasyPopupMenu.swift */,
 				944D735EAB8C8C381EE78EAC779F3A23 /* EasyPopupView.swift */,
@@ -5768,6 +5772,7 @@
 				9420CE5852C9322E8CD09366EFDD2837 /* EasyTableListView.swift in Sources */,
 				4CB85E4E38B0B0AF65B4FE431BDC1BAC /* EasyThen.swift in Sources */,
 				D855C45FDA80F49F2580EB0455A059E6 /* EasyTo.swift in Sources */,
+				FE8BAA8821ABC1A200FA339B /* EasyPageControl.swift in Sources */,
 				49C8CBA24BE45308025A5C8EACE0F19A /* EasyValid.swift in Sources */,
 				6105964B2FDFC5BCC48A8F1580097CFF /* EasyViewController.swift in Sources */,
 				639DB20728DB6D5A74C9785E57E43DB1 /* EasyWaterFlowLayout.swift in Sources */,
@@ -5817,6 +5822,7 @@
 				B078802D1CD46F4EC9F98F7C5D140419 /* EasyMarqueeLabel.swift in Sources */,
 				52722EC5D441114BA3B72A3D7A1BFEDC /* EasyNavigationController.swift in Sources */,
 				0A914A9C4B1660A61939AD9163048C9F /* EasyNotificationBanner.swift in Sources */,
+				FE8BAA8921ABC1A200FA339B /* EasyPageControl.swift in Sources */,
 				3C0926189C8D8F179EF378C1255D4614 /* EasyPage.swift in Sources */,
 				DB7EE1FA9355F45214FEF04A8CE7430A /* EasyPhotoBrowser.swift in Sources */,
 				AFC244F5D303FA96380525A236CD061B /* EasyPlaceholder.swift in Sources */,

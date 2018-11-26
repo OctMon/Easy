@@ -24,6 +24,8 @@ public class EasyCycleView: UIView, EasyCollectionListProtocol {
             collectionListView.timeInterval = newValue
         }
     }
+    
+    public var pageControl = EasyPageControl()
 
     private var tap: ((Int) -> Void)?
     
@@ -31,6 +33,12 @@ public class EasyCycleView: UIView, EasyCollectionListProtocol {
         super.init(frame: frame)
         
         addCollectionView(in: self)
+        collectionListView.pageControl = pageControl
+        addSubview(pageControl)
+        pageControl.snp.makeConstraints { (make) in
+            make.bottom.left.right.equalToSuperview()
+            make.height.equalTo(25)
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -43,6 +51,7 @@ public class EasyCycleView: UIView, EasyCollectionListProtocol {
         collectionListView.placeholderImage = placeholderImage
         collectionListView.tap = tap
         collectionListView.timerRunLoop()
+        collectionListView.pageControl?.numberOfPages = urls.count
     }
     
     public func reload() {
@@ -56,10 +65,12 @@ extension EasyCycleView {
     
     public class ListView: EasyCollectionListView {
         
-        var timeInterval: TimeInterval = 2
+        var timeInterval: TimeInterval = 0
         var count = 0
         var placeholderImage: UIImage?
         var tap: ((Int) -> Void)?
+        
+        var pageControl: EasyPageControl?
         
         private var timer: Timer?
         
@@ -147,8 +158,16 @@ extension EasyCycleView {
             check()
         }
         
+        public func scrollViewDidScroll(_ scrollView: UIScrollView) {
+            pageControl?.currentPage = current % (list.count)
+        }
+        
         public func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
             timerRunLoop()
+        }
+        
+        public func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
+            pageControl?.currentPage = current % (list.count)
         }
         
     }

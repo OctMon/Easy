@@ -28,7 +28,13 @@ class CycleViewController: easy.ViewController, easy.TableListProtocol {
             ["https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1543167192007&di=37d2a71912847671ca8694f79935ba6f&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01e25259a8c8f7a8012028a99fb154.jpg%402o.jpg",
              "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1543167192006&di=cc6371e4176f7206607ca83e4a176ea5&imgtype=0&src=http%3A%2F%2Fpic.90sjimg.com%2Fback_pic%2Fqk%2Fback_origin_pic%2F00%2F03%2F10%2F865d85ba89d775cf8579fff62ef8ae26.jpg",
              "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1543167192007&di=78bbcd549eb0ea599eecbb2c5510c339&imgtype=0&src=http%3A%2F%2Fpic.qiantucdn.com%2F58pic%2F20%2F03%2F83%2F81k58PICefJ_1024.jpg",
-             "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1543167192007&di=eb8a9c957038e6c8b0b5a2a2c941a052&imgtype=0&src=http%3A%2F%2Fpic107.nipic.com%2Ffile%2F20160818%2F19565400_090859183314_2.jpg"]
+             "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1543167192007&di=eb8a9c957038e6c8b0b5a2a2c941a052&imgtype=0&src=http%3A%2F%2Fpic107.nipic.com%2Ffile%2F20160818%2F19565400_090859183314_2.jpg"],
+            ["https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1543167192007&di=37d2a71912847671ca8694f79935ba6f&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01e25259a8c8f7a8012028a99fb154.jpg%402o.jpg",
+             "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1543167192006&di=cc6371e4176f7206607ca83e4a176ea5&imgtype=0&src=http%3A%2F%2Fpic.90sjimg.com%2Fback_pic%2Fqk%2Fback_origin_pic%2F00%2F03%2F10%2F865d85ba89d775cf8579fff62ef8ae26.jpg",
+             "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1543167192007&di=78bbcd549eb0ea599eecbb2c5510c339&imgtype=0&src=http%3A%2F%2Fpic.qiantucdn.com%2F58pic%2F20%2F03%2F83%2F81k58PICefJ_1024.jpg",
+             "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1543167192007&di=eb8a9c957038e6c8b0b5a2a2c941a052&imgtype=0&src=http%3A%2F%2Fpic107.nipic.com%2Ffile%2F20160818%2F19565400_090859183314_2.jpg",
+             "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1543231995493&di=4eae68828d839f04a812599a42ae9e94&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01946559c5b66ba801218e187b33a3.jpg%402o.jpg"
+            ]
         ]
     }
     
@@ -36,7 +42,7 @@ class CycleViewController: easy.ViewController, easy.TableListProtocol {
         super.configure()
         
         addTableListView(in: view, style: .grouped)
-        tableView.estimatedRowHeight = 100
+        tableView.estimatedRowHeight = 44
         
         tableListView.setNumberOfSections({ (listView) -> Int in
             return listView.list.count
@@ -51,6 +57,24 @@ class CycleViewController: easy.ViewController, easy.TableListProtocol {
                     log.debug(current)
                 })
                 cell.cycleView.timeInterval = TimeInterval(indexPath.section)
+                switch indexPath.section {
+                case 2:
+                    cell.cycleView.pageControl.pageIndicatorTintColor = .green
+                    cell.cycleView.pageControl.currentPageIndicatorTintColor = .red
+                    cell.cycleView.pageControl.alignment = .left
+                    cell.cycleView.pageControl.cornerRadius = 2
+                case 3:
+                    cell.cycleView.pageControl.alignment = .right
+                    cell.cycleView.pageControl.pageIndicatorSize = CGSize(width: 16, height: 4)
+                    cell.cycleView.pageControl.currentPageIndicatorSize = CGSize(width: 32, height: 4)
+                case 4:
+                    cell.cycleView.pageControl.spacing = 15
+                    cell.cycleView.pageControl.pageIndicatorSize = CGSize(width: 16, height: 16)
+                    cell.cycleView.pageControl.pageIndicatorImage = #imageLiteral(resourceName: "icon_pageIndicatorImage")
+                    cell.cycleView.pageControl.currentPageIndicatorImage = #imageLiteral(resourceName: "icon_currentPageIndicatorImage")
+                default:
+                    break
+                }
             }
         }, didSelectRow: nil)
     }
@@ -69,7 +93,7 @@ extension CycleViewController {
             contentView.addSubview(cycleView)
             cycleView.snp.makeConstraints { (make) in
                 make.edges.equalToSuperview()
-                make.height.equalTo(100).priority(.high)
+                make.height.equalTo(150).priority(.high)
             }
         }
         
