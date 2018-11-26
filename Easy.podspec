@@ -53,7 +53,7 @@ Pod::Spec.new do |s|
     s.subspec 'Session' do |ss|
         ss.source_files = 'Easy/Classes/Session/*'
         ss.dependency 'Easy/Core'
-        ss.dependency 'Alamofire'#, '~> 4.7.3' # https://github.com/Alamofire/Alamofire
+        ss.dependency 'Alamofire'#, '~> 4.8.0' # https://github.com/Alamofire/Alamofire
     end
     
     s.subspec 'Social' do |ss|
@@ -79,7 +79,7 @@ Pod::Spec.new do |s|
         ss.dependency 'Easy/Core'
         ss.dependency 'Easy/Session'
         ss.dependency 'FLEX'#, '~> 2.4.0' # https://github.com/Flipboard/FLEX
-        ss.dependency 'GDPerformanceView-Swift'#, '~> 2.0.0' # https://github.com/dani-gavrilov/GDPerformanceView-Swift
+        ss.dependency 'GDPerformanceView-Swift'#, '~> 2.0.2' # https://github.com/dani-gavrilov/GDPerformanceView-Swift
         ss.dependency 'OOMDetector'#, '~> 1.3' # https://github.com/Tencent/OOMDetector
         ss.xcconfig = { 'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => '$(inherited) BETA' }
     end
