@@ -43,8 +43,8 @@ class PhotoBrowserViewController: easy.ViewController, easy.CollectionListProtoc
             $0.collectionViewLayout = waterFlowLayout
         }
         
-        collectionListView.register(UIImage.self, cellClass: TuchongCollectionViewCell.self, configureCell: { (_, cell, _, image) in
-            if let cell = cell as? TuchongCollectionViewCell {
+        collectionListView.register(UIImage.self, cellClass: ImageLabelCollectionViewCell.self, configureCell: { (_, cell, _, image) in
+            if let cell = cell as? ImageLabelCollectionViewCell {
                 cell.imageView.image = image
             }
         }) { [weak self] (listView, indexPath, image) in

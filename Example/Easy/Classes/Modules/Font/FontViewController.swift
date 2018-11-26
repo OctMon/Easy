@@ -15,7 +15,7 @@ private struct Font: easy.Then {
 
 class FontViewController: easy.ViewController, easy.TableListProtocol {
     
-    typealias EasyTableListViewAssociatedType = FontTableListView
+    typealias EasyTableListViewAssociatedType = TableListView
     
     private let textField: UITextField = UITextField(frame: CGRect(x: 0, y: 0, width: app.screenWidth, height: 100)).then {
         $0.text = "爆款促销"
@@ -37,34 +37,12 @@ class FontViewController: easy.ViewController, easy.TableListProtocol {
         super.configure()
         
         addTableListView(in: view, style: .grouped)
-        tableView.estimatedRowHeight = 88
-        tableListView.setNumberOfSections({ (listView) -> Int in
-            return listView.list.count
-        }) { (listView, section) -> Int in
-            return listView.list(Font.self)[section].name.count
-        }
-        tableListView.register(UITableViewCell.self, configureCell: { [weak self] (_, cell, indexPath, any) in
-            guard let font = any as? Font else { return }
-            cell.textLabel?.numberOfLines = 0
-            cell.textLabel?.font = UIFont(name: font.name[indexPath.row], size: 19)
-            cell.textLabel?.text = (self?.textField.text ?? "") + "\n" + font.name[indexPath.row]
-        }) { [weak self] (_, indexPath, any) in
-            let label = UILabel(frame: app.screenBounds).then {
-                guard let font = any as? Font else { return }
-                $0.backgroundColor = UIColor.white
-                $0.numberOfLines = 0
-                $0.font = UIFont(name: font.name[indexPath.row], size: 48)
-                $0.textAlignment = .center
-                let text = (self?.textField.text ?? "") + "\n" + font.name[indexPath.row]
-                $0.text = text
-            }
-            easy.PopupView(label).showWithCenter()
-        }
     }
     
     @objc override func request() {
         super.request()
         
+        tableListView.text = textField.text ?? ""
         UIFont.familyNames.sorted().forEach({ (family) in
             tableList.append(Font(family: family, name: UIFont.fontNames(forFamilyName: family).sorted()))
         })
@@ -73,15 +51,49 @@ class FontViewController: easy.ViewController, easy.TableListProtocol {
 
 }
 
-class FontTableListView: easy.TableListView {
+extension FontViewController {
     
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 44
+    class TableListView: easy.TableListView {
+        
+        var text = ""
+        
+        override func configure() {
+            super.configure()
+            
+            tableView.estimatedRowHeight = 88
+            setNumberOfSections({ (listView) -> Int in
+                return listView.list.count
+            }) { (listView, section) -> Int in
+                return listView.list(Font.self)[section].name.count
+            }
+            register(UITableViewCell.self, configureCell: { [weak self] (_, cell, indexPath, any) in
+                guard let font = any as? Font else { return }
+                cell.textLabel?.numberOfLines = 0
+                cell.textLabel?.font = UIFont(name: font.name[indexPath.row], size: 19)
+                cell.textLabel?.text = (self?.text ?? "") + "\n" + font.name[indexPath.row]
+            }) { [weak self] (_, indexPath, any) in
+                let label = UILabel(frame: app.screenBounds).then {
+                    guard let font = any as? Font else { return }
+                    $0.backgroundColor = UIColor.white
+                    $0.numberOfLines = 0
+                    $0.font = UIFont(name: font.name[indexPath.row], size: 48)
+                    $0.textAlignment = .center
+                    let text = (self?.text ?? "") + "\n" + font.name[indexPath.row]
+                    $0.text = text
+                }
+                easy.PopupView(label).showWithCenter()
+            }
+        }
+        
+        func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+            return 44
+        }
+        
+        func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+            let fonts = list(Font.self)
+            return fonts[section].family
+        }
+        
     }
-    
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        let fonts = list(Font.self)
-        return fonts[section].family
-    }
-    
+
 }

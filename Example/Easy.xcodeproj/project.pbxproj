@@ -13,6 +13,8 @@
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
 		773625A1EA8AEF98397862C0 /* Pods_Easy_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9493ABE016F261CD4CB12D2B /* Pods_Easy_Example.framework */; };
+		FE2DEB8C21ABF53000289D8E /* ImageLabelCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE2DEB8B21ABF53000289D8E /* ImageLabelCollectionViewCell.swift */; };
+		FE2DEB8D21ABF53000289D8E /* ImageLabelCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE2DEB8B21ABF53000289D8E /* ImageLabelCollectionViewCell.swift */; };
 		FE388A3A2173012A0050904B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE388A382173012A0050904B /* LaunchScreen.storyboard */; };
 		FE388A3B2173012A0050904B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE388A382173012A0050904B /* LaunchScreen.storyboard */; };
 		FE388A47217318980050904B /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE388A46217318980050904B /* Config.swift */; };
@@ -73,6 +75,7 @@
 		E1F387270138F312A9D0F9EC /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		EE9CBAB7DD0DEE72E9CCE97D /* Pods-Easy_Example_Beta.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Easy_Example_Beta.release.xcconfig"; path = "Pods/Target Support Files/Pods-Easy_Example_Beta/Pods-Easy_Example_Beta.release.xcconfig"; sourceTree = "<group>"; };
 		EF2E3C4D7FECE072ABB66C19 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		FE2DEB8B21ABF53000289D8E /* ImageLabelCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageLabelCollectionViewCell.swift; sourceTree = "<group>"; };
 		FE388A392173012A0050904B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FE388A46217318980050904B /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		FE388A4E2173223C0050904B /* ScanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanViewController.swift; sourceTree = "<group>"; };
@@ -211,6 +214,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		FE2DEB8A21ABF53000289D8E /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				FE2DEB8B21ABF53000289D8E /* ImageLabelCollectionViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		FE388A3F217317950050904B /* Classes */ = {
 			isa = PBXGroup;
 			children = (
@@ -240,6 +251,7 @@
 			isa = PBXGroup;
 			children = (
 				FE388A46217318980050904B /* Config.swift */,
+				FE2DEB8A21ABF53000289D8E /* Cell */,
 			);
 			path = Global;
 			sourceTree = "<group>";
@@ -646,6 +658,7 @@
 				FEFE116F2187EC1E00BDDD9F /* PageViewController.swift in Sources */,
 				FEC882DF2176C65D009BDC1C /* SocialViewController.swift in Sources */,
 				FEBBE4F221916FCD00654926 /* MarqueeViewController.swift in Sources */,
+				FE2DEB8C21ABF53000289D8E /* ImageLabelCollectionViewCell.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 				FEDAE4A321A953C30037F6AB /* CycleViewController.swift in Sources */,
 				FEF494D32175B8F700555C3F /* TuchongViewController.swift in Sources */,
@@ -674,6 +687,7 @@
 				FEFE11702187EC1E00BDDD9F /* PageViewController.swift in Sources */,
 				FEC882E02176C65D009BDC1C /* SocialViewController.swift in Sources */,
 				FEBBE4F321916FCD00654926 /* MarqueeViewController.swift in Sources */,
+				FE2DEB8D21ABF53000289D8E /* ImageLabelCollectionViewCell.swift in Sources */,
 				FE6652DA2170A58A007E7051 /* AppDelegate.swift in Sources */,
 				FEDAE4A421A953C30037F6AB /* CycleViewController.swift in Sources */,
 				FEF494D42175B8F700555C3F /* TuchongViewController.swift in Sources */,
