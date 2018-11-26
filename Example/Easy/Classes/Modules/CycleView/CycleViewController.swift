@@ -69,7 +69,7 @@ extension CycleViewController {
             contentView.addSubview(cycleView)
             cycleView.snp.makeConstraints { (make) in
                 make.edges.equalToSuperview()
-                make.height.equalTo(100)
+                make.height.equalTo(100).priority(.high)
             }
         }
         
