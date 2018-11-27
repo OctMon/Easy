@@ -332,7 +332,7 @@ public extension EasyListView {
 public extension EasyTableListView {
     
     func addRefresh(isAddHeader: Bool, isAddFooter: Bool, requestHandler: @escaping (() -> Void)) {
-        addRefresh(tableView, isAddHeader: isAddFooter, isAddFooter: isAddFooter, requestHandler: requestHandler)
+        addRefresh(tableView, isAddHeader: isAddHeader, isAddFooter: isAddFooter, requestHandler: requestHandler)
     }
     
     func setRefresh(dataResponse: EasyDataResponse, isValidList: Bool, placeholders: [EasyPlaceholder] = [], errorHandler: ((Error?) -> Void)? = nil) {
@@ -344,7 +344,7 @@ public extension EasyTableListView {
 public extension EasyCollectionListView {
     
     func addRefresh(isAddHeader: Bool, isAddFooter: Bool, requestHandler: @escaping (() -> Void)) {
-        addRefresh(collectionView, isAddHeader: isAddFooter, isAddFooter: isAddFooter, requestHandler: requestHandler)
+        addRefresh(collectionView, isAddHeader: isAddHeader, isAddFooter: isAddFooter, requestHandler: requestHandler)
     }
     
     func setRefresh(dataResponse: EasyDataResponse, isValidList: Bool, placeholders: [EasyPlaceholder] = [], errorHandler: ((Error?) -> Void)? = nil) {
