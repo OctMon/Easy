@@ -27,9 +27,9 @@ public struct EasyConfig {
                 if let url = UserDefaults.standard.string(forKey: defaultCustomBaseURLKey), !url.isEmpty {
                     return url
                 }
-                return test
+                return test.isEmpty ? release : test
             }
-            return release
+            return release.isEmpty ? test : release
         }
         
         public func currentAddition(key: String) -> String? {

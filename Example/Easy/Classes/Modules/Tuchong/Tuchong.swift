@@ -12,7 +12,6 @@ private let session: easy.Session = {
     var config = easy.Config()
     config.url.alias = "Tuchong"
     config.url.release = "https://api.tuchong.com/feed-app"
-    config.url.test = "https://api.tuchong.com/feed-app"
     config.url.list = ["https://api.test", "https://api.develop"]
     config.key.list = ["feedList"]
     config.key.size = "pose_id"
