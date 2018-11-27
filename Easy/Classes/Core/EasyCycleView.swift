@@ -33,6 +33,7 @@ public class EasyCycleView: UIView, EasyCollectionListProtocol {
         super.init(frame: frame)
         
         addCollectionView(in: self)
+        collectionListView.timeInterval = timeInterval
         collectionListView.pageControl = pageControl
         addSubview(pageControl)
         pageControl.snp.makeConstraints { (make) in
