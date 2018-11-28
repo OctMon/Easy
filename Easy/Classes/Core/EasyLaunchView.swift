@@ -54,7 +54,7 @@ class EasyLaunchView: UIView {
         
         EasyApp.notificationCenter.addObserver(forName: UIApplication.didFinishLaunchingNotification, object: nil, queue: nil) { [weak self] (_) in
             EasyApp.runInMain(handler: {
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 EasyApp.window?.addSubview(self)
                 if let image = image {
                     self.imageView.image = image

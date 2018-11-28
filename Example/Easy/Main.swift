@@ -25,9 +25,9 @@ class Main: easy.ViewController, easy.TableListProtocol {
         }
         
         navigationItem.appendRightBarButtonItem(title: "+") { [weak self] in
-            guard let `self` = self else { return }
+            guard let self = self else { return }
             easy.PopMenu().show(point: CGPoint(x: app.screenWidth - 120, y: self.navigationBottom), items: ["QRcode", "Barcode"], completion: { [weak self] index in
-                guard let `self` = self else {
+                guard let self = self else {
                     return
                 }
                 let text = self.textView.text.isEmpty ? self.textView.placeholder : self.textView.text

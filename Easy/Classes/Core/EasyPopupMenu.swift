@@ -57,7 +57,7 @@ public class EasyPopupMenu: UIView {
     
     @objc private func close() {
         UIView.animate(withDuration: 0.25, animations: { [weak self] in
-            guard let `self` = self else { return }
+            guard let self = self else { return }
             self.menuTableView.transform = CGAffineTransform(scaleX: 0.001, y: 0.001)
         }) { (finish) in
             self.subviews.forEach({ $0.removeFromSuperview() })
@@ -77,7 +77,7 @@ public class EasyPopupMenu: UIView {
         self.menuTableView.reloadData()
         self.menuTableView.transform = CGAffineTransform(scaleX: 0.001, y: 0.001)
         UIView.animate(withDuration: 0.25) { [weak self] in
-            guard let `self` = self else { return }
+            guard let self = self else { return }
             self.menuTableView.transform = CGAffineTransform(scaleX: 1, y: 1)
         }
     }

@@ -49,7 +49,7 @@ public class EasyMarqueeLabel: UIView {
         addSubview(secondLabel)
         
         tap { [weak self] (_) in
-            guard let `self` = self else { return }
+            guard let self = self else { return }
             var index = 0
             if self.dataSource.count > 1 {
                 if self.current == 0 {

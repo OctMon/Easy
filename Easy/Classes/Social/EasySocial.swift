@@ -519,7 +519,7 @@ private class EasySocialShareView: UIView {
         self.backgroundColor = UIColor.clear
         UIApplication.shared.keyWindow?.addSubview(self)
         UIView.animate(withDuration: 0.25) { [weak self] in
-            guard let `self` = self else { return }
+            guard let self = self else { return }
             self.backgroundColor = UIColor.black.withAlphaComponent(0.4)
             self.bottomView.frame = CGRect(x: 0, y: UIScreen.main.bounds.height - self.bottomViewHeight, width: UIScreen.main.bounds.width, height: self.bottomViewHeight)
         }
@@ -533,7 +533,7 @@ private class EasySocialShareView: UIView {
     
     @objc private func close() {
         UIView.animate(withDuration: 0.25, animations: { [weak self] in
-            guard let `self` = self else { return }
+            guard let self = self else { return }
             self.backgroundColor = UIColor.clear
             self.bottomView.frame = CGRect(x: 0, y: UIScreen.main.bounds.height, width: UIScreen.main.bounds.width, height: self.bottomViewHeight)
         }) { (finish) in

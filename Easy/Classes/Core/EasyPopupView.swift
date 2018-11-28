@@ -72,7 +72,7 @@ public extension EasyPopupView {
             self.view?.y = originY
             self.view?.alpha = 0
             UIView.animate(withDuration: 0.25) { [weak self] in
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 self.backgroundColor = self.blackOverlayColor
                 self.view?.alpha = 1
                 showHandler?()
@@ -80,7 +80,7 @@ public extension EasyPopupView {
         } else {
             view?.y = EasyApp.screenHeight
             UIView.animate(withDuration: animationDuration) { [weak self] in
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 self.backgroundColor = self.blackOverlayColor
                 self.view?.y = originY
                 showHandler?()
@@ -91,12 +91,12 @@ public extension EasyPopupView {
     @objc func dismiss() {
         if animationDuration == 0 {
             UIView.animate(withDuration: 0.25, animations: { [weak self] in
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 self.backgroundColor = UIColor.clear
                 self.view?.alpha = 0
             }) { [weak self] (completion) in
                 if completion {
-                    guard let `self` = self else { return }
+                    guard let self = self else { return }
                     self.dismissHandler?()
                     self.subviews.forEach({ $0.removeFromSuperview() })
                     self.removeFromSuperview()
@@ -107,12 +107,12 @@ public extension EasyPopupView {
             }
         } else {
             UIView.animate(withDuration: animationDuration, animations: { [weak self] in
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 self.backgroundColor = UIColor.clear
                 self.view?.frame.origin.y = EasyApp.screenHeight
             }) { [weak self] (completion) in
                 if completion {
-                    guard let `self` = self else { return }
+                    guard let self = self else { return }
                     self.dismissHandler?()
                     self.subviews.forEach({ $0.removeFromSuperview() })
                     self.removeFromSuperview()

@@ -69,7 +69,7 @@ class EasySessionViewController: EasyViewController, EasyTableListProtocol {
                 cell.textLabel?.text = "\n📡baseURL : \(any)\n"
             }
             }, didSelectRow: { [weak self] (_, _, any) in
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 guard current != any else { return }
                 UserDefaults.standard.set(any, forKey: self.config.url.defaultCustomBaseURLKey)
                 if UserDefaults.standard.synchronize() {

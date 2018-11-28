@@ -980,7 +980,7 @@ public extension UITextField {
     
     func setLimit(_ length: Int, handler: (() -> Void)? = nil) {
         NotificationCenter.default.addObserver(forName: UITextField.textDidChangeNotification, object: nil, queue: OperationQueue.main) { [weak self] (_) in
-            guard let `self` = self else { return }
+            guard let self = self else { return }
             if (((self.text! as NSString).length > length) && self.markedTextRange == nil) {
                 self.text = (self.text! as NSString).substring(to: length)
                 handler?()
@@ -1004,7 +1004,7 @@ public extension UITextView {
     
     func setLimit(_ length: Int, handler: (() -> Void)? = nil) {
         NotificationCenter.default.addObserver(forName: UITextView.textDidChangeNotification, object: nil, queue: OperationQueue.main) { [weak self] (notification) in
-            guard let `self` = self else { return }
+            guard let self = self else { return }
             if (((self.text! as NSString).length > length) && self.markedTextRange == nil) {
                 self.text = (self.text! as NSString).substring(to: length)
                 handler?()
