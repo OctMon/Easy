@@ -37,6 +37,8 @@
 		FECA315921942FF900C29B37 /* FontViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECA315721942FF900C29B37 /* FontViewController.swift */; };
 		FEDAE4A321A953C30037F6AB /* CycleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEDAE4A221A953C30037F6AB /* CycleViewController.swift */; };
 		FEDAE4A421A953C30037F6AB /* CycleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEDAE4A221A953C30037F6AB /* CycleViewController.swift */; };
+		FEE5221921AF7BA900872EAD /* TagListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEE5221821AF7BA900872EAD /* TagListViewController.swift */; };
+		FEE5221A21AF7BA900872EAD /* TagListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEE5221821AF7BA900872EAD /* TagListViewController.swift */; };
 		FEF494CA2175879F00555C3F /* Tuchong.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF494C92175879F00555C3F /* Tuchong.swift */; };
 		FEF494CB2175879F00555C3F /* Tuchong.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF494C92175879F00555C3F /* Tuchong.swift */; };
 		FEF494D32175B8F700555C3F /* TuchongViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF494D22175B8F700555C3F /* TuchongViewController.swift */; };
@@ -87,6 +89,7 @@
 		FEC882DE2176C65D009BDC1C /* SocialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialViewController.swift; sourceTree = "<group>"; };
 		FECA315721942FF900C29B37 /* FontViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontViewController.swift; sourceTree = "<group>"; };
 		FEDAE4A221A953C30037F6AB /* CycleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CycleViewController.swift; sourceTree = "<group>"; };
+		FEE5221821AF7BA900872EAD /* TagListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagListViewController.swift; sourceTree = "<group>"; };
 		FEF494C92175879F00555C3F /* Tuchong.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tuchong.swift; sourceTree = "<group>"; };
 		FEF494D22175B8F700555C3F /* TuchongViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TuchongViewController.swift; sourceTree = "<group>"; };
 		FEFE116E2187EC1E00BDDD9F /* PageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
@@ -242,6 +245,7 @@
 				FEBEE27B21A56F0C001C5E6D /* PhotoBrowser */,
 				FE388A4D217322230050904B /* Scan */,
 				FEC882DD2176C645009BDC1C /* Social */,
+				FEE5221721AF7B9500872EAD /* TagListView */,
 				FEF494C82175875E00555C3F /* Tuchong */,
 			);
 			path = Modules;
@@ -310,6 +314,14 @@
 				FEDAE4A221A953C30037F6AB /* CycleViewController.swift */,
 			);
 			path = CycleView;
+			sourceTree = "<group>";
+		};
+		FEE5221721AF7B9500872EAD /* TagListView */ = {
+			isa = PBXGroup;
+			children = (
+				FEE5221821AF7BA900872EAD /* TagListViewController.swift */,
+			);
+			path = TagListView;
 			sourceTree = "<group>";
 		};
 		FEF494C82175875E00555C3F /* Tuchong */ = {
@@ -663,6 +675,7 @@
 				FEDAE4A321A953C30037F6AB /* CycleViewController.swift in Sources */,
 				FEF494D32175B8F700555C3F /* TuchongViewController.swift in Sources */,
 				FEF494CA2175879F00555C3F /* Tuchong.swift in Sources */,
+				FEE5221921AF7BA900872EAD /* TagListViewController.swift in Sources */,
 				FECA315821942FF900C29B37 /* FontViewController.swift in Sources */,
 				FE388A4F2173223C0050904B /* ScanViewController.swift in Sources */,
 			);
@@ -692,6 +705,7 @@
 				FEDAE4A421A953C30037F6AB /* CycleViewController.swift in Sources */,
 				FEF494D42175B8F700555C3F /* TuchongViewController.swift in Sources */,
 				FEF494CB2175879F00555C3F /* Tuchong.swift in Sources */,
+				FEE5221A21AF7BA900872EAD /* TagListViewController.swift in Sources */,
 				FECA315921942FF900C29B37 /* FontViewController.swift in Sources */,
 				FE388A502173223C0050904B /* ScanViewController.swift in Sources */,
 			);

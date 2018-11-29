@@ -1000,6 +1000,8 @@
 		FEB849F88DC53A97DE24F0D87B5314BC /* GPUImageZoomBlurFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = AF1EA96DBA0C583BFAB4288E6DC4BA73 /* GPUImageZoomBlurFilter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FED4B50E70179EB91E560E20D27984E0 /* UIImage+GIF.h in Headers */ = {isa = PBXBuildFile; fileRef = 960E9A32AF125718B534DBB97F67280F /* UIImage+GIF.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FED752DF8A16F473FEE7C8FF51FBEC86 /* GPUImageAverageColor.m in Sources */ = {isa = PBXBuildFile; fileRef = C12889E0902A46F50456807B8F7016EC /* GPUImageAverageColor.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		FEE5221C21AF7CBD00872EAD /* EasyTagListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEE5221B21AF7CBD00872EAD /* EasyTagListView.swift */; };
+		FEE5221D21AF7CBD00872EAD /* EasyTagListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEE5221B21AF7CBD00872EAD /* EasyTagListView.swift */; };
 		FEE54A82A13DCCDFE95653FA3B3B0478 /* GPUImageUIElement.h in Headers */ = {isa = PBXBuildFile; fileRef = 76052A077EEFD5D2195D98548C258008 /* GPUImageUIElement.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FF6C3B26721D8783B094671FF5C9B722 /* FLEXKeyboardShortcutManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 121F2E2DBA58DEF03310BC7C58DA3C64 /* FLEXKeyboardShortcutManager.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		FF8451DECFA0474A52FDD68361308064 /* FLEXArgumentInputStructView.h in Headers */ = {isa = PBXBuildFile; fileRef = AFF57A37B7414946D86802F24CEE81D0 /* FLEXArgumentInputStructView.h */; settings = {ATTRIBUTES = (Project, ); }; };
@@ -2447,6 +2449,7 @@
 		FE8E240696F3182BE63ABCC929438ECD /* GPUImageRGBClosingFilter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GPUImageRGBClosingFilter.h; path = framework/Source/GPUImageRGBClosingFilter.h; sourceTree = "<group>"; };
 		FEB06DCDCA362645918DFBBFD5A1A7DB /* GPUImageGaussianSelectiveBlurFilter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GPUImageGaussianSelectiveBlurFilter.h; path = framework/Source/GPUImageGaussianSelectiveBlurFilter.h; sourceTree = "<group>"; };
 		FED6CC7999E0F28867C0B1C931C6FA42 /* MJRefreshConst.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MJRefreshConst.h; path = MJRefresh/MJRefreshConst.h; sourceTree = "<group>"; };
+		FEE5221B21AF7CBD00872EAD /* EasyTagListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EasyTagListView.swift; path = Easy/Classes/Core/EasyTagListView.swift; sourceTree = "<group>"; };
 		FEFC2E8A8C12B08F2ED243BE8F9DE60A /* ZLBigImageCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZLBigImageCell.h; path = PhotoBrowser/ZLBigImageCell.h; sourceTree = "<group>"; };
 		FF4D2A4F7B9E3F1F5186D000A75E7FC9 /* SDWebImageOperation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDWebImageOperation.h; path = SDWebImage/SDWebImageOperation.h; sourceTree = "<group>"; };
 		FFA60CA585A11973315308C4097AC14A /* Pods-Easy_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Easy_Tests.release.xcconfig"; sourceTree = "<group>"; };
@@ -4185,6 +4188,7 @@
 				C812FF0BE7DB561E1F0D6C1C6985B639 /* EasyRefresh.swift */,
 				BB270830BE771BE562703AA0CB61A1E2 /* EasyRouter.swift */,
 				95D301D91CF0092C4851CE862786A520 /* EasyTableListView.swift */,
+				FEE5221B21AF7CBD00872EAD /* EasyTagListView.swift */,
 				F31AD714B75B16D24A3CFFB22CEFD112 /* EasyThen.swift */,
 				1344FFF12EA8D1C6D28C5EFD57818785 /* EasyTo.swift */,
 				8C7CF637CD8484374B84391930063311 /* EasyValid.swift */,
@@ -5395,6 +5399,7 @@
 				75D357530C12055FF1D054FB57AEB250 /* EasyCollectionListView.swift in Sources */,
 				202F4C275F2B3131257210156D7DB0EA /* EasyConfig.swift in Sources */,
 				C492E887F81C892B565EA347DFF2984D /* EasyCrypto.swift in Sources */,
+				FEE5221C21AF7CBD00872EAD /* EasyTagListView.swift in Sources */,
 				E86C18277E77971AF62ED8ED2C37EE5A /* EasyCycleView.swift in Sources */,
 				5636B93D2C52F8FB6402149460EA9ECD /* EasyDevice.swift in Sources */,
 				F00709DC98A9CDC9C45F93333755E933 /* EasyError.swift in Sources */,
@@ -5974,6 +5979,7 @@
 				F181EB2525305E196D3076B4530097FD /* EasyGlobal.swift in Sources */,
 				6377871689C2A39DE1E5E8006FB85787 /* EasyInputCell.swift in Sources */,
 				20775656A8552E20D69BAEF70C484D99 /* EasyKeychain.swift in Sources */,
+				FEE5221D21AF7CBD00872EAD /* EasyTagListView.swift in Sources */,
 				7E3369A53EF6090AAB168C3104A4C90B /* EasyLaunchView.swift in Sources */,
 				1E3045118F591BD3839ED410A73F3991 /* EasyListView.swift in Sources */,
 				4783C983787D79D110E3FA58F79752FC /* EasyLoading.swift in Sources */,
