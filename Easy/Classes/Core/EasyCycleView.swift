@@ -17,13 +17,9 @@ public class EasyCycleView: UIView, EasyCollectionListProtocol {
         EasyLog.debug(toDeinit)
     }
     
-    public typealias EasyCollectionListViewAssociatedType = ListView
+    public typealias EasyCollectionListViewAssociatedType = CollectionListView
     
-    public var timeInterval: TimeInterval = 2 {
-        willSet {
-            collectionListView.timeInterval = newValue
-        }
-    }
+    public var timeInterval: TimeInterval = 2
     
     public var pageControl = EasyPageControl()
 
@@ -33,7 +29,6 @@ public class EasyCycleView: UIView, EasyCollectionListProtocol {
         super.init(frame: frame)
         
         addCollectionView(in: self)
-        collectionListView.timeInterval = timeInterval
         collectionListView.pageControl = pageControl
         addSubview(pageControl)
         pageControl.snp.makeConstraints { (make) in
@@ -64,9 +59,8 @@ public class EasyCycleView: UIView, EasyCollectionListProtocol {
 
 extension EasyCycleView {
     
-    public class ListView: EasyCollectionListView {
+    public class CollectionListView: EasyCollectionListView {
         
-        var timeInterval: TimeInterval = 0
         var count = 0
         var placeholderImage: UIImage?
         var tap: ((Int) -> Void)?
@@ -116,6 +110,7 @@ extension EasyCycleView {
         }
         
         func timerRunLoop() {
+            guard let timeInterval = topView(EasyCycleView.self)?.timeInterval else { return }
             guard timeInterval != 0 else { return }
             guard count > 1 else { return }
             timerInvalidate()
@@ -179,7 +174,7 @@ extension EasyCycleView {
 
 extension EasyCycleView {
     
-    public class imageCell: UICollectionViewCell {
+    class imageCell: UICollectionViewCell {
         
         let imageView = UIImageView()
         

@@ -39,6 +39,13 @@ open class EasyListView: UIView {
         return list as? [T] ?? []
     }
     
+    public func topView<T>(_ view: T.Type) -> T? {
+        if let topView = self.superview as? T {
+            return topView
+        }
+        return nil
+    }
+    
     func getAny<T>(_ dataSource: [Any], indexPath: IndexPath, numberOfSections: Int, numberOfRowsInSectionHandler: ((T, Int) -> Int)?) -> Any? {
         if numberOfSections > 0 {
             if indexPath.section < dataSource.count {
