@@ -110,14 +110,14 @@ public extension EasyTableListView {
     }
     
     /// cellForRowAt & didSelectRowAt
-    func register(_ cellClass: AnyClass?, configureCell: @escaping (EasyTableListView, UITableViewCell, IndexPath, Any) -> Void, didSelectRow didSelectRowHandler: ((EasyTableListView, IndexPath, Any) -> Void)?) {
-        register([cellClass], returnCell: { (_, _) -> AnyClass? in
+    func register(cellClass: AnyClass?, configureCell: @escaping (EasyTableListView, UITableViewCell, IndexPath, Any) -> Void, didSelectRow didSelectRowHandler: ((EasyTableListView, IndexPath, Any) -> Void)?) {
+        register(cellsClass: [cellClass], returnCell: { (_, _) -> AnyClass? in
             return cellClass.self
         }, configureCell: configureCell, didSelectRow: didSelectRowHandler)
     }
     
     /// cellForRowAt & didSelectRowAt
-    func register(_ cellsClass: [AnyClass?], returnCell cellsHandler: @escaping (EasyTableListView, IndexPath) -> AnyClass?, configureCell cellHandler: @escaping (EasyTableListView, UITableViewCell, IndexPath, Any) -> Void, didSelectRow didSelectRowHandler: ((EasyTableListView, IndexPath, Any) -> Void)?) {
+    func register(cellsClass: [AnyClass?], returnCell cellsHandler: @escaping (EasyTableListView, IndexPath) -> AnyClass?, configureCell cellHandler: @escaping (EasyTableListView, UITableViewCell, IndexPath, Any) -> Void, didSelectRow didSelectRowHandler: ((EasyTableListView, IndexPath, Any) -> Void)?) {
         cellsClass.forEach { (cc) in
             guard let cellClass = cc else { return }
             guard let cellReuseIdentifier = cc.self?.description() else { return }

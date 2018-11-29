@@ -66,7 +66,7 @@ extension FontViewController {
             }) { (listView, section) -> Int in
                 return listView.list(Font.self)[section].name.count
             }
-            register(UITableViewCell.self, configureCell: { [weak self] (_, cell, indexPath, any) in
+            register(cellClass: UITableViewCell.self, configureCell: { [weak self] (_, cell, indexPath, any) in
                 guard let font = any as? Font else { return }
                 cell.textLabel?.numberOfLines = 0
                 cell.textLabel?.font = UIFont(name: font.name[indexPath.row], size: 19)

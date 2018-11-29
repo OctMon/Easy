@@ -70,7 +70,7 @@ extension MarqueeViewController {
             }
             collectionView.collectionViewLayout = waterFlowLayout
             
-            register(UICollectionViewCell.self, configureCell: { (_, cell, _, _) in
+            register(cellClass: UICollectionViewCell.self, configureCell: { (_, cell, _, _) in
                 cell.backgroundColor = UIColor.random
             }) { (_, _, any) in
                 log.debug(any)

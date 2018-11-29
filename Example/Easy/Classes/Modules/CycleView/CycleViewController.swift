@@ -50,7 +50,7 @@ class CycleViewController: easy.ViewController, easy.TableListProtocol {
             return 1
         }
         
-        tableListView.register(CycleCell.self, configureCell: { (listView, cell, indexPath, _) in
+        tableListView.register(cellClass: CycleCell.self, configureCell: { (listView, cell, indexPath, _) in
             if let cell = cell as? CycleCell {
                 let urls = listView.list([String].self)[indexPath.section]
                 cell.cycleView.setImageURLs(urls, placeholderImage: global.tint.toImage, tap: { current in

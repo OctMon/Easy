@@ -127,14 +127,14 @@ public extension EasyCollectionListView {
     }
     
     /// cellForItemAt & didSelectItemAt
-    func register(_ cellClass: AnyClass?, configureCell: @escaping (EasyCollectionListView, UICollectionViewCell, IndexPath, Any) -> Void, didSelectRow didSelectRowHandler: ((EasyCollectionListView, IndexPath, Any) -> Void)?) {
-        register([cellClass], returnCell: { (_, _) -> AnyClass? in
+    func register(cellClass: AnyClass?, configureCell: @escaping (EasyCollectionListView, UICollectionViewCell, IndexPath, Any) -> Void, didSelectRow didSelectRowHandler: ((EasyCollectionListView, IndexPath, Any) -> Void)?) {
+        register(cellsClass: [cellClass], returnCell: { (_, _) -> AnyClass? in
             return cellClass.self
         }, configureCell: configureCell, didSelectRow: didSelectRowHandler)
     }
     
     /// cellForItemAt & didSelectItemAt
-    func register(_ cellsClass: [AnyClass?], returnCell cellsHandler: @escaping (EasyCollectionListView, IndexPath) -> AnyClass?, configureCell cellHandler: @escaping (EasyCollectionListView, UICollectionViewCell, IndexPath, Any) -> Void, didSelectRow didSelectRowHandler: ((EasyCollectionListView, IndexPath, Any) -> Void)?) {
+    func register(cellsClass: [AnyClass?], returnCell cellsHandler: @escaping (EasyCollectionListView, IndexPath) -> AnyClass?, configureCell cellHandler: @escaping (EasyCollectionListView, UICollectionViewCell, IndexPath, Any) -> Void, didSelectRow didSelectRowHandler: ((EasyCollectionListView, IndexPath, Any) -> Void)?) {
         cellsClass.forEach { (cc) in
             guard let cellClass = cc else { return }
             guard let cellReuseIdentifier = cc.self?.description() else { return }
