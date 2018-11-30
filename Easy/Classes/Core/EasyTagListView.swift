@@ -25,6 +25,7 @@ public class EasyTagListView: UIView, EasyCollectionListProtocol {
     public var borderWidth: CGFloat = 1
     public var cornerRadius: CGFloat = 2
     public var constrainedSize: CGSize = CGSize(width: CGFloat.greatestFiniteMagnitude, height: CGFloat.greatestFiniteMagnitude)
+    private var maxConstrainedHeight: CGFloat = CGFloat.greatestFiniteMagnitude
     
     public var minimumInteritemSpacing: CGFloat = 4 {
         didSet {
@@ -52,14 +53,26 @@ public class EasyTagListView: UIView, EasyCollectionListProtocol {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public func setTags(_ tags: [String], tap: @escaping (Int) -> Void) {
+    public func setTags(_ tags: [String], maxConstrainedHeight: CGFloat, tap: @escaping (Int) -> Void) {
         collectionList = tags
         collectionListView.tap = tap
+        self.maxConstrainedHeight = maxConstrainedHeight
+        
+        calcHeight()
     }
     
     public func reload() {
         collectionView.reloadData()
         collectionView.setContentOffset(.zero, animated: false)
+    }
+    
+    public func calcHeight() {
+        EasyApp.runInMain(delay: 0.00001, handler: {
+            let contentSize = self.collectionListView.waterFlowLayout.collectionViewContentSize
+            self.snp.makeConstraints({ (make) in
+                make.height.equalTo(min(self.maxConstrainedHeight, contentSize.height)).priority(.low)
+            })
+        })
     }
     
 }

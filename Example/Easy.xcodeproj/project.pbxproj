@@ -158,7 +158,6 @@
 		607FACD21AFB9204008FA782 /* Example for Easy */ = {
 			isa = PBXGroup;
 			children = (
-				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				FE388A3F217317950050904B /* Classes */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				FE388A382173012A0050904B /* LaunchScreen.storyboard */,
@@ -200,6 +199,7 @@
 				CF5DB5E997977BA6E28C9895 /* Easy.podspec */,
 				E1F387270138F312A9D0F9EC /* README.md */,
 				EF2E3C4D7FECE072ABB66C19 /* LICENSE */,
+				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 			);
 			name = "Podspec Metadata";
 			sourceTree = "<group>";
