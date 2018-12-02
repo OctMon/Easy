@@ -13,262 +13,196 @@ public extension Easy {
 
 public class EasyWaterFlowLayout: UICollectionViewFlowLayout {
     
-    struct AttributesInfo {
-        var indexPath: IndexPath?
-        var hasHeader = false
-        var hasFooter = false
-        var frame: CGRect?
+    /// 瀑布流样式
+    ///
+    /// - equalWidth: 等宽不等高
+    /// - equalHeight: 等高不等宽
+    public enum FlowStyle {
+        case equalWidth, equalHeight
     }
-    
-    class CalcInfo: NSObject {
-        var x: CGFloat = 0
-        var y: CGFloat = 0
-        
-        var previousBottoms: [CGFloat] = []
-        var bottoms: [CGFloat] = []
-        
-        var currentLineCount: Int = 0
-        var width: CGFloat = 0
-    }
-    
-    private var itemAttributes: [[IndexPath: UICollectionViewLayoutAttributes]] = []
-    private var maxContentWidth: CGFloat = 0.0, maxContentHeight: CGFloat = 0.0
     
     public weak var delegate: UICollectionViewDelegateFlowLayout?
     
-    /// 上下section的距离
-    public var sectionSpacing: CGFloat = 0.0
+    public var flowStyle: FlowStyle = .equalWidth
+    
+    /// vertical && equalWidth 有效
+    public var columnCount: Int = 2
+    
+    private lazy var attributes: [UICollectionViewLayoutAttributes] = {
+        return []
+    }()
+    
+    private lazy var rows: [CGFloat] = {
+        return []
+    }()
+    
+    private lazy var columns: [CGFloat] = {
+        return []
+    }()
+    
+    private lazy var maxContentWidth: CGFloat = {
+        return 0
+    }()
+    
+    private lazy var maxContentHeight: CGFloat = {
+        return 0
+    }()
+    
+}
 
-    public convenience init(delegate: UICollectionViewDelegateFlowLayout?, minLineSpacing: CGFloat = 0, minItemSpacing: CGFloat = 0) {
-        self.init()
-        self.delegate = delegate
-        self.minimumLineSpacing = minLineSpacing
-        self.minimumInteritemSpacing = minItemSpacing
-    }
+extension EasyWaterFlowLayout {
     
     public override func prepare() {
         super.prepare()
         
-        itemAttributes.removeAll()
-        calcLayoutInfo()
+        guard let collectionView = collectionView else { return }
+        guard let delegate = delegate else { return }
+        
+        if scrollDirection == .vertical {
+            if flowStyle == .equalWidth {
+                // 设置宽无效、高有效 列数有效、行数无效
+                maxContentHeight = 0
+                columns.removeAll()
+                for _ in 0..<columnCount {
+                    columns.append(sectionInset.top)
+                }
+            } else {
+                // 设置宽高都有效 列数和行数无效
+                maxContentHeight = 0
+                columns.removeAll()
+                columns.append(sectionInset.top)
+                
+                maxContentWidth = 0
+                rows.removeAll()
+                rows.append(sectionInset.left)
+            }
+        }
+        attributes.removeAll()
+        
+        for section in 0..<collectionView.numberOfSections {
+            if let layoutAttributes = layoutAttributesForSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, at: IndexPath(item: 0, section: section)), delegate.responds(to: #selector(delegate.collectionView(_:layout:referenceSizeForHeaderInSection:))) {
+                attributes.append(layoutAttributes)
+            }
+            for row in 0..<collectionView.numberOfItems(inSection: section) {
+                if let layoutAttributes = layoutAttributesForItem(at: IndexPath(item: row, section: section)) {
+                    attributes.append(layoutAttributes)
+                }
+            }
+            if let layoutAttributes = layoutAttributesForSupplementaryView(ofKind: UICollectionView.elementKindSectionFooter, at: IndexPath(item: 0, section: section)), delegate.responds(to: #selector(delegate.collectionView(_:layout:referenceSizeForFooterInSection:))) {
+                attributes.append(layoutAttributes)
+            }
+        }
     }
     
     public override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
-        let ia = itemAttributes.filter { (attributes) -> Bool in
-            return rect.intersects(attributes.values.first!.frame)
-        }
-        return ia.map({ $0.values.first! })
-    }
-    
-    public override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
-        let containerAttributes = itemAttributes.filter({ $0.keys.first == indexPath })
-        return containerAttributes.first?.values.first
+        return attributes
     }
     
     public override func layoutAttributesForSupplementaryView(ofKind elementKind: String, at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
-        let containerAttributes = itemAttributes.filter({ $0.keys.first == indexPath && $0.values.first?.representedElementCategory == .supplementaryView && $0.values.first?.representedElementKind == elementKind })
-        return containerAttributes.first?.values.first
+        let layoutAttributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: elementKind, with: indexPath)
+        layoutAttributes.frame = getHeader(forSupplementaryViewOfKind: elementKind, with: indexPath)
+        return layoutAttributes
+    }
+    
+    public override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
+        let layoutAttributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
+        layoutAttributes.frame = getItem(with: indexPath)
+        return layoutAttributes
     }
     
     public override var collectionViewContentSize: CGSize {
-        return CGSize(width: maxContentWidth, height: maxContentHeight)
+        if scrollDirection == .vertical {
+            return CGSize(width: 0, height: maxContentHeight + sectionInset.bottom)
+        }
+        return .zero
     }
     
 }
 
 private extension EasyWaterFlowLayout {
     
-    func calcLayoutInfo() {
-        guard let collectionView = collectionView else { return }
-        let calc = CalcInfo()
-        calc.y = sectionInset.top
-        calc.width = collectionView.width - sectionInset.left - sectionInset.right
-        
-        for section in 0 ..< collectionView.numberOfSections {
-            var header = calcHeader(with: section, info: calc)
-            for row in 0 ..< collectionView.numberOfItems(inSection: section) {
-                calcItem(with: IndexPath(row: row, section: section), isUseSectionHeader: &header, info: calc)
-            }
-            calcFooter(with: section, info: calc)
-        }
-        
-        maxContentWidth = collectionView.width - sectionInset.right - sectionInset.left
-        maxContentHeight = calc.bottoms.max().or(calc.y - minimumLineSpacing) + sectionInset.bottom
-    }
-    
-    func calcHeader(with section: Int, info: CalcInfo) -> Bool {
-        if section != 0 {
-            info.y = info.y + sectionSpacing
-        }
-        let attributes = setHeaderAttributes(with: section, offsetY: info.y)
-        if attributes.hasHeader {
-            info.x = sectionInset.left + attributes.frame.or(.zero).width
-            info.y = info.y + attributes.frame.or(.zero).height + minimumLineSpacing
-            info.bottoms.append(info.y - minimumLineSpacing)
-        }
-        return attributes.hasHeader
-    }
-    
-    func calcItem(with index: IndexPath, isUseSectionHeader: inout Bool, info: CalcInfo) {
-        let setSize = getItemSize(with: index)
-        
-        if info.x + setSize.width <= info.width {
-            calcSameLine(model: info, setSize: setSize)
-        } else {
-            calcNewLine(model: info, setSize: setSize, useSectionHeader: &isUseSectionHeader)
-        }
-        setItemAttributes(with: index, fixFrame: CGRect(x: info.x, y: info.y, width: setSize.width, height: setSize.height))
-        
-        info.x = info.x + setSize.width
-        maxContentHeight = info.bottoms.max().or(info.y)
-    }
-    
-    func calcNewLine(model infoModel: CalcInfo, setSize: CGSize, useSectionHeader: inout Bool) {
-        if useSectionHeader {
-            useSectionHeader.toggle()
-            
-            infoModel.y = infoModel.bottoms.last.or(0) + minimumLineSpacing
-            
-            infoModel.bottoms.removeAll()
-            infoModel.previousBottoms.removeAll()
-            infoModel.bottoms.append(infoModel.y + setSize.height)
-        } else {
-            if infoModel.bottoms.count == 0 {
-                infoModel.y = infoModel.y + minimumLineSpacing
-                infoModel.bottoms.append(infoModel.x)
-            } else {
-                infoModel.previousBottoms = infoModel.bottoms
-                infoModel.bottoms.removeAll()
-                
-                if infoModel.previousBottoms.count > 0 {
-                    infoModel.y = infoModel.previousBottoms.first! + minimumLineSpacing
-                } else {
-                    infoModel.y = minimumLineSpacing
+    func getHeader(forSupplementaryViewOfKind elementKind: String, with indexPath: IndexPath) -> CGRect {
+        guard let collectionView = collectionView else { return .zero }
+        guard let delegate = delegate else { return .zero }
+        if elementKind == UICollectionView.elementKindSectionHeader {
+            if scrollDirection == .vertical {
+                var height: CGFloat = 0
+                if delegate.responds(to: #selector(delegate.collectionView(_:layout:referenceSizeForHeaderInSection:))) {
+                    height = delegate.collectionView!(collectionView, layout: self, referenceSizeForHeaderInSection: indexPath.section).height
                 }
-                infoModel.bottoms.append(infoModel.y + setSize.height)
-            }
-        }
-        infoModel.x = sectionInset.left
-        infoModel.currentLineCount = 0
-    }
-    
-    func calcSameLine(model infoModel: CalcInfo, setSize: CGSize) {
-        infoModel.currentLineCount += 1
-        
-        infoModel.x = infoModel.x + self.minimumInteritemSpacing
-        
-        if infoModel.previousBottoms.count > 0 {
-            if infoModel.previousBottoms.count == 1 {
-                infoModel.y = infoModel.previousBottoms.first! + minimumLineSpacing
-            } else {
-                if infoModel.currentLineCount > infoModel.previousBottoms.count - 1 {
-                    while infoModel.currentLineCount > infoModel.previousBottoms.count - 1 {
-                        infoModel.currentLineCount -= 1
+                var y = maxContentHeight == 0 ? sectionInset.top : maxContentHeight
+                if !delegate.responds(to: #selector(delegate.collectionView(_:layout:referenceSizeForFooterInSection:))) || delegate.collectionView!(collectionView, layout: self, referenceSizeForFooterInSection: indexPath.section).height == 0 {
+                    y = maxContentHeight == 0 ? sectionInset.top : maxContentHeight + CGFloat(minimumLineSpacing)
+                }
+                maxContentHeight = y + height
+                if flowStyle == .equalWidth {
+                    columns.removeAll()
+                    for _ in 0..<columnCount {
+                        columns.append(maxContentHeight)
                     }
-                    infoModel.y = infoModel.previousBottoms[infoModel.currentLineCount] + minimumLineSpacing
                 } else {
-                    infoModel.y = infoModel.previousBottoms[infoModel.currentLineCount] + minimumLineSpacing
+                    rows[0] = collectionView.width
+                    columns[0] = maxContentHeight
                 }
+                return CGRect(x: 0, y: y, width: collectionView.width, height: height)
+            }
+        } else {
+            if scrollDirection == .vertical {
+                var height: CGFloat = 0
+                if delegate.responds(to: #selector(delegate.collectionView(_:layout:referenceSizeForFooterInSection:))) {
+                    height = delegate.collectionView!(collectionView, layout: self, referenceSizeForFooterInSection: indexPath.section).height
+                }
+                let y = height == 0 ? maxContentHeight : maxContentHeight + CGFloat(minimumLineSpacing)
+                maxContentHeight = y + height
+                if flowStyle == .equalWidth {
+                    columns.removeAll()
+                    for _ in 0..<columnCount {
+                        columns.append(maxContentHeight)
+                    }
+                } else {
+                    rows[0] = collectionView.width
+                    columns[0] = maxContentHeight
+                }
+                return CGRect(x: 0, y: y, width: collectionView.width, height: height)
             }
         }
-        
-        maxContentWidth += setSize.width
-        infoModel.bottoms.append(infoModel.y + setSize.height)
+        return .zero
     }
     
-    func calcFooter(with section: Int, info: CalcInfo) {
-        info.y = info.bottoms.max().or(info.y) + minimumLineSpacing
-        let fAttriInfo = setFooterAttributes(with: section, offsetY: info.y)
-        if fAttriInfo.hasFooter {
-            info.x = sectionInset.left + fAttriInfo.frame.or(.zero).width
-            info.y = info.y + fAttriInfo.frame.or(.zero).height + minimumLineSpacing
-            info.bottoms.append(info.y - minimumLineSpacing)
-        }
-    }
-    
-}
-
-private extension EasyWaterFlowLayout {
-    
-    func getItemSize(with indexPath: IndexPath) -> CGSize {
-        guard let delegate = delegate else {
-            guard itemSize.isEmpty else { return itemSize }
-            fatalError("need set itemSize")
-        }
-        if delegate.responds(to: #selector(delegate.collectionView(_:layout:sizeForItemAt:))) {
-            return delegate.collectionView!(collectionView!, layout: self, sizeForItemAt: indexPath)
-        }
-        return itemSize
-    }
-    
-    func getHeaderSize(with section: Int) -> CGSize {
-        guard let delegate = delegate else {
-            guard headerReferenceSize.isEmpty else { return headerReferenceSize }
-            fatalError("need set headerReferenceSize")
-        }
-        if delegate.responds(to: #selector(delegate.collectionView(_:layout:referenceSizeForHeaderInSection:))) {
-            return delegate.collectionView!(collectionView!, layout: self, referenceSizeForHeaderInSection: section)
-        }
-        return headerReferenceSize
-    }
-    
-    func getFooterSize(with section: Int) -> CGSize {
-        guard let delegate = delegate else {
-            guard footerReferenceSize.isEmpty else {
-                return footerReferenceSize
+    func getItem(with indexPath: IndexPath) -> CGRect {
+        guard let collectionView = collectionView else { return .zero }
+        guard let delegate = delegate else { return .zero }
+        if scrollDirection == .vertical {
+            if flowStyle == .equalWidth {
+                let width = (collectionView.width - sectionInset.left - sectionInset.right - CGFloat(columnCount - 1) * minimumInteritemSpacing) / CGFloat(columnCount)
+                var height: CGFloat = 0
+                if delegate.responds(to: #selector(delegate.collectionView(_:layout:sizeForItemAt:))) {
+                    height = delegate.collectionView!(collectionView, layout: self, sizeForItemAt: indexPath).height
+                }
+                var shortIndex = 0
+                var shortHeight = columns.first ?? 0
+                for index in 1..<columns.count {
+                    let currentHeight = columns[index]
+                    if shortHeight > currentHeight {
+                        shortIndex = index
+                        shortHeight = currentHeight
+                    }
+                }
+                let x = sectionInset.left + CGFloat(shortIndex) * (width + minimumInteritemSpacing)
+                var y = shortHeight
+                if y != sectionInset.top {
+                    y += minimumLineSpacing
+                }
+                let frame = CGRect(x: x, y: y, width: width, height: height)
+                columns[shortIndex] = frame.maxY
+                let columnHeight = columns[shortIndex]
+                if maxContentHeight < columnHeight {
+                    maxContentHeight = columnHeight
+                }
+                return frame
             }
-            fatalError("need set footerReferenceSize")
         }
-        if delegate.responds(to: #selector(delegate.collectionView(_:layout:referenceSizeForFooterInSection:))) {
-            return delegate.collectionView!(collectionView!, layout: self, referenceSizeForFooterInSection: section)
-        }
-        return footerReferenceSize
-    }
-    
-    func setHeaderAttributes(with section: Int, offsetY: CGFloat) -> AttributesInfo {
-        let index = IndexPath(row: 0, section: section)
-        let attributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, with: index)
-        let headerSize = getHeaderSize(with: section)
-        
-        if headerSize.height > 0 {
-            var frame = headerSize.toRect
-            frame.origin.x = sectionInset.left
-            frame.origin.y = offsetY
-            setAttributesFrame(with: attributes, frame: frame)
-            let save = [index: attributes]
-            itemAttributes.append(save)
-            return AttributesInfo(indexPath: index, hasHeader: true, hasFooter: false, frame: frame)
-        }
-        return AttributesInfo(indexPath: nil, hasHeader: false, hasFooter: false, frame: nil)
-    }
-    
-    func setItemAttributes(with index: IndexPath, fixFrame: CGRect) {
-        let attributes = UICollectionViewLayoutAttributes(forCellWith: index)
-        setAttributesFrame(with: attributes, frame: fixFrame)
-        
-        let save = [index: attributes]
-        itemAttributes.append(save)
-    }
-    
-    func setFooterAttributes(with section: Int, offsetY: CGFloat) -> AttributesInfo {
-        let index = IndexPath(row: 0, section: section)
-        let attributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, with: index)
-        let size = getFooterSize(with: section)
-        
-        if size.height > 0 {
-            var frame = size.toRect
-            frame.origin.x = sectionInset.left
-            frame.origin.y = offsetY
-            setAttributesFrame(with: attributes, frame: frame)
-            let save = [index: attributes]
-            itemAttributes.append(save)
-            return AttributesInfo(indexPath: index, hasHeader: false, hasFooter: true, frame: frame)
-        }
-        return AttributesInfo(indexPath: nil, hasHeader: false, hasFooter: false, frame: nil)
-    }
-    
-    func setAttributesFrame(with attributes: UICollectionViewLayoutAttributes, frame: CGRect) {
-        attributes.frame = frame
+        return .zero
     }
     
 }

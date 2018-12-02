@@ -34,7 +34,6 @@ class PhotoBrowserViewController: easy.ViewController, easy.CollectionListProtoc
         
         let space: CGFloat = 2.5
         waterFlowLayout.do {
-            $0.sectionSpacing = 0
             $0.minimumInteritemSpacing = space
             $0.minimumLineSpacing = space
             $0.sectionInset = UIEdgeInsets(top: space, left: space, bottom: space, right: space)

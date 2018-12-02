@@ -61,7 +61,6 @@ extension TuchongViewController {
             ignoreTotalPage = true
             
             waterFlowLayout.do {
-                $0.sectionSpacing = 0
                 $0.minimumInteritemSpacing = space
                 $0.minimumLineSpacing = space
                 $0.sectionInset = UIEdgeInsets(top: space, left: space, bottom: space, right: space)
@@ -118,7 +117,7 @@ extension TuchongViewController {
             setSizeForItemAt(Tuchong.self) { (_, indexPath, any) -> CGSize in
                 guard let images = any.images else { return CGSize.zero }
                 let model = images[indexPath.row]
-                return images.count > 1 ? model.imageSize : CGSize(width: .screenWidth - space * 3, height: .screenWidth - space * 3)
+                return model.imageSize
             }
         }
         
