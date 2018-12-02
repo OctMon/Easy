@@ -15,8 +15,8 @@ public class EasyWaterFlowLayout: UICollectionViewFlowLayout {
     
     /// 瀑布流样式
     ///
-    /// - equalWidth: 等宽不等高
-    /// - equalHeight: 等高不等宽
+    /// - equalWidth: 等宽不等高(实现宽无效、高有效)
+    /// - equalHeight: 等高不等宽(实现宽、高都有效)
     public enum FlowStyle {
         case equalWidth, equalHeight
     }
@@ -32,11 +32,11 @@ public class EasyWaterFlowLayout: UICollectionViewFlowLayout {
         return []
     }()
     
-    private lazy var rows: [CGFloat] = {
+    private lazy var widths: [CGFloat] = {
         return []
     }()
     
-    private lazy var columns: [CGFloat] = {
+    private lazy var heights: [CGFloat] = {
         return []
     }()
     
@@ -62,19 +62,19 @@ extension EasyWaterFlowLayout {
             if flowStyle == .equalWidth {
                 // 设置宽无效、高有效 列数有效、行数无效
                 maxContentHeight = 0
-                columns.removeAll()
+                heights.removeAll()
                 for _ in 0..<columnCount {
-                    columns.append(sectionInset.top)
+                    heights.append(sectionInset.top)
                 }
             } else {
                 // 设置宽高都有效 列数和行数无效
                 maxContentHeight = 0
-                columns.removeAll()
-                columns.append(sectionInset.top)
+                heights.removeAll()
+                heights.append(sectionInset.top)
                 
                 maxContentWidth = 0
-                rows.removeAll()
-                rows.append(sectionInset.left)
+                widths.removeAll()
+                widths.append(sectionInset.left)
             }
         }
         attributes.removeAll()
@@ -136,13 +136,13 @@ private extension EasyWaterFlowLayout {
                 }
                 maxContentHeight = y + height
                 if flowStyle == .equalWidth {
-                    columns.removeAll()
+                    heights.removeAll()
                     for _ in 0..<columnCount {
-                        columns.append(maxContentHeight)
+                        heights.append(maxContentHeight)
                     }
                 } else {
-                    rows[0] = collectionView.width
-                    columns[0] = maxContentHeight
+                    widths[0] = collectionView.width
+                    heights[0] = maxContentHeight
                 }
                 return CGRect(x: 0, y: y, width: collectionView.width, height: height)
             }
@@ -155,13 +155,13 @@ private extension EasyWaterFlowLayout {
                 let y = height == 0 ? maxContentHeight : maxContentHeight + CGFloat(minimumLineSpacing)
                 maxContentHeight = y + height
                 if flowStyle == .equalWidth {
-                    columns.removeAll()
+                    heights.removeAll()
                     for _ in 0..<columnCount {
-                        columns.append(maxContentHeight)
+                        heights.append(maxContentHeight)
                     }
                 } else {
-                    rows[0] = collectionView.width
-                    columns[0] = maxContentHeight
+                    widths[0] = collectionView.width
+                    heights[0] = maxContentHeight
                 }
                 return CGRect(x: 0, y: y, width: collectionView.width, height: height)
             }
@@ -172,17 +172,17 @@ private extension EasyWaterFlowLayout {
     func getItem(with indexPath: IndexPath) -> CGRect {
         guard let collectionView = collectionView else { return .zero }
         guard let delegate = delegate else { return .zero }
+        var size: CGSize = .zero
+        if delegate.responds(to: #selector(delegate.collectionView(_:layout:sizeForItemAt:))) {
+            size = delegate.collectionView!(collectionView, layout: self, sizeForItemAt: indexPath)
+        }
         if scrollDirection == .vertical {
             if flowStyle == .equalWidth {
                 let width = (collectionView.width - sectionInset.left - sectionInset.right - CGFloat(columnCount - 1) * minimumInteritemSpacing) / CGFloat(columnCount)
-                var height: CGFloat = 0
-                if delegate.responds(to: #selector(delegate.collectionView(_:layout:sizeForItemAt:))) {
-                    height = delegate.collectionView!(collectionView, layout: self, sizeForItemAt: indexPath).height
-                }
                 var shortIndex = 0
-                var shortHeight = columns.first ?? 0
-                for index in 1..<columns.count {
-                    let currentHeight = columns[index]
+                var shortHeight = heights.first ?? 0
+                for index in 1..<heights.count {
+                    let currentHeight = heights[index]
                     if shortHeight > currentHeight {
                         shortIndex = index
                         shortHeight = currentHeight
@@ -193,13 +193,42 @@ private extension EasyWaterFlowLayout {
                 if y != sectionInset.top {
                     y += minimumLineSpacing
                 }
-                let frame = CGRect(x: x, y: y, width: width, height: height)
-                columns[shortIndex] = frame.maxY
-                let columnHeight = columns[shortIndex]
-                if maxContentHeight < columnHeight {
-                    maxContentHeight = columnHeight
+                let frame = CGRect(x: x, y: y, width: width, height: size.height)
+                heights[shortIndex] = frame.maxY
+                let height = heights[shortIndex]
+                if maxContentHeight < height {
+                    maxContentHeight = height
                 }
                 return frame
+            } else {
+                var headerSize: CGSize = .zero
+                if delegate.responds(to: #selector(delegate.collectionView(_:layout:referenceSizeForHeaderInSection:))) {
+                    headerSize = delegate.collectionView!(collectionView, layout: self, referenceSizeForHeaderInSection: indexPath.section)
+                }
+                var x: CGFloat, y: CGFloat = 0
+                let firstWidth = widths.first ?? 0
+                let firstHeight = heights.first ?? 0
+                if collectionView.width - firstWidth > size.width + sectionInset.right {
+                    x = firstWidth == sectionInset.left ? sectionInset.left : firstWidth + minimumInteritemSpacing
+                    if firstHeight == sectionInset.top {
+                        y = sectionInset.top
+                    } else if firstHeight == sectionInset.top + headerSize.height {
+                        y = sectionInset.top + headerSize.height + minimumLineSpacing
+                    } else {
+                        y = firstHeight - size.height
+                    }
+                    widths[0] = x + size.width
+                    if firstHeight == sectionInset.top || firstHeight == sectionInset.top + headerSize.height {
+                        heights[0] = y + size.height
+                    }
+                } else {
+                    x = sectionInset.left
+                    y = firstHeight + minimumLineSpacing
+                    widths[0] = x + size.width
+                    heights[0] = y + size.height
+                }
+                maxContentHeight = heights.first ?? 0
+                return CGRect(x: x, y: y, width: size.width, height: size.height)
             }
         }
         return .zero

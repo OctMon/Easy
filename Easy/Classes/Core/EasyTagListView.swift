@@ -89,7 +89,7 @@ extension EasyTagListView {
             guard let topView = topView(EasyTagListView.self) else { return }
             
             waterFlowLayout.do {
-                $0.scrollDirection = .horizontal
+                $0.flowStyle = .equalHeight
                 $0.sectionInset = topView.sectionInset
                 $0.minimumInteritemSpacing = topView.minimumInteritemSpacing
                 $0.minimumLineSpacing = topView.minimumLineSpacing
