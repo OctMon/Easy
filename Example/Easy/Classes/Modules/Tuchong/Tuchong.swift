@@ -161,10 +161,7 @@ extension Tuchong.Image {
     
     var imageSize: CGSize {
         if let width = width?.toCGFloat, let height = height?.toCGFloat {
-            let space: CGFloat = 2.5
-            let imageWidth = (app.screenWidth - space * 3) / 2
-            let imageHeight = CGSize(width: width, height: height).calcFlowHeight(in: imageWidth)
-            return CGSize(width: imageWidth, height: imageHeight)
+            return CGSize(width: 0, height: CGSize(width: width, height: height).calcFlowHeight(in: (app.screenWidth - 2.5 * 3) / 2))
         }
         return .zero
     }
