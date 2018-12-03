@@ -82,7 +82,7 @@ extension TuchongViewController {
                 (cell as? ImageLabelCollectionViewCell)?.do {
                     guard let image = any.images?[indexPath.row] else { return }
                     $0.imageView.setFadeImage(url: image.imageURL, placeholderImage: UIColor.random.toImage)
-                    $0.label.text = "(" + indexPath.section.toString + "," + indexPath.row.toString + ")\n" + image.imgID.toStringValue
+                    $0.label.text = indexPath.description + "\n" + image.imgID.toStringValue
                 }
             }) { (_, indexPath, any) in
                 let photoView = UIView(frame: app.screenBounds).then {
@@ -134,8 +134,7 @@ extension TuchongViewController {
                 view.alpha = 0.5
                 view.label.text = (list(Tuchong.self))[indexPath.section].excerpt
                 return view
-            }
-            
+            }   
         }
         
         func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {

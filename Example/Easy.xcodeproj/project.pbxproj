@@ -22,6 +22,8 @@
 		FE388A4F2173223C0050904B /* ScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE388A4E2173223C0050904B /* ScanViewController.swift */; };
 		FE388A502173223C0050904B /* ScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE388A4E2173223C0050904B /* ScanViewController.swift */; };
 		FE391C5F216A249300D59D29 /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE391C5E216A249300D59D29 /* Main.swift */; };
+		FE5C797921B4CA6F0052FD2D /* WaterFlowLayoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE5C797821B4CA6F0052FD2D /* WaterFlowLayoutViewController.swift */; };
+		FE5C797A21B4CA6F0052FD2D /* WaterFlowLayoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE5C797821B4CA6F0052FD2D /* WaterFlowLayoutViewController.swift */; };
 		FE6652D92170A58A007E7051 /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE391C5E216A249300D59D29 /* Main.swift */; };
 		FE6652DA2170A58A007E7051 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		FE6652DF2170A58A007E7051 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
@@ -82,6 +84,7 @@
 		FE388A46217318980050904B /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		FE388A4E2173223C0050904B /* ScanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanViewController.swift; sourceTree = "<group>"; };
 		FE391C5E216A249300D59D29 /* Main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Main.swift; sourceTree = "<group>"; };
+		FE5C797821B4CA6F0052FD2D /* WaterFlowLayoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterFlowLayoutViewController.swift; sourceTree = "<group>"; };
 		FE6652E42170A58A007E7051 /* Easy_Example_Beta.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Easy_Example_Beta.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FEBBE4E9219123C700654926 /* InputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputViewController.swift; sourceTree = "<group>"; };
 		FEBBE4F121916FCD00654926 /* MarqueeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarqueeViewController.swift; sourceTree = "<group>"; };
@@ -247,6 +250,7 @@
 				FEC882DD2176C645009BDC1C /* Social */,
 				FEE5221721AF7B9500872EAD /* TagListView */,
 				FEF494C82175875E00555C3F /* Tuchong */,
+				FE5C797721B4CA590052FD2D /* WaterFlowLayout */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -266,6 +270,14 @@
 				FE388A4E2173223C0050904B /* ScanViewController.swift */,
 			);
 			path = Scan;
+			sourceTree = "<group>";
+		};
+		FE5C797721B4CA590052FD2D /* WaterFlowLayout */ = {
+			isa = PBXGroup;
+			children = (
+				FE5C797821B4CA6F0052FD2D /* WaterFlowLayoutViewController.swift */,
+			);
+			path = WaterFlowLayout;
 			sourceTree = "<group>";
 		};
 		FEBBE4E8219123BB00654926 /* Input */ = {
@@ -669,6 +681,7 @@
 				FE388A47217318980050904B /* Config.swift in Sources */,
 				FEFE116F2187EC1E00BDDD9F /* PageViewController.swift in Sources */,
 				FEC882DF2176C65D009BDC1C /* SocialViewController.swift in Sources */,
+				FE5C797921B4CA6F0052FD2D /* WaterFlowLayoutViewController.swift in Sources */,
 				FEBBE4F221916FCD00654926 /* MarqueeViewController.swift in Sources */,
 				FE2DEB8C21ABF53000289D8E /* ImageLabelCollectionViewCell.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
@@ -699,6 +712,7 @@
 				FE388A48217318980050904B /* Config.swift in Sources */,
 				FEFE11702187EC1E00BDDD9F /* PageViewController.swift in Sources */,
 				FEC882E02176C65D009BDC1C /* SocialViewController.swift in Sources */,
+				FE5C797A21B4CA6F0052FD2D /* WaterFlowLayoutViewController.swift in Sources */,
 				FEBBE4F321916FCD00654926 /* MarqueeViewController.swift in Sources */,
 				FE2DEB8D21ABF53000289D8E /* ImageLabelCollectionViewCell.swift in Sources */,
 				FE6652DA2170A58A007E7051 /* AppDelegate.swift in Sources */,
