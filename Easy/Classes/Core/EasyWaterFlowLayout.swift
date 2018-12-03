@@ -190,23 +190,15 @@ private extension EasyWaterFlowLayout {
         if scrollDirection == .vertical {
             if flowStyle == .equalWidth {
                 let width = (collectionView.width - sectionInset.left - sectionInset.right - CGFloat(flowCount - 1) * minimumInteritemSpacing) / CGFloat(flowCount)
-                var shortIndex = 0
-                var shortHeight = heights.first ?? 0
-                for index in 1..<heights.count {
-                    let currentHeight = heights[index]
-                    if shortHeight > currentHeight {
-                        shortIndex = index
-                        shortHeight = currentHeight
-                    }
-                }
-                let x = sectionInset.left + CGFloat(shortIndex) * (width + minimumInteritemSpacing)
-                var y = shortHeight
+                let min = heights.enumerated().min { a, b in a.element < b.element } ?? (0, heights[0])
+                let x = sectionInset.left + CGFloat(min.offset) * (width + minimumInteritemSpacing)
+                var y = min.element
                 if y != sectionInset.top {
                     y += minimumLineSpacing
                 }
                 let frame = CGRect(x: x, y: y, width: width, height: size.height)
-                heights[shortIndex] = frame.maxY
-                let height = heights[shortIndex]
+                let height = frame.maxY
+                heights[min.offset] = height
                 if maxContentHeight < height {
                     maxContentHeight = height
                 }
@@ -244,23 +236,15 @@ private extension EasyWaterFlowLayout {
         } else {
             if flowStyle == .equalHeight {
                 let height = (collectionView.height - sectionInset.top - sectionInset.bottom - CGFloat(flowCount - 1) * minimumLineSpacing) / CGFloat(flowCount)
-                var shortIndex = 0
-                var shortWidth = widths.first ?? 0
-                for index in 1..<widths.count {
-                    let currentWidth = widths[index]
-                    if shortWidth > currentWidth {
-                        shortIndex = index
-                        shortWidth = currentWidth
-                    }
-                }
-                var x = shortWidth
-                let y = sectionInset.top + CGFloat(shortIndex) * (height + minimumLineSpacing)
+                let min = widths.enumerated().min { a, b in a.element < b.element } ?? (0, widths[0])
+                var x = min.element
+                let y = sectionInset.top + CGFloat(min.offset) * (height + minimumLineSpacing)
                 if x != sectionInset.left {
                     x += minimumInteritemSpacing
                 }
                 let frame = CGRect(x: x, y: y, width: size.width, height: height)
-                widths[shortIndex] = frame.maxX
-                let width = widths[shortIndex]
+                let width = frame.maxX
+                widths[min.offset] = width
                 if maxContentWidth < width {
                     maxContentWidth = width
                 }
