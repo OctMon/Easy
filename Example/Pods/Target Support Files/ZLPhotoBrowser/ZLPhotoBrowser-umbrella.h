@@ -13,6 +13,7 @@
 #import "ZLAnimateTransition.h"
 #import "ZLInteractiveAnimateProtocol.h"
 #import "ZLInteractiveTrasition.h"
+#import "ZLPullDownInteractiveTransition.h"
 #import "NSBundle+ZLPhotoBrowser.h"
 #import "ToastUtils.h"
 #import "UIButton+EnlargeTouchArea.h"

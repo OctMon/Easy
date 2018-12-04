@@ -1,36 +1,36 @@
 PODS:
   - Alamofire (4.8.0)
-  - Easy (1.0):
-    - Easy/Core (= 1.0)
-    - Easy/Session (= 1.0)
-  - Easy/Beta (1.0):
+  - Easy (1.0.2):
+    - Easy/Core (= 1.0.2)
+    - Easy/Session (= 1.0.2)
+  - Easy/Beta (1.0.2):
     - Easy/Core
     - Easy/Session
     - FLEX
     - GDPerformanceView-Swift
     - OOMDetector
-  - Easy/Common (1.0):
+  - Easy/Common (1.0.2):
     - MBProgressHUD
     - MJRefresh
     - RTRootNavigationController
     - SDWebImage
-  - Easy/Core (1.0):
+  - Easy/Core (1.0.2):
     - SnapKit
-  - Easy/Page (1.0):
+  - Easy/Page (1.0.2):
     - Easy/Core
     - WMPageController
-  - Easy/PhotoBrowser (1.0):
+  - Easy/PhotoBrowser (1.0.2):
     - Easy/Core
     - ZLPhotoBrowser
-  - Easy/RSA (1.0):
+  - Easy/RSA (1.0.2):
     - Easy/Core
     - SwiftyRSA
-  - Easy/Scan (1.0):
+  - Easy/Scan (1.0.2):
     - Easy/Core
-  - Easy/Session (1.0):
+  - Easy/Session (1.0.2):
     - Alamofire
     - Easy/Core
-  - Easy/Social (1.0):
+  - Easy/Social (1.0.2):
     - Easy/Core
     - MonkeyKing
   - fishhook (0.2)
@@ -42,9 +42,9 @@ PODS:
   - MonkeyKing (1.12.1)
   - OOMDetector (1.3):
     - fishhook (= 0.2)
-  - RTRootNavigationController (0.7.0):
-    - RTRootNavigationController/Core (= 0.7.0)
-  - RTRootNavigationController/Core (0.7.0)
+  - RTRootNavigationController (0.7.1):
+    - RTRootNavigationController/Core (= 0.7.1)
+  - RTRootNavigationController/Core (0.7.1)
   - SDWebImage (4.4.2):
     - SDWebImage/Core (= 4.4.2)
   - SDWebImage/Core (4.4.2)
@@ -53,7 +53,7 @@ PODS:
     - SwiftyRSA/ObjC (= 1.5.0)
   - SwiftyRSA/ObjC (1.5.0)
   - WMPageController (2.5.2)
-  - ZLPhotoBrowser (2.7.5):
+  - ZLPhotoBrowser (2.7.6):
     - GPUImage
     - SDWebImage
 
@@ -91,7 +91,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Alamofire: 3ec537f71edc9804815215393ae2b1a8ea33a844
-  Easy: 0412eea79db600f5ebe5c4cf0463c02ea2b86fdf
+  Easy: b0c176d07c6d488d4b39a9a51a1400de647632d7
   fishhook: ea19933abfe8f2f52c55fd8b6e2718467d3ebc89
   FLEX: bd1a39e55b56bb413b6f1b34b3c10a0dc44ef079
   GDPerformanceView-Swift: a40b2f675589449f5b5082f3178f01bfdb7882ce
@@ -100,12 +100,12 @@ SPEC CHECKSUMS:
   MJRefresh: 697f8ec75ebdbe9207767bb682cf0f51b0d8a41f
   MonkeyKing: 280cdc68eb39f8b899b17fdfe994a695f6fdc636
   OOMDetector: c23f4dfc969ea9bbd68a57cf7e5a3ca2169263cd
-  RTRootNavigationController: f1369f4257c8a44a05c5d3b151d2b8ec7accf121
+  RTRootNavigationController: afa6913402be26f8326f7f37fc1550aa67baddcc
   SDWebImage: 624d6e296c69b244bcede364c72ae0430ac14681
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
   SwiftyRSA: 6e528fb1b1a87d5111c48081083b141d6d65f1cf
   WMPageController: 0c7624d2b48e4f1ab92371688cf6744ed701575d
-  ZLPhotoBrowser: 32f2e065486c64fcde9381887694bf4ec17c53dc
+  ZLPhotoBrowser: 6dfadc4706429424f0a851fe40752aff076689ab
 
 PODFILE CHECKSUM: 0c5468e29963430f57221be5b942dca34c9d0c35
 
