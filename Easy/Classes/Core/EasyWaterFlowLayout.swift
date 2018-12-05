@@ -236,7 +236,10 @@ private extension EasyWaterFlowLayout {
                     }
                 } else {
                     x = sectionInset.left
-                    y = firstHeight + minimumLineSpacing
+                    y = firstHeight
+                    if y != sectionInset.top {
+                        y += minimumLineSpacing
+                    }
                     widths[0] = x + size.width
                     heights[0] = y + size.height
                 }
