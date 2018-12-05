@@ -1,36 +1,36 @@
 PODS:
   - Alamofire (4.8.0)
-  - Easy (1.0.2):
-    - Easy/Core (= 1.0.2)
-    - Easy/Session (= 1.0.2)
-  - Easy/Beta (1.0.2):
+  - Easy (1.1):
+    - Easy/Core (= 1.1)
+    - Easy/Session (= 1.1)
+  - Easy/Beta (1.1):
     - Easy/Core
     - Easy/Session
     - FLEX
     - GDPerformanceView-Swift
     - OOMDetector
-  - Easy/Common (1.0.2):
+  - Easy/Common (1.1):
     - MBProgressHUD
     - MJRefresh
     - RTRootNavigationController
     - SDWebImage
-  - Easy/Core (1.0.2):
+  - Easy/Core (1.1):
     - SnapKit
-  - Easy/Page (1.0.2):
+  - Easy/Page (1.1):
     - Easy/Core
     - WMPageController
-  - Easy/PhotoBrowser (1.0.2):
+  - Easy/PhotoBrowser (1.1):
     - Easy/Core
     - ZLPhotoBrowser
-  - Easy/RSA (1.0.2):
+  - Easy/RSA (1.1):
     - Easy/Core
     - SwiftyRSA
-  - Easy/Scan (1.0.2):
+  - Easy/Scan (1.1):
     - Easy/Core
-  - Easy/Session (1.0.2):
+  - Easy/Session (1.1):
     - Alamofire
     - Easy/Core
-  - Easy/Social (1.0.2):
+  - Easy/Social (1.1):
     - Easy/Core
     - MonkeyKing
   - fishhook (0.2)
@@ -45,9 +45,9 @@ PODS:
   - RTRootNavigationController (0.7.1):
     - RTRootNavigationController/Core (= 0.7.1)
   - RTRootNavigationController/Core (0.7.1)
-  - SDWebImage (4.4.2):
-    - SDWebImage/Core (= 4.4.2)
-  - SDWebImage/Core (4.4.2)
+  - SDWebImage (4.4.3):
+    - SDWebImage/Core (= 4.4.3)
+  - SDWebImage/Core (4.4.3)
   - SnapKit (4.2.0)
   - SwiftyRSA (1.5.0):
     - SwiftyRSA/ObjC (= 1.5.0)
@@ -91,7 +91,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Alamofire: 3ec537f71edc9804815215393ae2b1a8ea33a844
-  Easy: b0c176d07c6d488d4b39a9a51a1400de647632d7
+  Easy: 7953ffe17746f2f8551267dff362fc4681d6083a
   fishhook: ea19933abfe8f2f52c55fd8b6e2718467d3ebc89
   FLEX: bd1a39e55b56bb413b6f1b34b3c10a0dc44ef079
   GDPerformanceView-Swift: a40b2f675589449f5b5082f3178f01bfdb7882ce
@@ -101,7 +101,7 @@ SPEC CHECKSUMS:
   MonkeyKing: 280cdc68eb39f8b899b17fdfe994a695f6fdc636
   OOMDetector: c23f4dfc969ea9bbd68a57cf7e5a3ca2169263cd
   RTRootNavigationController: afa6913402be26f8326f7f37fc1550aa67baddcc
-  SDWebImage: 624d6e296c69b244bcede364c72ae0430ac14681
+  SDWebImage: c5594f1a19c48d526d321e548902b56b479cd508
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
   SwiftyRSA: 6e528fb1b1a87d5111c48081083b141d6d65f1cf
   WMPageController: 0c7624d2b48e4f1ab92371688cf6744ed701575d
