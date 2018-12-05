@@ -15,7 +15,7 @@ class WaterFlowLayoutViewController: easy.ViewController, easy.CollectionListPro
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.appendRightBarButtonItem(title: "+") { [weak self] in
+        navigationItem.appendRightBarButtonSystemItem(.refresh) { [weak self] in
             let popMenu = easy.PopMenu()
             popMenu.show(point: CGPoint(x: app.screenWidth - 120, y: self?.navigationBottom ?? 0), items: self?.collectionListView.items.map { $0.name } ?? [], completion: { [weak self] (offset) in
                 guard let self = self else { return }

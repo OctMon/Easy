@@ -1693,7 +1693,7 @@ public extension UINavigationItem {
     
     @discardableResult
     private func appendBarButtonItem(isRight: Bool, title: String?, image: UIImage?, attributes: [NSAttributedString.Key : Any]? = [.font: UIFont.size15], tapHandler: @escaping () -> Void) -> UINavigationItem {
-        let barButtonItem = image == nil ? UIBarButtonItem(title: title, style: .done, target: nil, action: nil) : UIBarButtonItem(image: image, style: .done, target: self, action: nil)
+        let barButtonItem = image == nil ? UIBarButtonItem(title: title, style: .done, target: nil, action: nil) : UIBarButtonItem(image: image, style: .done, target: nil, action: nil)
         barButtonItem.setTitleTextAttributes(attributes, for: .normal)
         barButtonItem.setTitleTextAttributes(attributes, for: .highlighted)
         barButtonItem.tap(tapHandler)
@@ -1715,23 +1715,54 @@ public extension UINavigationItem {
     }
     
     @discardableResult
-    func appendRightBarButtonItem(title: String, attributes: [NSAttributedString.Key : Any]? = [.font: UIFont.size15], tapHandler: @escaping () -> Void) -> UINavigationItem {
+    func appendRightBarButtonTitleItem(_ title: String, attributes: [NSAttributedString.Key : Any]? = [.font: UIFont.size15], tapHandler: @escaping () -> Void) -> UINavigationItem {
         return appendBarButtonItem(isRight: true, title: title, image: nil, attributes: attributes, tapHandler: tapHandler)
     }
     
     @discardableResult
-    func appendRightBarButtonItem(image: UIImage, tapHandler: @escaping () -> Void) -> UINavigationItem {
+    func appendRightBarButtonImageItem(_ image: UIImage, tapHandler: @escaping () -> Void) -> UINavigationItem {
         return appendBarButtonItem(isRight: true, title: nil, image: image, attributes: nil, tapHandler: tapHandler)
     }
     
     @discardableResult
-    func appendLeftBarButtonItem(title: String, attributes: [NSAttributedString.Key : Any]? = [.font: UIFont.size15], tapHandler: @escaping () -> Void) -> UINavigationItem {
+    func appendLeftBarButtonTitleItem(_ title: String, attributes: [NSAttributedString.Key : Any]? = [.font: UIFont.size15], tapHandler: @escaping () -> Void) -> UINavigationItem {
         return appendBarButtonItem(isRight: false, title: title, image: nil, attributes: attributes, tapHandler: tapHandler)
     }
     
     @discardableResult
-    func appendLeftBarButtonItem(image: UIImage, tapHandler: @escaping () -> Void) -> UINavigationItem {
+    func appendLeftBarButtonImageItem(_ image: UIImage, tapHandler: @escaping () -> Void) -> UINavigationItem {
         return appendBarButtonItem(isRight: false, title: nil, image: image, attributes: nil, tapHandler: tapHandler)
+    }
+    
+    @discardableResult
+    private func appendBarButtonSystemItem(_ barButtonSystemItem: UIBarButtonItem.SystemItem, isRight: Bool, tapHandler: @escaping () -> Void) -> UINavigationItem {
+        let barButtonItem = UIBarButtonItem(barButtonSystemItem: barButtonSystemItem, target: nil, action: nil)
+        barButtonItem.tap(tapHandler)
+        
+        if let items = (isRight ? rightBarButtonItems : leftBarButtonItems), items.count > 0 {
+            if isRight {
+                rightBarButtonItems?.append(barButtonItem)
+            } else {
+                leftBarButtonItems?.append(barButtonItem)
+            }
+        } else {
+            if isRight {
+                rightBarButtonItem = barButtonItem
+            } else {
+                leftBarButtonItem = barButtonItem
+            }
+        }
+        return self
+    }
+    
+    @discardableResult
+    func appendLeftBarButtonSystemItem(_ barButtonSystemItem: UIBarButtonItem.SystemItem, tapHandler: @escaping () -> Void) -> UINavigationItem {
+        return appendBarButtonSystemItem(barButtonSystemItem, isRight: false, tapHandler: tapHandler)
+    }
+    
+    @discardableResult
+    func appendRightBarButtonSystemItem(_ barButtonSystemItem: UIBarButtonItem.SystemItem, tapHandler: @escaping () -> Void) -> UINavigationItem {
+        return appendBarButtonSystemItem(barButtonSystemItem, isRight: true, tapHandler: tapHandler)
     }
     
 }

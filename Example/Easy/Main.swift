@@ -17,14 +17,14 @@ class Main: easy.ViewController, easy.TableListProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.appendLeftBarButtonItem(title: "baidu") { [weak self] in
+        navigationItem.appendLeftBarButtonTitleItem("baidu") { [weak self] in
             let webVC = easy.WebViewController().then {
                 $0.urlString = "https://www.baidu.com"
             }
             self?.pushWithHidesBottomBar(to: webVC)
         }
         
-        navigationItem.appendRightBarButtonItem(title: "+") { [weak self] in
+        navigationItem.appendRightBarButtonSystemItem(.play) { [weak self] in
             guard let self = self else { return }
             easy.PopMenu().show(point: CGPoint(x: app.screenWidth - 120, y: self.navigationBottom), items: ["QRcode", "Barcode"], completion: { [weak self] index in
                 guard let self = self else {

@@ -19,11 +19,11 @@ class EasyTestViewController: EasyViewController, EasyTableListProtocol {
         
         navigationItem.title = "EasyTest by OctMon"
         
-        navigationItem.appendLeftBarButtonItem(title: FLEXManager.toString) {
+        navigationItem.appendLeftBarButtonTitleItem(FLEXManager.toString) {
             FLEXManager.shared().toggleExplorer()
         }
         
-        navigationItem.appendRightBarButtonItem(title: "Done") {
+        navigationItem.appendRightBarButtonTitleItem("Done") {
             isShowTestTool.toggle()
         }
         

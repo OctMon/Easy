@@ -15,7 +15,7 @@ class PhotoBrowserViewController: easy.ViewController, easy.CollectionListProtoc
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.appendRightBarButtonItem(title: "📷") { [weak self] in
+        navigationItem.appendRightBarButtonTitleItem("📷") { [weak self] in
             guard let self = self else { return }
             app.showPhotoPick(in: self, configurationHandler: { configuration in
                 configuration.maxSelectCount = Int.max

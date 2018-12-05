@@ -51,7 +51,7 @@ class ScanViewController: easy.ViewController {
             $0.startRunning()
         }
         
-        navigationItem.appendRightBarButtonItem(title: "相册") { [weak self] in
+        navigationItem.appendRightBarButtonTitleItem("相册") { [weak self] in
             guard UIImagePickerController.isSourceTypeAvailable(.photoLibrary) else {
                 return
             }
