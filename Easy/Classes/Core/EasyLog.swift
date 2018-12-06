@@ -40,13 +40,13 @@ public extension EasyLog {
     }
     
     #if DEBUG || BETA
-    static var log: String? {
+    internal static var log: String? {
         return EasyApp.userDefaults.string(forKey: defaultLogLKey)
     }
     
-    static var logHandler: ((String) -> Void)?
+    internal static var logHandler: ((String) -> Void)?
     
-    static func clear() {
+    internal static func clear() {
         EasyApp.userDefaults.set(nil, forKey: defaultLogLKey)
     }
     
