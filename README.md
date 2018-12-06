@@ -55,6 +55,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 ```
 
+### EasyLog
+
+```swift
+log.print("hello print") // hello print
+
+log.debug("hello debug")
+// 2018-12-06 11:09:25.373 [debug] [Tests.swift:38] testEasyLog() > hello debug
+```
+
+### EasyApp
+
+```swift
+log.print(app.isDebug) // true
+log.print(app.isBeta) // false
+
+log.print(app.screenBounds) // (0.0, 0.0, 414.0, 736.0)
+log.print(app.screenSize) // (414.0, 736.0)
+log.print(app.screenWidth) // 414.0
+log.print(app.screenHeight) // 736.0
+log.print(app.screenScale) // 3.0
+
+```
+
 ## Author
 
 octmon, octmon@qq.com
