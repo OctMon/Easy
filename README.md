@@ -1,6 +1,6 @@
 # Easy
 
-[![CI Status](https://img.shields.io/travis/octmon/Easy.svg?style=flat)](https://travis-ci.org/OctMon/Easy)
+[![CI Status](https://img.shields.io/travis/OctMon/Easy.svg?style=flat)](https://travis-ci.org/OctMon/Easy)
 [![Version](https://img.shields.io/cocoapods/v/Easy.svg?style=flat)](https://cocoapods.org/pods/Easy)
 [![License](https://img.shields.io/cocoapods/l/Easy.svg?style=flat)](https://cocoapods.org/pods/Easy)
 [![Platform](https://img.shields.io/cocoapods/p/Easy.svg?style=flat)](https://cocoapods.org/pods/Easy)
