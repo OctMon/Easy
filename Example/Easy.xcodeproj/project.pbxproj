@@ -884,6 +884,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3F89AA360160C1BD6F86E63D /* Pods-Easy_Tests.debug.xcconfig */;
 			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -902,6 +903,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8C3BB9F18B4802785753AE69 /* Pods-Easy_Tests.release.xcconfig */;
 			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";

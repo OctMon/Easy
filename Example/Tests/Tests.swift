@@ -1,5 +1,5 @@
 import XCTest
-import Easy
+@testable import Easy_Example
 
 class Tests: XCTestCase {
     
@@ -23,6 +23,32 @@ class Tests: XCTestCase {
         self.measure() {
             // Put the code you want to measure the time of here.
         }
+    }
+    
+    func testEasyLog() {
+        log.print("hello print")
+        log.debug("hello debug")
+    }
+    
+    func testEasyApp() {
+        log.print(app.isDebug)
+        log.print(app.isBeta)
+    }
+    
+    func testEasyAppScreen() {
+        log.print(app.screenBounds)
+        log.print(app.screenSize)
+        log.print(app.screenWidth)
+        log.print(app.screenHeight)
+        log.print(app.screenScale)
+    }
+    
+    func testEasyAppBundle() {
+        log.print(app.bundleIdentifier)
+        log.print(app.bundleVersion)
+        log.print(app.bundleBuild)
+        log.print(app.bundleName)
+        log.print(app.bundleExecutable)
     }
     
 }
