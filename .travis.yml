@@ -11,4 +11,4 @@ language: objective-c
 # - pod install --project-directory=Example
 script:
 - set -o pipefail && xcodebuild test -enableCodeCoverage YES -workspace Example/Easy.xcworkspace -scheme Easy_Example -destination 'platform=iOS Simulator,name=iPhone 6,OS=9.0' | xcpretty
-- pod lib lint
+# - pod lib lint
