@@ -51,4 +51,30 @@ class Tests: XCTestCase {
         log.print(app.bundleExecutable)
     }
     
+    func testEasyApplication() {
+        log.print(app.statusBarHeight)
+        log.print(app.userDefaults)
+        log.print(app.notificationCenter)
+        log.print(app.delegate)
+        log.print(app.keyWindow)
+        log.print(app.window)
+        log.print(app.rootViewController)
+    }
+    
+    func testEasyCamera() {
+        log.print(app.isCameraAvailableFront)
+        log.print(app.isCameraAvailableRear)
+    }
+    
+    func testEasyTime() {
+        log.print(app.timestamp)
+        log.print(app.timestampMillis)
+    }
+    
+    func testEasyUUID() {
+        log.print(app.randomUUID)
+        log.print(app.randomLowercasedUUID)
+        log.print(app.getKeychainUUID)
+    }
+    
 }

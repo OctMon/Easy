@@ -76,6 +76,23 @@ log.print(app.screenWidth) // 414.0
 log.print(app.screenHeight) // 736.0
 log.print(app.screenScale) // 3.0
 
+log.print(app.statusBarHeight) // 20.0
+log.print(app.userDefaults) // <NSUserDefaults: 0x6000029c1380>
+log.print(app.notificationCenter) // <CFNotificationCenter 0x6000003c4720 [0x10f4a5b68]
+log.print(app.delegate) // Optional(<Easy_Example.AppDelegate: 0x600000f9ca00>)
+log.print(app.keyWindow) // Optional(<UIWindow: 0x7fd487701540; frame = (0 0; 414 736); gestureRecognizers = <NSArray: 0x6000001c5b30>; layer = <UIWindowLayer: 0x600000fd8300>>)
+log.print(app.window) // Optional(<UIWindow: 0x7fd487701540; frame = (0 0; 414 736); gestureRecognizers = <NSArray: 0x6000001c5b30>; layer = <UIWindowLayer: 0x600000fd8300>>)
+log.print(app.rootViewController // Optional(<Easy.EasyNavigationController: 0x7fd48886f000>)
+
+log.print(app.isCameraAvailableFront) // true
+log.print(app.isCameraAvailableRear) // true
+
+log.print(app.timestamp) // 1544232815
+log.print(app.timestampMillis) // 1544232815518
+
+log.print(app.randomUUID) // 90F67FF1-58B0-492E-9A98-9DC019BCB43C
+log.print(app.randomLowercasedUUID) // 65a1273a-7889-4854-bddb-939f0089e88e
+log.print(app.getKeychainUUID) // D262661F-06C8-4B45-B3FC-1878DCB65456
 ```
 
 ## Author
