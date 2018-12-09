@@ -93,6 +93,16 @@ log.print(app.timestampMillis) // 1544232815518
 log.print(app.randomUUID) // 90F67FF1-58B0-492E-9A98-9DC019BCB43C
 log.print(app.randomLowercasedUUID) // 65a1273a-7889-4854-bddb-939f0089e88e
 log.print(app.getKeychainUUID) // D262661F-06C8-4B45-B3FC-1878DCB65456
+
+log.print(app.isFirstLaunch) // true
+log.print(app.isFirstLaunchOfNewVersion) // true
+log.print(app.isFirstLaunchOfKey("test")) // true
+
+log.print(app.currentViewController) // Optional(<RTContainerController: 0x7fded3d0d770 contentViewController: <Easy_Example.Main: 0x7fded3d03e90>>)
+log.print(app.currentNavigationController) // Optional(<Easy.EasyNavigationController: 0x7fded4832e00>)
+log.print(app.currentTabBarController) // nil
+log.print(app.telephonyCarrierName) //  中国联通
+log.print(app.isConnectedToNetwork) // true
 ```
 
 ## Author

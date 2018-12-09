@@ -77,4 +77,18 @@ class Tests: XCTestCase {
         log.print(app.getKeychainUUID)
     }
     
+    func testEasyFirstLaunch() {
+        log.print(app.isFirstLaunch)
+        log.print(app.isFirstLaunchOfNewVersion)
+        log.print(app.isFirstLaunchOfKey("test"))
+    }
+    
+    func testEasyCurrent() {
+        log.print(app.currentViewController)
+        log.print(app.currentNavigationController)
+        log.print(app.currentTabBarController)
+        log.print(app.telephonyCarrierName)
+        log.print(app.isConnectedToNetwork)
+    }
+    
 }
