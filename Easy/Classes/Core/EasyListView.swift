@@ -46,6 +46,8 @@ open class EasyListView: UIView {
         return nil
     }
     
+    public var placeholders: [EasyPlaceholder]?
+    
     func getAny<T>(_ dataSource: [Any], indexPath: IndexPath, numberOfSections: Int, numberOfRowsInSectionHandler: ((T, Int) -> Int)?) -> Any? {
         if numberOfSections > 0 {
             if indexPath.section < dataSource.count {

@@ -76,7 +76,7 @@ public extension EasyDataResponse {
     var dataParameters: EasyParameters {
         return result.data
     }
-
+    
     /// Returns the list -> [[String: Any]]
     var listParameters: [EasyParameters] {
         return result.list
@@ -157,7 +157,7 @@ public extension EasyResult {
     var statusCode: Int { return dataResponse?.response?.statusCode ?? config.code.unknown }
     var msg: String { return json[config.key.msg].toString ?? easyError?.localizedDescription ?? EasyGlobal.errorServer }
     var data: EasyParameters { return (json[config.key.data] as? EasyParameters) ?? [:] }
-
+    
     var total: Int { return json[config.key.total].toIntValue }
     var list: [EasyParameters] { return (json[config.key.list] as? [EasyParameters]) ?? [] }
     
@@ -185,7 +185,7 @@ public extension EasyResult {
             }
         }
     }
-
+    
 }
 
 public extension EasyDataResponse {
@@ -232,7 +232,7 @@ public extension EasyListView {
         }
     }
     
-    fileprivate func setRefresh(_ scrollView: UIScrollView, dataResponse: EasyDataResponse, isValidList: Bool, placeholders: [EasyPlaceholder], errorHandler: ((Error?) -> Void)? = nil) {
+    fileprivate func setRefresh(_ scrollView: UIScrollView, dataResponse: EasyDataResponse, isValidList: Bool, errorHandler: ((Error?) -> Void)? = nil) {
         let isTableView = scrollView is UITableView
         let isCollectionView = scrollView is UICollectionView
         hideLoading()
@@ -305,19 +305,38 @@ public extension EasyListView {
                     }
                     var error = dataResponse.error
                     var image: UIImage?
+                    var attributedString = error?.localizedDescription.getAttributedString
                     if (isValidList && !dataResponse.validList && error == nil) || (dataResponse.code == dataResponse.config.code.empty) {
                         image = EasyGlobal.placholderEmptyImage
-                        error = EasyError.empty((dataResponse.msg.isEmpty ? EasyGlobal.errorEmpty : dataResponse.msg))
-                        for placeholder in placeholders {
-                            if placeholder.style == .empty {
-                                image = placeholder.image
-                                if let title = placeholder.title {
-                                    error = EasyError.empty(title)
+                        attributedString = (dataResponse.msg.isEmpty ? EasyGlobal.errorEmpty : dataResponse.msg).getAttributedString
+                        if let placeholders = placeholders {
+                            for placeholder in placeholders {
+                                if placeholder.style == .empty {
+                                    image = placeholder.image
+                                    if let title = placeholder.title {
+                                        attributedString = title.getAttributedString
+                                    }
+                                }
+                            }
+                        }
+                    } else {
+                        if let placeholders = placeholders, let error = error {
+                            for placeholder in placeholders {
+                                if placeholder.style == .server {
+                                    switch error {
+                                    case .server(_):
+                                        image = placeholder.image
+                                        if let title = placeholder.title {
+                                            attributedString = title.getAttributedString
+                                        }
+                                    default:
+                                        break
+                                    }
                                 }
                             }
                         }
                     }
-                    showPlaceholder(error: error, image: image, tap: { [weak self] in
+                    showPlaceholder(attributedString: attributedString, image: image, tap: { [weak self] in
                         self?.showLoading()
                         self?.requestHandler?()
                     })
@@ -335,8 +354,8 @@ public extension EasyTableListView {
         addRefresh(tableView, isAddHeader: isAddHeader, isAddFooter: isAddFooter, requestHandler: requestHandler)
     }
     
-    func setRefresh(dataResponse: EasyDataResponse, isValidList: Bool, placeholders: [EasyPlaceholder] = [], errorHandler: ((Error?) -> Void)? = nil) {
-        setRefresh(tableView, dataResponse: dataResponse, isValidList: isValidList, placeholders: placeholders, errorHandler: errorHandler)
+    func setRefresh(dataResponse: EasyDataResponse, isValidList: Bool, errorHandler: ((Error?) -> Void)? = nil) {
+        setRefresh(tableView, dataResponse: dataResponse, isValidList: isValidList, errorHandler: errorHandler)
     }
     
 }
@@ -347,9 +366,9 @@ public extension EasyCollectionListView {
         addRefresh(collectionView, isAddHeader: isAddHeader, isAddFooter: isAddFooter, requestHandler: requestHandler)
     }
     
-    func setRefresh(dataResponse: EasyDataResponse, isValidList: Bool, placeholders: [EasyPlaceholder] = [], errorHandler: ((Error?) -> Void)? = nil) {
-        setRefresh(collectionView, dataResponse: dataResponse, isValidList: isValidList, placeholders: placeholders, errorHandler: errorHandler)
+    func setRefresh(dataResponse: EasyDataResponse, isValidList: Bool, errorHandler: ((Error?) -> Void)? = nil) {
+        setRefresh(collectionView, dataResponse: dataResponse, isValidList: isValidList, errorHandler: errorHandler)
     }
-
+    
 }
 #endif

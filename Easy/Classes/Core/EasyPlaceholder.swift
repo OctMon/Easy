@@ -51,7 +51,7 @@ public struct EasyPlaceholder {
 public extension EasyPlaceholder {
     
     public enum Style {
-        case empty, error
+        case empty, server
     }
 
     static func emptyGlobal(title: String?) -> EasyPlaceholder {
@@ -64,14 +64,14 @@ public extension EasyPlaceholder {
         return EasyPlaceholder(style: .empty, title: title, image: image)
     }
 
-    static func errorGlobal(title: String?) -> EasyPlaceholder {
-        return error(title: title, image: EasyGlobal.placholderErrorImage)
+    static func serverGlobal(title: String?) -> EasyPlaceholder {
+        return server(title: title, image: EasyGlobal.placholderErrorImage)
     }
-    static func errorGlobal(image: UIImage?) -> EasyPlaceholder {
-        return error(title: nil, image: image)
+    static func serverGlobal(image: UIImage?) -> EasyPlaceholder {
+        return server(title: nil, image: image)
     }
-    static func error(title: String?, image: UIImage?) -> EasyPlaceholder {
-        return EasyPlaceholder(style: .error, title: title, image: image)
+    static func server(title: String?, image: UIImage?) -> EasyPlaceholder {
+        return EasyPlaceholder(style: .server, title: title, image: image)
     }
 
 }
