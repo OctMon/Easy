@@ -18,7 +18,7 @@ export_method='enterprise'
 #指定项目地址
 workspace_path="$project_path/$project_name.xcworkspace"
 #指定输出路径
-output_path="$project_path/App"
+output_path="$project_path/build"
 #指定输出归档文件地址
 archive_path="$output_path/$project_name.xcarchive"
 #指定输出ipa地址

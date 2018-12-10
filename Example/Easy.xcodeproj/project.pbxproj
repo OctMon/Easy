@@ -363,8 +363,8 @@
 				2B1B2F81A1B5E19B2C20C0C0 /* [CP] Check Pods Manifest.lock */,
 				607FACCC1AFB9204008FA782 /* Sources */,
 				607FACCD1AFB9204008FA782 /* Frameworks */,
-				FE683ABB2192FF7C0065AD59 /* Auto Increase build number */,
 				607FACCE1AFB9204008FA782 /* Resources */,
+				FE683ABB2192FF7C0065AD59 /* Auto Increase build number */,
 				87421F0A16DB983A8A5FEB66 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
