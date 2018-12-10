@@ -27,12 +27,12 @@ pod 'Easy'
 import Easy
 
 typealias easy = Easy
-typealias app = EasyApp
-typealias log = EasyLog
-typealias alert = EasyAlert
-typealias actionSheet = EasyActionSheet
-typealias global = EasyGlobal
-typealias router = EasyRouter
+typealias app = easy.App
+typealias log = easy.Log
+typealias alert = easy.Alert
+typealias actionSheet = easy.ActionSheet
+typealias global = easy.Global
+typealias router = easy.Router
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

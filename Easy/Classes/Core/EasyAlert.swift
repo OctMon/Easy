@@ -7,6 +7,11 @@
 
 import UIKit
 
+public extension Easy {
+    typealias Alert = EasyAlert
+    typealias ActionSheet = EasyActionSheet
+}
+
 public class EasyAlertController {
     
     var alertController: UIAlertController

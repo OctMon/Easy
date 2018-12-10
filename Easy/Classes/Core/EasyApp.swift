@@ -7,6 +7,10 @@
 
 import UIKit
 
+public extension Easy {
+    typealias App = EasyApp
+}
+
 public struct EasyApp {
     private init() {}
 }

@@ -7,6 +7,10 @@
 
 import Foundation
 
+public extension Easy {
+    typealias Log = EasyLog
+}
+
 public struct EasyLog {
     
     private init() {}
