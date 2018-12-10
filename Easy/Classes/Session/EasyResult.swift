@@ -303,11 +303,11 @@ public extension EasyListView {
                             collectionView.reloadData()
                         }
                     }
-                    var error = dataResponse.error
+                    let error = dataResponse.error
                     var image: UIImage?
                     var attributedString = error?.localizedDescription.getAttributedString
                     if (isValidList && !dataResponse.validList && error == nil) || (dataResponse.code == dataResponse.config.code.empty) {
-                        image = EasyGlobal.placholderEmptyImage
+                        image = EasyGlobal.placeholderEmptyImage
                         attributedString = (dataResponse.msg.isEmpty ? EasyGlobal.errorEmpty : dataResponse.msg).getAttributedString
                         if let placeholders = placeholders {
                             for placeholder in placeholders {
@@ -325,7 +325,7 @@ public extension EasyListView {
                                 if placeholder.style == .server {
                                     switch error {
                                     case .server(_):
-                                        image = placeholder.image
+                                        image = placeholder.image ?? EasyGlobal.placeholderServerImage
                                         if let title = placeholder.title {
                                             attributedString = title.getAttributedString
                                         }
@@ -344,6 +344,28 @@ public extension EasyListView {
                 
             }
         }
+    }
+    
+    func checkEmptyPlaceholder() {
+        guard list.count == 0 else {
+            return
+        }
+        var image = EasyGlobal.placeholderEmptyImage
+        var attributedString = EasyGlobal.errorEmpty.getAttributedString
+        if let placeholders = placeholders {
+            for placeholder in placeholders {
+                if placeholder.style == .empty {
+                    image = placeholder.image
+                    if let title = placeholder.title {
+                        attributedString = title.getAttributedString
+                    }
+                }
+            }
+        }
+        showPlaceholder(attributedString: attributedString, image: image, tap: { [weak self] in
+            self?.showLoading()
+            self?.requestHandler?()
+        })
     }
     
 }
