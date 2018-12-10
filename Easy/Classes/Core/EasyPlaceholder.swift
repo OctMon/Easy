@@ -28,10 +28,10 @@ public extension EasyGlobal {
 
 public struct EasyPlaceholder {
     public var style: Style
-    public var title: String?
+    public var title: NSAttributedString?
     public var image: UIImage?
     
-    public init(style: Style, title: String?) {
+    public init(style: Style, title: NSAttributedString?) {
         self.style = style
         self.title = title
     }
@@ -41,7 +41,7 @@ public struct EasyPlaceholder {
         self.image = image
     }
     
-    public init(style: Style, title: String?, image: UIImage?) {
+    public init(style: Style, title: NSAttributedString?, image: UIImage?) {
         self.style = style
         self.title = title
         self.image = image
@@ -54,23 +54,23 @@ public extension EasyPlaceholder {
         case empty, server
     }
 
-    static func emptyGlobal(title: String?) -> EasyPlaceholder {
+    static func emptyGlobal(title: NSAttributedString?) -> EasyPlaceholder {
         return empty(title: title, image: EasyGlobal.placeholderEmptyImage)
     }
     static func emptyGlobal(image: UIImage?) -> EasyPlaceholder {
-        return empty(title: EasyGlobal.errorEmpty, image: image)
+        return empty(title: EasyGlobal.errorEmpty.getAttributedString, image: image)
     }
-    static func empty(title: String?, image: UIImage?) -> EasyPlaceholder {
+    static func empty(title: NSAttributedString?, image: UIImage?) -> EasyPlaceholder {
         return EasyPlaceholder(style: .empty, title: title, image: image)
     }
 
-    static func serverGlobal(title: String?) -> EasyPlaceholder {
+    static func serverGlobal(title: NSAttributedString?) -> EasyPlaceholder {
         return server(title: title, image: EasyGlobal.placeholderServerImage)
     }
     static func serverGlobal(image: UIImage?) -> EasyPlaceholder {
         return server(title: nil, image: image)
     }
-    static func server(title: String?, image: UIImage?) -> EasyPlaceholder {
+    static func server(title: NSAttributedString?, image: UIImage?) -> EasyPlaceholder {
         return EasyPlaceholder(style: .server, title: title, image: image)
     }
 

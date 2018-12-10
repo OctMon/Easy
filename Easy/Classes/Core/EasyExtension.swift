@@ -417,6 +417,16 @@ public extension String {
         return NSMutableAttributedString(string: self, attributes: [.font: font, .foregroundColor: foregroundColor, .paragraphStyle: paragraphStyle])
     }
     
+    func getAttributedString(foregroundColor: UIColor)-> NSMutableAttributedString {
+        return NSMutableAttributedString(string: self, attributes: [.foregroundColor: foregroundColor])
+    }
+    
+    func getAttributedString(lineSpacing: CGFloat)-> NSMutableAttributedString {
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = lineSpacing
+        return NSMutableAttributedString(string: self, attributes: [.paragraphStyle: paragraphStyle])
+    }
+    
     func getWidth(forConstrainedHeight: CGFloat, font: UIFont, options: NSStringDrawingOptions = [.usesLineFragmentOrigin, .usesFontLeading]) -> CGFloat {
         return ceil(getSize(forConstrainedSize: CGSize(width: CGFloat(Double.greatestFiniteMagnitude), height: forConstrainedHeight), font: font).width)
     }
@@ -441,9 +451,21 @@ public extension NSAttributedString {
 
 public extension NSMutableAttributedString {
     
-    func getAttributedString(title: String, font: UIFont, foregroundColor: UIColor, lineSpacing: CGFloat? = nil)-> NSMutableAttributedString {
+    func append(title: String, font: UIFont, foregroundColor: UIColor, lineSpacing: CGFloat? = nil) -> NSMutableAttributedString {
         let mutableAttributedString = NSMutableAttributedString(attributedString: self)
         mutableAttributedString.append(title.getAttributedString(font: font, foregroundColor: foregroundColor, lineSpacing: lineSpacing))
+        return mutableAttributedString
+    }
+    
+    func append(title: String, foregroundColor: UIColor)-> NSMutableAttributedString {
+        let mutableAttributedString = NSMutableAttributedString(attributedString: self)
+        mutableAttributedString.append(title.getAttributedString(foregroundColor: foregroundColor))
+        return mutableAttributedString
+    }
+    
+    func append(title: String, lineSpacing: CGFloat)-> NSMutableAttributedString {
+        let mutableAttributedString = NSMutableAttributedString(attributedString: self)
+        mutableAttributedString.append(title.getAttributedString(lineSpacing: lineSpacing))
         return mutableAttributedString
     }
     

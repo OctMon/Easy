@@ -120,7 +120,7 @@ class Main: easy.ViewController, easy.TableListProtocol {
             buttonTitles.insert("稍后再说".getAttributedString(font: UIFont.size15, foregroundColor: UIColor.hex666666), at: 0)
             buttonBackgroundImages.insert(UIColor.white.toImage, at: 0)
         }
-        app.showUpdateAlert(image: nil, title: "发现新版本".getAttributedString(font: UIFont.size21, foregroundColor: UIColor.hex333333).getAttributedString(title: "  v6.7.3", font: UIFont.size12, foregroundColor: UIColor.hex999999), message: """
+        app.showUpdateAlert(image: nil, title: "发现新版本".getAttributedString(font: UIFont.size21, foregroundColor: UIColor.hex333333).append(title: "  v6.7.3", font: UIFont.size12, foregroundColor: UIColor.hex999999), message: """
             本次更新：
             - 可以拍一个自己的表情
             - 聊天输入文字时可以长按换行

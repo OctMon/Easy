@@ -38,7 +38,7 @@ public struct EasyCheck {
             var buttonBackgroundImages = [EasyGlobal.tint.toImage]
             buttonTitles.insert("以后再说".getAttributedString(font: UIFont.size15, foregroundColor: UIColor.hex666666), at: 0)
             buttonBackgroundImages.insert(UIColor.white.toImage, at: 0)
-            EasyApp.showUpdateAlert(image: headerImage, title: "发现新版本beta".getAttributedString(font: UIFont.size21, foregroundColor: UIColor.hex333333).getAttributedString(title: "  v\(buildVersionNo)", font: UIFont.size12, foregroundColor: UIColor.hex999999), message: dataResponse.dataParameters["buildUpdateDescription"].toStringValue.getAttributedString(font: UIFont.size14, foregroundColor: UIColor.hex999999, lineSpacing: 8), buttonTitles: buttonTitles, buttonBackgroundImages: buttonBackgroundImages, tap: { offset in
+            EasyApp.showUpdateAlert(image: headerImage, title: "发现新版本beta".getAttributedString(font: UIFont.size21, foregroundColor: UIColor.hex333333).append(title: "  v\(buildVersionNo)", font: UIFont.size12, foregroundColor: UIColor.hex999999), message: dataResponse.dataParameters["buildUpdateDescription"].toStringValue.getAttributedString(font: UIFont.size14, foregroundColor: UIColor.hex999999, lineSpacing: 8), buttonTitles: buttonTitles, buttonBackgroundImages: buttonBackgroundImages, tap: { offset in
                 isShow = false
                 if offset == 1 {
                     let buildKey = dataResponse.dataParameters["buildKey"].toStringValue

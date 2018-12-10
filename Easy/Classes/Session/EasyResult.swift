@@ -305,7 +305,7 @@ public extension EasyListView {
                     }
                     let error = dataResponse.error
                     var image: UIImage?
-                    var attributedString = error?.localizedDescription.getAttributedString
+                    var attributedString: NSAttributedString? = error?.localizedDescription.getAttributedString
                     if (isValidList && !dataResponse.validList && error == nil) || (dataResponse.code == dataResponse.config.code.empty) {
                         image = EasyGlobal.placeholderEmptyImage
                         attributedString = (dataResponse.msg.isEmpty ? EasyGlobal.errorEmpty : dataResponse.msg).getAttributedString
@@ -314,7 +314,7 @@ public extension EasyListView {
                                 if placeholder.style == .empty {
                                     image = placeholder.image
                                     if let title = placeholder.title {
-                                        attributedString = title.getAttributedString
+                                        attributedString = title
                                     }
                                 }
                             }
@@ -327,7 +327,7 @@ public extension EasyListView {
                                     case .server(_):
                                         image = placeholder.image ?? EasyGlobal.placeholderServerImage
                                         if let title = placeholder.title {
-                                            attributedString = title.getAttributedString
+                                            attributedString = title
                                         }
                                     default:
                                         break
@@ -350,14 +350,14 @@ public extension EasyListView {
         guard list.count == 0 else {
             return
         }
-        var image = EasyGlobal.placeholderEmptyImage
-        var attributedString = EasyGlobal.errorEmpty.getAttributedString
+        var image: UIImage? = EasyGlobal.placeholderEmptyImage
+        var attributedString: NSAttributedString? = EasyGlobal.errorEmpty.getAttributedString
         if let placeholders = placeholders {
             for placeholder in placeholders {
                 if placeholder.style == .empty {
                     image = placeholder.image
                     if let title = placeholder.title {
-                        attributedString = title.getAttributedString
+                        attributedString = title
                     }
                 }
             }
