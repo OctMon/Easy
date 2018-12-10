@@ -14,16 +14,16 @@ public extension Easy {
 }
 
 public extension EasyGlobal {
-    static var placholderEmptyImage: UIImage?
-    static var placholderErrorImage: UIImage?
+    static var placeholderEmptyImage: UIImage?
+    static var placeholderServerImage: UIImage?
     
-    static var placeholerImageOffset: CGFloat = 0
-    static var placeholerLabelOffset: CGFloat = 0
-    static var placeholerButtonOffset: CGFloat = 0
+    static var placeholderImageOffset: CGFloat = 0
+    static var placeholderLabelOffset: CGFloat = 0
+    static var placeholderButtonOffset: CGFloat = 0
     
-    static var placeholerLabelFont: UIFont = .size15
-    static var placeholerLabelColor: UIColor = .hex999999
-    static var placeholerLabelNumberOfLines: Int = 3
+    static var placeholderLabelFont: UIFont = .size15
+    static var placeholderLabelColor: UIColor = .hex999999
+    static var placeholderLabelNumberOfLines: Int = 3
 }
 
 public struct EasyPlaceholder {
@@ -55,7 +55,7 @@ public extension EasyPlaceholder {
     }
 
     static func emptyGlobal(title: String?) -> EasyPlaceholder {
-        return empty(title: title, image: EasyGlobal.placholderEmptyImage)
+        return empty(title: title, image: EasyGlobal.placeholderEmptyImage)
     }
     static func emptyGlobal(image: UIImage?) -> EasyPlaceholder {
         return empty(title: EasyGlobal.errorEmpty, image: image)
@@ -65,7 +65,7 @@ public extension EasyPlaceholder {
     }
 
     static func serverGlobal(title: String?) -> EasyPlaceholder {
-        return server(title: title, image: EasyGlobal.placholderErrorImage)
+        return server(title: title, image: EasyGlobal.placeholderServerImage)
     }
     static func serverGlobal(image: UIImage?) -> EasyPlaceholder {
         return server(title: nil, image: image)
@@ -100,9 +100,9 @@ public extension UIView {
         
         let label = UILabel()
         label.textAlignment = .center
-        label.numberOfLines = EasyGlobal.placeholerLabelNumberOfLines
-        label.textColor = EasyGlobal.placeholerLabelColor
-        label.font = EasyGlobal.placeholerLabelFont
+        label.numberOfLines = EasyGlobal.placeholderLabelNumberOfLines
+        label.textColor = EasyGlobal.placeholderLabelColor
+        label.font = EasyGlobal.placeholderLabelFont
         label.attributedText = attributedString
         
         let imageView = UIImageView(image: image)
@@ -112,17 +112,17 @@ public extension UIView {
             make.width.equalToSuperview().offset(-30)
             make.height.lessThanOrEqualTo(height)
             make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview().offset(EasyGlobal.placeholerLabelOffset + offset + height)
+            make.centerY.equalToSuperview().offset(EasyGlobal.placeholderLabelOffset + offset + height)
         }
         imageView.snp.makeConstraints { (make) in
             make.centerX.equalToSuperview()
-            make.bottom.equalTo(label.snp.top).offset(EasyGlobal.placeholerImageOffset)
+            make.bottom.equalTo(label.snp.top).offset(EasyGlobal.placeholderImageOffset)
         }
         
         var button = UIButton(type: .system )
         addSubview(button)
         button.snp.makeConstraints { (make) in
-            make.top.equalTo(label.snp.bottom).offset(EasyGlobal.placeholerButtonOffset)
+            make.top.equalTo(label.snp.bottom).offset(EasyGlobal.placeholderButtonOffset)
             make.centerX.equalToSuperview()
         }
         button.tap { (_) in
