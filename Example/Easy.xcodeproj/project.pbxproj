@@ -364,7 +364,6 @@
 				607FACCC1AFB9204008FA782 /* Sources */,
 				607FACCD1AFB9204008FA782 /* Frameworks */,
 				607FACCE1AFB9204008FA782 /* Resources */,
-				FE683ABB2192FF7C0065AD59 /* Auto Increase build number */,
 				87421F0A16DB983A8A5FEB66 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
@@ -631,24 +630,6 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Easy_Example_Beta/Pods-Easy_Example_Beta-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
-		};
-		FE683ABB2192FF7C0065AD59 /* Auto Increase build number */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 8;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Auto Increase build number";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 1;
-			shellPath = /bin/sh;
-			shellScript = "#!/bin/bash\n\n#Release Debug\nif [ \"Release\" = \"${CONFIGURATION}\" ]; then\n#跟随时间变化\nbuildNumber=$(date +%Y%m%d%H%M%S)\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"$INFOPLIST_FILE\"\n\n#自动加1\n#buildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"$INFOPLIST_FILE\")\n#buildNumber=$(($buildNumber + 1))\n#/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"$INFOPLIST_FILE\"\nfi\n";
 		};
 		FE683ABC2192FF850065AD59 /* Auto Increase build number */ = {
 			isa = PBXShellScriptBuildPhase;
