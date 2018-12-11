@@ -60,8 +60,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 ```swift
 log.print("hello print") // hello print
 
-log.debug("hello debug")
-// 2018-12-06 11:09:25.373 [debug] [Tests.swift:38] testEasyLog() > hello debug
+log.debug("hello debug") // 2018-12-06 11:09:25.373 [debug] [Tests.swift:38] testEasyLog() > hello debug
 ```
 
 ### EasyApp
@@ -103,6 +102,18 @@ log.print(app.currentNavigationController) // Optional(<Easy.EasyNavigationContr
 log.print(app.currentTabBarController) // nil
 log.print(app.telephonyCarrierName) //  中国联通
 log.print(app.isConnectedToNetwork) // true
+
+app.playVibrate()
+
+app.openSettings()
+app.canOpen("https://github.com/octmon/easy")
+app.open("https://github.com/octmon/easy")
+app.call("12345")
+
+log.print(app.getAppStoreDetails(id: 414478124)) // itms-apps://itunes.apple.com/app/id414478124
+app.openAppStoreDetails(id: 414478124)
+app.openAppStoreReviews(id: 414478124)
+app.openAppStoreWriteReview(id: 414478124)
 ```
 
 ## Author

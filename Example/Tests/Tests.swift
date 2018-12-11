@@ -91,4 +91,22 @@ class Tests: XCTestCase {
         log.print(app.isConnectedToNetwork)
     }
     
+    func testEasyPlayVibrate() {
+        app.playVibrate()
+    }
+    
+    func testEasyOpen() {
+        app.openSettings()
+        app.canOpen("https://github.com/octmon/easy")
+        app.open("https://github.com/octmon/easy")
+        app.call("12345")
+    }
+    
+    func testEasyAppStore() {
+        log.print(app.getAppStoreDetails(id: 414478124))
+        app.openAppStoreDetails(id: 414478124)
+        app.openAppStoreReviews(id: 414478124)
+        app.openAppStoreWriteReview(id: 414478124)
+    }
+    
 }
