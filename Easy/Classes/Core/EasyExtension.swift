@@ -451,6 +451,12 @@ public extension NSAttributedString {
 
 public extension NSMutableAttributedString {
     
+    func append(title: String) -> NSMutableAttributedString {
+        let mutableAttributedString = NSMutableAttributedString(attributedString: self)
+        mutableAttributedString.append(title.getAttributedString)
+        return mutableAttributedString
+    }
+    
     func append(title: String, font: UIFont, foregroundColor: UIColor, lineSpacing: CGFloat? = nil) -> NSMutableAttributedString {
         let mutableAttributedString = NSMutableAttributedString(attributedString: self)
         mutableAttributedString.append(title.getAttributedString(font: font, foregroundColor: foregroundColor, lineSpacing: lineSpacing))
