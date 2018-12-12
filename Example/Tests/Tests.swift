@@ -109,4 +109,23 @@ class Tests: XCTestCase {
         app.openAppStoreWriteReview(id: 414478124)
     }
     
+    func testEasyAppRun() {
+        app.runInMain(delay: 3) {
+            
+        }
+        app.runInMain(handler: {
+            
+        })
+        app.runInGlobal(qos: .background, delay: 2, handler: {
+            
+        })
+        app.runInGlobal(handler: {
+            
+        })
+        app.runLoop(seconds: 1, delay: 3, handler: { (time) in
+            
+        })
+        
+    }
+    
 }

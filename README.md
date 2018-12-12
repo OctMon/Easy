@@ -114,6 +114,22 @@ log.print(app.getAppStoreDetails(id: 414478124)) // itms-apps://itunes.apple.com
 app.openAppStoreDetails(id: 414478124)
 app.openAppStoreReviews(id: 414478124)
 app.openAppStoreWriteReview(id: 414478124)
+
+app.runInMain(delay: 3) {
+    
+}
+app.runInMain(handler: {
+    
+})
+app.runInGlobal(qos: .background, delay: 2, handler: {
+    
+})
+app.runInGlobal(handler: {
+    
+})
+app.runLoop(seconds: 1, delay: 3, handler: { (time) in
+    
+})
 ```
 
 ## Author
