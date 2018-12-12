@@ -1373,14 +1373,14 @@ private class EasyRotationGestureRecognizer: UIRotationGestureRecognizer {
 
 public extension UIView {
     
-    func superviewToType<T>(_: T.Type) -> T? {
+    func superview<T>(with: T.Type) -> T? {
         if let view = superview as? T {
             return view
         }
         return nil
     }
     
-    func viewToType<T>(_: T.Type) -> T? {
+    func view<T>(with: T.Type) -> T? {
         if let view = self as? T {
             return view
         }
