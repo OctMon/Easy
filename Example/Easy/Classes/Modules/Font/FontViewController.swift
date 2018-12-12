@@ -66,19 +66,19 @@ extension FontViewController {
             }) { (listView, section) -> Int in
                 return listView.list(Font.self)[section].name.count
             }
-            register(cellClass: UITableViewCell.self, configureCell: { [weak self] (_, cell, indexPath, any) in
+            register(cellClass: UITableViewCell.self, configureCell: { (listView, cell, indexPath, any) in
                 guard let font = any as? Font else { return }
                 cell.textLabel?.numberOfLines = 0
                 cell.textLabel?.font = UIFont(name: font.name[indexPath.row], size: 19)
-                cell.textLabel?.text = (self?.text ?? "") + "\n" + font.name[indexPath.row]
-            }) { [weak self] (_, indexPath, any) in
+                cell.textLabel?.text = (listView.viewToType(TableListView.self)?.text ?? "") + "\n" + font.name[indexPath.row]
+            }) { (listView, indexPath, any) in
                 let label = UILabel(frame: app.screenBounds).then {
                     guard let font = any as? Font else { return }
                     $0.backgroundColor = UIColor.white
                     $0.numberOfLines = 0
                     $0.font = UIFont(name: font.name[indexPath.row], size: 48)
                     $0.textAlignment = .center
-                    let text = (self?.text ?? "") + "\n" + font.name[indexPath.row]
+                    let text = (listView.viewToType(TableListView.self)?.text ?? "") + "\n" + font.name[indexPath.row]
                     $0.text = text
                 }
                 easy.PopupView(label).showWithCenter()

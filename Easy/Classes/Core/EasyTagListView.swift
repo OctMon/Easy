@@ -86,7 +86,7 @@ extension EasyTagListView {
         public override func configure() {
             super.configure()
             
-            guard let topView = topView(EasyTagListView.self) else { return }
+            guard let topView = superviewToType(EasyTagListView.self) else { return }
             
             waterFlowLayout.do {
                 $0.flowStyle = .equalHeight
@@ -98,10 +98,10 @@ extension EasyTagListView {
                 $0.scrollsToTop = false
                 $0.collectionViewLayout = waterFlowLayout
             }
-            register(String.self, cellClass: TagCell.self, configureCell: { (listView, cell, indexPath, tag) in
+            register(String.self, cellClass: TagCell.self, configureCell: { [weak topView] (listView, cell, indexPath, tag) in
                 if let cell = cell as? TagCell {
                     cell.tagButton.setTitle(tag, for: .normal)
-                    if let topView = listView.topView(EasyTagListView.self) {
+                    if let topView = topView {
                         cell.tagButton.titleLabel?.font = topView.font
                         cell.tagButton.setTitleColor(topView.textColor, for: .normal)
                         cell.tagButton.setBackgroundBorder(topView.cornerRadius, borderColor: topView.borderColor, borderWidth: topView.borderWidth)
@@ -113,7 +113,7 @@ extension EasyTagListView {
             }
             
             setSizeForItemAt(String.self) { (listView, _, tag) -> CGSize in
-                guard let topView = listView.topView(EasyTagListView.self) else { return CGSize.zero }
+                guard let topView = listView.superviewToType(EasyTagListView.self) else { return CGSize.zero }
                 let size = tag.getSize(forConstrainedSize: topView.constrainedSize, font: topView.font)
                 return CGSize(width: size.width + listView.waterFlowLayout.minimumLineSpacing + topView.borderWidth, height: size.height + listView.waterFlowLayout.minimumInteritemSpacing + topView.borderWidth)
             }

@@ -110,7 +110,7 @@ extension EasyCycleView {
         }
         
         func timerRunLoop() {
-            guard let timeInterval = topView(EasyCycleView.self)?.timeInterval else { return }
+            guard let timeInterval = superviewToType(EasyCycleView.self)?.timeInterval else { return }
             guard timeInterval != 0 else { return }
             guard count > 1 else { return }
             timerInvalidate()

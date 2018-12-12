@@ -39,13 +39,6 @@ open class EasyListView: UIView {
         return list as? [T] ?? []
     }
     
-    public func topView<T>(_ view: T.Type) -> T? {
-        if let topView = self.superview as? T {
-            return topView
-        }
-        return nil
-    }
-    
     public var placeholders: [EasyPlaceholder]?
     
     func getAny<T>(_ dataSource: [Any], indexPath: IndexPath, numberOfSections: Int, numberOfRowsInSectionHandler: ((T, Int) -> Int)?) -> Any? {
