@@ -130,6 +130,10 @@ app.runInGlobal(handler: {
 app.runLoop(seconds: 1, delay: 3, handler: { (time) in
     
 })
+
+app.userDefaultsSet(with: ["app": "test"])
+log.print(app.userDefaultsGetValue(forKey: "app")) // Optional(test)
+log.print(app.userDefaultsGetString(forKey: "app")) // Optional("test")
 ```
 
 ## Author

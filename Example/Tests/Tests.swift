@@ -125,7 +125,12 @@ class Tests: XCTestCase {
         app.runLoop(seconds: 1, delay: 3, handler: { (time) in
             
         })
-        
+    }
+    
+    func testApp() {
+        app.userDefaultsSet(with: ["app": "test"])
+        log.print(app.userDefaultsGetValue(forKey: "app"))
+        log.print(app.userDefaultsGetString(forKey: "app"))
     }
     
 }
