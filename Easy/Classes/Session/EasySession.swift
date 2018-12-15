@@ -72,11 +72,19 @@ public struct EasySession {
 public extension EasySession {
     
     func pageSize(_ page: Int, _ size: Int? = nil) -> EasyParameters {
-        var parameters = [config.key.page: page]
-        if let size = size {
-            parameters[config.key.size] = size
+        return pageSize(page, size, parameters: nil)
+    }
+    
+    func pageSize(_ page: Int, _ size: Int? = nil, parameters: EasyParameters?) -> EasyParameters {
+        var pageSizeParameters = EasyParameters()
+        if let parameters = parameters {
+            pageSizeParameters = parameters
         }
-        return parameters
+        pageSizeParameters[config.key.page] = page
+        if let size = size {
+            pageSizeParameters[config.key.size] = size
+        }
+        return pageSizeParameters
     }
     
     func get(parameters: EasyParameters?, timeoutInterval: TimeInterval? = nil, inView view: UIView? = nil, requestHandler: ((URLRequest) -> URLRequest)? = nil, completionHandler: @escaping (EasyDataResponse) -> Void) {
