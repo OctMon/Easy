@@ -135,13 +135,13 @@ public extension EasySession {
                     completionHandler(self.getEasyDataResponse(dataResponse: dataResponse))
                 }
             case .failure(let encodingError):
-                completionHandler(EasyDataResponse(request: nil, response: nil, data: nil, result: EasyResult(config: self.config, error: encodingError), timeline: Timeline(), list: []))
+                completionHandler(EasyDataResponse(request: nil, response: nil, data: nil, result: EasyResult(config: self.config, error: encodingError), timeline: Timeline(), list: [], model: nil))
             }
         }
     }
     
     private func getEasyDataResponse(dataResponse: DataResponse<Any>) -> EasyDataResponse {
-        return EasyDataResponse(request: dataResponse.request, response: dataResponse.response, data: dataResponse.data, result: EasyResult(config: config, dataResponse: dataResponse), timeline: dataResponse.timeline, list: [])
+        return EasyDataResponse(request: dataResponse.request, response: dataResponse.response, data: dataResponse.data, result: EasyResult(config: config, dataResponse: dataResponse), timeline: dataResponse.timeline, list: [], model: nil)
     }
     
 }

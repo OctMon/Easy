@@ -29,11 +29,17 @@ open class EasyListView: UIView {
     /// 忽略总页数判断
     public lazy var ignoreTotalPage: Bool = EasyGlobal.tableViewIgnoreTotalPage
     
+    public lazy var model: Any? = nil
+    
     public lazy var list: [Any] = [Any]()
     
     lazy var requestHandler: (() -> Void)? = { return nil }()
     
     open func configure() { }
+    
+    public func model<T>(_ class: T.Type) -> T? {
+        return model as? T ?? nil
+    }
     
     public func list<T>(_ class: T.Type) -> [T] {
         return list as? [T] ?? []
@@ -42,6 +48,9 @@ open class EasyListView: UIView {
     public var placeholders: [EasyPlaceholder]?
     
     func getAny<T>(_ dataSource: [Any], indexPath: IndexPath, numberOfSections: Int, numberOfRowsInSectionHandler: ((T, Int) -> Int)?) -> Any? {
+        if let model = model {
+            return model
+        }
         if numberOfSections > 0 {
             if indexPath.section < dataSource.count {
                 if let any = (dataSource[indexPath.section] as? [Any]) {

@@ -28,6 +28,7 @@ public struct EasyDataResponse {
     public var error: EasyError? { return result.error }
     
     var list: [Any] = []
+    var model: Any? = nil
 }
 
 public extension EasyDataResponse {
@@ -196,6 +197,12 @@ public extension EasyDataResponse {
         return dataResponse
     }
     
+    func fill<T: Any>(model: T) -> EasyDataResponse {
+        var dataResponse = self
+        dataResponse.model = model
+        return dataResponse
+    }
+    
     public func list<T>(_ class: T.Type) -> [T] {
         return list as? [T] ?? []
     }
@@ -255,17 +262,26 @@ public extension EasyListView {
         }
         if valid {
             hidePlaceholder()
-            if self.currentPage == self.firstPage {
-                if isTableView {
-                    self.list = dataResponse.list
-                } else if isCollectionView {
-                    self.list = dataResponse.list
-                }
+            if let model = dataResponse.model {
+                self.model = model
             } else {
-                if isTableView {
+                if self.currentPage == self.firstPage {
+                    self.list = dataResponse.list
+                } else {
                     self.list.append(contentsOf: dataResponse.list)
-                } else if isCollectionView {
-                    self.list.append(contentsOf: dataResponse.list)
+                }
+                if ignoreTotalPage || (autoTotalPage ? dataResponse.list.count >= self.pageSize : dataResponse.total
+                    > self.currentPage) {
+                    self.currentPage += incrementPage
+                    if scrollView.mj_footer != nil {
+                        scrollView.mj_footer.isHidden = false
+                        scrollView.mj_footer.resetNoMoreData()
+                    }
+                } else {
+                    if scrollView.mj_footer != nil {
+                        scrollView.mj_footer.isHidden = false
+                        scrollView.mj_footer.endRefreshingWithNoMoreData()
+                    }
                 }
             }
             if let tableView = scrollView as? UITableView {
@@ -273,19 +289,6 @@ public extension EasyListView {
             } else if let collectionView = scrollView as? UICollectionView {
                 UIView.performWithoutAnimation {
                     collectionView.reloadData()
-                }
-            }
-            if ignoreTotalPage || (autoTotalPage ? dataResponse.list.count >= self.pageSize : dataResponse.total
-                > self.currentPage) {
-                self.currentPage += incrementPage
-                if scrollView.mj_footer != nil {
-                    scrollView.mj_footer.isHidden = false
-                    scrollView.mj_footer.resetNoMoreData()
-                }
-            } else {
-                if scrollView.mj_footer != nil {
-                    scrollView.mj_footer.isHidden = false
-                    scrollView.mj_footer.endRefreshingWithNoMoreData()
                 }
             }
         } else {
