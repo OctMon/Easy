@@ -13,11 +13,6 @@ class Tests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        XCTAssert(true, "Pass")
-    }
-    
     func testPerformanceExample() {
         // This is an example of a performance test case.
         self.measure() {
@@ -25,17 +20,17 @@ class Tests: XCTestCase {
         }
     }
     
-    func testEasyLog() {
+    func testAppLog() {
         log.print("hello print")
         log.debug("hello debug")
     }
     
-    func testEasyApp() {
+    func testApp() {
         log.print(app.isDebug)
         log.print(app.isBeta)
     }
     
-    func testEasyAppScreen() {
+    func testAppScreen() {
         log.print(app.screenBounds)
         log.print(app.screenSize)
         log.print(app.screenWidth)
@@ -43,7 +38,7 @@ class Tests: XCTestCase {
         log.print(app.screenScale)
     }
     
-    func testEasyAppBundle() {
+    func testAppBundle() {
         log.print(app.bundleIdentifier)
         log.print(app.bundleVersion)
         log.print(app.bundleBuild)
@@ -51,7 +46,7 @@ class Tests: XCTestCase {
         log.print(app.bundleExecutable)
     }
     
-    func testEasyApplication() {
+    func testApplication() {
         log.print(app.statusBarHeight)
         log.print(app.userDefaults)
         log.print(app.notificationCenter)
@@ -61,29 +56,29 @@ class Tests: XCTestCase {
         log.print(app.rootViewController)
     }
     
-    func testEasyCamera() {
+    func testAppCamera() {
         log.print(app.isCameraAvailableFront)
         log.print(app.isCameraAvailableRear)
     }
     
-    func testEasyTime() {
+    func testAppTime() {
         log.print(app.timestamp)
         log.print(app.timestampMillis)
     }
     
-    func testEasyUUID() {
+    func testAppUUID() {
         log.print(app.randomUUID)
         log.print(app.randomLowercasedUUID)
         log.print(app.getKeychainUUID)
     }
     
-    func testEasyFirstLaunch() {
+    func testAppFirstLaunch() {
         log.print(app.isFirstLaunch)
         log.print(app.isFirstLaunchOfNewVersion)
         log.print(app.isFirstLaunchOfKey("test"))
     }
     
-    func testEasyCurrent() {
+    func testAppCurrent() {
         log.print(app.currentViewController)
         log.print(app.currentNavigationController)
         log.print(app.currentTabBarController)
@@ -91,25 +86,25 @@ class Tests: XCTestCase {
         log.print(app.isConnectedToNetwork)
     }
     
-    func testEasyPlayVibrate() {
+    func testAppPlayVibrate() {
         app.playVibrate()
     }
     
-    func testEasyOpen() {
+    func testAppOpen() {
         app.openSettings()
         app.canOpen("https://github.com/octmon/easy")
         app.open("https://github.com/octmon/easy")
         app.call("12345")
     }
     
-    func testEasyAppStore() {
+    func testAppStore() {
         log.print(app.getAppStoreDetails(id: 414478124))
         app.openAppStoreDetails(id: 414478124)
         app.openAppStoreReviews(id: 414478124)
         app.openAppStoreWriteReview(id: 414478124)
     }
     
-    func testEasyAppRun() {
+    func testAppRun() {
         app.runInMain(delay: 3) {
             
         }
@@ -127,7 +122,7 @@ class Tests: XCTestCase {
         })
     }
     
-    func testApp() {
+    func testAppDefaults() {
         app.userDefaultsSet(with: ["app": "test"])
         log.print(app.userDefaultsGetValue(forKey: "app"))
         log.print(app.userDefaultsGetString(forKey: "app"))
