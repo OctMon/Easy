@@ -10,6 +10,14 @@ import UIKit
 #if canImport(SDWebImage)
 import SDWebImage
 
+public extension Easy {
+    typealias WebImage = EasyWebImage
+}
+
+public struct EasyWebImage {
+    public static var isPrintWebImageUrl = false
+}
+
 public extension UIImageView {
     
     func setFadeImage(url: String, placeholderImage: UIImage?) {
@@ -30,7 +38,9 @@ public extension UIImageView {
     }
     
     func setImage(url: String, placeholderImage: UIImage?, options: SDWebImageOptions, progress: SDWebImageDownloaderProgressBlock?, completed: SDExternalCompletionBlock?) {
-        EasyLog.debug(url)
+        if EasyWebImage.isPrintWebImageUrl {
+            EasyLog.debug(url)
+        }
         guard let url = URL(string: url) else { return }
         sd_setImage(with: url, placeholderImage: placeholderImage, options: options, progress: progress, completed: completed)
     }
@@ -87,7 +97,9 @@ public extension UIImageView {
     }
     
     func setImage(url: String, placeholder: Image? = nil, optionsInfo: KingfisherOptionsInfo? = [.transition(.fade(0.3))], progressBlock: DownloadProgressBlock? = nil, completionHandler: CompletionHandler? = nil) {
-        EasyLog.debug(url)
+        if EasyWebImage.isPrintWebImageUrl {
+            EasyLog.debug(url)
+        }
         kf.setImage(with: URL(string: url), placeholder: placeholder, options: optionsInfo, progressBlock: progressBlock, completionHandler: completionHandler)
     }
     

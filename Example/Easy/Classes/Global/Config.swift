@@ -12,6 +12,7 @@ extension AppDelegate {
     
     func configGlobal() {
         app.openFullScreenPopGesture()
+        easy.WebImage.isPrintWebImageUrl = true
         global.backBarButtonItemTitle = ""
         global.navigationBarBackgroundImage = UIColor.white.toImage
         global.navigationBarIsShadowNull = true
