@@ -164,7 +164,7 @@ public extension EasyCollectionListView {
         self.cellHandler = { (listView, cell, indexPath, any) in
             if let t = any as? T {
                 cellHandler(listView, cell, indexPath, t)
-            } else {
+            } else if let any = any {
                 EasyLog.print(any)
                 EasyLog.debug("warning:类型\(T.self)转换失败")
             }
@@ -173,7 +173,7 @@ public extension EasyCollectionListView {
         self.didSelectRowHandler = { (listView, indexPath, any) in
             if let t = any as? T {
                 didSelectRowHandler?(listView, indexPath, t)
-            } else {
+            } else if let any = any {
                 EasyLog.print(any)
                 EasyLog.debug("warning:类型\(T.self)转换失败")
             }
