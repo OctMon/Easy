@@ -33,6 +33,10 @@ public extension EasyCollectionListProtocol {
         return collectionListView.waterFlowLayout
     }
     
+    var collectionModel: Any? {
+        return collectionListView.model
+    }
+    
     var collectionList: [Any] {
         get {
             return collectionListView.list

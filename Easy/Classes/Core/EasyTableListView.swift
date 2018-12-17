@@ -25,6 +25,10 @@ public extension EasyTableListProtocol {
         return tableListView.tableView
     }
     
+    var tableModel: Any? {
+        return tableListView.model
+    }
+    
     var tableList: [Any] {
         get {
             return tableListView.list
