@@ -133,14 +133,14 @@ public extension EasyTableListView {
     }
     
     /// cellForRowAt & didSelectRowAt
-    func register<T>(_ type: T.Type, cellClass: AnyClass?, configureCell: @escaping (EasyTableListView, UITableViewCell, IndexPath, T) -> Void, didSelectRow didSelectRowHandler: ((EasyTableListView, IndexPath, T) -> Void)?) {
+    func register<T>(_ type: T.Type, cellClass: AnyClass?, configureCell: @escaping (EasyTableListView, UITableViewCell, IndexPath, T?) -> Void, didSelectRow didSelectRowHandler: ((EasyTableListView, IndexPath, T?) -> Void)?) {
         register(type, cellsClass: [cellClass], returnCell: { (_, _) -> AnyClass? in
             return cellClass.self
         }, configureCell: configureCell, didSelectRow: didSelectRowHandler)
     }
     
     /// cellForRowAt & didSelectRowAt
-    func register<T>(_ type: T.Type, cellsClass: [AnyClass?], returnCell cellsHandler: @escaping (EasyTableListView, IndexPath) -> AnyClass?, configureCell cellHandler: @escaping (EasyTableListView, UITableViewCell, IndexPath, T) -> Void, didSelectRow didSelectRowHandler: ((EasyTableListView, IndexPath, T) -> Void)?) {
+    func register<T>(_ type: T.Type, cellsClass: [AnyClass?], returnCell cellsHandler: @escaping (EasyTableListView, IndexPath) -> AnyClass?, configureCell cellHandler: @escaping (EasyTableListView, UITableViewCell, IndexPath, T?) -> Void, didSelectRow didSelectRowHandler: ((EasyTableListView, IndexPath, T?) -> Void)?) {
         cellsClass.forEach { (cc) in
             guard let cellClass = cc else { return }
             guard let cellReuseIdentifier = cc.self?.description() else { return }
@@ -151,18 +151,24 @@ public extension EasyTableListView {
         self.cellHandler = { (listView, cell, indexPath, any) in
             if let t = any as? T {
                 cellHandler(listView, cell, indexPath, t)
-            } else if let any = any {
-                EasyLog.print(any)
-                EasyLog.debug("warning:类型\(T.self)转换失败")
+            } else {
+                cellHandler(listView, cell, indexPath, nil)
+                if let any = any {
+                    EasyLog.print(any)
+                    EasyLog.debug("warning:类型\(T.self)转换失败")
+                }
             }
         }
         
         self.didSelectRowHandler = { (listView, indexPath, any) in
             if let t = any as? T {
                 didSelectRowHandler?(listView, indexPath, t)
-            } else if let any = any {
-                EasyLog.print(any)
-                EasyLog.debug("warning:类型\(T.self)转换失败")
+            } else {
+                didSelectRowHandler?(listView, indexPath, nil)
+                if let any = any {
+                    EasyLog.print(any)
+                    EasyLog.debug("warning:类型\(T.self)转换失败")
+                }
             }
         }
     }
@@ -171,13 +177,16 @@ public extension EasyTableListView {
         self.accessoryButtonTappedForRowWithHandler = accessoryButtonTappedForRowWithHandler
     }
     
-    func setAccessoryButtonTappedForRowWith<T>(_ type: T.Type, accessoryButtonTappedForRowWith accessoryButtonTappedForRowWithHandler: ((EasyTableListView, IndexPath, T) -> Void)?) {
+    func setAccessoryButtonTappedForRowWith<T>(_ type: T.Type, accessoryButtonTappedForRowWith accessoryButtonTappedForRowWithHandler: ((EasyTableListView, IndexPath, T?) -> Void)?) {
         self.accessoryButtonTappedForRowWithHandler = { (listView, indexPath, any) in
             if let t = any as? T {
                 accessoryButtonTappedForRowWithHandler?(listView, indexPath, t)
-            } else if let any = any {
-                EasyLog.print(any)
-                EasyLog.debug("warning:类型\(T.self)转换失败")
+            } else {
+                accessoryButtonTappedForRowWithHandler?(listView, indexPath, nil)
+                if let any = any {
+                    EasyLog.print(any)
+                    EasyLog.debug("warning:类型\(T.self)转换失败")
+                }
             }
         }
     }

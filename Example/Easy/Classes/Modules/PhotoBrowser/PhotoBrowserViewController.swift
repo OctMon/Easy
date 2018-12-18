@@ -58,6 +58,7 @@ class PhotoBrowserViewController: easy.ViewController, easy.CollectionListProtoc
         }
         
         collectionListView.setSizeForItemAt(UIImage.self) { (_, _, image) -> CGSize in
+            guard let image = image else { return .zero }
             return CGSize(width: 0, height: CGSize(width: image.size.width, height: image.size.height).calcFlowHeight(in: (app.screenWidth - space * 3) / 2))
         }
     }

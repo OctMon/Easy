@@ -62,7 +62,7 @@ class InputViewController: easy.ViewController, easy.TableListProtocol {
                 cell.textField.clearButtonMode = .whileEditing
                 cell.setModel(any, imagePadding: 15)
                 cell.setTextFieldEditingChangedHandler(textCount: limit, handler: { [weak listView] (input) in
-                    any.do {
+                    any?.do {
                         var model = $0
                         model.title = input
                         listView?.list[indexPath.row] = model

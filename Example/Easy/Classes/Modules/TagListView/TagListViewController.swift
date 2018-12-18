@@ -31,7 +31,7 @@ class TagListViewController: easy.ViewController, easy.TableListProtocol {
             cell.textLabel?.text = any
             cell.textLabel?.numberOfLines = 0
         }) { (_, _, any) in
-            let tags = any.components("、")
+            guard let tags = any?.components("、") else { return }
             let tagListView = easy.TagListView().then {
                 $0.sectionInset = UIEdgeInsets(top: spacing, left: spacing, bottom: spacing, right: spacing)
                 $0.minimumInteritemSpacing = spacing

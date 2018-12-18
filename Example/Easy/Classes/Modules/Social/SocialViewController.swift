@@ -87,10 +87,10 @@ extension SocialViewController {
             collectionListView.register(Module.self, cellClass:ImageLabelCollectionViewCell.self, configureCell: { (_, cell, _, any) in
                 (cell as? ImageLabelCollectionViewCell)?.do {
                     $0.backgroundColor = UIColor.random
-                    $0.label.text = any.name
+                    $0.label.text = any?.name
                 }
             }) { (_, indexPath, any) in
-                switch any {
+                switch any ?? .default {
                 case .微信登录:
                     easy.Social.oauth(platformType: .wechat) { (userInfo, _, error) in
                         if let userInfo = userInfo {

@@ -114,7 +114,7 @@ extension EasyTagListView {
             
             setSizeForItemAt(String.self) { (listView, _, tag) -> CGSize in
                 guard let superview = listView.superview(with: EasyTagListView.self) else { return CGSize.zero }
-                let size = tag.getSize(forConstrainedSize: superview.constrainedSize, font: superview.font)
+                let size = tag?.getSize(forConstrainedSize: superview.constrainedSize, font: superview.font) ?? .zero
                 return CGSize(width: size.width + listView.waterFlowLayout.minimumLineSpacing + superview.borderWidth, height: size.height + listView.waterFlowLayout.minimumInteritemSpacing + superview.borderWidth)
             }
         }

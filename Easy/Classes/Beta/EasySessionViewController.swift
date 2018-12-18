@@ -63,14 +63,14 @@ class EasySessionViewController: EasyViewController, EasyTableListProtocol {
                 cell.selectionStyle = .default
                 cell.accessoryType = .disclosureIndicator
             }
-            if let addition = self?.config.url.addition?[any]?.toPrettyPrintedString {
+            if let any = any, let addition = self?.config.url.addition?[any]?.toPrettyPrintedString {
                 cell.textLabel?.text = "\n📡baseURL : \(any)" + "\n" + addition.replacingOccurrences(of: "\\", with: "").replacingOccurrences(of: "{", with: "").replacingOccurrences(of: "}", with: "")
             } else {
-                cell.textLabel?.text = "\n📡baseURL : \(any)\n"
+                cell.textLabel?.text = "\n📡baseURL : \(any ?? "unknown")\n"
             }
             }, didSelectRow: { [weak self] (_, _, any) in
                 guard let self = self else { return }
-                guard current != any else { return }
+                guard let any = any, current != any else { return }
                 UserDefaults.standard.set(any, forKey: self.config.url.defaultCustomBaseURLKey)
                 if UserDefaults.standard.synchronize() {
                     EasyLog.debug("ChangeBaseURL Success: \(any)")

@@ -84,7 +84,7 @@ extension TuchongViewController {
             
             register(Tuchong.self, cellClass: ImageLabelCollectionViewCell.self, configureCell: { (_, cell, indexPath, any) in
                 (cell as? ImageLabelCollectionViewCell)?.do {
-                    guard let image = any.images?[indexPath.row] else { return }
+                    guard let image = any?.images?[indexPath.row] else { return }
                     $0.imageView.setFadeImage(url: image.imageURL, placeholderImage: UIColor.random.toImage)
                     $0.label.text = indexPath.description + "\n" + image.imgID.toStringValue
                 }
@@ -93,7 +93,7 @@ extension TuchongViewController {
                     let imageView = UIImageView(frame: app.screenBounds).then {
                         $0.backgroundColor = UIColor.black
                         $0.contentMode = .scaleAspectFit
-                        $0.setFadeImage(url: any.images?[indexPath.row].imageURL ?? "", placeholderImage: nil)
+                        $0.setFadeImage(url: any?.images?[indexPath.row].imageURL ?? "", placeholderImage: nil)
                     }
                     $0.addSubview(imageView)
                     let button = UIButton(frame: CGRect(x: app.screenWidth - 80 - 30, y: app.screenHeight - app.safeBottomEdge - 50, width: 80, height: 44)).then {
@@ -119,7 +119,7 @@ extension TuchongViewController {
             }
             
             setSizeForItemAt(Tuchong.self) { (_, indexPath, any) -> CGSize in
-                guard let images = any.images else { return CGSize.zero }
+                guard let images = any?.images else { return CGSize.zero }
                 let model = images[indexPath.row]
                 return model.imageSize
             }
