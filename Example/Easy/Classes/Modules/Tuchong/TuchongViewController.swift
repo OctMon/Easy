@@ -33,10 +33,14 @@ class TuchongViewController: easy.ViewController, easy.CollectionListProtocol {
     override func configure() {
         super.configure()
         
-        addCollectionView(in: view)
-        collectionListView.addRefresh(isAddHeader: true, isAddFooter: true) { [weak self] in
+        addCollectionView(in: view).addRefresh(isAddHeader: true, isAddFooter: true) { [weak self] in
             self?.request()
         }
+        collectionListView.do {
+            $0.placeholderOffset = -80
+            $0.placeholderBackgroundColor = .random
+        }
+        
     }
     
     override func request() {

@@ -339,7 +339,7 @@ public extension EasyListView {
                             }
                         }
                     }
-                    showPlaceholder(attributedString: attributedString, image: image, tap: { [weak self] in
+                    showPlaceholder(attributedString: attributedString, image: image, backgroundColor: placeholderBackgroundColor, offset: placeholderOffset, bringSubviews: placeholderBringSubviews, tap: { [weak self] in
                         self?.showLoading()
                         self?.requestHandler?()
                     })
@@ -365,7 +365,7 @@ public extension EasyListView {
                 }
             }
         }
-        showPlaceholder(attributedString: attributedString, image: image, tap: { [weak self] in
+        showPlaceholder(attributedString: attributedString, image: image, backgroundColor: placeholderBackgroundColor, offset: placeholderOffset, bringSubviews: placeholderBringSubviews, tap: { [weak self] in
             self?.showLoading()
             self?.requestHandler?()
         })
