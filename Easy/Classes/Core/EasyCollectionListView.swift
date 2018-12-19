@@ -34,7 +34,12 @@ public extension EasyCollectionListProtocol {
     }
     
     var collectionModel: Any? {
-        return collectionListView.model
+        get {
+            return collectionListView.model
+        }
+        set {
+            collectionListView.model = newValue
+        }
     }
     
     var collectionList: [Any] {
