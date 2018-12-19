@@ -53,7 +53,9 @@ open class EasyListView: UIView {
         if let model = model {
             return model
         }
-        if numberOfSections > 0 {
+        if numberOfSections == 1 && dataSource.count > indexPath.row {
+            return dataSource[indexPath.row]
+        } else if numberOfSections > 0 {
             if indexPath.section < dataSource.count {
                 if let any = (dataSource[indexPath.section] as? [Any]) {
                     if indexPath.row < any.count {
