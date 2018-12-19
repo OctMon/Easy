@@ -47,6 +47,7 @@ open class EasyListView: UIView {
     
     public var placeholders: [EasyPlaceholder]?
     public var placeholderBackgroundColor: UIColor = UIColor.white, placeholderOffset: CGFloat = 0, placeholderBringSubviews: [UIView]? = nil
+    public var placeholderIsUserInteractionEnabled: Bool = false
     
     func getAny<T>(_ dataSource: [Any], indexPath: IndexPath, numberOfSections: Int, numberOfRowsInSectionHandler: ((T, Int) -> Int)?) -> Any? {
         if let model = model {

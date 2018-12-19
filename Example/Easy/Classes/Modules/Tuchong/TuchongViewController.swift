@@ -38,7 +38,6 @@ class TuchongViewController: easy.ViewController, easy.CollectionListProtocol {
         }
         collectionListView.do {
             $0.placeholderOffset = -80
-            $0.placeholderBackgroundColor = .random
         }
         
     }

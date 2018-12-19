@@ -83,7 +83,7 @@ public extension UIView {
         set { objc_setAssociatedObject(self, &_easyPlaceholderView, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC) }
     }
     
-    func showPlaceholder(attributedString: NSAttributedString?, image: UIImage? = nil, backgroundColor: UIColor = UIColor.white, offset: CGFloat = 0, bringSubviews: [UIView]? = nil, buttonProvider: ((UIButton) -> UIButton?)? = nil, buttonTap: (() -> Void)? = nil, tap: (() -> Void)? = nil) {
+    func showPlaceholder(attributedString: NSAttributedString?, image: UIImage? = nil, backgroundColor: UIColor = UIColor.white, offset: CGFloat = 0, isUserInteractionEnabled: Bool = true, bringSubviews: [UIView]? = nil, buttonProvider: ((UIButton) -> UIButton?)? = nil, buttonTap: (() -> Void)? = nil, tap: (() -> Void)? = nil) {
         guard easyPlaceholderView == nil else { return }
         easyPlaceholderView = UIView()
         guard let placeholderView = easyPlaceholderView else { return }
@@ -94,6 +94,13 @@ public extension UIView {
         placeholderView.backgroundColor = backgroundColor
         placeholderView.tap { (_) in
             tap?()
+        }
+        if isUserInteractionEnabled {
+            placeholderView.isUserInteractionEnabled = true
+            placeholderView.backgroundColor = backgroundColor
+        } else {
+            placeholderView.isUserInteractionEnabled = false
+            placeholderView.backgroundColor = UIColor.clear
         }
         
         let height: CGFloat = 64

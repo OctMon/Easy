@@ -240,8 +240,6 @@ public extension EasyListView {
     }
     
     fileprivate func setRefresh(_ scrollView: UIScrollView, dataResponse: EasyDataResponse, isValidList: Bool, errorHandler: ((Error?) -> Void)? = nil) {
-        let isTableView = scrollView is UITableView
-        let isCollectionView = scrollView is UICollectionView
         hideLoading()
         if self.currentPage == self.firstPage {
             if scrollView.mj_header != nil {
@@ -339,7 +337,7 @@ public extension EasyListView {
                             }
                         }
                     }
-                    showPlaceholder(attributedString: attributedString, image: image, backgroundColor: placeholderBackgroundColor, offset: placeholderOffset, bringSubviews: placeholderBringSubviews, tap: { [weak self] in
+                    showPlaceholder(attributedString: attributedString, image: image, backgroundColor: placeholderBackgroundColor, offset: placeholderOffset, isUserInteractionEnabled: placeholderIsUserInteractionEnabled, bringSubviews: placeholderBringSubviews, tap: { [weak self] in
                         self?.showLoading()
                         self?.requestHandler?()
                     })
@@ -365,7 +363,7 @@ public extension EasyListView {
                 }
             }
         }
-        showPlaceholder(attributedString: attributedString, image: image, backgroundColor: placeholderBackgroundColor, offset: placeholderOffset, bringSubviews: placeholderBringSubviews, tap: { [weak self] in
+        showPlaceholder(attributedString: attributedString, image: image, backgroundColor: placeholderBackgroundColor, offset: placeholderOffset, isUserInteractionEnabled: placeholderIsUserInteractionEnabled, bringSubviews: placeholderBringSubviews, tap: { [weak self] in
             self?.showLoading()
             self?.requestHandler?()
         })
