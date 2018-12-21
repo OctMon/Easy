@@ -47,7 +47,7 @@ class TuchongViewController: easy.ViewController, easy.CollectionListProtocol {
         
         getTuchong(page: collectionListView.currentPage, poseId: collectionListView.firstPage == collectionListView.currentPage ? nil : poseID) { (dataResponse) in
             self.poseID = (dataResponse.list(Tuchong.self)).last?.postID
-            self.collectionListView.setRefresh(dataResponse: dataResponse, isValidList: true)
+            self.collectionListView.setRefresh(dataResponse: dataResponse, valid: .list)
         }
     }
 

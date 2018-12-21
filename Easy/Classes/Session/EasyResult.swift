@@ -197,9 +197,11 @@ public extension EasyDataResponse {
         return dataResponse
     }
     
-    func fill<T: Any>(model: T) -> EasyDataResponse {
+    func fill<T: Any>(model: T?) -> EasyDataResponse {
         var dataResponse = self
-        dataResponse.model = model
+        if let model = model {
+            dataResponse.model = model
+        }
         return dataResponse
     }
     
@@ -224,6 +226,10 @@ public extension JSONDecoder {
 import MJRefresh
 public extension EasyListView {
     
+    enum Valid {
+        case list, model, `default`
+    }
+    
     fileprivate func addRefresh(_ scrollView: UIScrollView, isAddHeader: Bool, isAddFooter: Bool, requestHandler: @escaping (() -> Void)) {
         self.requestHandler = requestHandler
         if isAddHeader {
@@ -239,7 +245,7 @@ public extension EasyListView {
         }
     }
     
-    fileprivate func setRefresh(_ scrollView: UIScrollView, dataResponse: EasyDataResponse, isValidList: Bool, errorHandler: ((Error?) -> Void)? = nil) {
+    fileprivate func setRefresh(_ scrollView: UIScrollView, dataResponse: EasyDataResponse, valid: Valid, errorHandler: ((Error?) -> Void)? = nil) {
         hideLoading()
         if self.currentPage == self.firstPage {
             if scrollView.mj_header != nil {
@@ -250,15 +256,17 @@ public extension EasyListView {
                 scrollView.mj_footer.endRefreshing()
             }
         }
-        var valid = true
-        if isValidList {
-            valid = dataResponse.validList
+        var isValid = true
+        if valid == .list {
+            isValid = dataResponse.validList
+        } else if valid == .model {
+            isValid = dataResponse.model != nil
         } else if dataResponse.config.code.onlyValidWithHTTPstatusCode {
-            valid = dataResponse.validStatusCode
+            isValid = dataResponse.validStatusCode
         } else {
-            valid = dataResponse.valid
+            isValid = dataResponse.valid
         }
-        if valid {
+        if isValid {
             hidePlaceholder()
             if let model = dataResponse.model {
                 self.model = model
@@ -296,6 +304,9 @@ public extension EasyListView {
                 if currentPage != firstPage && list.count > 0 {
                     showText(dataResponse.error?.localizedDescription)
                 } else {
+                    if scrollView.mj_footer != nil {
+                        scrollView.mj_footer.isHidden = true
+                    }
                     list.removeAll()
                     if let tableView = scrollView as? UITableView {
                         tableView.reloadData()
@@ -307,7 +318,7 @@ public extension EasyListView {
                     let error = dataResponse.error
                     var image: UIImage?
                     var attributedString: NSAttributedString? = error?.localizedDescription.getAttributedString
-                    if (isValidList && !dataResponse.validList && error == nil) || (dataResponse.code == dataResponse.config.code.empty) {
+                    if ((valid == .list) && !dataResponse.validList && error == nil) || (dataResponse.code == dataResponse.config.code.empty) {
                         image = EasyGlobal.placeholderEmptyImage
                         attributedString = (dataResponse.msg.isEmpty ? EasyGlobal.errorEmpty : dataResponse.msg).getAttributedString
                         if let placeholders = placeholders {
@@ -377,8 +388,8 @@ public extension EasyTableListView {
         addRefresh(tableView, isAddHeader: isAddHeader, isAddFooter: isAddFooter, requestHandler: requestHandler)
     }
     
-    func setRefresh(dataResponse: EasyDataResponse, isValidList: Bool, errorHandler: ((Error?) -> Void)? = nil) {
-        setRefresh(tableView, dataResponse: dataResponse, isValidList: isValidList, errorHandler: errorHandler)
+    func setRefresh(dataResponse: EasyDataResponse, valid: Valid, errorHandler: ((Error?) -> Void)? = nil) {
+        setRefresh(tableView, dataResponse: dataResponse, valid: valid, errorHandler: errorHandler)
     }
     
 }
@@ -389,8 +400,8 @@ public extension EasyCollectionListView {
         addRefresh(collectionView, isAddHeader: isAddHeader, isAddFooter: isAddFooter, requestHandler: requestHandler)
     }
     
-    func setRefresh(dataResponse: EasyDataResponse, isValidList: Bool, errorHandler: ((Error?) -> Void)? = nil) {
-        setRefresh(collectionView, dataResponse: dataResponse, isValidList: isValidList, errorHandler: errorHandler)
+    func setRefresh(dataResponse: EasyDataResponse, valid: Valid, errorHandler: ((Error?) -> Void)? = nil) {
+        setRefresh(collectionView, dataResponse: dataResponse, valid: valid, errorHandler: errorHandler)
     }
     
 }
