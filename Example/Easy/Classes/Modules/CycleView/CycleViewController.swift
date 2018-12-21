@@ -50,31 +50,39 @@ class CycleViewController: easy.ViewController, easy.TableListProtocol {
             return 1
         }
         
-        tableListView.register(cellClass: CycleCell.self, configureCell: { (listView, cell, indexPath, _) in
+        tableListView.register(cellsClass: [CycleCell.self, CycleCell2.self, CycleCell3.self, CycleCell4.self], returnCell: { (_, indexPath) -> AnyClass in
+            switch indexPath.section {
+            case 2:
+                return CycleCell2.self
+            case 3:
+                return CycleCell3.self
+            case 4:
+                return CycleCell4.self
+            default:
+                return CycleCell.self
+            }
+        }, configureCell: { (listView, cell, indexPath, _) in
             if let cell = cell as? CycleCell {
                 let urls = listView.list([String].self)[indexPath.section]
                 cell.cycleView.setImageURLs(urls, placeholderImage: global.tint.toImage, tap: { current in
                     log.debug(current)
                 })
                 cell.cycleView.timeInterval = TimeInterval(indexPath.section)
-                switch indexPath.section {
-                case 2:
-                    cell.cycleView.pageControl.pageIndicatorTintColor = .green
-                    cell.cycleView.pageControl.currentPageIndicatorTintColor = .red
-                    cell.cycleView.pageControl.alignment = .left
-                    cell.cycleView.pageControl.cornerRadius = 2
-                case 3:
-                    cell.cycleView.pageControl.alignment = .right
-                    cell.cycleView.pageControl.pageIndicatorSize = CGSize(width: 16, height: 4)
-                    cell.cycleView.pageControl.currentPageIndicatorSize = CGSize(width: 32, height: 4)
-                case 4:
-                    cell.cycleView.pageControl.spacing = 15
-                    cell.cycleView.pageControl.pageIndicatorSize = CGSize(width: 16, height: 16)
-                    cell.cycleView.pageControl.pageIndicatorImage = #imageLiteral(resourceName: "icon_pageIndicatorImage")
-                    cell.cycleView.pageControl.currentPageIndicatorImage = #imageLiteral(resourceName: "icon_currentPageIndicatorImage")
-                default:
-                    break
-                }
+            }
+            if let cell = cell as? CycleCell2 {
+                cell.cycleView.pageControl.pageIndicatorTintColor = .green
+                cell.cycleView.pageControl.currentPageIndicatorTintColor = .red
+                cell.cycleView.pageControl.alignment = .left
+                cell.cycleView.pageControl.cornerRadius = 2
+            } else if let cell = cell as? CycleCell3 {
+                cell.cycleView.pageControl.alignment = .right
+                cell.cycleView.pageControl.pageIndicatorSize = CGSize(width: 16, height: 4)
+                cell.cycleView.pageControl.currentPageIndicatorSize = CGSize(width: 32, height: 4)
+            } else if let cell = cell as? CycleCell4 {
+                cell.cycleView.pageControl.spacing = 15
+                cell.cycleView.pageControl.pageIndicatorSize = CGSize(width: 16, height: 16)
+                cell.cycleView.pageControl.pageIndicatorImage = #imageLiteral(resourceName: "icon_pageIndicatorImage")
+                cell.cycleView.pageControl.currentPageIndicatorImage = #imageLiteral(resourceName: "icon_currentPageIndicatorImage")
             }
         }, didSelectRow: nil)
     }
@@ -100,6 +108,18 @@ extension CycleViewController {
         required init?(coder aDecoder: NSCoder) {
             fatalError("init(coder:) has not been implemented")
         }
+        
+    }
+    
+    class CycleCell2: CycleCell {
+        
+    }
+    
+    class CycleCell3: CycleCell {
+        
+    }
+    
+    class CycleCell4: CycleCell {
         
     }
     

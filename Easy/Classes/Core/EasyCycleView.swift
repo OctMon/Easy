@@ -29,7 +29,6 @@ public class EasyCycleView: UIView, EasyCollectionListProtocol {
         super.init(frame: frame)
         
         addCollectionView(in: self)
-        collectionListView.pageControl = pageControl
         addSubview(pageControl)
         pageControl.snp.makeConstraints { (make) in
             make.bottom.left.right.equalToSuperview()
@@ -47,7 +46,7 @@ public class EasyCycleView: UIView, EasyCollectionListProtocol {
         collectionListView.placeholderImage = placeholderImage
         collectionListView.tap = tap
         collectionListView.timerRunLoop()
-        collectionListView.pageControl?.numberOfPages = urls.count
+        pageControl.numberOfPages = urls.count
     }
     
     public func reload() {
@@ -64,8 +63,6 @@ extension EasyCycleView {
         var count = 0
         var placeholderImage: UIImage?
         var tap: ((Int) -> Void)?
-        
-        var pageControl: EasyPageControl?
         
         private var timer: Timer?
         
@@ -157,7 +154,7 @@ extension EasyCycleView {
         }
         
         public func scrollViewDidScroll(_ scrollView: UIScrollView) {
-            pageControl?.currentPage = current % (list.count)
+            superview(with: EasyCycleView.self)?.pageControl.currentPage = current % (list.count)
         }
         
         public func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
@@ -165,7 +162,7 @@ extension EasyCycleView {
         }
         
         public func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
-            pageControl?.currentPage = current % (list.count)
+            superview(with: EasyCycleView.self)?.pageControl.currentPage = current % (list.count)
         }
         
     }
