@@ -1268,6 +1268,39 @@ public extension UIView {
     
 }
 
+public extension UIView {
+    
+    func superview<T>(with: T.Type) -> T? {
+        if let view = superview as? T {
+            return view
+        }
+        return nil
+    }
+    
+    func view<T>(with: T.Type) -> T? {
+        if let view = self as? T {
+            return view
+        }
+        return nil
+    }
+    
+}
+
+public extension UIView {
+    
+    func addGradientLayer(startPoint: CGPoint, endPoint: CGPoint, colors: [UIColor], locations: [NSNumber]) {
+        let gradientLayer = CAGradientLayer().then {
+            $0.colors = colors.map { $0.cgColor }
+            $0.startPoint = startPoint
+            $0.endPoint = endPoint
+            $0.locations = locations
+            $0.frame = frame
+        }
+        layer.addSublayer(gradientLayer)
+    }
+    
+}
+
 private class EasyTapGestureRecognizer: UITapGestureRecognizer {
     
     private var handler: ((UITapGestureRecognizer) -> Void)?
@@ -1367,24 +1400,6 @@ private class EasyRotationGestureRecognizer: UIRotationGestureRecognizer {
     
     @objc private func action(_ rotationGestureRecognizer: UIRotationGestureRecognizer) {
         handler?(rotationGestureRecognizer)
-    }
-    
-}
-
-public extension UIView {
-    
-    func superview<T>(with: T.Type) -> T? {
-        if let view = superview as? T {
-            return view
-        }
-        return nil
-    }
-    
-    func view<T>(with: T.Type) -> T? {
-        if let view = self as? T {
-            return view
-        }
-        return nil
     }
     
 }

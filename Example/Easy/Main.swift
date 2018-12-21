@@ -87,19 +87,23 @@ class Main: easy.ViewController, easy.TableListProtocol {
             }
             $0.addSubview(button)
             button.snp.makeConstraints({ (make) in
-                make.centerX.equalToSuperview()
-                make.bottom.equalToSuperview()
+                make.center.equalToSuperview()
                 make.height.equalTo(45)
                 make.width.equalTo(.screenWidth - 30)
             })
             button.addTarget(self, action: #selector(showCheckAlert), for: .touchUpInside)
         }
         
+        let gradientView = UIView(frame: .screenBounds)
+        gradientView.addGradientLayer(startPoint: .zero, endPoint: CGPoint(x: 1, y: 0), colors: [.red, .green, .blue], locations: [0, 0.5, 1])
+        tableView.backgroundView = gradientView
+        
         tableView.tableHeaderView = textView
         tableView.tableFooterView = tableFooterView
         tableListView.register(String.self, cellClass: UITableViewCell.self, configureCell: { (_, cell, _, any) in
             cell.textLabel?.text = any
         }) { (_, _, any) in
+            guard let any = any else { return }
             easy.Router.openURL("easy://", routerParameters: [.className: any, .userInfo: ["title": any]])
         }
     }
