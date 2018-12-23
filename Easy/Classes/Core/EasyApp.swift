@@ -314,16 +314,6 @@ public extension EasyApp {
     }
     
     /// 计算运行所需耗时
-    /**
-     Easy.performenceRun(loopTimes: 99999) {
-     autoreleasepool(invoking: {
-     var str = "Abc"
-     str = str.lowercased()
-     str += "xyz"
-     EasyLog.debug(str)
-     })
-     }
-     */
     static func performenceRun(loopTimes: Int = 1, testFunc: ()->()) {
         let start = CFAbsoluteTimeGetCurrent()
         for _ in 0...loopTimes {

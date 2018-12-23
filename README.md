@@ -134,6 +134,15 @@ app.runLoop(seconds: 1, delay: 3, handler: { (time) in
 app.userDefaultsSet(with: ["app": "test"])
 log.print(app.userDefaultsGetValue(forKey: "app")) // Optional(test)
 log.print(app.userDefaultsGetString(forKey: "app")) // Optional("test")
+
+app.performenceRun(loopTimes: 999) {
+    autoreleasepool(invoking: {
+        var str = "Oct"
+        str = str.lowercased()
+        str += "Mon"
+        log.debug(str)
+    })
+} // 运行 999 次，耗时 5.197448015213013s
 ```
 
 ## Author

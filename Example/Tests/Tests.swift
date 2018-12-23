@@ -128,4 +128,15 @@ class Tests: XCTestCase {
         log.print(app.userDefaultsGetString(forKey: "app"))
     }
     
+    func testAppPerformenceRun() {
+        app.performenceRun(loopTimes: 999) {
+            autoreleasepool(invoking: {
+                var str = "Oct"
+                str = str.lowercased()
+                str += "Mon"
+                log.debug(str)
+            })
+        }
+    }
+    
 }
