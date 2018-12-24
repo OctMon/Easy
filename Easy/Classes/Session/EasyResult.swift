@@ -258,7 +258,7 @@ public extension EasyListView {
         }
         var isValid = true
         if valid == .list {
-            isValid = dataResponse.validList
+            isValid = dataResponse.validList || dataResponse.list.count > 0
         } else if valid == .model {
             isValid = dataResponse.model != nil
         } else if dataResponse.config.code.onlyValidWithHTTPstatusCode {
@@ -318,7 +318,7 @@ public extension EasyListView {
                     let error = dataResponse.error
                     var image: UIImage?
                     var attributedString: NSAttributedString? = error?.localizedDescription.getAttributedString
-                    if ((valid == .list) && !dataResponse.validList && error == nil) || (dataResponse.code == dataResponse.config.code.empty) {
+                    if ((valid == .list) && !dataResponse.validList && error == nil) || (dataResponse.code == dataResponse.config.code.empty) || model == nil {
                         image = EasyGlobal.placeholderEmptyImage
                         attributedString = (dataResponse.msg.isEmpty ? EasyGlobal.errorEmpty : dataResponse.msg).getAttributedString
                         if let placeholders = placeholders {
