@@ -318,7 +318,7 @@ public extension EasyListView {
                     let error = dataResponse.error
                     var image: UIImage?
                     var attributedString: NSAttributedString? = error?.localizedDescription.getAttributedString
-                    if ((valid == .list) && !dataResponse.validList && error == nil) || (dataResponse.code == dataResponse.config.code.empty) || model == nil {
+                    if ((valid == .list) && !dataResponse.validList && (error == nil)) || (dataResponse.code == dataResponse.config.code.empty) || ((valid == .model) && (model == nil) && (error == nil)) {
                         image = EasyGlobal.placeholderEmptyImage
                         attributedString = (dataResponse.msg.isEmpty ? EasyGlobal.errorEmpty : dataResponse.msg).getAttributedString
                         if let placeholders = placeholders {
