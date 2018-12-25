@@ -69,15 +69,16 @@ extension MarqueeViewController {
                 $0.minimumLineSpacing = 0
             }
             collectionView.collectionViewLayout = waterFlowLayout
+            waterFlowLayout.flowCount = 4
             
-            register(cellClass: UICollectionViewCell.self, configureCell: { (_, cell, _, _) in
+            register(NSAttributedString.self, cellClass: UICollectionViewCell.self, configureCell: { (_, cell, _, _) in
                 cell.backgroundColor = UIColor.random
             }) { (_, _, any) in
                 log.debug(any)
             }
             
             setSizeForItemAt(NSAttributedString.self) { (_, _, _) -> CGSize in
-                return CGSize(width: .screenWidth * 0.25, height: .screenWidth * 0.25)
+                return CGSize(width: 0, height: .screenWidth * 0.25)
             }
             
         }

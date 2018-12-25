@@ -64,16 +64,16 @@ extension FontViewController {
             setNumberOfSections({ (listView) -> Int in
                 return listView.list.count
             }) { (listView, section) -> Int in
-                return listView.list(Font.self)[section].name.count
+                return listView.listTo(Font.self)[section].name.count
             }
-            register(cellClass: UITableViewCell.self, configureCell: { (listView, cell, indexPath, any) in
-                guard let font = any as? Font else { return }
+            register(Font.self, cellClass: UITableViewCell.self, configureCell: { (listView, cell, indexPath, any) in
+                guard let font = any else { return }
                 cell.textLabel?.numberOfLines = 0
                 cell.textLabel?.font = UIFont(name: font.name[indexPath.row], size: 19)
                 cell.textLabel?.text = (listView.view(with: TableListView.self)?.text ?? "") + "\n" + font.name[indexPath.row]
             }) { (listView, indexPath, any) in
                 let label = UILabel(frame: app.screenBounds).then {
-                    guard let font = any as? Font else { return }
+                    guard let font = any else { return }
                     $0.backgroundColor = UIColor.white
                     $0.numberOfLines = 0
                     $0.font = UIFont(name: font.name[indexPath.row], size: 48)
@@ -91,7 +91,7 @@ extension FontViewController {
         
         func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
             let fonts = list(Font.self)
-            return fonts[section].family
+            return fonts?[section].family
         }
         
     }

@@ -80,7 +80,7 @@ public extension EasyCollectionListProtocol {
     func collectionList<T>(_ class: T.Type) -> [T] {
         return collectionList as? [T] ?? []
     }
-
+    
 }
 
 open class EasyCollectionListView: EasyListView {
@@ -91,6 +91,8 @@ open class EasyCollectionListView: EasyListView {
     private lazy var cellsHandler: ((EasyCollectionListView, IndexPath) -> AnyClass?)? = { return nil }()
     private lazy var didSelectRowHandler: ((EasyCollectionListView, IndexPath, Any?) -> Void)? = { return nil }()
     private lazy var sizeForItemAtHandler: ((EasyCollectionListView, IndexPath, Any?) -> CGSize)? = { return nil }()
+    
+    private var getAny = false
     
     public lazy var flowLayout: UICollectionViewFlowLayout = {
         return UICollectionViewFlowLayout().then {
@@ -136,22 +138,26 @@ public extension EasyCollectionListView {
     }
     
     /// cellForItemAt & didSelectItemAt
-    func register(cellClass: AnyClass?, configureCell: @escaping (EasyCollectionListView, UICollectionViewCell, IndexPath, Any) -> Void, didSelectRow didSelectRowHandler: ((EasyCollectionListView, IndexPath, Any) -> Void)?) {
+    func register(cellClass: AnyClass?, configureCell: @escaping (EasyCollectionListView, UICollectionViewCell, IndexPath) -> Void, didSelectRow didSelectRowHandler: ((EasyCollectionListView, IndexPath) -> Void)?) {
         register(cellsClass: [cellClass], returnCell: { (_, _) -> AnyClass? in
             return cellClass.self
         }, configureCell: configureCell, didSelectRow: didSelectRowHandler)
     }
     
     /// cellForItemAt & didSelectItemAt
-    func register(cellsClass: [AnyClass?], returnCell cellsHandler: @escaping (EasyCollectionListView, IndexPath) -> AnyClass?, configureCell cellHandler: @escaping (EasyCollectionListView, UICollectionViewCell, IndexPath, Any) -> Void, didSelectRow didSelectRowHandler: ((EasyCollectionListView, IndexPath, Any) -> Void)?) {
+    func register(cellsClass: [AnyClass?], returnCell cellsHandler: @escaping (EasyCollectionListView, IndexPath) -> AnyClass?, configureCell cellHandler: @escaping (EasyCollectionListView, UICollectionViewCell, IndexPath) -> Void, didSelectRow didSelectRowHandler: ((EasyCollectionListView, IndexPath) -> Void)?) {
         cellsClass.forEach { (cc) in
             guard let cellClass = cc else { return }
             guard let cellReuseIdentifier = cc.self?.description() else { return }
             collectionView.register(cellClass, forCellWithReuseIdentifier: cellReuseIdentifier)
         }
         self.cellsHandler = cellsHandler
-        self.cellHandler = cellHandler
-        self.didSelectRowHandler = didSelectRowHandler
+        self.cellHandler = { (listView, cell, indexPath, _) in
+            cellHandler(listView, cell, indexPath)
+        }
+        self.didSelectRowHandler = { (listView, indexPath, _) in
+            didSelectRowHandler?(listView, indexPath)
+        }
     }
     
     /// cellForItemAt & didSelectItemAt
@@ -163,6 +169,7 @@ public extension EasyCollectionListView {
     
     /// cellForItemAt & didSelectItemAt
     func register<T>(_ type: T.Type, cellsClass: [AnyClass?], returnCell cellsHandler: @escaping (EasyCollectionListView, IndexPath) -> AnyClass?, configureCell cellHandler: @escaping (EasyCollectionListView, UICollectionViewCell, IndexPath, T?) -> Void, didSelectRow didSelectRowHandler: ((EasyCollectionListView, IndexPath, T?) -> Void)?) {
+        getAny = true
         cellsClass.forEach { (cc) in
             guard let cellClass = cc else { return }
             guard let cellReuseIdentifier = cc.self?.description() else { return }
@@ -175,10 +182,7 @@ public extension EasyCollectionListView {
                 cellHandler(listView, cell, indexPath, t)
             } else {
                 cellHandler(listView, cell, indexPath, nil)
-                if let any = any {
-                    EasyLog.print(any)
-                    EasyLog.debug("warning:类型\(T.self)转换失败")
-                }
+                EasyLog.debug("info:\(T.self)转换结果为nil")
             }
         }
         
@@ -187,10 +191,7 @@ public extension EasyCollectionListView {
                 didSelectRowHandler?(listView, indexPath, t)
             } else {
                 didSelectRowHandler?(listView, indexPath, nil)
-                if let any = any {
-                    EasyLog.print(any)
-                    EasyLog.debug("warning:类型\(T.self)转换失败")
-                }
+                EasyLog.debug("info:\(T.self)转换结果为nil")
             }
         }
     }
@@ -206,10 +207,7 @@ public extension EasyCollectionListView {
             if let t = any as? T {
                 return sizeForItemAtHandler(listView, indexPath, t)
             } else {
-                if let any = any {
-                    EasyLog.print(any)
-                    EasyLog.debug("warning:类型\(T.self)转换失败")
-                }
+                EasyLog.debug("info:\(T.self)转换结果为nil")
                 return sizeForItemAtHandler(listView, indexPath, nil)
             }
         }
@@ -245,7 +243,7 @@ extension EasyCollectionListView: UICollectionViewDataSource, UICollectionViewDe
         if let cellsHandler = cellsHandler, let cellReuseIdentifier = cellsHandler(self, indexPath).self?.description() {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellReuseIdentifier, for: indexPath)
             if let cellHandler = cellHandler {
-                cellHandler(self, cell, indexPath, getAny(list, indexPath: indexPath, numberOfSections: numberOfSections(in: collectionView), numberOfRowsInSectionHandler: numberOfItemsInSectionHandler))
+                cellHandler(self, cell, indexPath, getAny ? getAny(list, indexPath: indexPath, numberOfSections: numberOfSections(in: collectionView), numberOfRowsInSectionHandler: numberOfItemsInSectionHandler) : nil)
             }
             return cell
         }
@@ -256,13 +254,13 @@ extension EasyCollectionListView: UICollectionViewDataSource, UICollectionViewDe
         collectionView.deselectItem(at: indexPath, animated: true)
         
         if let didSelectRowHandler = didSelectRowHandler {
-            didSelectRowHandler(self, indexPath, getAny(list, indexPath: indexPath, numberOfSections: numberOfSections(in: collectionView), numberOfRowsInSectionHandler: numberOfItemsInSectionHandler))
+            didSelectRowHandler(self, indexPath, getAny ? getAny(list, indexPath: indexPath, numberOfSections: numberOfSections(in: collectionView), numberOfRowsInSectionHandler: numberOfItemsInSectionHandler) : nil)
         }
     }
     
     open func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if let sizeForItemAtHandler = sizeForItemAtHandler {
-            return sizeForItemAtHandler(self, indexPath, getAny(list, indexPath: indexPath, numberOfSections: numberOfSections(in: collectionView), numberOfRowsInSectionHandler: numberOfItemsInSectionHandler))
+            return sizeForItemAtHandler(self, indexPath, getAny ? getAny(list, indexPath: indexPath, numberOfSections: numberOfSections(in: collectionView), numberOfRowsInSectionHandler: numberOfItemsInSectionHandler) : nil)
         }
         return size
     }

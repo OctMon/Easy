@@ -22,7 +22,7 @@ public class EasyCycleView: UIView, EasyCollectionListProtocol {
     public var timeInterval: TimeInterval = 2
     
     public var pageControl = EasyPageControl()
-
+    
     private var tap: ((Int) -> Void)?
     
     public override init(frame: CGRect) {
@@ -84,14 +84,14 @@ extension EasyCycleView {
             }) { [weak self] (_, _) -> Int in
                 return self?.count ?? 0
             }
-            register(cellClass: imageCell.self, configureCell: { [weak self] (listView, cell, indexPath, _) in
+            register(cellClass: imageCell.self, configureCell: { [weak self] (listView, cell, indexPath) in
                 if let cell = cell as? imageCell {
                     let offset = indexPath.item % listView.list.count
-                    #if canImport(SDWebImage) || canImport(Kingfisher) 
-                    cell.imageView.setImage(url: listView.list(String.self)[offset], placeholderImage: self?.placeholderImage)
+                    #if canImport(SDWebImage) || canImport(Kingfisher)
+                    cell.imageView.setImage(url: listView.listTo(String.self)[offset], placeholderImage: self?.placeholderImage)
                     #endif
                 }
-            }) { [weak self] (listView, indexPath, _) in
+            }) { [weak self] (listView, indexPath) in
                 let offset = indexPath.item % listView.list.count
                 self?.tap?(offset)
             }
@@ -166,7 +166,7 @@ extension EasyCycleView {
         }
         
     }
-
+    
 }
 
 extension EasyCycleView {

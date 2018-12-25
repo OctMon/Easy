@@ -41,8 +41,12 @@ open class EasyListView: UIView {
         return model as? T ?? nil
     }
     
-    public func list<T>(_ class: T.Type) -> [T] {
+    public func listTo<T>(_ class: T.Type) -> [T] {
         return list as? [T] ?? []
+    }
+    
+    public func list<T>(_ class: T.Type) -> [T]? {
+        return list as? [T]
     }
     
     public var placeholders: [EasyPlaceholder]?
@@ -53,15 +57,24 @@ open class EasyListView: UIView {
         if let model = model {
             return model
         }
-        if numberOfSections == 1 && dataSource.count > indexPath.row {
-            return dataSource[indexPath.row]
+        var rowsInSection = 0
+        if let `self` = self as? T, let rows = numberOfRowsInSectionHandler?(self, indexPath.section) {
+            rowsInSection = rows
+        }
+        if numberOfSections == 1 && rowsInSection < 1 {
+            if let row = dataSource[indexPath.section] as? [Any], indexPath.section < dataSource.count {
+                return row[indexPath.row]
+            }
+            if indexPath.row < dataSource.count {
+                return dataSource[indexPath.row]
+            }
         } else if numberOfSections > 0 {
             if indexPath.section < dataSource.count {
-                if let any = (dataSource[indexPath.section] as? [Any]) {
+                if let any = dataSource[indexPath.section] as? [Any] {
                     if indexPath.row < any.count {
                         return any[indexPath.row]
                     }
-                } else if let `self` = self as? T, let row = numberOfRowsInSectionHandler?(self, indexPath.section), row > 0 {
+                } else if rowsInSection > 0 {
                     return dataSource[indexPath.section]
                 } else if indexPath.row < dataSource.count {
                     return dataSource[indexPath.row]

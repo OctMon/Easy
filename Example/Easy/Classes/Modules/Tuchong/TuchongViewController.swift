@@ -78,7 +78,7 @@ extension TuchongViewController {
             setNumberOfSections({ (listView) -> Int in
                 return listView.list.count
             }) { (listView, section) -> Int in
-                return listView.list(Tuchong.self)[section].images?.count ?? 0
+                return listView.list(Tuchong.self)?[section].images?.count ?? 0
             }
             
             register(Tuchong.self, cellClass: ImageLabelCollectionViewCell.self, configureCell: { (_, cell, indexPath, any) in
@@ -129,13 +129,13 @@ extension TuchongViewController {
                 let view = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, for: indexPath, viewType: TuchongReusableView.self)
                 view.backgroundColor = UIColor.gray
                 view.alpha = 0.5
-                view.label.text = (list(Tuchong.self))[indexPath.section].tags?.joined(separator: ",")
+                view.label.text = (list(Tuchong.self))?[indexPath.section].tags?.joined(separator: ",")
                 return view
             } else {
                 let view = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionFooter, for: indexPath, viewType: TuchongReusableView.self)
                 view.backgroundColor = UIColor.lightGray
                 view.alpha = 0.5
-                view.label.text = (list(Tuchong.self))[indexPath.section].excerpt
+                view.label.text = (list(Tuchong.self))?[indexPath.section].excerpt
                 return view
             }   
         }

@@ -34,7 +34,7 @@ class SocialViewController: easy.ViewController, easy.TableListProtocol {
         }) { (_, section) -> Int in
             return 1
         }
-        tableListView.register(cellsClass: [UITableViewCell.self, SocialCell.self], returnCell: { (_, indexPath) -> AnyClass? in
+        tableListView.register(Module.self, cellsClass: [UITableViewCell.self, SocialCell.self], returnCell: { (_, indexPath) -> AnyClass? in
             switch indexPath.section {
             case 0:
                 return UITableViewCell.self
@@ -45,7 +45,7 @@ class SocialViewController: easy.ViewController, easy.TableListProtocol {
             if let cell = cell as? SocialCell {
                 cell.modules = listView.list[indexPath.section] as? [Module] ?? []
             } else {
-                cell.textLabel?.text = (any as? Module)?.name
+                cell.textLabel?.text = any?.name
             }
         }) { (_, _, any) in
             easy.Social.share(title: "Apple", description: "China", thumbnail: UIImage.setColor(UIColor.red), url: "http://www.apple.com/cn")
