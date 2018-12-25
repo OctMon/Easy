@@ -66,14 +66,12 @@ extension FontViewController {
             }) { (listView, section) -> Int in
                 return listView.listTo(Font.self)[section].name.count
             }
-            register(Font.self, cellClass: UITableViewCell.self, configureCell: { (listView, cell, indexPath, any) in
-                guard let font = any else { return }
+            register(Font.self, cellClass: UITableViewCell.self, configureCell: { (listView, cell, indexPath, font) in
                 cell.textLabel?.numberOfLines = 0
                 cell.textLabel?.font = UIFont(name: font.name[indexPath.row], size: 19)
                 cell.textLabel?.text = (listView.view(with: TableListView.self)?.text ?? "") + "\n" + font.name[indexPath.row]
-            }) { (listView, indexPath, any) in
+            }) { (listView, indexPath, font) in
                 let label = UILabel(frame: app.screenBounds).then {
-                    guard let font = any else { return }
                     $0.backgroundColor = UIColor.white
                     $0.numberOfLines = 0
                     $0.font = UIFont(name: font.name[indexPath.row], size: 48)

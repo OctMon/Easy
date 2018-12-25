@@ -103,7 +103,6 @@ class Main: easy.ViewController, easy.TableListProtocol {
         tableListView.register(String.self, cellClass: UITableViewCell.self, configureCell: { (_, cell, _, any) in
             cell.textLabel?.text = any
         }) { (_, _, any) in
-            guard let any = any else { return }
             easy.Router.openURL("easy://", routerParameters: [.className: any, .userInfo: ["title": any]])
         }
     }

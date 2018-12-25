@@ -106,7 +106,7 @@ extension WaterFlowLayoutViewController {
                 cell.backgroundColor = color
             }, didSelectRow: nil)
             
-            setSizeForItemAt { [weak self] (listView, indexPath, _) -> CGSize in
+            setSizeForItemAt { [weak self] (listView, indexPath) -> CGSize in
                 guard let self = self else { return .zero }
                 let random = self.randoms[indexPath.section][indexPath.row]
                 switch self.items[self.current] {

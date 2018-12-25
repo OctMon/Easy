@@ -45,7 +45,7 @@ class SocialViewController: easy.ViewController, easy.TableListProtocol {
             if let cell = cell as? SocialCell {
                 cell.modules = listView.list[indexPath.section] as? [Module] ?? []
             } else {
-                cell.textLabel?.text = any?.name
+                cell.textLabel?.text = any.name
             }
         }) { (_, _, any) in
             easy.Social.share(title: "Apple", description: "China", thumbnail: UIImage.setColor(UIColor.red), url: "http://www.apple.com/cn")
@@ -87,10 +87,10 @@ extension SocialViewController {
             collectionListView.register(Module.self, cellClass:ImageLabelCollectionViewCell.self, configureCell: { (_, cell, _, any) in
                 (cell as? ImageLabelCollectionViewCell)?.do {
                     $0.backgroundColor = UIColor.random
-                    $0.label.text = any?.name
+                    $0.label.text = any.name
                 }
             }) { (_, indexPath, any) in
-                switch any ?? .default {
+                switch any {
                 case .微信登录:
                     easy.Social.oauth(platformType: .wechat) { (userInfo, _, error) in
                         if let userInfo = userInfo {
@@ -120,7 +120,7 @@ extension SocialViewController {
                 }
             }
             
-            collectionListView.setSizeForItemAt { (_, _, _) -> CGSize in
+            collectionListView.setSizeForItemAt { (_, _) -> CGSize in
                 return CGSize(width: .screenWidth * 0.5, height: .screenWidth * 0.5)
             }
         }

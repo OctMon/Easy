@@ -61,7 +61,6 @@ class EasyTestViewController: EasyViewController, EasyTableListProtocol {
             }
             return UITableViewCell.self
         }, configureCell: { (listView, cell, indexPath, any) in
-            guard let any = any else { return }
             if let cell = (cell as? EasyTestCell) {
                 cell.do {
                     $0.selectionStyle = .none
@@ -104,20 +103,20 @@ class EasyTestViewController: EasyViewController, EasyTableListProtocol {
             guard indexPath.section > 0 else { return }
             if indexPath.section + 1 == listView.list.count && sessions.count > indexPath.row {
                 sessions[indexPath.row].showChangeBaseURL({ (url) in
-                    if var model = any {
-                        model.1 = url
-                        let list = listView.list[indexPath.section]
-                        if var models = list as? [Any] {
-                            models[indexPath.row] = model
-                            listView.list[indexPath.section] = models
-                            listView.tableView.reloadData()
-                        }
+                    var model = any
+                    model.1 = url
+                    let list = listView.list[indexPath.section]
+                    if var models = list as? [Any] {
+                        models[indexPath.row] = model
+                        listView.list[indexPath.section] = models
+                        listView.tableView.reloadData()
                     }
+                    
                 })
             }
         }
         
-        tableListView.setAccessoryButtonTappedForRowWith { [weak self] (listView, indexPath, _) in
+        tableListView.setAccessoryButtonTappedForRowWith { [weak self] (listView, indexPath) in
             guard indexPath.section > 0 else { return }
             if indexPath.section + 1 == listView.list.count && sessions.count > indexPath.row {
                 let session = sessions[indexPath.row]

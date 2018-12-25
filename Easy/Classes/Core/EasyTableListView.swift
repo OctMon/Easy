@@ -144,14 +144,14 @@ public extension EasyTableListView {
     }
     
     /// cellForRowAt & didSelectRowAt
-    func register<T>(_ type: T.Type, cellClass: AnyClass?, configureCell: @escaping (EasyTableListView, UITableViewCell, IndexPath, T?) -> Void, didSelectRow didSelectRowHandler: ((EasyTableListView, IndexPath, T?) -> Void)?) {
+    func register<T>(_ type: T.Type, cellClass: AnyClass?, configureCell: @escaping (EasyTableListView, UITableViewCell, IndexPath, T) -> Void, didSelectRow didSelectRowHandler: ((EasyTableListView, IndexPath, T) -> Void)?) {
         register(type, cellsClass: [cellClass], returnCell: { (_, _) -> AnyClass? in
             return cellClass.self
         }, configureCell: configureCell, didSelectRow: didSelectRowHandler)
     }
     
     /// cellForRowAt & didSelectRowAt
-    func register<T>(_ type: T.Type, cellsClass: [AnyClass?], returnCell cellsHandler: @escaping (EasyTableListView, IndexPath) -> AnyClass?, configureCell cellHandler: @escaping (EasyTableListView, UITableViewCell, IndexPath, T?) -> Void, didSelectRow didSelectRowHandler: ((EasyTableListView, IndexPath, T?) -> Void)?) {
+    func register<T>(_ type: T.Type, cellsClass: [AnyClass?], returnCell cellsHandler: @escaping (EasyTableListView, IndexPath) -> AnyClass?, configureCell cellHandler: @escaping (EasyTableListView, UITableViewCell, IndexPath, T) -> Void, didSelectRow didSelectRowHandler: ((EasyTableListView, IndexPath, T) -> Void)?) {
         getAny = true
         cellsClass.forEach { (cc) in
             guard let cellClass = cc else { return }
@@ -164,7 +164,6 @@ public extension EasyTableListView {
             if let t = any as? T {
                 cellHandler(listView, cell, indexPath, t)
             } else {
-                cellHandler(listView, cell, indexPath, nil)
                 EasyLog.debug("info:\(T.self)转换结果为nil")
             }
         }
@@ -173,22 +172,22 @@ public extension EasyTableListView {
             if let t = any as? T {
                 didSelectRowHandler?(listView, indexPath, t)
             } else {
-                didSelectRowHandler?(listView, indexPath, nil)
                 EasyLog.debug("info:\(T.self)转换结果为nil")
             }
         }
     }
     
-    func setAccessoryButtonTappedForRowWith(_ accessoryButtonTappedForRowWithHandler: ((EasyTableListView, IndexPath, Any) -> Void)?) {
-        self.accessoryButtonTappedForRowWithHandler = accessoryButtonTappedForRowWithHandler
+    func setAccessoryButtonTappedForRowWith(_ accessoryButtonTappedForRowWithHandler: @escaping ((EasyTableListView, IndexPath) -> Void)) {
+        self.accessoryButtonTappedForRowWithHandler = { (listView, indexPath, any) in
+            accessoryButtonTappedForRowWithHandler(listView, indexPath)
+        }
     }
     
-    func setAccessoryButtonTappedForRowWith<T>(_ type: T.Type, accessoryButtonTappedForRowWith accessoryButtonTappedForRowWithHandler: ((EasyTableListView, IndexPath, T?) -> Void)?) {
+    func setAccessoryButtonTappedForRowWith<T>(_ type: T.Type, accessoryButtonTappedForRowWith accessoryButtonTappedForRowWithHandler: @escaping ((EasyTableListView, IndexPath, T) -> Void)) {
         self.accessoryButtonTappedForRowWithHandler = { (listView, indexPath, any) in
             if let t = any as? T {
-                accessoryButtonTappedForRowWithHandler?(listView, indexPath, t)
+                accessoryButtonTappedForRowWithHandler(listView, indexPath, t)
             } else {
-                accessoryButtonTappedForRowWithHandler?(listView, indexPath, nil)
                 EasyLog.debug("info:\(T.self)转换结果为nil")
             }
         }
