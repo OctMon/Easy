@@ -214,7 +214,7 @@ public extension EasyDataResponse {
 public extension JSONDecoder {
     
     func decode<T>(_ type: T.Type, from json: EasyParameters?) -> T? where T : Decodable {
-        if let data = json?.toData {
+        if let json = json, let data = json.toData, !json.isEmpty {
             return try? decode(type, from: data)
         }
         return nil
