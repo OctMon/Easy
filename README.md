@@ -21,6 +21,31 @@ pod 'Easy'
 
 ## Example
 
+## App LaunchScreen/Screenshot(启动图/屏幕快照规范)
+
+|设备尺寸	|Device	|图片尺寸	|
+|---	|---	|---	|
+|
+6.5英寸超视网膜显示屏	|iPhone XS Max	|1242px × 2688px	|
+|
+5.8 英寸超视网膜显示屏	|iPhone XS/X	|1125px × 2436px	|
+|
+6.1 英寸Liquid视网膜显示屏	|iPhone XR	|828px × 1792px	|
+|
+5.5 英寸视网膜显示屏	|iPhone 8/7/6 Plus	|1242px × 2208px	|
+|
+4.7 英寸视网膜显示屏	|iPhone 8/7/6	|750px × 1334px	|
+|
+4 英寸视网膜显示屏	|iPhone SE/5S/5	|640px × 1136px	|
+|
+3.5 英寸视网膜显示屏	|iPhone 4S/4	|640px × 960px	|
+
+启动图需要做上面7套，必须为 PNG 格式，且必须采用 RGB 颜色空间
+
+屏幕快照只做下面2套，必须为 JPG 或 PNG 格式，且必须采用 RGB 颜色空间
+iPhone XS Max 1242px × 2688px (6.5 英寸显示屏)
+iPhone 8/7/6 Plus 1242px × 2208px(使用 6.5 英寸显示屏)
+
 ### To run the example project, clone the repo.
 
 ```swift
