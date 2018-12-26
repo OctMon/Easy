@@ -79,7 +79,7 @@ extension FontViewController {
                     let text = (listView.view(with: TableListView.self)?.text ?? "") + "\n" + font.name[indexPath.row]
                     $0.text = text
                 }
-                easy.PopupView(label).showWithCenter()
+                easy.PopupView(label, transition: .none).showWithCenter()
             }
         }
         

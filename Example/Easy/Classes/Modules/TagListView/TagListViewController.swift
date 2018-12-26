@@ -45,7 +45,7 @@ class TagListViewController: easy.ViewController, easy.TableListProtocol {
             tagListView.setTags(tags, maxConstrainedHeight: .screenWidth, tap: { (offset) in
                 log.debug(tags[offset])
             })
-            easy.PopupView(tagListView).showWithCenter()
+            easy.PopupView(tagListView, transition: .fade).showWithCenter()
             tagListView.snp.makeConstraints({ (make) in
                 make.width.equalToSuperview().offset(-30)
                 make.center.equalToSuperview()

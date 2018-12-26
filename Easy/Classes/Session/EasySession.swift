@@ -152,7 +152,7 @@ public extension EasySession {
         #if BETA
         let vc = EasySessionViewController()
         vc.config = config
-        let popupView = EasyPopupView(vc, height: .screenHeight * 0.38)
+        let popupView = EasyPopupView(vc, height: .screenHeight * 0.38, transition: .bottom)
         vc.popupView = popupView
         vc.successHandler = handler
         popupView.showWithBottom()

@@ -110,7 +110,7 @@ extension TuchongViewController {
                         }
                     })
                 }
-                let popupView = easy.PopupView(photoView)
+                let popupView = easy.PopupView(photoView, transition: .fade)
                 photoView.tap { (_) in
                     popupView.dismiss()
                 }

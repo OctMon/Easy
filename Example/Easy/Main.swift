@@ -48,8 +48,7 @@ class Main: easy.ViewController, easy.TableListProtocol {
                     $0.contentMode = .scaleAspectFit
                     $0.size = CGSize(width: .screenWidth, height: .screenWidth)
                 }
-                let popupView = easy.PopupView(imageView)
-                popupView.animationDuration = 0
+                let popupView = easy.PopupView(imageView, transition: .top)
                 popupView.showWithCenter(showHandler: {
                     switch Int.random(in: 1...3) {
                     case 1:

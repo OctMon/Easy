@@ -353,7 +353,7 @@ public extension EasyApp {
     
     static func showUpdateAlert(image: UIImage? = nil, title: NSAttributedString, message: NSAttributedString, buttonTitles: [NSAttributedString?], buttonBackgroundImages: [UIImage?], backgroundCornerRadius: CGFloat = 5, tap: @escaping (Int) -> Void) {
         let backgroundView = UIView()
-        let popupView = EasyPopupView(backgroundView).then {
+        let popupView = EasyPopupView(backgroundView, transition: .fade).then {
             $0.dismissOnBlackOverlayTap = false
             $0.animationDuration = 0
         }

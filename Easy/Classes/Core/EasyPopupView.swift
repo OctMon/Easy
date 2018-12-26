@@ -21,6 +21,8 @@ public class EasyPopupView: UIView {
     public var dismissOnBlackOverlayTap = true
     public var blackOverlayColor = UIColor(white: 0, alpha: 0.4)
     
+    private var transition = Transition.bottom
+    
     deinit {
         EasyLog.debug(toDeinit)
     }
@@ -37,8 +39,16 @@ public class EasyPopupView: UIView {
 
 public extension EasyPopupView {
     
-    convenience init(_ view: UIView) {
+    enum Transition {
+        case fade
+        case top
+        case bottom
+        case none
+    }
+    
+    convenience init(_ view: UIView, transition: Transition) {
         self.init(frame: EasyApp.screenBounds)
+        self.transition = transition
         self.view = view
         if let view = self.view {
             addSubview(view)
@@ -49,10 +59,14 @@ public extension EasyPopupView {
         addGestureRecognizer(tapGestureRecognizer)
     }
     
-    convenience init(_ viewController: UIViewController, height: CGFloat) {
-        self.init(viewController.view)
+    convenience init(_ viewController: UIViewController, height: CGFloat, transition: Transition) {
+        self.init(viewController.view, transition: transition)
         view?.height = height
         self.viewController = viewController
+    }
+    
+    func showWithTop(showHandler: (() -> Void)? = nil, dismissHandler: (() -> Void)? = nil) {
+        show(originY: 0, showHandler: showHandler, dismissHandler: dismissHandler)
     }
     
     func showWithBottom(showHandler: (() -> Void)? = nil, dismissHandler: (() -> Void)? = nil) {
@@ -68,59 +82,76 @@ public extension EasyPopupView {
         EasyApp.window?.addSubview(self)
         self.backgroundColor = UIColor.clear
         
-        if animationDuration == 0 {
-            self.view?.y = originY
-            self.view?.alpha = 0
+        switch transition {
+        case .fade:
+            view?.y = originY
+            view?.alpha = 0
             UIView.animate(withDuration: 0.25) { [weak self] in
-                guard let self = self else { return }
-                self.backgroundColor = self.blackOverlayColor
-                self.view?.alpha = 1
-                showHandler?()
+                self?.view?.alpha = 1
+                self?.showAnimation(showHandler)
             }
-        } else {
+        case .top:
+            view?.y = -EasyApp.screenHeight
+            UIView.animate(withDuration: animationDuration) { [weak self] in
+                self?.view?.y = originY
+                self?.showAnimation(showHandler)
+            }
+        case .bottom:
             view?.y = EasyApp.screenHeight
             UIView.animate(withDuration: animationDuration) { [weak self] in
-                guard let self = self else { return }
-                self.backgroundColor = self.blackOverlayColor
-                self.view?.y = originY
-                showHandler?()
+                self?.view?.y = originY
+                self?.showAnimation(showHandler)
             }
+        case .none:
+            showAnimation(showHandler)
         }
     }
     
     @objc func dismiss() {
-        if animationDuration == 0 {
+        switch transition {
+        case .fade:
             UIView.animate(withDuration: 0.25, animations: { [weak self] in
-                guard let self = self else { return }
-                self.backgroundColor = UIColor.clear
-                self.view?.alpha = 0
+                self?.backgroundColor = UIColor.clear
+                self?.view?.alpha = 0
             }) { [weak self] (completion) in
                 if completion {
-                    guard let self = self else { return }
-                    self.dismissHandler?()
-                    self.subviews.forEach({ $0.removeFromSuperview() })
-                    self.removeFromSuperview()
-                    self.viewController = nil
-                    self.view = nil
+                    self?.dismissAnimation(self?.dismissHandler)
                 }
-
             }
-        } else {
+        case .top:
             UIView.animate(withDuration: animationDuration, animations: { [weak self] in
-                guard let self = self else { return }
-                self.backgroundColor = UIColor.clear
-                self.view?.frame.origin.y = EasyApp.screenHeight
+                self?.backgroundColor = UIColor.clear
+                self?.view?.frame.origin.y = -EasyApp.screenHeight
             }) { [weak self] (completion) in
                 if completion {
-                    guard let self = self else { return }
-                    self.dismissHandler?()
-                    self.subviews.forEach({ $0.removeFromSuperview() })
-                    self.removeFromSuperview()
-                    self.viewController = nil
-                    self.view = nil
+                    self?.dismissAnimation(self?.dismissHandler)
                 }
             }
+        case .bottom:
+            UIView.animate(withDuration: animationDuration, animations: { [weak self] in
+                self?.backgroundColor = UIColor.clear
+                self?.view?.frame.origin.y = EasyApp.screenHeight
+            }) { [weak self] (completion) in
+                if completion {
+                    self?.dismissAnimation(self?.dismissHandler)
+                }
+            }
+        case .none:
+            dismissAnimation(dismissHandler)
         }
+    }
+    
+    private func showAnimation(_ handler: (() -> Void)?) {
+        backgroundColor = self.blackOverlayColor
+        handler?()
+    }
+    
+    private func dismissAnimation(_ handler: (() -> Void)?) {
+        subviews.forEach({ $0.removeFromSuperview() })
+        removeFromSuperview()
+        viewController = nil
+        view = nil
+        handler?()
     }
     
 }
