@@ -16,10 +16,6 @@ public extension Easy {
 
 public class EasyRefresh: MJRefreshComponent {
     
-}
-
-public extension EasyRefresh {
-    
     static func setHeader(_ header: MJRefreshGifHeader) {
         header.isAutomaticallyChangeAlpha = true
         header.setTitle(EasyGlobal.headerStateIdle, for: MJRefreshState.idle)
@@ -33,6 +29,10 @@ public extension EasyRefresh {
         footer.isRefreshingTitleHidden = true
         footer.isHidden = true
     }
+    
+}
+
+public extension EasyRefresh {
     
     static func headerWithHandler(_ handler: @escaping () -> Void) -> MJRefreshGifHeader {
         let header: MJRefreshGifHeader = MJRefreshGifHeader(refreshingBlock: handler)

@@ -33,13 +33,14 @@ class TuchongViewController: easy.ViewController, easy.CollectionListProtocol {
     override func configure() {
         super.configure()
         
-        addCollectionView(in: view).addRefresh(isAddHeader: true, isAddFooter: true) { [weak self] in
-            self?.request()
+        addCollectionView(in: view).do {
+            $0.addRefresh(isAddHeader: true, isAddFooter: true) { [weak self] in
+                self?.request()
+            }
+            $0.headerRefresh?.setTitle("⬇️ 下拉试试", for: .idle)
+            $0.headerRefresh?.setTitle("🍎 松开试试", for: .pulling)
+            $0.headerRefresh?.setTitle("🚀 正在刷新", for: .refreshing)
         }
-        collectionListView.do {
-            $0.placeholderOffset = -80
-        }
-        
     }
     
     override func request() {
@@ -62,6 +63,7 @@ extension TuchongViewController {
             
             firstPage = 1
             ignoreTotalPage = true
+            placeholderOffset = -80
             
             waterFlowLayout.do {
                 $0.minimumInteritemSpacing = space
@@ -72,7 +74,7 @@ extension TuchongViewController {
             collectionView.do {
                 $0.registerReusableView(supplementaryViewType: TuchongReusableView.self, ofKind: UICollectionView.elementKindSectionHeader)
                 $0.registerReusableView(supplementaryViewType: TuchongReusableView.self, ofKind: UICollectionView.elementKindSectionFooter)
-                collectionView.collectionViewLayout = waterFlowLayout
+                $0.collectionViewLayout = waterFlowLayout
             }
             
             setNumberOfSections({ (listView) -> Int in

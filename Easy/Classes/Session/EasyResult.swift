@@ -384,6 +384,14 @@ public extension EasyListView {
 
 public extension EasyTableListView {
     
+    var headerRefresh: MJRefreshGifHeader? {
+        return tableView.mj_header as? MJRefreshGifHeader
+    }
+    
+    var footerRefresh: MJRefreshAutoNormalFooter? {
+        return tableView.mj_footer as? MJRefreshAutoNormalFooter
+    }
+    
     func addRefresh(isAddHeader: Bool, isAddFooter: Bool, requestHandler: @escaping (() -> Void)) {
         addRefresh(tableView, isAddHeader: isAddHeader, isAddFooter: isAddFooter, requestHandler: requestHandler)
     }
@@ -395,6 +403,14 @@ public extension EasyTableListView {
 }
 
 public extension EasyCollectionListView {
+    
+    var headerRefresh: MJRefreshGifHeader? {
+        return collectionView.mj_header as? MJRefreshGifHeader
+    }
+    
+    var footerRefresh: MJRefreshAutoNormalFooter? {
+        return collectionView.mj_footer as? MJRefreshAutoNormalFooter
+    }
     
     func addRefresh(isAddHeader: Bool, isAddFooter: Bool, requestHandler: @escaping (() -> Void)) {
         addRefresh(collectionView, isAddHeader: isAddHeader, isAddFooter: isAddFooter, requestHandler: requestHandler)
