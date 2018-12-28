@@ -156,8 +156,10 @@ app.configCheckPgyer(api_key: "#replace your api_key", shortcutUrl: "", headerIm
 ```
 
 ##### app.showUpdateAlert
+
 <img src="https://github.com/OctMon/Easy/blob/assets/Simulator%20Screen%20Shot%20-%20iPhone%208%20Plus%20-%202018-12-28%20at%2010.22.59.png?raw=true" width="200" align=left />
 <img src="https://github.com/OctMon/Easy/blob/assets/Simulator%20Screen%20Shot%20-%20iPhone%208%20Plus%20-%202018-12-28%20at%2010.23.04.png?raw=true" width="200" align=center />
+
 ```swift
 let isForceUpdate = Int.random(in: 0...1) == 0
 
