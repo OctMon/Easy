@@ -19,7 +19,7 @@ class FontViewController: easy.ViewController, easy.TableListProtocol {
     
     private let textField: UITextField = UITextField(frame: CGRect(x: 0, y: 0, width: app.screenWidth, height: 100)).then {
         $0.text = "爆款促销"
-        $0.font = UIFont.size19
+        $0.font = .size19
         $0.textAlignment = .center
         $0.backgroundColor = .white
     }

@@ -162,7 +162,7 @@ private class EasyVerticalButton: UIButton {
     override init(frame: CGRect) {
         super .init(frame: frame)
         
-        titleLabel?.font = UIFont.size12
+        titleLabel?.font = .size12
         titleLabel?.adjustsFontSizeToFitWidth = true
         titleLabel?.textAlignment = .center
         setTitleColor(UIColor.black, for: .normal)

@@ -638,10 +638,10 @@ public extension UIImage {
 
 public extension UIColor {
     
-    static var hex333333: UIColor { return UIColor.hex(0x333333) }
-    static var hex666666: UIColor { return UIColor.hex(0x666666) }
-    static var hex999999: UIColor { return UIColor.hex(0x999999) }
-    static var hexCCCCCC: UIColor { return UIColor.hex(0xCCCCCC) }
+    static var hex333333: UIColor { return .hex(0x333333) }
+    static var hex666666: UIColor { return .hex(0x666666) }
+    static var hex999999: UIColor { return .hex(0x999999) }
+    static var hexCCCCCC: UIColor { return .hex(0xCCCCCC) }
     static var textFieldPlaceholder: UIColor {
         struct Once {
             private init() {

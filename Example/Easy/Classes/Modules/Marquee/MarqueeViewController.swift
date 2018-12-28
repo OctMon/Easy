@@ -19,7 +19,7 @@ class MarqueeViewController: easy.ViewController, easy.TableListProtocol, easy.C
         super.viewDidLoad()
 
         marqueeLabel.numberOfLines = 2
-        marqueeLabel.dataSource = ["全新 Liquid 视网膜显示屏，是 iPhone 迄今最先进的 LCD 屏。此外，更有识别速度进一步提升的面容 ID、iPhone 史上最智能最强大的芯片，以及支持景深控制功能的突破性摄像头系统。iPhone XR，怎么看，都满是亮点。", "To run the example project, clone the repo, and run pod install from the Example directory first.", "Easy is available through CocoaPods", "Easy is available under the MIT license. See the LICENSE file for more info."].map { $0.getAttributedString(font: UIFont.size14, foregroundColor: UIColor.random) }
+        marqueeLabel.dataSource = ["全新 Liquid 视网膜显示屏，是 iPhone 迄今最先进的 LCD 屏。此外，更有识别速度进一步提升的面容 ID、iPhone 史上最智能最强大的芯片，以及支持景深控制功能的突破性摄像头系统。iPhone XR，怎么看，都满是亮点。", "To run the example project, clone the repo, and run pod install from the Example directory first.", "Easy is available through CocoaPods", "Easy is available under the MIT license. See the LICENSE file for more info."].map { $0.getAttributedString(font: .size14, foregroundColor: UIColor.random) }
         marqueeLabel.tapClick { (index) in
             log.debug(index)
         }

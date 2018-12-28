@@ -39,10 +39,10 @@ class EasySessionViewController: EasyViewController, EasyTableListProtocol {
         
         let current = config.url.currentBaseURL
         let text = "📡 Change \(config.url.alias) BaseURL 📡"
-        let height = text.getHeight(forConstrainedWidth: EasyApp.screenWidth, font: UIFont.size14)
+        let height = text.getHeight(forConstrainedWidth: EasyApp.screenWidth, font: .size14)
         tableListView.tableView.tableHeaderView = UILabel(frame: CGRect(x: 0, y: 0, width: EasyApp.screenWidth, height: height)).then {
             $0.numberOfLines = 0
-            $0.font = UIFont.size14
+            $0.font = .size14
             $0.textAlignment = .center
             $0.textColor = UIColor.white
             $0.text = text

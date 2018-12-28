@@ -108,7 +108,7 @@ public extension Int {
         return CGFloat(self)
     }
     var toColor: UIColor {
-        return UIColor.hex(self)
+        return .hex(self)
     }
 
 }
@@ -249,7 +249,7 @@ public extension String {
     
     
     var toColor: UIColor {
-        return UIColor.hex(self)
+        return .hex(self)
     }
     
     var toURLParameters: [String: Any]? {

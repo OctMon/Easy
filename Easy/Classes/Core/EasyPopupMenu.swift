@@ -122,7 +122,7 @@ private class EasyPopupMenuCell: UITableViewCell {
         addSubview(label)
         
         label.textColor = UIColor.white
-        label.font = UIFont.size13
+        label.font = .size13
         label.textAlignment = .center
         
         label.snp.makeConstraints({ (make) in

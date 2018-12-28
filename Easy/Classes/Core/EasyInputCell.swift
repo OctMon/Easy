@@ -38,8 +38,8 @@ public class EasyInputCell: UITableViewCell {
             make.height.equalTo(60)
         })
         
-        textField.font = UIFont.size14
-        textField.textColor = UIColor.hex333333
+        textField.font = .size14
+        textField.textColor = .hex333333
         textField.addTarget(self, action: #selector(textFieldEditingChanged(textField:)), for: .editingChanged)
         textField.setDoneButton()
         
@@ -55,8 +55,8 @@ public class EasyInputCell: UITableViewCell {
             make.right.equalTo(textField.snp.right).offset(-15)
         })
         
-        button.setTitleColor(UIColor.hex(0xFF4040), for: .normal)
-        button.titleLabel?.font = UIFont.size14
+        button.setTitleColor(.hex(0xFF4040), for: .normal)
+        button.titleLabel?.font = .size14
         button.setTitle("获取验证码", for: .normal)
         
         return button

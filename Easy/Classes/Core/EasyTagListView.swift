@@ -19,7 +19,7 @@ public class EasyTagListView: UIView, EasyCollectionListProtocol {
         EasyLog.debug(toDeinit)
     }
     
-    public var font: UIFont = UIFont.size10
+    public var font: UIFont = .size10
     public var textColor: UIColor = EasyGlobal.tint
     public var borderColor: UIColor = EasyGlobal.tint
     public var borderWidth: CGFloat = 1

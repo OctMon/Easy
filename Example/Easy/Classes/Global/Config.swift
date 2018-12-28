@@ -18,7 +18,7 @@ extension AppDelegate {
         global.navigationBarIsShadowNull = true
         global.navigationBarTintColor = UIColor.black
         global.navigationBarTitleTextAttributes = [.foregroundColor: UIColor.black]
-        global.tint = UIColor.hex(0xFF0000)
+        global.tint = .hex(0xFF0000)
     }
     
 }
