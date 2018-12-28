@@ -23,6 +23,9 @@ pod 'Easy'
 
 ### To run the example project, clone the repo.
 
+#### import Easy
+#### typealias easy = Easy
+
 ```swift
 import Easy
 
@@ -57,6 +60,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 ### EasyLog
 
+#### typealias log = easy.Log
 ```swift
 log.print("hello print") // hello print
 
@@ -65,6 +69,7 @@ log.debug("hello debug") // 2018-12-06 11:09:25.373 [debug] [Tests.swift:38] tes
 
 ### EasyApp
 
+#### typealias app = easy.App
 ```swift
 log.print(app.isDebug) // true
 log.print(app.isBeta) // false
@@ -148,7 +153,11 @@ app.openFullScreenPopGesture() // 打开全屏返回手势
 
 app.configTestTool() // 配置调试工具
 app.configCheckPgyer(api_key: "#replace your api_key", shortcutUrl: "", headerImage: nil, delay: 3, isWillEnterForegroundCheck: true) // 配置Pgyer检测更新
+```
 
+##### app.showUpdateAlert
+
+```swift
 let isForceUpdate = Int.random(in: 0...1) == 0
 
 var buttonTitles = ["立即升级".getAttributedString(font: UIFont.size15, foregroundColor: UIColor.white)]
@@ -175,6 +184,8 @@ app.showUpdateAlert(image: nil, title: "发现新版本".getAttributedString(fon
         }
 })
 ```
+[![](https://github.com/OctMon/Easy/blob/assets/Simulator%20Screen%20Shot%20-%20iPhone%208%20Plus%20-%202018-12-28%20at%2010.22.59.png?raw=true)]()
+[![](https://github.com/OctMon/Easy/blob/assets/Simulator%20Screen%20Shot%20-%20iPhone%208%20Plus%20-%202018-12-28%20at%2010.23.04.png?raw=true)]()
 
 ## Author
 
