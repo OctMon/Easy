@@ -26,7 +26,7 @@ extension AppDelegate {
 extension AppDelegate {
     
     func config(_ application: UIApplication, launchOptions: [UIApplication.LaunchOptionsKey: Any]?) {
-        app.configTest()
+        app.configTestTool()
 //        app.configCheckPgyer(api_key: "#replace your api_key", shortcutUrl: "")
         configSocial()
         configRouter()

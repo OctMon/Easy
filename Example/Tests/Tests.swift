@@ -139,4 +139,13 @@ class Tests: XCTestCase {
         }
     }
     
+    func testAppOpenFullScreenPopGesture() {
+        app.openFullScreenPopGesture()
+    }
+    
+    func testTestTool() {
+        app.configTestTool() // 配置调试工具
+        app.configCheckPgyer(api_key: "#replace your api_key", shortcutUrl: "", headerImage: nil, delay: 3, isWillEnterForegroundCheck: true) // 配置Pgyer检测更新
+    }
+    
 }

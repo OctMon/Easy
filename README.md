@@ -143,6 +143,37 @@ app.performenceRun(loopTimes: 999) {
         log.debug(str)
     })
 } // 运行 999 次，耗时 5.197448015213013s
+
+app.openFullScreenPopGesture() // 打开全屏返回手势
+
+app.configTestTool() // 配置调试工具
+app.configCheckPgyer(api_key: "#replace your api_key", shortcutUrl: "", headerImage: nil, delay: 3, isWillEnterForegroundCheck: true) // 配置Pgyer检测更新
+
+let isForceUpdate = Int.random(in: 0...1) == 0
+
+var buttonTitles = ["立即升级".getAttributedString(font: UIFont.size15, foregroundColor: UIColor.white)]
+var buttonBackgroundImages = [UIColor.red.toImage]
+if !isForceUpdate {
+    buttonTitles.insert("稍后再说".getAttributedString(font: UIFont.size15, foregroundColor: UIColor.hex666666), at: 0)
+    buttonBackgroundImages.insert(UIColor.white.toImage, at: 0)
+}
+app.showUpdateAlert(image: nil, title: "发现新版本".getAttributedString(font: UIFont.size21, foregroundColor: UIColor.hex333333).append(title: "  v6.7.3", font: UIFont.size12, foregroundColor: UIColor.hex999999), message: """
+    本次更新：
+    - 可以拍一个自己的表情
+    - 聊天输入文字时可以长按换行
+    
+    最近更新：
+    - 可以使用英语和粤语进行语音输入了
+    - 可以直接浏览订阅号的消息
+    - 可以把浏览的文章缩小为浮窗
+    """.getAttributedString(font: UIFont.size14, foregroundColor: UIColor.hex999999, lineSpacing: 8), buttonTitles: buttonTitles, buttonBackgroundImages: buttonBackgroundImages, tap: { offset in
+        if isForceUpdate || offset == 1 {
+            app.openAppStoreDetails(id: 414478124)
+            log.debug("Force update")
+        } else {
+            log.debug("Say later")
+        }
+})
 ```
 
 ## Author

@@ -341,9 +341,9 @@ public extension EasyApp {
         #endif
     }
     
-    static func configTest() {
+    static func configTestTool() {
         #if BETA
-        EasyBeta.configTest()
+        EasyBeta.configTestTool()
         #endif
     }
     
