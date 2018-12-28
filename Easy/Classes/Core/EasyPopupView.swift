@@ -147,10 +147,7 @@ public extension EasyPopupView {
     }
     
     private func dismissAnimation(_ handler: (() -> Void)?) {
-        subviews.forEach({ $0.removeFromSuperview() })
         removeFromSuperview()
-        viewController = nil
-        view = nil
         handler?()
     }
     
