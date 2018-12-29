@@ -148,4 +148,13 @@ class Tests: XCTestCase {
         app.configCheckPgyer(api_key: "#replace your api_key", shortcutUrl: "", headerImage: nil, delay: 3, isWillEnterForegroundCheck: true) // 配置Pgyer检测更新
     }
     
+    func testAlert() {
+        alert(title: "title", message: "message").addAction(title: "ok", style: .default, handler: { (_) in
+            log.debug("ok")
+        }).show()
+        actionSheet(title: "title", message: "message").addAction(title: "ok", style: .default, handler: { (_) in
+            log.debug("ok")
+        }).addAction(title: "cancel").show()
+    }
+    
 }

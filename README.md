@@ -188,6 +188,21 @@ app.showUpdateAlert(image: nil, title: "发现新版本".getAttributedString(fon
 })
 ```
 
+### EasyAlert
+
+#### typealias alert = easy.Alert
+#### typealias actionSheet = easy.ActionSheet
+
+```swift
+alert(title: "title", message: "message").addAction(title: "ok", style: .default, handler: { (_) in
+    log.debug("ok")
+}).show()
+
+actionSheet(title: "title", message: "message").addAction(title: "ok", style: .default, handler: { (_) in
+    log.debug("ok")
+}).addAction(title: "cancel").show()
+```
+
 ## Author
 
 octmon, octmon@qq.com
