@@ -121,8 +121,7 @@ extension TuchongViewController {
             
             setSizeForItemAt(Tuchong.self) { (_, indexPath, any) -> CGSize in
                 guard let images = any?.images else { return CGSize.zero }
-                let model = images[indexPath.row]
-                return model.imageSize
+                return CGSize(width: 0, height: images[indexPath.row].imageHeight)
             }
         }
         

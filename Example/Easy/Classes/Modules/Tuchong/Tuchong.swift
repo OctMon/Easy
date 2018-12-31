@@ -159,11 +159,11 @@ extension Tuchong.Image {
         return "https://photo.tuchong.com/" + id + "/f/" + img + ".jpg"
     }
     
-    var imageSize: CGSize {
+    var imageHeight: CGFloat {
         if let width = width?.toCGFloat, let height = height?.toCGFloat {
-            return CGSize(width: 0, height: CGSize(width: width, height: height).calcFlowHeight(in: (app.screenWidth - 2.5 * 3) / 2))
+            return CGSize(width: width, height: height).calcFlowHeight(in: (app.screenWidth - 2.5 * 3) / 2)
         }
-        return .zero
+        return 0
     }
     
 }
