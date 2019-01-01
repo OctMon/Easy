@@ -29,11 +29,11 @@ open class EasyListView: UIView {
     /// 忽略总页数判断
     public lazy var ignoreTotalPage: Bool = EasyGlobal.tableViewIgnoreTotalPage
     
-    public lazy var model: Any? = nil
-    
-    public lazy var list: [Any] = [Any]()
-    
     lazy var requestHandler: (() -> Void)? = { return nil }()
+    
+    open lazy var model: Any? = nil
+    
+    open lazy var list: [Any] = [Any]()
     
     open func configure() { }
     
