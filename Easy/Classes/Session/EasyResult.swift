@@ -358,9 +358,12 @@ public extension EasyListView {
         }
     }
     
-    func checkEmptyPlaceholder() {
+    func checkEmptyPlaceholder(scrollView: UIScrollView?) {
         guard list.count == 0 else {
             return
+        }
+        if scrollView?.mj_footer != nil {
+            scrollView?.mj_footer.isHidden = true
         }
         var image: UIImage? = EasyGlobal.placeholderEmptyImage
         var attributedString: NSAttributedString? = EasyGlobal.errorEmpty.getAttributedString
