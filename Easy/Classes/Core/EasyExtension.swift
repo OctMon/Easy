@@ -1834,6 +1834,7 @@ public extension UINavigationBar {
     @discardableResult
     func setShadowNull() -> UINavigationBar {
         shadowImage = UIImage()
+        setBackgroundImage(UIImage(), for: .default)
         isTranslucent = false
         return self
     }
@@ -1842,7 +1843,6 @@ public extension UINavigationBar {
     @discardableResult
     func setTranslucent() -> UINavigationBar {
         setShadowNull()
-        setBackgroundImage(UIImage(), for: .default)
         isTranslucent = true
         return self
     }
