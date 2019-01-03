@@ -77,7 +77,7 @@ open class EasyListView: UIView {
                     if indexPath.row < any.count {
                         return any[indexPath.row]
                     }
-                } else if rowsInSection > 0 {
+                } else if rowsInSection > 0 && numberOfSections == dataSource.count {
                     return dataSource[indexPath.section]
                 } else if indexPath.row < dataSource.count {
                     return dataSource[indexPath.row]
