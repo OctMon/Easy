@@ -25,6 +25,9 @@ public class EasyRefresh: MJRefreshComponent {
     }
     
     static func setFooter(_ footer: MJRefreshAutoNormalFooter) {
+        footer.height = EasyGlobal.footerRefreshHeight
+        footer.stateLabel.textColor = EasyGlobal.footerStateLabelTextColor
+        footer.stateLabel.font = EasyGlobal.footerStateLabelFont
         footer.setTitle(EasyGlobal.footerStateNoMoreData, for: MJRefreshState.noMoreData)
         footer.isRefreshingTitleHidden = true
         footer.isHidden = true

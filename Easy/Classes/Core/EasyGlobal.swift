@@ -50,6 +50,9 @@ public extension EasyGlobal {
     static var headerStateRefreshing = "正在刷新数据"
     
     static var footerStateNoMoreData = "已经全部加载"
+    static var footerStateLabelTextColor = UIColor.hex(0xCCCCCC)
+    static var footerStateLabelFont = UIFont.size12
+    static var footerRefreshHeight: CGFloat = 44
     
 }
 
