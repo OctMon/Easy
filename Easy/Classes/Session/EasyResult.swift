@@ -285,8 +285,12 @@ public extension EasyListView {
                     }
                 } else {
                     if scrollView.mj_footer != nil {
-                        scrollView.mj_footer.isHidden = false
-                        scrollView.mj_footer.endRefreshingWithNoMoreData()
+                        if self.list.count >= noMoreDataSize {
+                            scrollView.mj_footer.isHidden = false
+                            scrollView.mj_footer.endRefreshingWithNoMoreData()
+                        } else {
+                            scrollView.mj_footer.isHidden = true
+                        }
                     }
                 }
             }

@@ -12,22 +12,25 @@ open class EasyListView: UIView {
     deinit { EasyLog.debug(toDeinit) }
     
     /// 第一页
-    public lazy var firstPage: Int = EasyGlobal.tableViewFirstPage
+    public lazy var firstPage: Int = EasyGlobal.listViewFirstPage
     
     /// 当前页
-    public lazy var currentPage: Int = EasyGlobal.tableViewCurrentPage
+    public lazy var currentPage: Int = EasyGlobal.listViewCurrentPage
     
     /// 分页数量
-    public lazy var pageSize: Int = EasyGlobal.tableViewPageSize
+    public lazy var pageSize: Int = EasyGlobal.listViewPageSize
+    
+    /// 大于等于多少条数据提示没有更多的数据
+    public lazy var noMoreDataSize: Int = EasyGlobal.listViewNoMoreDataSize
     
     /// 下一页增量(跳过的页数)
-    public lazy var incrementPage: Int = EasyGlobal.tableViewIncrementPage
+    public lazy var incrementPage: Int = EasyGlobal.listViewIncrementPage
     
     /// 自动判断总页数
-    public lazy var autoTotalPage: Bool = EasyGlobal.tableViewAutoTotalPage
+    public lazy var autoTotalPage: Bool = EasyGlobal.listViewAutoTotalPage
     
     /// 忽略总页数判断
-    public lazy var ignoreTotalPage: Bool = EasyGlobal.tableViewIgnoreTotalPage
+    public lazy var ignoreTotalPage: Bool = EasyGlobal.listViewIgnoreTotalPage
     
     lazy var requestHandler: (() -> Void)? = { return nil }()
     

@@ -23,13 +23,14 @@ public extension EasyGlobal {
     
     static var navigationBarIsShadowNull = false
     
-    static var tableViewAutoTotalPage = true
-    static var tableViewIgnoreTotalPage = false
-    static var tableViewFirstPage = 1
-    static var tableViewCurrentPage = 1
-    static var tableViewPageSize = 10
-    static var tableViewIncrementPage = 1
-    static var tableViewStyle = UITableView.Style.plain
+    static var listViewAutoTotalPage = true
+    static var listViewIgnoreTotalPage = false
+    static var listViewFirstPage = 1
+    static var listViewCurrentPage = 1
+    static var listViewPageSize = 10
+    static var listViewNoMoreDataSize = listViewPageSize
+    static var listViewIncrementPage = 1
+    
 }
 
 public extension EasyGlobal {
