@@ -1684,6 +1684,14 @@ public extension UIViewController {
     }
 }
 
+public extension UIStackView {
+    
+    func addArrangedSubviews(_ views: [UIView?]) {
+        views.compactMap({ $0 }).forEach { addArrangedSubview($0) }
+    }
+    
+}
+
 public extension UIViewController {
     
     var navigationBottom: CGFloat { return EasyApp.statusBarHeight + (self.navigationController?.navigationBar.frame.height ?? 0) }
