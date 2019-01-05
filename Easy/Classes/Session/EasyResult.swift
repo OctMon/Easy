@@ -352,7 +352,6 @@ public extension EasyListView {
                             }
                         }
                     }
-                    hidePlaceholder()
                     showPlaceholder(attributedString: attributedString, image: image, backgroundColor: placeholderBackgroundColor, offset: placeholderOffset, isUserInteractionEnabled: placeholderIsUserInteractionEnabled, bringSubviews: placeholderBringSubviews, tap: { [weak self] in
                         self?.showLoading()
                         self?.requestHandler?()
