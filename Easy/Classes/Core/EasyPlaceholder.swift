@@ -84,7 +84,9 @@ public extension UIView {
     }
     
     func showPlaceholder(attributedString: NSAttributedString?, image: UIImage? = nil, backgroundColor: UIColor = UIColor.white, offset: CGFloat = 0, isUserInteractionEnabled: Bool = true, bringSubviews: [UIView]? = nil, buttonProvider: ((UIButton) -> UIButton?)? = nil, buttonTap: (() -> Void)? = nil, tap: (() -> Void)? = nil) {
-        guard easyPlaceholderView == nil else { return }
+        if easyPlaceholderView != nil {
+            hidePlaceholder()
+        }
         easyPlaceholderView = UIView()
         guard let placeholderView = easyPlaceholderView else { return }
         addSubview(placeholderView)
