@@ -131,7 +131,7 @@ class Main: easy.ViewController, easy.TableListProtocol {
             - 可以使用英语和粤语进行语音输入了
             - 可以直接浏览订阅号的消息
             - 可以把浏览的文章缩小为浮窗
-            """.getAttributedString(font: .size14, foregroundColor: .hex999999, lineSpacing: 8), buttonTitles: buttonTitles, buttonBackgroundImages: buttonBackgroundImages, tap: { offset in
+            """.getAttributedString(font: .size14, foregroundColor: .hex999999).append(lineSpacing: 8), buttonTitles: buttonTitles, buttonBackgroundImages: buttonBackgroundImages, tap: { offset in
                 if isForceUpdate || offset == 1 {
                     app.openAppStoreDetails(id: 414478124)
                     log.debug("Force update")
