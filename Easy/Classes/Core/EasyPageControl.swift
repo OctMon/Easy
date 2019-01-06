@@ -12,7 +12,7 @@ public extension Easy {
 }
 
 public class EasyPageControl: UIControl {
-
+    
     /// default is 0
     public var numberOfPages: Int = 0 {
         didSet {
@@ -28,14 +28,14 @@ public class EasyPageControl: UIControl {
     }
     
     /// default is white
-    public var pageIndicatorTintColor: UIColor = .white {
+    public var currentPageIndicatorTintColor: UIColor = .white {
         didSet {
             setTint()
         }
     }
     
     /// default is gray
-    public var currentPageIndicatorTintColor: UIColor = .gray {
+    public var pageIndicatorTintColor: UIColor = .gray {
         didSet {
             setTint()
         }
@@ -62,14 +62,14 @@ public class EasyPageControl: UIControl {
         }
     }
     
-    /// default is 8
-    public var pageIndicatorSize: CGSize = CGSize(width: 8, height: 8) {
+    /// default is 6
+    public var pageIndicatorSize: CGSize = CGSize(width: 6, height: 6) {
         didSet {
             update()
         }
     }
     
-    /// default is 8
+    /// default is nil
     public var currentPageIndicatorSize: CGSize? {
         didSet {
             update()
@@ -169,7 +169,7 @@ public class EasyPageControl: UIControl {
             return hitView
         }
     }
-
+    
 }
 
 public extension EasyPageControl {
