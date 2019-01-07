@@ -1685,6 +1685,33 @@ public extension UIStackView {
         views.compactMap({ $0 }).forEach { addArrangedSubview($0) }
     }
     
+    /// 自定义元素后面的边距
+    ///
+    /// - Parameters:
+    ///   - customSpacing: iOS11之前设置边距必须大于self.spacing，否则无效
+    ///   - arrangedSubview: 当前元素
+    func addCustomSpacing(_ customSpacing: CGFloat, after arrangedSubview: UIView) {
+        if #available(iOS 11.0, *) {
+            self.setCustomSpacing(customSpacing, after: arrangedSubview)
+        } else {
+            let constant = customSpacing - spacing * 2
+            if constant < 0 {
+                return
+            }
+            let separatorView = UIView()
+            separatorView.translatesAutoresizingMaskIntoConstraints = false
+            switch axis {
+            case .horizontal:
+                separatorView.widthAnchor.constraint(equalToConstant: constant).isActive = true
+            case .vertical:
+                separatorView.heightAnchor.constraint(equalToConstant: constant).isActive = true
+            }
+            if let index = self.arrangedSubviews.firstIndex(of: arrangedSubview) {
+                insertArrangedSubview(separatorView, at: index + 1)
+            }
+        }
+    }
+    
 }
 
 public extension UIViewController {
