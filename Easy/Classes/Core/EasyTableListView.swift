@@ -91,6 +91,9 @@ open class EasyTableListView: EasyListView {
     public lazy var tableView: UITableView = {
         return UITableView(frame: frame, style: tableViewStyle).then {
             $0.backgroundColor = EasyGlobal.tableViewBackground
+            $0.separatorStyle = EasyGlobal.tableViewSeparatorStyle
+            $0.separatorInset = EasyGlobal.tableViewSeparatorInset
+            $0.separatorColor = EasyGlobal.tableViewSeparatorColor
             $0.showsVerticalScrollIndicator = false
             $0.delegate = self
             $0.dataSource = self

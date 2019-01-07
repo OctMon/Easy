@@ -1559,7 +1559,7 @@ public extension UIView {
     
     private var separatorTag: Int { return 990909 }
     
-    private func addSeparator(isTopSeparator: Bool, color: UIColor = EasyGlobal.separator, lineHeight: CGFloat = 0.5, left: CGFloat = 0, right: CGFloat = 0) {
+    private func addSeparator(isTopSeparator: Bool, color: UIColor = EasyGlobal.tableViewSeparatorColor, lineHeight: CGFloat = 0.5, left: CGFloat = 0, right: CGFloat = 0) {
         removeSeparator()
         
         let separatorView = UIView()
@@ -1578,11 +1578,11 @@ public extension UIView {
         })
     }
     
-    func addSeparatorTop(color: UIColor = EasyGlobal.separator, lineHeight: CGFloat = 0.5, left: CGFloat = 0, right: CGFloat = 0) {
+    func addSeparatorTop(color: UIColor = EasyGlobal.tableViewSeparatorColor, lineHeight: CGFloat = 0.5, left: CGFloat = 0, right: CGFloat = 0) {
         addSeparator(isTopSeparator: true, color: color, lineHeight: lineHeight, left: left, right: right)
     }
     
-    func addSeparatorBottom(color: UIColor = EasyGlobal.separator, lineHeight: CGFloat = 0.5, left: CGFloat = 0, right: CGFloat = 0) {
+    func addSeparatorBottom(color: UIColor = EasyGlobal.tableViewSeparatorColor, lineHeight: CGFloat = 0.5, left: CGFloat = 0, right: CGFloat = 0) {
         addSeparator(isTopSeparator: false, color: color, lineHeight: lineHeight, left: left, right: right)
     }
     

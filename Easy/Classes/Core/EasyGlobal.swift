@@ -37,9 +37,12 @@ public extension EasyGlobal {
     
     static var tint = UIColor.hex(0x8E2323)
     static var background = UIColor.white
-    static var separator = UIColor.hex(0xEBEBEB)
     
     static var tableViewBackground = UIColor.groupTableViewBackground
+    static var tableViewSeparatorStyle: UITableViewCell.SeparatorStyle = .singleLine
+    static var tableViewSeparatorInset: UIEdgeInsets = .zero
+    static var tableViewSeparatorColor: UIColor = .hex(0xD7D7D7)
+    
     static var collectionViewBackground = UIColor.white
 
 }
