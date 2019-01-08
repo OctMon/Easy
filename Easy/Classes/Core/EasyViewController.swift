@@ -34,6 +34,8 @@ open class EasyViewController: UIViewController {
             navigationBar?.setShadowNull()
         }
         
+        setBackIndicator(EasyGlobal.backBarButtonItemImage)
+        
         configure()
     }
     

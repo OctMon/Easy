@@ -14,6 +14,7 @@ extension AppDelegate {
         app.openFullScreenPopGesture()
         easy.WebImage.isPrintWebImageUrl = true
         global.backBarButtonItemTitle = ""
+        global.backBarButtonItemImage = #imageLiteral(resourceName: "icon_currentPageIndicatorImage")
         global.navigationBarBackgroundImage = UIColor.white.toImage
         global.navigationBarIsShadowNull = true
         global.navigationBarTintColor = UIColor.black

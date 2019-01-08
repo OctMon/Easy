@@ -43,6 +43,8 @@ open class EasyPage: WMPageController {
             navigationBar?.setShadowNull()
         }
         
+        setBackIndicator(EasyGlobal.backBarButtonItemImage)
+        
         menuViewStyle = .line
         progressColor = EasyGlobal.tint
         

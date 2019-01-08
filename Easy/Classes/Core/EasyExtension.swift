@@ -1891,3 +1891,13 @@ public extension UINavigationBar {
     }
     
 }
+
+public extension UIViewController {
+    
+    func setBackIndicator(_ image: UIImage?) {
+        navigationBar?.backIndicatorImage = image
+        navigationBar?.backIndicatorTransitionMaskImage = image
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: EasyGlobal.backBarButtonItemTitle, style: .plain, target: nil, action: nil)
+    }
+    
+}

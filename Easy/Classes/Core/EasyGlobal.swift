@@ -16,6 +16,7 @@ public struct EasyGlobal { }
 public extension EasyGlobal {
     
     static var backBarButtonItemTitle: String?
+    static var backBarButtonItemImage: UIImage?
     
     static var navigationBarTintColor: UIColor?
     static var navigationBarBackgroundImage: UIImage?
