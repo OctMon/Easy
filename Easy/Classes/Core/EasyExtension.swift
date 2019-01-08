@@ -1102,12 +1102,20 @@ public extension UITableView {
     }
     
     func setHeaderHeight(_ height: CGFloat) {
+        if height == 0 {
+            setHeaderZero()
+            return
+        }
         let view = UIView()
         view.frame.size.height = height
         tableHeaderView = view
     }
     
     func setFooterHeight(_ height: CGFloat) {
+        if height == 0 {
+            setFooterZero()
+            return
+        }
         let view = UIView()
         view.frame.size.height = height
         tableFooterView = view

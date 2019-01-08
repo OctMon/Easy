@@ -24,6 +24,23 @@ open class EasyPage: WMPageController {
     public var menuItemTtleColorForNormal = UIColor.hex333333
     public var menuItemTtleColorForSelected = EasyGlobal.tint
     
+    public var menuViewBottomSpace: CGFloat = 0 {
+        willSet {
+            lineView.snp.remakeConstraints { (make) in
+                make.top.equalTo(menuViewFrame.maxY)
+                make.left.right.equalToSuperview()
+                make.height.equalTo(newValue)
+            }
+        }
+    }
+    public var menuViewBottomColor: UIColor = EasyGlobal.tableViewBackground {
+        willSet {
+            lineView.backgroundColor = newValue
+        }
+    }
+    
+    private let lineView = UIView()
+    
     open override var preferredStatusBarStyle: UIStatusBarStyle {
         return .default
     }
@@ -47,6 +64,8 @@ open class EasyPage: WMPageController {
         
         menuViewStyle = .line
         progressColor = EasyGlobal.tint
+        
+        view.addSubview(lineView)
         
         configure()
     }
