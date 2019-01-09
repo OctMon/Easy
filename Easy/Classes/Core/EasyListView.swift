@@ -90,3 +90,12 @@ open class EasyListView: UIView {
     }
     
 }
+
+public extension EasyListView {
+    
+    func requestFirst() {
+        currentPage = firstPage
+        requestHandler?()
+    }
+    
+}
