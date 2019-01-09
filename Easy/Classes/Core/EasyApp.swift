@@ -351,7 +351,7 @@ public extension EasyApp {
 
 public extension EasyApp {
     
-    static func showUpdateAlert(image: UIImage? = nil, title: NSAttributedString, message: NSAttributedString, buttonTitles: [NSAttributedString?], buttonBackgroundImages: [UIImage?], backgroundCornerRadius: CGFloat = 5, tap: @escaping (Int) -> Void) {
+    static func showAlert(image: UIImage? = nil, title: NSAttributedString?, message: NSAttributedString, buttonTitles: [NSAttributedString?], buttonBackgroundImages: [UIImage?], backgroundCornerRadius: CGFloat = 5, tap: @escaping (Int) -> Void) {
         let backgroundView = UIView()
         let popupView = EasyPopupView(backgroundView, transition: .fade).then {
             $0.dismissOnBlackOverlayTap = false
@@ -390,20 +390,25 @@ public extension EasyApp {
                 } else {
                     make.top.equalTo(15)
                 }
+                if message == nil {
+                    make.bottom.equalTo(-70)
+                }
                 make.left.equalTo(15)
                 make.right.equalTo(-15)
             })
-            let messageLabel = UILabel().then {
-                $0.attributedText = message
-                $0.numberOfLines = 0
+            if message != nil {
+                let messageLabel = UILabel().then {
+                    $0.attributedText = message
+                    $0.numberOfLines = 0
+                }
+                alertView.addSubview(messageLabel)
+                messageLabel.snp.makeConstraints({ (make) in
+                    make.top.equalTo(titleLabel.snp.bottom).offset(22)
+                    make.bottom.equalTo(-70)
+                    make.left.equalTo(22)
+                    make.right.equalTo(-22)
+                })
             }
-            alertView.addSubview(messageLabel)
-            messageLabel.snp.makeConstraints({ (make) in
-                make.top.equalTo(titleLabel.snp.bottom).offset(22)
-                make.bottom.equalTo(-70)
-                make.left.equalTo(22)
-                make.right.equalTo(-22)
-            })
         }
         backgroundView.snp.makeConstraints { (make) in
             make.left.equalTo(40)
