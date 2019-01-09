@@ -13,7 +13,7 @@ import MBProgressHUD
 
 public extension UIView {
     
-    func showLoading(_ text: String? = nil) {
+    func showLoading(_ text: String? = EasyGlobal.loadingText) {
         #if canImport(MBProgressHUD)
         endEditing(true)
         show(mode: .indeterminate, text: text)

@@ -20,6 +20,7 @@ extension AppDelegate {
         global.navigationBarTintColor = UIColor.black
         global.navigationBarTitleTextAttributes = [.foregroundColor: UIColor.black]
         global.tint = .hex(0xFF0000)
+        global.loadingText = "EasyGlobal.loadingText"
     }
     
 }

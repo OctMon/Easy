@@ -68,3 +68,9 @@ public extension EasyGlobal {
     static var errorToken = "token过期"
     static var errorVersion = "版本错误"
 }
+
+public extension EasyGlobal {
+    
+    static var loadingText: String? = nil
+    
+}
