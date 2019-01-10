@@ -4,7 +4,7 @@ use_frameworks!
 def appstore_pods
     pod 'Easy', :path => '../'
     pod 'Easy/Common', :path => '../'
-    pod 'Easy/Page', :path => '../'
+    pod 'Easy/PageController', :path => '../'
     pod 'Easy/RSA', :path => '../'
     pod 'Easy/Social', :path => '../'
     pod 'Easy/Scan', :path => '../'

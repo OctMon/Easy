@@ -68,8 +68,8 @@ Pod::Spec.new do |s|
         ss.dependency 'Easy/Core'
     end
     
-    s.subspec 'Page' do |ss|
-        ss.source_files = 'Easy/Classes/Page/*'
+    s.subspec 'PageController' do |ss|
+        ss.source_files = 'Easy/Classes/PageController/*'
         ss.dependency 'Easy/Core'
         ss.dependency 'WMPageController', '~> 2.5.2' # https://github.com/wangmchn/WMPageController
     end

@@ -1,6 +1,6 @@
 {
   "name": "Easy",
-  "version": "2.1",
+  "version": "2.2",
   "summary": "develop Swift with Easy",
   "description": "Reduce development time and increase development efficiency",
   "homepage": "https://github.com/OctMon/Easy",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/OctMon/Easy.git",
-    "tag": "2.1"
+    "tag": "2.2"
   },
   "platforms": {
     "ios": "9.0"
@@ -114,8 +114,8 @@
       }
     },
     {
-      "name": "Page",
-      "source_files": "Easy/Classes/Page/*",
+      "name": "PageController",
+      "source_files": "Easy/Classes/PageController/*",
       "dependencies": {
         "Easy/Core": [
 

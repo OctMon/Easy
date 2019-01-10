@@ -8,12 +8,12 @@
 
 import UIKit
 
-class PageViewController: easy.Page {
+class PageViewController: easy.PageController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.title = "EasyPage"
+        navigationItem.title = "EasyPageController"
     }
     
     override func configure() {

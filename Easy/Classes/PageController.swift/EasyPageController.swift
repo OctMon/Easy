@@ -1,5 +1,5 @@
 //
-//  EasyPage.swift
+//  EasyPageController.swift
 //  Easy
 //
 //  Created by OctMon on 2018/10/30.
@@ -9,10 +9,10 @@ import UIKit
 import WMPageController
 
 public extension Easy {
-    typealias Page = EasyPage
+    typealias PageController = EasyPageController
 }
 
-open class EasyPage: WMPageController {
+open class EasyPageController: WMPageController {
     
     deinit { EasyLog.debug(toDeinit) }
     
@@ -76,7 +76,7 @@ open class EasyPage: WMPageController {
     
 }
 
-public extension EasyPage {
+public extension EasyPageController {
     
     func setPage(menuViewStyle: WMMenuViewStyle = .line, titles: [String], viewControllerHandler: @escaping (Int) -> UIViewController) {
         self.menuViewStyle = menuViewStyle
@@ -87,7 +87,7 @@ public extension EasyPage {
     
 }
 
-extension EasyPage {
+extension EasyPageController {
     
     open override func numbersOfChildControllers(in pageController: WMPageController) -> Int {
         return titles?.count ?? 0
@@ -101,7 +101,7 @@ extension EasyPage {
         if let contentViewFrame = contentViewFrame {
             return contentViewFrame
         }
-        return CGRect(x: 0, y: menuViewFrame.origin.y + menuViewFrame.height, width: .screenWidth, height: .screenHeight - navigationBottom - menuViewFrame.origin.y - menuViewFrame.height)
+        return CGRect(x: 0, y: menuViewFrame.origin.y + menuViewFrame.height + menuViewBottomSpace, width: .screenWidth, height: .screenHeight - navigationBottom - menuViewFrame.origin.y - menuViewFrame.height - menuViewBottomSpace)
     }
     
     open override func pageController(_ pageController: WMPageController, viewControllerAt index: Int) -> UIViewController {
