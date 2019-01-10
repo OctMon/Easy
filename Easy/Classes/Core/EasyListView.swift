@@ -32,11 +32,13 @@ open class EasyListView: UIView {
     /// 忽略总页数判断
     public lazy var ignoreTotalPage: Bool = EasyGlobal.listViewIgnoreTotalPage
     
-    lazy var requestHandler: (() -> Void)? = { return nil }()
+    public var recoverPlaceholderBackgroundColor: UIColor = EasyGlobal.tableViewBackground
     
     open lazy var model: Any? = nil
     
     open lazy var list: [Any] = [Any]()
+    
+    lazy var requestHandler: (() -> Void)? = { return nil }()
     
     open func configure() { }
     
@@ -53,8 +55,8 @@ open class EasyListView: UIView {
     }
     
     public var placeholders: [EasyPlaceholder]?
-    public var placeholderBackgroundColor: UIColor = UIColor.white, placeholderOffset: CGFloat = 0, placeholderBringSubviews: [UIView]? = nil
-    public var placeholderIsUserInteractionEnabled: Bool = false
+    public var placeholderBackgroundColor: UIColor = EasyGlobal.placeholderBackgroundColor, placeholderOffset: CGFloat = 0, placeholderBringSubviews: [UIView]? = nil
+    public var placeholderIsUserInteractionEnabled: Bool = EasyGlobal.placeholderIsUserInteractionEnabled
     
     func getAny<T>(_ dataSource: [Any], indexPath: IndexPath, numberOfSections: Int, numberOfRowsInSectionHandler: ((T, Int) -> Int)?) -> Any? {
         if let model = model {

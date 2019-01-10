@@ -17,7 +17,7 @@ public extension EasyGlobal {
     static var placeholderEmptyImage: UIImage?
     static var placeholderServerImage: UIImage?
     
-    static var placeholderIsUserInteractionEnabled: Bool = true
+    static var placeholderIsUserInteractionEnabled: Bool = false
     static var placeholderBackgroundColor: UIColor = .white
     
     static var placeholderImageContentMode: UIView.ContentMode = .scaleToFill
@@ -99,7 +99,6 @@ public extension UIView {
         placeholderView.snp.makeConstraints { (make) in
             make.edges.equalTo(self)
         }
-        placeholderView.backgroundColor = backgroundColor
         placeholderView.tap { (_) in
             tap?()
         }
@@ -164,9 +163,7 @@ public extension UIView {
     
     func showPlaceholder(error: Error?, image: UIImage?, tap: (() -> Void)?) {
         guard let error = error else { return }
-        showPlaceholder(attributedString: error.localizedDescription.getAttributedString, image: image, backgroundColor: UIColor.white, offset: 0, bringSubviews: nil, buttonProvider: { (_) -> UIButton? in
-            return nil
-        }, buttonTap: nil, tap: tap)
+        showPlaceholder(attributedString: error.localizedDescription.getAttributedString, image: image, tap: tap)
     }
     
 }

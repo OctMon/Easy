@@ -267,6 +267,7 @@ public extension EasyListView {
             isValid = dataResponse.valid
         }
         if isValid || valid == .none {
+            scrollView.backgroundColor = recoverPlaceholderBackgroundColor
             hidePlaceholder()
             if let model = dataResponse.model {
                 self.model = model
@@ -352,7 +353,8 @@ public extension EasyListView {
                             }
                         }
                     }
-                    showPlaceholder(attributedString: attributedString, image: image, backgroundColor: placeholderBackgroundColor, offset: placeholderOffset, isUserInteractionEnabled: placeholderIsUserInteractionEnabled, bringSubviews: placeholderBringSubviews, tap: { [weak self] in
+                    scrollView.backgroundColor = EasyGlobal.placeholderBackgroundColor
+                    showPlaceholder(attributedString: attributedString, image: image, backgroundColor: .clear, offset: placeholderOffset, isUserInteractionEnabled: placeholderIsUserInteractionEnabled, bringSubviews: placeholderBringSubviews, tap: { [weak self] in
                         self?.showLoading()
                         self?.requestHandler?()
                     })
@@ -381,7 +383,8 @@ public extension EasyListView {
                 }
             }
         }
-        showPlaceholder(attributedString: attributedString, image: image, backgroundColor: placeholderBackgroundColor, offset: placeholderOffset, isUserInteractionEnabled: placeholderIsUserInteractionEnabled, bringSubviews: placeholderBringSubviews, tap: { [weak self] in
+        scrollView?.backgroundColor = EasyGlobal.placeholderBackgroundColor
+        showPlaceholder(attributedString: attributedString, image: image, backgroundColor: .clear, offset: placeholderOffset, isUserInteractionEnabled: placeholderIsUserInteractionEnabled, bringSubviews: placeholderBringSubviews, tap: { [weak self] in
             self?.showLoading()
             self?.requestHandler?()
         })
