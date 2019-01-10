@@ -267,7 +267,7 @@ public extension EasyListView {
             isValid = dataResponse.valid
         }
         if isValid || valid == .none {
-            scrollView.backgroundColor = recoverPlaceholderBackgroundColor
+            recoverBackgroundColor(scrollView)
             hidePlaceholder()
             if let model = dataResponse.model {
                 self.model = model
@@ -361,6 +361,14 @@ public extension EasyListView {
                 }
                 
             }
+        }
+    }
+    
+    func recoverBackgroundColor(_ scrollView: UIScrollView?) {
+        if let tableView = scrollView as? UITableView {
+            tableView.backgroundColor = tableViewBackgroundColor
+        } else if let collectionView = scrollView as? UICollectionView {
+            collectionView.backgroundColor = collectionViewBackgroundColor
         }
     }
     

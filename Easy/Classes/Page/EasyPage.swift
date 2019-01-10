@@ -33,7 +33,7 @@ open class EasyPage: WMPageController {
             }
         }
     }
-    public var menuViewBottomColor: UIColor = EasyGlobal.tableViewBackground {
+    public var menuViewBottomColor: UIColor = EasyGlobal.tableViewBackgroundColor {
         willSet {
             lineView.backgroundColor = newValue
         }
@@ -73,7 +73,7 @@ open class EasyPage: WMPageController {
     open func configure() { }
     
     open func request() { }
-
+    
 }
 
 public extension EasyPage {
@@ -84,7 +84,7 @@ public extension EasyPage {
         self.viewControllerHandler = viewControllerHandler
         reloadData()
     }
-
+    
 }
 
 extension EasyPage {

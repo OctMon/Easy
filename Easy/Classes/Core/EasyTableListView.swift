@@ -90,7 +90,7 @@ open class EasyTableListView: EasyListView {
     
     public lazy var tableView: UITableView = {
         return UITableView(frame: frame, style: tableViewStyle).then {
-            $0.backgroundColor = EasyGlobal.tableViewBackground
+            $0.backgroundColor = tableViewBackgroundColor
             $0.separatorStyle = EasyGlobal.tableViewSeparatorStyle
             $0.separatorInset = EasyGlobal.tableViewSeparatorInset
             $0.separatorColor = EasyGlobal.tableViewSeparatorColor
@@ -102,6 +102,12 @@ open class EasyTableListView: EasyListView {
             $0.sectionFooterHeight = 5
         }
     }()
+    
+    public override var tableViewBackgroundColor: UIColor {
+        willSet {
+            tableView.backgroundColor = newValue
+        }
+    }
     
 }
 

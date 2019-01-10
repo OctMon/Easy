@@ -32,7 +32,8 @@ open class EasyListView: UIView {
     /// 忽略总页数判断
     public lazy var ignoreTotalPage: Bool = EasyGlobal.listViewIgnoreTotalPage
     
-    public var recoverPlaceholderBackgroundColor: UIColor = EasyGlobal.tableViewBackground
+    public var tableViewBackgroundColor: UIColor = EasyGlobal.tableViewBackgroundColor
+    public var collectionViewBackgroundColor: UIColor = EasyGlobal.collectionViewBackgroundColor
     
     open lazy var model: Any? = nil
     

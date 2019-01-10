@@ -110,13 +110,19 @@ open class EasyCollectionListView: EasyListView {
     
     public lazy var collectionView: UICollectionView = {
         return UICollectionView(frame: CGRect.zero, collectionViewLayout: flowLayout).then {
-            $0.backgroundColor = EasyGlobal.collectionViewBackground
+            $0.backgroundColor = collectionViewBackgroundColor
             $0.showsVerticalScrollIndicator = false
             $0.showsHorizontalScrollIndicator = false
             $0.dataSource = self
             $0.delegate = self
         }
     }()
+    
+    public override var collectionViewBackgroundColor: UIColor {
+        willSet {
+            collectionView.backgroundColor = newValue
+        }
+    }
     
 }
 
