@@ -17,6 +17,9 @@ public extension EasyGlobal {
     static var placeholderEmptyImage: UIImage?
     static var placeholderServerImage: UIImage?
     
+    static var placeholderIsUserInteractionEnabled: Bool = true
+    static var placeholderBackgroundColor: UIColor = .white
+    
     static var placeholderImageOffset: CGFloat = 0
     static var placeholderLabelOffset: CGFloat = 0
     static var placeholderButtonOffset: CGFloat = 0
@@ -53,7 +56,7 @@ public extension EasyPlaceholder {
     public enum Style {
         case empty, server
     }
-
+    
     static func emptyGlobal(title: NSAttributedString?) -> EasyPlaceholder {
         return empty(title: title, image: EasyGlobal.placeholderEmptyImage)
     }
@@ -63,7 +66,7 @@ public extension EasyPlaceholder {
     static func empty(title: NSAttributedString?, image: UIImage?) -> EasyPlaceholder {
         return EasyPlaceholder(style: .empty, title: title, image: image)
     }
-
+    
     static func serverGlobal(title: NSAttributedString?) -> EasyPlaceholder {
         return server(title: title, image: EasyGlobal.placeholderServerImage)
     }
@@ -73,7 +76,7 @@ public extension EasyPlaceholder {
     static func server(title: NSAttributedString?, image: UIImage?) -> EasyPlaceholder {
         return EasyPlaceholder(style: .server, title: title, image: image)
     }
-
+    
 }
 
 public extension UIView {
@@ -83,7 +86,7 @@ public extension UIView {
         set { objc_setAssociatedObject(self, &_easyPlaceholderView, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC) }
     }
     
-    func showPlaceholder(attributedString: NSAttributedString?, image: UIImage? = nil, backgroundColor: UIColor = UIColor.white, offset: CGFloat = 0, isUserInteractionEnabled: Bool = true, bringSubviews: [UIView]? = nil, buttonProvider: ((UIButton) -> UIButton?)? = nil, buttonTap: (() -> Void)? = nil, tap: (() -> Void)? = nil) {
+    func showPlaceholder(attributedString: NSAttributedString?, image: UIImage? = nil, backgroundColor: UIColor = EasyGlobal.placeholderBackgroundColor, offset: CGFloat = 0, isUserInteractionEnabled: Bool = EasyGlobal.placeholderIsUserInteractionEnabled, bringSubviews: [UIView]? = nil, buttonProvider: ((UIButton) -> UIButton?)? = nil, buttonTap: (() -> Void)? = nil, tap: (() -> Void)? = nil) {
         if easyPlaceholderView != nil {
             hidePlaceholder()
         }
@@ -97,13 +100,8 @@ public extension UIView {
         placeholderView.tap { (_) in
             tap?()
         }
-        if isUserInteractionEnabled {
-            placeholderView.isUserInteractionEnabled = true
-            placeholderView.backgroundColor = backgroundColor
-        } else {
-            placeholderView.isUserInteractionEnabled = false
-            placeholderView.backgroundColor = UIColor.clear
-        }
+        placeholderView.isUserInteractionEnabled = isUserInteractionEnabled
+        placeholderView.backgroundColor = backgroundColor
         
         let height: CGFloat = 64
         
