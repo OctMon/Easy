@@ -20,9 +20,12 @@ public extension EasyGlobal {
     static var placeholderIsUserInteractionEnabled: Bool = true
     static var placeholderBackgroundColor: UIColor = .white
     
-    static var placeholderImageOffset: CGFloat = 0
-    static var placeholderLabelOffset: CGFloat = 0
-    static var placeholderButtonOffset: CGFloat = 0
+    static var placeholderImageContentMode: UIView.ContentMode = .scaleToFill
+    static var placeholderImageVericalMargin: CGFloat = 0
+    static var placeholderImageHorizontalMargin: CGFloat? = nil
+    static var placeholderLabelVerticalMargin: CGFloat = 0
+    static var placeholderLabelHorizontalMargin: CGFloat = 30
+    static var placeholderButtonHorizontalMargin: CGFloat = 0
     
     static var placeholderLabelFont: UIFont = .size15
     static var placeholderLabelColor: UIColor = .hex999999
@@ -112,24 +115,29 @@ public extension UIView {
         label.font = EasyGlobal.placeholderLabelFont
         label.attributedText = attributedString
         
-        let imageView = UIImageView(image: image)
+        let imageView = UIImageView(image: image).then {
+            $0.contentMode = EasyGlobal.placeholderImageContentMode
+        }
         placeholderView.addSubview(imageView)
         placeholderView.addSubview(label)
         label.snp.makeConstraints { (make) in
-            make.width.equalToSuperview().offset(-30)
+            make.width.equalToSuperview().offset(-EasyGlobal.placeholderLabelHorizontalMargin)
             make.height.lessThanOrEqualTo(height)
             make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview().offset(EasyGlobal.placeholderLabelOffset + offset + height)
+            make.centerY.equalToSuperview().offset(EasyGlobal.placeholderLabelVerticalMargin + offset + height)
         }
         imageView.snp.makeConstraints { (make) in
+            if let placeholderImageHorizontalMargin = EasyGlobal.placeholderImageHorizontalMargin {
+                make.width.equalToSuperview().offset(-placeholderImageHorizontalMargin)
+            }
             make.centerX.equalToSuperview()
-            make.bottom.equalTo(label.snp.top).offset(EasyGlobal.placeholderImageOffset)
+            make.bottom.equalTo(label.snp.top).offset(EasyGlobal.placeholderImageVericalMargin)
         }
         
         var button = UIButton(type: .system )
         addSubview(button)
         button.snp.makeConstraints { (make) in
-            make.top.equalTo(label.snp.bottom).offset(EasyGlobal.placeholderButtonOffset)
+            make.top.equalTo(label.snp.bottom).offset(EasyGlobal.placeholderButtonHorizontalMargin)
             make.centerX.equalToSuperview()
         }
         button.tap { (_) in
