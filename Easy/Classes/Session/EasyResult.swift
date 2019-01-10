@@ -227,7 +227,7 @@ import MJRefresh
 public extension EasyListView {
     
     enum Valid {
-        case list, model, `default`
+        case list, model, `default`, none
     }
     
     fileprivate func addRefresh(_ scrollView: UIScrollView, isAddHeader: Bool, isAddFooter: Bool, requestHandler: @escaping (() -> Void)) {
@@ -266,7 +266,7 @@ public extension EasyListView {
         } else {
             isValid = dataResponse.valid
         }
-        if isValid {
+        if isValid || valid == .none {
             hidePlaceholder()
             if let model = dataResponse.model {
                 self.model = model
