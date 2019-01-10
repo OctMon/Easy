@@ -20,7 +20,7 @@ public extension EasyGlobal {
     static var placeholderIsUserInteractionEnabled: Bool = false
     static var placeholderBackgroundColor: UIColor = .white
     
-    static var placeholderImageContentMode: UIView.ContentMode = .scaleToFill
+    static var placeholderImageContentMode: UIView.ContentMode = .scaleAspectFit
     static var placeholderImageVericalMargin: CGFloat = 0
     static var placeholderImageHorizontalMargin: CGFloat? = nil
     static var placeholderLabelVerticalMargin: CGFloat = 0
@@ -120,14 +120,14 @@ public extension UIView {
         placeholderView.addSubview(imageView)
         placeholderView.addSubview(label)
         label.snp.makeConstraints { (make) in
-            make.width.equalToSuperview().offset(-EasyGlobal.placeholderLabelHorizontalMargin)
+            make.width.equalToSuperview().offset(-EasyGlobal.placeholderLabelHorizontalMargin * 2)
             make.height.lessThanOrEqualTo(height)
             make.centerX.equalToSuperview()
             make.centerY.equalToSuperview().offset(EasyGlobal.placeholderLabelVerticalMargin + offset + height)
         }
         imageView.snp.makeConstraints { (make) in
             if let placeholderImageHorizontalMargin = EasyGlobal.placeholderImageHorizontalMargin {
-                make.width.equalToSuperview().offset(-placeholderImageHorizontalMargin)
+                make.width.lessThanOrEqualToSuperview().offset(-placeholderImageHorizontalMargin * 2)
             }
             make.centerX.equalToSuperview()
             make.bottom.equalTo(label.snp.top).offset(EasyGlobal.placeholderImageVericalMargin)
