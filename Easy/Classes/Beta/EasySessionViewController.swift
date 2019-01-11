@@ -44,22 +44,22 @@ class EasySessionViewController: EasyViewController, EasyTableListProtocol {
             $0.numberOfLines = 0
             $0.font = .size14
             $0.textAlignment = .center
-            $0.textColor = UIColor.white
+            $0.textColor = .white
             $0.text = text
-            $0.backgroundColor = UIColor.lightGray
+            $0.backgroundColor = .lightGray
         }
         
         tableListView.register(String.self, cellClass: UITableViewCell.self, configureCell: { [weak self] (_, cell, _, any) in
             cell.textLabel?.numberOfLines = 0
             cell.textLabel?.textAlignment = .center
             if current == any {
-                cell.backgroundColor = UIColor.gray
-                cell.textLabel?.textColor = UIColor.white
+                cell.backgroundColor = .gray
+                cell.textLabel?.textColor = .white
                 cell.selectionStyle = .none
                 cell.accessoryType = .none
             } else {
-                cell.backgroundColor = UIColor.white
-                cell.textLabel?.textColor = UIColor.black
+                cell.backgroundColor = .white
+                cell.textLabel?.textColor = .black
                 cell.selectionStyle = .default
                 cell.accessoryType = .disclosureIndicator
             }

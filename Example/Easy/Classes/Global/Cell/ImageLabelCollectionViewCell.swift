@@ -16,9 +16,9 @@ class ImageLabelCollectionViewCell: UICollectionViewCell {
     }
     
     let label = UILabel().then {
-        $0.textColor = UIColor.red
+        $0.textColor = .red
         $0.textAlignment = .center
-        $0.backgroundColor = UIColor.black
+        $0.backgroundColor = .black
         $0.alpha = 0.5
         $0.numberOfLines = 0
     }

@@ -34,7 +34,7 @@ public struct EasyCheck {
             let ignoreBuild = UserDefaults.standard.integer(forKey: ignoreBuildKey)
             guard buildBundle != ignoreBuild else { return }
             
-            var buttonTitles = ["立即升级".getAttributedString(font: .size15, foregroundColor: UIColor.white)]
+            var buttonTitles = ["立即升级".getAttributedString(font: .size15, foregroundColor: .white)]
             var buttonBackgroundImages = [EasyGlobal.tint.toImage]
             buttonTitles.insert("以后再说".getAttributedString(font: .size15, foregroundColor: .hex666666), at: 0)
             buttonBackgroundImages.insert(UIColor.white.toImage, at: 0)

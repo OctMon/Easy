@@ -21,7 +21,7 @@ public class EasyPopupMenu: UIView {
         tableView.showsVerticalScrollIndicator = false
         tableView.bounces = false
         tableView.separatorInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
-        tableView.backgroundColor = UIColor.clear
+        tableView.backgroundColor = .clear
         var header = UIView()
         header.frame.size.height = 6.5
         tableView.tableHeaderView = header
@@ -40,7 +40,7 @@ public class EasyPopupMenu: UIView {
     
     public convenience init() {
         self.init(frame: EasyApp.screenBounds)
-        backgroundColor = UIColor.clear
+        backgroundColor = .clear
         
         let tapGestureRecognizer = UITapGestureRecognizer()
         tapGestureRecognizer.delegate = self
@@ -121,7 +121,7 @@ private class EasyPopupMenuCell: UITableViewCell {
         let label = UILabel()
         addSubview(label)
         
-        label.textColor = UIColor.white
+        label.textColor = .white
         label.font = .size13
         label.textAlignment = .center
         
@@ -136,7 +136,7 @@ private class EasyPopupMenuCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        backgroundColor = UIColor.clear
+        backgroundColor = .clear
         selectionStyle = .none
     }
     

@@ -29,7 +29,7 @@ class ScanViewController: easy.ViewController {
         UILabel().do {
             expansionView.addSubview($0)
             $0.text = "请放入框内扫描"
-            $0.textColor = UIColor.white
+            $0.textColor = .white
             $0.snp.makeConstraints { (make) in
                 make.centerX.equalToSuperview()
                 make.top.equalTo(y - 50)
@@ -40,7 +40,7 @@ class ScanViewController: easy.ViewController {
             return expansionView
         }).then {
             $0.cornerRadius = 5
-            $0.strokeColor = UIColor.random
+            $0.strokeColor = .random
             $0.didOutput(metadataObjectsHandler: { [weak self] (metadataObjects) in
                 self?.scanView.stopRunning()
                 let result = metadataObjects.map { $0.type.rawValue + "\n->\n" + ($0.stringValue ?? "") }

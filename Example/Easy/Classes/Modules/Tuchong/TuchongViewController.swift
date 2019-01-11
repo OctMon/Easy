@@ -92,7 +92,7 @@ extension TuchongViewController {
             }) { (_, indexPath, any) in
                 let photoView = UIView(frame: app.screenBounds).then {
                     let imageView = UIImageView(frame: app.screenBounds).then {
-                        $0.backgroundColor = UIColor.black
+                        $0.backgroundColor = .black
                         $0.contentMode = .scaleAspectFit
                         $0.setFadeImage(url: any.images?[indexPath.row].imageURL ?? "", placeholderImage: nil)
                     }
@@ -100,7 +100,7 @@ extension TuchongViewController {
                     let button = UIButton(frame: CGRect(x: app.screenWidth - 80 - 30, y: app.screenHeight - app.safeBottomEdge - 50, width: 80, height: 44)).then {
                         $0.setTitle("保存", for: .normal)
                         $0.setBackgroundImage(easy.Global.tint.toImage, cornerRadius: 5)
-                        $0.setTitleColor(UIColor.white, for: .normal)
+                        $0.setTitleColor(.white, for: .normal)
                         $0.alpha = 0.5
                     }
                     $0.addSubview(button)
@@ -128,13 +128,13 @@ extension TuchongViewController {
         func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
             if kind == UICollectionView.elementKindSectionHeader {
                 let view = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, for: indexPath, viewType: TuchongReusableView.self)
-                view.backgroundColor = UIColor.gray
+                view.backgroundColor = .gray
                 view.alpha = 0.5
                 view.label.text = (list(Tuchong.self))?[indexPath.section].tags?.joined(separator: ",")
                 return view
             } else {
                 let view = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionFooter, for: indexPath, viewType: TuchongReusableView.self)
-                view.backgroundColor = UIColor.lightGray
+                view.backgroundColor = .lightGray
                 view.alpha = 0.5
                 view.label.text = (list(Tuchong.self))?[indexPath.section].excerpt
                 return view
@@ -154,7 +154,7 @@ extension TuchongViewController {
     class TuchongReusableView: UICollectionReusableView {
         
         let label = UILabel().then {
-            $0.textColor = UIColor.red
+            $0.textColor = .red
             $0.textAlignment = .center
             $0.numberOfLines = 0
             $0.adjustsFontSizeToFitWidth = true

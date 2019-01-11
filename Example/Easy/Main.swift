@@ -73,7 +73,7 @@ class Main: easy.ViewController, easy.TableListProtocol {
         super.configure()
         
         textView.placeholder = app.bundleName
-        textView.placeholderColor = UIColor.random
+        textView.placeholderColor = .random
         
         addTableListView(in: view, style: .grouped)
         
@@ -116,7 +116,7 @@ class Main: easy.ViewController, easy.TableListProtocol {
     @objc private func showCheckAlert() {
         let isForceUpdate = Int.random(in: 0...1) == 0
         
-        var buttonTitles = ["立即升级".getAttributedString(font: .size15, foregroundColor: UIColor.white)]
+        var buttonTitles = ["立即升级".getAttributedString(font: .size15, foregroundColor: .white)]
         var buttonBackgroundImages = [UIColor.red.toImage]
         if !isForceUpdate {
             buttonTitles.insert("稍后再说".getAttributedString(font: .size15, foregroundColor: .hex666666), at: 0)

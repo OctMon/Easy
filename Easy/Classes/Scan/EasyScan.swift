@@ -122,7 +122,7 @@ private class EasyScanView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        backgroundColor = UIColor.clear
+        backgroundColor = .clear
     }
     
     required init?(coder aDecoder: NSCoder) {

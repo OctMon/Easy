@@ -80,7 +80,7 @@ public extension EasyPopupView {
     func show(originY: CGFloat, showHandler: (() -> Void)? = nil, dismissHandler: (() -> Void)? = nil) {
         self.dismissHandler = dismissHandler
         EasyApp.window?.addSubview(self)
-        self.backgroundColor = UIColor.clear
+        self.backgroundColor = .clear
         
         switch transition {
         case .fade:
@@ -111,7 +111,7 @@ public extension EasyPopupView {
         switch transition {
         case .fade:
             UIView.animate(withDuration: 0.25, animations: { [weak self] in
-                self?.backgroundColor = UIColor.clear
+                self?.backgroundColor = .clear
                 self?.view?.alpha = 0
             }) { [weak self] (completion) in
                 if completion {
@@ -120,7 +120,7 @@ public extension EasyPopupView {
             }
         case .top:
             UIView.animate(withDuration: animationDuration, animations: { [weak self] in
-                self?.backgroundColor = UIColor.clear
+                self?.backgroundColor = .clear
                 self?.view?.frame.origin.y = -EasyApp.screenHeight
             }) { [weak self] (completion) in
                 if completion {
@@ -129,7 +129,7 @@ public extension EasyPopupView {
             }
         case .bottom:
             UIView.animate(withDuration: animationDuration, animations: { [weak self] in
-                self?.backgroundColor = UIColor.clear
+                self?.backgroundColor = .clear
                 self?.view?.frame.origin.y = EasyApp.screenHeight
             }) { [weak self] (completion) in
                 if completion {

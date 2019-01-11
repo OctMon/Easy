@@ -116,7 +116,7 @@ public class EasyPageControl: UIControl {
                 imageView.backgroundColor = currentPageIndicatorImage == nil ? currentPageIndicatorTintColor : UIColor.clear
             } else {
                 imageView.image = pageIndicatorImage
-                imageView.backgroundColor = pageIndicatorImage == nil ? pageIndicatorTintColor : UIColor.clear
+                imageView.backgroundColor = pageIndicatorImage == nil ? pageIndicatorTintColor : .clear
             }
             if let cornerRadius = cornerRadius {
                 imageView.setCornerRadius(cornerRadius)

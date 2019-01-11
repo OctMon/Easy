@@ -72,7 +72,7 @@ extension FontViewController {
                 cell.textLabel?.text = (listView.view(with: TableListView.self)?.text ?? "") + "\n" + font.name[indexPath.row]
             }) { (listView, indexPath, font) in
                 let label = UILabel(frame: app.screenBounds).then {
-                    $0.backgroundColor = UIColor.white
+                    $0.backgroundColor = .white
                     $0.numberOfLines = 0
                     $0.font = UIFont(name: font.name[indexPath.row], size: 48)
                     $0.textAlignment = .center

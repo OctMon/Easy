@@ -165,7 +165,7 @@ private class EasyVerticalButton: UIButton {
         titleLabel?.font = .size12
         titleLabel?.adjustsFontSizeToFitWidth = true
         titleLabel?.textAlignment = .center
-        setTitleColor(UIColor.black, for: .normal)
+        setTitleColor(.black, for: .normal)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -503,9 +503,9 @@ private class EasySocialShareView: UIView {
             let cancel = UIButton(type: .custom)
             cancel.frame = CGRect(x: 0, y: bottomViewHeight - kSocialShareCancelHeight, width: UIScreen.main.bounds.width, height: kSocialShareCancelHeight)
             cancel.setTitle("取消", for: .normal)
-            cancel.setTitleColor(UIColor.black, for: .normal)
+            cancel.setTitleColor(.black, for: .normal)
             cancel.titleLabel?.font = UIFont.systemFont(ofSize: 16)
-            cancel.backgroundColor = UIColor.white
+            cancel.backgroundColor = .white
             cancel.addTarget(self, action: #selector(close), for: .touchUpInside)
             self.bottomView.addSubview(cancel)
         }
@@ -516,7 +516,7 @@ private class EasySocialShareView: UIView {
         self.completion = completion
         self.addPlatformsItems()
         self.frame = UIScreen.main.bounds
-        self.backgroundColor = UIColor.clear
+        self.backgroundColor = .clear
         UIApplication.shared.keyWindow?.addSubview(self)
         UIView.animate(withDuration: 0.25) { [weak self] in
             guard let self = self else { return }
@@ -534,7 +534,7 @@ private class EasySocialShareView: UIView {
     @objc private func close() {
         UIView.animate(withDuration: 0.25, animations: { [weak self] in
             guard let self = self else { return }
-            self.backgroundColor = UIColor.clear
+            self.backgroundColor = .clear
             self.bottomView.frame = CGRect(x: 0, y: UIScreen.main.bounds.height, width: UIScreen.main.bounds.width, height: self.bottomViewHeight)
         }) { (finish) in
             self.subviews.forEach({ $0.removeFromSuperview() })

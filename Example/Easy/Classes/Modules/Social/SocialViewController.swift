@@ -48,7 +48,7 @@ class SocialViewController: easy.ViewController, easy.TableListProtocol {
                 cell.textLabel?.text = any.name
             }
         }) { (_, _, any) in
-            easy.Social.share(title: "Apple", description: "China", thumbnail: UIImage.setColor(UIColor.red), url: "http://www.apple.com/cn")
+            easy.Social.share(title: "Apple", description: "China", thumbnail: UIImage.setColor(.red), url: "http://www.apple.com/cn")
         }
     }
 
@@ -86,7 +86,7 @@ extension SocialViewController {
             
             collectionListView.register(Module.self, cellClass:ImageLabelCollectionViewCell.self, configureCell: { (_, cell, _, any) in
                 (cell as? ImageLabelCollectionViewCell)?.do {
-                    $0.backgroundColor = UIColor.random
+                    $0.backgroundColor = .random
                     $0.label.text = any.name
                 }
             }) { (_, indexPath, any) in

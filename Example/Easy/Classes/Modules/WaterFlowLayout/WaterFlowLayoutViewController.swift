@@ -123,12 +123,12 @@ extension WaterFlowLayoutViewController {
         func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
             if kind == UICollectionView.elementKindSectionHeader {
                 let view = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, for: indexPath, viewType: UICollectionReusableView.self)
-                view.backgroundColor = UIColor.gray
+                view.backgroundColor = .gray
                 view.alpha = 0.5
                 return view
             } else {
                 let view = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionFooter, for: indexPath, viewType: UICollectionReusableView.self)
-                view.backgroundColor = UIColor.lightGray
+                view.backgroundColor = .lightGray
                 view.alpha = 0.5
                 return view
             }

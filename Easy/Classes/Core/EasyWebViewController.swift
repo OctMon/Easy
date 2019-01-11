@@ -67,7 +67,7 @@ open class EasyWebViewController: EasyViewController {
         
         progressView.do {
             $0.frame.origin.y = 0
-            $0.trackTintColor = UIColor.white
+            $0.trackTintColor = .white
             $0.progressTintColor = EasyGlobal.tint
             webView.addSubview(progressView)
         }

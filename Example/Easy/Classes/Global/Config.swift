@@ -17,7 +17,7 @@ extension AppDelegate {
         global.backBarButtonItemImage = #imageLiteral(resourceName: "icon_currentPageIndicatorImage")
         global.navigationBarBackgroundImage = UIColor.white.toImage
         global.navigationBarIsShadowNull = true
-        global.navigationBarTintColor = UIColor.black
+        global.navigationBarTintColor = .black
         global.navigationBarTitleTextAttributes = [.foregroundColor: UIColor.black]
         global.tint = .hex(0xFF0000)
         global.loadingText = "EasyGlobal.loadingText"

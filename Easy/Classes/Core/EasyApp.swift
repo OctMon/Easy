@@ -359,7 +359,7 @@ public extension EasyApp {
         }
         backgroundView.do {
             let alertView = UIView().then {
-                $0.backgroundColor = UIColor.white
+                $0.backgroundColor = .white
                 $0.setCornerRadius(backgroundCornerRadius)
             }
             $0.addSubview(alertView)

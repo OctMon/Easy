@@ -693,7 +693,7 @@ public extension UIColor {
     }
     
     static var random: UIColor {
-        return UIColor.rgb(red: Int(arc4random_uniform(255)), green: Int(arc4random_uniform(255)), blue: Int(arc4random_uniform(255)))
+        return .rgb(red: Int(arc4random_uniform(255)), green: Int(arc4random_uniform(255)), blue: Int(arc4random_uniform(255)))
     }
     
     static func rgb(red: Int, green: Int, blue: Int, alpha: CGFloat = 1.0) -> UIColor {

@@ -36,7 +36,7 @@ class TagListViewController: easy.ViewController, easy.TableListProtocol {
                 $0.sectionInset = UIEdgeInsets(top: spacing, left: spacing, bottom: spacing, right: spacing)
                 $0.minimumInteritemSpacing = spacing
                 $0.minimumLineSpacing = spacing
-                $0.textColor = UIColor.random
+                $0.textColor = .random
                 $0.borderColor = $0.textColor
                 $0.borderWidth = CGFloat.random(in: 1..<3)
                 $0.font = UIFont.systemFont(ofSize: CGFloat.random(in: 18..<36))
