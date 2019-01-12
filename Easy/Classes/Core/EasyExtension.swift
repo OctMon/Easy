@@ -425,6 +425,10 @@ public extension String {
         return NSMutableAttributedString(string: self, attributes: [.foregroundColor: foregroundColor])
     }
     
+    func getAttributedString(_ attrs: [NSAttributedString.Key : Any]) -> NSMutableAttributedString {
+        return NSMutableAttributedString(string: self, attributes: attrs)
+    }
+    
     func getWidth(forConstrainedHeight: CGFloat, font: UIFont, options: NSStringDrawingOptions = [.usesLineFragmentOrigin, .usesFontLeading]) -> CGFloat {
         return ceil(getSize(forConstrainedSize: CGSize(width: CGFloat(Double.greatestFiniteMagnitude), height: forConstrainedHeight), font: font).width)
     }
@@ -464,6 +468,12 @@ public extension NSMutableAttributedString {
     func append(title: String, foregroundColor: UIColor) -> NSMutableAttributedString {
         let mutableAttributedString = NSMutableAttributedString(attributedString: self)
         mutableAttributedString.append(title.getAttributedString(foregroundColor: foregroundColor))
+        return mutableAttributedString
+    }
+    
+    func append(title: String, attrs: [NSAttributedString.Key : Any]) -> NSMutableAttributedString {
+        let mutableAttributedString = NSMutableAttributedString(attributedString: self)
+        mutableAttributedString.append(title.getAttributedString(attrs))
         return mutableAttributedString
     }
     
