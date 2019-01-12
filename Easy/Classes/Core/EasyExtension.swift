@@ -484,6 +484,11 @@ public extension NSMutableAttributedString {
         return self
     }
     
+    func append(font: UIFont) -> NSMutableAttributedString {
+        addAttributes([.font: font], range: NSMakeRange(0, length))
+        return self
+    }
+    
 }
 
 public extension String {
