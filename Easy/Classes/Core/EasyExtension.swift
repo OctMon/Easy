@@ -413,6 +413,10 @@ public extension String {
         return NSMutableAttributedString(string: self)
     }
     
+    func getAttributedString(font: UIFont) -> NSMutableAttributedString {
+        return NSMutableAttributedString(string: self, attributes: [.font: font])
+    }
+    
     func getAttributedString(font: UIFont, foregroundColor: UIColor) -> NSMutableAttributedString {
         return NSMutableAttributedString(string: self, attributes: [.font: font, .foregroundColor: foregroundColor])
     }
