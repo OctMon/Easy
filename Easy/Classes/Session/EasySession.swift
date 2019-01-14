@@ -71,11 +71,11 @@ public struct EasySession {
 
 public extension EasySession {
     
-    func pageSize(_ page: Int, _ size: Int? = nil) -> EasyParameters {
+    func pageSize(_ page: Int, _ size: Int?) -> EasyParameters {
         return pageSize(page, size, parameters: nil)
     }
     
-    func pageSize(_ page: Int, _ size: Int? = nil, parameters: EasyParameters?) -> EasyParameters {
+    func pageSize(_ page: Int, _ size: Int?, parameters: EasyParameters?) -> EasyParameters {
         var pageSizeParameters = EasyParameters()
         if let parameters = parameters {
             pageSizeParameters = parameters

@@ -28,8 +28,8 @@ public extension EasyGlobal {
     static var listViewIgnoreTotalPage = false
     static var listViewFirstPage = 1
     static var listViewCurrentPage = 1
-    static var listViewPageSize = 10
-    static var listViewNoMoreDataSize = listViewPageSize
+    static var listViewPageSize: Int?
+    static var listViewNoMoreDataSize = 10
     static var listViewIncrementPage = 1
     
 }

@@ -277,7 +277,7 @@ public extension EasyListView {
                 } else {
                     self.list.append(contentsOf: dataResponse.list)
                 }
-                if ignoreTotalPage || (autoTotalPage ? dataResponse.list.count >= self.pageSize : dataResponse.total
+                if ignoreTotalPage || (autoTotalPage ? (dataResponse.list.count >= self.pageSize ?? noMoreDataSize) : dataResponse.total
                     > self.currentPage) {
                     self.currentPage += incrementPage
                     if scrollView.mj_footer != nil {
@@ -307,7 +307,18 @@ public extension EasyListView {
                 handler(dataResponse.error)
             } else {
                 if currentPage != firstPage && list.count > 0 {
-                    showText(dataResponse.error?.localizedDescription)
+                    if dataResponse.list.count == 0 && dataResponse.error == nil {
+                        if scrollView.mj_footer != nil {
+                            if self.list.count >= noMoreDataSize {
+                                scrollView.mj_footer.isHidden = false
+                                scrollView.mj_footer.endRefreshingWithNoMoreData()
+                            } else {
+                                scrollView.mj_footer.isHidden = true
+                            }
+                        }
+                    } else {
+                        showText(dataResponse.error?.localizedDescription)
+                    }
                 } else {
                     if scrollView.mj_footer != nil {
                         scrollView.mj_footer.isHidden = true

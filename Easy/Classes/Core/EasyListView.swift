@@ -18,7 +18,7 @@ open class EasyListView: UIView {
     public lazy var currentPage: Int = EasyGlobal.listViewCurrentPage
     
     /// 分页数量
-    public lazy var pageSize: Int = EasyGlobal.listViewPageSize
+    public lazy var pageSize: Int? = EasyGlobal.listViewPageSize
     
     /// 大于等于多少条数据提示没有更多的数据
     public lazy var noMoreDataSize: Int = EasyGlobal.listViewNoMoreDataSize
