@@ -32,7 +32,7 @@ public struct EasyCheck {
             let buildBundle = EasyApp.bundleBuild.toIntValue
             guard buildVersionNo > buildBundle else { return }
             let ignoreBuild = UserDefaults.standard.integer(forKey: ignoreBuildKey)
-            guard buildBundle != ignoreBuild else { return }
+            guard buildVersionNo != ignoreBuild else { return }
             
             var buttonTitles = ["立即升级".getAttributedString(font: .size15, foregroundColor: .white)]
             var buttonBackgroundImages = [EasyGlobal.tint.toImage]
@@ -47,7 +47,7 @@ public struct EasyCheck {
                         exit(EXIT_SUCCESS);
                     }
                 } else {
-                    UserDefaults.standard.set(buildBundle, forKey: ignoreBuildKey)
+                    UserDefaults.standard.set(buildVersionNo, forKey: ignoreBuildKey)
                     UserDefaults.standard.synchronize()
                 }
             })
