@@ -341,6 +341,22 @@ public extension Data {
     
 }
 
+public extension Data {
+    
+    var toHexString: String {
+        return toHexString()
+    }
+    
+    var toHexLowercasedString: String {
+        return toHexString(isLowercased: true)
+    }
+    
+    private func toHexString(isLowercased: Bool = false) -> String {
+        return map { String(format: "%02\(isLowercased ? "x" : "X")", $0) }.joined(separator: "")
+    }
+
+}
+
 public extension Dictionary {
     
     var toString: String? {

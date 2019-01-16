@@ -110,13 +110,13 @@ public extension String {
 public extension Data {
     
     /// 加密
-    func encrypt(algorithm: EasyCryptoAlgorithm, options: CCOptions, key: String, iv: String) -> Data? {
+    func encrypt(algorithm: EasyCryptoAlgorithm = .DES, options: CCOptions = CCOptions(kCCOptionPKCS7Padding), key: String, iv: String) -> Data? {
         guard let key = key.data(using: .utf8) else { return nil }
         return crypt(operation: CCOperation(kCCEncrypt), algorithm: algorithm, options: options, key: key, iv: iv)
     }
     
     /// 解密
-    func decrypt(algorithm: EasyCryptoAlgorithm, options: CCOptions, key: String, iv: String) -> Data? {
+    func decrypt(algorithm: EasyCryptoAlgorithm = .DES, options: CCOptions = CCOptions(kCCOptionPKCS7Padding), key: String, iv: String) -> Data? {
         guard let key = key.data(using: .utf8) else { return nil }
         return crypt(operation: CCOperation(kCCDecrypt), algorithm: algorithm, options: options, key: key, iv: iv)
     }
