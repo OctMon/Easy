@@ -357,6 +357,50 @@ public extension Data {
 
 }
 
+public extension String {
+    
+    /// 16进制字符串转为Data
+    var hexToData: Data {
+        let bytes = hexToBytes
+        return Data(bytes: bytes)
+    }
+    
+    // 16进制字符串转为 [UInt8]
+    var hexToBytes: [UInt8] {
+        assert(count % 2 == 0, "输入字符串格式不对，8位代表一个字符")
+        var bytes = [UInt8]()
+        var sum = 0
+        // 整形 utf8 编码范围
+        let intRange = 48...57
+        // 小写 a~f 的 utf8 的编码范围
+        let lowercaseRange = 97...102
+        // 大写 A~F 的 utf8 的编码范围
+        let uppercasedRange = 65...70
+        for (index, c) in utf8CString.enumerated() {
+            var intC = Int(c.byteSwapped)
+            if intC == 0 {
+                break
+            } else if intRange.contains(intC) {
+                intC -= 48
+            } else if lowercaseRange.contains(intC) {
+                intC -= 87
+            } else if uppercasedRange.contains(intC) {
+                intC -= 55
+            } else {
+                assertionFailure("输入字符串格式不对，每个字符都需要在0~9，a~f，A~F范围内")
+            }
+            sum = sum * 16 + intC
+            // 每两个十六进制字母代表8位，即一个字节
+            if index % 2 != 0 {
+                bytes.append(UInt8(sum))
+                sum = 0
+            }
+        }
+        return bytes
+    }
+    
+}
+
 public extension Dictionary {
     
     var toString: String? {
