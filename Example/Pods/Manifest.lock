@@ -1,5 +1,5 @@
 PODS:
-  - Alamofire (4.8.0)
+  - Alamofire (4.8.1)
   - Easy (2.3):
     - Easy/Core (= 2.3)
     - Easy/Session (= 2.3)
@@ -53,7 +53,7 @@ PODS:
     - SwiftyRSA/ObjC (= 1.5.0)
   - SwiftyRSA/ObjC (1.5.0)
   - WMPageController (2.5.2)
-  - ZLPhotoBrowser (2.7.6):
+  - ZLPhotoBrowser (2.7.7):
     - GPUImage
     - SDWebImage
 
@@ -90,7 +90,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Alamofire: 3ec537f71edc9804815215393ae2b1a8ea33a844
+  Alamofire: 16ce2c353fb72865124ddae8a57c5942388f4f11
   Easy: 2a92ce0e0d651b885468ef0ee981ef6ef4c509b5
   fishhook: ea19933abfe8f2f52c55fd8b6e2718467d3ebc89
   FLEX: bd1a39e55b56bb413b6f1b34b3c10a0dc44ef079
@@ -105,7 +105,7 @@ SPEC CHECKSUMS:
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
   SwiftyRSA: 6e528fb1b1a87d5111c48081083b141d6d65f1cf
   WMPageController: 0c7624d2b48e4f1ab92371688cf6744ed701575d
-  ZLPhotoBrowser: 6dfadc4706429424f0a851fe40752aff076689ab
+  ZLPhotoBrowser: ef9d5cdc9fdc8ce029fd0e41223e8eb8a642918f
 
 PODFILE CHECKSUM: 8a0fee7e232900db4161af17347ae052c648484f
 

@@ -41,7 +41,7 @@ Pod::Spec.new do |s|
     s.subspec 'PhotoBrowser' do |ss|
         ss.source_files = 'Easy/Classes/PhotoBrowser/*'
         ss.dependency 'Easy/Core'
-        ss.dependency 'ZLPhotoBrowser', '~> 2.7.6' # https://github.com/longitachi/ZLPhotoBrowser
+        ss.dependency 'ZLPhotoBrowser', '~> 2.7.7' # https://github.com/longitachi/ZLPhotoBrowser
     end
     
     s.subspec 'RSA' do |ss|
@@ -53,7 +53,7 @@ Pod::Spec.new do |s|
     s.subspec 'Session' do |ss|
         ss.source_files = 'Easy/Classes/Session/*'
         ss.dependency 'Easy/Core'
-        ss.dependency 'Alamofire', '~> 4.8.0' # https://github.com/Alamofire/Alamofire
+        ss.dependency 'Alamofire', '~> 4.8.1' # https://github.com/Alamofire/Alamofire
     end
     
     s.subspec 'Social' do |ss|

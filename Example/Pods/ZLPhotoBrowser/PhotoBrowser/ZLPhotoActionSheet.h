@@ -5,7 +5,7 @@
 //  Created by long on 15/11/25.
 //  Copyright © 2015年 long. All rights reserved.
 //
-//pods version 2.7.6 - 2018.11.29 update
+//pods version 2.7.7 - 2019.01.13 update
 
 #import <UIKit/UIKit.h>
 #import "ZLPhotoConfiguration.h"
@@ -33,7 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
  选择照片回调，回调解析好的图片、对应的asset对象、是否原图
  pod 2.2.6版本之后 统一通过selectImageBlock回调
  */
-@property (nonatomic, copy) void (^selectImageBlock)(NSArray<UIImage *> *__nullable images, NSArray<PHAsset *> *assets, BOOL isOriginal);
+@property (nonatomic, copy) void (^selectImageBlock)(NSArray<UIImage *> *_Nullable images, NSArray<PHAsset *> *assets, BOOL isOriginal);
 
 /**
  取消选择回调
