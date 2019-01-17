@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
     s.name             = 'Easy'
-    s.version          = '2.3'
+    s.version          = '2.3.1'
     s.summary          = 'develop Swift with Easy'
     
     s.description      = <<-DESC
