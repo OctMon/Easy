@@ -397,16 +397,18 @@ public extension EasyApp {
                 make.right.equalTo(-15)
             })
             if message != nil {
-                let messageLabel = UILabel().then {
+                let messageTextView = UITextView().then {
                     $0.attributedText = message
-                    $0.numberOfLines = 0
+                    $0.isSelectable = false
+                    $0.isEditable = false
                 }
-                alertView.addSubview(messageLabel)
-                messageLabel.snp.makeConstraints({ (make) in
-                    make.top.equalTo(titleLabel.snp.bottom).offset(22)
-                    make.bottom.equalTo(-70)
+                alertView.addSubview(messageTextView)
+                messageTextView.snp.makeConstraints({ (make) in
+                    make.top.equalTo(titleLabel.snp.bottom).offset(10)
+                    make.bottom.equalTo(-60)
                     make.left.equalTo(22)
                     make.right.equalTo(-22)
+                    make.height.equalTo((message?.getSize(forConstrainedSize: CGSize(width: .screenWidth - 40 * 2 - 22 * 2, height: .screenHeight / 2)).height ?? 0) + 44)
                 })
             }
         }
