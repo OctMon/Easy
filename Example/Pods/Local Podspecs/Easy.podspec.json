@@ -1,6 +1,6 @@
 {
   "name": "Easy",
-  "version": "2.3",
+  "version": "2.3.1",
   "summary": "develop Swift with Easy",
   "description": "Reduce development time and increase development efficiency",
   "homepage": "https://github.com/OctMon/Easy",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/OctMon/Easy.git",
-    "tag": "2.3"
+    "tag": "2.3.1"
   },
   "platforms": {
     "ios": "9.0"
@@ -61,7 +61,7 @@
 
         ],
         "ZLPhotoBrowser": [
-          "~> 2.7.6"
+          "~> 2.7.7"
         ]
       }
     },
@@ -85,7 +85,7 @@
 
         ],
         "Alamofire": [
-          "~> 4.8.0"
+          "~> 4.8.1"
         ]
       }
     },
