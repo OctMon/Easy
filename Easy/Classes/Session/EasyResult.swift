@@ -348,18 +348,39 @@ public extension EasyListView {
                             }
                         }
                     } else {
+                        if let error = error {
+                            switch error {
+                            case .server(_):
+                                if let placeholderImage = EasyGlobal.placeholderServerImage {
+                                    image = placeholderImage
+                                }
+                            case .network(_):
+                                if let placeholderImage = EasyGlobal.placeholderNetworkImage {
+                                    image = placeholderImage
+                                }
+                            default:
+                                break
+                            }
+                        }
                         if let placeholders = placeholders, let error = error {
                             for placeholder in placeholders {
-                                if placeholder.style == .server {
-                                    switch error {
-                                    case .server(_):
-                                        image = placeholder.image ?? EasyGlobal.placeholderServerImage
+                                switch error {
+                                case .server(_):
+                                    if placeholder.style == .server {
+                                        image = placeholder.image
                                         if let title = placeholder.title {
                                             attributedString = title
                                         }
-                                    default:
-                                        break
                                     }
+                                case .network(_):
+                                    if placeholder.style == .network {
+                                        image = placeholder.image
+                                        if let title = placeholder.title {
+                                            attributedString = title
+                                        }
+                                    }
+                                default:
+                                    break
                                 }
                             }
                         }

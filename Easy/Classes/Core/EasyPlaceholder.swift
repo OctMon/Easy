@@ -16,6 +16,7 @@ public extension Easy {
 public extension EasyGlobal {
     static var placeholderEmptyImage: UIImage?
     static var placeholderServerImage: UIImage?
+    static var placeholderNetworkImage: UIImage?
     
     static var placeholderIsUserInteractionEnabled: Bool = false
     static var placeholderBackgroundColor: UIColor = .white
@@ -57,7 +58,7 @@ public struct EasyPlaceholder {
 public extension EasyPlaceholder {
     
     public enum Style {
-        case empty, server
+        case empty, server, network
     }
     
     static func emptyGlobal(title: NSAttributedString?) -> EasyPlaceholder {
@@ -78,6 +79,16 @@ public extension EasyPlaceholder {
     }
     static func server(title: NSAttributedString?, image: UIImage?) -> EasyPlaceholder {
         return EasyPlaceholder(style: .server, title: title, image: image)
+    }
+    
+    static func networkGlobal(title: NSAttributedString?) -> EasyPlaceholder {
+        return network(title: title, image: EasyGlobal.placeholderNetworkImage)
+    }
+    static func networkGlobal(image: UIImage?) -> EasyPlaceholder {
+        return network(title: nil, image: image)
+    }
+    static func network(title: NSAttributedString?, image: UIImage?) -> EasyPlaceholder {
+        return EasyPlaceholder(style: .network, title: title, image: image)
     }
     
 }
