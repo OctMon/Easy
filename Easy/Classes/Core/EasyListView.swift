@@ -7,6 +7,10 @@
 
 import UIKit
 
+public extension Easy {
+    typealias ListView = EasyListView
+}
+
 open class EasyListView: UIView {
     
     deinit { EasyLog.debug(toDeinit) }
@@ -99,6 +103,12 @@ public extension EasyListView {
     func requestFirst() {
         currentPage = firstPage
         requestHandler?()
+    }
+    
+    func addPlaceholder(_ placeholder: EasyPlaceholder) {
+        var existing = placeholders ?? []
+        existing.append(placeholder)
+        placeholders = existing
     }
     
 }
