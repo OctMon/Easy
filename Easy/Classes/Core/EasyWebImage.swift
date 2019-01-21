@@ -41,7 +41,7 @@ public extension UIImageView {
         if EasyWebImage.isPrintWebImageUrl {
             EasyLog.debug(url)
         }
-        guard let url = URL(string: url) else { return }
+        let url = URL(string: url) ?? URL(string: "https")
         sd_setImage(with: url, placeholderImage: placeholderImage, options: options, progress: progress, completed: completed)
     }
     
