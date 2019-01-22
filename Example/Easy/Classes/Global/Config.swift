@@ -28,6 +28,15 @@ extension AppDelegate {
 extension AppDelegate {
     
     func config(_ application: UIApplication, launchOptions: [UIApplication.LaunchOptionsKey: Any]?) {
+        if app.isFirstLaunch {
+            let skipButton = UIButton(frame: CGRect(x: 0, y: app.screenHeight - 44 - 30, width: 130, height: 44)).then {
+                $0.centerX = app.screenWidth * 0.5
+                $0.setBackgroundImage(UIColor.random.toImage, cornerRadius: 5)
+                $0.setTitle("进入首页", for: .normal)
+            }
+            let guide = easy.GuidePageView(images: [UIColor.random.toImage, UIColor.random.toImage, UIColor.random.toImage], skipButton: skipButton)
+            guide.showFullscreen()
+        }
         app.configTestTool()
 //        app.configCheckPgyer(api_key: "#replace your api_key", shortcutUrl: "")
         configSocial()
