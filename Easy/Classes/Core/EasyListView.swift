@@ -111,4 +111,10 @@ public extension EasyListView {
         placeholders = existing
     }
     
+    func addPlaceholders(_ placeholder: [EasyPlaceholder]) {
+        var existing = placeholders ?? []
+        existing.append(contentsOf: placeholder)
+        placeholders = existing
+    }
+    
 }
