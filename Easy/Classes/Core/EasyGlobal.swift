@@ -63,10 +63,11 @@ public extension EasyGlobal {
 
 public extension EasyGlobal {
     static var errorNetwork: String?
-    static var errorServer = "服务器内部错误"
+    static var errorServer: String?
     static var errorEmpty = "暂无数据"
     static var errorToken = "token过期"
     static var errorVersion = "版本错误"
+    static var errorUnknown = "未知错误"
 }
 
 public extension EasyGlobal {

@@ -113,14 +113,14 @@ public struct EasyResult {
                 self.array = (jsonobject as? [EasyParameters]) ?? []
                 if config.code.onlyValidWithHTTPstatusCode && (dataResponse.response?.statusCode != config.code.successStatusCode) {
                     let server = json[config.key.msg].toString ?? EasyGlobal.errorServer
-                    self.easyError = EasyError.server(server)
+                    self.easyError = EasyError.server(server ?? EasyGlobal.errorUnknown)
                 } else {
                     self.easyError = nil
                 }
             } else {
                 self.json = [:]
                 self.array = []
-                self.easyError = EasyError.server(EasyGlobal.errorServer)
+                self.easyError = EasyError.server(EasyGlobal.errorServer ?? EasyGlobal.errorUnknown)
             }
         case .failure(let error):
             self.json = [:]
@@ -134,9 +134,9 @@ public struct EasyResult {
                 }
             default:
                 if config.code.onlyValidWithHTTPstatusCode {
-                    self.easyError = (dataResponse.response?.statusCode == config.code.successStatusCode) ? nil : EasyError.server(error.localizedDescription)
+                    self.easyError = (dataResponse.response?.statusCode == config.code.successStatusCode) ? nil : EasyError.server(EasyGlobal.errorServer ?? error.localizedDescription)
                 } else {
-                    self.easyError = EasyError.server(error.localizedDescription)
+                    self.easyError = EasyError.server(EasyGlobal.errorServer ?? error.localizedDescription)
                 }
             }
         }
@@ -156,7 +156,7 @@ public extension EasyResult {
     
     var code: Int { return json[config.key.code].toInt ?? config.code.unknown }
     var statusCode: Int { return dataResponse?.response?.statusCode ?? config.code.unknown }
-    var msg: String { return json[config.key.msg].toString ?? easyError?.localizedDescription ?? EasyGlobal.errorServer }
+    var msg: String { return json[config.key.msg].toString ?? easyError?.localizedDescription ?? (EasyGlobal.errorServer ?? EasyGlobal.errorUnknown) }
     var data: EasyParameters { return (json[config.key.data] as? EasyParameters) ?? [:] }
     
     var total: Int { return json[config.key.total].toIntValue }
@@ -171,7 +171,7 @@ public extension EasyResult {
             return error
         } else {
             if config.code.onlyValidWithHTTPstatusCode {
-                return validStatusCode ? nil : EasyError.server(msg.isEmpty ? EasyGlobal.errorServer : msg)
+                return validStatusCode ? nil : EasyError.server(msg.isEmpty ? EasyGlobal.errorServer ?? EasyGlobal.errorUnknown : msg)
             }
             switch code {
             case config.code.empty:
@@ -182,7 +182,7 @@ public extension EasyResult {
                 return EasyError.version(msg.isEmpty ? EasyGlobal.errorVersion : msg)
             default:
                 if valid { return nil }
-                return EasyError.server(msg.isEmpty ? EasyGlobal.errorServer : msg)
+                return EasyError.server(msg.isEmpty ? EasyGlobal.errorServer ?? EasyGlobal.errorUnknown : msg)
             }
         }
     }
