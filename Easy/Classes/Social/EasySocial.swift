@@ -423,7 +423,7 @@ public extension EasySocial {
 private class EasySocialShareView: UIView {
     
     private let kSocialShareButtonWidth: CGFloat = 76
-    private let kSocialShareCancelHeight: CGFloat = (EasyApp.isAllFaceIDCapableDevices ? 80 : 46)
+    private let kSocialShareCancelHeight: CGFloat = (EasyApp.isFaceIDCapableDevices ? 80 : 46)
     
     private var bottomViewHeight: CGFloat = 0
     private var platforms = [EasySocial.SharePlatform]()

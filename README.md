@@ -149,6 +149,22 @@ app.performenceRun(loopTimes: 999) {
     })
 } // 运行 999 次，耗时 5.197448015213013s
 
+log.debug(app.isPhone) // false
+log.debug(app.isPad) // false
+log.debug(app.isPod) // false
+log.debug(app.isSimulator) // true
+log.debug(app.isFaceIDCapableDevices) // false
+log.debug(app.safeBottomEdge) // false
+
+log.debug(app.aboutName) // iPhone 8 Plus
+log.debug(app.systemName) // iOS
+log.debug(app.systemVersion) // 12.1
+log.debug(app.batteryLevel) // -1.0
+log.debug(app.deviceMachine) // x86_64
+log.debug(app.deviceModel) // simulator
+log.debug(app.deviceType) // simulator
+log.debug(app.deviceSize) // screen5_5Inch
+
 app.openFullScreenPopGesture() // 打开全屏返回手势
 
 app.configTestTool() // 配置调试工具

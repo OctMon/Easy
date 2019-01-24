@@ -287,7 +287,7 @@ public extension EasyApp {
     static let isPhone = deviceType == .iPhone
     static let isPod = deviceType == .iPod
     static let isSimulator = deviceType == .simulator
-    static let isAllFaceIDCapableDevices = deviceSize == .screen5_8Inch || deviceSize == .screen6_1Inch || deviceSize == .screen6_5Inch
-    static let safeBottomEdge = CGFloat(isAllFaceIDCapableDevices ? 34 : 0)
+    static let isFaceIDCapableDevices = deviceSize == .screen5_8Inch || deviceSize == .screen6_1Inch || deviceSize == .screen6_5Inch
+    static let safeBottomEdge = CGFloat(isFaceIDCapableDevices ? 34 : 0)
     
 }

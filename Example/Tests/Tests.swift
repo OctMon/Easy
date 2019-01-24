@@ -157,4 +157,22 @@ class Tests: XCTestCase {
         }).addAction(title: "cancel").show()
     }
     
+    func testDevice() {
+        log.debug(app.isPhone)
+        log.debug(app.isPad)
+        log.debug(app.isPod)
+        log.debug(app.isSimulator)
+        log.debug(app.isFaceIDCapableDevices)
+        log.debug(app.safeBottomEdge)
+        
+        log.debug(app.aboutName)
+        log.debug(app.systemName)
+        log.debug(app.systemVersion)
+        log.debug(app.batteryLevel)
+        log.debug(app.deviceMachine)
+        log.debug(app.deviceModel)
+        log.debug(app.deviceType)
+        log.debug(app.deviceSize)
+    }
+    
 }
