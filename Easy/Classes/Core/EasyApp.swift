@@ -374,9 +374,9 @@ public extension EasyApp {
                 make.top.equalToSuperview()
                 make.centerX.equalToSuperview()
             })
-            alertView.addBottomButton(titles: buttonTitles, height: 52, backgroundImages: buttonBackgroundImages, bottomMargin: 0) { (offset) in
+            alertView.addBottomButton(titles: buttonTitles, height: 52, backgroundImages: buttonBackgroundImages, bottomMargin: 0) { [weak popupView] (offset) in
                 tap(offset)
-                popupView.dismiss()
+                popupView?.dismiss()
             }
             let titleLabel = UILabel().then {
                 $0.attributedText = title
