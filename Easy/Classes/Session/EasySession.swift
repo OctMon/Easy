@@ -155,7 +155,9 @@ public extension EasySession {
         let popupView = EasyPopupView(vc, height: .screenHeight * 0.38, transition: .bottom)
         vc.popupView = popupView
         vc.successHandler = handler
-        popupView.showWithBottom()
+        popupView.showWithBottom(showHandler: nil) {
+            vc.popupView = nil
+        }
         #endif
     }
     

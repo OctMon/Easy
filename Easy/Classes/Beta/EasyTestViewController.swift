@@ -111,7 +111,6 @@ class EasyTestViewController: EasyViewController, EasyTableListProtocol {
                         listView.list[indexPath.section] = models
                         listView.tableView.reloadData()
                     }
-                    
                 })
             }
         }
