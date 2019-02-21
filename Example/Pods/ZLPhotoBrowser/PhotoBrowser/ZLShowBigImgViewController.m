@@ -50,7 +50,6 @@
     
     NSString *_modelIdentifile;
     
-    ZLInteractiveTrasition *_interactiveTransition;
     BOOL _shouldStartDismiss;
     NSInteger _panCount;
 }
@@ -700,17 +699,10 @@
 #pragma mark - UIScrollViewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"controllerScrollViewDidScroll" object:nil];
     if (scrollView == (UIScrollView *)_collectionView) {
         ZLPhotoModel *m = [self getCurrentPageModel];
         if (!m) return;
-        
-        if (m.type == ZLAssetMediaTypeGif ||
-            m.type == ZLAssetMediaTypeLivePhoto ||
-            m.type == ZLAssetMediaTypeVideo ||
-            m.type == ZLAssetMediaTypeNetVideo) {
-            ZLBigImageCell *cell = (ZLBigImageCell *)[_collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:_currentPage-1 inSection:0]];
-            [cell pausePlay];
-        }
         
         if ([_modelIdentifile isEqualToString:m.asset.localIdentifier]) return;
         
@@ -738,9 +730,10 @@
 {
     ZLPhotoModel *m = [self getCurrentPageModel];
     if (m.type == ZLAssetMediaTypeGif ||
-        m.type == ZLAssetMediaTypeLivePhoto) {
+        m.type == ZLAssetMediaTypeLivePhoto ||
+        m.type == ZLAssetMediaTypeVideo) {
         ZLBigImageCell *cell = (ZLBigImageCell *)[_collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:_currentPage-1 inSection:0]];
-        [cell reloadGifLivePhoto];
+        [cell reloadGifLivePhotoVideo];
     }
 }
 

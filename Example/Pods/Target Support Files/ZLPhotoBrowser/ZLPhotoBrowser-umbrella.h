@@ -41,6 +41,7 @@
 #import "ZLPhotoModel.h"
 #import "ZLPlayer.h"
 #import "ZLProgressHUD.h"
+#import "ZLProgressView.h"
 #import "ZLShowBigImgViewController.h"
 #import "ZLThumbnailViewController.h"
 

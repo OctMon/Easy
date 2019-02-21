@@ -34,14 +34,14 @@ Pod::Spec.new do |s|
         ss.dependency 'MBProgressHUD', '~> 1.1.0' # https://github.com/jdg/MBProgressHUD
         ss.dependency 'MJRefresh', '~> 3.1.15.7' # https://github.com/CoderMJLee/MJRefresh
         ss.dependency 'RTRootNavigationController', '~> 0.7.1' # https://github.com/rickytan/RTRootNavigationController
-        ss.dependency 'SDWebImage', '~> 4.4.2' # https://github.com/rs/SDWebImage
+        ss.dependency 'SDWebImage', '~> 4.4.5' # https://github.com/rs/SDWebImage
         #ss.dependency 'SwiftyAttributes'#, '~> 5.0.0' # https://github.com/eddiekaiger/SwiftyAttributes
     end
     
     s.subspec 'PhotoBrowser' do |ss|
         ss.source_files = 'Easy/Classes/PhotoBrowser/*'
         ss.dependency 'Easy/Core'
-        ss.dependency 'ZLPhotoBrowser', '~> 2.7.7' # https://github.com/longitachi/ZLPhotoBrowser
+        ss.dependency 'ZLPhotoBrowser', '~> 2.7.8' # https://github.com/longitachi/ZLPhotoBrowser
     end
     
     s.subspec 'RSA' do |ss|
@@ -79,7 +79,7 @@ Pod::Spec.new do |s|
         ss.dependency 'Easy/Core'
         ss.dependency 'Easy/Session'
         ss.dependency 'FLEX', '~> 2.4.0' # https://github.com/Flipboard/FLEX
-        ss.dependency 'GDPerformanceView-Swift'#, '~> 2.0.2' # https://github.com/dani-gavrilov/GDPerformanceView-Swift
+        ss.dependency 'GDPerformanceView-Swift', '~> 2.0.2' # https://github.com/dani-gavrilov/GDPerformanceView-Swift
         ss.dependency 'OOMDetector', '~> 1.3' # https://github.com/Tencent/OOMDetector
         ss.xcconfig = { 'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => '$(inherited) BETA' }
     end
