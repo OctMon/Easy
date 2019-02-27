@@ -84,6 +84,8 @@ open class EasyTableListView: EasyListView {
     private lazy var didSelectRowHandler: ((EasyTableListView, IndexPath, Any?) -> Void)? = { return nil }()
     private lazy var accessoryButtonTappedForRowWithHandler: ((EasyTableListView, IndexPath, Any?) -> Void)? = { return nil }()
     
+    private lazy var scrollViewDidScrollHandler: ((UIScrollView) -> Void)? = { return nil }()
+    
     private var getAny = false
     
     private lazy var tableViewStyle: UITableView.Style = .plain
@@ -251,6 +253,22 @@ extension EasyTableListView: UITableViewDataSource, UITableViewDelegate {
         if let accessoryButtonTappedForRowWithHandler = accessoryButtonTappedForRowWithHandler {
             accessoryButtonTappedForRowWithHandler(self, indexPath, getAny ? getAny(list, indexPath: indexPath, numberOfSections: numberOfSections(in: tableView), numberOfRowsInSectionHandler: numberOfRowsInSectionHandler) : nil)
         }
+    }
+    
+}
+
+public extension EasyTableListView {
+    
+    func scrollViewDidScrollHandler(_ scrollViewDidScrollHandler: @escaping (UIScrollView) -> Void) {
+        self.scrollViewDidScrollHandler = scrollViewDidScrollHandler
+    }
+    
+}
+
+extension EasyTableListView {
+    
+    open func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        scrollViewDidScrollHandler?(scrollView)
     }
     
 }
