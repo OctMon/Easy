@@ -92,6 +92,8 @@ open class EasyCollectionListView: EasyListView {
     private lazy var didSelectRowHandler: ((EasyCollectionListView, IndexPath, Any?) -> Void)? = { return nil }()
     private lazy var sizeForItemAtHandler: ((EasyCollectionListView, IndexPath, Any?) -> CGSize)? = { return nil }()
     
+    private lazy var scrollViewDidScrollHandler: ((UIScrollView) -> Void)? = { return nil }()
+    
     private var getAny = false
     
     public lazy var flowLayout: UICollectionViewFlowLayout = {
@@ -267,6 +269,22 @@ extension EasyCollectionListView: UICollectionViewDataSource, UICollectionViewDe
             return sizeForItemAtHandler(self, indexPath, getAny ? getAny(list, indexPath: indexPath, numberOfSections: numberOfSections(in: collectionView), numberOfRowsInSectionHandler: numberOfItemsInSectionHandler) : nil)
         }
         return size
+    }
+    
+}
+
+public extension EasyCollectionListView {
+    
+    func scrollViewDidScrollHandler(_ scrollViewDidScrollHandler: @escaping (UIScrollView) -> Void) {
+        self.scrollViewDidScrollHandler = scrollViewDidScrollHandler
+    }
+    
+}
+
+extension EasyCollectionListView {
+    
+    open func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        scrollViewDidScrollHandler?(scrollView)
     }
     
 }

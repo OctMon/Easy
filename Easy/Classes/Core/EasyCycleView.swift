@@ -153,7 +153,7 @@ extension EasyCycleView {
             check()
         }
         
-        public func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        public override func scrollViewDidScroll(_ scrollView: UIScrollView) {
             superview(with: EasyCycleView.self)?.pageControl.currentPage = current % (list.count)
         }
         
