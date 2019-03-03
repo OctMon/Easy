@@ -369,7 +369,9 @@ public extension EasyListView {
                                     if placeholder.style == .server {
                                         image = placeholder.image
                                         if let title = placeholder.title {
-                                            attributedString = title
+                                            let att = (EasyGlobal.errorServer ?? error.localizedDescription).getAttributedString
+                                            att.append(title)
+                                            attributedString = att
                                         }
                                     }
                                 case .network(_):
