@@ -29,8 +29,8 @@ public extension String {
     }
     
     func decryptRSA_toString(using encoding: String.Encoding = .utf8, padding: Padding = .PKCS1, privateKey: String) -> String {
-        guard let string = try? decryptRSA(padding: padding, privateKey: privateKey)?.string(encoding: encoding) else { return "" }
-        return string ?? ""
+        guard let string = (try? decryptRSA(padding: padding, privateKey: privateKey)?.string(encoding: encoding)) as? String else { return "" }
+        return string
     }
     
     func decryptRSA_toBase64(padding: Padding = .PKCS1, privateKey: String) -> String {
