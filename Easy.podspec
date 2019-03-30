@@ -32,16 +32,16 @@ Pod::Spec.new do |s|
     
     s.subspec 'Common' do |ss|
         ss.dependency 'MBProgressHUD', '~> 1.1.0' # https://github.com/jdg/MBProgressHUD
-        ss.dependency 'MJRefresh', '~> 3.1.15.7' # https://github.com/CoderMJLee/MJRefresh
+        ss.dependency 'MJRefresh', '~> 3.1.16' # https://github.com/CoderMJLee/MJRefresh
         ss.dependency 'RTRootNavigationController', '~> 0.7.1' # https://github.com/rickytan/RTRootNavigationController
-        ss.dependency 'SDWebImage', '~> 4.4.5' # https://github.com/rs/SDWebImage
+        ss.dependency 'SDWebImage', '~> 4.4.6' # https://github.com/rs/SDWebImage
         #ss.dependency 'SwiftyAttributes'#, '~> 5.0.0' # https://github.com/eddiekaiger/SwiftyAttributes
     end
     
     s.subspec 'PhotoBrowser' do |ss|
         ss.source_files = 'Easy/Classes/PhotoBrowser/*'
         ss.dependency 'Easy/Core'
-        ss.dependency 'ZLPhotoBrowser', '~> 2.7.8' # https://github.com/longitachi/ZLPhotoBrowser
+        ss.dependency 'ZLPhotoBrowser', '~> 3.0.0' # https://github.com/longitachi/ZLPhotoBrowser
     end
     
     s.subspec 'RSA' do |ss|
@@ -53,14 +53,14 @@ Pod::Spec.new do |s|
     s.subspec 'Session' do |ss|
         ss.source_files = 'Easy/Classes/Session/*'
         ss.dependency 'Easy/Core'
-        ss.dependency 'Alamofire', '~> 4.8.1' # https://github.com/Alamofire/Alamofire
+        ss.dependency 'Alamofire', '~> 4.8.2' # https://github.com/Alamofire/Alamofire
     end
     
     s.subspec 'Social' do |ss|
         ss.source_files = 'Easy/Classes/Social/*'
         ss.resources = ['Easy/Resources/EasySocial.bundle']
         ss.dependency 'Easy/Core'
-        ss.dependency 'MonkeyKing', '~> 1.12.1' # https://github.com/nixzhu/MonkeyKing
+        ss.dependency 'MonkeyKing', '~> 1.13.0' # https://github.com/nixzhu/MonkeyKing
     end
     
     s.subspec 'Scan' do |ss|
