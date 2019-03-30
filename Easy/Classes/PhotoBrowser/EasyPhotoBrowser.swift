@@ -9,7 +9,6 @@ import UIKit
 import ZLPhotoBrowser
 
 public extension Easy {
-    typealias PhotoBrowser = ZLPhotoBrowser
     typealias PhotoManager = ZLPhotoManager
     typealias PhotoActionSheet = ZLPhotoActionSheet
     typealias PhotoModel = ZLPhotoModel

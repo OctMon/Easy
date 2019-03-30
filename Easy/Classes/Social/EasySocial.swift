@@ -230,8 +230,8 @@ public extension EasySocial {
         }
     }
     
-    static func orderAlipay(_ urlString: String, scheme: String?, completionHandler: @escaping (Bool) -> Void) {
-        let order = MonkeyKing.Order.alipay(urlString: urlString, scheme: scheme)
+    static func orderAlipay(_ urlString: String, completionHandler: @escaping (Bool) -> Void) {
+        let order = MonkeyKing.Order.alipay(urlString: urlString)
         MonkeyKing.deliver(order, completionHandler: completionHandler)
     }
     
