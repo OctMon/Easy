@@ -43,7 +43,7 @@
           "~> 1.1.0"
         ],
         "MJRefresh": [
-          "~> 3.1.16"
+          "~> 3.1.17"
         ],
         "RTRootNavigationController": [
           "~> 0.7.1"
@@ -61,7 +61,7 @@
 
         ],
         "ZLPhotoBrowser": [
-          "~> 3.0.0"
+          "~> 3.0.1"
         ]
       }
     },
@@ -136,7 +136,7 @@
 
         ],
         "FLEX": [
-          "~> 2.4.0"
+          "~> 3.0.0"
         ],
         "GDPerformanceView-Swift": [
           "~> 2.0.2"
