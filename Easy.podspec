@@ -60,7 +60,7 @@ Pod::Spec.new do |s|
         ss.source_files = 'Easy/Classes/Social/*'
         ss.resources = ['Easy/Resources/EasySocial.bundle']
         ss.dependency 'Easy/Core'
-        ss.dependency 'MonkeyKing', '~> 1.13.0' # https://github.com/nixzhu/MonkeyKing
+        ss.dependency 'MonkeyKing', '~> 1.15.0' # https://github.com/nixzhu/MonkeyKing
     end
     
     s.subspec 'Scan' do |ss|
