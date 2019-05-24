@@ -19,6 +19,8 @@
 #import "ZLAnimateTransition.h"
 #import "ZLInteractiveTrasition.h"
 #import "ZLPullDownInteractiveTransition.h"
+#import <SDWebImage/SDImageCodersManager.h>
+#import <SDWebImage/SDImageGIFCoder.h>
 
 @interface ZLShowBigImgViewController () <UIScrollViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UINavigationControllerDelegate, UIViewControllerTransitioningDelegate>
 {
@@ -95,6 +97,10 @@
     }
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deviceOrientationChanged:) name:UIApplicationWillChangeStatusBarOrientationNotification object:nil];
+    
+    if (![[SDImageCodersManager sharedManager].coders containsObject:[SDImageGIFCoder sharedCoder]]) {
+        [[SDImageCodersManager sharedManager] addCoder:[SDImageGIFCoder sharedCoder]];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -196,6 +202,17 @@
 {
     if (!_popTrasition) {
         _popTrasition = [[ZLInteractiveTrasition alloc] init];
+        
+        @zl_weakify(self);
+        _popTrasition.beginTransitionBlock = ^{
+            @zl_strongify(self);
+            self->_navView.hidden = YES;
+        };
+        
+        _popTrasition.cancelTransitionBlock = ^{
+            @zl_strongify(self);
+            self->_navView.hidden = self->_hideNavBar;
+        };
     }
     return _popTrasition;
 }
@@ -512,7 +529,16 @@
         }
     } else if (pan.state == UIGestureRecognizerStateCancelled ||
                pan.state == UIGestureRecognizerStateEnded) {
-        if (!_shouldStartDismiss || !self.popTrasition.isStartTransition) return;
+        if (_shouldStartDismiss && !self.popTrasition.isStartTransition) {
+            // 快速拖动时候可能会走这里
+            [self.popTrasition cancelInteractiveTransition];
+            [self.popTrasition cancelAnimate];
+            self.popTrasition = nil;
+            self.interactive = NO;
+            return;
+        }
+        
+        if (_panCount == 0 || (!_shouldStartDismiss && !self.popTrasition.isStartTransition)) return;
         
         CGPoint vel = [pan velocityInView:self.view];
         
@@ -627,10 +653,10 @@
     NSArray *arr = configuration.showSelectBtn?nav.arrSelectedModels:@[self.models[_currentPage-1]];
     
     if (arr.count) {
-        zl_weakify(self);
+        @zl_weakify(self);
         [ZLPhotoManager getPhotosBytesWithArray:arr completion:^(NSString *photosBytes) {
-            zl_strongify(weakSelf);
-            strongSelf.labPhotosBytes.text = [NSString stringWithFormat:@"(%@)", photosBytes];
+            @zl_strongify(self);
+            self.labPhotosBytes.text = [NSString stringWithFormat:@"(%@)", photosBytes];
         }];
     } else {
         self.labPhotosBytes.text = nil;
@@ -678,19 +704,19 @@
     cell.showGif = configuration.allowSelectGif;
     cell.showLivePhoto = configuration.allowSelectLivePhoto;
     cell.model = model;
-    zl_weakify(self);
+    @zl_weakify(self);
     cell.singleTapCallBack = ^() {
-        zl_strongify(weakSelf);
-        [strongSelf handlerSingleTap];
+        @zl_strongify(self);
+        [self handlerSingleTap];
     };
     __weak typeof(cell) weakCell = cell;
     cell.longPressCallBack = ^{
-        zl_strongify(weakSelf);
+        @zl_strongify(self);
         __strong typeof(weakCell) strongCell = weakCell;
         if (!strongCell.previewView.image) {
             return;
         }
-        [strongSelf showDownloadAlert];
+        [self showDownloadAlert];
     };
     
     return cell;
@@ -730,6 +756,7 @@
 {
     ZLPhotoModel *m = [self getCurrentPageModel];
     if (m.type == ZLAssetMediaTypeGif ||
+        m.type == ZLAssetMediaTypeNetImage ||
         m.type == ZLAssetMediaTypeLivePhoto ||
         m.type == ZLAssetMediaTypeVideo) {
         ZLBigImageCell *cell = (ZLBigImageCell *)[_collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:_currentPage-1 inSection:0]];

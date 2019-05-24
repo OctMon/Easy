@@ -11,15 +11,8 @@
 #import "ZLPhotoManager.h"
 #import "ZLPhotoModel.h"
 #import "ZLThumbnailViewController.h"
-#import <SDWebImage/SDWebImageManager.h>
 
 @implementation ZLImageNavigationController
-
-- (void)dealloc
-{
-    [[SDWebImageManager sharedManager] cancelAll];
-//    NSLog(@"---- %s", __FUNCTION__);
-}
 
 - (instancetype)initWithRootViewController:(UIViewController *)rootViewController
 {
@@ -150,12 +143,12 @@
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         ZLPhotoConfiguration *configuration = [(ZLImageNavigationController *)self.navigationController configuration];
-        zl_weakify(self);
+        @zl_weakify(self);
         [ZLPhotoManager getPhotoAblumList:configuration.allowSelectVideo allowSelectImage:configuration.allowSelectImage complete:^(NSArray<ZLAlbumListModel *> *albums) {
-            zl_strongify(weakSelf);
-            strongSelf.arrayDataSources = [NSMutableArray arrayWithArray:albums];
+            @zl_strongify(self);
+            self.arrayDataSources = [NSMutableArray arrayWithArray:albums];
             dispatch_async(dispatch_get_main_queue(), ^{
-                [strongSelf.tableView reloadData];
+                [self.tableView reloadData];
             });
         }];
     });

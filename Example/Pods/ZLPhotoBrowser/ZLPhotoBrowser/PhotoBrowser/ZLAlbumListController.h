@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "ZLDefine.h"
 #import "ZLPhotoConfiguration.h"
+#import <SDWebImage/SDWebImageManager.h>
 
 @class ZLPhotoModel;
 

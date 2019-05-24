@@ -5,6 +5,7 @@
 //  Created by long on 2019/3/4.
 //  Copyright © 2019年 long. All rights reserved.
 //
+//  version: 3.0.3
 
 #import <UIKit/UIKit.h>
 //
@@ -17,6 +18,12 @@
 #import "ZLPhotoActionSheet.h"
 #import "ZLPhotoManager.h"
 #import "ZLProgressHUD.h"
+#import "ZLCustomCamera.h"
+#import "ZLPhotoConfiguration.h"
+#import "ZLDefine.h"
+#import "ZLProgressHUD.h"
+#import "NSBundle+ZLPhotoBrowser.h"
+#import "ZLPhotoModel.h"
 
 
 

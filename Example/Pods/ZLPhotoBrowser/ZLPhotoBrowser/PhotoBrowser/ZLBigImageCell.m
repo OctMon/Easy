@@ -13,6 +13,7 @@
 #import "ZLPhotoModel.h"
 #import "ZLAlbumListController.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import <SDWebImage/UIImage+Metadata.h>
 #import "ToastUtils.h"
 #import "ZLProgressView.h"
 
@@ -41,15 +42,15 @@
     self = [super initWithFrame:frame];
     if (self) {
         [self addSubview:self.previewView];
-        zl_weakify(self);
+        @zl_weakify(self);
         self.previewView.singleTapCallBack = ^() {
-            zl_strongify(weakSelf);
-            if (strongSelf.singleTapCallBack) strongSelf.singleTapCallBack();
+            @zl_strongify(self);
+            if (self.singleTapCallBack) self.singleTapCallBack();
         };
         self.previewView.longPressCallBack = ^{
-            zl_strongify(weakSelf);
-            if (strongSelf.longPressCallBack) 
-                strongSelf.longPressCallBack();
+            @zl_strongify(self);
+            if (self.longPressCallBack)
+                self.longPressCallBack();
         };
     }
     return self;
@@ -201,7 +202,8 @@
 
 - (void)resumePlay
 {
-    if (self.model.type == ZLAssetMediaTypeGif) {
+    if (self.model.type == ZLAssetMediaTypeGif ||
+        self.model.type == ZLAssetMediaTypeNetImage) {
         [self.imageGifView resumeGif];
     }
 }
@@ -272,7 +274,7 @@
 - (UIImageView *)imageView
 {
     if (!_imageView) {
-        _imageView = [[UIImageView alloc] init];
+        _imageView = [[SDAnimatedImageView alloc] init];
         _imageView.contentMode = UIViewContentModeScaleAspectFit;
 //        _imageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     }
@@ -322,6 +324,8 @@
 
 - (void)loadNormalImage:(PHAsset *)asset
 {
+    self.imageView.image = nil;
+    
     if (self.asset && self.imageRequestID >= 0) {
         [[PHCachingImageManager defaultManager] cancelImageRequest:self.imageRequestID];
     }
@@ -342,7 +346,9 @@
 
 @end
 
-@implementation ZLPreviewImageAndGif
+@implementation ZLPreviewImageAndGif {
+    __weak id<SDWebImageOperation> _combineOperation;
+}
 
 - (void)layoutSubviews
 {
@@ -414,46 +420,34 @@
 
 - (void)resumeGif
 {
-    CALayer *layer = self.imageView.layer;
-    if (layer.speed != 0) return;
-    CFTimeInterval pausedTime = [layer timeOffset];
-    layer.speed = 1.0;
-    layer.timeOffset = 0.0;
-    layer.beginTime = 0.0;
-    CFTimeInterval timeSincePause = [layer convertTime:CACurrentMediaTime() fromLayer:nil] - pausedTime;
-    layer.beginTime = timeSincePause;
+    [self.imageView startAnimating];
 }
 
 - (void)pauseGif
 {
-    CALayer *layer = self.imageView.layer;
-    if (layer.speed == .0) return;
-    CFTimeInterval pausedTime = [layer convertTime:CACurrentMediaTime() fromLayer:nil];
-    layer.speed = 0.0;
-    layer.timeOffset = pausedTime;
+    [self.imageView stopAnimating];
 }
 
 - (void)loadGifImage:(PHAsset *)asset
 {
-    zl_weakify(self);
+    @zl_weakify(self);
     
     [ZLPhotoManager requestOriginalImageDataForAsset:asset progressHandler:^(double progress, NSError *error, BOOL *stop, NSDictionary *info) {
-        zl_strongify(weakSelf);
+        @zl_strongify(self);
         dispatch_async(dispatch_get_main_queue(), ^{
-            strongSelf.indicator.progress = progress;
+            self.indicator.progress = progress;
             if (progress >= 1) {
-                strongSelf.indicator.hidden = YES;
+                self.indicator.hidden = YES;
             } else {
-                strongSelf.indicator.hidden = NO;
+                self.indicator.hidden = NO;
             }
         });
     } completion:^(NSData *data, NSDictionary *info) {
-        zl_strongify(weakSelf);
+        @zl_strongify(self);
         if (![[info objectForKey:PHImageResultIsDegradedKey] boolValue]) {
-            strongSelf.indicator.hidden = YES;
-            strongSelf.imageView.image = [ZLPhotoManager transformToGifImageWithData:data];
-            [strongSelf resumeGif];
-            [strongSelf resetSubviewSize:asset];
+            self.indicator.hidden = YES;
+            self.imageView.image = [SDAnimatedImage imageWithData:data];
+            [self resetSubviewSize:asset];
         }
     }];
 }
@@ -464,24 +458,24 @@
     
     self.asset = asset;
     
-    zl_weakify(self);
+    @zl_weakify(self);
     self.imageRequestID = [ZLPhotoManager requestImageForAsset:asset size:[self requestImageSize:asset] progressHandler:^(double progress, NSError *error, BOOL *stop, NSDictionary *info) {
-        zl_strongify(weakSelf);
+        @zl_strongify(self);
         dispatch_async(dispatch_get_main_queue(), ^{
-            strongSelf.indicator.progress = progress;
+            self.indicator.progress = progress;
             if (progress >= 1) {
-                strongSelf.indicator.hidden = YES;
+                self.indicator.hidden = YES;
             } else {
-                strongSelf.indicator.hidden = NO;
+                self.indicator.hidden = NO;
             }
         });
     } completion:^(UIImage *image, NSDictionary *info) {
-        zl_strongify(weakSelf);
-        strongSelf.imageView.image = image;
-        [strongSelf resetSubviewSize:asset];
+        @zl_strongify(self);
+        self.imageView.image = image;
+        [self resetSubviewSize:asset];
         if (![[info objectForKey:PHImageResultIsDegradedKey] boolValue]) {
-            strongSelf.indicator.hidden = YES;
-            strongSelf.loadOK = YES;
+            self.indicator.hidden = YES;
+            self.loadOK = YES;
         }
     }];
 }
@@ -500,26 +494,29 @@
         self.imageView.image = obj;
         [self resetSubviewSize:obj];
     } else {
-        zl_weakify(self);
-        [self.imageView sd_setImageWithURL:obj placeholderImage:nil options:SDWebImageHighPriority progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
-            zl_strongify(weakSelf);
+        @zl_weakify(self);
+        [self cancelCurrentImageLoad];
+        self.imageView.image = nil;
+        _combineOperation = [SDWebImageManager.sharedManager loadImageWithURL:obj options:SDWebImageHighPriority progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
+            @zl_strongify(self);
             dispatch_async(dispatch_get_main_queue(), ^{
                 float progress = (float)receivedSize / (float)expectedSize;
-                strongSelf.indicator.progress = progress;
+                self.indicator.progress = progress;
                 if (progress >= 1) {
-                    strongSelf.indicator.hidden = YES;
+                    self.indicator.hidden = YES;
                 } else {
-                    strongSelf.indicator.hidden = NO;
+                    self.indicator.hidden = NO;
                 }
             });
-        } completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
-            zl_strongify(weakSelf);
-            strongSelf.indicator.hidden = YES;
+        } completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, SDImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
+            @zl_strongify(self);
+            self.indicator.hidden = YES;
             if (error) {
                 ShowToastLong(@"%@", GetLocalLanguageTextValue(ZLPhotoBrowserLoadNetImageFailed));
             } else {
-                strongSelf.loadOK = YES;
-                [strongSelf resetSubviewSize:image];
+                self.imageView.image = image;
+                self.loadOK = YES;
+                [self resetSubviewSize:image];
             }
         }];
     }
@@ -662,6 +659,16 @@
     [self resumeGif];
 }
 
+- (void)cancelCurrentImageLoad {
+    if (_combineOperation && [_combineOperation conformsToProtocol:@protocol(SDWebImageOperation)]) {
+        [_combineOperation cancel];
+    }
+}
+
+- (void)dealloc {
+    [self cancelCurrentImageLoad];
+}
+
 @end
 
 
@@ -712,34 +719,34 @@
         _lpView = nil;
     }
     
-    zl_weakify(self);
+    @zl_weakify(self);
     self.imageRequestID = [ZLPhotoManager requestImageForAsset:asset size:[self requestImageSize:asset] progressHandler:^(double progress, NSError *error, BOOL *stop, NSDictionary *info) {
-        zl_strongify(weakSelf);
+        @zl_strongify(self);
         dispatch_async(dispatch_get_main_queue(), ^{
-            strongSelf.indicator.progress = progress;
+            self.indicator.progress = progress;
             if (progress >= 1) {
-                strongSelf.indicator.hidden = YES;
+                self.indicator.hidden = YES;
             } else {
-                strongSelf.indicator.hidden = NO;
+                self.indicator.hidden = NO;
             }
         });
     } completion:^(UIImage *image, NSDictionary *info) {
-        zl_strongify(weakSelf);
-        strongSelf.imageView.image = image;
+        @zl_strongify(self);
+        self.imageView.image = image;
         if (![[info objectForKey:PHImageResultIsDegradedKey] boolValue]) {
-            strongSelf.indicator.hidden = YES;
+            self.indicator.hidden = YES;
         }
     }];
 }
 
 - (void)loadLivePhoto:(PHAsset *)asset
 {
-    zl_weakify(self);
+    @zl_weakify(self);
     [ZLPhotoManager requestLivePhotoForAsset:asset completion:^(PHLivePhoto *lv, NSDictionary *info) {
-        zl_strongify(weakSelf);
+        @zl_strongify(self);
         if (lv) {
-            strongSelf.lpView.livePhoto = lv;
-            [strongSelf.lpView startPlaybackWithStyle:PHLivePhotoViewPlaybackStyleFull];
+            self.lpView.livePhoto = lv;
+            [self.lpView startPlaybackWithStyle:PHLivePhotoViewPlaybackStyleFull];
         }
     }];
 }
@@ -854,29 +861,39 @@
     self.icloudLoadFailedLabel.hidden = YES;
     self.imageView.hidden = NO;
     
-    zl_weakify(self);
+    @zl_weakify(self);
     self.imageRequestID = [ZLPhotoManager requestImageForAsset:asset size:[self requestImageSize:asset] progressHandler:nil completion:^(UIImage *image, NSDictionary *info) {
-        zl_strongify(weakSelf);
-        strongSelf.imageView.image = image;
+        @zl_strongify(self);
+        self.imageView.image = image;
     }];
     [self loadVideo:asset];
 }
 
 - (void)loadVideo:(PHAsset *)asset
 {
-    zl_weakify(self);
-    [ZLPhotoManager requestVideoForAsset:asset completion:^(AVPlayerItem *item, NSDictionary *info) {
+    @zl_weakify(self);
+    [ZLPhotoManager requestVideoForAsset:asset progressHandler:^(double progress, NSError *error, BOOL *stop, NSDictionary *info) {
+        @zl_strongify(self);
         dispatch_async(dispatch_get_main_queue(), ^{
-            zl_strongify(weakSelf);
+            self.indicator.progress = progress;
+            if (progress >= 1) {
+                self.indicator.hidden = YES;
+            } else {
+                self.indicator.hidden = NO;
+            }
+        });
+    } completion:^(AVPlayerItem *item, NSDictionary *info) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            @zl_strongify(self);
 //            if (!item) {
 //                [strongSelf initVideoLoadFailedFromiCloudUI];
 //                return;
 //            }
             AVPlayer *player = [AVPlayer playerWithPlayerItem:item];
-            [strongSelf.layer addSublayer:strongSelf.playLayer];
-            strongSelf.playLayer.player = player;
-            [[NSNotificationCenter defaultCenter] addObserver:strongSelf selector:@selector(playFinished:) name:AVPlayerItemDidPlayToEndTimeNotification object:player.currentItem];
-            [strongSelf addSubview:strongSelf.playBtn];
+            [self.layer addSublayer:self.playLayer];
+            self.playLayer.player = player;
+            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playFinished:) name:AVPlayerItemDidPlayToEndTimeNotification object:player.currentItem];
+            [self addSubview:self.playBtn];
         });
     }];
 }

@@ -61,17 +61,17 @@ public extension UIImageView {
 public extension EasyApp {
     
     func calculateDiskCacheSize(_ completionHandler: @escaping ((UInt, String) -> Void)) {
-        SDWebImageManager.shared().imageCache?.calculateSize(completionBlock: { (fileCount, cacheSize) in
+        SDImageCache.shared.calculateSize(completionBlock: { (fileCount, cacheSize) in
             completionHandler(cacheSize, "\(cacheSize / 1024 / 1024)"+"M")
         })
     }
     
     func clearWebImageMemoryCache() {
-        SDWebImageManager.shared().imageCache?.clearMemory()
+        SDImageCache.shared.clearMemory()
     }
     
     func clearWebImageDiskCache(onCompletion: (() -> Void)? = nil) {
-        SDWebImageManager.shared().imageCache?.clearDisk(onCompletion: {
+        SDImageCache.shared.clearDisk(onCompletion: {
             onCompletion?()
         })
     }

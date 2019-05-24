@@ -9,6 +9,10 @@
 
 ----------------------------------------
 
+### 运行Demo
+下载完Demo请执行`carthage update --platform iOS`
+如果Demo报 `Duplicate interface definition for class''`  请到`Build Phases -> Headers`中，把`Public`中的头文件拖到`Protect`中即可
+
 ### 框架整体介绍
 * [功能介绍](#功能介绍)
 * [更新日志](#更新日志)
@@ -39,9 +43,6 @@
 - [x] 开发者可自定义资源图片
 - [x] 支持导出视频 (可指定导出视频尺寸、添加图片水印、粒子特效 ps:文字水印暂不支持)
 
-###
-下载完Demo请执行`carthage update --platform iOS`
-
 ### Feature
 
 > 如果您在使用中有好的需求及建议，或者遇到什么bug，欢迎随时issue，我会及时的回复
@@ -49,6 +50,8 @@
 ### 更新日志
 > [更多更新日志](https://github.com/longitachi/ZLPhotoBrowser/blob/master/UPDATELOG.md)
 ```
+● 3.0.4: 添加视频选择最大最小个数限制; 解决网络gif图片无法播放的bug; fix已知bug;
+● 3.0.3: 依赖库SDWebImage升级为5.0.2以上; 解决图片浏览器关闭时取消所有sd图片请求的bug; 支持直接调用相机;
 ● 3.0.0: 压缩bundle内图片; 支持直接选择iCloud照片，并添加解析图片超时时间属性;
 ● 3.0.0: 支持carthage; 去除GPUImage滤镜;
 ● 2.7.8: 添加iCloud图片加载进度条，支持iCloud视频播放;
@@ -65,13 +68,6 @@
 ● 2.6.3: 新增自定义多语言文本功能; 新增预览网络视频功能;
 ● 2.6.2: 新增是否保存已编辑图片的参数; 优化编辑图片旋转体验; 新增取消选择回调;
 ● 2.6.1: 新增导出视频添加粒子特效功能(如下雪特效); 新增编辑图片时旋转图片功能;
-● 2.6.0: ①：新增调用系统相机录制视频功能;
-         ②：支持导出指定尺寸的视频，支持导出视频添加图片水印;
-         ③：优化部分UI显示;
-● 2.5.5: 视频导出方法中添加压缩设置参数; 支持app名字国际化的获取; 删除视频导出3gp格式; fix #157;
-● 2.5.4: 新增视频导出功能; 新增获取图片路径api; 优化自定义相机，当相机消失后恢复其他音乐软件的播放;
-● 2.5.3: 拍摄视频及编辑视频支持多种格式(mov, mp4, 3gp); 新增相册名字等多语言，以完善手动设置语言时相册名字跟随系统的问题; 简化相册调用，configuration 由必传参数修改为非必传参数;
-● 2.5.2: 提取相册配置参数独立为'ZLPhotoConfiguration'对象; 新增状态栏样式api; 优化部分代码;
 ```
 
 ### 框架支持
@@ -120,25 +116,37 @@ Privacy - Microphone Usage Description
     
 ZLPhotoActionSheet *ac = [[ZLPhotoActionSheet alloc] init];
 
-//相册参数配置，configuration有默认值，可直接使用并对其属性进行修改
+// 相册参数配置，configuration有默认值，可直接使用并对其属性进行修改
 ac.configuration.maxSelectCount = 5;
 ac.configuration.maxPreviewCount = 10;
 
 //如调用的方法无sender参数，则该参数必传
 ac.sender = self;
 
-//选择回调
+// 选择回调
 [ac setSelectImageBlock:^(NSArray<UIImage *> * _Nonnull images, NSArray<PHAsset *> * _Nonnull assets, BOOL isOriginal) {
     //your codes
 }];
 
-//调用相册
+// 调用相册
 [ac showPreviewAnimated:YES];
 
-//预览网络图片
+// 预览网络图片
 [ac previewPhotos:arrNetImages index:0 hideToolBar:YES complete:^(NSArray * _Nonnull photos) {
-    //your codes
+    // your codes
 }];
+
+
+// 直接调用相机
+ZLCustomCamera *camera = [[ZLCustomCamera alloc] init];
+
+
+camera.doneBlock = ^(UIImage *image, NSURL *videoUrl) {
+    // 自己需要在这个地方进行图片或者视频的保存
+};
+
+[self showDetailViewController:camera sender:nil];
+
 ```
 
 ------------------
