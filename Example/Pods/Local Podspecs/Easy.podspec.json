@@ -1,6 +1,6 @@
 {
   "name": "Easy",
-  "version": "2.5",
+  "version": "2.6",
   "summary": "develop Swift with Easy",
   "description": "Reduce development time and increase development efficiency",
   "homepage": "https://github.com/OctMon/Easy",
@@ -13,12 +13,12 @@
   },
   "source": {
     "git": "https://github.com/OctMon/Easy.git",
-    "tag": "2.5"
+    "tag": "2.6"
   },
   "platforms": {
     "ios": "9.0"
   },
-  "swift_version": "5.0",
+  "swift_versions": "5.0",
   "default_subspecs": [
     "Core",
     "Session"
@@ -149,5 +149,6 @@
         "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "$(inherited) BETA"
       }
     }
-  ]
+  ],
+  "swift_version": "5.0"
 }
