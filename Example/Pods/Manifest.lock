@@ -1,5 +1,5 @@
 PODS:
-  - Alamofire (4.8.2)
+  - Alamofire (4.9.1)
   - Easy (2.7):
     - Easy/Core (= 2.7)
     - Easy/Session (= 2.7)
@@ -28,7 +28,7 @@ PODS:
   - Easy/Scan (2.7):
     - Easy/Core
   - Easy/Session (2.7):
-    - Alamofire (~> 4.8.2)
+    - Alamofire (~> 4.9.1)
     - Easy/Core
   - Easy/Social (2.7):
     - Easy/Core
@@ -87,8 +87,8 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
-  Easy: bc5def749fd331eead0f5faa096b46bfece685ad
+  Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
+  Easy: bfead4c1d52867384192b2caac2af8aca3ab87b2
   fishhook: ea19933abfe8f2f52c55fd8b6e2718467d3ebc89
   FLEX: d66c759bce0f6ebbbf472c742380874d846f2883
   GDPerformanceView-Swift: a40b2f675589449f5b5082f3178f01bfdb7882ce

@@ -53,7 +53,7 @@ Pod::Spec.new do |s|
     s.subspec 'Session' do |ss|
         ss.source_files = 'Easy/Classes/Session/*'
         ss.dependency 'Easy/Core'
-        ss.dependency 'Alamofire', '~> 4.8.2' # https://github.com/Alamofire/Alamofire
+        ss.dependency 'Alamofire', '~> 4.9.1' # https://github.com/Alamofire/Alamofire
     end
     
     s.subspec 'Social' do |ss|
