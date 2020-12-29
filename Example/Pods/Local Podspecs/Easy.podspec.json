@@ -46,7 +46,7 @@
           "~> 3.5.0"
         ],
         "RTRootNavigationController": [
-          "~> 0.7.1"
+          "~> 0.7.2"
         ],
         "SDWebImage": [
           "~> 5.0.3"
