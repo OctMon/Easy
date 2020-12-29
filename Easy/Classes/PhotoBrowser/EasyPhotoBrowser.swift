@@ -87,7 +87,7 @@ private class PickerControllerDelegate: NSObject, UIImagePickerControllerDelegat
         }
         if let image = image {
             ZLPhotoManager.saveImage(toAblum: image, completion: { [weak self] (isSuccess, asset) in
-                if let asset = asset, isSuccess {
+                if isSuccess {
                     self?.selectImageHandler?(image, asset)
                 }
             })

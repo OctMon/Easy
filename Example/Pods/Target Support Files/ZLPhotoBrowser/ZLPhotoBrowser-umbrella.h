@@ -16,7 +16,7 @@
 #import "ZLPullDownInteractiveTransition.h"
 #import "NSBundle+ZLPhotoBrowser.h"
 #import "ToastUtils.h"
-#import "UIButton+EnlargeTouchArea.h"
+#import "UIControl+EnlargeTouchArea.h"
 #import "UIImage+ZLPhotoBrowser.h"
 #import "ZLAlbumListController.h"
 #import "ZLBigImageCell.h"
@@ -42,6 +42,7 @@
 #import "ZLProgressView.h"
 #import "ZLShowBigImgViewController.h"
 #import "ZLThumbnailViewController.h"
+#import "ZLVideoPlayerControl.h"
 
 FOUNDATION_EXPORT double ZLPhotoBrowserVersionNumber;
 FOUNDATION_EXPORT const unsigned char ZLPhotoBrowserVersionString[];

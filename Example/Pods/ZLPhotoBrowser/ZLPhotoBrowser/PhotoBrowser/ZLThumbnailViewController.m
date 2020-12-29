@@ -73,6 +73,8 @@ typedef NS_ENUM(NSUInteger, SlideSelectType) {
 - (NSMutableArray<ZLPhotoModel *> *)arrDataSources
 {
     if (!_arrDataSources) {
+        _arrDataSources = [NSMutableArray array];
+        
         ZLProgressHUD *hud = [[ZLProgressHUD alloc] init];
         [hud show];
         
@@ -80,17 +82,20 @@ typedef NS_ENUM(NSUInteger, SlideSelectType) {
         ZLPhotoConfiguration *configuration = nav.configuration;
         
         if (!_albumListModel) {
+            ZLImageNavigationController *nav = (ZLImageNavigationController *)self.navigationController;
+            @zl_weakify(self);
+            __weak typeof(nav) weakNav = nav;
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                @zl_weakify(self);
                 [ZLPhotoManager getCameraRollAlbumList:configuration.allowSelectVideo allowSelectImage:configuration.allowSelectImage complete:^(ZLAlbumListModel *album) {
-                    @zl_strongify(self);
-                    ZLImageNavigationController *weakNav = (ZLImageNavigationController *)self.navigationController;
-                    
-                    self.albumListModel = album;
-                    [ZLPhotoManager markSelectModelInArr:self.albumListModel.models selArr:weakNav.arrSelectedModels];
-                    self.arrDataSources = [NSMutableArray arrayWithArray:self.albumListModel.models];
-                    [hud hide];
                     dispatch_async(dispatch_get_main_queue(), ^{
+                        @zl_strongify(self);
+                        __strong typeof(weakNav) strongNav  = weakNav;
+                        
+                        self.albumListModel = album;
+                        [ZLPhotoManager markSelectModelInArr:self.albumListModel.models selArr:strongNav.arrSelectedModels];
+                        [self.arrDataSources addObjectsFromArray:self.albumListModel.models];
+                        
+                        [hud hide];
                         if (configuration.allowTakePhotoInLibrary && (configuration.allowSelectImage || configuration.allowRecordVideo)) {
                             self.allowTakePhoto = YES;
                         }
@@ -104,9 +109,22 @@ typedef NS_ENUM(NSUInteger, SlideSelectType) {
             if (configuration.allowTakePhotoInLibrary && (configuration.allowSelectImage || configuration.allowRecordVideo) && self.albumListModel.isCameraRoll) {
                 self.allowTakePhoto = YES;
             }
-            [ZLPhotoManager markSelectModelInArr:self.albumListModel.models selArr:nav.arrSelectedModels];
-            _arrDataSources = [NSMutableArray arrayWithArray:self.albumListModel.models];
-            [hud hide];
+            ZLImageNavigationController *nav = (ZLImageNavigationController *)self.navigationController;
+            
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                self.albumListModel.models = [ZLPhotoManager getPhotoInResult:self.albumListModel.result allowSelectVideo:configuration.allowSelectVideo allowSelectImage:configuration.allowSelectImage allowSelectGif:configuration.allowSelectGif allowSelectLivePhoto:configuration.allowSelectLivePhoto];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [ZLPhotoManager markSelectModelInArr:self.albumListModel.models selArr:nav.arrSelectedModels];
+                    [self.arrDataSources addObjectsFromArray:self.albumListModel.models];
+                    
+                    [hud hide];
+                    if (configuration.allowTakePhotoInLibrary && (configuration.allowSelectImage || configuration.allowRecordVideo)) {
+                        self.allowTakePhoto = YES;
+                    }
+                    [self.collectionView reloadData];
+                    [self scrollToBottom];
+                });
+            });
         }
     }
     return _arrDataSources;
@@ -164,6 +182,7 @@ typedef NS_ENUM(NSUInteger, SlideSelectType) {
     [super viewDidAppear:animated];
     _isLayoutOK = YES;
     _isPreviewPush = NO;
+    
 }
 
 - (void)viewDidLayoutSubviews
@@ -269,9 +288,10 @@ typedef NS_ENUM(NSUInteger, SlideSelectType) {
         }
         self.btnOriginalPhoto.selected = nav.isSelectOriginalPhoto;
         [self.btnDone setTitle:[NSString stringWithFormat:@"%@(%ld)", GetLocalLanguageTextValue(ZLPhotoBrowserDoneText), nav.arrSelectedModels.count] forState:UIControlStateNormal];
+        [self.btnDone setTitleColor:configuration.bottomBtnsNormalTitleColor forState:UIControlStateNormal];
         [self.btnOriginalPhoto setTitleColor:configuration.bottomBtnsNormalTitleColor forState:UIControlStateNormal];
         [self.btnPreView setTitleColor:configuration.bottomBtnsNormalTitleColor forState:UIControlStateNormal];
-        self.btnDone.backgroundColor = configuration.bottomBtnsNormalTitleColor;
+        self.btnDone.backgroundColor = configuration.bottomBtnsNormalBgColor;
     } else {
         self.btnOriginalPhoto.selected = NO;
         self.btnOriginalPhoto.enabled = NO;
@@ -279,8 +299,9 @@ typedef NS_ENUM(NSUInteger, SlideSelectType) {
         self.btnDone.enabled = NO;
         self.labPhotosBytes.text = nil;
         [self.btnDone setTitle:GetLocalLanguageTextValue(ZLPhotoBrowserDoneText) forState:UIControlStateDisabled];
-        [self.btnOriginalPhoto setTitleColor:configuration.bottomBtnsDisableBgColor forState:UIControlStateDisabled];
-        [self.btnPreView setTitleColor:configuration.bottomBtnsDisableBgColor forState:UIControlStateDisabled];
+        [self.btnDone setTitleColor:configuration.bottomBtnsDisableTitleColor forState:UIControlStateDisabled];
+        [self.btnOriginalPhoto setTitleColor:configuration.bottomBtnsDisableTitleColor forState:UIControlStateDisabled];
+        [self.btnPreView setTitleColor:configuration.bottomBtnsDisableTitleColor forState:UIControlStateDisabled];
         self.btnDone.backgroundColor = configuration.bottomBtnsDisableBgColor;
     }
     
@@ -292,7 +313,7 @@ typedef NS_ENUM(NSUInteger, SlideSelectType) {
         (m.type == ZLAssetMediaTypeLivePhoto && !configuration.allowSelectLivePhoto))) ||
         (configuration.allowEditVideo && m.type == ZLAssetMediaTypeVideo && round(m.asset.duration) >= configuration.maxEditVideoTime);
     }
-    [self.btnEdit setTitleColor:canEdit?configuration.bottomBtnsNormalTitleColor:configuration.bottomBtnsDisableBgColor forState:UIControlStateNormal];
+    [self.btnEdit setTitleColor:canEdit?configuration.bottomBtnsNormalTitleColor:configuration.bottomBtnsDisableTitleColor forState:UIControlStateNormal];
     self.btnEdit.userInteractionEnabled = canEdit;
 }
 
@@ -319,6 +340,7 @@ typedef NS_ENUM(NSUInteger, SlideSelectType) {
     self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
     self.collectionView.backgroundColor = [UIColor whiteColor];
     self.collectionView.dataSource = self;
+    self.collectionView.alwaysBounceVertical = YES;
     self.collectionView.delegate = self;
     if (@available(iOS 11.0, *)) {
         [self.collectionView setContentInsetAdjustmentBehavior:UIScrollViewContentInsetAdjustmentAlways];
@@ -371,7 +393,7 @@ typedef NS_ENUM(NSUInteger, SlideSelectType) {
         self.btnOriginalPhoto = [UIButton buttonWithType:UIButtonTypeCustom];
         self.btnOriginalPhoto.titleLabel.font = [UIFont systemFontOfSize:15];
         [self.btnOriginalPhoto setImage:GetImageWithName(@"zl_btn_original_circle") forState:UIControlStateNormal];
-        [self.btnOriginalPhoto setImage:GetImageWithName(@"zl_btn_selected") forState:UIControlStateSelected];
+        [self.btnOriginalPhoto setImage:GetImageWithName(@"zl_btn_original_selected") forState:UIControlStateSelected];
         [self.btnOriginalPhoto setTitle:GetLocalLanguageTextValue(ZLPhotoBrowserOriginalText) forState:UIControlStateNormal];
         [self.btnOriginalPhoto addTarget:self action:@selector(btnOriginalPhoto_Click:) forControlEvents:UIControlEventTouchUpInside];
         [self.bottomView addSubview:self.btnOriginalPhoto];
@@ -384,7 +406,6 @@ typedef NS_ENUM(NSUInteger, SlideSelectType) {
     
     self.btnDone = [UIButton buttonWithType:UIButtonTypeCustom];
     self.btnDone.titleLabel.font = [UIFont systemFontOfSize:15];
-    [self.btnDone setTitleColor:[UIColor whiteColor] forState:UIControlStateDisabled];
     [self.btnDone setTitle:GetLocalLanguageTextValue(ZLPhotoBrowserDoneText) forState:UIControlStateNormal];
     self.btnDone.layer.masksToBounds = YES;
     self.btnDone.layer.cornerRadius = 3.0f;
@@ -396,8 +417,11 @@ typedef NS_ENUM(NSUInteger, SlideSelectType) {
 {
     ZLImageNavigationController *nav = (ZLImageNavigationController *)self.navigationController;
     ZLPhotoConfiguration *configuration = nav.configuration;
-    nav.viewControllers.firstObject.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:GetLocalLanguageTextValue(ZLPhotoBrowserBackText) style:UIBarButtonItemStylePlain target:nil action:nil];
     
+//    nav.viewControllers.firstObject.navigationItem.backBarButtonItem.title = GetLocalLanguageTextValue(ZLPhotoBrowserBackText);
+    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithImage:GetImageWithName(@"zl_navBack") style:UIBarButtonItemStylePlain target:self action:@selector(navBackAction)];
+    self.navigationItem.leftBarButtonItem = backItem;
+
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
     CGFloat width = GetMatchValue(GetLocalLanguageTextValue(ZLPhotoBrowserCancelText), 16, YES, 44);
     btn.frame = CGRectMake(0, 0, width, 44);
@@ -409,6 +433,12 @@ typedef NS_ENUM(NSUInteger, SlideSelectType) {
 }
 
 #pragma mark - UIButton Action
+
+- (void)navBackAction
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 - (void)btnEdit_Click:(id)sender {
     ZLImageNavigationController *nav = (ZLImageNavigationController *)self.navigationController;
     ZLPhotoModel *m = nav.arrSelectedModels.firstObject;
@@ -454,10 +484,10 @@ typedef NS_ENUM(NSUInteger, SlideSelectType) {
     ZLImageNavigationController *nav = (ZLImageNavigationController *)self.navigationController;
     self.btnOriginalPhoto.selected = !self.btnOriginalPhoto.selected;
     nav.isSelectOriginalPhoto = self.btnOriginalPhoto.selected;
+    self.labPhotosBytes.hidden = !nav.isSelectOriginalPhoto;
+    self.labPhotosBytes.text = nil;
     if (nav.isSelectOriginalPhoto) {
         [self getOriginalImageBytes];
-    } else {
-        self.labPhotosBytes.text = nil;
     }
 }
 
@@ -527,7 +557,9 @@ typedef NS_ENUM(NSUInteger, SlideSelectType) {
             }
             ZLCollectionCell *c = (ZLCollectionCell *)cell;
             c.btnSelect.selected = m.isSelected;
-            c.topView.hidden = configuration.showSelectedMask ? !m.isSelected : YES;
+            c.maskView.hidden = configuration.showSelectedMask ? !m.isSelected : YES;
+            [self refreshCellIndex];
+            [self refreshCellMaskView];
             [self resetBottomBtnsStatus:NO];
         }
     } else if (pan.state == UIGestureRecognizerStateChanged) {
@@ -568,7 +600,9 @@ typedef NS_ENUM(NSUInteger, SlideSelectType) {
                 case SlideSelectTypeSelect: {
                     if (inSection &&
                         !m.isSelected &&
-                        [self canAddModel:m]) m.selected = YES;
+                        [self canAddModel:m]) {
+                        m.selected = YES;
+                    }
                 }
                     break;
                 case SlideSelectTypeCancel: {
@@ -605,8 +639,9 @@ typedef NS_ENUM(NSUInteger, SlideSelectType) {
             
             ZLCollectionCell *c = (ZLCollectionCell *)[self.collectionView cellForItemAtIndexPath:path];
             c.btnSelect.selected = m.isSelected;
-            c.topView.hidden = configuration.showSelectedMask ? !m.isSelected : YES;
-            
+            c.maskView.hidden = configuration.showSelectedMask ? !m.isSelected : YES;
+            [self refreshCellIndex];
+            [self refreshCellMaskView];
             [self resetBottomBtnsStatus:NO];
         }
     } else if (pan.state == UIGestureRecognizerStateEnded ||
@@ -629,10 +664,8 @@ typedef NS_ENUM(NSUInteger, SlideSelectType) {
         return NO;
     }
     if (nav.arrSelectedModels.count > 0) {
-        ZLPhotoModel *sm = nav.arrSelectedModels.firstObject;
-        if (!configuration.allowMixSelect &&
-            ((model.type < ZLAssetMediaTypeVideo && sm.type == ZLAssetMediaTypeVideo) || (model.type == ZLAssetMediaTypeVideo && sm.type < ZLAssetMediaTypeVideo))) {
-            ShowToastLong(@"%@", GetLocalLanguageTextValue(ZLPhotoBrowserCannotSelectVideo));
+        if (configuration.mutuallyExclusiveSelectInMix &&
+            model.type == ZLAssetMediaTypeVideo) {
             return NO;
         }
     }
@@ -663,6 +696,7 @@ typedef NS_ENUM(NSUInteger, SlideSelectType) {
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    ZLImageNavigationController *nav = (ZLImageNavigationController *)self.navigationController;
     ZLPhotoConfiguration *configuration = [(ZLImageNavigationController *)self.navigationController configuration];
     
     if (self.allowTakePhoto && ((configuration.sortAscending && indexPath.row >= self.arrDataSources.count) || (!configuration.sortAscending && indexPath.row == 0))) {
@@ -686,19 +720,20 @@ typedef NS_ENUM(NSUInteger, SlideSelectType) {
 
     @zl_weakify(self);
     __weak typeof(cell) weakCell = cell;
-    
+    __weak typeof(nav) weakNav = nav;
     cell.selectedBlock = ^(BOOL selected) {
         @zl_strongify(self);
         __strong typeof(weakCell) strongCell = weakCell;
         
-        ZLImageNavigationController *weakNav = (ZLImageNavigationController *)self.navigationController;
+        __weak typeof(weakNav) strongNav = weakNav;
         if (!selected) {
             //选中
             if ([self canAddModel:model]) {
                 if (![self shouldDirectEdit:model]) {
                     model.selected = YES;
-                    [weakNav.arrSelectedModels addObject:model];
+                    [strongNav.arrSelectedModels addObject:model];
                     strongCell.btnSelect.selected = YES;
+                    [self setCell:strongCell indexLabelShow:YES index:strongNav.arrSelectedModels.count animate:YES];
                     [self shouldDirectEdit:model];
                 }
             }
@@ -707,26 +742,144 @@ typedef NS_ENUM(NSUInteger, SlideSelectType) {
             model.selected = NO;
             for (ZLPhotoModel *m in weakNav.arrSelectedModels) {
                 if ([m.asset.localIdentifier isEqualToString:model.asset.localIdentifier]) {
-                    [weakNav.arrSelectedModels removeObject:m];
+                    [strongNav.arrSelectedModels removeObject:m];
                     break;
                 }
             }
+            [self refreshCellIndex];
         }
-        if (configuration.showSelectedMask) {
-            strongCell.topView.hidden = !model.isSelected;
-        }
+        [self refreshCellMaskView];
         [self resetBottomBtnsStatus:YES];
     };
     
     cell.allSelectGif = configuration.allowSelectGif;
     cell.allSelectLivePhoto = configuration.allowSelectLivePhoto;
-    cell.showSelectBtn = configuration.showSelectBtn;
+    if (configuration.mutuallyExclusiveSelectInMix && configuration.maxSelectCount > 1) {
+        cell.showSelectBtn = model.type < ZLAssetMediaTypeVideo;
+    } else {
+        cell.showSelectBtn = configuration.showSelectBtn;
+    }
     cell.cornerRadio = configuration.cellCornerRadio;
-    cell.showMask = configuration.showSelectedMask;
-    cell.maskColor = configuration.selectedMaskColor;
+    cell.indexLabel.backgroundColor = configuration.indexLabelBgColor;
+    cell.showIndexLabel = NO;
+    if (configuration.showSelectedIndex) {
+        [nav.arrSelectedModels enumerateObjectsUsingBlock:^(ZLPhotoModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            if ([obj.asset.localIdentifier isEqualToString:model.asset.localIdentifier]) {
+                [self setCell:cell indexLabelShow:YES index:idx+1 animate:NO];
+                *stop = YES;
+            }
+        }];
+    }
+    
+    [self setCellMaskView:cell isSelected:model.isSelected model:model];
+    
     cell.model = model;
-
+    
     return cell;
+}
+
+- (void)setCell:(ZLCollectionCell *)cell indexLabelShow:(BOOL)show index:(NSInteger)index animate:(BOOL)animate
+{
+    ZLPhotoConfiguration *configuration = [(ZLImageNavigationController *)self.navigationController configuration];
+    if (!configuration.showSelectedIndex) {
+        return;
+    }
+    cell.showIndexLabel = show;
+    cell.index = index;
+    if (animate) {
+        [cell.indexLabel.layer addAnimation:GetBtnStatusChangedAnimation() forKey:nil];
+    }
+}
+
+- (void)refreshCellIndex {
+    ZLPhotoConfiguration *configuration = [(ZLImageNavigationController *)self.navigationController configuration];
+    if (!configuration.showSelectedIndex) {
+        return;
+    }
+    ZLImageNavigationController *nav = (ZLImageNavigationController *)self.navigationController;
+    NSArray<NSIndexPath *> *visibleIndexPaths = self.collectionView.indexPathsForVisibleItems;
+    [visibleIndexPaths enumerateObjectsUsingBlock:^(NSIndexPath * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        UICollectionViewCell *c = [self.collectionView cellForItemAtIndexPath:obj];
+        if ([c isKindOfClass:ZLTakePhotoCell.class]) {
+            // 拍照cell return
+            return;
+        }
+        ZLCollectionCell *cell = (ZLCollectionCell *)c;
+        
+        NSInteger row = obj.row;
+        if (self.allowTakePhoto && !nav.configuration.sortAscending) {
+            row = obj.row - 1;
+        }
+        
+        ZLPhotoModel *m = self.arrDataSources[row];
+        __block BOOL shouldShow = NO;
+        __block NSInteger index = 0;
+        [nav.arrSelectedModels enumerateObjectsUsingBlock:^(ZLPhotoModel * _Nonnull obj1, NSUInteger idx1, BOOL * _Nonnull stop) {
+            if ([obj1.asset.localIdentifier isEqualToString:m.asset.localIdentifier]) {
+                index = idx1 + 1;
+                shouldShow = YES;
+                *stop = YES;
+            }
+        }];
+        [self setCell:cell indexLabelShow:shouldShow index:index animate:NO];
+    }];
+}
+
+- (void)refreshCellMaskView
+{
+    ZLPhotoConfiguration *configuration = [(ZLImageNavigationController *)self.navigationController configuration];
+    if (!configuration.showSelectedMask && !configuration.showInvalidMask) {
+        return;
+    }
+    ZLImageNavigationController *nav = (ZLImageNavigationController *)self.navigationController;
+    NSArray<NSIndexPath *> *visibleIndexPaths = self.collectionView.indexPathsForVisibleItems;
+    [visibleIndexPaths enumerateObjectsUsingBlock:^(NSIndexPath * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        UICollectionViewCell *c = [self.collectionView cellForItemAtIndexPath:obj];
+        if ([c isKindOfClass:ZLTakePhotoCell.class]) {
+            // 拍照cell return
+            return;
+        }
+        ZLCollectionCell *cell = (ZLCollectionCell *)c;
+        
+        NSInteger row = obj.row;
+        if (self.allowTakePhoto && !nav.configuration.sortAscending) {
+            row = obj.row - 1;
+        }
+        
+        ZLPhotoModel *m = self.arrDataSources[row];
+        __block BOOL isSel = NO;
+        [nav.arrSelectedModels enumerateObjectsUsingBlock:^(ZLPhotoModel * _Nonnull obj1, NSUInteger idx1, BOOL * _Nonnull stop) {
+            if ([obj1.asset.localIdentifier isEqualToString:m.asset.localIdentifier]) {
+                isSel = YES;
+                *stop = YES;
+            }
+        }];
+        [self setCellMaskView:cell isSelected:isSel model:m];
+    }];
+}
+
+- (void)setCellMaskView:(ZLCollectionCell *)cell isSelected:(BOOL)isSelected model:(ZLPhotoModel *)model {
+    ZLPhotoConfiguration *configuration = [(ZLImageNavigationController *)self.navigationController configuration];
+    ZLImageNavigationController *nav = (ZLImageNavigationController *)self.navigationController;
+    cell.maskView.hidden = YES;
+    cell.enableSelect = YES;
+    if (isSelected) {
+        cell.maskView.backgroundColor = configuration.selectedMaskColor;
+        cell.maskView.hidden = !configuration.showSelectedMask;
+    } else {
+        NSInteger selCount = nav.arrSelectedModels.count;
+        if (selCount < configuration.maxSelectCount && selCount > 0) {
+            if (configuration.mutuallyExclusiveSelectInMix) {
+                    cell.maskView.backgroundColor = configuration.invalidMaskColor;
+                    cell.maskView.hidden = model.type != ZLAssetMediaTypeVideo;
+                    cell.enableSelect = model.type != ZLAssetMediaTypeVideo;
+            }
+        } else if (selCount >= configuration.maxSelectCount) {
+            cell.maskView.backgroundColor = configuration.invalidMaskColor;
+            cell.maskView.hidden = NO;
+            cell.enableSelect = NO;
+        }
+    }
 }
 
 #pragma mark - UICollectionViewDelegate
@@ -737,6 +890,10 @@ typedef NS_ENUM(NSUInteger, SlideSelectType) {
     if (self.allowTakePhoto && ((configuration.sortAscending && indexPath.row >= self.arrDataSources.count) || (!configuration.sortAscending && indexPath.row == 0))) {
         //拍照
         [self takePhoto];
+        return;
+    }
+    ZLCollectionCell *cell = (ZLCollectionCell *)[collectionView cellForItemAtIndexPath:indexPath];
+    if (!cell.enableSelect) {
         return;
     }
     
@@ -786,17 +943,13 @@ typedef NS_ENUM(NSUInteger, SlideSelectType) {
     
     if (nav.arrSelectedModels.count > 0) {
         ZLPhotoModel *sm = nav.arrSelectedModels.firstObject;
-        if (!configuration.allowMixSelect &&
+        if (configuration.mutuallyExclusiveSelectInMix &&
             ((model.type < ZLAssetMediaTypeVideo && sm.type == ZLAssetMediaTypeVideo) || (model.type == ZLAssetMediaTypeVideo && sm.type < ZLAssetMediaTypeVideo))) {
-            ShowToastLong(@"%@", GetLocalLanguageTextValue(ZLPhotoBrowserCannotSelectVideo));
             return nil;
         }
     }
     
-    BOOL allowSelImage = !(model.type==ZLAssetMediaTypeVideo)?YES:configuration.allowMixSelect;
-    BOOL allowSelVideo = model.type==ZLAssetMediaTypeVideo?YES:configuration.allowMixSelect;
-    
-    NSArray *arr = [ZLPhotoManager getPhotoInResult:self.albumListModel.result allowSelectVideo:allowSelVideo allowSelectImage:allowSelImage allowSelectGif:configuration.allowSelectGif allowSelectLivePhoto:configuration.allowSelectLivePhoto];
+    NSArray *arr = [ZLPhotoManager getPhotoInResult:self.albumListModel.result allowSelectVideo:YES allowSelectImage:YES allowSelectGif:configuration.allowSelectGif allowSelectLivePhoto:configuration.allowSelectLivePhoto];
     
     NSMutableArray *selIdentifiers = [NSMutableArray array];
     for (ZLPhotoModel *m in nav.arrSelectedModels) {
@@ -822,7 +975,8 @@ typedef NS_ENUM(NSUInteger, SlideSelectType) {
 
 - (void)takePhoto
 {
-    ZLPhotoConfiguration *configuration = [(ZLImageNavigationController *)self.navigationController configuration];
+    ZLImageNavigationController *nav = (ZLImageNavigationController *)self.navigationController;
+    ZLPhotoConfiguration *configuration = [nav configuration];
     
     if (![ZLPhotoManager haveCameraAuthority]) {
         NSString *message = [NSString stringWithFormat:GetLocalLanguageTextValue(ZLPhotoBrowserNoCameraAuthorityText), kAPPName];
@@ -834,6 +988,10 @@ typedef NS_ENUM(NSUInteger, SlideSelectType) {
         ShowAlert(@"allowSelectImage与allowRecordVideo不能同时为NO", self);
         return;
     }
+    BOOL canRecordFirstCondition = YES;
+    if (configuration.mutuallyExclusiveSelectInMix && nav.arrSelectedModels.count > 0) {
+        canRecordFirstCondition = NO;
+    }
     if (configuration.useSystemCamera) {
         //系统相机拍照
         if ([UIImagePickerController isSourceTypeAvailable:
@@ -844,7 +1002,7 @@ typedef NS_ENUM(NSUInteger, SlideSelectType) {
             picker.videoQuality = UIImagePickerControllerQualityTypeHigh;
             picker.sourceType = UIImagePickerControllerSourceTypeCamera;
             NSArray *a1 = configuration.allowSelectImage?@[(NSString *)kUTTypeImage]:@[];
-            NSArray *a2 = (configuration.allowSelectVideo && configuration.allowRecordVideo)?@[(NSString *)kUTTypeMovie]:@[];
+            NSArray *a2 = (canRecordFirstCondition&&configuration.allowSelectVideo && configuration.allowRecordVideo)?@[(NSString *)kUTTypeMovie]:@[];
             NSMutableArray *arr = [NSMutableArray array];
             [arr addObjectsFromArray:a1];
             [arr addObjectsFromArray:a2];
@@ -861,10 +1019,10 @@ typedef NS_ENUM(NSUInteger, SlideSelectType) {
         }
         ZLCustomCamera *camera = [[ZLCustomCamera alloc] init];
         camera.allowTakePhoto = configuration.allowSelectImage;
-        camera.allowRecordVideo = configuration.allowSelectVideo && configuration.allowRecordVideo;
+        camera.allowRecordVideo = canRecordFirstCondition && configuration.allowSelectVideo && configuration.allowRecordVideo;
         camera.sessionPreset = configuration.sessionPreset;
         camera.videoType = configuration.exportVideoType;
-        camera.circleProgressColor = configuration.bottomBtnsNormalTitleColor;
+        camera.circleProgressColor = configuration.cameraProgressColor;
         camera.maxRecordDuration = configuration.maxRecordDuration;
         @zl_weakify(self);
         camera.doneBlock = ^(UIImage *image, NSURL *videoUrl) {
@@ -893,29 +1051,25 @@ typedef NS_ENUM(NSUInteger, SlideSelectType) {
     if (image) {
         [ZLPhotoManager saveImageToAblum:image completion:^(BOOL suc, PHAsset *asset) {
             @zl_strongify(self);
-            dispatch_async(dispatch_get_main_queue(), ^{
-                if (suc) {
-                    ZLPhotoModel *model = [ZLPhotoModel modelWithAsset:asset type:ZLAssetMediaTypeImage duration:nil];
-                    [self handleDataArray:model];
-                } else {
-                    ShowToastLong(@"%@", GetLocalLanguageTextValue(ZLPhotoBrowserSaveImageErrorText));
-                }
-                [hud hide];
-            });
+            if (suc) {
+                ZLPhotoModel *model = [ZLPhotoModel modelWithAsset:asset type:ZLAssetMediaTypeImage duration:nil];
+                [self handleDataArray:model];
+            } else {
+                ShowToastLong(@"%@", GetLocalLanguageTextValue(ZLPhotoBrowserSaveImageErrorText));
+            }
+            [hud hide];
         }];
     } else if (videoUrl) {
         [ZLPhotoManager saveVideoToAblum:videoUrl completion:^(BOOL suc, PHAsset *asset) {
             @zl_strongify(self);
-            dispatch_async(dispatch_get_main_queue(), ^{
-                if (suc) {
-                    ZLPhotoModel *model = [ZLPhotoModel modelWithAsset:asset type:ZLAssetMediaTypeVideo duration:nil];
-                    model.duration = [ZLPhotoManager getDuration:asset];
-                    [self handleDataArray:model];
-                } else {
-                    ShowToastLong(@"%@", GetLocalLanguageTextValue(ZLPhotoBrowserSaveVideoFailed));
-                }
-                [hud hide];
-            });
+            if (suc) {
+                ZLPhotoModel *model = [ZLPhotoModel modelWithAsset:asset type:ZLAssetMediaTypeVideo duration:nil];
+                model.duration = [ZLPhotoManager getDuration:asset];
+                [self handleDataArray:model];
+            } else {
+                ShowToastLong(@"%@", GetLocalLanguageTextValue(ZLPhotoBrowserSaveVideoFailed));
+            }
+            [hud hide];
         }];
     }
 }

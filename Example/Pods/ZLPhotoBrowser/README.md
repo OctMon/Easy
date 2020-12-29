@@ -10,8 +10,7 @@
 ----------------------------------------
 
 ### 运行Demo
-下载完Demo请执行`carthage update --platform iOS`
-如果Demo报 `Duplicate interface definition for class''`  请到`Build Phases -> Headers`中，把`Public`中的头文件拖到`Protect`中即可
+下载完Demo请执行`carthage update --platform iOS` （运行时候请选择 `Example` target）`SDWebImage.framework` 和 `SDWebImageMapKit.framework` 路径如果报错的话，关掉项目，重新打开即可
 
 ### 框架整体介绍
 * [功能介绍](#功能介绍)
@@ -22,10 +21,10 @@
 * [效果图](#效果图)
 
 ### <a id="功能介绍"></a>功能介绍
-- [x] 支持横竖屏 (已适配iPhone X)
+- [x] 支持横竖屏
 - [x] 预览快速选择、可设置预览最大数 (支持拖拽选择)
 - [x] 直接进入相册选择 （支持滑动多选）
-- [x] 编辑图片 (支持多种滤镜，可自定义裁剪比例)
+- [x] 编辑图片 (可自定义裁剪比例)
 - [x] 编辑视频
 - [x] 查看、选择gif、LivePhoto(iOS9.0)、video
 - [x] 3D Touch预览image、gif、LivePhoto、video
@@ -35,6 +34,7 @@
 - [x] 多语言国际化 (中文简/繁、英文、日文，可设置跟随系统和自行切换，可自定义多语言提示)
 - [x] 相册内拍照按钮实时显示镜头捕捉画面
 - [x] 已选择图片遮罩层标记
+- [x] 已选择图片index
 - [x] 预览已选择照片
 - [x] 预览网络及本地 图片/视频 (图片支持长按保存至相册)
 - [x] 相册内图片自定义圆角弧度
@@ -42,6 +42,7 @@
 - [x] 支持点击拍照及长按录制视频 (仿微信)
 - [x] 开发者可自定义资源图片
 - [x] 支持导出视频 (可指定导出视频尺寸、添加图片水印、粒子特效 ps:文字水印暂不支持)
+- [x] 初步适配iOS13
 
 ### Feature
 
@@ -50,6 +51,15 @@
 ### 更新日志
 > [更多更新日志](https://github.com/longitachi/ZLPhotoBrowser/blob/master/UPDATELOG.md)
 ```
+● 3.2.0: 添加图片视频选择互斥功能（即只能选择1个视频或最多几张图片）; 添加选择量达到最大值时其他cell显示遮罩功能; 删除`allowMixSelect`,`maxVideoSelectCountInMix`,`minVideoSelectCountInMix`参数;
+● 3.1.4: 添加自定义相机分辨率(320*240, 960*540); 修正拍照后图片方向; 编辑视频最小允许编辑5s; 添加相机是否可用检测; 修正部分多语言错误的问题; 
+● 3.1.3: 修改曝光模式; 拍照界面显示 "轻触拍照，按住摄像" 提示; 增加直接调用编辑图片api; 已知bug fixed; 
+● 3.1.2: SDWebImage 不在指定依赖版本号;
+● 3.1.1: 优化进入相册速度及从相册列表进入选择界面流程; 选择相片时候添加progress; 解决原图大小显示错误的bug; 已知bug fixed;
+● 3.1.0: 初步适配iOS13，解决present不是fullScreen的bug; 添加 Swift Example Target;
+● 3.0.7: 网络视频播放添加进度条; SDWebImage依赖升级5.1.0以上版本; 已知bug修复;
+● 3.0.6: 添加选中图片显示index功能; 新增(及修改)部分颜色api，方便修改框架内部颜色; 修改框架默认风格为微信的风格; 压缩图片资源;
+● 3.0.5: 预览快速选择界面文字颜色支持自定义; 编辑界面按钮增大; 解决录制视频超过10s没有声音的bug;
 ● 3.0.4: 添加视频选择最大最小个数限制; 解决网络gif图片无法播放的bug; fix已知bug;
 ● 3.0.3: 依赖库SDWebImage升级为5.0.2以上; 解决图片浏览器关闭时取消所有sd图片请求的bug; 支持直接调用相机;
 ● 3.0.0: 压缩bundle内图片; 支持直接选择iCloud照片，并添加解析图片超时时间属性;
@@ -57,17 +67,6 @@
 ● 2.7.8: 添加iCloud图片加载进度条，支持iCloud视频播放;
 ● 2.7.6: 预览大图界面支持precent情况下的下拉返回;
 ● 2.7.5: 编辑图片支持自定义工具类型; bug fixed;
-● 2.7.4: 横滑大图界面添加下拉返回; 不允许录制视频时候不请求麦克风权限;
-● 2.7.1: 支持自定义导航返回按钮图片;
-● 2.7.0: 图片资源加上前缀，解决9.0无法选择图片问题; 
-● 2.6.9: 重构编辑图片功能，添加滤镜;
-● 2.6.7: 优化视频编辑界面，极大减少进入时的等待时间;
-● 2.6.6: Fix #216; 新增隐藏裁剪图片界面比例工具条功能;
-● 2.6.5: 新增隐藏"已隐藏"照片及相册的功能; Fix #221, 优化预览网络图片/视频时根据url后缀判断的类型方式;
-● 2.6.4: Fix #181, #184, #185;
-● 2.6.3: 新增自定义多语言文本功能; 新增预览网络视频功能;
-● 2.6.2: 新增是否保存已编辑图片的参数; 优化编辑图片旋转体验; 新增取消选择回调;
-● 2.6.1: 新增导出视频添加粒子特效功能(如下雪特效); 新增编辑图片时旋转图片功能;
 ```
 
 ### 框架支持
@@ -242,10 +241,6 @@ Privacy - Microphone Usage Description
 - 编辑图片预览图
 
 ![image](https://github.com/longitachi/ImageFolder/blob/master/ZLPhotoBrowser/edit.gif)
-
-- 滤镜
-
-![image](https://github.com/longitachi/ImageFolder/blob/master/ZLPhotoBrowser/filter.png)
 
 - 自定义相机效果图及介绍
 

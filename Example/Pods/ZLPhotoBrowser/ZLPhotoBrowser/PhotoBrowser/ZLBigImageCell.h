@@ -10,7 +10,7 @@
 #import <PhotosUI/PhotosUI.h>
 #import <SDWebImage/SDAnimatedImageView.h>
 
-@class ZLPhotoModel, PHAsset, ZLPreviewView, ZLProgressView;
+@class ZLPhotoModel, PHAsset, ZLPreviewView, ZLProgressView, ZLVideoPlayerControl;
 
 @interface ZLBigImageCell : UICollectionViewCell
 
@@ -120,6 +120,7 @@
 
 
 //---------------livephoto---------------
+API_AVAILABLE(ios(9.1))
 @interface ZLPreviewLivePhoto : ZLBasePreviewView
 
 @property (nonatomic, strong) PHLivePhotoView *lpView;
@@ -150,11 +151,10 @@
 
 @property (nonatomic, strong) AVPlayerLayer *playLayer;
 @property (nonatomic, strong) UIButton *playBtn;
+@property (nonatomic, strong) ZLVideoPlayerControl *playControl;
 
 - (void)loadNetVideo:(NSURL *)url;
 
 - (void)seekToZero;
-
-- (void)stopPlayNetVideo;
 
 @end

@@ -11,6 +11,7 @@
 #import <CoreMotion/CoreMotion.h>
 #import "ZLPlayer.h"
 #import "ZLPhotoManager.h"
+#import "UIImage+ZLPhotoBrowser.h"
 
 
 #define kTopViewScale .5
@@ -68,6 +69,8 @@
 @property (nonatomic, strong) UIColor *circleProgressColor;
 @property (nonatomic, assign) NSInteger maxRecordDuration;
 
+
+@property (nonatomic, strong) UILabel *tipLabel;
 @property (nonatomic, strong) UIButton *dismissBtn;
 @property (nonatomic, strong) UIButton *cancelBtn;
 @property (nonatomic, strong) UIButton *doneBtn;
@@ -77,9 +80,16 @@
 
 @property (nonatomic, assign) CGFloat duration;
 
+@property (nonatomic, strong) NSTimer *timer;
+
 @end
 
 @implementation CameraToolView
+
+- (void)dealloc
+{
+    [self cleanTimer];
+}
 
 - (CAShapeLayer *)animateLayer
 {
@@ -105,6 +115,13 @@
     return self;
 }
 
+- (void)didMoveToSuperview
+{
+    [super didMoveToSuperview];
+    
+    [self setTipLabelAlpha:1 animate:YES];
+}
+
 - (void)setDelegate:(id<CameraToolViewDelegate>)delegate
 {
     _delegate = delegate;
@@ -122,6 +139,8 @@
     if (_layoutOK) return;
     
     _layoutOK = YES;
+    self.tipLabel.frame = CGRectMake(0, -30, GetViewWidth(self), 20);
+    
     CGFloat height = GetViewHeight(self);
     self.bottomView.frame = CGRectMake(0, 0, height*kBottomViewScale, height*kBottomViewScale);
     self.bottomView.center = CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds));
@@ -154,7 +173,7 @@
     _allowRecordVideo = allowRecordVideo;
     if (allowRecordVideo) {
         UILongPressGestureRecognizer *longG = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressAction:)];
-        longG.minimumPressDuration = .3;
+        longG.minimumPressDuration = 0.3;
         longG.delegate = self;
         [self.bottomView addGestureRecognizer:longG];
     }
@@ -162,6 +181,16 @@
 
 - (void)setupUI
 {
+    self.clipsToBounds = NO;
+    
+    self.tipLabel = [[UILabel alloc] init];
+    self.tipLabel.font = [UIFont systemFontOfSize:14];
+    self.tipLabel.text = GetLocalLanguageTextValue(@"ZLPhotoBrowserCustomCameraTips");
+    self.tipLabel.textColor = [UIColor whiteColor];
+    self.tipLabel.textAlignment = NSTextAlignmentCenter;
+    self.tipLabel.alpha = 0;
+    [self addSubview:self.tipLabel];
+    
     self.bottomView = [[UIView alloc] init];
     self.bottomView.layer.masksToBounds = YES;
     self.bottomView.backgroundColor = [kRGB(244, 244, 244) colorWithAlphaComponent:.9];
@@ -197,9 +226,49 @@
     [self addSubview:self.doneBtn];
 }
 
+- (void)setTipLabelAlpha:(CGFloat)alpha animate:(BOOL)animate
+{
+    if (!self.allowTakePhoto || !self.allowRecordVideo) {
+        return;
+    }
+    [self.tipLabel.layer removeAllAnimations];
+    if (animate) {
+        [UIView animateWithDuration:0.25 animations:^{
+            self.tipLabel.alpha = alpha;
+        }];
+    } else {
+        self.tipLabel.alpha = alpha;
+    }
+    
+    if (alpha == 1) {
+        [self startTimer];
+    }
+}
+
+- (void)hideTipLabel
+{
+    [self cleanTimer];
+    [self setTipLabelAlpha:0 animate:YES];
+}
+
+- (void)startTimer
+{
+    [self cleanTimer];
+    
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(hideTipLabel) userInfo:nil repeats:NO];
+}
+
+- (void)cleanTimer
+{
+    [self.timer invalidate];
+    self.timer = nil;
+}
+
 #pragma mark - GestureRecognizer
+
 - (void)tapAction:(UITapGestureRecognizer *)tap
 {
+    [self setTipLabelAlpha:0 animate:NO];
     [self stopAnimate];
     if (_delegateFlag.takePic) [self.delegate performSelector:@selector(onTakePicture)];
 }
@@ -210,6 +279,7 @@
         case UIGestureRecognizerStateBegan:
         {
             //此处不启动动画，由vc界面开始录制之后启动
+            [self setTipLabelAlpha:0 animate:NO];
             _stopRecord = NO;
             if (_delegateFlag.startRecord) [self.delegate performSelector:@selector(onStartRecord)];
         }
@@ -238,6 +308,7 @@
 }
 
 #pragma mark - 动画
+
 - (void)startAnimate
 {
     self.dismissBtn.hidden = YES;
@@ -317,6 +388,7 @@
 }
 
 #pragma mark - btn actions
+
 - (void)dismissVC
 {
     if (_delegateFlag.dismiss) [self.delegate performSelector:@selector(onDismiss)];
@@ -324,6 +396,7 @@
 
 - (void)retake
 {
+    [self setTipLabelAlpha:1 animate:YES];
     [self resetUI];
     if (_delegateFlag.retake) [self.delegate performSelector:@selector(onRetake)];
 }
@@ -344,6 +417,7 @@
     //拖拽手势开始的录制
     BOOL _dragStart;
     BOOL _layoutOK;
+    BOOL _cameraUnavailable;
 }
 
 @property (nonatomic, strong) CameraToolView *toolView;
@@ -395,12 +469,13 @@
 {
     self = [super init];
     if (self) {
+        self.modalPresentationStyle = UIModalPresentationFullScreen;
         self.allowTakePhoto = YES;
         self.allowRecordVideo = YES;
         self.maxRecordDuration = 15;
         self.sessionPreset = ZLCaptureSessionPreset1280x720;
         self.videoType = ZLExportVideoTypeMp4;
-        self.circleProgressColor = kRGB(80, 180, 234);
+        self.circleProgressColor = kRGB(80, 169, 56);
     }
     return self;
 }
@@ -409,6 +484,13 @@
     [super viewDidLoad];
     
     [self setupUI];
+    
+    // 摄像头不可用状态
+    if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        _cameraUnavailable = YES;
+        return;
+    }
+    
     [self setupCamera];
     [self observeDeviceMotion];
     
@@ -430,20 +512,31 @@
         }
     }];
     
-    //暂停其他音乐，
-    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord error:nil];
-    [[AVAudioSession sharedInstance] setActive:YES error:nil];
+    if (self.allowRecordVideo) {
+        //暂停其他音乐
+        [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord error:nil];
+        [[AVAudioSession sharedInstance] setActive:YES error:nil];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    
     [UIApplication sharedApplication].statusBarHidden = YES;
-    [self.session startRunning];
-    [self setFocusCursorWithPoint:self.view.center];
-    if (!self.allowTakePhoto && !self.allowRecordVideo) {
-        ShowAlert(@"allowTakePhoto与allowRecordVideo不能同时为NO", self);
+    
+    if (_cameraUnavailable) {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:GetLocalLanguageTextValue(@"ZLPhotoBrowserCameraUnavailableText") preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *action = [UIAlertAction actionWithTitle:GetLocalLanguageTextValue(@"ZLPhotoBrowserDoneText") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }];
+        [alert addAction:action];
+        [self showDetailViewController:alert sender:nil];
+    } else {
+        [self.session startRunning];
+        [self setFocusCursorWithPoint:self.view.center];
+        if (!self.allowTakePhoto && !self.allowRecordVideo) {
+            ShowAlert(@"allowTakePhoto与allowRecordVideo不能同时为NO", self);
+        }
     }
 }
 
@@ -452,8 +545,10 @@
     [super viewWillDisappear:animated];
     
     [UIApplication sharedApplication].statusBarHidden = NO;
-    [self.motionManager stopDeviceMotionUpdates];
-    self.motionManager = nil;
+    if (self.motionManager) {
+        [self.motionManager stopDeviceMotionUpdates];
+        self.motionManager = nil;
+    }
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -525,9 +620,9 @@
     if (_layoutOK) return;
     _layoutOK = YES;
     
-    self.toolView.frame = CGRectMake(0, kViewHeight-130-ZL_SafeAreaBottom(), kViewWidth, 100);
+    self.toolView.frame = CGRectMake(0, kViewHeight-150-ZL_SafeAreaBottom(), kViewWidth, 100);
     self.previewLayer.frame = self.view.layer.bounds;
-    self.toggleCameraBtn.frame = CGRectMake(kViewWidth-50, 20, 30, 30);
+    self.toggleCameraBtn.frame = CGRectMake(kViewWidth-50, UIApplication.sharedApplication.statusBarFrame.size.height, 30, 30);
 }
 
 - (void)setupUI
@@ -545,7 +640,7 @@
     self.focusCursorImageView = [[UIImageView alloc] initWithImage:GetImageWithName(@"zl_focus")];
     self.focusCursorImageView.contentMode = UIViewContentModeScaleAspectFit;
     self.focusCursorImageView.clipsToBounds = YES;
-    self.focusCursorImageView.frame = CGRectMake(0, 0, 80, 80);
+    self.focusCursorImageView.frame = CGRectMake(0, 0, 70, 70);
     self.focusCursorImageView.alpha = 0;
     [self.view addSubview:self.focusCursorImageView];
     
@@ -596,6 +691,8 @@
     }
     
     self.movieFileOutPut = [[AVCaptureMovieFileOutput alloc] init];
+    // 解决视频录制超过10s没有声音的bug
+    self.movieFileOutPut.movieFragmentInterval = kCMTimeInvalid;
     
     //将视频及音频输入流添加到session
     if ([self.session canAddInput:self.videoInput]) {
@@ -615,7 +712,7 @@
     self.previewLayer = [[AVCaptureVideoPreviewLayer alloc] initWithSession:self.session];
     [self.view.layer setMasksToBounds:YES];
     
-    [self.previewLayer setVideoGravity:AVLayerVideoGravityResizeAspectFill];
+    [self.previewLayer setVideoGravity:AVLayerVideoGravityResizeAspect];
     [self.view.layer insertSublayer:self.previewLayer atIndex:0];
 }
 
@@ -666,7 +763,7 @@
 {
     self.focusCursorImageView.center = point;
     self.focusCursorImageView.alpha = 1;
-    self.focusCursorImageView.transform = CGAffineTransformMakeScale(1.1, 1.1);
+    self.focusCursorImageView.transform = CGAffineTransformMakeScale(1.2, 1.2);
     [UIView animateWithDuration:0.5 animations:^{
         self.focusCursorImageView.transform = CGAffineTransformIdentity;
     } completion:^(BOOL finished) {
@@ -697,7 +794,7 @@
     }
     //曝光模式
     if ([captureDevice isExposureModeSupported:exposureMode]) {
-        [captureDevice setExposureMode:AVCaptureExposureModeAutoExpose];
+        [captureDevice setExposureMode:AVCaptureExposureModeContinuousAutoExposure];
     }
     //曝光点
     if ([captureDevice isExposurePointOfInterestSupported]) {
@@ -819,6 +916,7 @@
         _takedImageView.contentMode = UIViewContentModeScaleAspectFit;
         [self.view insertSubview:_takedImageView belowSubview:self.toolView];
     }
+    
     __weak typeof(self) weakSelf = self;
     [self.imageOutPut captureStillImageAsynchronouslyFromConnection:videoConnection completionHandler:^(CMSampleBufferRef imageDataSampleBuffer, NSError *error) {
         if (imageDataSampleBuffer == NULL) {
@@ -826,7 +924,7 @@
         }
         NSData * imageData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageDataSampleBuffer];
         UIImage * image = [UIImage imageWithData:imageData];
-        weakSelf.takedImage = image;
+        weakSelf.takedImage = image.fixOrientation;
         weakSelf.takedImageView.hidden = NO;
         weakSelf.takedImageView.image = image;
         [weakSelf.session stopRunning];
@@ -849,7 +947,6 @@
 - (void)onFinishRecord
 {
     [self.movieFileOutPut stopRecording];
-    [self.session stopRunning];
     [self setVideoZoomFactor:1];
 }
 
@@ -858,7 +955,15 @@
 {
     [self.session startRunning];
     [self setFocusCursorWithPoint:self.view.center];
-    self.takedImageView.hidden = YES;
+    if (self.takedImage != nil) {
+        [UIView animateWithDuration:0.25 animations:^{
+            self.takedImageView.alpha = 0;
+        } completion:^(BOOL finished) {
+            self.takedImageView.hidden = YES;
+            self.takedImageView.alpha = 1;
+        }];
+    }
+    
     [self deleteVideo];
 }
 
@@ -876,6 +981,9 @@
 //dismiss
 - (void)onDismiss
 {
+    if ([self.session isRunning]) {
+        [self.session stopRunning];
+    }
     dispatch_async(dispatch_get_main_queue(), ^{
         [self dismissViewControllerAnimated:YES completion:nil];
     });
@@ -887,6 +995,7 @@
         self.playerView = [[ZLPlayer alloc] initWithFrame:self.view.bounds];
         [self.view insertSubview:self.playerView belowSubview:self.toolView];
     }
+    self.playerView.hidden = NO;
     self.playerView.videoUrl = self.videoUrl;
     [self.playerView play];
 }
@@ -895,7 +1004,12 @@
 {
     if (self.videoUrl) {
         [self.playerView reset];
-        self.playerView.alpha = 0;
+        [UIView animateWithDuration:0.25 animations:^{
+            self.playerView.alpha = 0;
+        } completion:^(BOOL finished) {
+            self.playerView.hidden = YES;
+            self.playerView.alpha = 1;
+        }];
         [[NSFileManager defaultManager] removeItemAtURL:self.videoUrl error:nil];
     }
 }
@@ -908,15 +1022,15 @@
 
 - (void)captureOutput:(AVCaptureFileOutput *)output didFinishRecordingToOutputFileAtURL:(NSURL *)outputFileURL fromConnections:(NSArray<AVCaptureConnection *> *)connections error:(NSError *)error
 {
-    if (CMTimeGetSeconds(output.recordedDuration) < 1) {
+    if (CMTimeGetSeconds(output.recordedDuration) < 0.3) {
         if (self.allowTakePhoto) {
-            //视频长度小于1s 允许拍照则拍照，不允许拍照，则保存小于1s的视频
-            ZLLoggerDebug(@"视频长度小于1s，按拍照处理");
+            //视频长度小于0.3s 允许拍照则拍照，不允许拍照，则保存小于0.3s的视频
+            ZLLoggerDebug(@"视频长度小于0.3s，按拍照处理");
             [self onTakePicture];
             return;
         }
     }
-    
+    [self.session stopRunning];
     self.videoUrl = outputFileURL;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self playVideo];

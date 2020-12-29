@@ -10,7 +10,7 @@
 #import "ZLPhotoConfiguration.h"
 #import "ZLClipItem.h"
 #import "UIImage+ZLPhotoBrowser.h"
-#import "UIButton+EnlargeTouchArea.h"
+#import "UIControl+EnlargeTouchArea.h"
 #import "ZLBrushBoardImageView.h"
 #import "ZLDrawItem.h"
 
@@ -121,8 +121,8 @@
         inset = self.superview.safeAreaInsets;
     }
     
-    self.cancelBtn.frame = CGRectMake(15+inset.left, inset.top+5, GetMatchValue(GetLocalLanguageTextValue(ZLPhotoBrowserCancelText), 15, YES, 30), 30);
-    CGFloat doneBtnW = GetMatchValue(GetLocalLanguageTextValue(ZLPhotoBrowserDoneText), 15, YES, 30);
+    self.cancelBtn.frame = CGRectMake(15+inset.left, inset.top+5, GetMatchValue(GetLocalLanguageTextValue(ZLPhotoBrowserCancelText), 15, YES, 30)+20, 30);
+    CGFloat doneBtnW = GetMatchValue(GetLocalLanguageTextValue(ZLPhotoBrowserDoneText), 15, YES, 30)+30;
     self.doneBtn.frame = CGRectMake(kViewWidth-doneBtnW-inset.right-15, inset.top+5, doneBtnW, 30);
     
     [self setImageViewFrame:_layoutCount != 1];
@@ -233,17 +233,18 @@
     [self.cancelBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.cancelBtn setTitle:GetLocalLanguageTextValue(ZLPhotoBrowserCancelText) forState:UIControlStateNormal];
     [self.cancelBtn addTarget:self action:@selector(cancelBtn_click) forControlEvents:UIControlEventTouchUpInside];
-    [self.cancelBtn setEnlargeEdgeWithTop:0 right:10 bottom:10 left:0];
+    [self.cancelBtn zl_enlargeValidTouchAreaWithInsets:UIEdgeInsetsMake(0, 0, 10, 10)];
     [self addSubview:self.cancelBtn];
     
     self.doneBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.doneBtn setTitle:GetLocalLanguageTextValue(ZLPhotoBrowserDoneText) forState:UIControlStateNormal];
     [self.doneBtn setTitleColor:_configuration.bottomBtnsNormalTitleColor forState:UIControlStateNormal];
+    self.doneBtn.backgroundColor = _configuration.bottomBtnsNormalBgColor;
     self.doneBtn.titleLabel.font = [UIFont systemFontOfSize:15];
     self.doneBtn.layer.masksToBounds = YES;
     self.doneBtn.layer.cornerRadius = 3.0f;
     [self.doneBtn addTarget:self action:@selector(btnDone_click) forControlEvents:UIControlEventTouchUpInside];
-    [self.doneBtn setEnlargeEdgeWithTop:0 right:0 bottom:10 left:10];
+    [self.doneBtn zl_enlargeValidTouchAreaWithInsets:UIEdgeInsetsMake(0, 10, 10, 0)];
     [self addSubview:_doneBtn];
     
     //imageView

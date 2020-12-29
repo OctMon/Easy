@@ -36,14 +36,15 @@
 @property (nonatomic, assign) NSInteger maxSelectCount;
 
 /**
- 混合选择时 视频最大数量，默认等同最大选择数 9
+ 混合选择时，照片和视频是否只能选择一种，默认NO
+ e.g. 希望选择视频（最多1个）后不能选择其他图片，或者选择图片（最多9张）后不能选择视频
+ 设置如下参数即可
+ allowSelectImage = YES
+ allowSelectVideo = YES
+ maxSelectCount = 9
+ mutuallyExclusiveSelectInMix = YES
  */
-@property (nonatomic, assign) NSInteger maxVideoSelectCountInMix;
-
-/**
- 混合选择时 视频最大数量，默认为0
- */
-@property (nonatomic, assign) NSInteger minVideoSelectCountInMix;
+@property (nonatomic, assign) BOOL mutuallyExclusiveSelectInMix;
 
 /**
  预览图最大显示数 默认20张，该值为0时将不显示上方预览图，仅显示 '拍照、相册、取消' 按钮
@@ -54,11 +55,6 @@
  cell的圆角弧度 默认为0
  */
 @property (nonatomic, assign) CGFloat cellCornerRadio;
-
-/**
- 是否允许混合选择，即可以同时选择image(image/gif/livephoto)、video类型， 默认YES
- */
-@property (nonatomic, assign) BOOL allowMixSelect;
 
 /**
  是否允许选择照片 默认YES
@@ -115,7 +111,7 @@
 @property (nonatomic, assign) BOOL allowSelectOriginal;
 
 /**
- 编辑视频时最大裁剪时间，单位：秒，默认10s 且最低10s
+ 编辑视频时最大裁剪时间，单位：秒，默认10s 且最小5s
  
  @discussion 当该参数为10s时，所选视频时长必须大于等于10s才允许进行编辑
  */
@@ -176,27 +172,42 @@
 @property (nonatomic, assign) BOOL showSelectBtn;
 
 /**
- 导航条颜色，默认 rgb(19, 153, 231)
+ 导航条颜色，默认 rgb(44, 45, 46)
  */
 @property (nonatomic, strong) UIColor *navBarColor;
 
 /**
- 导航标题颜色，默认 rgb(255, 255, 255)
+ 导航标题颜色，默认 white
  */
 @property (nonatomic, strong) UIColor *navTitleColor;
 
 /**
- 底部工具条底色，默认 rgb(255, 255, 255)
+ 预览选择模式下 拍照/相册/取消 的字体颜色 默认 blackColor
+ */
+@property (nonatomic, strong) UIColor *previewTextColor;
+
+/**
+ 底部工具条底色，默认 rgb(44, 45, 46)
  */
 @property (nonatomic, strong) UIColor *bottomViewBgColor;
 
 /**
- 底部工具栏按钮 可交互 状态标题颜色，底部 toolbar 按钮可交互状态title颜色均使用这个，确定按钮 可交互 的背景色为这个，默认rgb(80, 180, 234)
+ 底部工具栏按钮 可交互 状态标题颜色，默认 white
  */
 @property (nonatomic, strong) UIColor *bottomBtnsNormalTitleColor;
 
 /**
- 底部工具栏按钮 不可交互 状态标题颜色，底部 toolbar 按钮不可交互状态颜色均使用这个，确定按钮 不可交互 的背景色为这个，默认rgb(200, 200, 200)
+ 底部工具栏按钮 不可交互 状态标题颜色， rgb(168, 168, 168)
+ */
+@property (nonatomic, strong) UIColor *bottomBtnsDisableTitleColor;
+
+/**
+ 底部工具栏按钮 可交互 状态背景颜色，默认rgb(80, 169, 56)
+ */
+@property (nonatomic, strong) UIColor *bottomBtnsNormalBgColor;
+
+/**
+ 底部工具栏按钮 不可交互 状态背景颜色，默认rgb(39, 80, 32)
  */
 @property (nonatomic, strong) UIColor *bottomBtnsDisableBgColor;
 
@@ -206,9 +217,34 @@
 @property (nonatomic, assign) BOOL showSelectedMask;
 
 /**
- 遮罩层颜色，内部会默认调整颜色的透明度为0.2， 默认 blackColor
+ 遮罩层颜色， 默认 blackColor alpha 0.2
  */
 @property (nonatomic, strong) UIColor *selectedMaskColor;
+
+/**
+ 是否在不能选择的cell上方覆盖一层遮罩层，默认YES
+ */
+@property (nonatomic, assign) BOOL showInvalidMask;
+
+/**
+ 不能选择的cell上方遮罩层颜色 默认 whiteColor alpha .5
+ */
+@property (nonatomic, strong) UIColor *invalidMaskColor;
+
+/**
+ 是否显示选中图片的index 默认YES
+ */
+@property (nonatomic, assign) BOOL showSelectedIndex;
+
+/**
+ 选中图片右上角index background color, 默认rgb(80, 169, 56)
+ */
+@property (nonatomic, strong) UIColor *indexLabelBgColor;
+
+/**
+ 长按拍照按钮进行录像时的progress color 默认rgb(80, 169, 56)
+ */
+@property (nonatomic, strong) UIColor *cameraProgressColor;
 
 /**
  支持开发者自定义图片，但是所自定义图片资源名称必须与被替换的bundle中的图片名称一致

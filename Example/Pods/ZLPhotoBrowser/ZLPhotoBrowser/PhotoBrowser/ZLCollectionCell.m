@@ -11,12 +11,14 @@
 #import "ZLPhotoManager.h"
 #import "ZLDefine.h"
 #import "ToastUtils.h"
-#import "UIButton+EnlargeTouchArea.h"
+#import "UIControl+EnlargeTouchArea.h"
+#import "ZLProgressView.h"
 
 @interface ZLCollectionCell ()
 
 @property (nonatomic, copy) NSString *identifier;
 @property (nonatomic, assign) PHImageRequestID imageRequestID;
+@property (nonatomic, assign) PHImageRequestID bigImageRequestID;
 
 @end
 
@@ -27,101 +29,82 @@
     [super awakeFromNib];
 }
 
+- (instancetype)initWithFrame:(CGRect)frame
+{
+    if (self = [super initWithFrame:frame]) {
+        [self setupUI];
+    }
+    return self;
+}
+
+- (void)setupUI
+{
+    self.imageView = [[UIImageView alloc] init];
+    self.imageView.frame = self.bounds;
+    self.imageView.contentMode = UIViewContentModeScaleAspectFill;
+    self.imageView.clipsToBounds = YES;
+    [self.contentView addSubview:self.imageView];
+    
+    self.maskView = [[UIView alloc] init];
+    self.maskView.userInteractionEnabled = NO;
+    self.maskView.hidden = YES;
+    [self.contentView addSubview:self.maskView];
+    
+    self.videoBottomView = [[UIImageView alloc] initWithImage:GetImageWithName(@"zl_videoView")];
+    self.videoBottomView.frame = CGRectMake(0, GetViewHeight(self)-15, GetViewWidth(self), 15);
+    [self.contentView addSubview:_videoBottomView];
+    
+    self.btnSelect = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.btnSelect.frame = CGRectMake(GetViewWidth(self.contentView)-26, 5, 23, 23);
+    [self.btnSelect setBackgroundImage:GetImageWithName(@"zl_btn_unselected") forState:UIControlStateNormal];
+    [self.btnSelect setBackgroundImage:GetImageWithName(@"zl_btn_selected") forState:UIControlStateSelected];
+    [self.btnSelect addTarget:self action:@selector(btnSelectClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self.contentView addSubview:self.btnSelect];
+    
+    self.indexLabel = [[UILabel alloc] init];
+    self.indexLabel.layer.cornerRadius = 23.0 / 2;
+    self.indexLabel.layer.masksToBounds = YES;
+    self.indexLabel.textColor = [UIColor whiteColor];
+    self.indexLabel.font = [UIFont systemFontOfSize:14];
+    self.indexLabel.textAlignment = NSTextAlignmentCenter;
+    self.indexLabel.hidden = YES;
+    [self.contentView addSubview:self.indexLabel];
+    
+    self.videoImageView = [[UIImageView alloc] initWithFrame:CGRectMake(5, 1, 16, 12)];
+    self.videoImageView.image = GetImageWithName(@"zl_video");
+    [self.videoBottomView addSubview:self.videoImageView];
+    
+    self.liveImageView = [[UIImageView alloc] initWithFrame:CGRectMake(5, -1, 15, 15)];
+    self.liveImageView.image = GetImageWithName(@"zl_livePhoto");
+    [self.videoBottomView addSubview:self.liveImageView];
+    
+    self.timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 1, GetViewWidth(self)-35, 12)];
+    self.timeLabel.textAlignment = NSTextAlignmentRight;
+    self.timeLabel.font = [UIFont systemFontOfSize:13];
+    self.timeLabel.textColor = [UIColor whiteColor];
+    [self.videoBottomView addSubview:self.timeLabel];
+    
+    self.progressView = [[ZLProgressView alloc] init];
+    self.progressView.hidden = YES;
+    [self.contentView addSubview:self.progressView];
+}
+
 - (void)layoutSubviews
 {
     [super layoutSubviews];
     self.imageView.frame = self.bounds;
     self.btnSelect.frame = CGRectMake(GetViewWidth(self.contentView)-26, 5, 23, 23);
-    if (self.showMask) {
-        self.topView.frame = self.bounds;
-    }
+    self.indexLabel.frame = self.btnSelect.frame;
+    self.maskView.frame = self.bounds;
+    
     self.videoBottomView.frame = CGRectMake(0, GetViewHeight(self)-15, GetViewWidth(self), 15);
     self.videoImageView.frame = CGRectMake(5, 1, 16, 12);
     self.liveImageView.frame = CGRectMake(5, -1, 15, 15);
     self.timeLabel.frame = CGRectMake(30, 1, GetViewWidth(self)-35, 12);
     [self.contentView sendSubviewToBack:self.imageView];
-}
-
-- (UIImageView *)imageView
-{
-    if (!_imageView) {
-        _imageView = [[UIImageView alloc] init];
-        _imageView.frame = self.bounds;
-        _imageView.contentMode = UIViewContentModeScaleAspectFill;
-        _imageView.clipsToBounds = YES;
-        [self.contentView addSubview:_imageView];
-        
-        [self.contentView bringSubviewToFront:_topView];
-        [self.contentView bringSubviewToFront:self.videoBottomView];
-        [self.contentView bringSubviewToFront:self.btnSelect];
-    }
-    return _imageView;
-}
-
-- (UIButton *)btnSelect
-{
-    if (!_btnSelect) {
-        _btnSelect = [UIButton buttonWithType:UIButtonTypeCustom];
-        _btnSelect.frame = CGRectMake(GetViewWidth(self.contentView)-26, 5, 23, 23);
-        [_btnSelect setBackgroundImage:GetImageWithName(@"zl_btn_unselected") forState:UIControlStateNormal];
-        [_btnSelect setBackgroundImage:GetImageWithName(@"zl_btn_selected") forState:UIControlStateSelected];
-        [_btnSelect addTarget:self action:@selector(btnSelectClick:) forControlEvents:UIControlEventTouchUpInside];
-        [self.contentView addSubview:self.btnSelect];
-    }
-    return _btnSelect;
-}
-
-- (UIImageView *)videoBottomView
-{
-    if (!_videoBottomView) {
-        _videoBottomView = [[UIImageView alloc] initWithImage:GetImageWithName(@"zl_videoView")];
-        _videoBottomView.frame = CGRectMake(0, GetViewHeight(self)-15, GetViewWidth(self), 15);
-        [self.contentView addSubview:_videoBottomView];
-    }
-    return _videoBottomView;
-}
-
-- (UIImageView *)videoImageView
-{
-    if (!_videoImageView) {
-        _videoImageView = [[UIImageView alloc] initWithFrame:CGRectMake(5, 1, 16, 12)];
-        _videoImageView.image = GetImageWithName(@"zl_video");
-        [self.videoBottomView addSubview:_videoImageView];
-    }
-    return _videoImageView;
-}
-
-- (UIImageView *)liveImageView
-{
-    if (!_liveImageView) {
-        _liveImageView = [[UIImageView alloc] initWithFrame:CGRectMake(5, -1, 15, 15)];
-        _liveImageView.image = GetImageWithName(@"zl_livePhoto");
-        [self.videoBottomView addSubview:_liveImageView];
-    }
-    return _liveImageView;
-}
-
-- (UILabel *)timeLabel
-{
-    if (!_timeLabel) {
-        _timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 1, GetViewWidth(self)-35, 12)];
-        _timeLabel.textAlignment = NSTextAlignmentRight;
-        _timeLabel.font = [UIFont systemFontOfSize:13];
-        _timeLabel.textColor = [UIColor whiteColor];
-        [self.videoBottomView addSubview:_timeLabel];
-    }
-    return _timeLabel;
-}
-
-- (UIView *)topView
-{
-    if (!_topView) {
-        _topView = [[UIView alloc] init];
-        _topView.userInteractionEnabled = NO;
-        _topView.hidden = YES;
-        [self.contentView addSubview:_topView];
-    }
-    return _topView;
+    
+    CGFloat progressOriginXY = (GetViewWidth(self) - 20) / 2;
+    self.progressView.frame = CGRectMake(progressOriginXY, progressOriginXY, 20, 20);
 }
 
 - (void)setModel:(ZLPhotoModel *)model
@@ -152,18 +135,19 @@
         self.videoBottomView.hidden = YES;
     }
     
-    if (self.showMask) {
-        self.topView.backgroundColor = [self.maskColor colorWithAlphaComponent:.2];
-        self.topView.hidden = !model.isSelected;
-    }
-    
     self.btnSelect.hidden = !self.showSelectBtn;
     self.btnSelect.enabled = self.showSelectBtn;
     self.btnSelect.selected = model.isSelected;
     
+    if (model.isSelected) {
+        [self requestBigImage];
+    } else {
+        [self cancelRequestBigImage];
+    }
+    
     if (self.showSelectBtn) {
         //扩大点击区域
-        [_btnSelect setEnlargeEdgeWithTop:0 right:0 bottom:20 left:20];
+        [_btnSelect zl_enlargeValidTouchAreaWithInsets:UIEdgeInsetsMake(0, 20, 20, 0)];
     }
     
     CGSize size;
@@ -171,8 +155,8 @@
     size.height = GetViewHeight(self) * 1.7;
     
     @zl_weakify(self);
-    if (model.asset && self.imageRequestID >= PHInvalidImageRequestID) {
-        [[PHCachingImageManager defaultManager] cancelImageRequest:self.imageRequestID];
+    if (model.asset && self.imageRequestID > PHInvalidImageRequestID) {
+        [[PHImageManager defaultManager] cancelImageRequest:self.imageRequestID];
     }
     self.identifier = model.asset.localIdentifier;
     self.imageView.image = nil;
@@ -189,6 +173,18 @@
     }];
 }
 
+- (void)setShowIndexLabel:(BOOL)showIndexLabel
+{
+    _showIndexLabel = showIndexLabel;
+    self.indexLabel.hidden = !showIndexLabel;
+}
+
+- (void)setIndex:(NSInteger)index
+{
+    _index = index;
+    self.indexLabel.text = @(index).stringValue;
+}
+
 - (void)btnSelectClick:(UIButton *)sender {
     if (!self.btnSelect.selected) {
         [self.btnSelect.layer addAnimation:GetBtnStatusChangedAnimation() forKey:nil];
@@ -196,6 +192,49 @@
     if (self.selectedBlock) {
         self.selectedBlock(self.btnSelect.selected);
     }
+    
+    if (self.btnSelect.isSelected) {
+        [self requestBigImage];
+    } else {
+        self.progressView.hidden = YES;
+        [self cancelRequestBigImage];
+    }
+}
+
+- (void)requestBigImage
+{
+    [self cancelRequestBigImage];
+    
+    @zl_weakify(self);
+    self.bigImageRequestID = [ZLPhotoManager requestOriginalImageDataForAsset:self.model.asset progressHandler:^(double progress, NSError * _Nonnull error, BOOL * _Nonnull stop, NSDictionary * _Nonnull info) {
+        @zl_strongify(self);
+        if (self.model.isSelected) {
+            self.progressView.hidden = NO;
+            self.progressView.progress = MAX(0.1, progress);
+            self.imageView.alpha = 0.5;
+            if (progress >= 1) {
+                [self resetProgressViewStatus];
+            }
+        } else {
+            [self cancelRequestBigImage];
+        }
+    } completion:^(NSData * _Nonnull data, NSDictionary * _Nonnull dic) {
+        [self resetProgressViewStatus];
+    }];
+}
+
+- (void)cancelRequestBigImage
+{
+    if (self.bigImageRequestID > PHInvalidImageRequestID) {
+        [[PHImageManager defaultManager] cancelImageRequest:self.bigImageRequestID];
+    }
+    [self resetProgressViewStatus];
+}
+
+- (void)resetProgressViewStatus
+{
+    self.progressView.hidden = YES;
+    self.imageView.alpha = 1;
 }
 
 @end
