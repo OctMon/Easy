@@ -249,11 +249,11 @@ public extension EasyListView {
         hideLoading()
         if self.currentPage == self.firstPage {
             if scrollView.mj_header != nil {
-                scrollView.mj_header.endRefreshing()
+                scrollView.mj_header?.endRefreshing()
             }
         } else {
             if scrollView.mj_footer != nil {
-                scrollView.mj_footer.endRefreshing()
+                scrollView.mj_footer?.endRefreshing()
             }
         }
         var isValid = true
@@ -281,16 +281,16 @@ public extension EasyListView {
                     > self.currentPage) {
                     self.currentPage += incrementPage
                     if scrollView.mj_footer != nil {
-                        scrollView.mj_footer.isHidden = false
-                        scrollView.mj_footer.resetNoMoreData()
+                        scrollView.mj_footer?.isHidden = false
+                        scrollView.mj_footer?.resetNoMoreData()
                     }
                 } else {
                     if scrollView.mj_footer != nil {
                         if self.list.count >= noMoreDataSize {
-                            scrollView.mj_footer.isHidden = false
-                            scrollView.mj_footer.endRefreshingWithNoMoreData()
+                            scrollView.mj_footer?.isHidden = false
+                            scrollView.mj_footer?.endRefreshingWithNoMoreData()
                         } else {
-                            scrollView.mj_footer.isHidden = true
+                            scrollView.mj_footer?.isHidden = true
                         }
                     }
                 }
@@ -310,10 +310,10 @@ public extension EasyListView {
                     if dataResponse.list.count == 0 && dataResponse.error == nil {
                         if scrollView.mj_footer != nil {
                             if self.list.count >= noMoreDataSize {
-                                scrollView.mj_footer.isHidden = false
-                                scrollView.mj_footer.endRefreshingWithNoMoreData()
+                                scrollView.mj_footer?.isHidden = false
+                                scrollView.mj_footer?.endRefreshingWithNoMoreData()
                             } else {
-                                scrollView.mj_footer.isHidden = true
+                                scrollView.mj_footer?.isHidden = true
                             }
                         }
                     } else {
@@ -321,7 +321,7 @@ public extension EasyListView {
                     }
                 } else {
                     if scrollView.mj_footer != nil {
-                        scrollView.mj_footer.isHidden = true
+                        scrollView.mj_footer?.isHidden = true
                     }
                     list.removeAll()
                     if let tableView = scrollView as? UITableView {
@@ -411,7 +411,7 @@ public extension EasyListView {
             return
         }
         if scrollView?.mj_footer != nil {
-            scrollView?.mj_footer.isHidden = true
+            scrollView?.mj_footer?.isHidden = true
         }
         var image: UIImage? = EasyGlobal.placeholderEmptyImage
         var attributedString: NSAttributedString? = EasyGlobal.errorEmpty.getAttributedString

@@ -80,7 +80,7 @@ class TagListViewController: easy.ViewController, easy.TableListProtocol {
                 ]
         ]
         
-        tableView.mj_header.endRefreshing()
+        tableView.mj_header?.endRefreshing()
         tableView.reloadData()
     }
     

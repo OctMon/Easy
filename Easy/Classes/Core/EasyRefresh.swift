@@ -21,13 +21,13 @@ public class EasyRefresh: MJRefreshComponent {
         header.setTitle(EasyGlobal.headerStateIdle, for: MJRefreshState.idle)
         header.setTitle(EasyGlobal.headerStatePulling, for: MJRefreshState.pulling)
         header.setTitle(EasyGlobal.headerStateRefreshing, for: MJRefreshState.refreshing)
-        header.lastUpdatedTimeLabel.isHidden = true
+        header.lastUpdatedTimeLabel?.isHidden = true
     }
     
     static func setFooter(_ footer: MJRefreshAutoNormalFooter) {
         footer.height = EasyGlobal.footerRefreshHeight
-        footer.stateLabel.textColor = EasyGlobal.footerStateLabelTextColor
-        footer.stateLabel.font = EasyGlobal.footerStateLabelFont
+        footer.stateLabel?.textColor = EasyGlobal.footerStateLabelTextColor
+        footer.stateLabel?.font = EasyGlobal.footerStateLabelFont
         footer.setTitle(EasyGlobal.footerStateNoMoreData, for: MJRefreshState.noMoreData)
         footer.isRefreshingTitleHidden = true
         footer.isHidden = true
@@ -44,7 +44,7 @@ public extension EasyRefresh {
     }
     
     static func footerWithHandler(_ handler: @escaping () -> Void) -> MJRefreshAutoNormalFooter {
-        let footer = MJRefreshAutoNormalFooter(refreshingBlock: handler)!
+        let footer = MJRefreshAutoNormalFooter(refreshingBlock: handler)
         setFooter(footer)
         return footer
     }

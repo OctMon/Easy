@@ -11,7 +11,7 @@ PODS:
     - OOMDetector (~> 1.3)
   - Easy/Common (2.7):
     - MBProgressHUD (~> 1.1.0)
-    - MJRefresh (~> 3.2.0)
+    - MJRefresh (~> 3.5.0)
     - RTRootNavigationController (~> 0.7.1)
     - SDWebImage (~> 5.0.3)
   - Easy/Core (2.7):
@@ -37,7 +37,7 @@ PODS:
   - FLEX (3.0.0)
   - GDPerformanceView-Swift (2.0.2)
   - MBProgressHUD (1.1.0)
-  - MJRefresh (3.2.0)
+  - MJRefresh (3.5.0)
   - MonkeyKing (1.15.0)
   - OOMDetector (1.3):
     - fishhook (= 0.2)
@@ -88,12 +88,12 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
-  Easy: d354f7a9e40a4ee90135408f399572b8af33de78
+  Easy: 6cfd31b5e6801138978fd75c8ab3c6c209c3b2a8
   fishhook: ea19933abfe8f2f52c55fd8b6e2718467d3ebc89
   FLEX: d66c759bce0f6ebbbf472c742380874d846f2883
   GDPerformanceView-Swift: a40b2f675589449f5b5082f3178f01bfdb7882ce
   MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
-  MJRefresh: ed450d6eb9d3346a2cb033ab7eb6de090aeef437
+  MJRefresh: 6afc955813966afb08305477dd7a0d9ad5e79a16
   MonkeyKing: 2bec76a578c8bd089703e70e20eb44e265bd2e67
   OOMDetector: c23f4dfc969ea9bbd68a57cf7e5a3ca2169263cd
   RTRootNavigationController: afa6913402be26f8326f7f37fc1550aa67baddcc
