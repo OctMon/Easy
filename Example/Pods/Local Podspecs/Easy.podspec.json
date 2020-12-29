@@ -139,7 +139,7 @@
           "~> 4.3.0"
         ],
         "GDPerformanceView-Swift": [
-          "~> 2.0.2"
+          "~> 2.1.1"
         ],
         "OOMDetector": [
           "~> 1.3"
