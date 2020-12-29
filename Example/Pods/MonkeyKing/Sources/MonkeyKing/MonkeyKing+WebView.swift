@@ -1,4 +1,5 @@
 
+import UIKit
 import WebKit
 
 extension MonkeyKing: WKNavigationDelegate {
@@ -6,7 +7,7 @@ extension MonkeyKing: WKNavigationDelegate {
     public func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Swift.Error) {
         // Pocket OAuth
         if let errorString = (error as NSError).userInfo["ErrorFailingURLStringKey"] as? String, errorString.hasSuffix(":authorizationFinished") {
-            removeWebView(webView, tuples: (nil, nil, nil))
+            removeWebView(webView, with: .success(nil))
             return
         }
         // Failed to connect network
@@ -19,7 +20,7 @@ extension MonkeyKing: WKNavigationDelegate {
         let centerX = NSLayoutConstraint(item: detailLabel, attribute: .centerX, relatedBy: .equal, toItem: webView, attribute: .centerX, multiplier: 1.0, constant: 0.0)
         let centerY = NSLayoutConstraint(item: detailLabel, attribute: .centerY, relatedBy: .equal, toItem: webView, attribute: .centerY, multiplier: 1.0, constant: -50.0)
         webView.addSubview(detailLabel)
-        webView.addConstraints([centerX,centerY])
+        webView.addConstraints([centerX, centerY])
         webView.scrollView.alwaysBounceVertical = false
     }
 
@@ -48,7 +49,7 @@ extension MonkeyKing: WKNavigationDelegate {
             return
         }
         // twitter access token
-        for case let .twitter(appID, appKey, redirectURL) in accountSet {
+        for case .twitter(let appID, let appKey, let redirectURL) in accountSet {
             guard url.absoluteString.hasPrefix(redirectURL) else { break }
             let params = url.monkeyking_queryDictionary
             guard let token = params["oauth_token"], let verifer = params["oauth_verifier"] else { break }
@@ -56,22 +57,28 @@ extension MonkeyKing: WKNavigationDelegate {
             let parameters = ["oauth_token": token, "oauth_verifier": verifer]
             let headerString = Networking.shared.authorizationHeader(for: .post, urlString: accessTokenAPI, appID: appID, appKey: appKey, accessToken: nil, accessTokenSecret: nil, parameters: parameters, isMediaUpload: false)
             let oauthHeader = ["Authorization": headerString]
-            request(accessTokenAPI, method: .post, parameters: nil, encoding: .url, headers: oauthHeader) { [weak self] (responseData, httpResponse, error) in
+            request(accessTokenAPI, method: .post, parameters: nil, encoding: .url, headers: oauthHeader) { [weak self] responseData, _, error in
                 DispatchQueue.main.async { [weak self] in
-                    self?.removeWebView(webView, tuples: (responseData, httpResponse, error))
+                    let result: Result<ResponseJSON?, Error>
+                    if error != nil {
+                        result = .failure(.apiRequest(.unrecognizedError(error: error, response: responseData)))
+                    } else {
+                        result = .success(responseData)
+                    }
+                    self?.removeWebView(webView, with: result)
                 }
             }
             return
         }
         // QQ Web OAuth
-        guard url.absoluteString.contains("&access_token=") && url.absoluteString.contains("qq.com") else {
+        guard url.absoluteString.contains("&access_token="), url.absoluteString.contains("qq.com") else {
             return
         }
         guard let fragment = url.fragment?.dropFirst(), let newURL = URL(string: "https://qzs.qq.com/?\(String(fragment))") else {
             return
         }
         let queryDictionary = newURL.monkeyking_queryDictionary as [String: Any]
-        removeWebView(webView, tuples: (queryDictionary, nil, nil))
+        removeWebView(webView, with: .success(queryDictionary))
     }
 
     public func webView(_ webView: WKWebView, didReceiveServerRedirectForProvisionalNavigation navigation: WKNavigation!) {
@@ -82,16 +89,16 @@ extension MonkeyKing: WKNavigationDelegate {
             guard let code = queryDictionary["code"] else {
                 return
             }
-            MonkeyKing.fetchWeChatOAuthInfoByCode(code: code) { [weak self] (info, response, error) in
-                self?.removeWebView(webView, tuples: (info, response, error))
+            MonkeyKing.fetchWeChatOAuthInfoByCode(code: code) { [weak self] result in
+                self?.removeWebView(webView, with: result)
             }
         } else {
             // Weibo OAuth
-            for case let .weibo(_, _, redirectURL) in accountSet {
+            for case .weibo(_, _, let redirectURL) in accountSet {
                 if url.absoluteString.hasPrefix(redirectURL) {
                     guard let code = url.monkeyking_queryDictionary["code"] else { return }
-                    MonkeyKing.fetchWeiboOAuthInfoByCode(code: code) { [weak self] info, response, error in
-                        self?.removeWebView(webView, tuples: (info, response, error))
+                    MonkeyKing.fetchWeiboOAuthInfoByCode(code: code) { [weak self] result in
+                        self?.removeWebView(webView, with: result)
                     }
                 }
             }
@@ -104,17 +111,19 @@ extension MonkeyKing {
     class func generateWebView() -> WKWebView {
         let webView = WKWebView()
         let screenBounds = UIScreen.main.bounds
-        webView.frame = CGRect(origin: CGPoint(x: 0, y: screenBounds.height),
-                               size: CGSize(width: screenBounds.width, height: screenBounds.height - 20))
+        webView.frame = CGRect(
+            origin: CGPoint(x: 0, y: screenBounds.height),
+            size: CGSize(width: screenBounds.width, height: screenBounds.height - 20)
+        )
         webView.navigationDelegate = shared
-        webView.backgroundColor = UIColor(red: 247/255, green: 247/255, blue: 247/255, alpha: 1.0)
+        webView.backgroundColor = UIColor(red: 247 / 255, green: 247 / 255, blue: 247 / 255, alpha: 1.0)
         webView.scrollView.backgroundColor = webView.backgroundColor
         UIApplication.shared.keyWindow?.addSubview(webView)
         return webView
     }
 
     class func addWebView(withURLString urlString: String) {
-        if nil == MonkeyKing.shared.webView {
+        if MonkeyKing.shared.webView == nil {
             MonkeyKing.shared.webView = generateWebView()
         }
         guard let url = URL(string: urlString), let webView = MonkeyKing.shared.webView else { return }
@@ -132,19 +141,20 @@ extension MonkeyKing {
     func addCloseButton() {
         guard let webView = webView else { return }
         let closeButton = CloseButton(type: .custom)
-        closeButton.frame = CGRect(origin: CGPoint(x: UIScreen.main.bounds.width - 50.0, y: 4.0),
-                                   size: CGSize(width: 44.0, height: 44.0))
+        closeButton.frame = CGRect(
+            origin: CGPoint(x: UIScreen.main.bounds.width - 50.0, y: 4.0),
+            size: CGSize(width: 44.0, height: 44.0)
+        )
         closeButton.addTarget(self, action: #selector(closeOauthView), for: .touchUpInside)
         webView.addSubview(closeButton)
     }
 
     @objc func closeOauthView() {
         guard let webView = webView else { return }
-        let error = NSError(domain: "User Cancelled", code: -1, userInfo: nil)
-        removeWebView(webView, tuples: (nil, nil, error))
+        removeWebView(webView, with: .failure(.userCancelled))
     }
 
-    func removeWebView(_ webView: WKWebView, tuples: ([String: Any]?, URLResponse?, Swift.Error?)?) {
+    func removeWebView(_ webView: WKWebView, with result: Result<ResponseJSON?, Error>) {
         activityIndicatorViewAction(webView, stop: true)
         webView.stopLoading()
         UIView.animate(withDuration: 0.3, delay: 0.0, options: .curveEaseOut, animations: {
@@ -152,7 +162,7 @@ extension MonkeyKing {
         }, completion: { [weak self] _ in
             webView.removeFromSuperview()
             MonkeyKing.shared.webView = nil
-            self?.oauthCompletionHandler?(tuples?.0, tuples?.1, tuples?.2)
+            self?.oauthCompletionHandler?(result)
         })
     }
 

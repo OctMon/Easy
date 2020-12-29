@@ -2,22 +2,21 @@
 <a href="http://cocoadocs.org/docsets/MonkeyKing"><img src="https://img.shields.io/cocoapods/v/MonkeyKing.svg?style=flat"></a>
 <a href="https://github.com/Carthage/Carthage/"><img src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat"></a>
 </p>
-<p>
-<a href="http://cocoapods.org/pods/MonkeyKing"><img src="https://img.shields.io/cocoapods/at/MonkeyKing.svg?label=Apps%20Using%20MonkeyKing&colorB=28B9FE"></a>
-<a href="http://cocoapods.org/pods/MonkeyKing"><img src="https://img.shields.io/cocoapods/dt/MonkeyKing.svg?label=Total%20Downloads&colorB=28B9FE"></a>
-</p>
 
 # MonkeyKing
 
-MonkeyKing helps you post messages to Chinese Social Networks, without their buggy SDKs.
+MonkeyKing helps you post SNS messages to Chinese Social Networks, without their buggy SDKs.
 
-MonkeyKing uses the same analysis process of [openshare](https://github.com/100apps/openshare), support share **Text**, **URL**, **Image**, **Audio**, **Video**, and **File** to **WeChat**, **QQ**, **Alipay** or **Weibo**. MonkeyKing also can post messages to Weibo by webpage. (Note: Audio and Video are specifically for WeChat or QQ, File is only for QQ Dataline)
+MonkeyKing uses the same analysis process of [openshare](https://github.com/100apps/openshare).
+We also use some reverse engineering tools such as [Hopper Disassembler](https://www.hopperapp.com/) to unveil several undocumented authentication mechanisms under the hood.
+It supports sharing **Text**, **URL**, **Image**, **Audio**, **Video**, and **File** to **WeChat**, **QQ**, **Alipay** or **Weibo**.
+MonkeyKing can also post messages to Weibo by a web page. (Note: Audio and Video are exclusive to WeChat or QQ, and File is exclusive to QQ Dataline)
 
 MonkeyKing also supports **OAuth** and **Mobile payment** via WeChat and Alipay!
 
 ## Requirements
 
-Swift 5, iOS 8
+Swift 5, iOS 9
 
 (For Swift 4.2, use version 1.13.0)
 
@@ -33,38 +32,49 @@ Example: Share to WeChat (微信)：
 
 1. In your Project Target's `Info.plist`, set `URL Type`, `LSApplicationQueriesSchemes` as follow:
 
-	<img src="https://raw.githubusercontent.com/nixzhu/MonkeyKing/master/images/infoList.png" width="600">
+    <img src="https://raw.githubusercontent.com/nixzhu/MonkeyKing/master/images/infoList.png" width="600">
+    
+    You should also add `weixinULAPI` once you enabled Universal Link of your WeChat App.
 
-2. Register account: // it's not necessary to do it here, but for convenient
+2. Register account: // it's not necessary to do it here, but for the sake of convenience
 
-	```swift
-	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    ```swift
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        MonkeyKing.regsiterAccount(
+            .weChat(
+                appID: "xxx",
+                appKey: "yyy",
+                miniAppID: nil,
+                universalLink: nil // FIXME: You have to adopt Universal Link otherwise your app name becomes "Unauthorized App"(未验证应用)...
+            )
+        )
+        return true
+    }
+    ```
 
-	    MonkeyKing.registerAccount(.weChat(appID: "xxx", appKey: "yyy", miniAppID: nil))
+3. Append the following code to handle callbacks:
 
-	    return true
-	}
-	```
-
-3. If you need to handle call back, add following code:
-
-	```swift
+    ```swift
+    // AppDelegate.swift
+    
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
     //func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool { // only for iOS 8
-
-        if MonkeyKing.handleOpenURL(url) {
-            return true
-        }
-
-        return false
+        return MonkeyKing.handleOpenURL(url)
     }
-	```
-
-	to your AppDelegate.
+    ```
+    
+    Remember to handle userActivities if you are using `UIScene` in your project:
+    ```swift
+    // SceneDelegate.swift
+    
+    func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {
+        MonkeyKing.handleOpenUserActivity(userActivity)
+    }
+    ```
 
 4. Prepare your message and ask MonkeyKing to deliver it:
 
-	```swift
+    ```swift
     @IBAction func shareURLToWeChatSession(sender: UIButton) {
 
         MonkeyKing.registerAccount(.weChat(appID: "xxx", appKey: "yyy", miniAppID: nil)) // you can do it here (just before deliver)
@@ -80,10 +90,9 @@ Example: Share to WeChat (微信)：
             print("shareURLToWeChatSession success: \(success)")
         }
     }
-	```
+    ```
 
 It's done!
-
 
 ### OAuth
 
@@ -107,10 +116,9 @@ MonkeyKing.weChatOAuthForCode { [weak self] (code, error) in
 }
 ```
 
-If user don't have Weibo App installed on their devices then MonkeyKing will use web OAuth:
+If the user doesn't have Weibo App installed on their devices then MonkeyKing will use web OAuth:
 
 <img src="https://raw.githubusercontent.com/nixzhu/MonkeyKing/master/images/wbOAuth.png" width="240">
-
 
 ### Pay
 
@@ -122,7 +130,7 @@ MonkeyKing.deliver(order) { result in
     print("result: \(result)")
 }
 ```
-> You need to configure `pay.php` in remote server. You can find a example about `pay.php` at Demo project.
+> You need to configure `pay.php` in a remote server. You can find an example of `pay.php` at the Demo project.
 
 <br />
 
@@ -143,7 +151,7 @@ MonkeyKing.launch(.weChat(.miniApp(username: "gh_XXX", path: path, type: .releas
 }
 ```
 
-Note that username has a `gh_` prefix (原始ID).
+Note that `username` has a `gh_` prefix (原始ID).
 
 ### More
 
@@ -155,85 +163,27 @@ Check the demo for more information.
 
 ## Installation
 
-Using Carthage or CocoaPods.
-
 ### Carthage
-
-[Carthage](https://github.com/Carthage/Carthage) is a decentralized dependency manager for Cocoa application. To install the carthage tool, you can use [Homebrew](http://brew.sh).
-
-```bash
-$ brew update
-$ brew install carthage
-```
-
-To integrate MonkeyKing into your Xcode project using Carthage, specify it in your `Cartfile`:
 
 ```ogdl
 github "nixzhu/MonkeyKing"
 ```
 
-Then, run the following command to build the MonkeyKing framework:
-
-```bash
-$ carthage update
-```
-
-At last, you need to set up your Xcode project manually to add the MonkeyKing framework.
-
-On your application targets’ “General” settings tab, in the “Linked Frameworks and Libraries” section, drag and drop each framework you want to use from the Carthage/Build folder on disk.
-
-On your application targets’ “Build Phases” settings tab, click the “+” icon and choose “New Run Script Phase”. Create a Run Script with the following content:
-
-```
-/usr/local/bin/carthage copy-frameworks
-```
-
-and add the paths to the frameworks you want to use under “Input Files”:
-
-```
-$(SRCROOT)/Carthage/Build/iOS/MonkeyKing.framework
-```
-
-For more information about how to use Carthage, please see its [project page](https://github.com/Carthage/Carthage).
-
 ### CocoaPods
 
-[CocoaPods](http://cocoapods.org) is a dependency manager for Cocoa projects.
-
-CocoaPods 0.36 adds supports for Swift and embedded frameworks. You can install it with the following command:
-
-```bash
-$ [sudo] gem install cocoapods
-```
-
-To integrate MonkeyKing into your Xcode project using CocoaPods, specify it in your `Podfile`:
-
 ```ruby
-source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '8.0'
-use_frameworks!
-
-target <Your Target Name> do
-    pod 'MonkeyKing'
-end
+pod 'MonkeyKing'
 ```
 
-Then, run the following command:
+### Swift Package Manager
 
-```bash
-$ pod install
+```
+https://github.com/nixzhu/MonkeyKing
 ```
 
-You should open the `{Project}.xcworkspace` instead of the `{Project}.xcodeproj` after you installed anything from CocoaPods.
+## Contributors
 
-For more information about how to use CocoaPods, I suggest [this tutorial](http://www.raywenderlich.com/64546/introduction-to-cocoapods-2).
-
-## Contact
-
-NIX [@nixzhu](https://twitter.com/nixzhu),
-Limon [@Limon](http://weibo.com/u/1783821582),
-Lanford [@Lanford3_3](http://weibo.com/accoropitor) or
-Alex [@Xspyhack](http://weibo.com/xspyhack)
+Thanks to all the [contributors](https://github.com/nixzhu/MonkeyKing/graphs/contributors).
 
 ## Credits
 

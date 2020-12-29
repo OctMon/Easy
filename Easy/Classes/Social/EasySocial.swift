@@ -202,13 +202,13 @@ public extension EasySocial {
         return MonkeyKing.SupportedPlatform.alipay.isAppInstalled
     }
     
-    static func register(weChatAppId: String, weChatAppKey: String?, miniAppID: String?) {
-        MonkeyKing.registerAccount(MonkeyKing.Account.weChat(appID: weChatAppId, appKey: weChatAppKey, miniAppID: miniAppID))
+    static func register(weChatAppId: String, weChatAppKey: String?, miniAppID: String?, universalLink: String?) {
+        MonkeyKing.registerAccount(MonkeyKing.Account.weChat(appID: weChatAppId, appKey: weChatAppKey, miniAppID: miniAppID, universalLink: universalLink)) // FIXME: You have to adopt Universal Link otherwise your app name becomes "Unauthorized App"(未验证应用)...
     }
     
-    static func register(qqAppId: String) {
+    static func register(qqAppId: String, universalLink: String?) {
         shared.qqAppId = qqAppId
-        MonkeyKing.registerAccount(MonkeyKing.Account.qq(appID: qqAppId))
+        MonkeyKing.registerAccount(MonkeyKing.Account.qq(appID: qqAppId, universalLink: universalLink))
     }
     
     static func register(weiboAppId: String, appKey: String, redirectURL: String) {
@@ -219,8 +219,8 @@ public extension EasySocial {
         MonkeyKing.registerAccount(MonkeyKing.Account.alipay(appID: alipayAppId))
     }
     
-    static func orderWechat(_ urlString: String, completionHandler: @escaping (Bool) -> Void) {
-        let order = MonkeyKing.Order.weChat(urlString: urlString)
+    static func orderWechat(url: URL, completionHandler: @escaping (Result<Void, MonkeyKing.Error>) -> Void) {
+        let order = MonkeyKing.Order.weChat(url: url)
         MonkeyKing.deliver(order, completionHandler: completionHandler)
     }
     
@@ -230,8 +230,8 @@ public extension EasySocial {
         }
     }
     
-    static func orderAlipay(_ urlString: String, completionHandler: @escaping (Bool) -> Void) {
-        let order = MonkeyKing.Order.alipay(urlString: urlString)
+    static func orderAlipay(url: URL, completionHandler: @escaping (Result<Void, MonkeyKing.Error>) -> Void) {
+        let order = MonkeyKing.Order.alipay(url: url)
         MonkeyKing.deliver(order, completionHandler: completionHandler)
     }
     
@@ -297,120 +297,127 @@ public extension EasySocial {
         }
     }
     
-    static func weChatOAuthForCode(scope: String? = nil, requestToken: String? = nil, responseHandler: @escaping (String?, Error?) -> Void) {
-        MonkeyKing.weChatOAuthForCode(scope: scope, requestToken: requestToken) { (code, error) in
-            responseHandler(code, error)
-        }
+    static func weChatOAuthForCode(scope: String? = nil, requestToken: String? = nil, completionHandler: @escaping (Result<String, MonkeyKing.Error>) -> Void) {
+        MonkeyKing.weChatOAuthForCode(scope: scope, requestToken: requestToken, completionHandler: completionHandler)
     }
     
     static func oauth(platformType: OauthPlatformType, isGetUserInfo: Bool = false, responseHandler: @escaping (UserInfo?, EasyParameters?, Error?) -> Void) {
         switch platformType {
         case .wechat:
-            MonkeyKing.oauth(for: .weChat) { (info, response, error) in
-                if let error = error {
+            MonkeyKing.oauth(for: .weChat) { result in
+                switch result {
+                case .success(let info):
+                    if isGetUserInfo {
+                        guard let token = info?["access_token"] as? String, let openid = info?["openid"] as? String, let refreshToken = info?["refresh_token"] as? String, let expiresIn = info?["expires_in"] as? Int else { return }
+                        let userInfoAPI = "https://api.weixin.qq.com/sns/userinfo"
+                        let parameters = ["openid": openid, "access_token": token]
+                        // https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421140839
+                        EasyNetworking.sharedInstance.request(userInfoAPI, method: .get, parameters: parameters, completionHandler: { (userInfo, _, error) in
+                            if let error = error {
+                                EasyLog.debug(error)
+                                responseHandler(nil, nil, error)
+                            } else {
+                                if var userInfo = userInfo {
+                                    userInfo["access_token"] = token
+                                    userInfo["openid"] = openid
+                                    userInfo["refresh_token"] = refreshToken
+                                    userInfo["expires_in"] = expiresIn
+                                    EasyLog.debug("userInfo \(userInfo)")
+                                    // 用户的性别，值为1时是男性，值为2时是女性，值为0时是未知
+                                    var sex = ""
+                                    if let gender = userInfo["sex"] as? Int {
+                                        switch gender {
+                                        case 1:
+                                            sex = "男"
+                                        case 2:
+                                            sex = "女"
+                                        default:
+                                            break
+                                        }
+                                    }
+                                    responseHandler(UserInfo(openid: openid, nickname: userInfo["nickname"] as? String ?? "", iconurl: userInfo["headimgurl"] as? String ?? "", sex: sex), userInfo, error)
+                                }
+                            }
+                        })
+                    } else {
+                        responseHandler(nil, info, nil)
+                    }
+                case .failure(let error):
                     EasyLog.debug("error \(String(describing: error))")
                     responseHandler(nil, nil, error)
-                } else if isGetUserInfo {
-                    guard let token = info?["access_token"] as? String, let openid = info?["openid"] as? String, let refreshToken = info?["refresh_token"] as? String, let expiresIn = info?["expires_in"] as? Int else { return }
-                    let userInfoAPI = "https://api.weixin.qq.com/sns/userinfo"
-                    let parameters = ["openid": openid, "access_token": token]
-                    // https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421140839
-                    EasyNetworking.sharedInstance.request(userInfoAPI, method: .get, parameters: parameters, completionHandler: { (userInfo, _, error) in
-                        if let error = error {
-                            EasyLog.debug(error)
-                            responseHandler(nil, nil, error)
-                        } else {
-                            if var userInfo = userInfo {
-                                userInfo["access_token"] = token
-                                userInfo["openid"] = openid
-                                userInfo["refresh_token"] = refreshToken
-                                userInfo["expires_in"] = expiresIn
-                                EasyLog.debug("userInfo \(userInfo)")
-                                // 用户的性别，值为1时是男性，值为2时是女性，值为0时是未知
-                                var sex = ""
-                                if let gender = userInfo["sex"] as? Int {
-                                    switch gender {
-                                    case 1:
-                                        sex = "男"
-                                    case 2:
-                                        sex = "女"
-                                    default:
-                                        break
-                                    }
-                                }
-                                responseHandler(UserInfo(openid: openid, nickname: userInfo["nickname"] as? String ?? "", iconurl: userInfo["headimgurl"] as? String ?? "", sex: sex), userInfo, error)
-                            }
-                        }
-                    })
-                } else {
-                    responseHandler(nil, info, nil)
                 }
             }
         case .qq:
-            MonkeyKing.oauth(for: .qq, scope: "get_user_info") { (info, response, error) in
-                if let error = error {
+            MonkeyKing.oauth(for: .qq, scope: "get_user_info") { (result) in
+                switch result {
+                case .failure(let error):
                     EasyLog.debug("error \(String(describing: error))")
                     responseHandler(nil, nil, error)
-                } else if isGetUserInfo {
-                    guard let unwrappedInfo = info, let token = unwrappedInfo["access_token"] as? String, let openid = unwrappedInfo["openid"] as? String else { return }
-                    let query = "get_user_info"
-                    let userInfoAPI = "https://graph.qq.com/user/\(query)"
-                    let parameters = ["openid": openid, "access_token": token, "oauth_consumer_key": shared.qqAppId]
-                    // http://wiki.open.qq.com/wiki/website/get_user_info
-                    EasyNetworking.sharedInstance.request(userInfoAPI, method: .get, parameters: parameters) { (userInfo, _, _) in
-                        if let error = error {
-                            EasyLog.debug(error)
-                            responseHandler(nil, nil, error)
-                        } else {
-                            if var userInfo = userInfo {
-                                userInfo["access_token"] = token
-                                userInfo["openid"] = openid
-                                EasyLog.debug("userInfo \(userInfo)")
-                                responseHandler(UserInfo(openid: openid, nickname: userInfo["nickname"] as? String ?? "", iconurl: userInfo["figureurl_qq_1"] as? String ?? "", sex: userInfo["gender"] as? String ?? ""), userInfo, error)
+                case .success(let info):
+                    if isGetUserInfo {
+                        guard let unwrappedInfo = info, let token = unwrappedInfo["access_token"] as? String, let openid = unwrappedInfo["openid"] as? String else { return }
+                        let query = "get_user_info"
+                        let userInfoAPI = "https://graph.qq.com/user/\(query)"
+                        let parameters = ["openid": openid, "access_token": token, "oauth_consumer_key": shared.qqAppId]
+                        // http://wiki.open.qq.com/wiki/website/get_user_info
+                        EasyNetworking.sharedInstance.request(userInfoAPI, method: .get, parameters: parameters) { (userInfo, _, error) in
+                            if let error = error {
+                                EasyLog.debug(error)
+                                responseHandler(nil, nil, error)
+                            } else {
+                                if var userInfo = userInfo {
+                                    userInfo["access_token"] = token
+                                    userInfo["openid"] = openid
+                                    EasyLog.debug("userInfo \(userInfo)")
+                                    responseHandler(UserInfo(openid: openid, nickname: userInfo["nickname"] as? String ?? "", iconurl: userInfo["figureurl_qq_1"] as? String ?? "", sex: userInfo["gender"] as? String ?? ""), userInfo, error)
+                                }
                             }
                         }
+                    } else {
+                        responseHandler(nil, info, nil)
                     }
-                } else {
-                    responseHandler(nil, info, nil)
                 }
             }
         case .weibo:
-            MonkeyKing.oauth(for: .weibo) { (info, response, error) in
-                if let error = error {
+            MonkeyKing.oauth(for: .weibo) { (result) in
+                switch result {
+                case .failure(let error):
                     EasyLog.debug("error \(String(describing: error))")
                     responseHandler(nil, nil, error)
-                } else if isGetUserInfo {
-                    guard let unwrappedInfo = info, let token = (unwrappedInfo["access_token"] as? String) ?? (unwrappedInfo["accessToken"] as? String), let userID = (unwrappedInfo["uid"] as? String) ?? (unwrappedInfo["userID"] as? String) else { return }
-                    let userInfoAPI = "https://api.weibo.com/2/users/show.json"
-                    let parameters = ["uid": userID, "access_token": token]
-                    // http://open.weibo.com/wiki/2/users/domain_show
-                    EasyNetworking.sharedInstance.request(userInfoAPI, method: .get, parameters: parameters) { (userInfo, _, _) in
-                        if let error = error {
-                            EasyLog.debug(error)
-                            responseHandler(nil, nil, error)
-                        } else {
-                            if var userInfo = userInfo {
-                                userInfo["access_token"] = token
-                                userInfo["uid"] = userID
-                                EasyLog.debug("userInfo \(userInfo)")
-                                // m：男、f：女、n：未知
-                                var sex = ""
-                                if let gender = userInfo["gender"] as? String {
-                                    switch gender {
-                                    case "m":
-                                        sex = "男"
-                                    case "f":
-                                        sex = "女"
-                                    default:
-                                        break
+                case .success(let info):
+                    if isGetUserInfo {
+                        guard let unwrappedInfo = info, let token = (unwrappedInfo["access_token"] as? String) ?? (unwrappedInfo["accessToken"] as? String), let userID = (unwrappedInfo["uid"] as? String) ?? (unwrappedInfo["userID"] as? String) else { return }
+                        let userInfoAPI = "https://api.weibo.com/2/users/show.json"
+                        let parameters = ["uid": userID, "access_token": token]
+                        // http://open.weibo.com/wiki/2/users/domain_show
+                        EasyNetworking.sharedInstance.request(userInfoAPI, method: .get, parameters: parameters) { (userInfo, _, error) in
+                            if let error = error {
+                                EasyLog.debug(error)
+                                responseHandler(nil, nil, error)
+                            } else {
+                                if var userInfo = userInfo {
+                                    userInfo["access_token"] = token
+                                    userInfo["uid"] = userID
+                                    EasyLog.debug("userInfo \(userInfo)")
+                                    // m：男、f：女、n：未知
+                                    var sex = ""
+                                    if let gender = userInfo["gender"] as? String {
+                                        switch gender {
+                                        case "m":
+                                            sex = "男"
+                                        case "f":
+                                            sex = "女"
+                                        default:
+                                            break
+                                        }
                                     }
+                                    responseHandler(UserInfo(openid: userID, nickname: userInfo["screen_name"] as? String ?? "", iconurl: userInfo["profile_image_url"] as? String ?? "", sex: sex), userInfo, error)
                                 }
-                                responseHandler(UserInfo(openid: userID, nickname: userInfo["screen_name"] as? String ?? "", iconurl: userInfo["profile_image_url"] as? String ?? "", sex: sex), userInfo, error)
                             }
                         }
+                    } else {
+                        responseHandler(nil, info, nil)
                     }
-                } else {
-                    responseHandler(nil, info, nil)
                 }
             }
         case .alipay:
