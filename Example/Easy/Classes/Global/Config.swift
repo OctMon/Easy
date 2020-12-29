@@ -48,8 +48,8 @@ extension AppDelegate {
 private extension AppDelegate {
     
     func configSocial() {
-        easy.Social.register(weChatAppId: "wx4868b35061f87885", weChatAppKey: "64020361b8ec4c99936c0e3999a9f249", miniAppID: "gh_d43f693ca31f")
-        easy.Social.register(qqAppId: "1104881792")
+        easy.Social.register(weChatAppId: "wx4868b35061f87885", weChatAppKey: "64020361b8ec4c99936c0e3999a9f249", miniAppID: "gh_d43f693ca31f", universalLink: nil)
+        easy.Social.register(qqAppId: "1104881792", universalLink: nil)
         easy.Social.register(weiboAppId: "1772193724", appKey: "453283216b8c885dad2cdb430c74f62a", redirectURL: "http://sns.whalecloud.com/sina2/callback")
         easy.Social.register(alipayAppId: "2016012101112529")
         
