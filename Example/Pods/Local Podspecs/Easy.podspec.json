@@ -40,7 +40,7 @@
       "name": "Common",
       "dependencies": {
         "MBProgressHUD": [
-          "~> 1.1.0"
+          "~> 1.2.0"
         ],
         "MJRefresh": [
           "~> 3.5.0"

@@ -31,7 +31,7 @@ Pod::Spec.new do |s|
     end
     
     s.subspec 'Common' do |ss|
-        ss.dependency 'MBProgressHUD', '~> 1.1.0' # https://github.com/jdg/MBProgressHUD
+        ss.dependency 'MBProgressHUD', '~> 1.2.0' # https://github.com/jdg/MBProgressHUD
         ss.dependency 'MJRefresh', '~> 3.5.0' # https://github.com/CoderMJLee/MJRefresh
         ss.dependency 'RTRootNavigationController', '~> 0.7.2' # https://github.com/rickytan/RTRootNavigationController
         ss.dependency 'SDWebImage', '~> 5.0.3' # https://github.com/rs/SDWebImage
