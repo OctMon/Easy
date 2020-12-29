@@ -17,7 +17,7 @@ public struct EasyBeta {
 public extension EasyBeta {
     
     static func configTestTool() {
-        FLEXManager.shared().isNetworkDebuggingEnabled = true
+        FLEXManager.shared.isNetworkDebuggingEnabled = true
         PerformanceMonitor.shared().performanceViewConfigurator.options = .all
         PerformanceMonitor.shared().performanceViewConfigurator.style = .light
         EasyLog.clear()

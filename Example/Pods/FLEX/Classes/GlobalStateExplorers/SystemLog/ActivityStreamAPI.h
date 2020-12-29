@@ -14,6 +14,8 @@
 #ifndef ActivityStreamSPI_h
 #define ActivityStreamSPI_h
 
+#include <Foundation/Foundation.h>
+
 #include <sys/time.h>
 // #include <xpc/xpc.h>
 
@@ -24,11 +26,13 @@
  *
  * See <os/object.h> for details.
  */
+#if !TARGET_OS_MACCATALYST
 #if OS_OBJECT_USE_OBJC
 OS_OBJECT_DECL(xpc_object);
 #else
 typedef void * xpc_object_t;
-#endif 
+#endif
+#endif
 
 #define OS_ACTIVITY_MAX_CALLSTACK 32
 

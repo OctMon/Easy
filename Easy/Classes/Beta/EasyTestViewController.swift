@@ -20,7 +20,7 @@ class EasyTestViewController: EasyViewController, EasyTableListProtocol {
         navigationItem.title = "EasyTest by OctMon"
         
         navigationItem.appendLeftBarButtonTitleItem(FLEXManager.toString) {
-            FLEXManager.shared().toggleExplorer()
+            FLEXManager.shared.toggleExplorer()
         }
         
         navigationItem.appendRightBarButtonTitleItem("Done") {

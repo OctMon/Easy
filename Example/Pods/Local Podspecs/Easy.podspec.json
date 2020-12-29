@@ -136,7 +136,7 @@
 
         ],
         "FLEX": [
-          "~> 3.0.0"
+          "~> 4.3.0"
         ],
         "GDPerformanceView-Swift": [
           "~> 2.0.2"

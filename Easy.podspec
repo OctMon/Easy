@@ -78,7 +78,7 @@ Pod::Spec.new do |s|
         ss.source_files = 'Easy/Classes/Beta/*'
         ss.dependency 'Easy/Core'
         ss.dependency 'Easy/Session'
-        ss.dependency 'FLEX', '~> 3.0.0' # https://github.com/Flipboard/FLEX
+        ss.dependency 'FLEX', '~> 4.3.0' # https://github.com/Flipboard/FLEX
         ss.dependency 'GDPerformanceView-Swift', '~> 2.0.2' # https://github.com/dani-gavrilov/GDPerformanceView-Swift
         ss.dependency 'OOMDetector', '~> 1.3' # https://github.com/Tencent/OOMDetector
         ss.xcconfig = { 'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => '$(inherited) BETA' }
