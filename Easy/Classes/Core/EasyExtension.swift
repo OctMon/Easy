@@ -656,20 +656,6 @@ public extension UIColor {
     static var hex666666: UIColor { return .hex(0x666666) }
     static var hex999999: UIColor { return .hex(0x999999) }
     static var hexCCCCCC: UIColor { return .hex(0xCCCCCC) }
-    static var textFieldPlaceholder: UIColor {
-        struct Once {
-            private init() {
-                if let placeholderColor = (UITextField().then {
-                    $0.placeholder = " "
-                    }.value(forKeyPath: "_placeholderLabel.textColor")) as? UIColor {
-                    color = placeholderColor
-                }
-            }
-            static var shared = Once()
-            var color: UIColor!
-        }
-        return Once.shared.color
-    }
     
 }
 
@@ -1090,7 +1076,7 @@ public extension UITextView {
         }
         
         placeholderTextView?.do {
-            $0.textColor = placeholderColor ?? UIColor.textFieldPlaceholder
+            $0.textColor = placeholderColor
             $0.text = placeholder
         }
         
