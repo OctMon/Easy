@@ -13,7 +13,7 @@ PODS:
     - MBProgressHUD (~> 1.2.0)
     - MJRefresh (~> 3.5.0)
     - RTRootNavigationController (~> 0.7.2)
-    - SDWebImage (~> 5.0.3)
+    - SDWebImage (~> 5.10.2)
   - Easy/Core (2.7):
     - SnapKit (~> 4.2.0)
   - Easy/PageController (2.7):
@@ -44,9 +44,9 @@ PODS:
   - RTRootNavigationController (0.7.2):
     - RTRootNavigationController/Core (= 0.7.2)
   - RTRootNavigationController/Core (0.7.2)
-  - SDWebImage (5.0.3):
-    - SDWebImage/Core (= 5.0.3)
-  - SDWebImage/Core (5.0.3)
+  - SDWebImage (5.10.2):
+    - SDWebImage/Core (= 5.10.2)
+  - SDWebImage/Core (5.10.2)
   - SnapKit (4.2.0)
   - SwiftyRSA (1.5.0):
     - SwiftyRSA/ObjC (= 1.5.0)
@@ -88,7 +88,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
-  Easy: 13aaf3c63570443620243a46fc4d0efea25b34ee
+  Easy: bc5def749fd331eead0f5faa096b46bfece685ad
   fishhook: ea19933abfe8f2f52c55fd8b6e2718467d3ebc89
   FLEX: d66c759bce0f6ebbbf472c742380874d846f2883
   GDPerformanceView-Swift: a40b2f675589449f5b5082f3178f01bfdb7882ce
@@ -97,7 +97,7 @@ SPEC CHECKSUMS:
   MonkeyKing: 2bec76a578c8bd089703e70e20eb44e265bd2e67
   OOMDetector: c23f4dfc969ea9bbd68a57cf7e5a3ca2169263cd
   RTRootNavigationController: 8344c2352d6d40fa370d0366efae2c84a945213f
-  SDWebImage: d4f87d7d36c8a4d9f9459dc282e0caa057fdf935
+  SDWebImage: b969dcfc02c40a5da71eac0b03b8f1a0c794a86f
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
   SwiftyRSA: 6e528fb1b1a87d5111c48081083b141d6d65f1cf
   WMPageController: 0c7624d2b48e4f1ab92371688cf6744ed701575d

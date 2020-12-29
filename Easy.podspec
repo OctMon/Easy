@@ -34,7 +34,7 @@ Pod::Spec.new do |s|
         ss.dependency 'MBProgressHUD', '~> 1.2.0' # https://github.com/jdg/MBProgressHUD
         ss.dependency 'MJRefresh', '~> 3.5.0' # https://github.com/CoderMJLee/MJRefresh
         ss.dependency 'RTRootNavigationController', '~> 0.7.2' # https://github.com/rickytan/RTRootNavigationController
-        ss.dependency 'SDWebImage', '~> 5.0.3' # https://github.com/rs/SDWebImage
+        ss.dependency 'SDWebImage', '~> 5.10.2' # https://github.com/rs/SDWebImage
         #ss.dependency 'SwiftyAttributes'#, '~> 5.0.0' # https://github.com/eddiekaiger/SwiftyAttributes
     end
     
