@@ -1,3 +1,5 @@
+![Easy](https://socialify.git.ci/OctMon/Easy/image?description=1&descriptionEditable=Reduce%20development%20time%20and%20increase%20development%20efficiency&font=KoHo&forks=1&issues=1&language=1&owner=1&pattern=Brick%20Wall&pulls=1&stargazers=1&theme=Dark)
+
 # Easy
 
 [![CI Status](https://img.shields.io/travis/OctMon/Easy.svg?style=flat)](https://travis-ci.org/OctMon/Easy)
