@@ -54,7 +54,19 @@ public extension EasyApp {
     static let notificationCenter = NotificationCenter.default
     
     static let delegate = UIApplication.shared.delegate
-    static var keyWindow: UIWindow? { return UIApplication.shared.keyWindow }
+    static var keyWindow: UIWindow? {
+        if #available(iOS 13, *) {
+            return UIApplication.shared.windows.first(where: { $0.isKeyWindow })
+        } else {
+            return UIApplication.shared.keyWindow
+        }
+    }
+    @available(iOS 13, *)
+    static var keyWindowScene: UIWindowScene? {
+        return UIApplication.shared.connectedScenes
+            .filter { $0.activationState == .foregroundActive }
+            .first as? UIWindowScene
+    }
     static var window: UIWindow? { return delegate?.window ?? nil }
     static var rootViewController: UIViewController? { return window?.rootViewController }
     
