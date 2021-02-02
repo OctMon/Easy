@@ -330,8 +330,8 @@ public extension Data {
         return nil
     }
     
-    var toJsonString: String? {
-        if let json = try? JSONSerialization.jsonObject(with: self, options: []), let dataString = JSONSerialization.toJsonString(withJSONObject: json) {
+    func toJsonString(options: JSONSerialization.WritingOptions = []) -> String? {
+        if let json = try? JSONSerialization.jsonObject(with: self, options: []), let dataString = JSONSerialization.toJsonString(withJSONObject: json, options: options) {
             return dataString
         } else if let dataString = String(data: self, encoding: .utf8) {
             return dataString

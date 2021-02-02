@@ -535,14 +535,14 @@ public extension URLRequest {
         let _url = url?.absoluteString ?? ""
         let _httpMethod = httpMethod ?? ""
         let _timeout = timeoutInterval
-        let _httpBody = httpBody?.toJsonString
+        let _httpBody = httpBody?.toJsonString(options: .prettyPrinted)
         var log = "\(separator.popLast() ?? "")[URL]\t\t\(_url)\n[Method]\t\t\(_httpMethod)\n[Timeout]\t\(_timeout)"
         if let allHTTPHeaderFields = allHTTPHeaderFields, allHTTPHeaderFields.count > 0, let header = JSONSerialization.toJsonString(withJSONObject: allHTTPHeaderFields) {
             log += "\n[Header]\n\(header)"
         }
         if let body = _httpBody {
             log += "\n[Body]\n\(body)"
-            if let json = Data(base64Encoded: body, options: Data.Base64DecodingOptions.ignoreUnknownCharacters)?.toJsonString, isPrintBase64DecodeBody {
+            if let json = Data(base64Encoded: body, options: Data.Base64DecodingOptions.ignoreUnknownCharacters)?.toJsonString(options: .prettyPrinted), isPrintBase64DecodeBody {
                 log += "\n[Body -> Base64Decode]\n\(json)"
             }
         }
@@ -574,9 +574,9 @@ public extension URLRequest {
         }
         if let data = data {
             responseLog += "\n[Size]\t\t\(data)"
-            if let data = data.toJsonString {
+            if let data = data.toJsonString(options: .prettyPrinted) {
                 responseLog += "\n[Data]\n\(data)"
-                if let json = Data(base64Encoded: data, options: Data.Base64DecodingOptions.ignoreUnknownCharacters)?.toJsonString, isPrintBase64DecodeBody {
+                if let json = Data(base64Encoded: data, options: Data.Base64DecodingOptions.ignoreUnknownCharacters)?.toJsonString(options: .prettyPrinted), isPrintBase64DecodeBody {
                     responseLog += "\n[Data -> Base64Decode]\n\(json)"
                 }
             }
