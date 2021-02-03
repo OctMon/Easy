@@ -21,7 +21,7 @@ public extension EasyBeta {
         PerformanceMonitor.shared().performanceViewConfigurator.options = .all
         PerformanceMonitor.shared().performanceViewConfigurator.style = .light
         EasyLog.clear()
-        EasyApp.window?.longPress(numberOfTapsRequired: 3, numberOfTouchesRequired: 1, handler: { (r) in
+        EasyApp.window?.longPress(minimumPressDuration: 1, numberOfTouchesRequired: 3, handler: { (r) in
             if r.state == .began {
                 isShowTestTool.toggle()
             }

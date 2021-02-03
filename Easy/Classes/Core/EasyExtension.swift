@@ -1331,9 +1331,9 @@ private class EasyLongPressGestureRecognizer: UILongPressGestureRecognizer {
     
     private var handler: ((UILongPressGestureRecognizer) -> Void)?
     
-    @objc convenience init(numberOfTapsRequired: Int = 0, numberOfTouchesRequired: Int = 1, handler: @escaping (UILongPressGestureRecognizer) -> Void) {
+    @objc convenience init(minimumPressDuration: Double = 0.5, numberOfTouchesRequired: Int = 1, handler: @escaping (UILongPressGestureRecognizer) -> Void) {
         self.init()
-        self.numberOfTapsRequired = numberOfTapsRequired
+        self.minimumPressDuration = minimumPressDuration
         self.numberOfTouchesRequired = numberOfTouchesRequired
         self.handler = handler
         addTarget(self, action: #selector(EasyLongPressGestureRecognizer.action(_:)))
@@ -1432,14 +1432,14 @@ public extension UIView {
     /// 长按
     ///
     /// - Parameters:
-    ///   - numberOfTapsRequired: 手势点击数
+    ///   - minimumPressDuration: 手势点击数
     ///   - numberOfTouchesRequired: 手指个数
     ///   - handler: 使用 [unowned self] 或 [weak self] 避免循环引用
     /// - Returns: UILongPressGestureRecognizer
     @discardableResult
-    func longPress(numberOfTapsRequired: Int = 0, numberOfTouchesRequired: Int = 1, handler: @escaping (UILongPressGestureRecognizer) -> Void) -> UILongPressGestureRecognizer {
+    func longPress(minimumPressDuration: Double = 0.5, numberOfTouchesRequired: Int = 1, handler: @escaping (UILongPressGestureRecognizer) -> Void) -> UILongPressGestureRecognizer {
         isUserInteractionEnabled = true
-        let longPressGestureRecognizer = EasyLongPressGestureRecognizer(numberOfTapsRequired: numberOfTapsRequired, numberOfTouchesRequired: numberOfTouchesRequired, handler: handler)
+        let longPressGestureRecognizer = EasyLongPressGestureRecognizer(minimumPressDuration: minimumPressDuration, numberOfTouchesRequired: numberOfTouchesRequired, handler: handler)
         addGestureRecognizer(longPressGestureRecognizer)
         return longPressGestureRecognizer
     }
