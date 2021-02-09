@@ -2,8 +2,11 @@
 # * https://www.objc.io/issues/6-build-tools/travis-ci/
 # * https://github.com/supermarin/xcpretty#usage
 
-osx_image: xcode10.2
 language: objective-c
+osx_image: xcode12.4
+branches:
+  only: master
+  
 # cache: cocoapods
 # podfile: Example/Podfile
 # before_install:
@@ -12,3 +15,6 @@ language: objective-c
 script:
 - set -o pipefail && xcodebuild test -enableCodeCoverage YES -workspace Example/Easy.xcworkspace -scheme Easy_Example -destination 'platform=iOS Simulator,name=iPhone 6,OS=9.0' | xcpretty
 # - pod lib lint
+
+notifications:
+  email: false
