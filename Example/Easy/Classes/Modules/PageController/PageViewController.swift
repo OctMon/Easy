@@ -19,7 +19,7 @@ class PageViewController: easy.PageController {
     override func configure() {
         super.configure()
         
-        defer {
+        do {
             setPage(titles: ["Social", "Tuchong"]) { (index) -> UIViewController in
                 switch index {
                 case 0:

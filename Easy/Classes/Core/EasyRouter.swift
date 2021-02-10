@@ -39,7 +39,7 @@ public extension EasyRouter {
     }
     
     static func openURL(_ url: String, routerParameters: [EasyRouter.Key: Any]) {
-        var paramaters = (shared.routers[.url] as? EasyParameters)
+        let paramaters = (shared.routers[.url] as? EasyParameters)
         (paramaters?[url] as? ([EasyRouter.Key: Any]) -> Void)?(routerParameters)
     }
     

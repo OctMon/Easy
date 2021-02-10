@@ -57,7 +57,7 @@ public struct EasyPlaceholder {
 
 public extension EasyPlaceholder {
     
-    public enum Style {
+    enum Style {
         case empty, server, network
     }
     

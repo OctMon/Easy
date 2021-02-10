@@ -118,6 +118,8 @@ extension EasyPageController {
             return menuItemTtleColorForNormal
         case .selected:
             return menuItemTtleColorForSelected
+        @unknown default:
+            return UIColor.black
         }
     }
     

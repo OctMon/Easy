@@ -94,6 +94,7 @@ extension EasyWaterFlowLayout {
                     widths.append(sectionInset.left)
                 }
             }
+        @unknown default: break
         }
         
         attributes.removeAll()
@@ -266,6 +267,8 @@ private extension EasyWaterFlowLayout {
                 }
                 return frame
             }
+        @unknown default:
+            return .zero
         }
     }
     

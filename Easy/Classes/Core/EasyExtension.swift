@@ -1718,6 +1718,8 @@ public extension UIStackView {
                 separatorView.widthAnchor.constraint(equalToConstant: constant).isActive = true
             case .vertical:
                 separatorView.heightAnchor.constraint(equalToConstant: constant).isActive = true
+            @unknown default:
+                break
             }
             if let index = self.arrangedSubviews.firstIndex(of: arrangedSubview) {
                 insertArrangedSubview(separatorView, at: index + 1)
@@ -1899,7 +1901,7 @@ public extension UINavigationBar {
     @discardableResult
     func setTintColor(_ color: UIColor) -> UINavigationBar {
         tintColor = color
-        titleTextAttributes = [.foregroundColor: tintColor]
+        titleTextAttributes = [.foregroundColor: color]
         return self
     }
     

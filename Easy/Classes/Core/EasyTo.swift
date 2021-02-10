@@ -362,7 +362,7 @@ public extension String {
     /// 16进制字符串转为Data
     var hexToData: Data {
         let bytes = hexToBytes
-        return Data(bytes: bytes)
+        return Data(bytes)
     }
     
     // 16进制字符串转为 [UInt8]

@@ -205,7 +205,7 @@ public extension EasyDataResponse {
         return dataResponse
     }
     
-    public func list<T>(_ class: T.Type) -> [T] {
+    func list<T>(_ class: T.Type) -> [T] {
         return list as? [T] ?? []
     }
     
