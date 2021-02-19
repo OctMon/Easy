@@ -287,7 +287,17 @@ public extension EasyApp {
     static let isPhone = deviceType == .iPhone
     static let isPod = deviceType == .iPod
     static let isSimulator = deviceType == .simulator
-    static let isFaceIDCapableDevices = deviceSize == .screen5_8Inch || deviceSize == .screen6_1Inch || deviceSize == .screen6_5Inch
+    static var isFaceIDCapableDevices: Bool {
+        if #available(iOS 11, *) {
+                  guard let w = UIApplication.shared.delegate?.window, let unwrapedWindow = w else {
+                      return false
+                  }
+                  if unwrapedWindow.safeAreaInsets.left > 0 || unwrapedWindow.safeAreaInsets.bottom > 0 {
+                      return true
+                  }
+            }
+        return false
+    }
     static let safeBottomEdge = CGFloat(isFaceIDCapableDevices ? 34 : 0)
     
 }
