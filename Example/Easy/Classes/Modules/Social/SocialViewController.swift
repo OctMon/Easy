@@ -88,6 +88,8 @@ extension SocialViewController {
                 (cell as? ImageLabelCollectionViewCell)?.do {
                     $0.backgroundColor = .random
                     $0.label.text = any.name
+                    
+                    $0.setCorner(roundedRect: CGRect(x: 0, y: 0, width: .screenWidth * 0.5, height: .screenWidth * 0.5), cornerRadii: CGSize(width: 35, height: 35), roundingCorners: [.topLeft, .topRight])
                 }
             }) { (_, indexPath, any) in
                 switch any {

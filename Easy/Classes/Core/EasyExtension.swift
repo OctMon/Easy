@@ -1274,6 +1274,14 @@ public extension UIView {
         }
     }
     
+    func setCorner(roundedRect: CGRect, cornerRadii: CGSize, roundingCorners: UIRectCorner)  {
+        let path = UIBezierPath(roundedRect: roundedRect, byRoundingCorners: roundingCorners, cornerRadii: cornerRadii)
+        let mask = CAShapeLayer()
+        mask.frame = roundedRect
+        mask.path = path.cgPath
+        layer.mask = mask
+    }
+    
 }
 
 public extension UIView {
