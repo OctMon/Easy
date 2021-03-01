@@ -1741,7 +1741,7 @@ public extension UIViewController {
     
     var navigationBottom: CGFloat { return EasyApp.statusBarHeight + (self.navigationController?.navigationBar.frame.height ?? 0) }
     
-    var navigationBar: UINavigationBar? { return navigationController?.navigationBar }
+    var getNavigationBar: UINavigationBar? { return navigationController?.navigationBar }
     
     func setBackBarButtonItem(title: String? = nil) {
         guard title != nil else { return }
@@ -1918,8 +1918,8 @@ public extension UINavigationBar {
 public extension UIViewController {
     
     func setBackIndicator(_ image: UIImage?) {
-        navigationBar?.backIndicatorImage = image
-        navigationBar?.backIndicatorTransitionMaskImage = image
+        getNavigationBar?.backIndicatorImage = image
+        getNavigationBar?.backIndicatorTransitionMaskImage = image
         navigationItem.backBarButtonItem = UIBarButtonItem(title: EasyGlobal.backBarButtonItemTitle, style: .plain, target: nil, action: nil)
     }
     

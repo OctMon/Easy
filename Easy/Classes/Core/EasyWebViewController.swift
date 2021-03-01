@@ -53,7 +53,7 @@ open class EasyWebViewController: EasyViewController {
         webView.do {
             view.addSubview($0)
             $0.snp.makeConstraints({ (make) in
-                make.edges.equalToSuperview().inset(UIEdgeInsets(top: navigationBarHidden ? EasyApp.statusBarHeight : ((self.navigationBar?.isTranslucent ?? false) ? navigationBottom : 0), left: 0, bottom: 0, right: 0))
+                make.edges.equalToSuperview().inset(UIEdgeInsets(top: navigationBarHidden ? EasyApp.statusBarHeight : ((self.getNavigationBar?.isTranslucent ?? false) ? navigationBottom : 0), left: 0, bottom: 0, right: 0))
                 if #available(iOS 11, *) {
                 } else {
                     automaticallyAdjustsScrollViewInsets = false

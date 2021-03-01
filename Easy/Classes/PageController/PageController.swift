@@ -52,12 +52,12 @@ open class EasyPageController: WMPageController {
         setBackBarButtonItem(title: EasyGlobal.backBarButtonItemTitle)
         
         EasyGlobal.navigationBarTintColor.unwrapped { (color) in
-            navigationBar?.setTintColor(color)
+            getNavigationBar?.setTintColor(color)
         }
-        navigationBar?.setBackgroundImage(EasyGlobal.navigationBarBackgroundImage, for: .default)
-        navigationBar?.titleTextAttributes = EasyGlobal.navigationBarTitleTextAttributes
+        getNavigationBar?.setBackgroundImage(EasyGlobal.navigationBarBackgroundImage, for: .default)
+        getNavigationBar?.titleTextAttributes = EasyGlobal.navigationBarTitleTextAttributes
         if EasyGlobal.navigationBarIsShadowNull {
-            navigationBar?.setShadowNull()
+            getNavigationBar?.setShadowNull()
         }
         
         setBackIndicator(EasyGlobal.backBarButtonItemImage)
