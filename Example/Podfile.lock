@@ -1,36 +1,36 @@
 PODS:
   - Alamofire (4.9.1)
-  - Easy (2.8.1):
-    - Easy/Core (= 2.8.1)
-    - Easy/Session (= 2.8.1)
-  - Easy/Beta (2.8.1):
+  - Easy (2.8.2):
+    - Easy/Core (= 2.8.2)
+    - Easy/Session (= 2.8.2)
+  - Easy/Beta (2.8.2):
     - Easy/Core
     - Easy/Session
     - FLEX (~> 4.3.0)
     - GDPerformanceView-Swift (~> 2.1.1)
     - OOMDetector (~> 1.3)
-  - Easy/Common (2.8.1):
+  - Easy/Common (2.8.2):
     - MBProgressHUD (~> 1.2.0)
     - MJRefresh (~> 3.5.0)
     - RTRootNavigationController (~> 0.7.2)
     - SDWebImage (~> 5.10.2)
-  - Easy/Core (2.8.1):
+  - Easy/Core (2.8.2):
     - SnapKit (~> 4.2.0)
-  - Easy/PageController (2.8.1):
+  - Easy/PageController (2.8.2):
     - Easy/Core
     - WMPageController (~> 2.5.2)
-  - Easy/PhotoBrowser (2.8.1):
+  - Easy/PhotoBrowser (2.8.2):
     - Easy/Core
     - ZLPhotoBrowser (~> 3.2.0)
-  - Easy/RSA (2.8.1):
+  - Easy/RSA (2.8.2):
     - Easy/Core
     - SwiftyRSA (~> 1.5.0)
-  - Easy/Scan (2.8.1):
+  - Easy/Scan (2.8.2):
     - Easy/Core
-  - Easy/Session (2.8.1):
+  - Easy/Session (2.8.2):
     - Alamofire (~> 4.9.1)
     - Easy/Core
-  - Easy/Social (2.8.1):
+  - Easy/Social (2.8.2):
     - Easy/Core
     - MonkeyKing (~> 2.0.1)
   - fishhook (0.2)
@@ -88,7 +88,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
-  Easy: 67644c96dd17f7deccb86520501f0f423a540f27
+  Easy: bae6a78aa50562e0a43a57c272d4404025bc13df
   fishhook: ea19933abfe8f2f52c55fd8b6e2718467d3ebc89
   FLEX: 58820af8881284bdd44e36141c607b8199cca45d
   GDPerformanceView-Swift: 22d964fe40b19e3d914dba2586237d064de8fd77
@@ -103,6 +103,6 @@ SPEC CHECKSUMS:
   WMPageController: 0c7624d2b48e4f1ab92371688cf6744ed701575d
   ZLPhotoBrowser: 3748fdbeb2b28961c2495d15131dbf413082e1b9
 
-PODFILE CHECKSUM: 8a0fee7e232900db4161af17347ae052c648484f
+PODFILE CHECKSUM: 99bb7d29e13a120f2bf51396e74e45c0594a949d
 
 COCOAPODS: 1.10.1
