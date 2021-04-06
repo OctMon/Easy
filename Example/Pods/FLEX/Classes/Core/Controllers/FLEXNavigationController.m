@@ -20,6 +20,7 @@
 @interface FLEXNavigationController ()
 @property (nonatomic, readonly) BOOL toolbarWasHidden;
 @property (nonatomic) BOOL waitingToAddTab;
+@property (nonatomic, readonly) BOOL canShowToolbar;
 @property (nonatomic) BOOL didSetupPendingDismissButtons;
 @property (nonatomic) UISwipeGestureRecognizer *navigationBarSwipeGesture;
 @end
@@ -99,6 +100,10 @@
     [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (BOOL)canShowToolbar {
+    return self.topViewController.toolbarItems.count;
+}
+
 - (void)addNavigationBarItemsToViewController:(UINavigationItem *)navigationItem {
     if (!self.presentingViewController) {
         return;
@@ -148,8 +153,15 @@
 }
      
 - (void)handleNavigationBarTap:(UIGestureRecognizer *)sender {
+    // Don't reveal the toolbar if we were just tapping a button
+    CGPoint location = [sender locationInView:self.navigationBar];
+    UIView *hitView = [self.navigationBar hitTest:location withEvent:nil];
+    if ([hitView isKindOfClass:[UIControl class]]) {
+        return;
+    }
+
     if (sender.state == UIGestureRecognizerStateRecognized) {
-        if (self.toolbarHidden) {
+        if (self.toolbarHidden && self.canShowToolbar) {
             [self setToolbarHidden:NO animated:YES];
         }
     }
@@ -165,7 +177,7 @@
 
 - (void)_gestureRecognizedInteractiveHide:(UIPanGestureRecognizer *)sender {
     if (sender.state == UIGestureRecognizerStateRecognized) {
-        BOOL show = self.topViewController.toolbarItems.count;
+        BOOL show = self.canShowToolbar;
         CGFloat yTranslation = [sender translationInView:self.view].y;
         CGFloat yVelocity = [sender velocityInView:self.view].y;
         if (yVelocity > 2000) {
