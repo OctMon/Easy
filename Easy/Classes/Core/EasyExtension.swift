@@ -1284,7 +1284,7 @@ public extension UIView {
     
 }
 
-extension UIView {
+public extension UIView {
     
     /// BezierPath 圆角设置
     func roundCorners(_ corners: UIRectCorner = .allCorners, radius: CGFloat) {
@@ -1299,7 +1299,7 @@ extension UIView {
     }
 }
 
-extension UIView {
+public extension UIView {
     //添加4个不同大小的圆角
     func addCorner(cornerRadii: CornerRadii){
        let path = createPathWithRoundedRect(bounds: self.bounds, cornerRadii:cornerRadii)
@@ -1309,11 +1309,17 @@ extension UIView {
        self.layer.mask = shapLayer
     }
     //各圆角大小
-    struct CornerRadii {
-        var topLeft :CGFloat = 0
-        var topRight :CGFloat = 0
-        var bottomLeft :CGFloat = 0
-        var bottomRight :CGFloat = 0
+    public struct CornerRadii {
+        var topLeft: CGFloat = 0
+        var topRight: CGFloat = 0
+        var bottomLeft: CGFloat = 0
+        var bottomRight: CGFloat = 0
+        public init(topLeft: CGFloat, topRight: CGFloat, bottomLeft: CGFloat, bottomRight: CGFloat) {
+            self.topLeft = topLeft
+            self.topRight = topRight
+            self.bottomLeft = bottomLeft
+            self.bottomRight = bottomRight
+        }
     }
     
     //切圆角函数绘制线条
