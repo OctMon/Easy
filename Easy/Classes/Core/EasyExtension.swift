@@ -441,6 +441,60 @@ public extension String {
         return self.boundingRect(with: forConstrainedSize, options: options, attributes: [.font: font], context: nil).size
     }
     
+    /// 匹配纯文本
+    ///  pattern: 正则
+    ///  str：字符串
+    ///  font: 字体
+    ///  patternColor：符合正则的字符颜色
+    ///  textColor: 正常的文字颜色
+    func textRegex(pattern: String, str: String, font: UIFont, patternColor: UIColor, textColor: UIColor) -> NSMutableAttributedString{
+        //富文本设置
+        let attributeString = NSMutableAttributedString(string: str)
+        attributeString.addAttribute(NSAttributedString.Key.font, value: font, range: NSRange(location: 0, length: str.utf16.count))
+        // 设置字体颜色
+        attributeString.addAttribute(NSAttributedString.Key.foregroundColor, value: textColor, range: NSRange(location: 0, length: str.utf16.count))
+        if let res = regex(pattern: pattern, str: str) {
+            for checkingRes in res {
+                debugPrint("range\(checkingRes.range)")
+                // substring 截取符合规定规则的字符串
+                debugPrint((str as NSString).substring(with: checkingRes.range))
+                // 从文本checkingRes.range个字符字体
+                attributeString.addAttribute(NSAttributedString.Key.font, value: font, range: checkingRes.range)
+                // 设置字体颜色
+                attributeString.addAttribute(NSAttributedString.Key.foregroundColor, value: patternColor, range: checkingRes.range)
+                
+            }
+            return attributeString
+        }
+        return attributeString
+    }
+    
+    ///  根据正则获取字符串中符合规则的字符数组
+    func regexPatternStrs(pattern: String, str: String) -> [String] {
+        var patternStrs: [String] = []
+        if let res = regex(pattern: pattern, str: str) {
+            for checkingRes in res {
+                let tagString = (str as NSString).substring(with: checkingRes.range)
+                patternStrs.append(tagString)
+            }
+            return patternStrs
+        }
+        return patternStrs
+    }
+    
+    ///  根据正则返回数组
+    func regex(pattern: String, str: String) -> [NSTextCheckingResult]? {
+        do {
+            // 定义规则 创建正则表达式对象
+            let regex = try NSRegularExpression(pattern: pattern, options: NSRegularExpression.Options.caseInsensitive)
+            // 开始匹配
+            let res = regex.matches(in: str, options: NSRegularExpression.MatchingOptions(rawValue: 0), range: NSMakeRange(0, str.utf16.count))
+            return res
+        } catch {
+            debugPrint(error.localizedDescription)
+        }
+        return nil
+    }
 }
 
 public extension NSAttributedString {
