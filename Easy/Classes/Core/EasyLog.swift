@@ -15,10 +15,7 @@ public struct EasyLog {
     
     private init() {}
     
-    private static var defaultLogLKey: String {
-        return "easyDefaultLog".md5
-    }
-    
+    public static let logURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first?.appendingPathComponent("log.txt")
 }
 
 public extension EasyLog {
@@ -45,25 +42,50 @@ public extension EasyLog {
     
     #if DEBUG || BETA
     internal static var log: String? {
-        return EasyApp.userDefaults.string(forKey: defaultLogLKey)
+        guard let fileURL = EasyLog.logURL, let data = try? Data(contentsOf: fileURL) else { return nil }
+        return String(data: data, encoding: .utf8)
     }
     
     internal static var logHandler: ((String) -> Void)?
     
     internal static func clear() {
-        EasyApp.userDefaults.set(nil, forKey: defaultLogLKey)
+        guard let fileURL = EasyLog.logURL else { return }
+        try? FileManager.default.removeItem(atPath: fileURL.path)
     }
     
     private static func record<T>(_ message: T) {
         autoreleasepool { () in
             var log = "\(message)\n"
-            if let string = EasyLog.log {
-                log = string + log
+            appendText(string: log)
+        }
+    }
+    
+    /// 在文件末尾追加新内容
+    private static func appendText(string: String) {
+        do {
+            guard let fileURL = EasyLog.logURL else { return }
+            // 如果文件不存在则新建一个
+            if !FileManager.default.fileExists(atPath: fileURL.path) {
+                FileManager.default.createFile(atPath: fileURL.path, contents: nil)
             }
-            EasyApp.userDefaults.set(log, forKey: defaultLogLKey)
-            EasyApp.userDefaults.string(forKey: defaultLogLKey)
-            
-            logHandler?(log)
+             
+            let fileHandle = try FileHandle(forWritingTo: fileURL)
+            let stringToWrite = "\n" + string
+             
+            // 写入到文件
+            if let data = stringToWrite.data(using: .utf8) {
+                defer {
+                    fileHandle.closeFile()
+                }
+                // 找到末尾位置并添加
+                fileHandle.seekToEndOfFile()
+                fileHandle.write(data)
+                if let log = log {
+                    logHandler?(log)
+                }
+            }
+        } catch let error  {
+            EasyLog.debug("failed to append: \(error)")
         }
     }
     #endif
