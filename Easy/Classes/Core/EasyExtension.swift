@@ -1121,10 +1121,9 @@ public extension UITextView {
         if placeholderTextView == nil {
             placeholderTextView = UITextView(frame: self.bounds).then {
                 $0.isUserInteractionEnabled = false
+                $0.backgroundColor = .clear
                 $0.font = font
-                $0.frame.origin.x = 6
                 $0.textContainerInset = textContainerInset
-                $0.textContainerInset.left = -5.3
                 addSubview($0)
             }
         }
