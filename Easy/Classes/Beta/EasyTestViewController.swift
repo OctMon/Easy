@@ -32,7 +32,11 @@ class EasyTestViewController: EasyViewController, EasyTableListProtocol {
             self?.refreshLog(log)
         }
         
-        tableList = [[("show request log banner", EasySession.logEnabel.toStringValue), ("PerformanceMonitor", isShowPerformanceMonitor.toStringValue), ("MemoryDetectorMonitor", isShowMemoryDetectorMonitor.toStringValue)]]
+        tableList = [[("send log", "octmon@qq.com"),],
+                     [("show request log banner", EasySession.logEnabel.toStringValue),
+                      ("PerformanceMonitor", isShowPerformanceMonitor.toStringValue),
+                      ("MemoryDetectorMonitor", isShowMemoryDetectorMonitor.toStringValue),
+        ]]
         var tmp = [Any]()
         sessions.forEach({ tmp.append(($0.config.url.alias, $0.config.url.currentBaseURL)) })
         if tmp.count > 0 {
@@ -56,7 +60,7 @@ class EasyTestViewController: EasyViewController, EasyTableListProtocol {
         tableView.tableFooterView = UIView()
         
         tableListView.register((String, String).self, cellsClass: [EasyTestCell.self, UITableViewCell.self], returnCell: { (_, indexPath) -> AnyClass? in
-            if indexPath.section == 0 {
+            if indexPath.section == 1 {
                 return EasyTestCell.self
             }
             return UITableViewCell.self
@@ -75,11 +79,11 @@ class EasyTestViewController: EasyViewController, EasyTableListProtocol {
                             listView?.list[indexPath.section] = list
                         }
                         switch (indexPath.section, indexPath.row) {
-                        case (0, 0):
+                        case (1, 0):
                             EasySession.logEnabel = isOn
-                        case (0, 1):
+                        case (1, 1):
                             isShowPerformanceMonitor = isOn
-                        case (0, 2):
+                        case (1, 2):
                             isShowMemoryDetectorMonitor = isOn
                         default:
                             break
@@ -94,24 +98,42 @@ class EasyTestViewController: EasyViewController, EasyTableListProtocol {
                         $0.textLabel?.adjustsFontSizeToFitWidth = true
                         $0.textLabel?.text = any.0 + " -> " + any.1
                     } else {
-                        $0.accessoryType = .none
+                        $0.accessoryType = .disclosureIndicator
                         cell.textLabel?.text = any.0
                     }
                 }
             }
-        }) { (listView, indexPath, any) in
-            guard indexPath.section > 0 else { return }
-            if indexPath.section + 1 == listView.list.count && sessions.count > indexPath.row {
-                sessions[indexPath.row].showChangeBaseURL({ (url) in
-                    var model = any
-                    model.1 = url
-                    let list = listView.list[indexPath.section]
-                    if var models = list as? [Any] {
-                        models[indexPath.row] = model
-                        listView.list[indexPath.section] = models
-                        listView.tableView.reloadData()
+        }) { [weak self] (listView, indexPath, any) in
+            switch indexPath.section {
+            case 0:
+                // 分享日志
+                if let url = EasyLog.logURL {
+                    EasyApp.runInMain {
+                        let activityController = UIActivityViewController(activityItems: [url], applicationActivities: nil)
+                        activityController.modalPresentationStyle = .fullScreen
+                        activityController.completionWithItemsHandler = {
+                            (type, flag, array, error) -> Void in
+                            EasyLog.debug(error)
+                        }
+                        self?.present(activityController, animated: true, completion: nil)
                     }
-                })
+                }
+            case 2:
+                // 环境切换
+                if indexPath.section + 1 == listView.list.count && sessions.count > indexPath.row {
+                    sessions[indexPath.row].showChangeBaseURL({ (url) in
+                        var model = any
+                        model.1 = url
+                        let list = listView.list[indexPath.section]
+                        if var models = list as? [Any] {
+                            models[indexPath.row] = model
+                            listView.list[indexPath.section] = models
+                            listView.tableView.reloadData()
+                        }
+                    })
+                }
+            default:
+                break
             }
         }
         
