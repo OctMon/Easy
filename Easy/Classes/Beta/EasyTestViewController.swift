@@ -47,9 +47,11 @@ class EasyTestViewController: EasyViewController, EasyTableListProtocol {
     
     private func refreshLog(_ log: String?) {
         guard let log = log else { return }
-        self.textView.text = log
-        self.textView.layoutManager.allowsNonContiguousLayout = false
-        self.textView.scrollRangeToVisible(NSRange(location: log.count - 1, length: 1))
+        EasyApp.runInMain {
+            self.textView.text = log
+            self.textView.layoutManager.allowsNonContiguousLayout = false
+            self.textView.scrollRangeToVisible(NSRange(location: log.count - 1, length: 1))
+        }
     }
     
     override func configure() {
