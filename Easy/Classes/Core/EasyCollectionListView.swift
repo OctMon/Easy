@@ -176,6 +176,7 @@ public extension EasyCollectionListView {
     }
     
     /// cellForItemAt & didSelectItemAt
+    /// 在同一分组下定制不同的cell会错乱，在不同分组定制cell正常
     func register<T>(_ type: T.Type, cellsClass: [AnyClass?], returnCell cellsHandler: @escaping (EasyCollectionListView, IndexPath) -> AnyClass?, configureCell cellHandler: @escaping (EasyCollectionListView, UICollectionViewCell, IndexPath, T) -> Void, didSelectRow didSelectRowHandler: ((EasyCollectionListView, IndexPath, T) -> Void)?) {
         getAny = true
         cellsClass.forEach { (cc) in

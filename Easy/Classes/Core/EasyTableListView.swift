@@ -162,6 +162,7 @@ public extension EasyTableListView {
     }
     
     /// cellForRowAt & didSelectRowAt
+    /// 在同一分组下定制不同的cell会错乱，在不同分组定制cell正常
     func register<T>(_ type: T.Type, cellsClass: [AnyClass?], returnCell cellsHandler: @escaping (EasyTableListView, IndexPath) -> AnyClass?, configureCell cellHandler: @escaping (EasyTableListView, UITableViewCell, IndexPath, T) -> Void, didSelectRow didSelectRowHandler: ((EasyTableListView, IndexPath, T) -> Void)?) {
         getAny = true
         cellsClass.forEach { (cc) in
