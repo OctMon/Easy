@@ -11,7 +11,7 @@ public extension Easy {
     typealias InputCell = EasyInputCell
 }
 
-public class EasyInputCell: UITableViewCell {
+open class EasyInputCell: UITableViewCell {
     
     deinit {
         EasyLog.debug(toDeinit)
