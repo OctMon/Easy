@@ -46,6 +46,10 @@ open class EasyInputCell: UITableViewCell {
         return textField
     }()
     
+    public lazy var leftIcon = UIImageView().then {
+        contentView.addSubview($0)
+    }
+    
     public lazy var smsCodeButton: UIButton = {
         let button = UIButton()
         contentView.addSubview(button)
@@ -85,9 +89,21 @@ open class EasyInputCell: UITableViewCell {
         lastText = text
     }
     
-    public func setModel(_ model: Model?, imagePadding: CGFloat) {
+    public func setModel(_ model: Model?, leading: CGFloat = 15, imagePadding: CGFloat = 15, trailing: CGFloat = 15) {
         self.model = model
-        textField.setLeftIcon(image: model?.icon, padding: imagePadding)
+        if let icon = model?.icon {
+            leftIcon.image = icon
+            leftIcon.snp.remakeConstraints { make in
+                make.leading.equalTo(leading)
+                make.centerY.equalToSuperview()
+                make.size.equalTo(icon.size)
+            }
+            textField.snp.remakeConstraints { make in
+                make.leading.equalTo(leftIcon.snp.trailing).offset(imagePadding)
+                make.trailing.equalTo(trailing)
+                make.centerY.equalTo(leftIcon.snp.centerY)
+            }
+        }
     }
     
     public func setTextFieldEditingChangedHandler(textCount: Int = Int.max, handler: @escaping (String) -> Void) {
