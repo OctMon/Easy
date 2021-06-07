@@ -41,7 +41,6 @@ open class EasyInputCell: UITableViewCell {
         textField.font = .size14
         textField.textColor = .hex333333
         textField.addTarget(self, action: #selector(textFieldEditingChanged(textField:)), for: .editingChanged)
-        textField.setDoneButton()
         
         return textField
     }()
