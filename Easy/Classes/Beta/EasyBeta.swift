@@ -65,7 +65,7 @@ var isShowMemoryDetectorMonitor = false {
         OOMDetector.getInstance()?.showMemoryIndicatorView(newValue)
     }
 }
-var isShowTestTool = false {
+public var isShowTestTool = false {
     willSet {
         if newValue {
             (EasyApp.currentViewController ?? EasyApp.currentTabBarController)?.showDetailViewController(UINavigationController(rootViewController: EasyTestViewController()), sender: nil)
