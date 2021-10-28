@@ -81,7 +81,7 @@ public struct EasyConfig {
     public var other = Other()
 }
 
-extension EasyConfig.BaseURL {
+public extension EasyConfig.BaseURL {
     
     var defaultCustomBaseURLKey: String {
         return "EasyDefaultCustomBaseURL_\(alias.md5)".md5

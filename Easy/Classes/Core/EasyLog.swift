@@ -41,14 +41,14 @@ public extension EasyLog {
     }
     
     #if DEBUG || BETA
-    internal static var log: String? {
+    static var log: String? {
         guard let fileURL = EasyLog.logURL, let data = try? Data(contentsOf: fileURL) else { return nil }
         return String(data: data, encoding: .utf8)
     }
     
-    internal static var logHandler: ((String) -> Void)?
+    static var logHandler: ((String) -> Void)?
     
-    internal static func clear() {
+    static func clear() {
         guard let fileURL = EasyLog.logURL else { return }
         try? FileManager.default.removeItem(atPath: fileURL.path)
     }

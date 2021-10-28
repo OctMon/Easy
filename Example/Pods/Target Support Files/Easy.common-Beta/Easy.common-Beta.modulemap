@@ -1,6 +1,0 @@
-framework module Easy {
-  umbrella header "Easy.common-Beta-umbrella.h"
-
-  export *
-  module * { export * }
-}

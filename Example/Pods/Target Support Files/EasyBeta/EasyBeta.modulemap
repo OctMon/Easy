@@ -1,0 +1,6 @@
+framework module EasyBeta {
+  umbrella header "EasyBeta-umbrella.h"
+
+  export *
+  module * { export * }
+}

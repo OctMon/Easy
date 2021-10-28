@@ -34,7 +34,7 @@ Pod::Spec.new do |s|
         ss.dependency 'MBProgressHUD', '~> 1.2.0' # https://github.com/jdg/MBProgressHUD
         ss.dependency 'MJRefresh', '~> 3.5.0' # https://github.com/CoderMJLee/MJRefresh
         ss.dependency 'RTRootNavigationController', '~> 0.7.2' # https://github.com/rickytan/RTRootNavigationController
-        ss.dependency 'SDWebImage', '~> 5.11.0' # https://github.com/rs/SDWebImage
+        ss.dependency 'SDWebImage', '~> 5.11.1' # https://github.com/rs/SDWebImage
         #ss.dependency 'SwiftyAttributes'#, '~> 5.1.1' # https://github.com/eddiekaiger/SwiftyAttributes
     end
     
@@ -72,16 +72,6 @@ Pod::Spec.new do |s|
         ss.source_files = 'Easy/Classes/PageController/*'
         ss.dependency 'Easy/Core'
         ss.dependency 'WMPageController', '~> 2.5.2' # https://github.com/wangmchn/WMPageController
-    end
-    
-    s.subspec 'Beta' do |ss|
-        ss.source_files = 'Easy/Classes/Beta/*'
-        ss.dependency 'Easy/Core'
-        ss.dependency 'Easy/Session'
-        ss.dependency 'FLEX', '~> 4.4.1' # https://github.com/Flipboard/FLEX
-        ss.dependency 'GDPerformanceView-Swift', '~> 2.1.1' # https://github.com/dani-gavrilov/GDPerformanceView-Swift
-        ss.dependency 'OOMDetector', '~> 1.3' # https://github.com/Tencent/OOMDetector
-        ss.xcconfig = { 'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => '$(inherited) BETA' }
     end
     
 end

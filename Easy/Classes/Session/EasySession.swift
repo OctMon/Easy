@@ -36,7 +36,7 @@ public struct EasySession {
     
     private let manager = SessionManager.default
     
-    static var logEnabel = false
+    public static var logEnabel = false
     
     public init(_ config: EasyConfig) {
         self.config = config

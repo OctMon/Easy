@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double EasyVersionNumber;
-FOUNDATION_EXPORT const unsigned char EasyVersionString[];
+FOUNDATION_EXPORT double EasyBetaVersionNumber;
+FOUNDATION_EXPORT const unsigned char EasyBetaVersionString[];
 
