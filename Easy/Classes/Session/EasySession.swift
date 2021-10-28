@@ -167,25 +167,25 @@ extension DataRequest {
 }
 
 private func logRequest(_ urlRequest: URLRequestConvertible) {
-    #if DEBUG || BETA
-    urlRequest.urlRequest?.printRequestLog()
-    #endif
+    if EasyApp.isDebug || EasyApp.isBeta {
+        urlRequest.urlRequest?.printRequestLog()
+    }
 }
 
 private func logResponseJSON(_ dataResponse: DataResponse<Any>) {
-    #if DEBUG || BETA
-    let title = dataResponse.request?.printResponseLog(isPrintBase64DecodeBody: true, response: dataResponse.response, data: dataResponse.data, error: dataResponse.result.error, requestDuration: dataResponse.timeline.requestDuration)
-    if EasySession.logEnabel {
-        EasyNotificationBanner().show(text: "查看日志 📋 [接口响应时间] 🔌 " + String(format: "%.3f秒", dataResponse.timeline.requestDuration) + "\n" + (dataResponse.request?.url?.absoluteString ?? ""), tap: {
-            let alert = EasyAlert(title: (title?.requestLog ?? "").replacingOccurrences(of: ">", with: "").replacingOccurrences(of: "----", with: "--"), message: (title?.responseLog
-                ?? "").replacingOccurrences(of: ">", with: ""))
-            alert.addAction(title: "复制", style: .default, handler: { (_) in
-                ((title?.requestLog ?? "") + (title?.responseLog ?? "")).copyToPasteboard()
+    if EasyApp.isDebug || EasyApp.isBeta {
+        let title = dataResponse.request?.printResponseLog(isPrintBase64DecodeBody: true, response: dataResponse.response, data: dataResponse.data, error: dataResponse.result.error, requestDuration: dataResponse.timeline.requestDuration)
+        if EasySession.logEnabel {
+            EasyNotificationBanner().show(text: "查看日志 📋 [接口响应时间] 🔌 " + String(format: "%.3f秒", dataResponse.timeline.requestDuration) + "\n" + (dataResponse.request?.url?.absoluteString ?? ""), tap: {
+                let alert = EasyAlert(title: (title?.requestLog ?? "").replacingOccurrences(of: ">", with: "").replacingOccurrences(of: "----", with: "--"), message: (title?.responseLog
+                                                                                                                                                                       ?? "").replacingOccurrences(of: ">", with: ""))
+                alert.addAction(title: "复制", style: .default, handler: { (_) in
+                    ((title?.requestLog ?? "") + (title?.responseLog ?? "")).copyToPasteboard()
+                })
+                alert.showOk()
             })
-            alert.showOk()
-        })
+        }
     }
-    #endif
 }
 
 extension URLRequestConvertible {

@@ -21,26 +21,25 @@ public struct EasyLog {
 public extension EasyLog {
     
     static func debug<T>(_ message: T, file: String = #file, method: String = #function, lineNumber: Int = #line) {
-        #if DEBUG || BETA
-        let fileName = (file as NSString).lastPathComponent
-        let now = Date()
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        let date = formatter.string(from: now)
-        let timeStamp = now.timeIntervalSince1970
-        let millisecond = CLongLong(round(timeStamp * 1000))
-        print("\(date).\(String(format: "%.3d", millisecond % CLongLong(timeStamp))) [debug] [\(fileName):\(lineNumber)] \(method) > \(message)")
-        #endif
+        if EasyApp.isDebug || EasyApp.isBeta {
+            let fileName = (file as NSString).lastPathComponent
+            let now = Date()
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+            let date = formatter.string(from: now)
+            let timeStamp = now.timeIntervalSince1970
+            let millisecond = CLongLong(round(timeStamp * 1000))
+            print("\(date).\(String(format: "%.3d", millisecond % CLongLong(timeStamp))) [debug] [\(fileName):\(lineNumber)] \(method) > \(message)")
+        }
     }
     
     static func print<T>(_ message: T) {
-        #if DEBUG || BETA
-        Swift.print(message)
-        record(message)
-        #endif
+        if EasyApp.isDebug || EasyApp.isBeta {
+            Swift.print(message)
+            record(message)
+        }
     }
     
-    #if DEBUG || BETA
     static var log: String? {
         guard let fileURL = EasyLog.logURL, let data = try? Data(contentsOf: fileURL) else { return nil }
         return String(data: data, encoding: .utf8)
@@ -88,5 +87,4 @@ public extension EasyLog {
             EasyLog.debug("failed to append: \(error)")
         }
     }
-    #endif
 }
