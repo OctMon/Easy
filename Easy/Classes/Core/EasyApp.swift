@@ -23,11 +23,7 @@ public extension EasyApp {
     static let isDebug = false
     #endif
     
-    #if BETA
-    static let isBeta = true
-    #else
-    static let isBeta = false
-    #endif
+    static var isBeta = false
     
 }
 
@@ -341,22 +337,6 @@ public extension EasyApp {
     
     static func openFullScreenPopGesture() {
         EasyFullScreenPopGesture.open()
-    }
-    
-}
-
-public extension EasyApp {
-    
-    static func configCheckPgyer(api_key: String , shortcutUrl: String, headerImage: UIImage? = nil, delay: TimeInterval = 3, isWillEnterForegroundCheck: Bool = true) {
-        #if BETA
-        EasyCheck.configPgyerBeta(api_key: api_key, shortcutUrl: shortcutUrl, headerImage: headerImage, delay: delay, isWillEnterForegroundCheck: isWillEnterForegroundCheck)
-        #endif
-    }
-    
-    static func configTestTool() {
-        #if BETA
-        EasyBeta.configTestTool()
-        #endif
     }
     
 }

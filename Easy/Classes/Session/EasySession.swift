@@ -40,9 +40,6 @@ public struct EasySession {
     
     public init(_ config: EasyConfig) {
         self.config = config
-        #if BETA
-        addToShowBaseURL()
-        #endif
     }
     
     private enum Router: URLRequestConvertible {
@@ -142,23 +139,6 @@ public extension EasySession {
     
     private func getEasyDataResponse(dataResponse: DataResponse<Any>) -> EasyDataResponse {
         return EasyDataResponse(request: dataResponse.request, response: dataResponse.response, data: dataResponse.data, result: EasyResult(config: config, dataResponse: dataResponse), timeline: dataResponse.timeline, list: [], model: nil)
-    }
-    
-}
-
-public extension EasySession {
-    
-    func showChangeBaseURL(_ handler: @escaping (String) -> Void) {
-        #if BETA
-        let vc = EasySessionViewController()
-        vc.config = config
-        let popupView = EasyPopupView(vc, height: .screenHeight * 0.38, transition: .bottom)
-        vc.popupView = popupView
-        vc.successHandler = handler
-        popupView.showWithBottom(showHandler: nil) {
-            vc.popupView = nil
-        }
-        #endif
     }
     
 }
