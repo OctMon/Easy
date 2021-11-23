@@ -263,10 +263,10 @@ public extension EasyApp {
     }
     
     @discardableResult
-    static func runLoop(seconds: TimeInterval, delay: TimeInterval = 0, handler: @escaping (Timer?) -> Void) -> Timer? {
+    static func runLoop(seconds: TimeInterval, delay: TimeInterval = 0, mode: CFRunLoopMode = .commonModes, handler: @escaping (Timer?) -> Void) -> Timer? {
         let fireDate = CFAbsoluteTimeGetCurrent() + delay
         let timer = CFRunLoopTimerCreateWithHandler(kCFAllocatorDefault, fireDate, seconds, 0, 0, handler)
-        CFRunLoopAddTimer(CFRunLoopGetCurrent(), timer, CFRunLoopMode.defaultMode)
+        CFRunLoopAddTimer(CFRunLoopGetCurrent(), timer, mode)
         return timer
     }
     
