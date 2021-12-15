@@ -20,14 +20,14 @@ Pod::Spec.new do |s|
     s.author           = { 'OctMon' => 'octmon@qq.com' }
     s.source           = { :git => 'https://github.com/OctMon/Easy.git', :tag => s.version }
     
-    s.ios.deployment_target = '9.0'
+    s.ios.deployment_target = '10.0'
     s.swift_version = '5.0'
     s.default_subspec = ['Core', 'Session']
     
     s.subspec 'Core' do |ss|
         ss.source_files = 'Easy/Classes/Core/*'
         ss.resources = ['Easy/Resources/EasyCore.bundle']
-        ss.dependency 'SnapKit', '~> 4.2.0' # https://github.com/SnapKit/SnapKit
+        ss.dependency 'SnapKit', '~> 5.0.1' # https://github.com/SnapKit/SnapKit
     end
     
     s.subspec 'Common' do |ss|

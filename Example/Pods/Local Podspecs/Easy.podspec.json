@@ -16,7 +16,7 @@
     "tag": "2.8.5"
   },
   "platforms": {
-    "ios": "9.0"
+    "ios": "10.0"
   },
   "swift_versions": "5.0",
   "default_subspecs": [
@@ -32,7 +32,7 @@
       ],
       "dependencies": {
         "SnapKit": [
-          "~> 4.2.0"
+          "~> 5.0.1"
         ]
       }
     },

@@ -9,7 +9,7 @@ PODS:
     - RTRootNavigationController (~> 0.7.2)
     - SDWebImage (~> 5.11.1)
   - Easy/Core (2.8.5):
-    - SnapKit (~> 4.2.0)
+    - SnapKit (~> 5.0.1)
   - Easy/PageController (2.8.5):
     - Easy/Core
     - WMPageController (~> 2.5.2)
@@ -47,7 +47,7 @@ PODS:
   - SDWebImage (5.11.1):
     - SDWebImage/Core (= 5.11.1)
   - SDWebImage/Core (5.11.1)
-  - SnapKit (4.2.0)
+  - SnapKit (5.0.1)
   - SwiftyRSA (1.5.0):
     - SwiftyRSA/ObjC (= 1.5.0)
   - SwiftyRSA/ObjC (1.5.0)
@@ -90,7 +90,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
-  Easy: ec23ddd92ffeb7f2b3454b8d31bf73295a9e5000
+  Easy: 8740a063ce377f3dac786d6f4d131a2144fbf648
   EasyBeta: 04948947d897fd73ae1234d30173f1dd6ab8d7ab
   fishhook: ea19933abfe8f2f52c55fd8b6e2718467d3ebc89
   FLEX: 7ca2c8cd3a435ff501ff6d2f2141e9bdc934eaab
@@ -101,7 +101,7 @@ SPEC CHECKSUMS:
   OOMDetector: c23f4dfc969ea9bbd68a57cf7e5a3ca2169263cd
   RTRootNavigationController: 8344c2352d6d40fa370d0366efae2c84a945213f
   SDWebImage: a7f831e1a65eb5e285e3fb046a23fcfbf08e696d
-  SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
+  SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   SwiftyRSA: 6e528fb1b1a87d5111c48081083b141d6d65f1cf
   WMPageController: 0c7624d2b48e4f1ab92371688cf6744ed701575d
   ZLPhotoBrowser: 3748fdbeb2b28961c2495d15131dbf413082e1b9
