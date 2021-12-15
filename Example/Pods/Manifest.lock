@@ -63,7 +63,7 @@ DEPENDENCIES:
   - Easy/RSA (from `../`)
   - Easy/Scan (from `../`)
   - Easy/Social (from `../`)
-  - EasyBeta (from `../../`)
+  - EasyBeta (from `../EasyBeta`)
 
 SPEC REPOS:
   trunk:
@@ -86,7 +86,7 @@ EXTERNAL SOURCES:
   Easy:
     :path: "../"
   EasyBeta:
-    :path: "../../"
+    :path: "../EasyBeta"
 
 SPEC CHECKSUMS:
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
@@ -106,6 +106,6 @@ SPEC CHECKSUMS:
   WMPageController: 0c7624d2b48e4f1ab92371688cf6744ed701575d
   ZLPhotoBrowser: 3748fdbeb2b28961c2495d15131dbf413082e1b9
 
-PODFILE CHECKSUM: 03089df70ee2ad1c630880a2f792e341bcf05303
+PODFILE CHECKSUM: 3d36037b06307012c4531bde3c4bc856d6f8f2b3
 
 COCOAPODS: 1.11.2

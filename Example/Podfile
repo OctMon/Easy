@@ -17,7 +17,7 @@ def sdk_pods
 end
 
 def beta_pods
-    pod 'EasyBeta', :path => '../../'
+    pod 'EasyBeta', :path => '../EasyBeta'
 end
 
 target 'Easy_Example' do

@@ -37,8 +37,11 @@ extension AppDelegate {
             let guide = easy.GuidePageView(images: [UIColor.random.toImage, UIColor.random.toImage, UIColor.random.toImage], skipButton: skipButton)
             guide.showFullscreen()
         }
+#if BETA
         app.configTestTool()
-//        app.configCheckPgyer(api_key: "#replace your api_key", shortcutUrl: "")
+        Tuchong.manager.addToShowBaseURL()
+        app.configCheckPgyer(api_key: "#replace your api_key", shortcutUrl: "")
+#endif
         configSocial()
         configRouter()
     }
