@@ -1362,7 +1362,7 @@ public extension UIView {
        self.layer.mask = shapLayer
     }
     //各圆角大小
-    public struct CornerRadii {
+    struct CornerRadii {
         var topLeft: CGFloat = 0
         var topRight: CGFloat = 0
         var bottomLeft: CGFloat = 0
