@@ -157,7 +157,6 @@ private func logRequest(_ urlRequest: URLRequestConvertible) {
 private func logResponseJSON(_ dataResponse: DataResponse<Any, AFError>) {
     if EasyApp.isDebug || EasyApp.isBeta {
         let title = dataResponse.request?.printResponseLog(isPrintBase64DecodeBody: true, response: dataResponse.response, data: dataResponse.data, error: dataResponse.error, metrics: dataResponse.metrics)
-        dataResponse.metrics
         if EasySession.logEnabel {
             EasyNotificationBanner().show(text: "查看日志 📋 [接口响应时间] 🔌 " + String(format: "%.3f秒", dataResponse.metrics ?? "") + "\n" + (dataResponse.request?.url?.absoluteString ?? ""), tap: {
                 let alert = EasyAlert(title: (title?.requestLog ?? "").replacingOccurrences(of: ">", with: "").replacingOccurrences(of: "----", with: "--"), message: (title?.responseLog
