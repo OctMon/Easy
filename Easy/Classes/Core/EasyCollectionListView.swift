@@ -14,7 +14,7 @@ public extension Easy {
 
 private var keyCollectionListView: Void?
 
-public protocol EasyCollectionListProtocol: class {
+public protocol EasyCollectionListProtocol: AnyObject {
     func addCollectionView(in: UIView) -> EasyCollectionListViewAssociatedType
     associatedtype EasyCollectionListViewAssociatedType: EasyCollectionListView
 }

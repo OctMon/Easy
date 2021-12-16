@@ -54,7 +54,7 @@ public extension EasyLog {
     
     private static func record<T>(_ message: T) {
         autoreleasepool { () in
-            var log = "\(message)\n"
+            let log = "\(message)\n"
             appendText(string: log)
         }
     }

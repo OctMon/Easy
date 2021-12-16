@@ -14,7 +14,7 @@ public extension Easy {
 
 private var keyTableListView: Void?
 
-public protocol EasyTableListProtocol: class {
+public protocol EasyTableListProtocol: AnyObject {
     func addTableListView(in: UIView, style: UITableView.Style) -> EasyTableListViewAssociatedType
     associatedtype EasyTableListViewAssociatedType: EasyTableListView
 }
