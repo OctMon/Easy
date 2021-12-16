@@ -1,7 +1,7 @@
 //
-//  Alamofire.swift
+//  URLSessionConfiguration+Alamofire.swift
 //
-//  Copyright (c) 2014-2021 Alamofire Software Foundation (http://alamofire.org/)
+//  Copyright (c) 2014-2018 Alamofire Software Foundation (http://alamofire.org/)
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -22,14 +22,25 @@
 //  THE SOFTWARE.
 //
 
-import Dispatch
 import Foundation
-#if canImport(FoundationNetworking)
-@_exported import FoundationNetworking
-#endif
 
-/// Reference to `Session.default` for quick bootstrapping and examples.
-public let AF = Session.default
+extension URLSessionConfiguration: AlamofireExtended {}
+extension AlamofireExtension where ExtendedType: URLSessionConfiguration {
+    /// Alamofire's default configuration. Same as `URLSessionConfiguration.default` but adds Alamofire default
+    /// `Accept-Language`, `Accept-Encoding`, and `User-Agent` headers.
+    public static var `default`: URLSessionConfiguration {
+        let configuration = URLSessionConfiguration.default
+        configuration.headers = .default
 
-/// Current Alamofire version. Necessary since SPM doesn't use dynamic libraries. Plus this will be more accurate.
-let version = "5.5.0"
+        return configuration
+    }
+
+    /// `.ephemeral` configuration with Alamofire's default `Accept-Language`, `Accept-Encoding`, and `User-Agent`
+    /// headers.
+    public static var ephemeral: URLSessionConfiguration {
+        let configuration = URLSessionConfiguration.ephemeral
+        configuration.headers = .default
+
+        return configuration
+    }
+}

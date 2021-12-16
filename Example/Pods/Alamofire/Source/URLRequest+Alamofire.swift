@@ -1,7 +1,7 @@
 //
-//  Alamofire.swift
+//  URLRequest+Alamofire.swift
 //
-//  Copyright (c) 2014-2021 Alamofire Software Foundation (http://alamofire.org/)
+//  Copyright (c) 2019 Alamofire Software Foundation (http://alamofire.org/)
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -22,14 +22,18 @@
 //  THE SOFTWARE.
 //
 
-import Dispatch
 import Foundation
-#if canImport(FoundationNetworking)
-@_exported import FoundationNetworking
-#endif
 
-/// Reference to `Session.default` for quick bootstrapping and examples.
-public let AF = Session.default
+extension URLRequest {
+    /// Returns the `httpMethod` as Alamofire's `HTTPMethod` type.
+    public var method: HTTPMethod? {
+        get { httpMethod.flatMap(HTTPMethod.init) }
+        set { httpMethod = newValue?.rawValue }
+    }
 
-/// Current Alamofire version. Necessary since SPM doesn't use dynamic libraries. Plus this will be more accurate.
-let version = "5.5.0"
+    public func validate() throws {
+        if method == .get, let bodyData = httpBody {
+            throw AFError.urlRequestValidationFailed(reason: .bodyDataInGETRequest(bodyData))
+        }
+    }
+}

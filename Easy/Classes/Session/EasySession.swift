@@ -34,7 +34,7 @@ public struct EasySession {
     
     public let config: EasyConfig
     
-    private let manager = SessionManager.default
+    private let manager = URLSessionConfiguration.af.default
     
     public static var logEnabel = false
     
@@ -118,46 +118,28 @@ public extension EasySession {
             }
         }
     }
-    
-    func upload(multipartFormData: @escaping (MultipartFormData) -> Void, host: String? = nil, path: String?, method: EasyHttpMethod = .post, timeoutInterval: TimeInterval? = nil, inView view: UIView? = nil, requestHandler: ((URLRequest) -> URLRequest)? = nil, completionHandler: @escaping (EasyDataResponse) -> Void) {
-        let urlRequest = Router.requestJSONEncoding(host ?? config.url.currentBaseURL, path, method, nil, timeoutInterval ?? config.other.timeout, requestHandler: requestHandler)
-        logRequest(urlRequest)
-        Alamofire.upload(multipartFormData: multipartFormData, with: urlRequest) { (encodingResult) in
-            switch encodingResult {
-            case .success(let upload, _, _):
-                view?.showLoading()
-                upload.responseJSON { dataResponse in
-                    view?.hideLoading()
-                    logResponseJSON(dataResponse)
-                    completionHandler(self.getEasyDataResponse(dataResponse: dataResponse))
-                }
-            case .failure(let encodingError):
-                completionHandler(EasyDataResponse(request: nil, response: nil, data: nil, result: EasyResult(config: self.config, error: encodingError), timeline: Timeline(), list: [], model: nil))
-            }
-        }
-    }
-    
-    private func getEasyDataResponse(dataResponse: DataResponse<Any>) -> EasyDataResponse {
-        return EasyDataResponse(request: dataResponse.request, response: dataResponse.response, data: dataResponse.data, result: EasyResult(config: config, dataResponse: dataResponse), timeline: dataResponse.timeline, list: [], model: nil)
+
+    private func getEasyDataResponse(dataResponse: DataResponse<Any, AFError>) -> EasyDataResponse {
+        return EasyDataResponse(request: dataResponse.request, response: dataResponse.response, data: dataResponse.data, result: EasyResult(config: config, dataResponse: dataResponse), metrics: dataResponse.metrics, list: [], model: nil)
     }
     
 }
 
-extension SessionManager {
+private extension URLSessionConfiguration {
     
     func easyRequest(_ urlRequest: URLRequestConvertible, config: EasyConfig) -> DataRequest {
         logRequest(urlRequest)
         if let acceptableStatusCodes = config.code.acceptableStatusCodes {
-            return request(urlRequest).validate(statusCode: acceptableStatusCodes)
+            return AF.request(urlRequest).validate(statusCode: acceptableStatusCodes)
         }
-        return request(urlRequest)
+        return AF.request(urlRequest)
     }
     
 }
 
 extension DataRequest {
     
-    func easyResponse(_ handler: @escaping (DataResponse<Any>) -> Void) {
+    func easyResponse(_ handler: @escaping (DataResponse<Any, AFError>) -> Void) {
         responseJSON { (dataResponse) in
             logResponseJSON(dataResponse)
             handler(dataResponse)
@@ -172,11 +154,12 @@ private func logRequest(_ urlRequest: URLRequestConvertible) {
     }
 }
 
-private func logResponseJSON(_ dataResponse: DataResponse<Any>) {
+private func logResponseJSON(_ dataResponse: DataResponse<Any, AFError>) {
     if EasyApp.isDebug || EasyApp.isBeta {
-        let title = dataResponse.request?.printResponseLog(isPrintBase64DecodeBody: true, response: dataResponse.response, data: dataResponse.data, error: dataResponse.result.error, requestDuration: dataResponse.timeline.requestDuration)
+        let title = dataResponse.request?.printResponseLog(isPrintBase64DecodeBody: true, response: dataResponse.response, data: dataResponse.data, error: dataResponse.error, metrics: dataResponse.metrics)
+        dataResponse.metrics
         if EasySession.logEnabel {
-            EasyNotificationBanner().show(text: "查看日志 📋 [接口响应时间] 🔌 " + String(format: "%.3f秒", dataResponse.timeline.requestDuration) + "\n" + (dataResponse.request?.url?.absoluteString ?? ""), tap: {
+            EasyNotificationBanner().show(text: "查看日志 📋 [接口响应时间] 🔌 " + String(format: "%.3f秒", dataResponse.metrics ?? "") + "\n" + (dataResponse.request?.url?.absoluteString ?? ""), tap: {
                 let alert = EasyAlert(title: (title?.requestLog ?? "").replacingOccurrences(of: ">", with: "").replacingOccurrences(of: "----", with: "--"), message: (title?.responseLog
                                                                                                                                                                        ?? "").replacingOccurrences(of: ">", with: ""))
                 alert.addAction(title: "复制", style: .default, handler: { (_) in

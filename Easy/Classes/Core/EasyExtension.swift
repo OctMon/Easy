@@ -606,20 +606,20 @@ public extension URLRequest {
     }
     
     @discardableResult
-    func printResponseLog(_ isPrintHeader: Bool = false, isPrintBase64DecodeBody: Bool = false, response: HTTPURLResponse?, data: Data?, error: Error?, requestDuration: TimeInterval?) -> (requestLog: String, responseLog: String) {
+    func printResponseLog(_ isPrintHeader: Bool = false, isPrintBase64DecodeBody: Bool = false, response: HTTPURLResponse?, data: Data?, error: Error?, metrics: URLSessionTaskMetrics?) -> (requestLog: String, responseLog: String) {
         var requestLog = ""
         var responseLog = ""
         if let response = response {
             requestLog = printRequestLog(isPrintBase64DecodeBody: isPrintBase64DecodeBody, separator: [easyResponseSeparator, easyStatusCodeSeparator(statusCode: response.statusCode)])
-            if let requestDuration = requestDuration {
-                responseLog += "[Duration]\t\(requestDuration)"
+            if let metrics = metrics {
+                responseLog += "[Metrics]\t\(metrics.taskInterval)\tduration: \(metrics.taskInterval.duration)"
             }
             if isPrintHeader, let header = JSONSerialization.toJsonString(withJSONObject: response.allHeaderFields) {
                 responseLog += "\n[Header]\n\(header)"
             }
         } else {
             requestLog = printRequestLog(isPrintBase64DecodeBody: isPrintBase64DecodeBody, separator: [easyResponseSeparator, easyStatusCodeSeparator()])
-            if let requestDuration = requestDuration {
+            if let requestDuration = metrics {
                 responseLog += "[Duration]\t\(requestDuration)"
             }
         }

@@ -22,7 +22,7 @@ public struct EasyDataResponse {
     public let result: EasyResult
     
     /// The timeline of the complete lifecycle of the request.
-    public let timeline: Timeline
+    public let metrics: URLSessionTaskMetrics?
     
     /// Returns the associated error value if the result if it is a failure, `nil` otherwise.
     public var error: EasyError? { return result.error }
@@ -98,12 +98,12 @@ public extension EasyDataResponse {
 public struct EasyResult {
     
     private let easyError: EasyError?
-    private let dataResponse: DataResponse<Any>?
+    private let dataResponse: DataResponse<Any, AFError>?
     public let config: EasyConfig
     public let json: EasyParameters
     public let array: [EasyParameters]
     
-    init(config: EasyConfig, dataResponse: DataResponse<Any>) {
+    init(config: EasyConfig, dataResponse: DataResponse<Any, AFError>) {
         self.config = config
         self.dataResponse = dataResponse
         switch dataResponse.result {
