@@ -988,9 +988,33 @@ public extension UIFont {
     static var size48: UIFont { return UIFont.systemFont(ofSize: 48) }
     static var size64: UIFont { return UIFont.systemFont(ofSize: 64) }
     
-    var semibold: UIFont {
+    var ultraLight: UIFont {
         if #available(iOS 8.2, *) {
-            return UIFont.systemFont(ofSize: pointSize, weight: .semibold)
+            return UIFont.systemFont(ofSize: pointSize, weight: .ultraLight)
+        } else {
+            return self
+        }
+    }
+    
+    var thin: UIFont {
+        if #available(iOS 8.2, *) {
+            return UIFont.systemFont(ofSize: pointSize, weight: .thin)
+        } else {
+            return self
+        }
+    }
+    
+    var light: UIFont {
+        if #available(iOS 8.2, *) {
+            return UIFont.systemFont(ofSize: pointSize, weight: .light)
+        } else {
+            return self
+        }
+    }
+    
+    var regular: UIFont {
+        if #available(iOS 8.2, *) {
+            return UIFont.systemFont(ofSize: pointSize, weight: .regular)
         } else {
             return self
         }
@@ -1004,9 +1028,33 @@ public extension UIFont {
         }
     }
     
-    var regular: UIFont {
+    var semibold: UIFont {
         if #available(iOS 8.2, *) {
-            return UIFont.systemFont(ofSize: pointSize, weight: .regular)
+            return UIFont.systemFont(ofSize: pointSize, weight: .semibold)
+        } else {
+            return self
+        }
+    }
+    
+    var bold: UIFont {
+        if #available(iOS 8.2, *) {
+            return UIFont.systemFont(ofSize: pointSize, weight: .bold)
+        } else {
+            return self
+        }
+    }
+    
+    var heavy: UIFont {
+        if #available(iOS 8.2, *) {
+            return UIFont.systemFont(ofSize: pointSize, weight: .heavy)
+        } else {
+            return self
+        }
+    }
+    
+    var black: UIFont {
+        if #available(iOS 8.2, *) {
+            return UIFont.systemFont(ofSize: pointSize, weight: .black)
         } else {
             return self
         }
