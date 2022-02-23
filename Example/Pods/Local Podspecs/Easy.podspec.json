@@ -1,6 +1,6 @@
 {
   "name": "Easy",
-  "version": "2.8.5",
+  "version": "2.9.0",
   "summary": "develop Swift with Easy",
   "description": "Reduce development time and increase development efficiency",
   "homepage": "https://github.com/OctMon/Easy",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/OctMon/Easy.git",
-    "tag": "2.8.5"
+    "tag": "2.9.0"
   },
   "platforms": {
     "ios": "10.0"
