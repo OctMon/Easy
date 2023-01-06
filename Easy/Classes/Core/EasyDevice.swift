@@ -286,7 +286,15 @@ public extension EasyApp {
     static let isPad = deviceType == .iPad
     static let isPhone = deviceType == .iPhone
     static let isPod = deviceType == .iPod
-    static let isSimulator = deviceType == .simulator
+    
+    static var isSimulator: Bool {
+#if targetEnvironment(simulator)
+        return true
+#else
+        return false
+#endif
+    }
+    
     static var isFaceIDCapableDevices: Bool {
         if #available(iOS 11, *) {
                   guard let w = UIApplication.shared.delegate?.window, let unwrapedWindow = w else {

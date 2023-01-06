@@ -4825,8 +4825,8 @@
 		BFDFE7DC352907FC980B868725387E98 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1240;
-				LastUpgradeCheck = 1240;
+				LastSwiftUpdateCheck = 1300;
+				LastUpgradeCheck = 1300;
 			};
 			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -6600,6 +6600,36 @@
 			};
 			name = Release;
 		};
+		8D8AD0A44DCC9B50CABD656CA8462C5C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B9F527D999E82A4D346EE00189614747 /* EasyBeta.debug.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/EasyBeta/EasyBeta-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/EasyBeta/EasyBeta-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/EasyBeta/EasyBeta.modulemap";
+				PRODUCT_MODULE_NAME = EasyBeta;
+				PRODUCT_NAME = EasyBeta;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
 		8E3215B10DF04905F902BF0D76C89A86 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = FE29EFA3ABB0C3CB5D8390B37F28786B /* WMPageController.debug.xcconfig */;
@@ -6972,36 +7002,6 @@
 			};
 			name = Release;
 		};
-		D1E1F011C40848F060296A4A527CACBD /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = AED4F7359195CF3E929843F70AB5773A /* EasyBeta.release.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/EasyBeta/EasyBeta-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/EasyBeta/EasyBeta-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/EasyBeta/EasyBeta.modulemap";
-				PRODUCT_MODULE_NAME = EasyBeta;
-				PRODUCT_NAME = EasyBeta;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
 		D299434AB35E7FD6F7921C8EF24742FF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -7068,6 +7068,37 @@
 			};
 			name = Debug;
 		};
+		DC473A952219C77E9A943CD07ACD55F8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AED4F7359195CF3E929843F70AB5773A /* EasyBeta.release.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/EasyBeta/EasyBeta-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/EasyBeta/EasyBeta-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/EasyBeta/EasyBeta.modulemap";
+				PRODUCT_MODULE_NAME = EasyBeta;
+				PRODUCT_NAME = EasyBeta;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		E06F40EA6BB55DA6B923733B62C5FEA5 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7786EDC030B40923CE2FB132BC6FD07E /* Easy.release.xcconfig */;
@@ -7099,35 +7130,6 @@
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
-		};
-		E581049674FC376CE9625A9F1AF9DCF7 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = B9F527D999E82A4D346EE00189614747 /* EasyBeta.debug.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/EasyBeta/EasyBeta-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/EasyBeta/EasyBeta-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/EasyBeta/EasyBeta.modulemap";
-				PRODUCT_MODULE_NAME = EasyBeta;
-				PRODUCT_NAME = EasyBeta;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
 		};
 		E8E11BEAD498246D7236E5D6F73C0689 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -7379,8 +7381,8 @@
 		D9FF12DE49A7346027F429BB6B29690D /* Build configuration list for PBXNativeTarget "EasyBeta" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				E581049674FC376CE9625A9F1AF9DCF7 /* Debug */,
-				D1E1F011C40848F060296A4A527CACBD /* Release */,
+				8D8AD0A44DCC9B50CABD656CA8462C5C /* Debug */,
+				DC473A952219C77E9A943CD07ACD55F8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -8,7 +8,7 @@
 
 import UIKit
 
-private let session: easy.Session = {
+private let tcSession: easy.Session = {
     var config = easy.Config()
     config.url.alias = "Tuchong"
     config.url.release = "https://api.tuchong.com/feed-app"
@@ -168,11 +168,19 @@ extension Tuchong.Image {
     
 }
 
+extension Tuchong {
+    
+    static var session: easy.Session {
+        return tcSession
+    }
+    
+}
+
 extension TuchongViewController {
     
     /// 图虫
     func getTuchong(page: Int, poseId: Int?, handler: @escaping (easy.DataResponse) -> Void) {
-        session.get(parameters: session.pageSize(page, poseId), inView: collectionList.count > 0 ? nil : view) { (dataResponse) in
+        tcSession.get(parameters: tcSession.pageSize(page, poseId), inView: collectionList.count > 0 ? nil : view) { (dataResponse) in
             if dataResponse.valid {
                 handler(dataResponse.fill(list: dataResponse.listParameters.compactMap({ JSONDecoder().decode(Tuchong.self, from: $0) })))
             } else {

@@ -393,6 +393,7 @@ public extension EasyApp {
                     $0.attributedText = message
                     $0.isSelectable = false
                     $0.isEditable = false
+                    $0.backgroundColor = .clear
                 }
                 alertView.addSubview(messageTextView)
                 messageTextView.snp.makeConstraints({ (make) in

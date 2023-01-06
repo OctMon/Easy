@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import EasyBeta
 
 extension AppDelegate {
     
@@ -39,7 +40,7 @@ extension AppDelegate {
         }
 #if BETA
         app.configTestTool()
-        Tuchong.manager.addToShowBaseURL()
+        Tuchong.session.addToShowBaseURL()
         app.configCheckPgyer(api_key: "#replace your api_key", shortcutUrl: "")
 #endif
         configSocial()
