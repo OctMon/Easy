@@ -41,7 +41,7 @@ extension AppDelegate {
 #if BETA
         app.configTestTool()
         Tuchong.session.addToShowBaseURL()
-        app.configCheckPgyer(api_key: "#replace your api_key", shortcutUrl: "")
+        app.configCheckPgyer(api_key: "#replace your api_key", shortcutUrl: "", buildPassword: "")
 #endif
         configSocial()
         configRouter()
