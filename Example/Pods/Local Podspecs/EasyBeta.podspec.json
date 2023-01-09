@@ -21,14 +21,11 @@
   "swift_versions": "5.0",
   "source_files": "EasyBeta/Classes/*",
   "dependencies": {
-    "Easy/Core": [
-
-    ],
     "Easy/Session": [
-
+      "~> 2.9.0"
     ],
     "FLEX": [
-      "~> 4.4.1"
+      "~> 4.6.1"
     ],
     "GDPerformanceView-Swift": [
       "~> 2.1.1"

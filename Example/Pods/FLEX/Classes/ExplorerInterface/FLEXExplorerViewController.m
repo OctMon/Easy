@@ -460,17 +460,12 @@ typedef NS_ENUM(NSUInteger, FLEXExplorerMode) {
         initWithTarget:self action:@selector(handleToolbarDetailsTapGesture:)
     ];
     [toolbar.selectedViewDescriptionContainer addGestureRecognizer:self.detailsTapGR];
+    
     // Swipe gestures for selecting deeper / higher views at a point
-    UIPanGestureRecognizer *leftSwipe = [[UIPanGestureRecognizer alloc]
+    UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc]
         initWithTarget:self action:@selector(handleChangeViewAtPointGesture:)
     ];
-//    UIPanGestureRecognizer *rightSwipe = [[UIPanGestureRecognizer alloc]
-//        initWithTarget:self action:@selector(handleChangeViewAtPointGesture:)
-//    ];
-//    leftSwipe.direction = UISwipeGestureRecognizerDirectionLeft;
-//    rightSwipe.direction = UISwipeGestureRecognizerDirectionRight;
-    [toolbar.selectedViewDescriptionContainer addGestureRecognizer:leftSwipe];
-//    [toolbar.selectedViewDescriptionContainer addGestureRecognizer:rightSwipe];
+    [toolbar.selectedViewDescriptionContainer addGestureRecognizer:panGesture];
     
     // Long press gesture to present tabs manager
     [toolbar.globalsItem addGestureRecognizer:[[UILongPressGestureRecognizer alloc]
@@ -925,7 +920,21 @@ typedef NS_ENUM(NSUInteger, FLEXExplorerMode) {
 - (void)toggleToolWithViewControllerProvider:(UINavigationController *(^)(void))future
                                   completion:(void (^)(void))completion {
     if (self.presentedViewController) {
+        // We do NOT want to present the future; this is
+        // a convenience method for toggling the SAME TOOL
         [self dismissViewControllerAnimated:YES completion:completion];
+    } else if (future) {
+        [self presentViewController:future() animated:YES completion:completion];
+    }
+}
+
+- (void)presentTool:(UINavigationController *(^)(void))future
+         completion:(void (^)(void))completion {
+    if (self.presentedViewController) {
+        // If a tool is already presented, dismiss it first
+        [self dismissViewControllerAnimated:YES completion:^{
+            [self presentViewController:future() animated:YES completion:completion];
+        }];
     } else if (future) {
         [self presentViewController:future() animated:YES completion:completion];
     }
