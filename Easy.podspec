@@ -41,7 +41,7 @@ Pod::Spec.new do |s|
     s.subspec 'PhotoBrowser' do |ss|
         ss.source_files = 'Easy/Classes/PhotoBrowser/*'
         ss.dependency 'Easy/Core'
-        ss.dependency 'ZLPhotoBrowser', '~> 3.2.0' # https://github.com/longitachi/ZLPhotoBrowser
+        ss.dependency 'ZLPhotoBrowser', '~> 4.3.8' # https://github.com/longitachi/ZLPhotoBrowser
     end
     
     s.subspec 'RSA' do |ss|

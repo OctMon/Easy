@@ -46,15 +46,7 @@ class PhotoBrowserViewController: easy.ViewController, easy.CollectionListProtoc
             if let cell = cell as? ImageLabelCollectionViewCell {
                 cell.imageView.image = image
             }
-        }) { [weak self] (listView, indexPath, image) in
-            let photoActionSheet = easy.PhotoActionSheet()
-            photoActionSheet.sender = self
-            let photos = listView.list.map({ (any) -> [AnyHashable : Any] in
-                return easy.PreviewPhotoGetDictFor(obj: any, type: easy.PreviewPhotoType.uiImage)
-            })
-            photoActionSheet.previewPhotos(photos, index: indexPath.row, hideToolBar: true, complete: { (any) in
-                
-            })
+        }) { (listView, indexPath, image) in
         }
         
         collectionListView.setSizeForItemAt(UIImage.self) { (_, _, image) -> CGSize in

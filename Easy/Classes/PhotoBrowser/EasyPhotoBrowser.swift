@@ -7,21 +7,13 @@
 
 import UIKit
 import ZLPhotoBrowser
+import Photos
 
 public extension Easy {
     typealias PhotoManager = ZLPhotoManager
-    typealias PhotoActionSheet = ZLPhotoActionSheet
+    typealias PhotoActionSheet = ZLPhotoPreviewSheet
     typealias PhotoModel = ZLPhotoModel
     typealias PhotoConfiguration = ZLPhotoConfiguration
-    typealias PreviewPhotoType = ZLPreviewPhotoType
-}
-
-public extension Easy {
-    
-    static func PreviewPhotoGetDictFor(obj: Any, type: PreviewPhotoType) -> [AnyHashable : Any] {
-        return GetDictForPreviewPhoto(obj, type)
-    }
-    
 }
 
 public extension EasyApp {
@@ -34,7 +26,7 @@ public extension EasyApp {
                     switch type {
                     case .camera:
                         let imagePickerController = UIImagePickerController()
-                        let configuration = Easy.PhotoConfiguration.default()!
+                        let configuration = Easy.PhotoConfiguration.default()
                         configurationHandler?(configuration)
                         imagePickerController.allowsEditing = configuration.allowEditImage
                         imagePickerController.sourceType = .camera
@@ -48,13 +40,9 @@ public extension EasyApp {
                         viewController.present(imagePickerController, animated: true, completion: nil)
                     default:
                         let photoActionSheet = Easy.PhotoActionSheet()
-                        photoActionSheet.sender = viewController
-                        photoActionSheet.configuration.maxPreviewCount = 0
-                        photoActionSheet.configuration.allowTakePhotoInLibrary = false
-                        configurationHandler?(photoActionSheet.configuration)
-                        photoActionSheet.showPhotoLibrary()
-                        photoActionSheet.selectImageBlock = { (images, assets, isOriginal) in
-                            selectImageHandler(images ?? [], assets, isOriginal)
+                        photoActionSheet.showPhotoLibrary(sender: viewController)
+                        photoActionSheet.selectImageBlock = { (results, isOriginal) in
+                            selectImageHandler(results.map { $0.image }, results.map { $0.asset }, isOriginal)
                         }
                     }
                 }
@@ -86,8 +74,8 @@ private class PickerControllerDelegate: NSObject, UIImagePickerControllerDelegat
             image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
         }
         if let image = image {
-            ZLPhotoManager.saveImage(toAblum: image, completion: { [weak self] (isSuccess, asset) in
-                if isSuccess {
+            ZLPhotoManager.saveImageToAlbum(image: image, completion: { [weak self] (isSuccess, asset) in
+                if let asset = asset, isSuccess {
                     self?.selectImageHandler?(image, asset)
                 }
             })

@@ -15,7 +15,7 @@ PODS:
     - WMPageController (~> 2.5.2)
   - Easy/PhotoBrowser (2.9.1):
     - Easy/Core
-    - ZLPhotoBrowser (~> 3.2.0)
+    - ZLPhotoBrowser (~> 4.3.8)
   - Easy/RSA (2.9.1):
     - Easy/Core
     - SwiftyRSA (~> 1.5.0)
@@ -51,8 +51,9 @@ PODS:
     - SwiftyRSA/ObjC (= 1.5.0)
   - SwiftyRSA/ObjC (1.5.0)
   - WMPageController (2.5.2)
-  - ZLPhotoBrowser (3.2.0):
-    - SDWebImage
+  - ZLPhotoBrowser (4.3.8):
+    - ZLPhotoBrowser/Core (= 4.3.8)
+  - ZLPhotoBrowser/Core (4.3.8)
 
 DEPENDENCIES:
   - Easy (from `../`)
@@ -89,7 +90,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Alamofire: 1c4fb5369c3fe93d2857c780d8bbe09f06f97e7c
-  Easy: eb37e363c19784c08e74985a7b5d4dfa46505f8c
+  Easy: 9007d5947baaee3f81f6d1af4f85a6c30928246f
   EasyBeta: 9b2a93a8cb6a14d7355f60a4e1316b2e3239b77d
   fishhook: ea19933abfe8f2f52c55fd8b6e2718467d3ebc89
   FLEX: bbc55d197f87d7cde2454c3981aa47069b694144
@@ -103,7 +104,7 @@ SPEC CHECKSUMS:
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   SwiftyRSA: 6e528fb1b1a87d5111c48081083b141d6d65f1cf
   WMPageController: 0c7624d2b48e4f1ab92371688cf6744ed701575d
-  ZLPhotoBrowser: 3748fdbeb2b28961c2495d15131dbf413082e1b9
+  ZLPhotoBrowser: a36e618898b781c225672115938ed861a11b2121
 
 PODFILE CHECKSUM: 12cf4965f05a62f2f8410a0c3702223c83d93da2
 
