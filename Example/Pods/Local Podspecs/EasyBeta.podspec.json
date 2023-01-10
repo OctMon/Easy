@@ -22,7 +22,7 @@
   "source_files": "EasyBeta/Classes/*",
   "dependencies": {
     "Easy/Session": [
-      "~> 2.9.0"
+      "~> 2.9.1"
     ],
     "FLEX": [
       "~> 4.6.1"

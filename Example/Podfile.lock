@@ -28,7 +28,7 @@ PODS:
     - Easy/Core
     - MonkeyKing (~> 2.1.0)
   - EasyBeta (0.2.0):
-    - Easy/Session (~> 2.9.0)
+    - Easy/Session (~> 2.9.1)
     - FLEX (~> 4.6.1)
     - GDPerformanceView-Swift (~> 2.1.1)
     - OOMDetector (~> 1.3)
@@ -91,7 +91,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   Alamofire: 1c4fb5369c3fe93d2857c780d8bbe09f06f97e7c
   Easy: 9007d5947baaee3f81f6d1af4f85a6c30928246f
-  EasyBeta: 9b2a93a8cb6a14d7355f60a4e1316b2e3239b77d
+  EasyBeta: 006bfd159f261a42d8dc1d82eeaeee242fbc55f0
   fishhook: ea19933abfe8f2f52c55fd8b6e2718467d3ebc89
   FLEX: bbc55d197f87d7cde2454c3981aa47069b694144
   GDPerformanceView-Swift: 22d964fe40b19e3d914dba2586237d064de8fd77

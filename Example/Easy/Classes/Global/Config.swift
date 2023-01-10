@@ -7,7 +7,9 @@
 //
 
 import UIKit
+#if canImport(EasyBeta)
 import EasyBeta
+#endif
 
 extension AppDelegate {
     
