@@ -38,12 +38,6 @@ Pod::Spec.new do |s|
         #ss.dependency 'SwiftyAttributes'#, '~> 5.1.1' # https://github.com/eddiekaiger/SwiftyAttributes
     end
     
-    s.subspec 'PhotoBrowser' do |ss|
-        ss.source_files = 'Easy/Classes/PhotoBrowser/*'
-        ss.dependency 'Easy/Core'
-        ss.dependency 'ZLPhotoBrowser', '~> 4.3.8' # https://github.com/longitachi/ZLPhotoBrowser
-    end
-    
     s.subspec 'RSA' do |ss|
         ss.source_files = 'Easy/Classes/RSA/*'
         ss.dependency 'Easy/Core'

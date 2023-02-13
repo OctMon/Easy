@@ -23,7 +23,6 @@ def appstore_pods
     pod 'Easy/RSA', :path => '../'
     pod 'Easy/Social', :path => '../'
     pod 'Easy/Scan', :path => '../'
-    pod 'Easy/PhotoBrowser', :path => '../'
     sdk_pods
 end
 
