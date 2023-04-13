@@ -1171,6 +1171,7 @@ public extension UITextView {
                 $0.isUserInteractionEnabled = false
                 $0.backgroundColor = .clear
                 $0.font = font
+                $0.textAlignment = textAlignment
                 $0.textContainerInset = textContainerInset
                 addSubview($0)
             }
